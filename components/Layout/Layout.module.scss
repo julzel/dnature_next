@@ -1,0 +1,13 @@
+.layout {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(21, 21, 21, 0.7);
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+
+    .main {
+        flex-grow: 1;
+        background-color: white;
+    }
+}
