@@ -44,7 +44,6 @@ const Slider = () => {
 
     return (
         <div className={styles.slider}>
-            {console.log(currentSlidePosition)}
             <div
                 className={styles.container}
                 style={{
