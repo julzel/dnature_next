@@ -4,4 +4,16 @@
     justify-content: space-between;
     min-height: 100vh;
     background-color: rgba(21, 21, 21,09);
+
+    header,
+    footer {
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    main {
+        flex-grow: 1;
+        background-color: green;
+        height: 100%;
+    }
 }

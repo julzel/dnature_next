@@ -1,5 +1,8 @@
 import Head from 'next/head'
+
+// local imports
 import Layout from '../components/Layout'
+import Slider from '../components/Slider'
 
 export default function Home() {
   return (
@@ -11,7 +14,9 @@ export default function Home() {
       </Head>
 
      <Layout>
-       this is main
+       <section >
+         <Slider />
+       </section>
      </Layout>
     </div>
   )

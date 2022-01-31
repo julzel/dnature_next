@@ -1,0 +1,19 @@
+@import '../../../styles/variables';
+.headerTop {
+    height: 30px;
+    background-color: $blue;
+    border-bottom: 5px solid $orange;
+
+    .container {
+        color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        max-width: 1920px;
+        margin: 0 auto;
+        padding: 0 20%;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+}
