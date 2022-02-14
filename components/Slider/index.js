@@ -34,26 +34,22 @@ const slides = [
 ]
 
 const Slider = () => {
-    const [currentSlidePosition, setCurrentSlidePosition] = useState(0)
+    const [currentSlide, setCurrentSlide] = useState(0)
 
     const onBulletClick = newCurrentSlide => {
-        if (currentSlidePosition !== newCurrentSlide) {
-            setCurrentSlidePosition(newCurrentSlide * 100)
+        if (currentSlide !== newCurrentSlide) {
+            setCurrentSlide(newCurrentSlide)
         }
     }
 
     return (
         <div className={styles.slider}>
-            <div
-                className={styles.container}
-                style={{
-                    transform: `translateX(${-currentSlidePosition}vw)`
-                }}
-            >
+            <div className={styles.container}>
                 {slides.map(slide => (
                     <Slide
                         key={slide.id}
                         slide={slide}
+                        currentSlide={currentSlide}
                     />
                 ))}
             </div>

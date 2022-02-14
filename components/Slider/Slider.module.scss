@@ -1,14 +1,12 @@
 .slider {
     background-color: white;
     border-top: 1px solid rgba(21, 21, 21, 0.15);
-    position: relative;
+    height: calc(100vh - 120px);
 
     .container{
-        overflow: hidden;
-        height: 0;
+        height: 100%;
         display: flex;
         flex-wrap: nowrap;
-        transition: transform 500ms ease-in-out;
-        padding-top: 50%;
+        overflow: hidden;
     }
 }
