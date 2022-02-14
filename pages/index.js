@@ -3,6 +3,8 @@ import Head from 'next/head'
 // local imports
 import Layout from '../components/Layout'
 import Slider from '../components/Slider'
+import OurDiet from '../components/Home/OurDiet'
+import OurIngredients from '../components/Home/OurIngredients'
 
 export default function Home() {
   return (
@@ -17,6 +19,8 @@ export default function Home() {
        <section >
          <Slider />
        </section>
+       <OurDiet />
+       <OurIngredients />
      </Layout>
     </div>
   )

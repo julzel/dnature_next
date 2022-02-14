@@ -3,7 +3,6 @@
     flex-flow: column;
     justify-content: space-between;
     min-height: 100vh;
-    background-color: rgba(21, 21, 21,09);
 
     header,
     footer {
@@ -13,7 +12,6 @@
 
     main {
         flex-grow: 1;
-        background-color: green;
         height: 100%;
     }
 }

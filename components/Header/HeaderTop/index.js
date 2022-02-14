@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // local imports
 import styles from './HeaderTop.module.scss'
@@ -16,10 +16,16 @@ const getTodaysDate = () => {
 }
 
 const HeaderTop = () => {
+    const [todaysDate, setTodaysDate] = useState(null);
+
+    useEffect(() => {
+        setTodaysDate(getTodaysDate())
+    }, [])
+
     return (
         <div className={styles.headerTop}>
             <div className={styles.container}>
-                {getTodaysDate()}
+                {todaysDate}.
             </div>
         </div>
     )
