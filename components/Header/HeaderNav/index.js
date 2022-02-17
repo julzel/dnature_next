@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 // local imports
 import DropdownMenu from '../DropdownMenu'
 import styles from './HeaderNav.module.scss'
+import logo from '../../../public/images/logo_ppal-01.svg'
 
 // local constants
 const dropdownMenuItems = [{
@@ -23,7 +25,10 @@ const HeaderNav = () => {
     return (
         <div className={styles.headerNav}>
             <div className={styles.container}>
-                <div>logo</div>
+                <Image
+                    src={logo}
+                    alt='DNAture Logo'
+                />
                 <nav>
                     <div
                         className={styles.specialItem}

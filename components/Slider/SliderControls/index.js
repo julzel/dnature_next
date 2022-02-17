@@ -5,8 +5,6 @@ import styles from './SliderControls.module.scss'
 
 const SliderControls = ({
     slides,
-    onSlideNext,
-    onSlidePrev,
     onBulletClick
 }) => {
     return (

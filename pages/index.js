@@ -2,11 +2,10 @@ import Head from 'next/head'
 
 // local imports
 import Layout from '../components/Layout'
-import Slider from '../components/Slider'
-import OurDiet from '../components/Home/OurDiet'
-import OurIngredients from '../components/Home/OurIngredients'
+import Home from '../components/Home'
 
-export default function Home() {
+
+export default function App() {
   return (
     <div>
       <Head>
@@ -16,11 +15,7 @@ export default function Home() {
       </Head>
 
      <Layout>
-       <section >
-         <Slider />
-       </section>
-       <OurDiet />
-       <OurIngredients />
+       <Home />
      </Layout>
     </div>
   )

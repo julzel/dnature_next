@@ -1,7 +1,6 @@
 .slider {
     background-color: white;
-    border-top: 1px solid rgba(21, 21, 21, 0.15);
-    height: calc(100vh - 120px);
+    position: relative;
 
     .container{
         height: 100%;

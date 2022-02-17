@@ -3,7 +3,11 @@ import React from 'react';
 // local imports
 import styles from './Slide.module.scss'
 
-const Slide = ({ slide, currentSlide }) => {
+const Slide = ({
+    slide,
+    currentSlide,
+    children
+}) => {
     // TODO
     // calcular la diferencia entre currentSlide and nextSlide
     return (
@@ -14,7 +18,8 @@ const Slide = ({ slide, currentSlide }) => {
                 transform: `translateX(${-currentSlide * 100}vw)`
             }}
         >
-            {slide.text}
+            {/* 43.125 */}
+            {children}
         </div>
     );
 }
