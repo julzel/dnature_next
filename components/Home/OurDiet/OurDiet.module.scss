@@ -10,6 +10,7 @@
    .title {
        max-width: 890px;
        position: relative;
+       margin-bottom: 42px;
 
        .subtitle {
            color: $blue;
@@ -26,9 +27,22 @@
 
        .column {
            width: 33.3333%;
+           padding-right: 38px;
+           display: flex;
+           flex-flow: column;
+           align-items: center;
+
+           .headerImage {
+               max-width: 50%;
+               height: 131px;
+               display: flex;
+               align-items: flex-end;
+               margin-bottom: 15px;
+           }
 
            p {
-               font-size: 15px;
+               font-size: 17px;
+               font-family: $light;
                color: $gray;
                text-align: center;
            }
