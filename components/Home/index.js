@@ -4,6 +4,7 @@ import Slider from '../../components/Slider'
 import OurDiet from '../../components/Home/OurDiet'
 import OurIngredients from '../../components/Home/OurIngredients'
 import SlideNutrition from './SlideNutrition'
+import SpecialRecipe from './SpecialRecipe'
 
 const homeSlides = [
     {
@@ -46,6 +47,7 @@ const Home = () => {
             </section>
             <OurDiet />
             <OurIngredients />
+            <SpecialRecipe />
         </>
     )
 }

@@ -39,21 +39,21 @@ const proteins = [
 
 const suplements = [
     {
-        icon: kale,
-        label: 'Kale'
-    },{
-        icon: espinaca,
-        label: 'Espinaca'
+        icon: espirulina,
+        label: 'Espirulina'
     },{
         icon: curcuma,
         label: 'Cúrcuma'
     },{
-        icon: espirulina,
-        label: 'Espirulina'
+        icon: espinaca,
+        label: 'Espinaca'
     },{
         icon: acidosGrasos,
         label: 'Ácidos grasos escenciales'
-    },
+    },{
+        icon: kale,
+        label: 'Kale',
+    }
 ]
 
 const data = {
