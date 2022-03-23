@@ -23,11 +23,9 @@ const HeaderTop = () => {
     }, [])
 
     return (
-        <div className={styles.headerTop}>
-            <div className={styles.container}>
-                {todaysDate}.
-            </div>
-        </div>
+        <div className={styles.headerTop} />
+            
+        // </div>
     )
 }
  

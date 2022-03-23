@@ -1,14 +1,17 @@
-import React from 'react';
-import HeaderNav from './HeaderNav';
-import HeaderTop from './HeaderTop';
+import React from 'react'
 
-const Header = () => {
-    return (
-        <header>
-            <HeaderTop />
-            <HeaderNav />
-        </header>
-    );
-}
+// local imports
+
+// components
+import HeaderNav from './HeaderNav'
+
+// styles
+import styles from './Header.module.scss'
+
+const Header = () => (
+    <header className={styles.header}>
+        <HeaderNav />
+    </header>
+)
  
-export default Header;
+export default Header

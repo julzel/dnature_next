@@ -1,0 +1,30 @@
+@import '../../../../styles/_variables';
+
+.benefits {
+    color: $white;
+    background-color: $black;
+    border-top: 2px solid $orange;
+    padding: 80px 35px;
+    display: flex;
+    flex-flow: column;
+
+    ul {
+        margin: 0 auto;
+        margin-top: 70px;
+        max-width: 600px;
+
+        li {
+            display: flex;
+            font-size: 20px;
+            margin-bottom: 15px;
+
+            span {
+                width: 12px;
+                flex-shrink: 0;
+                margin-right: 15px;
+                transform: rotate(-10deg);
+                opacity: 0.8;
+            }
+        }
+    }
+}
