@@ -10,11 +10,11 @@ import ScrollContextProvider from '../../contexts/scroll-context'
 const Layout = ({ children }) => (
     <ScrollContextProvider>
         <div className={styles.layout}>
-            <Header />
             <main>
                 {children}
             </main>
             <Footer />
+            <Header changeBackground />
         </div>
     </ScrollContextProvider>
 );

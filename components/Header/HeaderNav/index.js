@@ -15,9 +15,9 @@ import logo2 from '../../../public/images/dnature-logo.svg'
 
 const TRIGGER_POSITION = 180;
 
-const HeaderNav = () => {
+const HeaderNav = ({ changeBackground }) => {
     const scrollPosition = useContext(ScrollContext)
-    const showBackground = scrollPosition >= TRIGGER_POSITION
+    const showBackground = changeBackground && scrollPosition >= TRIGGER_POSITION
 
     return (
         <div

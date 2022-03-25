@@ -8,9 +8,9 @@ import HeaderNav from './HeaderNav'
 // styles
 import styles from './Header.module.scss'
 
-const Header = () => (
+const Header = ({ changeBackground }) => (
     <header className={styles.header}>
-        <HeaderNav />
+        <HeaderNav changeBackground={changeBackground} />
     </header>
 )
  

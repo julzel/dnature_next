@@ -1,7 +1,6 @@
 @import '../../../../styles/_variables';
 
 .products {
-    border-top: 2px solid $darkGreen;
     position: relative;
 
     &Title{
@@ -16,61 +15,55 @@
     }
     
     &Category {
-        background-color: rgba(21, 21, 21, 0.8);
-        width: 50%;
+        width: 100%;
+        margin-bottom: 40px;
+        position: relative;
 
-        &:nth-child(odd) {
-            border-right: 1px solid $darkGreenGhost;
-        }
-
-        &:nth-child(3),
-        &:nth-child(4) {
-            border-top: 1px solid $darkGreenGhost;
-        }
-
-        &Ribbon {
-            color: $white;
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 35vw;
-            height: 25vw;
-
-            .icon {
-                display: flex;
-                margin-bottom: 15px;
-                img {
-                    width: 55px !important;
-                }
-            }
-
-           .label {
-                background-color: $darkGreenGhost;
-                // font-size: 18px;
-                line-height: 18px;
-                border-radius: 5px;
-                padding: 5px;
-                width: 100%;
-                text-align: center;
-            }
-        }
         &Thumbnail {
             display: flex;
             align-items: center;
             position: relative;
-            
-            .filter {
-                background-color: rgba(21, 21, 21, 0.8);
+        }
+
+        &Ribbon {
+            display: flex;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+           .label {
+                font-family: $bold2;
+                font-size: 16px;
+                letter-spacing: 1.5px;
+                line-height: 18px;
+                padding: 8px 3vw;
                 width: 100%;
-                height: 100%;
-                position: absolute;
-                left: 0;
-                top: 0;
+                text-transform: uppercase;
+            }
+        }
+        &Button {
+            border-radius: 50px;
+            padding: 5px 20px 5px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: $white;
+            background-color: $orange;
+            font-family: $bold2;
+            text-transform: uppercase;
+            
+            img {
+                width: 35px !important;
+            }
+
+            span:last-child {
+                margin-left: 5px;
             }
         }
 

@@ -11,51 +11,63 @@ const Categories = [
     {
         category: 'recetas',
         ribbonTitle: <div>Mezclas</div>,
-        color: '#FFAB00',
+        style: {
+            backgroundColor: '#07bbc7',
+            color: '#212121'
+        },
         icon: dietas,
         thumbnail: thumbnailDiet,
-        products: [
-            'product 1',
-            'product 2',
-            'product 3',
-            'product 4'
-        ]
+        productsList: {
+            title: 'Recetas completas DNAture',
+            text: <div>some text for recetas,</div>,
+            items: [
+                'Pollo',
+                'Pollo y res',
+                'Pollo y caballo',
+                'Pollo y cordero',
+                'Pollo y búfalo',
+                'Pollo y ternero',
+            ]
+        }
     }, {
         category: 'proteinas',
         ribbonTitle: <div>Proteínas</div>,
-        color: '#D20000',
+        style: {
+            backgroundColor: '#07bbc7',
+            color: '#fefefa'
+        },
         icon: proteins,
         thumbnail: thumbnailProteins,
-        products: [
-            'product 1',
-            'product 2',
-            'product 3',
-            'product 4'
-        ]
+        productsList: {
+            text: <div>some text for proteinas,</div>,
+            items: []
+        }
     }, {
         category: 'proteinas',
         ribbonTitle: <div>Snacks</div>,
-        color: '#800085',
+        style: {
+            backgroundColor: '#07bbc7',
+            color: '#212121'
+        },
         icon: snacks,
         thumbnail: thumbnailSnacks,
-        products: [
-            'product 1',
-            'product 2',
-            'product 3',
-            'product 4'
-        ]
+        productsList: {
+            text: <div>some text for proteinas,</div>,
+            items: []
+        }
     }, {
         category: 'superfoods',
         ribbonTitle: <div>Superfoods</div>,
-        color: '#006D01',
+        style: {
+            backgroundColor: '#07bbc7',
+            color: '#fefefa'
+        },
         icon: superfoods,
         thumbnail: thumbnailSuplements,
-        products: [
-            'product 1',
-            'product 2',
-            'product 3',
-            'product 4'
-        ]
+        productsList: {
+            text: <div>some text for superfoods,</div>,
+            items: []
+        }
     }
 ]
 

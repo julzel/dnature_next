@@ -29,7 +29,7 @@
         font-family: $bold;
         font-size: 26px;
         line-height: 30px;
-        z-index: 2;
+        z-index: 1;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -38,7 +38,7 @@
         width: 100%;
 
         span {
-            color: $green;
+            color: $darkGreen;
             display: inline-block;
             font-family: $bold2;
             font-size: 58px;
@@ -46,7 +46,7 @@
             line-height: 70px;
             text-transform: uppercase;
             position: relative;
-            opacity: 0.8;
+            opacity: 0.9;
             text-decoration: underline;
         }
     }

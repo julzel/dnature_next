@@ -2,8 +2,7 @@
 
 .benefits {
     color: $white;
-    background-color: $black;
-    border-top: 2px solid $orange;
+    background-color: $blue;
     padding: 80px 35px;
     display: flex;
     flex-flow: column;
@@ -23,7 +22,6 @@
                 flex-shrink: 0;
                 margin-right: 15px;
                 transform: rotate(-10deg);
-                opacity: 0.8;
             }
         }
     }

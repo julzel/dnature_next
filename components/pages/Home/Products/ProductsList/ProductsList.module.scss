@@ -1,0 +1,15 @@
+@import '../../../../../styles/_variables';
+
+.productsList {
+    height: 100%;
+    padding: 75px 30px 40px;
+
+    &Title {
+        color: $white;
+        margin: 40px 0;
+    }
+
+    &Text {
+        color: $white;
+    }
+}

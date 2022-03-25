@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .headerNav {
-    height: 85px;
+    height: 75px;
     transition: all 200ms linear;
     border-bottom: 1px solid #f1f1f1;
 
@@ -14,7 +14,7 @@
 
        .logo1,
        .logo2 {
-           width: 90px;
+           width: 80px;
            display: flex;
            position: absolute;
            left: 25px;

@@ -3,6 +3,7 @@
 
 html,
 body {
+  color: $black;
   font-family: $regular;
 }
 
@@ -50,6 +51,12 @@ a {
   }
 }
 
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
 .title {
   font-size: 30px;
   font-family: $bold;
@@ -63,4 +70,22 @@ a {
       letter-spacing: -5px;
       font-size: 32px;
   }
-}   
+}
+
+.slideIn {
+  animation-name: slide-in !important;
+}
+
+.slideOut {
+  animation-name: slide-out !important;
+}
+
+@keyframes slide-in {
+  from {left: 100vw;}
+  to {left: 0;}
+}
+
+@keyframes slide-out {
+  from {left: 0;}
+  to {left: 100vw;}
+}
