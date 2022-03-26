@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faInstagram,
     faWhatsapp,
-    faFacebookSquare,
+    //faFacebookSquare,
 } from '@fortawesome/free-brands-svg-icons'
 import {
     faCompass,
@@ -33,7 +33,7 @@ const Map = () => {
             const google = window.google; // ADDED
             map = new google.maps.Map(googlemap.current, {
                 center: STORE_LOCATION,
-                zoom: 1,
+                zoom: 15,
                 zoomControl: false,
                 streetViewControl: false,
             });
