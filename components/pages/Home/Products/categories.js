@@ -9,6 +9,7 @@ import thumbnailSuplements from '../../../../public/images/category-suplement.jp
 import productsDiet from '../../../../public/images/products-diet.jpg'
 import productsProteins from '../../../../public/images/products-proteins.jpg'
 import productsSnacks from '../../../../public/images/products-snacks.jpg'
+import productsSuper from '../../../../public/images/products-super.jpg'
 
 const Categories = [
     {
@@ -95,8 +96,26 @@ const Categories = [
         icon: superfoods,
         thumbnail: thumbnailSuplements,
         productsList: {
-            text: <div>some text for superfoods,</div>,
-            items: []
+            title: 'Super Foods',
+            text: <div>
+                En DNAture entendemos que tus mascotas podrían terner
+                necesidades específicas, que requieren una ayuda adicional
+                en su alimentación. Te ofrecemos:
+            </div>,
+            items: [
+                'Levadura de cerveza',
+                'Levadura nutricional',
+                'Polen',
+                'Golden Paste',
+                'Mejillón verder',
+                'Barf buffet',
+                'Multivitamínico',
+                'Vitamina E',
+                '4 en 1',
+                'Malted kelp'
+            ],
+            price: 'Consulta',
+            img: productsSuper
         }
     }
 ]
