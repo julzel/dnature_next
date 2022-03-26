@@ -28,15 +28,16 @@ const Map = () => {
             version: 'weekly',
         });
         let map;
+        let marker;
         loader.load().then(() => {
             const google = window.google; // ADDED
-            const map = new google.maps.Map(googlemap.current, {
+            map = new google.maps.Map(googlemap.current, {
                 center: STORE_LOCATION,
-                zoom: 14,
+                zoom: 1,
                 zoomControl: false,
                 streetViewControl: false,
             });
-            const marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: STORE_LOCATION,
                 map,
                 title: "DNAture. #1 en alimentación natural",
