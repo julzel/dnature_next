@@ -5,6 +5,7 @@ import Hero from './Hero'
 import Diet from './Diet'
 import Benefits from './Benefits'
 import Products from './Products'
+import Map from './Map'
 
 // styles
 import styles from './Home.module.scss'
@@ -17,6 +18,7 @@ const Home = () => {
             <Diet />
             <Benefits />
             <Products />
+            <Map />
         </div>
     )
 }

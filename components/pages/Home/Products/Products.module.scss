@@ -15,9 +15,10 @@
     }
     
     &Category {
-        width: 100%;
-        margin-bottom: 40px;
+        margin-top: 20px;
+        margin-bottom: 60px;
         position: relative;
+        width: 100%;
 
         &Thumbnail {
             display: flex;
@@ -29,33 +30,36 @@
             display: flex;
             position: absolute;
             left: 0;
-            top: 0;
-            width: 100%;
+            top: -20px;
             height: 100%;
+            width: 100%;
 
            .label {
                 font-family: $bold2;
-                font-size: 16px;
+                font-size: 18px;
                 letter-spacing: 1.5px;
                 line-height: 18px;
-                padding: 8px 3vw;
+                padding: 8px 4vw;
                 width: 100%;
                 text-transform: uppercase;
             }
         }
         &Button {
+            background-color: $orange;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.24);
             border-radius: 50px;
-            padding: 5px 20px 5px 5px;
+            color: $white;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: $bold2;
+            font-size: 20px;
+            padding: 5px 20px 5px 5px;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            color: $white;
-            background-color: $orange;
-            font-family: $bold2;
             text-transform: uppercase;
             
             img {

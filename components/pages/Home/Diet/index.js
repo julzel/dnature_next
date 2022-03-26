@@ -15,17 +15,12 @@ const Diet = () => {
             <p className={styles.dietParagraph}>
                 Se trata de una metodología de nutrición acorde a las
                 necesidades reales de tu mascota, según sus características
-                genéticas y fisiológicas.
+                genéticas y fisiológicas (*).
             </p>
             <p className={styles.dietParagraph}>
                 Son recetas con ingredientes con muy poco o nulo procesamiento,
                 libre de preservantes, o aditivos artificiales; y que contienen
                 el balance ideal y sinérgico entre los nutrientes que la conforman.
-            </p>
-            <p className={styles.dietParagraph}>
-                Nuestras recetas están diseñadas para suplir las necesidades
-                nutricionales generales de tu mascota(*) y asegurar una absorción
-                adecuada y el desempeño óptimo de cada nutriente.
             </p>
             <p className={styles.dietParagraph}>
                 <span className={styles.dietParagraphSmall}>
