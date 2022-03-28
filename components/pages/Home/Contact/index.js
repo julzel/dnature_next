@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react'
-import { Loader } from '@googlemaps/js-api-loader';
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faInstagram,
@@ -13,38 +12,13 @@ import {
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 // local imports
+// components
+import Map from '../../../Map'
 
 // styles
-import styles from './Map.module.scss'
+import styles from './Contact.module.scss'
 
-const STORE_LOCATION = { lat: 9.959968745311736, lng: -84.07861948155853 }
-
-const Map = () => {
-    const googlemap = useRef(null);
-
-    useEffect(() => {
-        const loader = new Loader({
-            apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-            version: 'weekly',
-        });
-        let map;
-        let marker;
-        loader.load().then(() => {
-            const google = window.google; // ADDED
-            map = new google.maps.Map(googlemap.current, {
-                center: STORE_LOCATION,
-                zoom: 15,
-                zoomControl: false,
-                streetViewControl: false,
-            });
-            marker = new google.maps.Marker({
-                position: STORE_LOCATION,
-                map,
-                title: "DNAture. #1 en alimentación natural",
-              });
-            marker.setMap(map);
-        });
-    });
+const Contact = () => {
     return (
         <>
             <div className={styles.locationMap}>
@@ -95,12 +69,10 @@ const Map = () => {
                         <span className={styles.locationMapItem}>Nuestro local</span>
                     </li>
                 </ul>
-                <div id="store-map">
-                    <div id="map" ref={googlemap} />
-                </div>
+                <Map />
             </div>
         </>
     )
 }
 
-export default Map
+export default Contact
