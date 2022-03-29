@@ -1,16 +1,16 @@
 @import '../../../../styles/_variables';
 
 .locationMap {
-    padding: 80px 0 40px;
-    background-color: $blue;
+    padding: 80px 0;
+    background-color: $black;
 
     &Title {
-        margin-bottom: 40px;
-        color: white;
+        margin-bottom: 80px;
+        color: $white;
     }
 
     &List {
-        font-size: 16px;
+        font-size: 12px;
         max-width: 600px;
         margin: 0 auto;
         margin-bottom: 80px;
@@ -18,11 +18,10 @@
         padding: 0 20px;
 
         li {
-            color: white;
+            color: $white;
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            font-family: $regular2;
+            margin-bottom: 20px;
             letter-spacing: 1px;
 
             &:last-child {
@@ -43,5 +42,6 @@
         display: flex;
         justify-content: center;
         width: 48px;
+        opacity: 0.75;
     }
 }

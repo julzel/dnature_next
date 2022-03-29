@@ -10,10 +10,10 @@ import { ScrollContext } from '../../../contexts/scroll-context';
 import styles from './HeaderNav.module.scss'
 
 // images
-import logo1 from '../../../public/images/dnature-logo-bw.svg'
+import logo1 from '../../../public/images/dnature-logo-transparent.svg'
 import logo2 from '../../../public/images/dnature-logo.svg'
 
-const TRIGGER_POSITION = 180;
+const TRIGGER_POSITION = 140;
 
 const HeaderNav = ({ changeBackground }) => {
     const scrollPosition = useContext(ScrollContext)

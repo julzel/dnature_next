@@ -5,7 +5,7 @@
     position: relative;
 
     &Filter {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(33, 33, 33, 0.4);
         position: absolute;
         top: 0;
         left: 0;
@@ -25,31 +25,32 @@
     }
 
     &Title {
-        color: white;
+        color: $white;
         font-family: $bold;
-        font-size: 26px;
-        line-height: 30px;
+        font-size: 28px;
+        line-height: 34px;
         z-index: 1;
         position: absolute;
         left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        top: 28%;
+        transform: translateX(-50%);
         text-align: center;
-        width: 100%;
+        // width: 100%;
         text-shadow: 1px 1px rgba(33,33,33,.25);
 
         span {
-            color: $darkGreen;
+            color: $green;
             display: inline-block;
             font-family: $bold2;
-            font-size: 58px;
+            font-size: 40px;
             letter-spacing: 3px;
-            line-height: 70px;
+            line-height: 50px;
+            margin-bottom: 5px;
             text-transform: uppercase;
             position: relative;
-            opacity: 0.9;
             text-decoration: underline;
             text-shadow: 1px 1px rgba(33,33,33,.25);
+            // transform: translateX(-20px);
         }
     }
 }

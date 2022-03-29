@@ -19,8 +19,8 @@
 		fill:transparent;
 		display: none;
 	}
-	.st2{fill:#000;}
-	.st3{fill:#000;}
+	.st2{fill:#3a3a3a;}
+	.st3{fill:#3a3a3a;}
 	.st4{fill:#777777;}
 	.st5{fill:#8E8E8E;}
 	.st6{fill:#B8B8B8;}

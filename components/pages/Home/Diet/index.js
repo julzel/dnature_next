@@ -1,6 +1,8 @@
 import React from 'react'
 
 // local imports
+// components
+import RibbonTitle from '../../../RibbonTitle';
 
 // styles
 import styles from './Diet.module.scss'
@@ -8,9 +10,11 @@ import styles from './Diet.module.scss'
 const Diet = () => {
     return (
         <div className={styles.diet}>
-            <h2 className='title'>
-                Dieta <span>DNAture</span>
-            </h2>
+            <RibbonTitle type='blue'>
+                <h2 className='title'>
+                    Dieta <span>DNAture</span>
+                </h2>
+            </RibbonTitle>
 
             <p className={styles.dietParagraph}>
                 Se trata de una metodología de nutrición acorde a las
