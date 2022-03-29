@@ -11,6 +11,7 @@ import styles from './Products.module.scss'
 
 // data
 import Categories from './categories'
+import AnimationBox from '../../../AnimationBox'
 
 const Products = () => {
     const [displayModal, setDisplayModal] = useState(false)
@@ -36,20 +37,23 @@ const Products = () => {
                             className={styles.productsCategory}
                         >
                             <div className={styles.productsCategoryThumbnail}>
-                                <Image src={category.thumbnail} alt="snack icon" />
-                                <h3
-                                    className={styles.productsCategoryRibbon}
-                                    style={{ backgroundColor: category.backgroundColor }}
-                                >
-                                    <div className={styles.label}>{category.ribbonTitle}</div>
-                                </h3>
-                                <button
-                                    onClick={() => onCategoryClick(category)}
-                                    className={styles.productsCategoryButton}
-                                >
-                                    <Image src={category.icon} alt="snack icon" />
-                                    <span>Ver más</span>
-                                </button>
+                                <AnimationBox animation='fade-in-from-bottom'>
+                                    <Image src={category.thumbnail} alt="snack icon" />
+                                </AnimationBox>
+                                <div className={styles.filter} />
+                                <div className={styles.productsCategoryContent}>
+                                    <AnimationBox animation='fade-in-from-bottom'>
+                                        <div
+                                            role='button'
+                                            className='flex-center-column'
+                                            onClick={() => onCategoryClick(category)}
+                                            tabIndex="0"
+                                        >
+                                            <span className={styles.label}>{category.label}</span>
+                                            <span className={styles.button}>Comprar</span>
+                                        </div>
+                                    </AnimationBox>
+                                </div>
                             </div>
                         </div>
                     )

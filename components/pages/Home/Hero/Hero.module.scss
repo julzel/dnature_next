@@ -36,18 +36,20 @@
         transform: translate(-50%, -50%);
         text-align: center;
         width: 100%;
+        text-shadow: 1px 1px rgba(33,33,33,.25);
 
         span {
             color: $darkGreen;
             display: inline-block;
             font-family: $bold2;
             font-size: 58px;
-            letter-spacing: -8px;
+            letter-spacing: 3px;
             line-height: 70px;
             text-transform: uppercase;
             position: relative;
             opacity: 0.9;
             text-decoration: underline;
+            text-shadow: 1px 1px rgba(33,33,33,.25);
         }
     }
 }

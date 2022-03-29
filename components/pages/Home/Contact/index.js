@@ -66,7 +66,7 @@ const Contact = () => {
                         <span className={styles.locationMapIcon}>
                             <FontAwesomeIcon icon={faCompass} size='2x' />
                         </span>
-                        <span className={styles.locationMapItem}>Nuestro local</span>
+                        <span className={styles.locationMapItem}>Nuestro local en Tibás</span>
                     </li>
                 </ul>
                 <Map />

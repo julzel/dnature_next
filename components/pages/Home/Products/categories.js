@@ -14,7 +14,7 @@ import productsSuper from '../../../../public/images/products-super.jpg'
 const Categories = [
     {
         category: 'recetas',
-        ribbonTitle: <div>Mezclas</div>,
+        label: 'Mezclas',
         style: {
             backgroundColor: '#07bbc7'
         },
@@ -40,7 +40,7 @@ const Categories = [
         }
     }, {
         category: 'proteinas',
-        ribbonTitle: <div>Proteínas</div>,
+        label: 'Proteínas',
         style: {
             backgroundColor: '#07bbc7'
         },
@@ -63,7 +63,7 @@ const Categories = [
         }
     }, {
         category: 'proteinas',
-        ribbonTitle: <div>Snacks</div>,
+        label: 'Snacks',
         style: {
             backgroundColor: '#07bbc7'
         },
@@ -89,7 +89,7 @@ const Categories = [
         }
     }, {
         category: 'superfoods',
-        ribbonTitle: <div>Superfoods</div>,
+        label: 'Superfoods',
         style: {
             backgroundColor: '#07bbc7'
         },

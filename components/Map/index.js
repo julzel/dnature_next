@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 
+// local imports
+import styles from './Map.module.scss'
+
 const STORE_LOCATION = { lat: 9.959968745311736, lng: -84.07861948155853 }
 
 const Map = () => {
@@ -30,8 +33,8 @@ const Map = () => {
     });
 
     return (
-        <div id="store-map">
-            <div id="map" ref={googlemap} />
+        <div id="store-map" className={styles.storeMap}>
+            <div id="map" ref={googlemap} className={styles.map}/>
         </div>
     );
 }

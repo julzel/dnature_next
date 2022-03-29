@@ -1,0 +1,67 @@
+@import '../../../../styles/_variables';
+
+.welcome {
+    padding: 80px 0;
+    overflow: hidden;
+    position: relative;
+
+    .title {
+        margin-bottom: 80px;
+    }
+
+    .sectionContent {
+        position: relative;
+        z-index: 1;
+    }
+
+    .sectionImage {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateX(55%) scale(1.25);
+        width: 100vw;
+        max-width: 600px;
+        z-index: 0;
+    }
+
+    &Section {
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 0 20px;
+        z-index: 1;
+
+        .subtitle {
+            font-size: 22px;
+            font-family: $bold;
+            margin-bottom: 20px;
+        }
+
+        .paragraph {
+            margin-bottom: 20px;
+
+            &:last-child {
+                background-color: transparent;
+            }
+
+            &Small {
+                color: $gray;
+                display: block;
+                font-size: 12px;
+                line-height: 18px;
+                max-width: 200px;
+            }
+
+            &Highlight {
+                color: $orange;
+                font-size: 15px;
+                font-family: $bold2;
+                text-transform: uppercase;
+            }
+        }
+
+        .narrow {
+            display: inline-block;
+            width: 60%;
+        }
+    }
+}

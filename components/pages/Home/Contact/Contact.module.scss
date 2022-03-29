@@ -1,7 +1,7 @@
 @import '../../../../styles/_variables';
 
 .locationMap {
-    padding: 80px 0 0;
+    padding: 80px 0 40px;
     background-color: $blue;
 
     &Title {
@@ -14,13 +14,16 @@
         max-width: 600px;
         margin: 0 auto;
         margin-bottom: 80px;
-        width: 75%;
+        width: 100%;
+        padding: 0 20px;
 
         li {
             color: white;
             display: flex;
             align-items: center;
             margin-bottom: 15px;
+            font-family: $regular2;
+            letter-spacing: 1px;
 
             &:last-child {
                 margin-bottom: 0;
