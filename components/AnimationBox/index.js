@@ -16,6 +16,10 @@ const animations = {
     'fade-in-from-left': {
         classname: styles.fadeInFromRight,
         animation: styles.fadeInFromRightAnimation
+    },
+    'grow-from-bottom': {
+        classname: styles.growFromBottom,
+        animation: styles.growFromBottomAnimation
     }
 }
 

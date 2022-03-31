@@ -19,7 +19,7 @@
     transform: translateX(-100%);
 
     &Animation {
-        animation: fade-in-left 500ms ease-out 50ms 1 normal forwards;
+        animation: fade-in-left 750ms ease-out 50ms 1 normal forwards;
     }
 }
 
@@ -29,7 +29,17 @@
     transform: translateX(100%);
 
     &Animation {
-        animation: fade-in-right 500ms ease-out 50ms 1 normal forwards;
+        animation: fade-in-right 750ms ease-out 50ms 1 normal forwards;
+    }
+}
+
+.growFromBottom {
+    position: relative;
+    transform: scale(0);
+    transform-origin: bottom;
+
+    &Animation {
+        animation: fade-in-center 1000ms ease-in-out 200ms 1 normal forwards;
     }
 }
 
@@ -63,5 +73,14 @@
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-center {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
     }
 }

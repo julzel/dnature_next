@@ -67,6 +67,17 @@ const Welcome = () => {
                     </blockquote>
                 </div>
 
+                <div className={styles.welcomeImage}>
+                    <AnimationBox animation={'grow-from-bottom'}>
+                        <div>
+                            <Image
+                                src={rawFoodPlate}
+                                alt='Plato comida natural para mascotas'
+                            />
+                        </div>
+                    </AnimationBox>
+                </div>
+
                 {/* <div className={styles.welcomeSection}>
                     <h3 className={styles.subtitle}>
                         ¿En qué consiste?

@@ -1,7 +1,7 @@
 @import '../../../../styles/_variables';
 
 .welcome {
-    padding: 80px 0;
+    padding: 80px 0 0;
     overflow: hidden;
     position: relative;
 
@@ -69,7 +69,7 @@
         font-size: 20px;
         letter-spacing: 1.5px;
         line-height: 30px;
-        margin: 40px auto 0;
+        margin: 40px auto;
         padding: 20px 10px 20px 20px;
         text-align: right;
         width: 100%;
@@ -80,65 +80,20 @@
         }
     }
 
-    // .title {
-    //     margin-bottom: 80px;
-    // }
+    &Image {
+        border-radius: 50px;
+        position: relative;
+        height: 300px;
+        width: 100%;
+        max-width: 350px;
+        // overflow: hidden;
 
-    // .sectionContent {
-    //     position: relative;
-    //     z-index: 1;
-    // }
-
-    // .sectionImage {
-    //     margin: 50px 5px 0;
-    //     width: 50%;
-    //     position: relative;
-    //     transform: translate(60%, 15px) scale(2.6);
-    //     max-width: 300px;
-    //     z-index: 0;
-    //     border-radius: 50%;
-    //     shape-outside: circle();
-    // }
-
-    // &Section {
-    //     margin: 0 auto;
-    //     max-width: 600px;
-    //     padding: 0 20px;
-
-    //     .subtitle {
-    //         font-size: 22px;
-    //         font-family: $bold;
-    //         margin-bottom: 20px;
-    //     }
-
-    //     .paragraph {
-    //         position: relative;
-    //         margin-bottom: 20px;
-    //         z-index: 1;
-
-    //         &:last-child {
-    //             background-color: transparent;
-    //         }
-
-    //         &Small {
-    //             color: $gray;
-    //             display: block;
-    //             font-size: 12px;
-    //             line-height: 18px;
-    //             max-width: 200px;
-    //         }
-
-    //         &Highlight {
-    //             color: $orange;
-    //             font-size: 15px;
-    //             font-family: $bold2;
-    //             text-transform: uppercase;
-    //         }
-    //     }
-
-    //     // .narrow {
-    //     //     display: inline-block;
-    //     //     width: 60%;
-    //     // }
-    // }
+        > span {
+            width: 100%;
+            height: 100%;
+            position: absolute!important;
+            bottom: -100px !important;
+            transform: scale(1.25);
+        }
+    }
 }
