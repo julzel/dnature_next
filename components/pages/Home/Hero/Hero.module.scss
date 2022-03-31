@@ -15,7 +15,8 @@
     }
 
     &Background {
-        background: url('../../../../public/images/hero.jpg') no-repeat;
+        background: url('../../../../public/images/hero3.jpg') no-repeat;
+        background-position: 40%;
         background-size: cover;
         width: 100%;
         height: 100%;
@@ -32,8 +33,8 @@
         z-index: 1;
         position: absolute;
         left: 50%;
-        top: 28%;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
         // width: 100%;
         text-shadow: 1px 1px rgba(33,33,33,.25);

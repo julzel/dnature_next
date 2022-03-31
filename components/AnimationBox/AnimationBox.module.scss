@@ -9,11 +9,31 @@
     transform: translateY(50%);
 
     &Animation {
-        animation: fade-in 500ms ease-out 50ms 1 normal forwards;
+        animation: fade-in-bottom 500ms ease-out 50ms 1 normal forwards;
     }
 }
 
-@keyframes fade-in {
+.fadeInFromLeft {
+    opacity: 0;
+    position: relative;
+    transform: translateX(-100%);
+
+    &Animation {
+        animation: fade-in-left 500ms ease-out 50ms 1 normal forwards;
+    }
+}
+
+.fadeInFromRight {
+    opacity: 0;
+    position: relative;
+    transform: translateX(100%);
+
+    &Animation {
+        animation: fade-in-right 500ms ease-out 50ms 1 normal forwards;
+    }
+}
+
+@keyframes fade-in-bottom {
     from {
         opacity: 0;
         transform: translateY(50%);
@@ -21,5 +41,27 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
