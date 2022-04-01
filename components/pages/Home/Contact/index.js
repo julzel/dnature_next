@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faInstagram,
     faWhatsapp,
-    //faFacebookSquare,
 } from '@fortawesome/free-brands-svg-icons'
 import {
     faCompass,
@@ -43,19 +42,6 @@ const Contact = () => {
                             @dnaturecr
                         </a>
                     </li>
-                    {/* <li>
-                        <span className={styles.locationMapIcon}>
-                            <FontAwesomeIcon icon={faFacebookSquare} size='2x' />
-                        </span>
-                        <a
-                            className={styles.locationMapItem}
-                            href='https://www.facebook.com/DNAture-CR-101452441881633/'
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            DNAture CR
-                        </a>
-                    </li> */}
                     <li>
                         <span className={styles.locationMapIcon}>
                             <FontAwesomeIcon icon={faEnvelope} size='2x' />

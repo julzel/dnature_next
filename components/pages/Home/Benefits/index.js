@@ -16,7 +16,7 @@ const Benefits = () => {
         <div className={styles.benefits}>
             <div className={styles.benefitsContainer}>
                 <h2 className={`title ${styles.title}`}>
-                    ¿Cómo beneficia una dieta natural a tu mascota?
+                    Beneficios
                 </h2>
                 <ul>
                     {benefits.map((benefit, i) => (
