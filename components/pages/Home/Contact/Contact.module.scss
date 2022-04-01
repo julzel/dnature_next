@@ -1,7 +1,7 @@
 @import '../../../../styles/_variables';
 
 .locationMap {
-    padding: 80px 0;
+    padding: 80px 20px;
     background-color: $black;
 
     &Title {
@@ -10,11 +10,11 @@
     }
 
     &List {
+        border-right: 3px solid $orange;
         max-width: 600px;
         margin: 0 auto;
         margin-bottom: 80px;
         width: 100%;
-        padding: 0 20px;
 
         li {
             color: $white;

@@ -1,6 +1,6 @@
-import balance from '../../../../public/images/our-diet-balance.svg'
-import ingredientes from '../../../../public/images/our-diet-meat.svg'
-import recetas from '../../../../public/images/our-diet-mix.svg'
+import balance from '../../../../public/home-welcome/our-diet-balance.svg'
+import ingredientes from '../../../../public/home-welcome/our-diet-meat.svg'
+import recetas from '../../../../public/home-welcome/our-diet-mix.svg'
 
 const items = [
     {
