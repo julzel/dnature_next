@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 
 // local imports
+// data
+import benefits from './benefits'
 
 // styles
 import styles from './Benefits.module.scss'
@@ -12,48 +14,22 @@ import pawIcon from '../../../../public/images/paw.svg'
 const Benefits = () => {
     return (
         <div className={styles.benefits}>
-        <h2 className='title'>
-            ¿Cómo beneficia una dieta natural a tu mascota?
-        </h2>
-        <ul>
-            <li>
-                <span>
-                    <Image src={pawIcon} alt='pawIcon' />
-                </span>
-                Mejora la digestión
-            </li>
-            <li>
-                <span>
-                    <Image src={pawIcon} alt='pawIcon' />
-                </span>
-                Mejora la salud bucal
-            </li>
-            <li>
-                <span>
-                    <Image src={pawIcon} alt='pawIcon' />
-                </span>
-                Pelaje y piel saludables
-            </li>
-            <li>
-                <span>
-                    <Image src={pawIcon} alt='pawIcon' />
-                </span>
-                Reducción de alergias
-            </li>
-            <li>
-                <span>
-                    <Image src={pawIcon} alt='pawIcon' />
-                </span>
-                Facilita el control de peso
-            </li>
-            <li>
-                <span>
-                    <Image src={pawIcon} alt='pawIcon' />
-                </span>
-                Heces más sólidas
-            </li>
-        </ul>
-    </div>
+            <div className={styles.benefitsContainer}>
+                <h2 className={`title ${styles.title}`}>
+                    ¿Cómo beneficia una dieta natural a tu mascota?
+                </h2>
+                <ul>
+                    {benefits.map((benefit, i) => (
+                        <li key={i}>
+                            <span>
+                                <Image src={pawIcon} alt='pawIcon' />
+                            </span>
+                            {benefit}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
     );
 }
 

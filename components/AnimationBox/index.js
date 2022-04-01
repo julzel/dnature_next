@@ -29,7 +29,7 @@ const AnimationBox = ({ children, animation }) => {
 
     const checkIfElementIsInViewPort = element => {
         const bounding = element.getBoundingClientRect();
-        const elementHeight = element.offsetHeight/3;
+        const elementHeight = element.offsetHeight/4;
         const elementWidth = element.offsetWidth;
         if (bounding.top >= -elementHeight 
             && bounding.left >= -elementWidth

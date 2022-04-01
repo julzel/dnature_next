@@ -10,7 +10,6 @@
     }
 
     &List {
-        font-size: 12px;
         max-width: 600px;
         margin: 0 auto;
         margin-bottom: 80px;
@@ -22,7 +21,6 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            letter-spacing: 1px;
 
             &:last-child {
                 margin-bottom: 0;
@@ -33,9 +31,7 @@
     }
 
     &Item {
-        font-size: 20px;
         margin-left: 15px;
-        // font-family: $bold;
     }
 
     &Icon {
