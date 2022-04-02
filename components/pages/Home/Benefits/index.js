@@ -14,10 +14,11 @@ import pawIcon from '../../../../public/images/paw.svg'
 const Benefits = () => {
     return (
         <div className={styles.benefits}>
+            <div className={styles.benefitsImage} />
+            <h2 className={`title ${styles.title}`}>
+                Beneficios
+            </h2>
             <div className={styles.benefitsContainer}>
-                <h2 className={`title ${styles.title}`}>
-                    Beneficios
-                </h2>
                 <ul>
                     {benefits.map((benefit, i) => (
                         <li key={i}>

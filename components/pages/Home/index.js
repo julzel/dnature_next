@@ -3,13 +3,13 @@ import React from 'react'
 // local imports
 import Hero from './Hero'
 import Welcome from './Welcome'
-import Diet from './Diet'
 import Benefits from './Benefits'
 import Products from './Products'
 import Contact from './Contact'
 
 // styles
 import styles from './Home.module.scss'
+import DNAtureSystem from './DNAtureSystem'
 
 
 const Home = () => {
@@ -17,9 +17,9 @@ const Home = () => {
         <div className={styles.home}>
             <Hero />
             <Welcome />
-            {/* <Diet /> */}
             <Benefits />
             <Products />
+            <DNAtureSystem />
             <Contact />
         </div>
     )
