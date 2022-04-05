@@ -13,7 +13,7 @@ const SliderControls = ({
                 {slides.map((slide, i) => (
                     <div
                         className={styles.bullet}
-                        key={`bullet-${slide.id}`}
+                        key={`bullet-${i}`}
                         onClick={() => onBulletClick(i)}
                     />
                 ))}

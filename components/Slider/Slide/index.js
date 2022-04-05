@@ -15,10 +15,10 @@ const Slide = ({
             className={styles.slide}
             style={{
                 backgroundColor: slide.backgroundColor,
-                transform: `translateX(${-currentSlide * 100}vw)`
+                webkitTransform: `translateX(${-currentSlide * 100}%)`,
+                transform: `translateX(${-currentSlide * 100}%)`,
             }}
         >
-            {/* 43.125 */}
             {children}
         </div>
     );

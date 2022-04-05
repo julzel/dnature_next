@@ -2,16 +2,17 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 
 // local imports
-// components
-import ProductsList from './ProductsList'
-import Modal from '../../../Modal'
-
 //styles 
 import styles from './Products.module.scss'
 
 // data
 import Categories from './categories'
 import AnimationBox from '../../../AnimationBox'
+
+// components
+import Button from '../../../Button'
+import ProductsList from './ProductsList'
+import Modal from '../../../Modal'
 
 const Products = () => {
     const [displayModal, setDisplayModal] = useState(false)
@@ -50,7 +51,7 @@ const Products = () => {
                                             tabIndex="0"
                                         >
                                             <span className={styles.label}>{category.label}</span>
-                                            <span className={styles.button}>Comprar</span>
+                                            <Button label={'Comprar'}/>
                                         </div>
                                     </AnimationBox>
                                 </div>
