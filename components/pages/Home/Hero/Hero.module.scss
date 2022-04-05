@@ -5,13 +5,14 @@
     position: relative;
 
     &Filter {
-        background-color: rgba(33, 33, 33, 0.4);
+        background-color: rgba(0, 0, 0, 0);
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: 1;
+        animation: filter-animation 300ms ease-out 1200ms 1 normal forwards;
     }
 
     &Background {
@@ -22,7 +23,10 @@
         height: 100%;
         position: absolute;
         left: 0;
-        top: 0
+        top: 0;
+        opacity: 0.1;
+        transform: scale(0);
+        animation: background-animation 1300ms ease-out 250ms 1 normal forwards;
     }
 
     &Title {
@@ -34,14 +38,16 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(2.5);
         text-align: center;
         text-shadow: 1px 1px rgba(33,33,33,.25);
         position: relative;
+        opacity: 0;
+        animation: title-animation 750ms ease-out 1200ms 1 normal forwards;
 
         span {
             position: relative;
-            color: $green;
+            color: $orange;
             display: inline-block;
             font-family: $bold2;
             font-size: 40px;
@@ -52,6 +58,54 @@
             position: relative;
             text-decoration: underline;
             transform: scale(1.5);
+            animation: natural-animation 1200ms ease-out 1200ms 1 normal forwards;
         }
+    }
+}
+
+@keyframes background-animation {
+    0% {
+        opacity: 0.1;
+        transform: scale(0);
+    }
+    75% {
+        opacity: 0.75;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes filter-animation {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes title-animation {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes natural-animation {
+    0% {
+        color: $orange;
+    }
+    50% {
+        color: $blue;
+    }
+    100% {
+        color: $green;
     }
 }

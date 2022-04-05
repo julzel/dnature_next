@@ -11,6 +11,9 @@ import styles from './Benefits.module.scss'
 // images
 import pawIcon from '../../../../public/images/paw.svg'
 
+// components
+import AnimationBox from '../../../AnimationBox'
+
 const Benefits = () => {
     return (
         <div className={styles.benefits}>
@@ -18,18 +21,20 @@ const Benefits = () => {
             <h2 className={`title ${styles.title}`}>
                 Beneficios
             </h2>
-            <div className={styles.benefitsContainer}>
-                <ul>
-                    {benefits.map((benefit, i) => (
-                        <li key={i}>
-                            <span>
-                                <Image src={pawIcon} alt='pawIcon' />
-                            </span>
-                            {benefit}
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <AnimationBox animation='fade-in-from-center'>
+                <div className={styles.benefitsContainer}>
+                    <ul>
+                        {benefits.map((benefit, i) => (
+                            <li key={i}>
+                                <span>
+                                    <Image src={pawIcon} alt='pawIcon' />
+                                </span>
+                                {benefit}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </AnimationBox>
         </div>
     );
 }

@@ -59,10 +59,12 @@ button {
 }
 
 .title {
-  font-size: 30px;
+  font-size: 38px;
   font-family: $bold;
   text-align: center;
   line-height: 32px;
+  max-width: 500px;
+  padding: 0 20px;
 
   span {
       display: inline-block;

@@ -47,6 +47,7 @@ const Slider = ({ slides, interval = 5, autoplay }) => {
             <SliderControls
                 slides={slides}
                 onBulletClick={onBulletClick}
+                currentBullet={currentSlide}
             />
         </div>
     )

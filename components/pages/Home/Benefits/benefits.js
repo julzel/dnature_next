@@ -3,11 +3,11 @@
 
 const benefits = [
    'Mejora la digestión',
-   'Mejora la salud bucal',
-   'Pelaje y piel saludables',
    'Reducción de alergias',
+   'Pelaje y piel saludables',
    'Facilita el control de peso',
-   'Heces más sólidas'
+   'Mejora la salud bucal',
+   'Heces más sólidas',
 ]
 
 export default benefits

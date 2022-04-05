@@ -5,14 +5,15 @@ import styles from './SliderControls.module.scss'
 
 const SliderControls = ({
     slides,
-    onBulletClick
+    onBulletClick,
+    currentBullet
 }) => {
     return (
         <div className={styles.sliderControls}>
             <div className={styles.bullets}>
                 {slides.map((slide, i) => (
                     <div
-                        className={styles.bullet}
+                        className={`${styles.bullet} ${i === currentBullet ? styles.active : ''}`}
                         key={`bullet-${i}`}
                         onClick={() => onBulletClick(i)}
                     />

@@ -4,7 +4,7 @@
     background-color: $blue;
     display: flex;
     flex-flow: column;
-    padding: 80px 20px;
+    padding: 80px 20px 60px;
     position: relative;
     overflow: hidden;
 
@@ -29,7 +29,7 @@
 
     &Container {
         border-radius: 5px;
-        background-color: rgba(33, 33, 33, 0.125);
+        background-color: rgba(255, 255, 255, 0.125);
         box-shadow: 0 1px 3px rgba(0,0,0,0.24), 0 1px 2px rgba(0,0,0,0.24);
         margin: 0 auto;
         max-width: 600px;
@@ -46,19 +46,21 @@
         li {
             color: $white;
             display: flex;
-            font-size: 18px;
+            font-size: 22px;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 15px;
-            text-shadow: 1px 1px rgba(33,33,33,.5);
+            text-shadow: 1px 1px rgba(33,33,33,.25);
 
             &:last-child {
                 margin-bottom: 0;
             }
 
             span {
-                width: 12px;
+                width: 14px;
                 flex-shrink: 0;
-                margin-right: 15px;
-                transform: rotate(-10deg);
+                margin-right: 10px;
+                transform: rotate(10deg);
             }
         }
     }

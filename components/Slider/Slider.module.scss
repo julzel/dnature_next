@@ -1,5 +1,7 @@
+@import '../../styles/_variables';
+
 .slider {
-    background-color: white;
+    background-color: $white;
     position: relative;
 
     .container{

@@ -5,6 +5,18 @@ import React, { useRef, useEffect, useCallback, useState } from 'react'
 import styles from './AnimationBox.module.scss'
 
 const animations = {
+    'fade-in': {
+        classname: styles.fadeIn,
+        animation: styles.fadeInAnimation
+    },
+    'fade-in-from-center': {
+        classname: styles.fadeInFromCenter,
+        animation: styles.fadeInFromCenterAnimation
+    },
+    'fade-in-from-top': {
+        classname: styles.fadeInFromTop,
+        animation: styles.fadeInFromTopAnimation
+    },
     'fade-in-from-bottom': {
         classname: styles.fadeInFromBottom,
         animation: styles.fadeInFromBottomAnimation
@@ -20,7 +32,7 @@ const animations = {
     'grow-from-bottom': {
         classname: styles.growFromBottom,
         animation: styles.growFromBottomAnimation
-    }
+    },
 }
 
 const AnimationBox = ({ children, animation }) => {

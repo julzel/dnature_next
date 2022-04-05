@@ -14,8 +14,19 @@
         z-index: 1;
     }
 
+    &Image {
+        background: url('../../../../public/marca/paw-orange-shadow.svg') no-repeat;
+        background-position: center center;
+        opacity: 0.5;
+        position: absolute;
+        bottom: 0;
+        right: -10%;
+        height: calc(390px / 1.5);
+        width: calc(390px / 1.5);
+        transform: rotateY(180deg) scale(2);
+    }
+
     &Container {
-        position: relative;
         margin: 0 auto;
         width: 100%;
         max-width: 600px;
@@ -23,10 +34,11 @@
     }
 
     &Item {
-        color: $white;
+        margin: 0 auto;
         margin-bottom: 10px;
-        padding: 20px 0px;
         width: 100%;
+        max-width: 350px;
+        min-width: 320px;
         
         &:last-child {
             margin-bottom: 0;
@@ -34,7 +46,11 @@
 
         &Title {
             position: relative;
-            height: 80px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
 
             > div {
                 position: absolute;
@@ -51,14 +67,11 @@
                 color: $white;
                 font-family: $bold2;
                 font-size: 14px;
-                display: flex;
-                height: 50%;
-                padding-right: 25px;
-                position: absolute;
-                left: 29.5%;
-                top: 50%;
-                text-shadow: 0.5px 0.5px rgba(33,33,33,.15);
-                transform: translateY(-52%) scale(1.05);
+                max-width: 200px;
+                position: relative;
+                left: 9%;
+                text-shadow: 1px 1px rgba(33,33,33,.25);
+                transform: scale(1.075);
             }
         }
     }

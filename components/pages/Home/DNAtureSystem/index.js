@@ -6,40 +6,34 @@ import Image from 'next/image'
 import styles from './DNAtureSystem.module.scss'
 
 // images
-import ribbon from '../../../../public/marca/orange-ribbon-shadow.svg';
+import ribbon from '../../../../public/marca/fish-orange-ribbon-shadow.svg';
+
+// data
+import SystemItems from './system-items'
+
+// components
+import AnimationBox from '../../../AnimationBox';
 
 const DNAtureSystem = () => {
     return (
         <section className={styles.dnatureSystem}>
+            <div className={styles.dnatureSystemImage} />
             <h2 className={`title ${styles.title}`}>
-                Plan de alimentación completo
+                Plan completo DNAture
             </h2>
             <div className={styles.dnatureSystemContainer}>
-                <div className={styles.dnatureSystemItem}>
-                    <h3 className={styles.dnatureSystemItemTitle}>
-                        <div>
-                            <Image src={ribbon} alt='fondo naranja con un icono de huella de perro' />
+                {SystemItems.map((item, i) => (
+                    <AnimationBox animation='fade-in-from-top' key={i}>
+                        <div className={styles.dnatureSystemItem}>
+                            <h3 className={styles.dnatureSystemItemTitle}>
+                                <div>
+                                    <Image src={ribbon} alt='fondo naranja con un icono de huella de perro' />
+                                </div>
+                                <span className={styles.dnatureSystemItemTitleText}>{item}</span>
+                            </h3>
                         </div>
-                        <span className={styles.dnatureSystemItemTitleText}>Calculamos la ración diaria de tu mascota</span>
-                    </h3>
-                </div>
-                <div className={styles.dnatureSystemItem}>
-                    <h3 className={styles.dnatureSystemItemTitle}>
-                        <div>
-                            <Image src={ribbon} alt='fondo naranja con un icono de huella de perro' />
-                        </div>
-                        <span className={styles.dnatureSystemItemTitleText}>Coordinamos el envío hasta la puerta de tu casa</span>
-                    </h3>
-                </div>
-                <div className={styles.dnatureSystemItem}>
-                    <h3 className={styles.dnatureSystemItemTitle}>
-                        <div>
-                            <Image src={ribbon} alt='fondo naranja con un icono de huella de perro' />
-                        </div>
-                        <span className={styles.dnatureSystemItemTitleText}>Reenvío automático con la frecuencia de tu
-                            preferencia</span>
-                    </h3>
-                </div>
+                    </AnimationBox>
+                ))}
             </div>
         </section>
     )
