@@ -3,6 +3,7 @@
 .hero {
     height: 100vh;
     position: relative;
+    overflow: hidden;
 
     &Filter {
         background-color: rgba(0, 0, 0, 0);

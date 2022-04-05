@@ -7,11 +7,11 @@
             }
 
             .cls-2 {
-                fill: rgba(255, 255, 255, 0.25);
+                fill: rgba(255, 111, 0, 0.75);
             }
 
             .cls-3 {
-                fill: #ff6f00;
+                fill: #ffa364;
             }
 
             .cls-4 {
