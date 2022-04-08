@@ -16,19 +16,24 @@ import Map from '../../../Map'
 
 // styles
 import styles from './Contact.module.scss'
+import AnimationBox from '../../../AnimationBox'
 
 const Contact = () => {
     return (
-        <>
-            <div className={styles.contact}>
-                <h3 className={`title ${styles.contactTitle}`}>Contáctanos</h3>
-                <ul className={styles.contactList}>
+        <div className={styles.contact}>
+            <div className={styles.contactImage} />
+            <h3 className={`title ${styles.contactTitle}`}>Contáctanos</h3>
+            <ul className={styles.contactList}>
+                <AnimationBox animation='fade-in-from-left'>
                     <li>
                         <span className={styles.contactIcon}>
                             <FontAwesomeIcon icon={faWhatsapp} size='2x' />
                         </span>
                         <a href="tel:5067132328" className={styles.contactItem}>7113 - 2328</a>
                     </li>
+                </AnimationBox>
+
+                <AnimationBox animation='fade-in-from-left'>
                     <li>
                         <span className={styles.contactIcon}>
                             <FontAwesomeIcon icon={faInstagram} size='2x' />
@@ -42,16 +47,20 @@ const Contact = () => {
                             @dnaturecr
                         </a>
                     </li>
+                </AnimationBox>
+
+                <AnimationBox animation='fade-in-from-left'>
                     <li>
                         <span className={styles.contactIcon}>
                             <FontAwesomeIcon icon={faEnvelope} size='2x' />
                         </span>
                         <a href="mailto:info@dnaturefood.com" className={styles.contactItem}>info@dnaturefood.com</a>
                     </li>
-                </ul>
-                <Map />
-            </div>
-        </>
+                </AnimationBox>
+
+            </ul>
+            <Map />
+        </div>
     )
 }
 

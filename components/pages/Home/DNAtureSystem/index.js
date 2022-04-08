@@ -23,7 +23,7 @@ const DNAtureSystem = () => {
             </h2>
             <div className={styles.dnatureSystemContainer}>
                 {SystemItems.map((item, i) => (
-                    <AnimationBox animation='fade-in-from-top' key={i}>
+                    <AnimationBox animation='fade-in-from-right' key={i}>
                         <div className={styles.dnatureSystemItem}>
                             <h3 className={styles.dnatureSystemItemTitle}>
                                 <div>

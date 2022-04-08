@@ -21,20 +21,22 @@ const Benefits = () => {
             <h2 className={`title ${styles.title}`}>
                 Beneficios
             </h2>
-            <AnimationBox animation='fade-in-from-center'>
+            {/* <AnimationBox animation='fade-in-from-center'> */}
                 <div className={styles.benefitsContainer}>
                     <ul>
                         {benefits.map((benefit, i) => (
+                            <AnimationBox animation='fade-in-from-left' key={i}>
                             <li key={i}>
                                 <span>
                                     <Image src={pawIcon} alt='pawIcon' />
                                 </span>
                                 {benefit}
                             </li>
+                            </AnimationBox>
                         ))}
                     </ul>
                 </div>
-            </AnimationBox>
+            {/* </AnimationBox> */}
         </div>
     );
 }

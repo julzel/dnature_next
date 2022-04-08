@@ -21,11 +21,11 @@ const animations = {
         classname: styles.fadeInFromBottom,
         animation: styles.fadeInFromBottomAnimation
     },
-    'fade-in-from-right': {
+    'fade-in-from-left': {
         classname: styles.fadeInFromLeft,
         animation: styles.fadeInFromLeftAnimation
     },
-    'fade-in-from-left': {
+    'fade-in-from-right': {
         classname: styles.fadeInFromRight,
         animation: styles.fadeInFromRightAnimation
     },

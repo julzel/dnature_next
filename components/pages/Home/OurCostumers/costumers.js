@@ -1,8 +1,8 @@
-import hirokai from '../../../../public/costumers/isaac_ramirez.jpeg'
+import hirokai from '../../../../public/costumers/hirokai.png'
 import kaax from '../../../../public/costumers/Kaax.png'
 import lanaNoche from '../../../../public/costumers/lana_noche.png'
 import luluKisha from '../../../../public/costumers/lulu_kisha.png'
-import dolcePiero from '../../../../public/costumers/dolce_piero.png'
+// import dolcePiero from '../../../../public/costumers/dolce_piero.png'
 
 const costumers = [
     {
