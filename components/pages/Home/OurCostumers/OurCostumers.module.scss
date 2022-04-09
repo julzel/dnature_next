@@ -11,13 +11,38 @@
         max-width: 600px;
 
         &Content {
+            display: flex;
+            flex-flow: column;
+            align-items: flex-end;
+            margin-bottom: 40px;
 
             &Quote {
                 font-family: $quoteItalic;
                 font-size: 20px;
                 letter-spacing: 1.025px;
                 line-height: 30px;
-                margin-bottom: 20px;
+                margin-bottom: 40px;
+                position: relative;
+
+                &::after {
+                    content: '“';
+                    position: absolute;
+                    color: $blue;
+                    font-size: 100px;
+                    left: -20px;
+                    top: 100px;
+                    opacity: 0.5;
+                    transform: scale(3);
+                }
+
+                span {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                // &::after {
+                //     content: '”';
+                // }
             }
 
             &Name {
@@ -26,10 +51,15 @@
             }
 
             &SocialMedia {
-                display: block;
-                text-align: right;
-                margin-bottom: 20px;
+                background-color: $blue;
+                color: $white;
+                display: inline-block;
                 font-family: $bold2;
+                font-size: 12px;
+                padding: 2px 5px;
+                text-align: right;
+                width: auto;
+                border-radius: 50px;
             }
         }
 

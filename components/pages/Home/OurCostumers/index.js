@@ -16,7 +16,9 @@ const slides = costumers.map((costumer, i) => {
         <div key={`costumer-${i}`} className={styles.costumer}>
             <div className={styles.costumerContent}>
                 <blockquote className={styles.costumerContentQuote}>
-                    {costumer.quote}
+                    <span>
+                        {costumer.quote}
+                    </span>
                 </blockquote>
                 <p className={styles.costumerContentName}>
                     {costumer.name}
@@ -45,7 +47,7 @@ const OurCostumers = () => {
 
     return (
         <div className={styles.ourCostumers}>
-            <Slider slides={slides} autoplay interval={8} />
+            <Slider slides={slides} autoplay interval={28} />
         </div>
     )
 }

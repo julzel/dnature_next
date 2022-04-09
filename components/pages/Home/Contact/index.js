@@ -24,17 +24,22 @@ const Contact = () => {
             <div className={styles.contactImage} />
             <h3 className={`title ${styles.contactTitle}`}>Contáctanos</h3>
             <ul className={styles.contactList}>
-                <AnimationBox animation='fade-in-from-left'>
-                    <li>
+
+                <li>
+                    <AnimationBox animation='fade-in-from-left'>
+
                         <span className={styles.contactIcon}>
                             <FontAwesomeIcon icon={faWhatsapp} size='2x' />
                         </span>
                         <a href="tel:5067132328" className={styles.contactItem}>7113 - 2328</a>
-                    </li>
-                </AnimationBox>
+                    </AnimationBox>
+                </li>
 
-                <AnimationBox animation='fade-in-from-left'>
-                    <li>
+
+
+                <li>
+                    <AnimationBox animation='fade-in-from-left'>
+
                         <span className={styles.contactIcon}>
                             <FontAwesomeIcon icon={faInstagram} size='2x' />
                         </span>
@@ -46,21 +51,25 @@ const Contact = () => {
                         >
                             @dnaturecr
                         </a>
-                    </li>
-                </AnimationBox>
+                    </AnimationBox>
+                </li>
 
-                <AnimationBox animation='fade-in-from-left'>
-                    <li>
+
+
+                <li>
+                    <AnimationBox animation='fade-in-from-left'>
+
                         <span className={styles.contactIcon}>
                             <FontAwesomeIcon icon={faEnvelope} size='2x' />
                         </span>
                         <a href="mailto:info@dnaturefood.com" className={styles.contactItem}>info@dnaturefood.com</a>
-                    </li>
-                </AnimationBox>
+                    </AnimationBox>
+                </li >
 
-            </ul>
+
+            </ul >
             <Map />
-        </div>
+        </div >
     )
 }
 
