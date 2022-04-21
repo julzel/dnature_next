@@ -48,6 +48,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+            text-align: center;
             text-shadow: 1px 1px rgba(33,33,33,.25);
 
             &:last-child {
@@ -55,10 +56,10 @@
             }
 
             span {
-                width: 14px;
-                flex-shrink: 0;
-                margin-right: 10px;
-                transform: rotate(10deg);
+                width: 14px!important;
+                flex-shrink: 0!important;
+                margin-right: 10px!important;
+                transform: rotate(10deg)!important;
             }
         }
     }

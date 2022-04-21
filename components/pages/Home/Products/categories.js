@@ -1,7 +1,7 @@
-import proteins from '../../../../public/icons/icon_prot_pollo_bn.svg'
-import snacks from '../../../../public/icons/icon_acid_bn.svg'
-import dietas from '../../../../public/icons/icon_curc_complete_bn.svg'
-import superfoods from '../../../../public/icons/icon_espir_sup_bn.svg'
+// import proteins from '../../../../public/icons/icon_prot_pollo_bn.svg'
+// import snacks from '../../../../public/icons/icon_acid_bn.svg'
+// import dietas from '../../../../public/icons/icon_curc_complete_bn.svg'
+// import superfoods from '../../../../public/icons/icon_espir_sup_bn.svg'
 import thumbnailDiet from '../../../../public/images/category-diet.jpg'
 import thumbnailProteins from '../../../../public/images/category-proteins.jpg'
 import thumbnailSnacks from '../../../../public/images/category-snack.jpg'
@@ -11,6 +11,11 @@ import productsProteins from '../../../../public/images/products-proteins.jpg'
 import productsSnacks from '../../../../public/images/products-snacks.jpg'
 import productsSuper from '../../../../public/images/products-super.jpg'
 
+const superfoods = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+const snacks = [{}, {}, {}, {}, {}, {}, {}]
+const recetas = [{}, {}, {}, {}, {}, {}]
+const proteinas = [{}, {}]
+
 const Categories = [
     {
         category: 'recetas',
@@ -18,7 +23,6 @@ const Categories = [
         style: {
             backgroundColor: '#07bbc7'
         },
-        icon: dietas,
         thumbnail: thumbnailDiet,
         productsList: {
             title: 'Recetas completas DNAture',
@@ -44,7 +48,6 @@ const Categories = [
         style: {
             backgroundColor: '#07bbc7'
         },
-        icon: proteins,
         thumbnail: thumbnailProteins,
         productsList: {
             title: 'Proteínas',
@@ -62,12 +65,11 @@ const Categories = [
             img: productsProteins
         }
     }, {
-        category: 'proteinas',
+        category: 'snacks',
         label: 'Snacks',
         style: {
             backgroundColor: '#07bbc7'
         },
-        icon: snacks,
         thumbnail: thumbnailSnacks,
         productsList: {
             title: 'Snacks naturales',
@@ -93,7 +95,6 @@ const Categories = [
         style: {
             backgroundColor: '#07bbc7'
         },
-        icon: superfoods,
         thumbnail: thumbnailSuplements,
         productsList: {
             title: 'Super Foods',

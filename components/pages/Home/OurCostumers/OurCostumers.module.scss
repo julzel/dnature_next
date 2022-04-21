@@ -24,14 +24,25 @@
                 margin-bottom: 40px;
                 position: relative;
 
-                &::after {
+                &::before {
                     content: '“';
                     position: absolute;
                     color: $blue;
                     font-size: 100px;
                     left: -20px;
-                    top: 100px;
-                    opacity: 0.5;
+                    top: 90px;
+                    opacity: 0.25;
+                    transform: scale(3);
+                }
+
+                &::after {
+                    content: '”';
+                    position: absolute;
+                    color: $blue;
+                    font-size: 100px;
+                    right: 20px;
+                    bottom: -70px;
+                    opacity: 0.25;
                     transform: scale(3);
                 }
 

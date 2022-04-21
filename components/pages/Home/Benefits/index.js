@@ -25,14 +25,12 @@ const Benefits = () => {
                 <div className={styles.benefitsContainer}>
                     <ul>
                         {benefits.map((benefit, i) => (
-                            <AnimationBox animation='fade-in-from-left' key={i}>
                             <li key={i}>
-                                <span>
+                                <AnimationBox animation='fade-in-from-left'>
                                     <Image src={pawIcon} alt='pawIcon' />
-                                </span>
-                                {benefit}
+                                    {benefit}
+                                </AnimationBox>
                             </li>
-                            </AnimationBox>
                         ))}
                     </ul>
                 </div>
