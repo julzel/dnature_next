@@ -1,0 +1,88 @@
+@import '../../../styles/_variables';
+
+.ourCostumers {
+    padding: 80px 20px;
+
+    .costumer {
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+        padding: 20px;
+        max-width: 600px;
+
+        &Content {
+            display: flex;
+            flex-flow: column;
+            align-items: flex-end;
+            margin-bottom: 40px;
+
+            &Quote {
+                font-family: $quoteItalic;
+                font-size: 20px;
+                letter-spacing: 1.025px;
+                line-height: 30px;
+                margin-bottom: 40px;
+                position: relative;
+
+                &::before {
+                    content: '“';
+                    position: absolute;
+                    color: $blue;
+                    font-size: 100px;
+                    left: -20px;
+                    top: 90px;
+                    opacity: 0.25;
+                    transform: scale(3);
+                }
+
+                &::after {
+                    content: '”';
+                    position: absolute;
+                    color: $blue;
+                    font-size: 100px;
+                    right: 20px;
+                    bottom: -70px;
+                    opacity: 0.25;
+                    transform: scale(3);
+                }
+
+                span {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                // &::after {
+                //     content: '”';
+                // }
+            }
+
+            &Name {
+                text-align: right;
+                font-family: $bold2;
+            }
+
+            &SocialMedia {
+                background-color: $blue;
+                color: $white;
+                display: inline-block;
+                font-family: $bold2;
+                font-size: 12px;
+                padding: 2px 5px;
+                text-align: right;
+                width: auto;
+                border-radius: 50px;
+            }
+        }
+
+        &Thumbnail {
+            margin: 0 auto;
+            width: 250px;
+            height: 250px;
+            > span {
+                border-radius: 50%;
+                width: 100%!important;
+                height: 100%!important;
+            }
+        }
+    }
+}

@@ -1,8 +1,7 @@
 import Head from 'next/head'
 
 // local imports
-import Layout from '../components/Layout'
-import Home from '../pages_components/Home'
+import Layout from '../../components/Layout'
 
 
 export default function App() {
@@ -15,7 +14,9 @@ export default function App() {
       </Head>
 
      <Layout>
-       <Home />
+       <div>
+           products
+       </div>
      </Layout>
     </>
   )

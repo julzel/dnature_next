@@ -15,7 +15,7 @@ const Slide = ({
             className={styles.slide}
             style={{
                 backgroundColor: slide.backgroundColor,
-                webkitTransform: `translateX(${-currentSlide * 100}%)`,
+                // webkitTransform: `translateX(${-currentSlide * 100}%)`,
                 transform: `translateX(${-currentSlide * 100}%)`,
             }}
         >
