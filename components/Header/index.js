@@ -10,7 +10,10 @@ import styles from './Header.module.scss'
 
 const Header = ({ changeBackground }) => (
     <header className={styles.header}>
-        <HeaderNav changeBackground={changeBackground} />
+        <HeaderNav 
+            changeBackground={changeBackground}
+            
+        />
     </header>
 )
  

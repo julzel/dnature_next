@@ -11,20 +11,14 @@ import AnimationBox from '../../../components/AnimationBox'
 
 // components
 import Button from '../../../components/Button'
-import ProductsList from './ProductsList'
-import Modal from '../../../components/Modal'
 
 const Products = () => {
-    const [displayModal, setDisplayModal] = useState(false)
-    const [selectedCategory, setSelectetCategory] = useState(null)
+    // const [selectedCategory, setSelectetCategory] = useState(null)
     const [categories, setCategories] = useState(null)
 
     const onCategoryClick = category => {
-        // setDisplayModal(true)
         console.log(category)
     }
-
-    const onModalClose = () => setDisplayModal(false)
 
     useEffect(() => {
         const fetchCategories = async() => {
@@ -78,18 +72,6 @@ const Products = () => {
                     )
                 })}
             </div>
-            <Modal
-                onModalClose={onModalClose}
-                show={displayModal}
-            >
-                {selectedCategory && (
-                    <ProductsList
-                        productsList={selectedCategory.productsList}
-                        style={selectedCategory.style}
-                        visible={displayModal}
-                    />
-                )}
-            </Modal>
         </div>
     );
 }

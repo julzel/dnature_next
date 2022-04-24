@@ -7,7 +7,7 @@ import Footer from '../Footer'
 import styles from './Layout.module.scss'
 import ScrollContextProvider from '../../contexts/scroll-context'
 
-const Layout = ({ children, changeBackground }) => (
+const Layout = ({ children }) => (
     <ScrollContextProvider>
         <div className={styles.layout}>
             <main>
