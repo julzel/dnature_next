@@ -16,7 +16,6 @@ import logo2 from '../../../public/images/dnature-logo.svg'
 const TRIGGER_POSITION = 140;
 
 const HeaderNav = ({ changeBackground, showBackground }) => {
-    console.log(showBackground)
     const scrollPosition = useContext(ScrollContext)
     const switchBackground = showBackground || (changeBackground && scrollPosition >= TRIGGER_POSITION)
 
@@ -24,8 +23,8 @@ const HeaderNav = ({ changeBackground, showBackground }) => {
         <div
             className={styles.headerNav}
             style={{ 
-                backgroundColor: switchBackground ? '#f9f9f9' : 'transparent',
-                borderBottomColor: switchBackground ? '#f9f9f9' : 'transparent'
+                backgroundColor: switchBackground ? '#fbfbf8' : 'transparent',
+                borderBottomColor: switchBackground ? '#fbfbf8' : 'transparent'
             }}
         >
             <div className={styles.container}>

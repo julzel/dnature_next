@@ -1,6 +1,8 @@
 @import '../../../styles/_variables';
 
 .catalog {
+    max-width: 600px;
+    margin: 0 auto;
     padding: 80px 20px;
 
     .category {
