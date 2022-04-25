@@ -15,22 +15,23 @@ import logo2 from '../../../public/images/dnature-logo.svg'
 
 const TRIGGER_POSITION = 140;
 
-const HeaderNav = ({ changeBackground }) => {
+const HeaderNav = ({ changeBackground, showBackground }) => {
+    console.log(showBackground)
     const scrollPosition = useContext(ScrollContext)
-    const showBackground = changeBackground && scrollPosition >= TRIGGER_POSITION
+    const switchBackground = showBackground || (changeBackground && scrollPosition >= TRIGGER_POSITION)
 
     return (
         <div
             className={styles.headerNav}
             style={{ 
-                backgroundColor: showBackground ? '#f9f9f9' : 'transparent',
-                borderBottomColor: showBackground ? '#f9f9f9' : 'transparent'
+                backgroundColor: switchBackground ? '#f9f9f9' : 'transparent',
+                borderBottomColor: switchBackground ? '#f9f9f9' : 'transparent'
             }}
         >
             <div className={styles.container}>
                 <div
                     className={styles.logo1}
-                    style={{ opacity: showBackground ? 0 : 1 }}
+                    style={{ opacity: switchBackground ? 0 : 1 }}
                 >
                     <Image
                         src={logo1}
@@ -39,7 +40,7 @@ const HeaderNav = ({ changeBackground }) => {
                 </div>
                 <div
                     className={styles.logo2}
-                    style={{ opacity: showBackground ? 1 : 0 }}
+                    style={{ opacity: switchBackground ? 1 : 0 }}
                 >
                     <Image
                         src={logo2}

@@ -1,0 +1,45 @@
+@import '../../../styles/_variables';
+
+.catalog {
+    padding: 80px 20px;
+
+    .category {
+        padding: 40px 0;
+        &Title {
+            font-family: $bold;
+            margin-bottom: 20px;
+        }
+        &List {
+            .product {
+                padding: 20px 0;
+                border-bottom: 1px solid #f0f0f0;
+
+                span {
+                    display: block;
+                }
+
+                &Images {}
+
+                &Details {
+                    h3 {
+                        font-family: $bold;
+                        font-size: 16px;
+                        text-transform: uppercase;
+                        padding-top: 2px;
+                    }
+                    p {
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: space-between;
+                        font-size: 14px;
+
+                        span {
+                            font-family: $bold2;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
