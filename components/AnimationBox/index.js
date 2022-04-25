@@ -54,7 +54,7 @@ const AnimationBox = ({ children, animation }) => {
 
     const handleScroll = useCallback(() => {
         if (!visible) {
-            checkIfElementIsInViewPort(boxElement.current);
+            boxElement?.current && checkIfElementIsInViewPort(boxElement.current);
         }
     }, [visible])
 

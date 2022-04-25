@@ -1,0 +1,41 @@
+@import '../../../styles/variables';
+
+.dropdown {
+    padding: 60px 0 0;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    transition: all 200ms linear 100ms;
+    width: calc(80vw - 10px);
+    max-width: 500px;
+
+    &Menu {
+        background-color: $white;
+        padding: 0 20px;
+        padding-bottom: 40px;
+        .item {
+            color: $black;
+            border-bottom: 1px solid #f0f0f0;
+
+            &:first-child {
+                border-top: 1px solid #f0f0f0;
+            }
+
+            &Link {
+                display: flex;
+                align-items: center;
+                padding: 15px;
+                
+                span {
+                    font-family: $regular2;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    margin-left: 10px;
+                    letter-spacing: 1.5px;
+                }
+            }
+        }
+    }
+}

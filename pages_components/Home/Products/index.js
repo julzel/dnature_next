@@ -13,12 +13,7 @@ import AnimationBox from '../../../components/AnimationBox'
 import Button from '../../../components/Button'
 
 const Products = () => {
-    // const [selectedCategory, setSelectetCategory] = useState(null)
     const [categories, setCategories] = useState(null)
-
-    const onCategoryClick = category => {
-        console.log(category)
-    }
 
     useEffect(() => {
         const fetchCategories = async() => {
@@ -59,11 +54,10 @@ const Products = () => {
                                         <div
                                             role='button'
                                             className='flex-center-column'
-                                            onClick={() => onCategoryClick(category)}
                                             tabIndex="0"
                                         >
                                             <span className={styles.label}>{category.label}</span>
-                                            <Button label={'Comprar'}/>
+                                            <Button label={'Ver más'}/>
                                         </div>
                                     </AnimationBox>
                                 </div>

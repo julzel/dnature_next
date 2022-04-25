@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 import Image from 'next/image'
+import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // local imports
 
@@ -15,7 +17,11 @@ import logo2 from '../../../public/images/dnature-logo.svg'
 
 const TRIGGER_POSITION = 140;
 
-const HeaderNav = ({ changeBackground, showBackground }) => {
+const HeaderNav = ({
+    changeBackground,
+    showBackground,
+    onMenuIconClick
+}) => {
     const scrollPosition = useContext(ScrollContext)
     const switchBackground = showBackground || (changeBackground && scrollPosition >= TRIGGER_POSITION)
 
@@ -23,10 +29,13 @@ const HeaderNav = ({ changeBackground, showBackground }) => {
         <div
             className={styles.headerNav}
             style={{ 
-                backgroundColor: switchBackground ? '#fbfbf8' : 'transparent',
-                borderBottomColor: switchBackground ? '#fbfbf8' : 'transparent'
+                backgroundColor: switchBackground ? '#fefefa' : 'transparent',
+                borderBottomColor: switchBackground ? '#fefefa' : 'transparent'
             }}
         >
+            <span role='button' tabIndex='0' onClick={onMenuIconClick}>
+                <FontAwesomeIcon icon={faEllipsis} size='lg' style={{ color: switchBackground ? 'rgb(58, 58, 58)' : 'rgba(255, 255, 255, 0.25)' }} />
+            </span>
             <div className={styles.container}>
                 <div
                     className={styles.logo1}

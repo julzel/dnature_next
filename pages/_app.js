@@ -1,4 +1,4 @@
-
+import '@fortawesome/fontawesome-svg-core/styles.css'
 // local imports
 // styles
 import '../styles/globals.scss'

@@ -4,11 +4,8 @@ import {
     faInstagram,
     faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons'
-import {
-    faCompass,
-    faEnvelope
-} from '@fortawesome/free-regular-svg-icons'
-import '@fortawesome/fontawesome-svg-core/styles.css'
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
+// import '@fortawesome/fontawesome-svg-core/styles.css'
 
 // local imports
 // components
