@@ -3,22 +3,33 @@
 .product {
     max-width: 600px;
     margin: 0 auto;
-    padding: 100px 20px 0;
+    padding: 60px 20px 0;
+
+    .backLink {
+        padding-top: 10px;
+        margin-bottom: 40px;
+        color: $gray;
+
+        span {
+            display: inline-block;
+            border-bottom: 1px solid $gray;
+        }
+    }
 
     h1 {
         font-family: $bold;
-        font-size: 22px;
+        font-size: 24px;
         text-transform: uppercase;
         margin-bottom: 20px;
     }
 
     &Info {
         display: flex;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
 
         .images {
             flex-shrink: 0;
-            width: 40%;
+            width: 50%;
             overflow: hidden;
 
             > span {
@@ -30,32 +41,17 @@
             display: flex;
             flex-flow: column;
             flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-
-            a {
-                background-color: $blue;
-                color: $white;
-                // border: 1px solid $black;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 14px;
-                font-family: $bold;
-                letter-spacing: 1.25px;
-                margin-top: 10px;
-                padding: 6px 10px;
-                text-decoration: none;
-                text-transform: uppercase;
-
-                svg {
-                    margin-right: 5px;
-                }
-            }
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding-left: 10px;
 
             p {
+                line-height: 1.25;
+            }
+
+            .precio {
                 font-family: $bold2;
-                font-size: 18px;
+                font-size: 20px;
                 letter-spacing: 1.5px;
             }
 
@@ -64,6 +60,41 @@
                 font-size: 16px;
                 letter-spacing: 0;
             }
+
+            h6 {
+                font-family: $bold;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+
+            .ingredients {
+                font-family: $regular;
+                font-size: 14px;
+                letter-spacing: normal;
+                text-align: right;
+            }
+        }
+    }
+
+    &Buy {
+        a {
+            background-color: $blue;
+            color: $white;
+            // border: 1px solid $black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-family: $bold;
+            letter-spacing: 1.25px;
+            padding: 14px 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+    
+            svg {
+                margin-right: 5px;
+            }
         }
     }
 
@@ -71,29 +102,24 @@
 
         .icons {
             display: flex;
-            justify-content: flex-end;
             padding-bottom: 10px;
 
             span {
-                width: 35px!important;
-                height: 35px!important;
-                margin-left: 10px!important;
+                width: 30px!important;
+                height: 30px!important;
+                margin-left: 5px!important;
             }
         }
         h2 {
             font-size: 16px;
             line-height: 20px;
             font-family: $bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         p {
             font-size: 14px;
             margin-bottom: 20px;
-        }
-
-        .ingredients {
-            margin-bottom: 10px;
         }
     }
 }
