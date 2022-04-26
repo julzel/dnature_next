@@ -9,7 +9,7 @@ import Layout from '../../../components/Layout'
 import { getProduct } from '../../../services/products'
 
 //
-import Product from '../../../pages_components/product'
+import Product from '../../../pages_components/Product'
 
 const ProductDetail = () => {
     const router = useRouter()
