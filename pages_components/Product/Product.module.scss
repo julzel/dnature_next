@@ -14,11 +14,11 @@
 
     &Info {
         display: flex;
-        border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 40px;
 
         .images {
             flex-shrink: 0;
-            width: 50%;
+            width: 40%;
             overflow: hidden;
 
             > span {
@@ -32,20 +32,25 @@
             flex-grow: 1;
             justify-content: center;
             align-items: center;
-            padding-bottom: 10px;
 
             a {
                 background-color: $blue;
                 color: $white;
+                // border: 1px solid $black;
                 display: flex;
+                align-items: center;
                 justify-content: center;
                 font-size: 14px;
                 font-family: $bold;
                 letter-spacing: 1.25px;
                 margin-top: 10px;
-                padding: 6px 8px;
+                padding: 6px 10px;
                 text-decoration: none;
                 text-transform: uppercase;
+
+                svg {
+                    margin-right: 5px;
+                }
             }
 
             p {
@@ -57,12 +62,12 @@
             .small {
                 font-family: $regular2;
                 font-size: 16px;
+                letter-spacing: 0;
             }
         }
     }
 
     &Detail {
-        padding-top: 10px;
 
         .icons {
             display: flex;
@@ -70,8 +75,8 @@
             padding-bottom: 10px;
 
             span {
-                width: 30px!important;
-                height: 30px!important;
+                width: 35px!important;
+                height: 35px!important;
                 margin-left: 10px!important;
             }
         }
@@ -85,10 +90,10 @@
         p {
             font-size: 14px;
             margin-bottom: 20px;
+        }
 
-            &:last-child {
-                margin-bottom: 0;
-            }
+        .ingredients {
+            margin-bottom: 10px;
         }
     }
 }

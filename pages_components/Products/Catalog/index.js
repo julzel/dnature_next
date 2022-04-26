@@ -79,7 +79,7 @@ const Catalog = () => {
                                         </span>
                                         <span className={styles.productDetails}>
                                             <h3>{product.productName}</h3>
-                                            <p>Precio (1kg) <span>₡{product.precio}</span></p>
+                                            <p>Precio | {product.medida} <span>₡{product.precio}</span></p>
                                         </span>
                                     </span>
                                 </Link>

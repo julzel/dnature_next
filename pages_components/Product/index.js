@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBasketShopping } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons'
 
 // local imports
 // styles
@@ -42,14 +42,30 @@ const Product = ({ product }) => {
                     </p>
                     <div>
                         <a href={`https://api.whatsapp.com/send?phone=50671732328&text=${whatsappMessageText}`}>
+                            <FontAwesomeIcon icon={faShoppingBasket} size='s' />
                             Comprar
                         </a>
                     </div>
                 </div>
             </div>
             <div className={styles.productDetail}>
-                <div className={styles.icons}>
-                    {product.iconos.map((icono, j) => (
+                <h2>
+                    Información
+                </h2>
+                <p>
+                    {product.description}
+                </p>
+                {product.ingredientes && (
+                    <>
+                        <h2>Ingredientes</h2>
+                        <p className={styles.ingredients}>
+                            {product.ingredientes}
+                        </p>
+                    </>
+                )}
+                {product.iconos && (
+                    <div className={styles.icons}>
+                        {product.iconos.map((icono, j) => (
                         <div key={j}>
                             <Image
                                 src={icono.url}
@@ -60,19 +76,8 @@ const Product = ({ product }) => {
                                 objectFit="contain"
                             />
                         </div>
-                    ))}
-                </div>
-                <h2>
-                    Información
-                </h2>
-                <p>
-                    {product.description}
-                </p>
-                {product.ingredientes && (
-                    <>
-                        <h2>Ingredientes</h2>
-                        <p>{product.ingredientes}</p>
-                    </>
+                        ))}
+                    </div>
                 )}
             </div>
         </section>
