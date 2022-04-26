@@ -12,8 +12,8 @@ const fetchFromContentful = async query => {
         body: JSON.stringify({ query }),
     }
     const resp = await window.fetch(url, options)
-    const { data } = await resp.json()
-    return data
+    const data = await resp.json()
+    return data.data
 }
 
 export { fetchFromContentful }

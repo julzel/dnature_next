@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Image from 'next/image'
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 // local imports
 
@@ -34,7 +34,7 @@ const HeaderNav = ({
             }}
         >
             <span role='button' tabIndex='0' onClick={onMenuIconClick}>
-                <FontAwesomeIcon icon={faEllipsis} size='lg' style={{ color: switchBackground ? 'rgb(58, 58, 58)' : 'rgba(255, 255, 255, 0.25)' }} />
+                <FontAwesomeIcon icon={faBars} size='lg' style={{ color: switchBackground ? 'rgb(58, 58, 58)' : 'rgba(255, 255, 255, 0.25)' }} />
             </span>
             <div className={styles.container}>
                 <div

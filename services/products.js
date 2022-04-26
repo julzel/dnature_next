@@ -1,6 +1,8 @@
 import { fetchFromContentful } from "./util"
 
-const productsQuery = `
+const categoriesPriority = ['recetas', 'snacks', 'suplementos', 'proteinas']
+
+const productsQuery = () => `
 {
     productCollection {
         items {
@@ -8,6 +10,7 @@ const productsQuery = `
             category
             categorySlug
             urlSlug
+            medida
             precio
             imageCollection {
                 items {
@@ -22,8 +25,35 @@ const productsQuery = `
     }
 }
 `
+const productQuery = productId => `
+        {
+            product(id:"${productId}") {
+                productName
+                description
+                category
+                medida
+                precio
+                ingredientes
+                imageCollection {
+                    items {
+                        title
+                        url
+                    }
+                }
+                iconosCollection {
+                    items {
+                        title
+                        url
+                    }
+                }
+                sys {
+                    id
+                }
+            }
+        }
+        `
 
-const generateProductData = productItems => {
+const formatProductsData = productItems => {
     const catalog = {}
     productItems.forEach(item => {
         const { categorySlug, category, imageCollection } = item
@@ -37,7 +67,8 @@ const generateProductData = productItems => {
             catalog[categorySlug] = {
                 label: category,
                 id: category.split(' ').join('').toLowerCase(),
-                products: []
+                products: [],
+                index: categoriesPriority.indexOf(categorySlug)
             }
             catalog[categorySlug].products.push(item)    
         }
@@ -46,38 +77,26 @@ const generateProductData = productItems => {
 }
 
 const getProducts = async () => {
-    const data = await fetchFromContentful(productsQuery)
-    return generateProductData(data.productCollection.items)
+    const data = await fetchFromContentful(productsQuery())
+    return formatProductsData(data.productCollection.items)
+}
+
+const formatProductData = product => {
+    const images = product.imageCollection?.items.map(image => image)
+    product.images = images
+    delete product.imageCollection
+
+    const iconos = product.iconosCollection?.items.map(image => image)
+    product.iconos = iconos
+    delete product.iconosCollection
+    return product
 }
 
 const getProduct = async (productId) => {
-    const productQuery = `
-        {
-            product(id:"${productId}") {
-                productName
-                description
-                category
-                precio
-                imageCollection {
-                    items {
-                        title
-                        url
-                    }
-                }
-                sys {
-                    id
-                }
-            }
-        }
-        `
-    const { product } = await fetchFromContentful(productQuery)
+    const { product } = await fetchFromContentful(productQuery(productId))
     if (product) {
-        const images = product.imageCollection?.items.map(image => image)
-        product.images = images
-        delete product.imageCollection
-        return product
+        return formatProductData(product)
     }
-    return null
 }
 
 export { getProducts, getProduct  }

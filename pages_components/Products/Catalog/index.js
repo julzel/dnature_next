@@ -20,7 +20,10 @@ const Catalog = () => {
         try {
             const catalog = await getProducts()
             for (const category in catalog) {
-                categories.push(catalog[category])
+                if(catalog.hasOwnProperty(category)) {
+                    const { index } = catalog[category]
+                    categories[index] = catalog[category]
+                }
             }
             setCategories(categories)
             setLoading(false)
