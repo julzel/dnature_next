@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import { faShoppingBasket } from '@fortawesome/free-regular-svg-icons'
+import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons'
 
 // local imports
 // styles
@@ -26,13 +26,10 @@ const Product = ({ product }) => {
                     <span>
                         <FontAwesomeIcon icon={faCircleLeft} size='1x' />
                         &nbsp;
-                        Regresar
+                        Volver
                     </span>
                 </Link>
             </div>
-            <h1>
-                {product.productName}
-            </h1>
             <div className={styles.productInfo}>
                 <div className={styles.images}>
                     {product.images?.map((img, i) => (
@@ -47,21 +44,13 @@ const Product = ({ product }) => {
                         />
                     ))}
                 </div>
+                <h1>
+                    {product.productName}
+                </h1>
                 <div className={styles.info}>
                     <p className={styles.precio}>
-                        ₡{product.precio}
+                        ₡{product.precio} <span className={styles.small}>| {product.medida}</span>
                     </p>
-                    <p className={styles.small}>
-                        {product.medida}
-                    </p>
-                    {product.ingredientes && (
-                        <>
-                            <h6>Ingredientes:</h6>
-                            <p className={styles.ingredients}>
-                                {product.ingredientes}
-                            </p>
-                        </>
-                    )}
                 </div>
             </div>
             <div className={styles.productBuy}>
@@ -78,6 +67,14 @@ const Product = ({ product }) => {
                         </h2>
                         <p>
                             {product.description}
+                        </p>
+                    </>
+                )}
+                {product.ingredientes && (
+                    <>
+                        <h2>Ingredientes:</h2>
+                        <p className={styles.ingredients}>
+                            {product.ingredientes}
                         </p>
                     </>
                 )}
