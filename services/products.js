@@ -92,11 +92,12 @@ const formatProductData = product => {
     return product
 }
 
-const getProduct = async (productId) => {
-    const { product } = await fetchFromContentful(productQuery(productId))
-    if (product) {
-        return formatProductData(product)
+const getProduct = async productId => {
+    const product = await fetchFromContentful(productQuery(productId))
+    if (product.product) {
+        return formatProductData(product.product)
     }
+    return null
 }
 
 export { getProducts, getProduct  }

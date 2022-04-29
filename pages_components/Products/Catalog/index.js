@@ -9,6 +9,9 @@ import { getProducts } from '../../../services/products'
 // styles
 import styles from './Catalog.module.scss'
 
+// components
+import Loading from '../../../components/Loading'
+
 const Catalog = () => {
     // state
     const [categories, setCategories] = useState([])
@@ -39,7 +42,7 @@ const Catalog = () => {
 
     if (loading) {
         return (
-            <div>loading</div>
+            <Loading />
         )
     }
 

@@ -14,12 +14,6 @@ const Productos = () => {
         <div>
             <Hero />
             <Catalog />
-            {/* <Welcome />
-            <Benefits />
-            <Products />
-            <DNAtureSystem />
-            <OurCostumers />
-            <Contact /> */}
         </div>
     )
 }
