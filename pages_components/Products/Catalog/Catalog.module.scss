@@ -3,7 +3,7 @@
 .catalog {
     max-width: 600px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 40px 25px;
 
     .category {
         padding: 40px 0;
@@ -48,7 +48,7 @@
                     border-bottom: 0;
                 }
 
-                span {
+                .link {
                     display: block;
                 }
 
@@ -57,21 +57,21 @@
                 }
 
                 &Details {
+                    text-align: center;
                     h3 {
-                        font-family: $bold;
+                        color: $gray;
+                        font-family: $bold2;
                         font-size: 16px;
+                        letter-spacing: 1.5px;
                         text-transform: uppercase;
-                        padding-top: 2px;
+                        margin-bottom: 5px;
                     }
                     p {
-                        display: flex;
-                        align-items: flex-end;
-                        justify-content: space-between;
-                        font-size: 14px;
+                        font-family: $bold;
 
                         span {
-                            font-family: $bold2;
-                            font-size: 16px;
+                            font-family: $regular;
+                            font-size: 14px;
                         }
                     }
                 }

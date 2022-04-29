@@ -63,7 +63,7 @@ const Catalog = () => {
                                         query: { id: product.sys.id },
                                     }}
                                 >
-                                    <span>
+                                    <span className={styles.link}>
                                         <span className={styles.productImages}>
                                             {product.images?.map((img, i) => (
                                                 <Image
@@ -79,7 +79,9 @@ const Catalog = () => {
                                         </span>
                                         <span className={styles.productDetails}>
                                             <h3>{product.productName}</h3>
-                                            <p>Precio | {product.medida} <span>₡{product.precio}</span></p>
+                                            <p>
+                                                ₡{product.precio} <span> | {product.medida}</span>
+                                            </p>
                                         </span>
                                     </span>
                                 </Link>

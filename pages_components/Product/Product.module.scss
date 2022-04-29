@@ -3,14 +3,14 @@
 .product {
     max-width: 600px;
     margin: 0 auto;
-    padding: 60px 20px 0;
+    padding: 60px 25px 0;
 
     .backLink {
         color: $darkGray;
         font-family: $light;
         font-size: 14px;
-        margin-bottom: 20px;
-        padding-top: 10px;
+        margin-bottom: 10px;
+        padding-top: 5px;
 
         span {
             border-bottom: 1px solid $lightGray;
@@ -19,7 +19,7 @@
     }
 
     &Info {
-        margin-bottom: 20px;
+        margin-bottom: 40px;
 
         .images {
             overflow: hidden;
@@ -29,7 +29,7 @@
         h1 {
             color: $gray;
             font-family: $bold2;
-            font-size: 22px;
+            font-size: 24px;
             letter-spacing: 2.5px;
             line-height: 1.65;
             text-align: center;
@@ -94,9 +94,10 @@
             }
         }
         h2 {
+            color: $gray;
             font-size: 16px;
             line-height: 20px;
-            font-family: $bold;
+            font-family: $bold2;
             margin-bottom: 8px;
         }
 

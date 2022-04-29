@@ -34,7 +34,7 @@ const HeaderNav = ({
             }}
         >
             <span role='button' tabIndex='0' onClick={onMenuIconClick}>
-                <FontAwesomeIcon icon={faBars} size='lg' style={{ color: switchBackground ? 'rgb(58, 58, 58)' : 'rgba(255, 255, 255, 0.25)' }} />
+                <FontAwesomeIcon icon={faBars} size='lg' style={{ color: switchBackground ? 'rgb(92, 92, 92)' : 'rgba(255, 255, 255, 0.25)' }} />
             </span>
             <div className={styles.container}>
                 <div
