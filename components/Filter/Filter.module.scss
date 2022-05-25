@@ -1,0 +1,41 @@
+@import '../../styles/_variables';
+
+.filter {
+    display: flex;
+    position: relative;
+    flex-flow: column;
+
+    &Header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $bold2;
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        .icon {
+            -webkit-transition:  -webkit-transform 200ms linear;
+            transition: transform 200ms linear;
+        }
+    }
+
+    &List {
+        padding-top: 10px;
+        height: 0;
+        overflow: hidden;
+        transition: height 200ms ease-in;
+
+        li {
+            font-family: $regular2;
+            font-size: 16px;
+            padding: 6px 0;
+            text-align: center;
+        }
+    }
+
+    .show {
+        height: 190px;
+        width: 100%;
+    }
+}

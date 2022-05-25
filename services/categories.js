@@ -9,6 +9,7 @@ const categoriesQuery = `
                 title
                 url
             }
+            slug
         }
     }
 }

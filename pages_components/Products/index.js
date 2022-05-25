@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 
 // local imports
 // styles
@@ -10,10 +11,13 @@ import Catalog from './Catalog'
 
 
 const Productos = () => {
+    const router = useRouter()
+    const { category } = router.query
+    
     return (
         <div>
             <Hero />
-            <Catalog />
+            <Catalog category={category}/>
         </div>
     )
 }
