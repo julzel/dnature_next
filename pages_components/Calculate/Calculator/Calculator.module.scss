@@ -1,0 +1,164 @@
+@import '../../../styles/_variables';
+
+.calculator {
+    padding: 60px 20px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+
+    &Intro {
+        h2 {
+            font-size: 24px;
+            font-family: $bold2;
+            text-align: center;
+            line-height: 32px;
+            max-width: 375px;
+            padding: 0 10px;
+            margin: 0 auto 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+
+            &:last-of-type {
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    &Steps {
+
+        .step {
+            margin-bottom: 40px;
+
+            h2 {
+                font-size: 24px;
+                font-family: $bold2;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            div[role=button] {
+                border: 1px solid $lightGray;
+                color: $gray;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                line-height: 24px;
+                margin-bottom: 10px;
+                padding: 20px;
+                transition: border 200ms ease-out;
+
+                span {
+                    letter-spacing: 1.2px;
+                    font-size: 12px;
+                }
+
+                &.selected {
+                    border: 1px solid $black;
+                    color: $black;
+                    font-family: $bold;
+                }
+
+                &:active {
+                    border: 1px solid $black;
+                }
+            }
+
+            input {
+                background-color: $white;
+                border: 1px solid $lightGray;
+                display: block;
+                font-family: $bold;
+                font-size: 20px;
+                padding: 15px 20px;
+                text-align: center;
+                width: 100%;
+                transition: border, 200ms ease-out;
+
+                &:focus {
+                    border: 1px solid $black;
+                }
+            }
+        }
+    }
+
+    .profile {
+
+        &Details {
+            div {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+
+            span {
+                &:first-child {
+                    font-family: $bold;
+                }
+            }
+        }
+
+        &Results {
+            flex-grow: 1;
+            margin-bottom: 20px;
+
+            h3 {
+                font-family: $bold2;
+                font-size: 60px;
+                text-align: center;
+                padding-bottom: 20px;
+
+                span {
+                    font-size: 32px;
+                }
+            }
+
+            p {
+                text-align: center;
+            }
+        }
+    }
+
+    .resultImage {
+        margin-bottom: 40px;
+    }
+
+    .actionButton {
+        color: $white;
+        display: block;
+        background-color: $blue;
+        font-size: 18px;
+        font-family: $bold2;
+        margin: 0 auto 20px;
+        padding: 15px;
+        width: 100%;
+        max-width: 400px;
+
+        &:focus {
+            background-color: $lightBlue;
+        }
+    }
+
+    .prevButton {
+        color: $gray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $bold2;
+        font-size: 18px;
+        margin: 0 auto;
+        max-width: 400px;
+        width: 100%;
+
+        span {
+            margin-left: 5px;
+        }
+
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}

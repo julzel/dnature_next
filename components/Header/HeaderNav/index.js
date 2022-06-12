@@ -15,7 +15,7 @@ import styles from './HeaderNav.module.scss'
 import logo1 from '../../../public/images/dnature-logo-transparent.svg'
 import logo2 from '../../../public/images/dnature-logo.svg'
 
-const TRIGGER_POSITION = 140;
+const TRIGGER_POSITION = 80;
 
 const HeaderNav = ({
     changeBackground,

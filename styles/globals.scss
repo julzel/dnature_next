@@ -53,9 +53,16 @@ a {
 }
 
 button {
-  border: none;
-  outline: none;
   background-color: transparent;
+  border: none;
+  color: $black;
+  outline: none;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
 }
 
 .title {
