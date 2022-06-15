@@ -1,0 +1,58 @@
+@import '../../../styles/_variables';
+
+.faq {
+    padding: 80px 20px;
+
+    &List {
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    &QuestionBlock {
+        border-bottom: 1px solid #f0f0f0;
+        h3 {
+            border-left: 4px solid transparent;
+            font-family: $bold2;
+            font-size: 17px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 86px;
+            padding: 20px 10px;
+            
+
+            span {
+                display: inline-block;
+                flex-shrink: 0;
+                margin-left: 20px;
+                transition: transform 200ms linear;
+
+                &.active {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+
+        .answer {
+            // color: $gray;
+            font-family: $light;
+            padding: 20px;
+
+            p {
+                text-align: justify;
+                margin-bottom: 10px;
+            }
+
+            ol {
+                list-style: decimal;
+                padding: 10px 20px;
+
+                li {
+                    line-height: 1.4;
+                    margin-bottom: 5px;
+                    text-align: justify;
+                }
+            }
+        }
+    }
+}

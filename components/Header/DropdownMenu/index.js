@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { faStore, faStar, faWeight } from '@fortawesome/free-solid-svg-icons'
+import { faStore, faStar, faWeight, faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 // local imports
@@ -16,6 +16,11 @@ const linkItems = [
         href:'/productos',
         icon: faStore,
         label: 'productos'
+    },
+    {
+        href:'/preguntas-frecuentes',
+        icon: faCircleQuestion,
+        label: 'preguntas frecuentes'
     },
     {
         href:'/calculadora',

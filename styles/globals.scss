@@ -82,6 +82,12 @@ input {
   }
 }
 
+.uppercase {
+  font-family: $bold;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
 .flex-center-column {
   display: flex;
   flex-flow: column;
