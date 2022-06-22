@@ -82,6 +82,20 @@ input {
   }
 }
 
+.uppercase {
+  font-family: $bold;
+  font-size: 14px;
+  text-transform: uppercase !important;
+}
+
+.small {
+  font-size: 14px !important;
+}
+
+.bold {
+  font-family: $bold;
+}
+
 .flex-center-column {
   display: flex;
   flex-flow: column;
@@ -95,6 +109,15 @@ input {
 .slideOut {
   animation-name: slide-out !important;
 }
+
+.link {
+  color: $gray;
+  text-decoration: underline;
+}
+
+.mb {
+  margin-bottom: 25px !important;
+};
 
 @keyframes slide-in {
   from {left: 100vw;}
