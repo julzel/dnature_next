@@ -13,7 +13,7 @@ const FaqList = () => {
     const [selectedQuestion, setSelectedQuestion] = useState(null);
 
     const handleQuestionClick = questionId => {
-        if  (questionId === selectedQuestion) {
+        if (questionId === selectedQuestion) {
             setSelectedQuestion(null)
         } else {
             setSelectedQuestion(questionId)
@@ -38,12 +38,14 @@ const FaqList = () => {
                                 <FontAwesomeIcon icon={faChevronRight} />
                             </span>
                         </h3>
-                        {selectedQuestion === i && (
-                            <div
-                                className={styles.answer}
-                                dangerouslySetInnerHTML={{ __html: q.answer }}
-                            />
-                        )}
+                        <div
+                            className={styles.answer}
+                            dangerouslySetInnerHTML={{ __html: q.answer }}
+                            style={{
+                                maxHeight: selectedQuestion === i ? '800px' : '0',
+                                padding: selectedQuestion === i ? '20px' : '0 20px'
+                            }}
+                        />
                     </div>
                 ))}
             </div>
