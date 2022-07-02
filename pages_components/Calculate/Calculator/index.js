@@ -40,7 +40,11 @@ const Calculator = () => {
 
     const handlePrevClick = () => {
         if (step > 0) {
-            setStep(step - 1)
+            if (step === 5) {
+                setStep(0)
+            } else {
+                setStep(step - 1)
+            }
         } else {
             restart()
             setStartCaluculator(false)
@@ -83,12 +87,12 @@ const Calculator = () => {
         const validWeight = dogProfile.weight && dogProfile.weight !== ''
         return (
             <div>
-                {step === 6 && (
+                {step === 7 && (
                     <button onClick={restart} className={styles.actionButton}>
                         Calcular otra vez
                     </button>
                 )}
-                {step === 5 && validWeight && (
+                {step === 6 && validWeight && (
                     <button onClick={getPortionSize} className={styles.actionButton}>
                         Calcular
                     </button>
@@ -97,7 +101,7 @@ const Calculator = () => {
                     <FontAwesomeIcon icon={faChevronLeft} />
                     <span>Anterior</span>
                 </button>
-                {step < 5 && enableNext && (
+                {step < 6 && enableNext && (
                     <button onClick={hadleNextClick}>
                         Siguiente
                     </button>
@@ -118,17 +122,32 @@ const Calculator = () => {
         </div>
     )
 
+    const renderPuppyStage = (cb) => (
+        <div className={styles.step}>
+            <h2>Edad</h2>
+            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage1')} className={dogProfile.stage === 'stage1' ? styles.selected : ''}>
+                Etapa 1 <span>menor a 7 meses</span>
+            </div>
+            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage2')} className={dogProfile.stage === 'stage2' ? styles.selected : ''}>
+                Etapa 2 <span>7 meses a 1 año</span>
+            </div>
+            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage3')} className={dogProfile.stage === 'stage3' ? styles.selected : ''}>
+                Etapa 3 <span>más de 1 año hasta su etapa adulta</span>
+            </div>
+        </div>
+    )
+
     const renderSizeSelect = (cb) => (
         <div className={styles.step}>
             <h2>Tamaño</h2>
             <div role="button" tabIndex='0' onClick={() => cb('size', 'pequeno')} className={dogProfile.size === 'pequeno' ? styles.selected : ''}>
-                Mini <span>(menos de 4kg)</span>
+                Mini <span>menos de 4kg</span>
             </div>
             <div role="button" tabIndex='0' onClick={() => cb('size', 'mediano')} className={dogProfile.size === 'mediano' ? styles.selected : ''}>
-                Pequeño - Mediano <span>(5kg a 25kg)</span>
+                Pequeño - Mediano <span>5kg a 25kg</span>
             </div>
             <div role="button" tabIndex='0' onClick={() => cb('size', 'grande')} className={dogProfile.size === 'grande' ? styles.selected : ''}>
-                Grande - Gigante <span>(más de 25kg)</span>
+                Grande - Gigante <span>más de 25kg</span>
             </div>
         </div>
     )
@@ -207,8 +226,15 @@ const Calculator = () => {
     const updatedogProfile = (key, value) => {
         dogProfile[key] = value
         setDogProfile({ ...dogProfile })
-        // fix if key === age and value === cachorro
-        setTimeout(() => setStep(step + 1), 250)
+        if (key === 'age' && value === 'cachorro') {
+            setTimeout(() => setStep(5), 250)
+        } else {
+            if (key === 'activity') {
+                setTimeout(() => setStep(step + 2), 250)
+            } else {
+                setTimeout(() => setStep(step + 1), 250)
+            }
+        }
     }
 
     const renderStep = currentStep => steps[currentStep](updatedogProfile)
@@ -219,8 +245,9 @@ const Calculator = () => {
         2: renderCastratedSelect,
         3: renderWeightStatusSelect,
         4: renderActivitySelect,
-        5: renderWeightInput,
-        6: renderResults
+        5: renderPuppyStage,
+        6: renderWeightInput,
+        7: renderResults
     }
 
     return (
@@ -228,7 +255,7 @@ const Calculator = () => {
             {startCalculator ? (
                 <div>
                     <div className={styles.calculatorSteps}>{renderStep(step)}</div>
-                    {step === 6 && (
+                    {step === 7 && (
                         <div className={styles.resultImage}>
                             <Image
                                 src={dogProfile.size === 'grande' ? dogLg : dogM}

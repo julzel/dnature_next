@@ -42,7 +42,7 @@ const DropdownMenu = ({ items, show }) => {
                     <Link href={link.href} passHref>
                         <span className={styles.itemLink}>
                             <span>{link.label}</span>
-                            <FontAwesomeIcon icon={faChevronRight} size='m' />
+                            <FontAwesomeIcon icon={faChevronRight} />
                         </span>
                     </Link>
                 </li>

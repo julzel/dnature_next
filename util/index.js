@@ -128,6 +128,7 @@ const labelKeys = {
     castrated: 'Castración',
     weightStatus: 'Contextura',
     activity: 'Actividad física',
+    stage: 'Etapa del cachorro',
     weight: 'Peso en kilogramos'
 }
 
@@ -144,7 +145,10 @@ const valueKeys = {
     sobrepeso: 'Sobrepeso',
     sedentario: 'Sendentario',
     activo: 'Activo',
-    deportista: 'Deportista'
+    deportista: 'Deportista',
+    stage1: 'Etapa 1',
+    stage2: 'Etapa 2',
+    stage3: 'Etapa 3',
 }
 
 export { calculatePortionSizeInGrams, labelKeys, valueKeys }
