@@ -1,7 +1,7 @@
 import Head from 'next/head'
 
 // local imports
-import Layout from '../components/Layout'
+import Page from '../components/Page'
 import Home from '../pages_components/Home'
 
 
@@ -14,9 +14,9 @@ export default function App() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-     <Layout changeBackground>
+     <Page changeBackground>
        <Home />
-     </Layout>
+     </Page>
     </>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 
 // local imports
-import Layout from '../../../components/Layout'
+import Page from '../../../components/Page'
 
 //
 import Product from '../../../pages_components/Product'
@@ -17,9 +17,9 @@ const ProductDetail = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Layout showHeader>
+            <Page showHeader>
                 <Product/>
-            </Layout>
+            </Page>
         </>
     )
 }

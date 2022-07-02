@@ -3,8 +3,8 @@ import Head from 'next/head'
 // local imports
 
 // components
-import Layout from '../../components/Layout'
-import Calculate from '../../pages_components/Calculate'
+import Page from '../../components/Page'
+import Calculator from '../../pages_components/Calculator'
 
 
 export default function App() {
@@ -16,9 +16,9 @@ export default function App() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-     <Layout changeBackground>
-        <Calculate />  
-     </Layout>
+     <Page showHeader>
+        <Calculator />  
+     </Page>
     </>
   )
 }

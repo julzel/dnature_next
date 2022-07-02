@@ -1,22 +1,28 @@
-import React from 'react'
+import { useContext } from 'react'
 
 // local imports
+// styles
+import styles from './Layout.module.scss'
+
+// contexts
+import { GlobalContext } from '../../contexts/global-context'
+
+// components
 import Header from '../Header'
 import Footer from '../Footer'
 
-import styles from './Layout.module.scss'
-import ScrollContextProvider from '../../contexts/scroll-context'
-
-const Layout = ({ children, showHeader, changeBackground }) => (
-    <ScrollContextProvider>
-        <div className={styles.layout}>
+const Layout = ({ changeBackground, showHeader, children }) => {
+    const { disableGlobalScroll } = useContext(GlobalContext)
+    
+    return (
+        <div className={`${styles.Layout}`}>
             <Header changeBackground={changeBackground} showBackground={showHeader} />
             <main>
                 {children}
             </main>
             <Footer />
         </div>
-    </ScrollContextProvider>
-);
- 
+    )
+}
+
 export default Layout

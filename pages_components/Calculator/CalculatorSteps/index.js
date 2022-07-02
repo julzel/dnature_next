@@ -4,23 +4,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 
 // local imports
+
 // styles
-import styles from './Calculator.module.scss'
+import styles from './CalculatorSteps.module.scss'
+
+// util
+import { calculatePortionSizeInGrams, labelKeys, valueKeys } from '../../../util'
 
 // images
 import dogLg from '../../../public/calculator/dog_mobile_lg.jpg'
 import dogM from '../../../public/calculator/dog_mobile_peque_med.jpg'
 
-// util
-import { calculatePortionSizeInGrams, labelKeys, valueKeys } from '../../../util'
-
-const Calculator = () => {
+const CalculatorSteps = () => {
     const [step, setStep] = useState(0)
     const [value, setValue] = useState('')
     const [dogProfile, setDogProfile] = useState({})
     const [result, setResult] = useState(null)
     const [enableNext, setEnableNext] = useState(false)
-    const [startCalculator, setStartCaluculator] = useState(false)
 
     const restart = () => {
         setStep(0)
@@ -31,7 +31,7 @@ const Calculator = () => {
     }
 
     const getPortionSize = () => {
-        console.log(dogProfile)
+        
         if (dogProfile.weight !== '') { // add regex validation as well
             setResult(calculatePortionSizeInGrams(dogProfile))
             setStep(step + 1)
@@ -47,7 +47,6 @@ const Calculator = () => {
             }
         } else {
             restart()
-            setStartCaluculator(false)
         }
     }
 
@@ -60,28 +59,6 @@ const Calculator = () => {
         dogProfile.weight = target.value
         setValue(target.value)
     }
-
-    const renderIntro = () => (
-        <>
-            <h2>¿Cuánto alimento le debo dar a mi mascota?</h2>
-            <p>
-                Tu mascota irá teniendo diferentes necesidades nutricionales a lo largo de su vida.
-            </p>
-            <p>
-                La cantidad de alimento que requiere diariamente depende de distintos factores
-                que determinan la cantidad de energía y nutrientes que necesita para llevar una vida plena.
-            </p>
-            <p>
-                Calcula la ración diaria de las Recetas completas de DNAture
-                completando algunos datos de tu mascota.
-            </p>
-            <div>
-                <button onClick={() => setStartCaluculator(true)} className={styles.actionButton}>
-                    Empezar
-                </button>
-            </div>
-        </>
-    )
 
     const renderControls = () => {
         const validWeight = dogProfile.weight && dogProfile.weight !== ''
@@ -249,29 +226,20 @@ const Calculator = () => {
         6: renderWeightInput,
         7: renderResults
     }
-
     return (
-        <section className={styles.calculator}>
-            {startCalculator ? (
-                <div>
-                    <div className={styles.calculatorSteps}>{renderStep(step)}</div>
-                    {step === 7 && (
-                        <div className={styles.resultImage}>
-                            <Image
-                                src={dogProfile.size === 'grande' ? dogLg : dogM}
-                                alt="Perro de raza dálmata comiendo alimentación natural cruda"
-                            />
-                        </div>
-                    )}
-                    <div className={styles.calculatorControls}>{renderControls()}</div>
-                </div>
-            ) : (
-                <div className={styles.calculatorIntro}>
-                    {renderIntro()}
+        <div className={styles.calculatorSteps}>
+            <div className={styles.steps}>{renderStep(step)}</div>
+            {step === 7 && (
+                <div className={styles.resultImage}>
+                    <Image
+                        src={dogProfile.size === 'grande' ? dogLg : dogM}
+                        alt="Perro de raza dálmata comiendo alimentación natural cruda"
+                    />
                 </div>
             )}
-        </section>
+            <div className={styles.calculatorControls}>{renderControls()}</div>
+        </div>
     )
 }
 
-export default Calculator
+export default CalculatorSteps

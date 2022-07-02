@@ -1,0 +1,45 @@
+@import '../../styles/_variables';
+
+.drower {
+    // background-color: rgba(0, 0, 0, 0.35);
+    position: fixed;
+    left: 0px;
+    top: 100%;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    animation: slideFromBottom 300ms ease-out 200ms forwards;
+    z-index: 1;
+    padding: 10px 10px 0;
+
+    &Container {
+        background-color: $white;
+        height: 100%;
+        padding: 80px 20px 160px;
+        overflow: scroll;
+        position: relative;
+
+        &Header {
+            color: $lightGray;
+            display: flex;
+            justify-content: flex-end;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            padding: 20px;
+            font-size: 24px;
+        }
+    }
+}
+
+@keyframes slideFromBottom {
+    to {
+        top: 60px;
+    }
+}
+
+@keyframes slideToBottom {
+    to {
+        top: 100%
+    }
+}

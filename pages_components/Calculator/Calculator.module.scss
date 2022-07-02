@@ -1,0 +1,47 @@
+@import '../../styles/_variables';
+
+.calculator {
+    padding: 60px 25px 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+
+    &Intro {
+        padding-top: 40px;
+        h2 {
+            font-size: 24px;
+            font-family: $bold2;
+            text-align: center;
+            line-height: 32px;
+            max-width: 375px;
+            padding: 0 10px;
+            margin: 0 auto 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            text-align: justify;
+
+            &:last-of-type {
+                margin-bottom: 40px;
+            }
+        }
+    }
+
+    .actionButton {
+        color: $white;
+        display: block;
+        background-color: $blue;
+        font-size: 18px;
+        font-family: $bold2;
+        margin: 0 auto 20px;
+        padding: 15px;
+        width: 100%;
+        max-width: 400px;
+
+        &:focus {
+            background-color: $lightBlue;
+        }
+    }
+}
