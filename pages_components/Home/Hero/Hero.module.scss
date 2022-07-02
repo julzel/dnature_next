@@ -16,7 +16,17 @@
         animation: filter-animation 300ms ease-out 1200ms 1 normal forwards;
     }
 
-    &Background {
+    &BackgroundColor {
+        background: rgb(241,230,231);
+        background: linear-gradient(90deg, rgba(241,230,231,1) 0%, rgba(239,235,240,1) 35%, rgba(244,243,245,1) 100%);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    &BackgroundImage {
         background: url('../../../public/images/hero3.jpg') no-repeat;
         background-position: 40%;
         background-size: cover;
@@ -25,8 +35,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        opacity: 0.1;
-        transform: scale(0);
+        transform: scale(0.5);
         animation: background-animation 1300ms ease-out 250ms 1 normal forwards;
     }
 
@@ -41,9 +50,10 @@
         top: 50%;
         transform: translate(-50%, -50%) scale(2.5);
         text-align: center;
-        text-shadow: 1px 1px rgba(33,33,33,.25);
+        text-shadow: 1px 1px rgba(33,33,33,.125);
         position: relative;
         opacity: 0;
+        text-transform: uppercase;
         animation: title-animation 750ms ease-out 1200ms 1 normal forwards;
 
         span {
@@ -54,27 +64,20 @@
             font-size: 40px;
             letter-spacing: 3px;
             line-height: 50px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
+            margin-bottom: 15px;
             position: relative;
+            text-transform: none;
             text-decoration: underline;
             transform: scale(1.5);
-            // animation: natural-animation 1200ms ease-out 1200ms 1 normal forwards;
         }
     }
 }
 
 @keyframes background-animation {
     0% {
-        opacity: 0.1;
-        transform: scale(0);
-    }
-    75% {
-        opacity: 0.75;
-        transform: scale(1.1);
+        transform: scale(0.5);
     }
     100% {
-        opacity: 1;
         transform: scale(1);
     }
 }
@@ -84,7 +87,7 @@
         background-color: rgba(0, 0, 0, 0);
     }
     to {
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.25);
     }
 }
 
@@ -96,17 +99,5 @@
     to {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-@keyframes natural-animation {
-    0% {
-        color: $orange;
-    }
-    50% {
-        color: $blue;
-    }
-    100% {
-        color: $green;
     }
 }

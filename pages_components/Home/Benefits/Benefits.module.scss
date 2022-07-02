@@ -1,7 +1,7 @@
 @import '../../../styles/_variables';
 
 .benefits {
-    background-color: $lightBlue;
+    background-color: $blue;
     display: flex;
     flex-flow: column;
     padding: 80px 20px 60px;
@@ -28,7 +28,6 @@
     }
 
     &Container {
-        background-color: rgba(7, 187, 199, 0.5);
         margin: 0 auto;
         max-width: 600px;
         padding: 20px;

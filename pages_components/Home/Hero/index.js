@@ -12,8 +12,9 @@ const Benefits = () => {
                 Alimentación natural y dieta cruda para mascotas
             </h1>
 
+            <div className={styles.heroBackgroundColor} />
+            <div className={styles.heroBackgroundImage} />
             <div className={styles.heroFilter} />
-            <div className={styles.heroBackground} />
             <h2 className={styles.heroTitle}>
                 La forma
                 <br /><span>natural</span>
