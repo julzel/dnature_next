@@ -31,7 +31,7 @@ const CalculatorSteps = () => {
     }
 
     const getPortionSize = () => {
-        
+
         if (dogProfile.weight !== '') { // add regex validation as well
             setResult(calculatePortionSizeInGrams(dogProfile))
             setStep(step + 1)
@@ -42,6 +42,12 @@ const CalculatorSteps = () => {
         if (step > 0) {
             if (step === 5) {
                 setStep(0)
+            } else if (step === 6) {
+                if (dogProfile.age === 'cachorro') {
+                    setStep(step - 1)    
+                } else {
+                    setStep(step - 2)
+                }
             } else {
                 setStep(step - 1)
             }
@@ -63,7 +69,7 @@ const CalculatorSteps = () => {
     const renderControls = () => {
         const validWeight = dogProfile.weight && dogProfile.weight !== ''
         return (
-            <div>
+            <div className={styles.calculatorControls}>
                 {step === 7 && (
                     <button onClick={restart} className={styles.actionButton}>
                         Calcular otra vez
@@ -74,10 +80,12 @@ const CalculatorSteps = () => {
                         Calcular
                     </button>
                 )}
-                <button onClick={handlePrevClick} className={styles.prevButton}>
-                    <FontAwesomeIcon icon={faChevronLeft} />
-                    <span>Anterior</span>
-                </button>
+                {step > 0 && (
+                    <button onClick={handlePrevClick} className={styles.prevButton}>
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                        <span>Anterior</span>
+                    </button>
+                )}
                 {step < 6 && enableNext && (
                     <button onClick={hadleNextClick}>
                         Siguiente
@@ -174,7 +182,7 @@ const CalculatorSteps = () => {
     const renderWeightInput = () => (
         <div className={`${styles.step} ${styles.short}`}>
             <h2>Peso en kg</h2>
-            <input required type="number" onChange={handleOnChange} value={value} />
+            <input required type="number" inputMode='number' onChange={handleOnChange} value={value} />
         </div>
     )
 
@@ -196,6 +204,12 @@ const CalculatorSteps = () => {
                         <span>{key === 'weight' ? `${dogProfile[key]}kg` : valueKeys[dogProfile[key]]}</span>
                     </div>))}
                 </div>
+            </div>
+            <div className={styles.resultImage}>
+                <Image
+                    src={dogProfile.size === 'grande' ? dogLg : dogM}
+                    alt="Perro de raza dálmata comiendo alimentación natural cruda"
+                />
             </div>
         </div>
     )
@@ -228,16 +242,8 @@ const CalculatorSteps = () => {
     }
     return (
         <div className={styles.calculatorSteps}>
-            <div className={styles.steps}>{renderStep(step)}</div>
-            {step === 7 && (
-                <div className={styles.resultImage}>
-                    <Image
-                        src={dogProfile.size === 'grande' ? dogLg : dogM}
-                        alt="Perro de raza dálmata comiendo alimentación natural cruda"
-                    />
-                </div>
-            )}
-            <div className={styles.calculatorControls}>{renderControls()}</div>
+            {renderStep(step)}
+            {renderControls()}
         </div>
     )
 }

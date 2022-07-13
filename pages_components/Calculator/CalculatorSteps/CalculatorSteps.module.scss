@@ -1,74 +1,78 @@
 @import '../../../styles/_variables';
 
 .calculatorSteps {
+    margin: 0 auto;
+    max-width: 576px;
 
-    .steps {
+    .step {
+        margin-bottom: 40px;
 
-        .step {
-            margin-bottom: 40px;
+        h2 {
+            font-size: 24px;
+            font-family: $bold2;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-            h2 {
-                font-size: 24px;
-                font-family: $bold2;
-                margin-bottom: 20px;
-                text-align: center;
+        div[role=button] {
+            border-radius: 15px;
+            border: 2px solid $blue;
+            color: $blue;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            font-family: $bold;
+            font-size: 18px;
+            line-height: 24px;
+            margin-bottom: 10px;
+            padding: 20px;
+            transition: border 200ms ease-out;
+
+            span {
+                letter-spacing: 1.2px;
+                font-size: 12px;
             }
 
-            div[role=button] {
-                border: 1px solid $lightGray;
-                color: $gray;
-                display: flex;
-                flex-flow: column;
-                align-items: center;
-                justify-content: center;
-                font-size: 18px;
-                line-height: 24px;
-                margin-bottom: 10px;
-                padding: 20px;
-                transition: border 200ms ease-out;
-
-                span {
-                    letter-spacing: 1.2px;
-                    font-size: 12px;
-                }
-
-                &.selected {
-                    border: 1px solid $black;
-                    color: $black;
-                    font-family: $bold;
-                }
-
-                &:active {
-                    border: 1px solid $black;
-                }
+            &.selected {
+                background-color: $blue;
+                color: $white;
             }
 
-            input {
-                background-color: $white;
-                border: 1px solid $lightGray;
-                display: block;
-                font-family: $bold;
-                font-size: 20px;
-                padding: 15px 20px;
-                text-align: center;
-                width: 100%;
-                transition: border, 200ms ease-out;
+            // &:active {
+            //     background-color: $blue;
+            //     color: $white;  
+            // }
+        }
 
-                &:focus {
-                    border: 1px solid $black;
-                }
+        input {
+            background-color: $white;
+            border: 1px solid $lightGray;
+            display: block;
+            font-family: $bold;
+            font-size: 20px;
+            padding: 15px 20px;
+            text-align: center;
+            width: 100%;
+            transition: border, 200ms ease-out;
+
+            &:focus {
+                border: 1px solid $black;
             }
         }
     }
 
     .profile {
+        margin: 0 auto;
+        max-width: 576px;
 
         &Details {
+            margin-bottom: 40px;
+
             div {
                 display: flex;
                 justify-content: space-between;
             }
-            
 
             span {
                 &:first-child {
@@ -80,12 +84,11 @@
         &Results {
             flex-grow: 1;
             margin-bottom: 20px;
+            width: 80%;
 
             h3 {
                 font-family: $bold2;
-                font-size: 60px;
-                text-align: center;
-                padding-bottom: 20px;
+                font-size: 42px;
 
                 span {
                     font-size: 32px;
@@ -99,11 +102,14 @@
     }
 
     .resultImage {
+        margin: 0 auto;
         margin-bottom: 40px;
+        width: 80%;
+        max-width: 375px;
     }
 
     .prevButton {
-        color: $gray;
+        color: $darkGray;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -123,9 +129,10 @@
     }
 
     .actionButton {
-        color: $white;
+        border-radius: 15px;
+        border: 2px solid $orange;
+        color: $orange;
         display: block;
-        background-color: $blue;
         font-size: 18px;
         font-family: $bold2;
         margin: 0 auto 20px;
@@ -133,8 +140,8 @@
         width: 100%;
         max-width: 400px;
 
-        &:focus {
-            background-color: $lightBlue;
-        }
+        // &:focus {
+        //     background-color: $lightOrange;
+        // }
     }
 }

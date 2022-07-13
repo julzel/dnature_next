@@ -30,9 +30,10 @@
     }
 
     .actionButton {
-        color: $white;
+        border-radius: 15px;
+        border: 2px solid $orange;
+        color: $orange;
         display: block;
-        background-color: $blue;
         font-size: 18px;
         font-family: $bold2;
         margin: 0 auto 20px;
@@ -40,8 +41,17 @@
         width: 100%;
         max-width: 400px;
 
-        &:focus {
-            background-color: $lightBlue;
-        }
+        // &:focus {
+        //     background-color: $lightOrange;
+        // }
+    }
+
+    .backgroundFilter {
+        background-color: rgba(0, 0, 0, 0.25);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
     }
 }

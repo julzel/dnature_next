@@ -26,7 +26,7 @@ const Products = () => {
 
     return (
         <div className={styles.products}>
-            <h2 className={`title ${styles.productsTitle}`}>
+            <h2 className={`title ${styles.title}`}>
                 Nuestros productos
             </h2>
             <ul className={styles.productsCategories}>

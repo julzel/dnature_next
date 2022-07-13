@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 // local imports
 // styles
@@ -13,9 +13,14 @@ import Footer from '../Footer'
 
 const Layout = ({ changeBackground, showHeader, children }) => {
     const { disableGlobalScroll } = useContext(GlobalContext)
-    
+
+    useEffect(() => {
+        document.body.style.overflow = disableGlobalScroll ? 'hidden' :
+            'auto'
+    }, [disableGlobalScroll])
+
     return (
-        <div className={`${styles.Layout}`}>
+        <div className={`${styles.layout}`}>
             <Header changeBackground={changeBackground} showBackground={showHeader} />
             <main>
                 {children}

@@ -7,11 +7,9 @@
     overflow: hidden;
 
     .title {
+        margin: 0 auto;
+        margin-bottom: 40px;
         color: $white;
-        margin-bottom: 20px;
-        text-shadow: 1px 1px rgba(33,33,33,.25);
-        position: relative;
-        z-index: 1;
     }
 
     &Image {
@@ -70,8 +68,6 @@
                 max-width: 200px;
                 position: relative;
                 left: 9%;
-                text-shadow: 1px 1px rgba(33,33,33,.25);
-                transform: scale(1.075);
             }
         }
     }

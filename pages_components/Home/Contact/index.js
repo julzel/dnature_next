@@ -18,7 +18,7 @@ const Contact = () => {
     return (
         <div className={styles.contact}>
             <div className={styles.contactImage} />
-            <h3 className={`title ${styles.contactTitle}`}>Contáctanos</h3>
+            <h3 className={`title ${styles.title}`}>Contáctanos</h3>
             <ul className={styles.contactList}>
 
                 <li>
@@ -30,8 +30,6 @@ const Contact = () => {
                         <a href="tel:50671732328" className={styles.contactItem}>7173 - 2328</a>
                     </AnimationBox>
                 </li>
-
-
 
                 <li>
                     <AnimationBox animation='fade-in-from-left'>
@@ -50,8 +48,6 @@ const Contact = () => {
                     </AnimationBox>
                 </li>
 
-
-
                 <li>
                     <AnimationBox animation='fade-in-from-left'>
 
@@ -61,7 +57,6 @@ const Contact = () => {
                         <a href="mailto:info@dnaturefood.com" className={styles.contactItem}>info@dnaturefood.com</a>
                     </AnimationBox>
                 </li >
-
 
             </ul >
             <Map />

@@ -54,9 +54,12 @@ const Calculator = () => {
                 {renderIntro()}
             </div>
             {startCalculator && (
-                <Drower close={handleClose}>
-                    <CalculatorSteps />
-                </Drower>
+                <>
+                    <div className={styles.backgroundFilter} />
+                    <Drower close={handleClose}>
+                        <CalculatorSteps />
+                    </Drower>
+                </>
             )}
         </section>
     )

@@ -9,10 +9,9 @@
     overflow: hidden;
 
     .title {
+        margin: 0 auto;
+        margin-bottom: 40px;
         color: $white;
-        margin-bottom: 20px;
-        text-shadow: 1px 1px rgba(33,33,33,.25);
-        z-index: 1;
     }
 
     &Image {
@@ -30,7 +29,7 @@
     &Container {
         margin: 0 auto;
         max-width: 600px;
-        padding: 20px;
+        padding: 0 20px;
         position: relative;
         z-index: 1;
         width: 100%;
@@ -48,7 +47,6 @@
             justify-content: center;
             margin-bottom: 20px;
             text-align: center;
-            text-shadow: 1px 1px rgba(33,33,33,.25);
 
             &:last-child {
                 margin-bottom: 0;

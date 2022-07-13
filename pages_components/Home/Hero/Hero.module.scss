@@ -1,4 +1,5 @@
 @import '../../../styles/_variables';
+@import '../../../styles/mixins';
 
 .hero {
     height: 100vh;
@@ -6,14 +7,13 @@
     overflow: hidden;
 
     &Filter {
-        background-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.5);
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: 1;
-        animation: filter-animation 300ms ease-out 1200ms 1 normal forwards;
     }
 
     &BackgroundColor {
@@ -35,8 +35,14 @@
         position: absolute;
         left: 0;
         top: 0;
-        transform: scale(0.5);
-        animation: background-animation 1300ms ease-out 250ms 1 normal forwards;
+        opacity: 0;
+        transform: scale(1.25);
+        animation: background-animation 1300ms ease-out 100ms 1 normal forwards;
+
+        @include mdq(sm) {
+            background: url('../../../public/images/hero3_wide.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
     }
 
     &Title {
@@ -48,13 +54,13 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%) scale(2.5);
+        transform: translate(-50%, -50%) scale(0.25);
         text-align: center;
         text-shadow: 1px 1px rgba(33,33,33,.125);
         position: relative;
         opacity: 0;
         text-transform: uppercase;
-        animation: title-animation 750ms ease-out 1200ms 1 normal forwards;
+        animation: title-animation 750ms ease-out 1300ms 1 normal forwards;
 
         span {
             position: relative;
@@ -75,10 +81,11 @@
 
 @keyframes background-animation {
     0% {
-        transform: scale(0.5);
+        transform: scale(1.25);
     }
     100% {
         transform: scale(1);
+        opacity: 1;
     }
 }
 
@@ -94,7 +101,7 @@
 @keyframes title-animation {
     from {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(2.5);
+        transform: translate(-50%, -50%) scale(0.25);
     }
     to {
         opacity: 1;
