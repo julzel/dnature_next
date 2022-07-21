@@ -1,6 +1,7 @@
 import { fetchFromContentful } from "./util"
 
-const categoriesPriority = ['recetas', 'snacks', 'suplementos', 'proteinas']
+// update from category
+const categoriesPriority = ['recetas', 'snacks', 'suplementos', 'proteinas', 'organos']
 
 const productsQuery = () => `
 {
