@@ -1,9 +1,14 @@
-@import '../../styles/_variables';
+@import '../../../styles/_variables';
+@import '../../../styles/mixins';
 
 .filter {
     display: flex;
     position: relative;
     flex-flow: column;
+
+    @include mdq(lg) {
+        display: none;
+    }
 
     &Header {
         display: flex;
