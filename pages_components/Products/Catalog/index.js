@@ -90,14 +90,18 @@ const Catalog = ({ category }) => {
                 optionsList={menuList}
                 selectedOption={selectedCategory}
             />
-            {selectedCategory === 'all' ? categories.map(category => {
-                return (
-                    <div className={styles.category} key={category.id}>
-                        <CatalogTitle text={category.label} />
-                        <CatalogList products={category.products} />
-                    </div>
-                )
-            }) : (
+            {selectedCategory === 'all' ? (
+                <div>
+                    {categories.map(category => {
+                        return (
+                            <div className={styles.category} key={category.id}>
+                                <CatalogTitle text={category.label} />
+                                <CatalogList products={category.products} />
+                            </div>
+                        )
+                    })}
+                </div>
+            ) : (
                 <div className={styles.category}>
                     <CatalogTitle text={selectedCategory.label} />
                     <CatalogList products={selectedCategory.products} />

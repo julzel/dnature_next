@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 // import styles from './Home.module.scss'
 
 // components
-import Hero from './Hero'
+// import Hero from './Hero'
 import Catalog from './Catalog'
 
 
@@ -15,10 +15,7 @@ const Productos = () => {
     const { category } = router.query
     
     return (
-        <div>
-            <Hero />
-            <Catalog category={category}/>
-        </div>
+        <Catalog category={category}/>
     )
 }
  

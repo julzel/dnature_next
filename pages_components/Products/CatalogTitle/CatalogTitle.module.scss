@@ -1,9 +1,18 @@
 @import '../../../styles/_variables';
+@import '../../../styles/mixins';
+
 .categoryTitle {
     font-family: $bold;
     margin-bottom: 10px;
     padding: 20px 0;
     position: relative;
+    text-align: left;
+
+    @include mdq(lg) {
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
     &::before {
         background-color: $blue;
         content: '';
@@ -12,16 +21,21 @@
         top: 0;
         height: 2px;
         width:40%;
-        
+        @include mdq(lg) {
+            display: none;
+        }
     }
     
     &::after {
+        background-color: $orange;
         content: '';
-        height: 2px;
-        width:40%;
         position: absolute;
         bottom: 0;
         right: 0;
-        background-color: $orange;
+        height: 2px;
+        width:40%;
+        @include mdq(lg) {
+            display: none;
+        }
     }
 }

@@ -1,13 +1,26 @@
 @import '../../../styles/_variables';
+@import '../../../styles/mixins';
 
 .catalog {
     max-width: 600px;
     margin: 0 auto;
     padding: 40px 25px;
 
+    @include mdq(lg) {
+        display: flex;
+        max-width: 100vw;
+        width: 100%;
+        padding: 80px 40px;
+    }
+
     .category {
         padding: 40px 0;
         margin-bottom: 40px;
+
+        @include mdq(lg) {
+            flex-grow: 1;
+            padding: 40px;
+        }
 
         &:last-child {
             margin-bottom: 0;

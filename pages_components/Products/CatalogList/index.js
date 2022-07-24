@@ -9,7 +9,7 @@ import CatalogItem from '../CatalogItem'
 
 const CatalogList = ({ products }) => {
     return (
-        <ul className={styles.categoryList}>
+        <ul className={styles.catalogList}>
             {products.map(product => (
                 <li
                     className={styles.product}

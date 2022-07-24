@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import FilterDesktop from './FilterDesktop'
 import FilterMobile from './FilterMobile'
 
 // local imports
@@ -7,9 +8,10 @@ import FilterMobile from './FilterMobile'
 const Filter = props => {
 
     return (
-        <div>
+        <>
             <FilterMobile {...props} />
-        </div>
+            <FilterDesktop {...props} />
+        </>
     )
 }
  

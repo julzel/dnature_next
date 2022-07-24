@@ -14,7 +14,7 @@ export default function App() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-     <Page changeBackground>
+     <Page showHeader>
        <Products />
      </Page>
     </>

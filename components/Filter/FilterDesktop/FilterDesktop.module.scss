@@ -1,0 +1,28 @@
+@import '../../../styles/_variables';
+@import '../../../styles/mixins';
+
+.filter {
+    display: none;
+
+    @include mdq(lg) {
+        display: block;
+    }
+
+    &List {
+        width: 200px;
+
+        li {
+            cursor: pointer;
+            font-family: $regular2;
+            font-size: 16px;
+            padding: 5px 0;
+            transition: font-size 100ms ease;
+
+            .active,
+            &:hover {
+                font-family: $bold2;
+                font-size: 15px;
+            }
+        }
+    }
+}
