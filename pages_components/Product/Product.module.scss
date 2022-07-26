@@ -9,6 +9,8 @@
     @include mdq(lg) {
         width: 100%;
         max-width: 768px;
+        margin: 0;
+        margin-left: 200px;
     }
 
     .backLink {
@@ -19,7 +21,6 @@
         padding-top: 5px;
 
         span {
-            border-bottom: 1px solid $lightGray;
             display: inline-block;
         }
     }
@@ -91,20 +92,37 @@
         }
 
         a {
-            color: $gray;
-            border: 1px solid $lightGray;
+            border-radius: 1000px;
+            background-color: $blue;
+            border: 2px solid $blue;
+            color: $white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: $regular2;
-            letter-spacing: 2.5px;
-            padding: 14px 10px;
+            font-family: $bold;
+            font-size: 18px;
+            line-height: 24px;
+            margin: 20px auto;
+            padding: 15px 20px;
             text-decoration: none;
-            text-transform: uppercase;
-            margin-top: 40px;
+            transition: all 200ms ease-out; d
     
             svg {
                 margin-right: 5px;
+            }
+
+            @include mdq(lg) {
+                border-radius: 1000px;
+                background-color: transparent;
+                border: 2px solid $blue;
+                color: $blue;
+                margin: 0;
+
+                &:hover {
+                    background-color: $blue;
+                    border-color: $blue;
+                    color: $white;
+                }
             }
         }
     }
@@ -114,6 +132,7 @@
         padding: 20px 0;
 
         @include mdq(lg) {
+            border-top: 1px solid $lightGray;
             display: flex;
 
             > div {
@@ -122,14 +141,14 @@
         }
         h2 {
             color: $gray;
-            font-size: 16px;
+            font-size: 18px;
             line-height: 20px;
             font-family: $bold2;
             margin-bottom: 8px;
         }
 
         p {
-            font-size: 14px;
+            font-size: 16px;
             margin-bottom: 20px;
         }
     }

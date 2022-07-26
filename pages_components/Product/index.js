@@ -18,11 +18,14 @@ const TAB = '&nbsp&nbsp&nbsp&nbsp'
 const NEW_LINE = '<br />'
 
 const formatDescription = description => {
-    let formattedString = description.replaceAll('-', `${NEW_LINE}- `)
-        .replaceAll('%', `%${NEW_LINE}${TAB}`)
-        .replaceAll('     ', TAB)
-        .replace(':', `:${NEW_LINE}${TAB}`)
-    return formattedString;
+    if (description) {
+        let formattedString = description.replaceAll('-', `${NEW_LINE}- `)
+            .replaceAll('%', `%${NEW_LINE}${TAB}`)
+            .replaceAll('     ', TAB)
+            .replace(':', `:${NEW_LINE}${TAB}`)
+        return formattedString;
+    }
+    return ''
 }
 
 const Product = () => {
@@ -38,9 +41,7 @@ const Product = () => {
         const { query } = router
         if (query.id) {
             const product = await getProduct(query.id)
-            // formatDescription(product.description)
             product.description = formatDescription(product.description)
-            // console.log(product.description)
             setProductDetail(product)
             setLoading(false)
         }

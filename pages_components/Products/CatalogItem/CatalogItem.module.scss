@@ -4,6 +4,11 @@
     display: block;
     &Images {
         margin-bottom: 10px;
+
+        >span {
+            max-width: 275px !important;
+            margin: 0 auto !important;
+        }
     }
 
     &Details {

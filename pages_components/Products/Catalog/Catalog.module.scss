@@ -18,7 +18,7 @@
         margin-bottom: 40px;
 
         @include mdq(lg) {
-            border-left: 1px solid #f0f0f0;
+            border-left: 1px solid $lightGray;
             flex-grow: 1;
             padding: 40px;
             padding-top: 7px;
