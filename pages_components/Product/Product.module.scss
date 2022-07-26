@@ -8,7 +8,7 @@
 
     @include mdq(lg) {
         width: 100%;
-        max-width: 1024px;
+        max-width: 768px;
     }
 
     .backLink {
@@ -31,6 +31,7 @@
             display: flex;
             align-items: stretch;
             justify-content: space-between;
+            margin-bottom: 0;
         }
 
         .images {
@@ -45,6 +46,7 @@
         .info {
             @include mdq(lg) {
                 padding: 40px 0;
+                padding-right: 20px;
                 flex-shrink: 0;
                 display: flex;
                 flex-flow: column;
@@ -68,6 +70,10 @@
             p {
                 line-height: 1.5;
                 text-align: center;
+
+                @include mdq(lg) {
+                    text-align: right;
+                }
             }
 
             .precio {
@@ -107,14 +113,11 @@
         border-top: 1px solid #f0f0f0;
         padding: 20px 0;
 
-        .icons {
+        @include mdq(lg) {
             display: flex;
-            padding-bottom: 10px;
 
-            span {
-                width: 30px!important;
-                height: 30px!important;
-                margin-left: 5px!important;
+            > div {
+                width: 50%;
             }
         }
         h2 {
@@ -128,6 +131,17 @@
         p {
             font-size: 14px;
             margin-bottom: 20px;
+        }
+    }
+
+    .icons {
+        display: flex;
+        padding-bottom: 10px;
+
+        span {
+            width: 30px!important;
+            height: 30px!important;
+            margin-left: 5px!important;
         }
     }
 }

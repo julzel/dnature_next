@@ -106,35 +106,36 @@ const Product = () => {
             </div>
             <div className={styles.productDetail}>
                 {productDetail.description && (
-                    <>
+                    <div>
                         <h2>
                             Información
                         </h2>
                         <p dangerouslySetInnerHTML={{ __html: productDetail.description }} />
-                    </>
+                    </div>
                 )}
                 {productDetail.ingredientes && (
-                    <>
-                        <h2>Ingredientes:</h2>
+                    <div>
+                        <h2>Ingredientes</h2>
                         <p className={styles.ingredients}>
+                            <br />
                             {productDetail.ingredientes}
                         </p>
-                    </>
-                )}
-                {productDetail.iconos && (
-                    <div className={styles.icons}>
-                        {productDetail.iconos.map((icono, j) => (
-                            <div key={j}>
-                                <Image
-                                    src={icono.url}
-                                    alt={icono.title}
-                                    width="100%"
-                                    height="100%"
-                                    layout="responsive"
-                                    objectFit="contain"
-                                />
+                        {productDetail.iconos && (
+                            <div className={styles.icons}>
+                                {productDetail.iconos.map((icono, j) => (
+                                    <div key={j}>
+                                        <Image
+                                            src={icono.url}
+                                            alt={icono.title}
+                                            width="100%"
+                                            height="100%"
+                                            layout="responsive"
+                                            objectFit="contain"
+                                        />
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        )}
                     </div>
                 )}
             </div>
