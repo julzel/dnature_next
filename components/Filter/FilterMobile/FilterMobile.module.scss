@@ -7,7 +7,7 @@
     flex-flow: column;
 
     @include mdq(lg) {
-        // display: none;
+        display: none;
     }
 
     &Header {
