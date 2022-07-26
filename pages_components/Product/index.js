@@ -14,6 +14,17 @@ import styles from './Product.module.scss'
 import { getProduct } from '../../services/products'
 import Loading from '../../components/Loading'
 
+const TAB = '&nbsp&nbsp&nbsp&nbsp'
+const NEW_LINE = '<br />'
+
+const formatDescription = description => {
+    let formattedString = description.replaceAll('-', `${NEW_LINE}- `)
+        .replaceAll('%', `%${NEW_LINE}${TAB}`)
+        .replaceAll('     ', TAB)
+        .replace(':', `:${NEW_LINE}${TAB}`)
+    return formattedString;
+}
+
 const Product = () => {
 
     const router = useRouter()
@@ -27,7 +38,10 @@ const Product = () => {
         const { query } = router
         if (query.id) {
             const product = await getProduct(query.id)
-            setProductDetail(product);
+            // formatDescription(product.description)
+            product.description = formatDescription(product.description)
+            // console.log(product.description)
+            setProductDetail(product)
             setLoading(false)
         }
     }, [router])
@@ -73,20 +87,22 @@ const Product = () => {
                         />
                     ))}
                 </div>
-                <h1>
-                    {productDetail.productName}
-                </h1>
                 <div className={styles.info}>
-                    <p className={styles.precio}>
-                        ₡{productDetail.precio} <span className={styles.small}>| {productDetail.medida}</span>
-                    </p>
+                    <div>
+                        <h1>
+                            {productDetail.productName}
+                        </h1>
+                        <div className={styles.price}>
+                            <p className={styles.precio}>
+                                ₡{productDetail.precio} <span className={styles.small}>| {productDetail.medida}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <a href={`https://api.whatsapp.com/send?phone=50671732328&text=${getWhatsappMessage(productDetail.productName)}`}>
+                        <FontAwesomeIcon icon={faShoppingBasket} size='1x' />
+                        Comprar
+                    </a>
                 </div>
-            </div>
-            <div className={styles.productBuy}>
-                <a href={`https://api.whatsapp.com/send?phone=50671732328&text=${getWhatsappMessage(productDetail.productName)}`}>
-                    <FontAwesomeIcon icon={faShoppingBasket} size='1x' />
-                    Comprar
-                </a>
             </div>
             <div className={styles.productDetail}>
                 {productDetail.description && (
@@ -94,9 +110,7 @@ const Product = () => {
                         <h2>
                             Información
                         </h2>
-                        <p>
-                            {productDetail.description}
-                        </p>
+                        <p dangerouslySetInnerHTML={{ __html: productDetail.description }} />
                     </>
                 )}
                 {productDetail.ingredientes && (

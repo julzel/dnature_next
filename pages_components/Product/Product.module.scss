@@ -1,9 +1,15 @@
 @import '../../styles/_variables';
+@import '../../styles/mixins';
 
 .product {
     max-width: 600px;
     margin: 0 auto;
     padding: 60px 25px 0;
+
+    @include mdq(lg) {
+        width: 100%;
+        max-width: 1024px;
+    }
 
     .backLink {
         color: $darkGray;
@@ -21,9 +27,29 @@
     &Info {
         margin-bottom: 40px;
 
+        @include mdq(lg) {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+        }
+
         .images {
             overflow: hidden;
             margin-bottom: 15px;
+
+            @include mdq(lg) {
+                width: 35%;
+            }
+        }
+
+        .info {
+            @include mdq(lg) {
+                padding: 40px 0;
+                flex-shrink: 0;
+                display: flex;
+                flex-flow: column;
+                justify-content: space-between;
+            }
         }
 
         h1 {
@@ -37,7 +63,7 @@
             margin-bottom: 15px;
         }
 
-        .info {
+        .price {
 
             p {
                 line-height: 1.5;
@@ -57,9 +83,7 @@
                 letter-spacing: 0;
             }
         }
-    }
 
-    &Buy {
         a {
             color: $gray;
             border: 1px solid $lightGray;
@@ -71,7 +95,7 @@
             padding: 14px 10px;
             text-decoration: none;
             text-transform: uppercase;
-            margin-bottom: 40px;
+            margin-top: 40px;
     
             svg {
                 margin-right: 5px;
