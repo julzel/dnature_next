@@ -4,7 +4,7 @@
 .catalog {
     max-width: 600px;
     margin: 0 auto;
-    padding: 40px 25px;
+    padding: 80px 25px;
 
     @include mdq(lg) {
         display: flex;
