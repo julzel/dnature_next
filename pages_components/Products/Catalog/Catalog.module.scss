@@ -20,6 +20,7 @@
         @include mdq(lg) {
             flex-grow: 1;
             padding: 40px;
+            padding-top: 7px;
         }
 
         &:last-child {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 // local imports
 // styles
@@ -22,10 +22,9 @@ const FilterDesktop = ({ optionsList, selectedOption }) => {
                                 item.onClick(item.id)
                                 setActiveOption(item.id)
                             }}
+                            className={activeOption === item.id ? styles.active : ''}
                         >
-                            <span className={activeOption === item.id ? styles.active : ''}>
-                                {item.label}
-                            </span>
+                            {item.label}
                         </li>
                     )
                 })}

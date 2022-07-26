@@ -7,6 +7,9 @@ import Link from 'next/link'
 import styles from './CatalogItem.module.scss'
 
 const CatalogItem = ({ product }) => {
+    const { images } = product
+    const itemImage = images[0]
+
     return (
         <Link
             passHref
@@ -17,17 +20,14 @@ const CatalogItem = ({ product }) => {
         >
             <span className={styles.catalogItem}>
                 <span className={styles.catalogItemImages}>
-                    {product.images?.map((img, i) => (
-                        <Image
-                            key={i}
-                            src={img.url}
-                            alt={img.title}
-                            width="100%"
-                            height="100%"
-                            layout="responsive"
-                            objectFit="contain"
-                        />
-                    ))}
+                    <Image
+                        src={itemImage.url}
+                        alt={itemImage.title}
+                        width="100%"
+                        height="100%"
+                        layout="responsive"
+                        objectFit="contain"
+                    />
                 </span>
                 <span className={styles.catalogItemDetails}>
                     <h3>{product.productName}</h3>
