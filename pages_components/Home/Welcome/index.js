@@ -58,24 +58,26 @@ const Welcome = () => {
                     </ul>
                 </div>
 
-                <div className={styles.welcomeImage}>
-                    <AnimationBox animation={'grow-from-bottom'}>
-                        <div>
-                            <Image
-                                src={rawFoodPlate}
-                                alt='Plato comida natural para mascotas'
-                            />
-                        </div>
-                    </AnimationBox>
-                </div>
+                <div className='flex-row'>
+                    <div className={styles.welcomeImage}>
+                        <AnimationBox animation={'grow-from-bottom'}>
+                            <div>
+                                <Image
+                                    src={rawFoodPlate}
+                                    alt='Plato comida natural para mascotas'
+                                />
+                            </div>
+                        </AnimationBox>
+                    </div>
 
-                <div className={styles.welcomeQuote}>
-                    <blockquote>
-                        <span>&ldquo;</span>La calidad de vida de nuestras mascotas <span>depende
-                        enormemente de la comida</span> que les damos. Las recetas de DNAture han
-                        sido formuladas para <span>mejorar y preservar esa calidad de vida</span>
-                        .<span>&rdquo;</span>
-                    </blockquote>
+                    <div className={styles.welcomeQuote}>
+                        <blockquote>
+                            <span>&ldquo;</span>La calidad de vida de nuestras mascotas <span>depende
+                                enormemente de la comida</span> que les damos. Las recetas de DNAture han
+                            sido formuladas para <span>mejorar y preservar esa calidad de vida</span>
+                            .<span>&rdquo;</span>
+                        </blockquote>
+                    </div>
                 </div>
             </div>
         </div>

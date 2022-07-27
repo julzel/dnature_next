@@ -19,12 +19,20 @@
         @include mdq(sm) {
             padding: 0 40px;
         }
+
+        @include mdq(lg) {
+            max-width: 1024px;
+        }
     }
 
     &Intro {
         font-size: 18px;
         text-align: justify;
         margin-bottom: 40px;
+        max-width: 600px;
+        @include mdq(sm) {
+            margin: 0 auto;
+        }
     }
 
     &Items {
@@ -32,6 +40,13 @@
         flex-flow: column;
         align-items: center;
         margin-top: 40px;
+
+        ul {
+            @include mdq(lg) {
+                display: flex;
+                align-items: center;
+            }
+        }
 
         &Item {
             margin-bottom: 20px;
@@ -64,6 +79,10 @@
             text-transform: uppercase;
             position: relative;
 
+            @include mdq(lg) {
+                padding-bottom: 20px;
+            }
+
             &::after {
                 content: '';
                 display: block;
@@ -80,6 +99,10 @@
             text-align: justify;
             position: relative;
             padding-bottom: 10px;
+
+            @include mdq(lg) {
+                text-align: left;
+            }
 
             &::after {
                 content: '';

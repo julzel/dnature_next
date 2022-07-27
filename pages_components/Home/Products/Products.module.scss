@@ -1,11 +1,12 @@
 @import '../../../styles/_variables';
+@import '../../../styles/mixins';
 
 .products {
     position: relative;
     padding-top: 80px;
     background-color: white;
 
-    .title{
+    .title {
         margin: 0 auto;
         margin-bottom: 40px;
     }
@@ -15,24 +16,52 @@
         flex-wrap: wrap;
         justify-content: center;
         margin: 0 auto 80px;
+
+        @include mdq(lg) {
+            width: 88vw;
+            max-width: 1440px;
+        }
     }
-    
+
     &Category {
         margin: 10px 0;
         position: relative;
         max-width: 600px;
         padding: 0 20px;
 
+        @include mdq(lg) {
+            padding: 0;
+            margin: 0 10px 20px;
+            width: calc((100% / 3) - 20px);
+        }
+
+        @include mdq(xxxl) {
+            width: calc((100% / 5) - 20px);
+        }
+
         &Thumbnail {
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            position: relative;
+            cursor: pointer;
+
+            &:hover {
+                .image {
+                    transform: scale(1.5);
+                }
+            }
 
             .image {
-                > span {
-                    width: 89.333vw!important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 12000ms ease-out;
+
+                >span {
+                    width: 89.333vw !important;
                     max-width: 335px;
+
+                    @include mdq(xxl) {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                    }
                 }
             }
 
@@ -42,8 +71,8 @@
                 top: 0;
                 height: 100%;
                 width: 100%;
-                background-image: -webkit-gradient(linear,left bottom,left top,from(rgba(54,54,54,.1)),to(rgba(54,54,54,.0)));
-                background-image: linear-gradient(to top,rgba(54,54,54,.1),rgba(54,54,54,.0));
+                background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(30, 30, 30, .75)), to(rgba(54, 54, 54, .05)));
+                background-image: linear-gradient(to top, rgba(30, 30, 30, .75), rgba(54, 54, 54, .05));
             }
         }
 
@@ -58,12 +87,11 @@
             color: $white;
             display: inline-block;
             font-family: $bold2;
-            font-size: 20px;
-            letter-spacing: 6px;
+            font-size: 22px;
+            letter-spacing: 5px;
             margin-bottom: 10px;
             text-align: center;
             text-transform: uppercase;
-            text-shadow: 1px 1px rgba(21,21,21,.55)
         }
     }
 }

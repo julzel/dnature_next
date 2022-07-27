@@ -120,6 +120,15 @@ input {
   margin-bottom: 25px !important;
 };
 
+.flex-row {
+  display: flex;
+
+  &.center {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 @keyframes slide-in {
   from {left: 100vw;}
   to {left: 0;}
