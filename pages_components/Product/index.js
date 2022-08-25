@@ -14,17 +14,18 @@ import styles from './Product.module.scss'
 import { getProduct } from '../../services/products'
 import Loading from '../../components/Loading'
 
-const TAB = '&nbsp&nbsp&nbsp&nbsp'
 const NEW_LINE = '<br />'
+const SPAN = '</span>'
 
 const formatDescription = description => {
-    if (description) {
-        let formattedString = description.replaceAll('-', `${NEW_LINE}- `)
-            .replaceAll('%', `%${NEW_LINE}${TAB}`)
-            .replaceAll('     ', TAB)
-            .replace(':', `:${NEW_LINE}${TAB}`)
-        return formattedString;
-    }
+    // if (description) {
+    //     let formattedString = description.replaceAll('-', `${NEW_LINE}- `)
+    //         .replaceAll('_', '<span>')
+    //         .replaceAll('%', `%${SPAN}`)
+    //         .replace('@', `${NEW_LINE}${NEW_LINE}<div>`)
+    //         .replace(new RegExp('@'+'([^'+'@'+']*)$'), '</div>'+'$1')
+    //     return formattedString;
+    // }
     return ''
 }
 
@@ -111,7 +112,7 @@ const Product = () => {
                         <h2>
                             Información
                         </h2>
-                        <p dangerouslySetInnerHTML={{ __html: productDetail.description }} />
+                        <div className={styles.description} dangerouslySetInnerHTML={{ __html: productDetail.description }} />
                     </div>
                 )}
                 {productDetail.ingredientes && (
