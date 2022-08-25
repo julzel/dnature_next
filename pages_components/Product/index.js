@@ -18,14 +18,13 @@ const NEW_LINE = '<br />'
 const SPAN = '</span>'
 
 const formatDescription = description => {
-    // if (description) {
-    //     let formattedString = description.replaceAll('-', `${NEW_LINE}- `)
-    //         .replaceAll('_', '<span>')
-    //         .replaceAll('%', `%${SPAN}`)
-    //         .replace('@', `${NEW_LINE}${NEW_LINE}<div>`)
-    //         .replace(new RegExp('@'+'([^'+'@'+']*)$'), '</div>'+'$1')
-    //     return formattedString;
-    // }
+    if (description) {
+        return description.replaceAll('-', `${NEW_LINE}- `)
+            .replaceAll('_', '<span>')
+            .replaceAll('%', `%${SPAN}${NEW_LINE}`)
+            .replace('@', `${NEW_LINE}${NEW_LINE}<div>`)
+            .replace('@', '<div>')
+    }
     return ''
 }
 

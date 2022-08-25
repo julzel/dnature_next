@@ -132,9 +132,10 @@
         @include mdq(lg) {
             border-top: 1px solid $lightGray;
             display: flex;
+            justify-content: space-between;
 
             > div {
-                width: 50%;
+                width: 45%;
             }
         }
         h2 {
@@ -148,7 +149,15 @@
         .description {
             >div {
                 padding-left: 20px;
-                display: flex;
+                position: relative;
+                font-family: $regular2;
+                font-family: $bold2;
+                span {
+                    position: absolute;
+                    display: inline-block;
+                    right: 0;
+                    font-size: 14px;
+                }
             }
         }
 
