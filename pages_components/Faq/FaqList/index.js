@@ -27,7 +27,7 @@ const FaqList = () => {
                     <div
                         role="button"
                         className={styles.faqQuestionBlock}
-                        style={{ backgroundColor: selectedQuestion === i ? '#f2f2f2' : '#fefefa' }}
+                        style={{ backgroundColor: selectedQuestion === i ? '#f2f2f2' : '#ffffff' }}
                         key={i}
                         tabIndex="0"
                         onClick={() => handleQuestionClick(i)}

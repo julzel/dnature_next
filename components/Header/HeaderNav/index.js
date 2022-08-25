@@ -29,8 +29,8 @@ const HeaderNav = ({
         <div
             className={styles.headerNav}
             style={{ 
-                backgroundColor: switchBackground ? '#fefefa' : 'transparent',
-                borderBottomColor: switchBackground ? '#fefefa' : 'transparent'
+                backgroundColor: switchBackground ? '#ffffff' : 'transparent',
+                boxShadow: `-1px 1px 5px -1px ${switchBackground ? 'rgba(21,21,21,0.125)' : 'transparent'}`
             }}
         >
             <span role='button' tabIndex='0' onClick={onMenuIconClick}>

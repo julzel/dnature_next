@@ -40,8 +40,10 @@
         animation: background-animation 1300ms ease-out 100ms 1 normal forwards;
 
         @include mdq(sm) {
+            opacity: 1;
             background: url('../../../public/images/hero3_wide.jpg') no-repeat center center fixed;
-            background-size: cover;
+            transform: none;
+            animation: none;
         }
     }
 
