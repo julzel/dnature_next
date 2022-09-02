@@ -14,19 +14,18 @@
         li {
             color: $darkGray;
             cursor: pointer;
-            font-family: $bold2;
-            font-size: 16px;
+            font-size: 14px;
             padding: 5px 0;
             padding-left: 6px;
             position: relative;
-            transition: color 200ms ease;
+            transition: color 100ms ease;
 
             &.active,
             &:hover {
                 color: $black;
 
                 &::before {
-                    background-color: $black;
+                    background-color: $orange;
                 }
             }
 

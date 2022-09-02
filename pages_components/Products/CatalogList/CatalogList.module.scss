@@ -4,14 +4,14 @@
 .catalogList {
 
     @include mdq(md) {
-        border-top: 1px solid $lightGray;
+        border-top: 1px solid $border;
         display: flex;
         flex-wrap: wrap;
     }
 
     li {
         padding: 40px 0;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid $border;
 
         @include mdq(md) {
             width: calc(33.333% - 40px);

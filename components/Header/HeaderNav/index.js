@@ -14,13 +14,16 @@ import styles from './HeaderNav.module.scss'
 // images
 import logo1 from '../../../public/images/dnature-logo-transparent.svg'
 import logo2 from '../../../public/images/dnature-logo.svg'
+import NavigationBar from '../NavigationBar';
 
 const TRIGGER_POSITION = 80;
 
 const HeaderNav = ({
     changeBackground,
     showBackground,
-    onMenuIconClick
+    onMenuIconClick,
+    showIcon,
+    navigationItems,
 }) => {
     const scrollPosition = useContext(ScrollContext)
     const switchBackground = showBackground || (changeBackground && scrollPosition >= TRIGGER_POSITION)
@@ -33,9 +36,14 @@ const HeaderNav = ({
                 boxShadow: `-1px 1px 5px -1px ${switchBackground ? 'rgba(21,21,21,0.125)' : 'transparent'}`
             }}
         >
-            <span role='button' tabIndex='0' onClick={onMenuIconClick}>
-                <FontAwesomeIcon icon={faBars} size='lg' style={{ color: switchBackground ? 'rgb(92, 92, 92)' : 'rgba(255, 255, 255, 0.25)' }} />
-            </span>
+            {showIcon && (
+                <span role='button' tabIndex='0' onClick={onMenuIconClick}>
+                    <FontAwesomeIcon icon={faBars} size='lg' style={{ color: switchBackground ? 'rgb(92, 92, 92)' : 'rgba(255, 255, 255, 0.25)' }} />
+                </span>
+            )}
+            {!showIcon && (
+                <NavigationBar items={navigationItems} />
+            )}
             <div className={styles.container}>
                 <div
                     className={styles.logo1}

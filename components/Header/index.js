@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
 // local imports
+import useWindow from '../../hooks/useWindow'
+import navigationItems from './navigationItems'
 
 // components
 import HeaderNav from './HeaderNav'
@@ -12,14 +14,17 @@ import styles from './Header.module.scss'
 const Header = ({ changeBackground, showBackground }) => {
     // state
     const [displayMenu, setDisplayMenu] =  useState(false)
+    const isMobile = useWindow()
 
     return (
     <header className={styles.header}>
-        <DropdownMenu show={displayMenu} />
+        {isMobile && <DropdownMenu show={displayMenu} items={navigationItems} />}
         <HeaderNav 
             changeBackground={changeBackground}
             showBackground={showBackground || displayMenu}
             onMenuIconClick={() => setDisplayMenu(!displayMenu)}
+            showIcon={isMobile}
+            navigationItems={navigationItems}
         />
     </header>
 )}

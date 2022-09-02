@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+
+.navbar {
+
+    &Item {
+        color: $gray;
+        font-family: $bold2;
+        font-size: 12px;
+        letter-spacing: 1px;
+        padding-right: 15px;
+        margin-right: 15px;
+        text-transform: uppercase;
+        transition: color 100ms ease;
+        cursor: pointer;
+        border-right: 1px solid $border;
+
+        &.active {
+            color: $orange;
+        }
+
+        &:hover {
+            color: darken($orange, 5%);
+        }
+    }
+}

@@ -6,7 +6,7 @@
         margin-bottom: 10px;
 
         >span {
-            max-width: 275px !important;
+            max-width: 250px !important;
             margin: 0 auto !important;
         }
     }
@@ -16,8 +16,9 @@
         h3 {
             color: $gray;
             font-family: $bold2;
-            font-size: 16px;
-            letter-spacing: 1.5px;
+            font-size: 14px;
+            letter-spacing: 1px;
+            padding-top: 4px;
             text-transform: uppercase;
             margin-bottom: 5px;
         }

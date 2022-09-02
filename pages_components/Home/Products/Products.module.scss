@@ -4,7 +4,6 @@
 .products {
     position: relative;
     padding-top: 80px;
-    background-color: white;
 
     .title {
         margin: 0 auto;
@@ -14,56 +13,47 @@
     &Categories {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
         margin: 0 auto 80px;
-
-        @include mdq(lg) {
-            width: 88vw;
-            max-width: 1440px;
-        }
+        max-width: 720px;
+        justify-content: center;
     }
 
     &Category {
-        margin: 10px 0;
+        width: 320px;
+        height: 320px;
+        overflow: hidden;
+        margin-bottom: 20px;
         position: relative;
-        max-width: 600px;
-        padding: 0 20px;
 
         @include mdq(lg) {
-            padding: 0;
-            margin: 0 10px 20px;
-            width: calc((100% / 3) - 20px);
-        }
-
-        @include mdq(xxxl) {
-            width: calc((100% / 5) - 20px);
+            margin: 0 20px 20px;
         }
 
         &Thumbnail {
             cursor: pointer;
 
-            &:hover {
-                .image {
-                    transform: scale(1.5);
-                }
-            }
+        //     &:hover {
+        //         .image {
+        //             transform: scale(1.5);
+        //         }
+        //     }
 
-            .image {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: transform 12000ms ease-out;
+        //     .image {
+        //         display: flex;
+        //         align-items: center;
+        //         justify-content: center;
+        //         transition: transform 12000ms ease-out;
 
-                >span {
-                    width: 89.333vw !important;
-                    max-width: 335px;
+        //         >span {
+        //             width: 89.333vw !important;
+        //             max-width: 335px;
 
-                    @include mdq(xxl) {
-                        width: 100% !important;
-                        max-width: 100% !important;
-                    }
-                }
-            }
+        //             @include mdq(xxl) {
+        //                 width: 100% !important;
+        //                 max-width: 100% !important;
+        //             }
+        //         }
+        //     }
 
             .filter {
                 position: absolute;
@@ -71,8 +61,8 @@
                 top: 0;
                 height: 100%;
                 width: 100%;
-                background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(30, 30, 30, .75)), to(rgba(54, 54, 54, .05)));
-                background-image: linear-gradient(to top, rgba(30, 30, 30, .75), rgba(54, 54, 54, .05));
+                //background-image: -webkit-gradient(linear, left  bottom, left top, from(rgba(120, 120, 120, .75)), to(rgba(120, 120, 120, .05)));
+                background-image: linear-gradient(to top, rgba(0, 0, 0, .275), rgba(150, 150, 150, .025));
             }
         }
 
@@ -86,7 +76,7 @@
         .label {
             color: $white;
             display: inline-block;
-            font-family: $bold2;
+            font-family: $bold;
             font-size: 22px;
             letter-spacing: 5px;
             margin-bottom: 10px;
