@@ -6,15 +6,15 @@ import { useRouter } from "next/router";
 import styles from './NavigationBar.module.scss'
 
 
-const NavigationBar = ({ items }) => {
+const NavigationBar = ({ items, switchColor }) => {
     const router = useRouter();
-    
+
     return (
         <nav className={styles.navbar}>
             {items.map((link, i) => (
                 <Link href={link.href} passHref key={i}>
-                    <span className={`${styles.navbarItem} ${router.pathname == link.href ? styles.active : ''}`}>
-                        <span>{link.label}</span>
+                    <span className={`${styles.navbarItem} ${switchColor ? styles.dark : ''} ${router.pathname == link.href ? styles.active : ''}`}>
+                        {link.label}
                     </span>
                 </Link>
             ))}

@@ -42,7 +42,7 @@ const HeaderNav = ({
                 </span>
             )}
             {!showIcon && (
-                <NavigationBar items={navigationItems} />
+                <NavigationBar items={navigationItems} switchColor={switchBackground} />
             )}
             <div className={styles.container}>
                 <div

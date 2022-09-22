@@ -12,7 +12,7 @@
         width: 200px;
 
         li {
-            color: $darkGray;
+            color: $black;
             cursor: pointer;
             font-size: 14px;
             padding: 5px 0;
@@ -22,22 +22,7 @@
 
             &.active,
             &:hover {
-                color: $black;
-
-                &::before {
-                    background-color: $orange;
-                }
-            }
-
-            &::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                height: 12px;
-                width: 2px;
-                background-color: transparent;
+                color: $orange;
             }
         }
     }
