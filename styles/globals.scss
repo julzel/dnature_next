@@ -126,6 +126,11 @@ input {
 
 .flex-row {
   display: flex;
+  flex-flow: column;
+
+  @include mdq(md) {
+    flex-flow: row;
+  }
 
   &.center {
     align-items: center;

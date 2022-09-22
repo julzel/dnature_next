@@ -4,7 +4,7 @@ import React from 'react'
 // styles
 import styles from './Button.module.scss'
 
-const Button = ({ onClick, label, icon, disabled }) => {
+const Button = ({ onClick, label, icon, disabled, backgroundColor }) => {
 
     const handleOnClick = () => onClick && onClick()
 
@@ -13,6 +13,7 @@ const Button = ({ onClick, label, icon, disabled }) => {
             className={styles.button}
             onClick={handleOnClick}
             disabled={disabled}
+            style={{ backgroundColor: backgroundColor ? backgroundColor : ''}}
         >
             {icon && <span>{icon}</span>}
             {label && <span>{label}</span>}

@@ -13,7 +13,6 @@
     &Header {
         display: flex;
         align-items: center;
-        font-family: $bold;
         font-size: 14px;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -21,6 +20,8 @@
         .icon {
             -webkit-transition:  -webkit-transform 200ms linear;
             transition: transform 200ms linear;
+            margin-left: 10px;
+            font-size: 12px;
         }
     }
 
@@ -33,6 +34,10 @@
         li {
             font-size: 14px;
             padding: 4px 0 4px 16px;
+
+            .active {
+                color: $orange;
+            }
         }
     }
 

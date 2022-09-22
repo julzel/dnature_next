@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 // local imports
 // styles
@@ -25,7 +25,7 @@ const FilterMobile = ({ optionsList, selectedOption }) => {
                     }}
                     className={styles.icon}
                 >
-                    <FontAwesomeIcon icon={faCaretDown} />
+                    <FontAwesomeIcon icon={faChevronDown} />
                 </span>
             </div>
             <ul className={`${styles.filterList} ${showList ? styles.show : ''}`}>
@@ -39,10 +39,7 @@ const FilterMobile = ({ optionsList, selectedOption }) => {
                         setActiveOption(item.id)
                     }}
                 >
-                    <span style={{
-                        textDecoration: activeOption === item.id ? 'underline' : 'none'
-                    }}
-                    >
+                    <span className={activeOption === item.id ? styles.active : '' }>
                         {item.label}
                     </span>
                 </li>)

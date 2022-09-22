@@ -2,7 +2,7 @@
 @import '../../../styles/mixins';
 
 .categoryTitle {
-    font-family: $bold;
+    font-family: $bold2;
     margin-bottom: 10px;
     padding: 20px 0;
     position: relative;
@@ -19,7 +19,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        height: 2px;
+        height: 1px;
         width:40%;
         @include mdq(lg) {
             display: none;
@@ -32,7 +32,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        height: 2px;
+        height: 1px;
         width:40%;
         @include mdq(lg) {
             display: none;
