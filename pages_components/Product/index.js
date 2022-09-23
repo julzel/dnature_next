@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons'
 
 // local imports
 // styles
@@ -100,8 +99,7 @@ const Product = () => {
                         </div>
                     </div>
                     <a href={`https://api.whatsapp.com/send?phone=50671732328&text=${getWhatsappMessage(productDetail.productName)}`}>
-                        <FontAwesomeIcon icon={faShoppingBasket} size='1x' />
-                        Comprar
+                        <span>Comprar</span>
                     </a>
                 </div>
             </div>
@@ -115,7 +113,7 @@ const Product = () => {
                     </div>
                 )}
                 {productDetail.ingredientes && (
-                    <div>
+                    <div className={styles.productDetailIngredients}>
                         <h2>Ingredientes</h2>
                         <p className={styles.ingredients}>
                             <br />

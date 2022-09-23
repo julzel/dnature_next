@@ -35,7 +35,9 @@
 
         .images {
             overflow: hidden;
-            margin-bottom: 15px;
+            margin: 0 auto;
+            // margin-bottom: 15px;
+            width: 275px;
 
             @include mdq(lg) {
                 width: 35%;
@@ -55,13 +57,13 @@
 
         h1 {
             color: $gray;
-            font-family: $bold2;
-            font-size: 24px;
-            letter-spacing: 2.5px;
-            line-height: 1.65;
+            font-family: $regular2;
+            font-size: 20px;
+            letter-spacing: 1.5px;
+            line-height: 1;
             text-align: center;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
         .price {
@@ -77,8 +79,8 @@
 
             .precio {
                 font-family: $bold;
-                font-size: 20px;
-                letter-spacing: 1.5px;
+                font-size: 18px;
+                letter-spacing: 1.25;
             }
 
             .small {
@@ -91,36 +93,26 @@
 
         a {
             border-radius: 1000px;
-            background-color: $blue;
-            border: 2px solid $blue;
-            color: $white;
+            border: 1px solid $orange;
+            color: $orange;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: $bold;
+            font-family: $regular2;
             font-size: 18px;
             line-height: 24px;
-            margin: 20px auto;
+            margin: 32px auto;
             padding: 15px 20px;
             text-decoration: none;
-            transition: all 200ms ease-out; d
-    
-            svg {
-                margin-right: 5px;
+            transition: all 200ms ease-out;
+
+            span {
+                display: inline-block;
+                margin-left: 8px;
             }
 
             @include mdq(lg) {
-                border-radius: 1000px;
-                background-color: transparent;
-                border: 2px solid $blue;
-                color: $blue;
                 margin: 0;
-
-                &:hover {
-                    background-color: $blue;
-                    border-color: $blue;
-                    color: $white;
-                }
             }
         }
     }
@@ -142,16 +134,16 @@
             color: $gray;
             font-size: 18px;
             line-height: 20px;
-            font-family: $bold2;
-            margin-bottom: 8px;
         }
 
         .description {
+            color: $gray;
+            font-size: 16px;
             >div {
                 padding-left: 20px;
+                margin-right: 64px;
                 position: relative;
-                font-family: $regular2;
-                font-family: $bold2;
+                margin-bottom: 32px;
                 span {
                     position: absolute;
                     display: inline-block;
@@ -159,6 +151,13 @@
                     font-size: 14px;
                 }
             }
+            @include mdq(lg) {
+                font-size: 16px;
+            }
+        }
+
+        &Ingredients {
+            color: $gray;        
         }
 
         p {
