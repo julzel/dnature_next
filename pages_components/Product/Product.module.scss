@@ -16,7 +16,7 @@
         font-family: $light;
         font-size: 14px;
         margin-bottom: 10px;
-        padding-top: 5px;
+        padding-top: 25px;
 
         span {
             display: inline-block;
@@ -50,6 +50,7 @@
                 padding-right: 20px;
                 flex-shrink: 0;
                 display: flex;
+                align-items: flex-end;
                 flex-flow: column;
                 justify-content: space-between;
             }
@@ -99,9 +100,10 @@
             align-items: center;
             justify-content: center;
             font-family: $regular2;
-            font-size: 18px;
-            line-height: 24px;
+            font-size: 16px;
+            line-height: 20px;
             margin: 32px auto;
+            min-width: 320px;
             padding: 15px 20px;
             text-decoration: none;
             transition: all 200ms ease-out;
@@ -122,7 +124,6 @@
         padding: 20px 0;
 
         @include mdq(lg) {
-            border-top: 1px solid $lightGray;
             display: flex;
             justify-content: space-between;
 

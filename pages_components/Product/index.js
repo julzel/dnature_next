@@ -99,7 +99,7 @@ const Product = () => {
                         </div>
                     </div>
                     <a href={`https://api.whatsapp.com/send?phone=50671732328&text=${getWhatsappMessage(productDetail.productName)}`}>
-                        <span>Comprar</span>
+                        <span>Agregar al carrito</span>
                     </a>
                 </div>
             </div>
