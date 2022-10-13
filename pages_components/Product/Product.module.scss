@@ -106,7 +106,12 @@
             min-width: 320px;
             padding: 15px 20px;
             text-decoration: none;
-            transition: all 200ms ease-out;
+            transition: all 100ms ease-out;
+
+            &:hover {
+                background-color: $orange;
+                color: $white;
+            }
 
             span {
                 display: inline-block;

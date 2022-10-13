@@ -9,12 +9,10 @@
     height: calc(100vh - 60px);
     animation: slideFromBottom 250ms ease-out 50ms forwards;
     z-index: 1;
-    padding: 15px 15px 0;
+    padding: 0;
 
     &Container {
         background-color: $white;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
         height: 100%;
         padding: 76px 30px 160px;
         overflow: scroll;
