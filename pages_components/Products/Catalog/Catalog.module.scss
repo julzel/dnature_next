@@ -5,13 +5,13 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    padding: 120px 25px;
+    padding: 100px 25px;
 
     @include mdq(lg) {
         display: flex;
         max-width: 1440px;
         margin: 0 auto;
-        padding: 120px 40px;
+        padding: 100px 40px;
     }
 
     .category {

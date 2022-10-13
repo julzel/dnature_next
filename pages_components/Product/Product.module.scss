@@ -59,8 +59,8 @@
         h1 {
             color: $gray;
             font-family: $regular2;
-            font-size: 20px;
-            letter-spacing: 1.5px;
+            font-size: 18px;
+            letter-spacing: 1px;
             line-height: 1;
             text-align: center;
             text-transform: uppercase;
@@ -94,12 +94,12 @@
 
         a {
             border-radius: 1000px;
-            border: 1px solid $orange;
+            border: 2px solid $orange;
             color: $orange;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: $regular2;
+            font-family: $bold2;
             font-size: 16px;
             line-height: 20px;
             margin: 32px auto;
@@ -133,7 +133,8 @@
         }
         h2 {
             color: $gray;
-            font-size: 18px;
+            font-family: $cursiveTitle;
+            font-size: 20px;
             line-height: 20px;
         }
 

@@ -17,7 +17,7 @@ const Footer = () => {
             <p>
                 Todos los derechos reservados.
             </p>
-            <p>Costa Rica, {date}</p>
+            <p>Costa Rica, {date}.</p>
         </footer>
     );
 }

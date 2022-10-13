@@ -67,8 +67,8 @@ input {
 }
 
 .title {
-  font-size: 28px;
-  font-family: $bold;
+  font-size: 32px;
+  font-family: $bold2;
   text-align: center;
   line-height: 38px;
   max-width: 500px;
@@ -81,8 +81,7 @@ input {
   span {
       display: inline-block;
       text-transform: uppercase;
-      font-family: $bold2;
-      letter-spacing: -5px;
+      letter-spacing: -3px;
       font-size: 32px;
   }
 }

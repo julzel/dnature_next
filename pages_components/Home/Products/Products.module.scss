@@ -14,7 +14,7 @@
         display: flex;
         flex-wrap: wrap;
         margin: 0 auto 80px;
-        max-width: 720px;
+        max-width: 1440px;
         justify-content: center;
     }
 
@@ -27,33 +27,17 @@
 
         @include mdq(lg) {
             margin: 0 20px 20px;
+            width: 256px;
+            height: 256px;
+        }
+
+        @include mdq(xxl) {
+            width: 208px;
+            height: 208px;
         }
 
         &Thumbnail {
             cursor: pointer;
-
-        //     &:hover {
-        //         .image {
-        //             transform: scale(1.5);
-        //         }
-        //     }
-
-        //     .image {
-        //         display: flex;
-        //         align-items: center;
-        //         justify-content: center;
-        //         transition: transform 12000ms ease-out;
-
-        //         >span {
-        //             width: 89.333vw !important;
-        //             max-width: 335px;
-
-        //             @include mdq(xxl) {
-        //                 width: 100% !important;
-        //                 max-width: 100% !important;
-        //             }
-        //         }
-        //     }
 
             .filter {
                 position: absolute;
@@ -61,31 +45,16 @@
                 top: 0;
                 height: 100%;
                 width: 100%;
-                //background-image: -webkit-gradient(linear, left  bottom, left top, from(rgba(120, 120, 120, .75)), to(rgba(120, 120, 120, .05)));
                 background-image: linear-gradient(to top, rgba(0, 0, 0, .015), rgba(150, 150, 150, .025));
             }
         }
 
         &Content {
-            padding: 8px 0 16px;
             position: absolute;
             width: 70%;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.65)
-        }
-
-        .label {
-            color: $gray;
-            display: inline-block;
-            font-family: $bold;
-            font-size: 22px;
-            letter-spacing: 5px;
-            line-height: 1.3;
-            margin-bottom: 10px;
-            text-align: center;
-            text-transform: uppercase;
         }
     }
 }

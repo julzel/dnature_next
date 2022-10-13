@@ -18,7 +18,7 @@ const FilterMobile = ({ optionsList, selectedOption }) => {
                 tabIndex='0'
                 onClick={() => setShowList(!showList)}
             >
-                <span>Catálogo&nbsp;</span>
+                <span>Filtrar&nbsp;</span>
                 <span
                     style={{
                         transform: `rotate(${showList ? '180' : '0'}deg)`,

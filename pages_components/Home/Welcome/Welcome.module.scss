@@ -14,7 +14,7 @@
     &Content {
         padding: 0 20px;
         margin: 0 auto;
-        max-width: 600px;
+        max-width: 1440px;
 
         @include mdq(sm) {
             padding: 0 40px;
@@ -29,7 +29,7 @@
         font-size: 18px;
         text-align: justify;
         margin-bottom: 40px;
-        max-width: 600px;
+        // max-width: 600px;
         @include mdq(sm) {
             margin: 0 auto;
         }
@@ -71,12 +71,11 @@
         }
 
         &Title {
-            font-family: $bold2;
-            font-size: 20px;
+            font-family: $cursiveTitle;
+            font-size: 24px;
             padding: 10px 10px 5px;
             margin-bottom: 10px;
             text-align: center;
-            text-transform: uppercase;
             position: relative;
 
             @include mdq(lg) {

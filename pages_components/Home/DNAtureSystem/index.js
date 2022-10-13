@@ -19,7 +19,7 @@ const DNAtureSystem = () => {
         <section className={styles.dnatureSystem}>
             <div className={styles.dnatureSystemImage} />
             <h2 className={`title ${styles.title}`}>
-                Plan completo DNAture
+                Plan de alimentación
             </h2>
             <div className={styles.dnatureSystemContainer}>
                 {SystemItems.map((item, i) => (

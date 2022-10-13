@@ -58,8 +58,7 @@ const Products = () => {
                                                 className='flex-center-column'
                                                 tabIndex="0"
                                             >
-                                                <span className={styles.label}>{category.label}</span>
-                                                <Button label={'Ver más'} />
+                                                <Button label={category.label} />
                                             </div>
                                         </AnimationBox>
                                     </div>

@@ -2,15 +2,15 @@
 @import '../../../styles/mixins';
 
 .categoryTitle {
-    font-family: $bold2;
+    font-family: $cursiveTitle;
     margin-bottom: 10px;
     padding: 20px 0;
     position: relative;
-    text-align: left;
 
     @include mdq(lg) {
         padding: 0;
         margin-bottom: 20px;
+        text-align: left;
     }
 
     &::before {

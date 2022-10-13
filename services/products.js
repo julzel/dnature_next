@@ -94,11 +94,15 @@ const formatProductData = product => {
 }
 
 const getProduct = async productId => {
-    const product = await fetchFromContentful(productQuery(productId))
-    if (product.product) {
-        return formatProductData(product.product)
+    try {
+        const product = await fetchFromContentful(productQuery(productId))
+        if (product.product) {
+            return formatProductData(product.product)
+        }
+        return null
+    } catch (error) {
+        console.log(error, error?.message)
     }
-    return null
 }
 
 export { getProducts, getProduct  }
