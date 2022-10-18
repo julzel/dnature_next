@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <Head>
-        <title>DNAture Comida natural para mascotas</title>
+        <title>DNAture - Preguntas Frecuentes</title>
         <meta name="description" content="Preguntas frecuentes sobre alimentación natural" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -1,4 +1,4 @@
-@import '../../../styles/_variables';
+@import '../../styles/variables';
 
 .calculatorSteps {
     margin: 0 auto;
@@ -23,20 +23,19 @@
             flex-flow: column;
             align-items: center;
             justify-content: center;
-            font-family: $bold;
+            font-family: $regular;
             font-size: 18px;
             line-height: 24px;
             margin-bottom: 15px;
             padding: 15px 20px;
-            transition: all 100ms ease-out;
+            transition: all 200ms ease-out;
 
             span {
                 letter-spacing: 1.2px;
                 font-size: 12px;
             }
 
-            &.selected,
-            &:hover {
+            &.selected {
                 background-color: $blue;
                 color: $white;
             }

@@ -13,19 +13,18 @@ import Contact from './Contact'
 import DNAtureSystem from './DNAtureSystem'
 import OurCostumers from './OurCostumers'
 
-
 const Home = () => {
-    return (
-        <div className={styles.home}>
-            <Hero />
-            <Welcome />
-            <Benefits />
-            <Products />
-            <DNAtureSystem />
-            <OurCostumers />
-            <Contact />
-        </div>
-    )
+  return (
+    <div className={styles.home}>
+      <Hero />
+      <Welcome />
+      <Benefits />
+      <Products />
+      <DNAtureSystem />
+      <OurCostumers />
+      <Contact />
+    </div>
+  )
 }
- 
+
 export default Home

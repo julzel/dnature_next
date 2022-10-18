@@ -11,7 +11,7 @@ import { getCategories } from '../../../services/categories'
 import AnimationBox from '../../../components/AnimationBox'
 
 // components
-import Button from '../../../components/Button'
+import SmallButton from '../../../components/SmallButton'
 
 const Products = () => {
     const [categories, setCategories] = useState(null)
@@ -58,7 +58,7 @@ const Products = () => {
                                                 className='flex-center-column'
                                                 tabIndex="0"
                                             >
-                                                <Button label={category.label} />
+                                                <SmallButton label={category.label} />
                                             </div>
                                         </AnimationBox>
                                     </div>

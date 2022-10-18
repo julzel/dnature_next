@@ -15,15 +15,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // styles
 import styles from './Drower.module.scss'
 
-const Drower = ({ children, close }) => {
+const Drower = ({ children, close, hideCloseButton }) => {
     return (
         <div className={styles.drower}>
             <div className={styles.drowerContainer}>
-                <div className={styles.drowerContainerHeader} onClick={() => close()}>
-                    <span tabIndex='0' role="button">
-                        <FontAwesomeIcon icon={faXmark} />
-                    </span>
-                </div>
+                {!hideCloseButton && (
+                    <div className={styles.drowerContainerHeader} onClick={() => close()}>
+                        <span tabIndex='0' role="button">
+                            <FontAwesomeIcon icon={faXmark} />
+                        </span>
+                    </div>
+                )}
                 {children}
             </div>
         </div>

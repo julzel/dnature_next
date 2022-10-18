@@ -128,7 +128,7 @@ const labelKeys = {
     castrated: 'Castración',
     weightStatus: 'Contextura',
     activity: 'Actividad física',
-    stage: 'Etapa del cachorro',
+    stage: 'Etapa',
     weight: 'Peso en kilogramos'
 }
 
