@@ -5,7 +5,7 @@ import React from 'react'
 // styles
 import styles from './Button.module.scss'
 
-const Button = ({ children, onClick, selected, secondary}) => {
+const Button = ({ children, onClick, selected, secondary }) => {
     return (
         <button className={`${styles.button} ${secondary ? styles.secondary : ''} ${selected ? styles.selected : ''}`} onClick={onClick}>
             {children}
