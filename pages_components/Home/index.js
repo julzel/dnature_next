@@ -15,7 +15,7 @@ import OurCostumers from './OurCostumers';
 
 const Home = () => {
   function callApi() {
-    fetch('https://dnature-be.herokuapp.com/details', { method: 'GET' })
+    fetch('https://dnature-be.herokuapp.com/', { method: 'GET' })
       .then((data) => data.json())
       .then((json) => console.log(JSON.stringify(json)));
   }
