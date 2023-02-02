@@ -1,0 +1,65 @@
+@import '../../../styles/_variables';
+@import '../../../styles/mixins';
+
+.heroContainer {
+  display: flex;
+  background-color: $darkBackground;
+  flex-flow: column;
+
+  @include mdq(sm) {
+    height: calc(100vh - 80px);
+    flex-flow: row;
+  }
+}
+
+.hero {
+  overflow: hidden;
+
+  @include mdq(sm) {
+    width: 50%;
+  }
+}
+
+.heroAction {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 10px;
+
+  @include mdq(sm) {
+    width: 50%;
+  }
+
+  &Title {
+    color: $white;
+    font-family: $bold;
+    font-size: 32px;
+    line-height: 34px;
+    opacity: 1;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 32px;
+
+    @include mdq(sm) {
+      text-align: left;
+    }
+
+    span {
+      color: $green;
+      display: inline-block;
+      font-family: $cursiveTitle;
+      font-size: 56px;
+      letter-spacing: 3px;
+      line-height: 50px;
+      margin-bottom: 16px;
+      text-transform: none;
+      // text-decoration: underline;
+      // transform: scale(1.05);
+
+      @include mdq(sm) {
+        transform: scale(1.5) translate(30px, -3px);
+      }
+    }
+  }
+}

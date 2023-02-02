@@ -1,43 +1,39 @@
 @import '../../../styles/variables';
 
 .dropdown {
-    height: 100vh;
-    width: calc(100vw);
-    max-width: 500px;
-    overflow: hidden;
-    padding: 60px 0 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    transform: translateX(-100%);
-    transition: all 200ms linear 100ms;
+  height: 100vh;
+  width: calc(100vw);
+  max-width: 500px;
+  overflow: hidden;
+  padding: $headerHeight 0 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  transition: all 200ms linear 100ms;
 
-    &Menu {
-        background-color: $white;
-        height: 100%;
-        padding: 0 20px;
-        padding-bottom: 40px;
-        .item {
-            color: $black;
-            border-bottom: 1px solid $border;
+  &Menu {
+    background-color: $white;
+    height: 100%;
+    padding: 0 20px;
+    padding-bottom: 40px;
+    .item {
+      color: $black;
+      border-bottom: 1px solid $border;
 
-            &:first-child {
-                border-top: 1px solid $border;
-            }
+      &Link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 0px;
 
-            &Link {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 25px 0px;
-                
-                span {
-                    font-family: $bold2;
-                    font-size: 14px;
-                    text-transform: uppercase;
-                    letter-spacing: 1.5px;
-                }
-            }
+        span {
+          font-family: $bold2;
+          font-size: 14px;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
         }
+      }
     }
+  }
 }

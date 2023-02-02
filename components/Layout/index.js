@@ -1,33 +1,21 @@
-import { useContext, useEffect } from 'react'
+import React from 'react';
 
 // local imports
 // styles
-import styles from './Layout.module.scss'
-
-// contexts
-import { GlobalContext } from '../../contexts/global-context'
+import styles from './Layout.module.scss';
 
 // components
-import Header from '../Header'
-import Footer from '../Footer'
+import Header from '../Header';
+import Footer from '../Footer';
 
-const Layout = ({ changeBackground, showHeader, children }) => {
-    const { disableGlobalScroll } = useContext(GlobalContext)
+const Layout = ({ children }) => {
+  return (
+    <div className={`${styles.layout}`}>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </div>
+  );
+};
 
-    useEffect(() => {
-        document.body.style.overflow = disableGlobalScroll ? 'hidden' :
-            'auto'
-    }, [disableGlobalScroll])
-
-    return (
-        <div className={`${styles.layout}`}>
-            <Header changeBackground={changeBackground} showBackground={showHeader} />
-            <main>
-                {children}
-            </main>
-            <Footer />
-        </div>
-    )
-}
-
-export default Layout
+export default Layout;

@@ -1,24 +1,22 @@
-import React from 'react'
+import React from 'react';
 
 // local imports
 // styles
-import styles from './Button.module.scss'
+import styles from './Button.module.scss';
 
-const Button = ({ onClick, label, icon, disabled, backgroundColor }) => {
+const Button = ({ onClick, label, icon, disabled, variant = 'primary' }) => {
+  const handleOnClick = () => onClick && onClick();
 
-    const handleOnClick = () => onClick && onClick()
+  return (
+    <button
+      className={`${styles.button} ${styles[variant]}`}
+      onClick={handleOnClick}
+      disabled={disabled}
+    >
+      {icon && <span>{icon}</span>}
+      {label && <span>{label}</span>}
+    </button>
+  );
+};
 
-    return (
-        <button
-            className={styles.button}
-            onClick={handleOnClick}
-            disabled={disabled}
-            style={{ backgroundColor: backgroundColor ? backgroundColor : ''}}
-        >
-            {icon && <span>{icon}</span>}
-            {label && <span>{label}</span>}
-        </button>
-    )
-}
- 
-export default Button
+export default Button;

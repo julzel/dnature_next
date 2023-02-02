@@ -1,29 +1,46 @@
-       $blue: #07bbc7;
-  $lightBlue: #5dd8db;
-     $orange: #ff6f00;
+$blue: #07bbc7;
+$lightBlue: #5dd8db;
+$orange: #ff6f00;
 $lightOrange: #ffa364;
-     $yellow: #E9B502;
-  $darkGreen: #a8b247;
-      $green: #dbe077;
-      $white: #ffffff;
-  $lightGray: #bcbec0;
-       $gray: #5c5c5c;
-   $darkGray: #888585;
-      $black: #3a3a3a;
-     $border: #efefef;
+$yellow: #e9b502;
+$darkGreen: #a8b247;
+$green: #dbe077;
+$white: #ffffff;
+$lightGray: #bcbec0;
+$darkGray: #2c2c2c;
+$gray: #888585;
+$black: #3a3a3a;
+$border: #efefef;
+
+$darkBackground: #07bbc7;
 
 $darkGreenGhost: rgba(168, 178, 71, 0.4);
 
-$light: "Poppins Light";
-$regular: "Poppins";
-$bold: "Poppins Bold";
+$light: 'Poppins Light';
+$regular: 'Poppins';
+$bold: 'Poppins Bold';
 
-$light2: "OpenSans Light";
-$regular2: "OpenSans";
-$bold2: "OpenSans Bold";
+$light2: 'OpenSans Light';
+$regular2: 'OpenSans';
+$bold2: 'OpenSans Bold';
 
-$quote: "Raleway Light";
-$quoteItalic: "Raleway Light Italic";
-$quoteItalicBold: "Raleway Regular Italic";
+$quote: 'Raleway Light';
+$quoteItalic: 'Raleway Light Italic';
+$quoteItalicBold: 'Raleway Regular Italic';
 
-$cursiveTitle: "Lobster"
+$cursiveTitle: 'Lobster';
+
+// default-sizes
+$headerHeight: 70px;
+
+// border-radius
+
+$br-none: 0;
+$br-sm: 0.125rem;
+$br-base: 0.25rem;
+$br-md: 0.375rem;
+$br-lg: 0.5rem;
+$br-xl: 0.75rem;
+$br-xxl: 1rem;
+$br-xxxl: 1.5rem;
+$br-full: 9999px;

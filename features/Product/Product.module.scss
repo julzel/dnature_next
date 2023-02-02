@@ -1,0 +1,184 @@
+@import '../../styles/_variables';
+@import '../../styles/mixins';
+
+.product {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 25px 0;
+
+  @include mdq(lg) {
+    width: 100%;
+    max-width: 768px;
+  }
+
+  .backLink {
+    color: $gray;
+    font-family: $light;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-top: 25px;
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  &Info {
+    margin-bottom: 40px;
+
+    @include mdq(lg) {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      margin-bottom: 0;
+    }
+
+    .images {
+      overflow: hidden;
+      margin: 0 auto;
+      // margin-bottom: 15px;
+      width: 275px;
+
+      @include mdq(lg) {
+        width: 35%;
+      }
+    }
+
+    .info {
+      @include mdq(lg) {
+        padding: 40px 0;
+        padding-right: 20px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: flex-end;
+        flex-flow: column;
+        justify-content: space-between;
+      }
+    }
+
+    h1 {
+      color: $darkGray;
+      font-family: $regular2;
+      font-size: 18px;
+      letter-spacing: 1px;
+      line-height: 1;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      p {
+        line-height: 1.5;
+        text-align: center;
+
+        @include mdq(lg) {
+          text-align: right;
+        }
+      }
+
+      .precio {
+        font-family: $bold;
+        font-size: 18px;
+        letter-spacing: 1.25;
+      }
+
+      .small {
+        color: $darkGray;
+        font-family: $regular2;
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+    }
+
+    a {
+      border-radius: 1000px;
+      border: 2px solid $orange;
+      color: $orange;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $bold2;
+      font-size: 16px;
+      line-height: 20px;
+      margin: 32px auto;
+      min-width: 320px;
+      padding: 15px 20px;
+      text-decoration: none;
+      transition: all 100ms ease-out;
+
+      &:hover {
+        background-color: $orange;
+        color: $white;
+      }
+
+      span {
+        display: inline-block;
+        margin-left: 8px;
+      }
+
+      @include mdq(lg) {
+        margin: 0;
+      }
+    }
+  }
+
+  &Detail {
+    border-top: 1px solid $border;
+    padding: 20px 0;
+
+    @include mdq(lg) {
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        width: 45%;
+      }
+    }
+    h2 {
+      color: $darkGray;
+      font-family: $cursiveTitle;
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    .description {
+      color: $darkGray;
+      font-size: 16px;
+      > div {
+        padding-left: 20px;
+        margin-right: 64px;
+        position: relative;
+        margin-bottom: 32px;
+        span {
+          position: absolute;
+          display: inline-block;
+          right: 0;
+          font-size: 14px;
+        }
+      }
+      @include mdq(lg) {
+        font-size: 16px;
+      }
+    }
+
+    &Ingredients {
+      color: $darkGray;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+  }
+
+  .icons {
+    display: flex;
+    padding-bottom: 10px;
+
+    span {
+      width: 30px !important;
+      height: 30px !important;
+      margin-left: 5px !important;
+    }
+  }
+}

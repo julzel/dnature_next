@@ -1,21 +1,21 @@
 @import '../../styles/variables';
 
 .tabs {
-    .tabList {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: scroll;
-        
-        button {
-            font-size: 16px;
-            color: $gray;
-            margin-right: 10px;
-            font-family: $bold2;
-            text-transform: uppercase;
+  .tabList {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
 
-            &:last-child {
-                margin-right: 0;
-            }
-        }
+    button {
+      font-size: 16px;
+      color: $darkGray;
+      margin-right: 10px;
+      font-family: $bold2;
+      text-transform: uppercase;
+
+      &:last-child {
+        margin-right: 0;
+      }
     }
+  }
 }

@@ -1,0 +1,22 @@
+@import '../../../styles/_variables';
+.heroButton {
+  background-color: $green;
+  border: 2px solid $green;
+  border-radius: $br-base;
+  font-size: 16px;
+  font-family: $bold;
+  letter-spacing: 1.2px;
+  min-width: 120px;
+  margin: 0 10px;
+  padding: 12px;
+  text-transform: uppercase;
+
+  &.primary {
+    color: $blue;
+  }
+
+  &.secondary {
+    background-color: transparent;
+    color: $green;
+  }
+}

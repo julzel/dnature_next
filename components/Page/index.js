@@ -1,24 +1,23 @@
+import Head from 'next/head';
 // local imports
-// contexts
-import ScrollContextProvider from '../../contexts/scroll-context'
-import GlobalContextProvider from '../../contexts/global-context'
 
 // components
-import Layout from '../Layout'
+import Layout from '../Layout';
 
-const Page = ({ children, showHeader, changeBackground }) => {
-    return (
-        <GlobalContextProvider>
-            <ScrollContextProvider>
-               <Layout
-                showHeader={showHeader}
-                changeBackground={changeBackground}
-               >
-                {children}
-               </Layout>
-            </ScrollContextProvider>
-        </GlobalContextProvider>
-    )
-}
+const Page = ({ children }) => {
+  return (
+    <>
+      <Head>
+        <title>DNAture Comida natural para mascotas</title>
+        <meta
+          name='description'
+          content='Buscas la mejor alimentación para tu mascota. Has llegado al lugar indicado'
+        />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <Layout>{children}</Layout>
+    </>
+  );
+};
 
-export default Page
+export default Page;

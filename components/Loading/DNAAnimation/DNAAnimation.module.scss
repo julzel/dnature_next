@@ -1,41 +1,41 @@
 @import '../../../styles/variables';
 
 .dnaAnimation {
-    color: $gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  color: $darkGray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
-    .iconContainer {
-        color: $blue;
-        font-size: 40px;
-        transform:  rotateY(0deg);
-        animation: rotate 1000ms ease-out;
-        animation-direction:alternate;
-        // animation-fill-mode: both;
-        animation-iteration-count: infinite;
-        margin-right: 15px;
-    }
+  .iconContainer {
+    color: $blue;
+    font-size: 40px;
+    transform: rotateY(0deg);
+    animation: rotate 1000ms ease-out;
+    animation-direction: alternate;
+    // animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    margin-right: 15px;
+  }
 }
 
 @keyframes rotate {
-    0% {
-        color: $blue;
-        transform: rotateY(0deg);
-    }
-    50% {
-        color: $blue;
-    }
-    50% {
-        color: $orange;
-    }
-    100% {
-        color: $orange;
-        transform: rotateY(180deg);
-    }
+  0% {
+    color: $blue;
+    transform: rotateY(0deg);
+  }
+  50% {
+    color: $blue;
+  }
+  50% {
+    color: $orange;
+  }
+  100% {
+    color: $orange;
+    transform: rotateY(180deg);
+  }
 }
