@@ -6,6 +6,7 @@ import styles from './Home.module.scss';
 
 // components
 import Hero from './Hero';
+import Banner from './Banner';
 import Welcome from './Welcome';
 import Benefits from './Benefits';
 import Products from './Products';
@@ -21,12 +22,13 @@ const Home = () => {
   }
 
   useEffect(() => {
-    callApi();
+    // callApi();
   }, []);
 
   return (
     <div className={styles.home}>
       <Hero />
+      <Banner />
       <Welcome />
       <Benefits />
       <Products />

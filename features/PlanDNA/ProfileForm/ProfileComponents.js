@@ -1,6 +1,11 @@
 // local imports
 // components
-import { Input, Select, Checkbox } from '../../../components/Form';
+import {
+  Input,
+  Select,
+  Checkbox,
+  FilterableSelect,
+} from '../../../components/Form';
 import PlanButton from '../PlanButton';
 // styles
 import styles from './ProfileComponents.module.scss';
@@ -71,7 +76,14 @@ const ContextureInput = ({ onChange }) => (
   />
 );
 
-const Breed = {};
+const BreedInput = ({ breeds, onChange }) => (
+  <FilterableSelect
+    label='Raza'
+    onChange={onChange}
+    options={breeds}
+    className={styles.formInput}
+  />
+);
 
 const CastratedInput = ({ onChange, checked }) => (
   <Checkbox
@@ -83,14 +95,12 @@ const CastratedInput = ({ onChange, checked }) => (
   />
 );
 
-const Action = ({ action, disabled, text }) => (
+const Action = ({ action, disabled, text, goBack }) => (
   <div className={styles.action}>
-    <PlanButton
-      onClick={action}
-      text={text}
-      className={styles.nextButton}
-      disabled={disabled}
-    />
+    <PlanButton onClick={action} text={text} disabled={disabled} />
+    {goBack ? (
+      <PlanButton onClick={goBack} text='Volver' variant='secondary' />
+    ) : null}
   </div>
 );
 
@@ -102,5 +112,6 @@ export {
   ActivityInput,
   ContextureInput,
   CastratedInput,
+  BreedInput,
   Action,
 };

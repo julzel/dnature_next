@@ -1,5 +1,5 @@
 import React from 'react';
-import ResponsiveImage from '../../../components/ResponsiveImage';
+// import ResponsiveImage from '../../../components/ResponsiveImage';
 import HeroButton from './HeroButton';
 import styles from './Hero.module.scss';
 
@@ -11,25 +11,22 @@ const Hero = ({ imageSrc, isMobile, handlePlanDnaClick }) => {
       </h1>
       <div className={styles.heroAction}>
         <h2 className={styles.heroActionTitle}>
-          <div>
-            La forma
-            {isMobile ? <br /> : ' '}
-            <span>natural</span>
-          </div>
-          <div>
-            de <span>alimentar</span>
-            {isMobile ? <br /> : ' '}a tu mascota
-          </div>
+          La forma <span>natural</span>de <span>alimentar</span> a tu mascota
         </h2>
 
-        <div>
+        <p className={styles.heroActionParagraph}>
+          Nuestra gama de recetas, snacks y suplementos, ha sido seleccionada
+          con el objetivo de brindar la nutrición ideal para tu mascota, de
+          acuerdo a su fisiología y su genética.
+        </p>
+
+        <div className={styles.heroActionButtons}>
           <HeroButton text={'Plan DNA'} onClick={handlePlanDnaClick} />
           <HeroButton text={'Comprar'} variant={'secondary'} />
         </div>
       </div>
       <div className={styles.hero}>
-        <ResponsiveImage src={imageSrc} alt={'DNAture'} flipY />
-        <div></div>
+        <div className={styles.heroImg} />
       </div>
     </div>
   );

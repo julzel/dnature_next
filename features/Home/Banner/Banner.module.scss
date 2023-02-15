@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.banner {
+  padding: 64px;
+  background-color: $pale-dogwood;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  p {
+    color: $text-color;
+    font-family: $cursiveTitle;
+    font-size: 28px;
+    line-height: 1.5;
+    text-align: center;
+    // text-transform: uppercase;
+
+    @include mdq(md) {
+      max-width: 50%;
+    }
+  }
+}

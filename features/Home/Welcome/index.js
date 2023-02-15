@@ -20,14 +20,6 @@ const Welcome = () => {
       <div className={styles.welcomeContent}>
         <h2 className='seo-hidden'>Alimentación DNAture</h2>
 
-        <div className={styles.welcomeIntro}>
-          <p>
-            Nuestra gama de recetas, snacks y suplementos, ha sido seleccionada
-            con el objetivo de brindar la nutrición ideal para tu mascota, de
-            acuerdo a su fisiología y su genética.
-          </p>
-        </div>
-
         <div className={styles.welcomeItems}>
           <ul>
             {items.map((item, i) => {
@@ -53,7 +45,7 @@ const Welcome = () => {
           </ul>
         </div>
 
-        <div className='flex-row'>
+        <div>
           <div className={styles.welcomeImage}>
             <AnimationBox animation={'grow-from-bottom'}>
               <div>

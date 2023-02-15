@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ProfileForm from './ProfileForm';
 
-const ProfileFormContainer = () => {
-  const [step, setStep] = useState(1);
+const ProfileFormContainer = ({ handleStartOverClick }) => {
   const [dogProfile, setDogProfile] = useState({
     name: '',
     age: 0,
@@ -15,14 +14,37 @@ const ProfileFormContainer = () => {
     castrated: false,
     portionSize: undefined,
   });
+  const [step, setStep] = useState(1);
+  const [breeds, setBreeds] = useState([]);
+
+  const fetchBreeds = () => {
+    return fetch('/data/razas.json')
+      .then((response) => response.json())
+      .then((data) => {
+        const breeds = [...data.breeds];
+        setBreeds(breeds);
+        console.log({ breeds });
+        return breeds;
+      });
+  };
+
+  useEffect(() => {
+    fetchBreeds();
+  }, []);
 
   const handleInputChange = (event) => {
-    const { type, name, value } = event.target;
-
-    setDogProfile({
-      ...dogProfile,
-      [name]: type === 'number' ? Number(value) : value,
-    });
+    if (event.target) {
+      const { type, name, value } = event.target;
+      setDogProfile({
+        ...dogProfile,
+        [name]: type === 'number' ? Number(value) : value,
+      });
+    } else {
+      setDogProfile({
+        ...dogProfile,
+        breed: event,
+      });
+    }
   };
 
   const handleCheckboxChange = (event) => {
@@ -36,7 +58,7 @@ const ProfileFormContainer = () => {
 
   const handleNext = () => {
     console.log({ dogProfile });
-    if (step === 3) return;
+    if (step === 4) return;
     setStep(step + 1);
   };
 
@@ -48,11 +70,13 @@ const ProfileFormContainer = () => {
   return (
     <ProfileForm
       step={step}
+      handleStartOverClick={handleStartOverClick}
       handleInputChange={handleInputChange}
       handleCheckboxChange={handleCheckboxChange}
       handleNext={handleNext}
       handlePrevious={handlePrevious}
       profile={dogProfile}
+      breeds={breeds}
     />
   );
 };

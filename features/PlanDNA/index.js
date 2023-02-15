@@ -8,6 +8,12 @@ const PlanDNAContainer = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
 
+  const handleStartOverClick = (event) => {
+    event.preventDefault();
+    setHasStarted(false);
+    setHasFinished(false);
+  };
+
   const handleStartClick = (event) => {
     event.preventDefault();
     setHasStarted(true);
@@ -21,7 +27,12 @@ const PlanDNAContainer = () => {
   if (!hasStarted) {
     return <PlanIntro handleStartClick={handleStartClick} />;
   } else if (hasStarted && !hasFinished) {
-    return <PlanProfile handleFinichClick={handleFinishClick} />;
+    return (
+      <PlanProfile
+        handleFinichClick={handleFinishClick}
+        handleStartOverClick={handleStartOverClick}
+      />
+    );
   } else {
     return null;
   }

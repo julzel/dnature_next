@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useSmoothAnimatedScrollToTop from '../../../hooks/useScrollTop';
 import {
   NameInput,
@@ -8,6 +7,7 @@ import {
   ActivityInput,
   ContextureInput,
   CastratedInput,
+  BreedInput,
   Action,
 } from './ProfileComponents';
 
@@ -17,8 +17,10 @@ const ProfileForm = ({
   step,
   handleInputChange,
   handleCheckboxChange,
+  handleStartOverClick,
   handleNext,
   profile,
+  breeds,
 }) => {
   useSmoothAnimatedScrollToTop(step);
 
@@ -34,6 +36,7 @@ const ProfileForm = ({
             action={handleNext}
             text='Siguiente'
             disabled={!profile.name || !profile.age || !profile.weight}
+            goBack={handleStartOverClick}
           />
         </div>
       );
@@ -41,6 +44,7 @@ const ProfileForm = ({
       return (
         <div className={styles.stepContainer}>
           <h2>2: Características</h2>
+          <BreedInput onChange={handleInputChange} breeds={breeds} />
           <SizeInput onChange={handleInputChange} />
           <CastratedInput
             onChange={handleCheckboxChange}

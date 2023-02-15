@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FilterableSelect = ({ options, onChange, className }) => {
+const FilterableSelect = ({ label, options, onChange, className }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -10,6 +10,7 @@ const FilterableSelect = ({ options, onChange, className }) => {
 
   return (
     <div className={className}>
+      <label>{label}</label>
       <input
         type='text'
         value={searchTerm}
