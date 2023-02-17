@@ -23,7 +23,6 @@ const ProfileFormContainer = ({ handleStartOverClick }) => {
       .then((data) => {
         const breeds = [...data.breeds];
         setBreeds(breeds);
-        console.log({ breeds });
         return breeds;
       });
   };
@@ -57,7 +56,6 @@ const ProfileFormContainer = ({ handleStartOverClick }) => {
   };
 
   const handleNext = () => {
-    console.log({ dogProfile });
     if (step === 4) return;
     setStep(step + 1);
   };

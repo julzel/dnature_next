@@ -1,13 +1,12 @@
 @import '../../styles/_variables';
 
 .slider {
-    background-color: $white;
-    position: relative;
+  position: relative;
 
-    .container{
-        height: 100%;
-        display: flex;
-        flex-wrap: nowrap;
-        overflow: hidden;
-    }
+  .container {
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
 }

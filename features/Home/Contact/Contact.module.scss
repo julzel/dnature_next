@@ -2,94 +2,93 @@
 @import '../../../styles/mixins';
 
 .contact {
-    padding: 80px 20px;
-    background-color: $green;
-    position: relative;
-    overflow: hidden;
+  padding: 80px 20px;
+  background-color: $green;
+  position: relative;
+  overflow: hidden;
 
-    .title {
-        font-family: $cursiveTitle;
-        font-size: 32px;
-        margin: 0 auto;
-        margin-bottom: 40px;
-    }
+  .title {
+    font-family: $cursiveTitle;
+    font-size: 32px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
 
-    &Image {
-        background: url('../../../public/marca/paw-green-shadow.svg') no-repeat;
-        background-position: center center;
-        opacity: 0.5;
-        position: absolute;
-        bottom: 0;
-        right: -10%;
-        height: calc(390px / 1.5);
-        width: calc(390px / 1.5);
-        transform: rotateY(180deg) scale(2);
-    }
+  // &Image {
+  //     background: url('../../../public/marca/paw-green-shadow.svg') no-repeat;
+  //     background-position: center center;
+  //     opacity: 0.5;
+  //     position: absolute;
+  //     bottom: 0;
+  //     right: -10%;
+  //     height: calc(390px / 1.5);
+  //     width: calc(390px / 1.5);
+  //     transform: rotateY(180deg) scale(2);
+  // }
 
+  &List {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    width: 100%;
 
-    &List {
-        max-width: 600px;
-        margin: 0 auto;
-        margin-bottom: 40px;
-        padding-left: 20px;
+    li {
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      max-width: 240px;
+
+      div {
         width: 100%;
-
-        li {
-            display: flex;
-            align-items: center;
-            margin: 0 auto;
-            margin-bottom: 20px;
-            max-width: 240px;
-
-            div {
-                width: 100%;
-                display: flex;
-                align-items: center;
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-
-                .contactIcon {
-                    font-size: 14px;
-                }
-            }
-
-            @include mdq(sm) {
-                flex-flow: column;
-                margin: 0;
-                width: calc(100% / 3);
-
-                div {
-                    flex-flow: column;
-                    justify-content: space-between;
-                    height: 100%;
-                }
-            }
-        }
-
-        @include mdq(sm) {
-            display: flex;
-            padding-left: 0;
-        }
-    }
-
-    &Item {
-        margin-left: 15px;
-
-        @include mdq(sm) {
-            margin-left: 0;
-        }
-    }
-
-    &Icon {
         display: flex;
-        justify-content: center;
-        font-size: 16px;
-        opacity: 0.8;
+        align-items: center;
+      }
 
-        @include mdq(sm) {
-            margin-bottom: 5px;
+      &:last-child {
+        margin-bottom: 0;
+
+        .contactIcon {
+          font-size: 14px;
         }
+      }
+
+      @include mdq(sm) {
+        flex-flow: column;
+        margin: 0;
+        width: calc(100% / 3);
+
+        div {
+          flex-flow: column;
+          justify-content: space-between;
+          height: 100%;
+        }
+      }
     }
+
+    @include mdq(sm) {
+      display: flex;
+      padding-left: 0;
+    }
+  }
+
+  &Item {
+    margin-left: 15px;
+
+    @include mdq(sm) {
+      margin-left: 0;
+    }
+  }
+
+  &Icon {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    opacity: 0.8;
+
+    @include mdq(sm) {
+      margin-bottom: 5px;
+    }
+  }
 }

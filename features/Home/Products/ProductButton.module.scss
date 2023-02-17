@@ -1,0 +1,23 @@
+@import '../../../styles/_variables';
+.heroButton {
+  background-color: $white;
+  border: 1px solid $white;
+  border-radius: $br-base;
+  font-size: 12px;
+  font-family: $bold2;
+  letter-spacing: 1.2px;
+  min-width: 128px;
+  margin: 0 8px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+
+  &.primary {
+    color: $davys-gray;
+  }
+
+  &.secondary {
+    background-color: $white;
+    border: 1px solid $white;
+    color: $secondary-color;
+  }
+}

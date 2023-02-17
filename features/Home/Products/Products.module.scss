@@ -2,59 +2,58 @@
 @import '../../../styles/mixins';
 
 .products {
+  position: relative;
+  padding: 64px 0;
+
+  @include mdq(md) {
+    padding: 64px 0;
+  }
+
+  @include mdq(lg) {
+    padding: 128px 0;
+  }
+
+  .title {
+    font-family: $cursiveTitle;
+    font-size: 32px;
+    margin: 0 auto;
+    margin-bottom: 48px;
+  }
+
+  &Categories {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1440px;
+    justify-content: center;
+  }
+
+  &Category {
+    width: 320px;
+    height: 320px;
+    overflow: hidden;
+    margin-bottom: 20px;
     position: relative;
-    padding-top: 80px;
+    cursor: pointer;
 
-    .title {
-        margin: 0 auto;
-        margin-bottom: 40px;
+    @include mdq(lg) {
+      margin: 0 20px 20px;
+      width: 256px;
+      height: 256px;
     }
 
-    &Categories {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 auto 80px;
-        max-width: 1440px;
-        justify-content: center;
+    @include mdq(xxl) {
+      margin: 0 20px;
+      width: 208px;
+      height: 208px;
     }
 
-    &Category {
-        width: 320px;
-        height: 320px;
-        overflow: hidden;
-        margin-bottom: 20px;
-        position: relative;
-
-        @include mdq(lg) {
-            margin: 0 20px 20px;
-            width: 256px;
-            height: 256px;
-        }
-
-        @include mdq(xxl) {
-            width: 208px;
-            height: 208px;
-        }
-
-        &Thumbnail {
-            cursor: pointer;
-
-            .filter {
-                position: absolute;
-                left: 0;
-                top: 0;
-                height: 100%;
-                width: 100%;
-                background-image: linear-gradient(to top, rgba(0, 0, 0, .015), rgba(150, 150, 150, .025));
-            }
-        }
-
-        &Content {
-            position: absolute;
-            width: 70%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
+    &Content {
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
+  }
 }

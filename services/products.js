@@ -1,7 +1,13 @@
-import { fetchFromContentful } from "./util"
+import { fetchFromContentful } from './util';
 
 // update from category
-const categoriesPriority = ['recetas', 'snacks', 'suplementos', 'proteinas', 'organos']
+const categoriesPriority = [
+  'recetas',
+  'snacks',
+  'suplementos',
+  'proteinas',
+  'organos',
+];
 
 const productsQuery = () => `
 {
@@ -25,8 +31,8 @@ const productsQuery = () => `
         }
     }
 }
-`
-const productQuery = productId => `
+`;
+const productQuery = (productId) => `
         {
             product(id:"${productId}") {
                 productName
@@ -52,57 +58,59 @@ const productQuery = productId => `
                 }
             }
         }
-        `
+        `;
 
-const formatProductsData = productItems => {
-    const catalog = {}
-    productItems.forEach(item => {
-        const { categorySlug, category, imageCollection } = item
-        const images = imageCollection.items.map(image => image)
-        item.images = images
-        delete item.imageCollection
+const formatProductsData = (productItems) => {
+  const catalog = {};
+  productItems.forEach((item) => {
+    const { categorySlug, category, imageCollection } = item;
+    const images = imageCollection.items.map((image) => image);
+    item.images = images;
+    delete item.imageCollection;
 
-        if (catalog.hasOwnProperty(categorySlug)) {
-            catalog[categorySlug].products.push(item)    
-        } else {
-            catalog[categorySlug] = {
-                label: category,
-                id: category.split(' ').join('').toLowerCase(),
-                products: [],
-                index: categoriesPriority.indexOf(categorySlug)
-            }
-            catalog[categorySlug].products.push(item)    
-        }
-    })
-    return catalog
-}
+    // After the first iteration, the catalog object will have a property
+    if (catalog.hasOwnProperty(categorySlug)) {
+      catalog[categorySlug].products.push(item);
+    } else {
+      // If not, we create it
+      catalog[categorySlug] = {
+        label: category,
+        id: categorySlug,
+        products: [],
+        index: categoriesPriority.indexOf(categorySlug),
+      };
+      catalog[categorySlug].products.push(item);
+    }
+  });
+  return catalog;
+};
 
 const getProducts = async () => {
-    const data = await fetchFromContentful(productsQuery())
-    return formatProductsData(data.productCollection.items)
-}
+  const data = await fetchFromContentful(productsQuery());
+  return formatProductsData(data.productCollection.items);
+};
 
-const formatProductData = product => {
-    const images = product.imageCollection?.items.map(image => image)
-    product.images = images
-    delete product.imageCollection
+const formatProductData = (product) => {
+  const images = product.imageCollection?.items.map((image) => image);
+  product.images = images;
+  delete product.imageCollection;
 
-    const iconos = product.iconosCollection?.items.map(image => image)
-    product.iconos = iconos
-    delete product.iconosCollection
-    return product
-}
+  const iconos = product.iconosCollection?.items.map((image) => image);
+  product.iconos = iconos;
+  delete product.iconosCollection;
+  return product;
+};
 
-const getProduct = async productId => {
-    try {
-        const product = await fetchFromContentful(productQuery(productId))
-        if (product.product) {
-            return formatProductData(product.product)
-        }
-        return null
-    } catch (error) {
-        console.log(error, error?.message)
+const getProduct = async (productId) => {
+  try {
+    const product = await fetchFromContentful(productQuery(productId));
+    if (product.product) {
+      return formatProductData(product.product);
     }
-}
+    return null;
+  } catch (error) {
+    console.log(error, error?.message);
+  }
+};
 
-export { getProducts, getProduct  }
+export { getProducts, getProduct };

@@ -1,76 +1,63 @@
-@import '../../../styles/_variables';
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .dnatureSystem {
-    background-color: $lightOrange;
-    padding: 80px 20px;
-    position: relative;
-    overflow: hidden;
+  background-color: $text-color;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
 
-    .title {
-        font-family: $cursiveTitle;
-        font-size: 32px;
-        margin: 0 auto;
-        margin-bottom: 40px;
-        color: $white;
+  .title {
+    font-family: $cursiveTitle;
+    font-size: 32px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    color: $rosy-brown;
+  }
+
+  &Container {
+    margin: 0 auto;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &Item {
+    margin: 0 auto 32px;
+    background-color: $rosy-brown;
+    padding: 12px 32px;
+    border-radius: 50px;
+    width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &Title {
+      color: $text-color;
+      font-family: $regular2;
+      font-size: 16px;
+      width: 100%;
     }
+  }
+}
 
-    &Image {
-        background: url('../../../public/marca/paw-orange-shadow.svg') no-repeat;
-        background-position: center center;
-        opacity: 0.5;
-        position: absolute;
-        bottom: 0;
-        left: -10%;
-        height: calc(390px / 1.5);
-        width: calc(390px / 1.5);
-        transform: scale(2);
+.dnaturePlate {
+  position: relative;
+  min-height: 66.6vh;
+
+  &::after {
+    content: '';
+    background-image: url('/images/plandna-mobile.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+
+    @include mdq(md) {
+      background-image: url('/images/plandna-desk.jpg');
+      background-attachment: fixed;
     }
-
-    &Container {
-        margin: 0 auto;
-        width: 100%;
-        max-width: 600px;
-        z-index: 1;
-    }
-
-    &Item {
-        margin: 0 auto;
-        margin-bottom: 10px;
-        width: 100%;
-        max-width: 350px;
-        min-width: 320px;
-        
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        &Title {
-            position: relative;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-
-            > div {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 100% ;
-                max-width: 400px;
-                transform: translate(-50%, -50%);
-                display: flex;
-                align-items: center;
-            }
-
-            &Text {
-                color: $white;
-                font-family: $bold2;
-                font-size: 14px;
-                max-width: 200px;
-                position: relative;
-                left: 9%;
-            }
-        }
-    }
+  }
 }

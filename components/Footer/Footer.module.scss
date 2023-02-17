@@ -1,20 +1,20 @@
 @import '../../styles/variables';
 
 .footer {
-    color: $black;
-    background-color: $orange;
-    border-top: 10px solid $blue;
-    font-family: $bold2;
-    font-size: 14px;
-    padding: 20px;
+  color: $platinum;
+  background-color: $text-color;
+  border-top: 8px solid $orange;
+  font-family: $light2;
+  font-size: 14px;
+  padding: 32px;
 
-    p {
-        text-align: center;
-        span {
-            margin: 0 auto;
-            display: flex;
-            width: 55px;
-            height: 55px;
-        }
+  p {
+    text-align: center;
+    span {
+      margin: 0 auto;
+      display: flex;
+      width: 55px;
+      height: 55px;
     }
+  }
 }

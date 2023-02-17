@@ -33,7 +33,7 @@
 }
 
 .heroAction {
-  padding: 64px 32px;
+  padding: 96px 32px;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -47,6 +47,7 @@
   @include mdq(lg) {
     padding: 128px 64px;
     width: 50%;
+    min-height: 66.6vh;
   }
 
   &Title {

@@ -1,6 +1,6 @@
 const phrases = [
   'Transforma la vida de tu mascota',
-  'Dales salud y bienestar',
+  'Dales amor, salud y bienestar',
   'Mascotas más sanas, fuertes y felices',
   'De la manera que la naturaleza lo diseñó',
   'Ingredientes naturales y sin aditivos',
