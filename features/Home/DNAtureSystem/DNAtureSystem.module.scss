@@ -56,7 +56,6 @@
     position: absolute;
 
     @include mdq(md) {
-      background-image: url('/images/plandna-desk.jpg');
       background-attachment: fixed;
     }
   }

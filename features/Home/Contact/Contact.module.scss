@@ -1,30 +1,23 @@
-@import '../../../styles/_variables';
+@import '../../../styles/variables';
 @import '../../../styles/mixins';
 
 .contact {
-  padding: 80px 20px;
-  background-color: $green;
+  padding: 64px 32px;
+  background-color: $davys-gray;
   position: relative;
   overflow: hidden;
 
+  @include mdq(md) {
+    padding: 128px 32px;
+  }
+
   .title {
+    color: $rosy-brown;
     font-family: $cursiveTitle;
     font-size: 32px;
     margin: 0 auto;
     margin-bottom: 40px;
   }
-
-  // &Image {
-  //     background: url('../../../public/marca/paw-green-shadow.svg') no-repeat;
-  //     background-position: center center;
-  //     opacity: 0.5;
-  //     position: absolute;
-  //     bottom: 0;
-  //     right: -10%;
-  //     height: calc(390px / 1.5);
-  //     width: calc(390px / 1.5);
-  //     transform: rotateY(180deg) scale(2);
-  // }
 
   &List {
     max-width: 600px;
@@ -34,6 +27,7 @@
     width: 100%;
 
     li {
+      color: $rosy-brown;
       display: flex;
       align-items: center;
       margin: 0 auto;

@@ -1,8 +1,13 @@
-@import '../../../styles/_variables';
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .ourCostumers {
   padding: 64px 32px;
   background-color: $snow;
+
+  @include mdq(md) {
+    padding: 128px 32px;
+  }
 
   .costumer {
     display: flex;
@@ -30,22 +35,22 @@
         &::before {
           content: '“';
           position: absolute;
-          color: $blue;
+          color: $green;
           font-size: 100px;
           left: -20px;
           top: 90px;
-          opacity: 0.25;
+          opacity: 0.75;
           transform: scale(3);
         }
 
         &::after {
           content: '”';
           position: absolute;
-          color: $blue;
+          color: $green;
           font-size: 100px;
           right: 20px;
           bottom: -70px;
-          opacity: 0.25;
+          opacity: 0.75;
           transform: scale(3);
         }
 
@@ -65,7 +70,7 @@
       }
 
       &SocialMedia {
-        background-color: $blue;
+        background-color: $green;
         color: $white;
         display: inline-block;
         font-family: $bold2;

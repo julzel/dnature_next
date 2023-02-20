@@ -14,7 +14,6 @@ import styles from './Contact.module.scss';
 const Contact = () => {
   return (
     <div className={styles.contact}>
-      {/* <div className={styles.contactImage} /> */}
       <h3 className={`title ${styles.title}`}>Contáctanos</h3>
       <ul className={styles.contactList}>
         <li>
