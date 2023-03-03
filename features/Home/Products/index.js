@@ -33,7 +33,7 @@ const Products = () => {
             return (
               <li key={i} className={styles.productsCategory}>
                 <Link href={`/productos?category=${category.slug}`} passHref>
-                  <>
+                  <div>
                     <AnimationBox animation='fade-in-from-bottom'>
                       <div className={styles.image}>
                         <Image
@@ -58,7 +58,7 @@ const Products = () => {
                         </div>
                       </AnimationBox>
                     </div>
-                  </>
+                  </div>
                 </Link>
               </li>
             );

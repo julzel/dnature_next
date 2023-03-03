@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 @import '../../../styles/mixins';
 
-.ourCostumers {
+.OurCostumers {
   padding: 64px 32px;
   background-color: $snow;
 
@@ -35,7 +35,7 @@
         &::before {
           content: '“';
           position: absolute;
-          color: $green;
+          color: $blue;
           font-size: 100px;
           left: -20px;
           top: 90px;
@@ -46,7 +46,7 @@
         &::after {
           content: '”';
           position: absolute;
-          color: $green;
+          color: $blue;
           font-size: 100px;
           right: 20px;
           bottom: -70px;
@@ -70,7 +70,7 @@
       }
 
       &SocialMedia {
-        background-color: $green;
+        background-color: $blue;
         color: $white;
         display: inline-block;
         font-family: $bold2;

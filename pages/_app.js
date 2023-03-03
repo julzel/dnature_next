@@ -3,11 +3,14 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 // local imports
 // styles
 import '../styles/globals.scss';
+import ShoppingCartContextProvider from '../contexts/shopping-cart-context';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <ShoppingCartContextProvider>
+        <Component {...pageProps} />
+      </ShoppingCartContextProvider>
     </SessionProvider>
   );
 }

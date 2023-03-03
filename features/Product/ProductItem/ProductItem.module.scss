@@ -1,0 +1,25 @@
+@import '../../../styles/_variables';
+@import '../../../styles/mixins';
+
+.product {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 25px 0;
+
+  @include mdq(lg) {
+    width: 100%;
+    max-width: 768px;
+  }
+
+  .backLink {
+    color: $gray;
+    font-family: $light;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-top: 25px;
+
+    span {
+      display: inline-block;
+    }
+  }
+}

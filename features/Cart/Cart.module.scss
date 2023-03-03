@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.cart {
+  padding: 32px;
+
+  .header {
+    font-family: $regular2;
+    font-size: 16px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .items {
+    padding: 8px 16px;
+    background-color: $snow;
+    border-radius: $br-base;
+
+    .item {
+      margin-bottom: 16px;
+    }
+
+    .itemHeader {
+      font-family: $bold;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .itemMedida {
+      font-family: $regular2;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .itemInfo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .itemTotalPrice {
+      font-family: $bold;
+      font-size: 14px;
+    }
+
+    .itemTotalQuantity {
+      border-radius: $br-full;
+      background-color: $seashell;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $bold;
+      font-size: 12px;
+      padding: 4px 8px;
+      min-width: 60px;
+
+      span {
+        font-size: 14px;
+        font-weight: $regular2;
+        display: inline-block;
+        margin: 0 8px;
+      }
+    }
+  }
+}

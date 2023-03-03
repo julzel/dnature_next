@@ -1,0 +1,61 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.productDetail {
+  border-top: 1px solid $border;
+  padding: 20px 0;
+
+  @include mdq(lg) {
+    display: flex;
+    justify-content: space-between;
+
+    > div {
+      width: 45%;
+    }
+  }
+  h2 {
+    color: $darkGray;
+    font-family: $cursiveTitle;
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .description {
+    color: $darkGray;
+    font-size: 16px;
+    > div {
+      padding-left: 20px;
+      margin-right: 64px;
+      position: relative;
+      margin-bottom: 32px;
+      span {
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        font-size: 14px;
+      }
+    }
+    @include mdq(lg) {
+      font-size: 16px;
+    }
+  }
+
+  &Ingredients {
+    color: $darkGray;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.icons {
+  display: flex;
+  padding-bottom: 10px;
+
+  span {
+    width: 30px !important;
+    height: 30px !important;
+    margin-left: 5px !important;
+  }
+}
