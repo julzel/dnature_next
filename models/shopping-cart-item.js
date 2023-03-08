@@ -3,7 +3,7 @@ const shoppingCartItem = {
   quantity: 0,
   price: 0,
   productName: '',
-  medida: '',
+  containers: [],
 };
 
 export { shoppingCartItem };

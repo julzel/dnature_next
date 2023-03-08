@@ -7,12 +7,15 @@ const ShoppingCartContextProvider = ({ children }) => {
   const [currentShoppingCart, setCurrentShoppingCart] =
     useState(defaultShoppingCart);
 
+  let totalItems = 0;
+
   const updateShoppingCart = (newShoppingCart) => {
     const subtotal = newShoppingCart.items.reduce((acc, item) => {
+      totalItems += item.quantity;
       return acc + item.quantity * item.price;
     }, 0);
     const total = subtotal;
-    setCurrentShoppingCart({ ...newShoppingCart, subtotal, total });
+    setCurrentShoppingCart({ ...newShoppingCart, subtotal, total, totalItems });
   };
 
   return (

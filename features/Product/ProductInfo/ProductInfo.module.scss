@@ -12,13 +12,19 @@
   }
 
   .images {
-    overflow: hidden;
-    margin: 0 auto;
-    // margin-bottom: 15px;
-    width: 275px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     @include mdq(lg) {
-      width: 35%;
+      width: 275px;
+      flex-grow: 1;
+    }
+
+    span {
+      width: 100%!important;
+      max-width: 320px;
     }
   }
 
@@ -44,6 +50,17 @@
     margin-bottom: 16px;
   }
 
+  label {
+    color: $text-color;
+    display: block;
+    font-family: $bold2;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
   .price {
     font-family: $bold;
     font-size: 18px;
@@ -64,7 +81,7 @@
   }
 
   .quantity,
-  .buyButton {
+  .presentation {
     width: 100%;
   }
 
@@ -73,53 +90,10 @@
     flex-flow: column;
     margin-bottom: 16px;
     padding-top: 32px;
-
-    label {
-      color: $text-color;
-      display: block;
-      font-family: $bold2;
-      font-size: 14px;
-      letter-spacing: 0;
-      line-height: 1.5;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-    }
-    input {
-      border: 1px solid $green;
-      border-radius: $br-base;
-      font-size: 18px;
-      padding: 16px;
-      height: 59px;
-
-      &:focus {
-        border: 1px solid $darkGreen;
-      }
-
-      @include mdq(lg) {
-        padding: 8px 16px;
-        height: 45px;
-      }
-    }
-  }
-
-  .buyButton {
-    color: $text-color;
-    background-color: $green;
-    border-radius: $br-base;
-    font-size: 20px;
-    font-family: $light2;
-    letter-spacing: 1.2px;
-    padding: 16px;
-    text-transform: uppercase;
-    width: 100%;
-    margin-bottom: 16px;
-
-    @include mdq(lg) {
-      padding: 8px 16px;
-    }
   }
 
   a {
+    text-decoration: none;
     font-family: $light;
     color: $gray;
     display: block;
@@ -127,6 +101,16 @@
     text-align: center;
     text-transform: uppercase;
     width: 100%;
+
+    &:hover {
+      color: $davys-gray;
+    }
+
+    span {
+      font-size: 12px;
+      display: inline-block;
+      margin-left: 8px;
+    }
   }
 
   svg {

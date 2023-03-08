@@ -1,0 +1,41 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+.select {
+  width: 100%;
+  margin-bottom: 16px;
+  border: 1px solid lighten($green, 15%);
+  border-radius: $br-base;
+
+  button {
+    font-size: 18px;
+    font-size: 18px;
+    padding: 16px;
+    height: 59px;
+    width: 100%;
+
+    &:focus {
+      border: 1px solid $darkGreen;
+    }
+
+    @include mdq(lg) {
+      padding: 8px 16px;
+      height: 45px;
+    }
+  }
+
+  ul {
+    border: 1px solid $darkGreen;
+    border-top: none;
+
+    li {
+        cursor: pointer;
+        padding: 8px 16px;
+        text-align: center;
+        border-bottom: 1px solid $snow;
+
+        &:hover {
+          background-color: $snow;
+        }
+    }
+  }
+}
