@@ -10,14 +10,28 @@
   margin: 0 8px;
   padding: 8px 16px;
   text-transform: uppercase;
+  transition: all 100ms ease-out;
+
+  &:hover {
+    transform: scale(1.005);
+  }
 
   &.primary {
-    color: $platinum;
+    color: $white;
+
+    &:hover {
+      border-color: $white;
+    }
   }
 
   &.secondary {
-    background-color: $platinum;
-    border: 1px solid $platinum;
+    background-color: $white;
+    border: 1px solid $white;
     color: $secondary-color;
+
+    &:hover {
+      border-color: lighten($secondary-color, 20%);
+    }
+    
   }
 }

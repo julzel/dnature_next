@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -7,22 +7,16 @@ import Link from 'next/link';
 import styles from './Products.module.scss';
 
 // data
-import { getCategories } from '../../../services/categories';
 import AnimationBox from '../../../components/AnimationBox';
 
 // components
 import ProductButton from './ProductButton';
 
-const Products = () => {
-  const [categories, setCategories] = useState(null);
+// hooks
+import { useCategories } from '../../../hooks';
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const categories = await getCategories();
-      setCategories(categories);
-    };
-    fetchCategories();
-  }, []);
+const Products = () => {
+  const { categories } = useCategories();
 
   return (
     <div className={styles.products}>
@@ -53,7 +47,6 @@ const Products = () => {
                           className='flex-center-column'
                           tabIndex='0'
                         >
-                          {/* <Button label={category.label} /> */}
                           <ProductButton text={category.label} />
                         </div>
                       </AnimationBox>

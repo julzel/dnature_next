@@ -1,17 +1,20 @@
 @import '../../../../styles/variables';
 
 .navbar {
+  display: flex;
   &Item {
+    border-right: 1px solid $border;
+    display: flex;
+    align-items: center;
     color: $border;
     font-family: $regular2;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1.1px;
-    padding-right: 15px;
-    margin-right: 15px;
+    padding: 8px 16px;
+    text-align: center;
     text-transform: uppercase;
-    transition: color 100ms ease;
+    transition: all 750ms ease;
     cursor: pointer;
-    border-right: 1px solid $border;
 
     &.active {
       font-family: $bold2;
@@ -23,7 +26,12 @@
     }
 
     &:hover {
+      background-color: $snow;
       color: darken($orange, 7.5%);
+    }
+
+    &:last-child {
+      border-right: none;
     }
   }
 }

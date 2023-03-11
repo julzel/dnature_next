@@ -3,18 +3,27 @@
 
 .cart {
   padding: 32px;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  margin-top: 32px;
+
+  @include mdq(md) {
+    border: 1px solid $snow;
+  }
 
   .header {
     font-family: $regular2;
-    font-size: 16px;
+    font-size: 12px;
     margin-bottom: 16px;
     text-transform: uppercase;
   }
 
   .items {
-    padding: 8px 16px;
-    background-color: $snow;
+    padding: 16px;
+    background-color: lighten($snow, 2.5%);
     border-radius: $br-base;
+    border: 1px solid $snow;
 
     .item {
       margin-bottom: 16px;
@@ -45,7 +54,7 @@
 
     .itemTotalQuantity {
       border-radius: $br-full;
-      background-color: $seashell;
+      background-color: lighten($green, 20%);
       display: flex;
       align-items: center;
       justify-content: center;

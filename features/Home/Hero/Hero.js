@@ -3,7 +3,7 @@ import React from 'react';
 import HeroButton from './HeroButton';
 import styles from './Hero.module.scss';
 
-const Hero = ({ imageSrc, isMobile, handlePlanDnaClick }) => {
+const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
   return (
     <div className={styles.heroContainer}>
       <h1 className='seo-hidden'>
@@ -22,7 +22,7 @@ const Hero = ({ imageSrc, isMobile, handlePlanDnaClick }) => {
 
         <div className={styles.heroActionButtons}>
           <HeroButton text={'Plan DNA'} onClick={handlePlanDnaClick} />
-          <HeroButton text={'Comprar'} variant={'secondary'} />
+          <HeroButton text={'Comprar'} onClick={handleComprarClick} variant={'secondary'} />
         </div>
       </div>
       <div className={styles.hero}>

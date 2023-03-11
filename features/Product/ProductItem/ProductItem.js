@@ -7,10 +7,10 @@ import GoBack from '../GoBack';
 import ProductInfo from '../ProductInfo';
 import ProductDetail from '../ProductDetail';
 
-const ProductItem = ({ productDetail, onBuyItem }) => (
+const ProductItem = ({ productDetail, addToCart }) => (
   <section className={styles.product}>
     <GoBack className={styles.backLink} />
-    <ProductInfo productDetail={productDetail} onBuyItem={onBuyItem} />
+    <ProductInfo productDetail={productDetail} addToCart={addToCart} />
     <ProductDetail productDetail={productDetail} />
   </section>
 );

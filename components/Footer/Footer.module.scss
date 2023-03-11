@@ -3,7 +3,7 @@
 .footer {
   color: $platinum;
   background-color: $text-color;
-  border-top: 8px solid $orange;
+  border-top: 2px solid lighten($orange, 15%);;
   font-family: $light2;
   font-size: 14px;
   padding: 32px;

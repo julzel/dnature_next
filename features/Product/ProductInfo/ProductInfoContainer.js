@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ProductInfo from "./ProductInfo";
-import { useShoppingCartContext } from "../../../contexts/shopping-cart-context";
+import { useCartContext } from "../../../contexts/shopping-cart-context";
 import { PRESENTATION_OPTIONS } from "../consts";
 
-const ProductInfoContainer = ({ productDetail, onBuyItem }) => {
-  const { cart } = useShoppingCartContext();
+const ProductInfoContainer = ({ productDetail, addToCart }) => {
+  const { cart } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const [presentation, setPresentation] = useState(
     PRESENTATION_OPTIONS[2]
@@ -22,7 +22,7 @@ const ProductInfoContainer = ({ productDetail, onBuyItem }) => {
       presentation={presentation}
       onPresentationChange={handleSelectPresentation}
       productDetail={productDetail}
-      onBuyItem={onBuyItem}
+      addToCart={addToCart}
       cartTotalItems={cart.totalItems}
       presentationOptions={PRESENTATION_OPTIONS}
     />
