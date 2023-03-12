@@ -7,10 +7,10 @@ import GoBack from '../GoBack';
 import ProductInfo from '../ProductInfo';
 import ProductDetail from '../ProductDetail';
 
-const ProductItem = ({ productDetail, addToCart }) => (
+const ProductItem = ({ productDetail }) => (
   <section className={styles.product}>
     <GoBack className={styles.backLink} />
-    <ProductInfo productDetail={productDetail} addToCart={addToCart} />
+    <ProductInfo productDetail={productDetail} />
     <ProductDetail productDetail={productDetail} />
   </section>
 );

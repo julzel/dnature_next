@@ -26,7 +26,7 @@ const ProductInfo = ({
   presentation,
   onPresentationChange,
   presentationOptions,
-  addToCart,
+  onAddToCart,
   cartTotalItems,
 }) => (
   <div className={styles.productInfo}>
@@ -79,7 +79,7 @@ const ProductInfo = ({
       )}
       <Button
         text={"Agregar al carrito"}
-        onClick={() => addToCart(productDetail, quantity, presentation)}
+        onClick={() => onAddToCart(productDetail, quantity, presentation)}
         className={addToCartStyles.addToCart}
       />
       <Link href={"/cart"} passHref>

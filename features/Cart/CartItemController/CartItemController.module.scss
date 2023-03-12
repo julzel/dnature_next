@@ -1,0 +1,22 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.cartItemController {
+  border-radius: $br-full;
+  background-color: lighten($green, 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $bold;
+  font-size: 12px;
+  padding: 4px 8px;
+  min-width: 60px;
+
+  span {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: $regular2;
+    display: inline-block;
+    margin: 0 8px;
+  }
+}

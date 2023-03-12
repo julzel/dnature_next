@@ -20,14 +20,14 @@ const CounterInput = ({
 
   const decreaseValue = () => {
     const newValue = Math.max(parseInt(inputValue, 10) - 1, 0);
-    setInputValue(newValue.toString());
-    onChange(newValue.toString());
+    setInputValue(newValue);
+    onChange(newValue);
   };
 
   const increaseValue = () => {
     const newValue = Math.min(parseInt(inputValue, 10) + 1, maxValue);
-    setInputValue(newValue.toString());
-    onChange(newValue.toString());
+    setInputValue(newValue);
+    onChange(newValue);
   };
 
   const isMaxValueExceeded = parseInt(inputValue, 10) >= maxValue;

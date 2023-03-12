@@ -1,19 +1,36 @@
 import React, { useState } from "react";
 import ProductInfo from "./ProductInfo";
 import { useCartContext } from "../../../contexts/shopping-cart-context";
+import { ShoppingCartItem } from "../../../models/shopping-cart";
 import { PRESENTATION_OPTIONS } from "../consts";
 
-const ProductInfoContainer = ({ productDetail, addToCart }) => {
-  const { cart } = useCartContext();
+const ProductInfoContainer = ({ productDetail }) => {
+  const { cart, addItems } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const [presentation, setPresentation] = useState(
     PRESENTATION_OPTIONS[2]
   );
 
-  const handleQuantityChange = (newQuantity) => setQuantity(newQuantity);
+  const handleQuantityChange = (newQuantity) => setQuantity(+newQuantity);
 
   const handleSelectPresentation = (option) =>
     setPresentation(option);
+
+  const handleAddToCart = (item) => {
+    const newItem = new ShoppingCartItem(
+      item.sys.id,
+      quantity,
+      item.precio,
+      item.productName,
+      presentation
+        ? [{
+            description: presentation.label,
+            quantity: (quantity * 1000) / presentation.value,
+          }]
+        : null,
+    );
+    addItems(newItem);
+  };
 
   return (
     <ProductInfo
@@ -22,7 +39,7 @@ const ProductInfoContainer = ({ productDetail, addToCart }) => {
       presentation={presentation}
       onPresentationChange={handleSelectPresentation}
       productDetail={productDetail}
-      addToCart={addToCart}
+      onAddToCart={handleAddToCart}
       cartTotalItems={cart.totalItems}
       presentationOptions={PRESENTATION_OPTIONS}
     />

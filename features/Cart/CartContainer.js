@@ -8,13 +8,14 @@ import { useCartContext } from "../../contexts/shopping-cart-context";
 import Cart from "./Cart";
 
 const CartContainer = () => {
-  const { cart, addItem, removeItem, removeAllItems, removeAllItemsOfAKind } = useCartContext();
+  const { cart, addOneItem, addItems, removeOneItem, removeAllItems, removeAllItemsOfAKind } = useCartContext();
 
   return (
     <Cart
       cart={cart}
-      addItem={addItem}
-      removeItem={removeItem}
+      addItems={addItems}
+      addOneItem={addOneItem}
+      removeOneItem={removeOneItem}
       removeAllItems={removeAllItems}
       removeAllItemsOfAKind={removeAllItemsOfAKind}
     />

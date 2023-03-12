@@ -8,20 +8,18 @@ const ShoppingCartContextProvider = ({ children }) => {
     () => new ShoppingCart()
   );
 
-  const addToCart = useCallback(
+  const addOneToCart = useCallback(
     (item) => {
       const { id } = item;
-      console.log(item)
       const foundItem = currentShoppingCart.items.find(
         (shoppingCartItem) => shoppingCartItem.id === id
       );
       if (foundItem) {
-        foundItem.quantity += item.quantity;
-        foundItem.containers = [...foundItem.containers, ...item.containers];
+        foundItem.quantity += 1;
       } else {
         const newItem = new ShoppingCartItem(
           id,
-          item.quantity,
+          1,
           item.price,
           item.productName,
           item.containers
@@ -29,8 +27,29 @@ const ShoppingCartContextProvider = ({ children }) => {
         currentShoppingCart.items.push(newItem);
       }
       const updatedCart = { ...currentShoppingCart };
+      updatedCart.totalItems += 1;
+      updatedCart.subtotal += item.price;
+      updatedCart.tax += 0;
+      updatedCart.total =
+        updatedCart.subtotal + updatedCart.tax;
+      setCurrentShoppingCart(updatedCart);
+    }, [currentShoppingCart])
+
+  const addToCart = useCallback(
+    (item) => {
+      const { id } = item;
+      const foundItem = currentShoppingCart.items.find(
+        (shoppingCartItem) => shoppingCartItem.id === id
+      );
+      if (foundItem) {
+        foundItem.quantity += item.quantity;
+        foundItem.containers = [...foundItem.containers, ...item.containers];
+      } else {
+        currentShoppingCart.items.push(item);
+      }
+      const updatedCart = { ...currentShoppingCart };
       updatedCart.totalItems += item.quantity;
-      updatedCart.subtotal += (item.price * item.quantity);
+      updatedCart.subtotal += item.price * item.quantity;
       updatedCart.tax += 0;
       updatedCart.total = updatedCart.subtotal + updatedCart.tax;
       setCurrentShoppingCart(updatedCart);
@@ -47,15 +66,17 @@ const ShoppingCartContextProvider = ({ children }) => {
         return; // item not found in cart
       }
       const itemToRemove = currentShoppingCart.items[itemIndex];
-      currentShoppingCart.totalItems -= itemToRemove.quantity;
-      currentShoppingCart.subtotal -=
-        itemToRemove.price * itemToRemove.quantity;
-      currentShoppingCart.tax -=
-        itemToRemove.price * 0.1 * itemToRemove.quantity;
-      currentShoppingCart.total =
-        currentShoppingCart.subtotal + currentShoppingCart.tax;
-      currentShoppingCart.items.splice(itemIndex, 1);
+      if (itemToRemove.quantity === 1) {
+        currentShoppingCart.items.splice(itemIndex, 1);
+      } else {
+        itemToRemove.quantity -= 1;
+      }
       const updatedCart = { ...currentShoppingCart };
+      updatedCart.totalItems -= 1;
+      updatedCart.subtotal -= itemToRemove.price;
+      updatedCart.tax = 0;
+      updatedCart.total =
+        updatedCart.subtotal + updatedCart.tax;
       setCurrentShoppingCart(updatedCart);
     },
     [currentShoppingCart]
@@ -65,32 +86,33 @@ const ShoppingCartContextProvider = ({ children }) => {
     setCurrentShoppingCart(new ShoppingCart());
   }, []);
 
-  const removeAllOfAKindFromCart = useCallback((item) => {
-    const foundItem = currentShoppingCart.items.found(
-      (shoppingCartItem) => shoppingCartItem.id === item.id
-    );
-    if (foundItem) {
-      // currentShoppingCart.totalItems -= foundItem.quantity;
-      // currentShoppingCart.subtotal -= foundItem.price * foundItem.quantity;
-      // currentShoppingCart.tax -=
-      //   foundItem.price * 0.1 * foundItem.quantity;
-      // currentShoppingCart.total =
-      //   currentShoppingCart.subtotal + currentShoppingCart.tax;
-      // const itemIndex = currentShoppingCart.items.findIndex(
-      //   (shoppingCartItem) => shoppingCartItem.id === item.id
-      // );
-      // currentShoppingCart.items.splice(itemIndex, 1);
-      // const updatedCart = { ...currentShoppingCart };
-      // setCurrentShoppingCart(updatedCart);
-    }
-  }, [currentShoppingCart])
+  const removeAllOfAKindFromCart = useCallback(
+    (itemId) => {
+      const itemIndex = currentShoppingCart.items.findIndex(
+        (shoppingCartItem) => shoppingCartItem.id === itemId
+      );
+      if (itemIndex !== -1) {
+        const foundItem = currentShoppingCart.items[itemIndex];
+        const updatedCart = { ...currentShoppingCart };
+        updatedCart.items.splice(itemIndex, 1);
+        updatedCart.totalItems -= foundItem.quantity;
+        updatedCart.subtotal -= foundItem.price * foundItem.quantity;
+        updatedCart.tax = 0;
+        updatedCart.total =
+          updatedCart.subtotal + updatedCart.tax;
+        setCurrentShoppingCart(updatedCart);
+      }
+    },
+    [currentShoppingCart]
+  );
 
   return (
     <ShoppingCartContext.Provider
       value={{
         cart: currentShoppingCart,
-        addItem: addToCart,
-        removeItem: removeFromCart,
+        addItems: addToCart,
+        addOneItem: addOneToCart,
+        removeOneItem: removeFromCart,
         removeAllItems: removeAllFromCart,
         removeAllItemsOfAKind: removeAllOfAKindFromCart,
       }}
