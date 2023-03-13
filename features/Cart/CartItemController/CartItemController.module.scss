@@ -2,21 +2,34 @@
 @import "../../../styles/mixins";
 
 .cartItemController {
-  border-radius: $br-full;
-  background-color: lighten($green, 20%);
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-family: $bold;
-  font-size: 12px;
-  padding: 4px 8px;
-  min-width: 60px;
+  justify-content: space-between;
+  font-size: 16px;
 
-  span {
+  .badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $br-full;
+    border: 1px solid darken($snow, 5%);
+    background-color: $snow;
+    font-size: 18px;
+    padding: 4px 8px;
+    min-width: 60px;
+    margin-right: 16px;
+
+    button {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 24px;
+      margin: 0 24px;
+    }
+  }
+
+  .delete {
+    color: $important;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: $regular2;
-    display: inline-block;
-    margin: 0 8px;
+    font-size: 20px;
   }
 }

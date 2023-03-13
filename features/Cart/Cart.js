@@ -1,44 +1,60 @@
 // local imports
-import CurrencyText from "../../components/Currency";
-
 // styles
-import styles from "./Cart.module.scss";
 import CartItemController from "./CartItemController";
+import styles from "./Cart.module.scss";
+
+// components
+import Button from "../../components/Button";
+import CurrencyText from "../../components/Currency";
 
 const Cart = ({
   cart,
-  addItems,
   addOneItem,
   removeOneItem,
   removeAllItems,
   removeAllItemsOfAKind,
 }) => (
   <div className={styles.cart}>
-    <div>
-      <h2 className={styles.header}>Tu compra:</h2>
-      <div className={styles.items}>
-        {cart.items.map((item) => (
-          <div key={item.id} className={styles.item}>
-            <div className={styles.itemInfo}>
-              <h3>{item.productName}</h3>
-              <div className={styles.itemTotalPrice}>
-                <CurrencyText value={item.price * item.quantity} />
-              </div>
-            </div>
-            <div>
-              <CartItemController
-                item={item}
-                addOneItem={addOneItem}
-                removeOneItem={removeOneItem}
-                removeAllItemsOfAKind={removeAllItemsOfAKind}
-              />
-            </div>
+    <h2 className={styles.header}>Tu Carrito:</h2>
+    <div className={styles.items}>
+      {cart.items.map((item) => (
+        <div key={item.id} className={styles.item}>
+          <div className={styles.itemInfo}>
+            <h3>{item.productName}</h3>
+            <p>
+              <CurrencyText value={item.price * item.quantity} />{' '}
+              <span className={styles.unds}>
+                (<CurrencyText value={item.price} /> c/u)
+              </span>
+            </p>
           </div>
-        ))}
-      </div>
-      <h3>
-        Total: <CurrencyText value={cart.total} />
-      </h3>
+          <div>
+            <CartItemController
+              item={item}
+              addOneItem={addOneItem}
+              removeOneItem={removeOneItem}
+              removeAllItemsOfAKind={removeAllItemsOfAKind}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className={styles.total}>
+      <span>Total:</span> <CurrencyText value={cart.total} />
+    </div>
+    <div className={styles.purchase}>
+      <Button
+        className={`${styles.button} ${styles.empty}`}
+        onClick={() => console.log('generar orden')}
+      >
+        Vaciar Carrito
+      </Button>
+      <Button
+        className={styles.button}
+        onClick={() => console.log('generar orden')}
+      >
+        Generar Orden
+      </Button>
     </div>
   </div>
 );

@@ -1,24 +1,24 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
 
 .addToCart {
-    color: $text-color;
-    background-color: $green;
-    border-radius: $br-base;
-    font-size: 18px;
-    font-family: $light2;
-    letter-spacing: 1.2px;
-    padding: 16px;
-    text-transform: uppercase;
-    width: 100%;
-    margin-bottom: 16px;
+  color: $text-color;
+  background-color: $green;
+  border-radius: $br-base;
+  font-size: 18px;
+  font-family: $light2;
+  letter-spacing: 1.2px;
+  padding: 16px;
+  text-transform: uppercase;
+  width: 100%;
+  margin-bottom: 16px;
 
-    @include mdq(lg) {
-      padding: 8px 16px;
-    }
-    
-    &:hover {
-      color: $white;
-      background-color: $darkGreen;
-    }
+  @include mdq(lg) {
+    padding: 8px 16px;
   }
+
+  &:hover {
+    color: $white;
+    background-color: $darkGreen;
+  }
+}

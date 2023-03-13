@@ -2,14 +2,15 @@
 @import "../../styles/mixins";
 
 .cart {
-  padding: 32px;
+  padding: 16px 32px;
   width: 100%;
   max-width: 768px;
   margin: 0 auto;
-  margin-top: 32px;
 
   @include mdq(md) {
-    border: 1px solid $snow;
+    border: 1px solid $lightGray;
+    border-radius: $br-base;
+    margin-top: 64px;
   }
 
   .header {
@@ -20,22 +21,41 @@
   }
 
   .items {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px;
-    border-radius: $br-base;
-    border: 1px solid $snow;
+    margin-bottom: 32px;
 
     .item {
+      padding: 16px;
+      border-radius: $br-base;
+      border: 1px solid $lightGray;
+      display: flex;
+      flex-flow: column;
       margin-bottom: 16px;
 
+      @include mdq(md) {
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
       &Info {
+        font-size: 16px;
         margin-bottom: 16px;
+
         h3 {
-          font-family: $regular;
           font-size: 16px;
           margin-bottom: 8px;
+        }
+
+        p {
+          font-size: 16px;
+
+          .unds {
+            color: $gray;
+            display: inline-block;
+            margin-left: 8px;
+            font-family: $light;
+            font-size: 13px;
+          }
         }
       }
     }
@@ -43,6 +63,59 @@
     .itemTotalPrice {
       font-family: $bold;
       font-size: 14px;
+    }
+  }
+
+  .total {
+    border: 1px solid $lightGray;
+    border-radius: $br-base;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: $bold;
+    margin-bottom: 32px;
+    padding: 16px;
+    text-align: right;
+  }
+
+  .purchase {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column-reverse;
+
+    @include mdq(md) {
+      flex-flow: row;
+    }
+
+    .button {
+      color: $text-color;
+      background-color: $green;
+      border-radius: $br-base;
+      font-size: 18px;
+      font-family: $light2;
+      letter-spacing: 1.2px;
+      margin: 0 16px;
+      margin-bottom: 16px;
+      padding: 16px;
+      text-transform: uppercase;
+      width: 100%;
+      max-width: 320px;
+    
+      @include mdq(lg) {
+        padding: 8px 16px;
+      }
+    
+      &:hover {
+        color: $white;
+        background-color: $darkGreen;
+      }
+
+      &.empty {
+        background-color: $white;
+        border: 1px solid $darkGreen;
+        color: $darkGreen;
+      }
     }
   }
 }

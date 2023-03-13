@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
@@ -6,28 +6,32 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 // styles
 import styles from "./CartItemController.module.scss";
 
-const CartItemController = ({ addOneItem, removeOneItem, removeAllItemsOfAKind, item }) => {
+const CartItemController = ({
+  addOneItem,
+  removeOneItem,
+  removeAllItemsOfAKind,
+  item,
+}) => {
   return (
     <div className={styles.cartItemController}>
-    <span
-      role="button"
-      tabIndex={0}
-      onClick={() => removeOneItem(item)}
-    >
-      -
-    </span>
-    {item.quantity}
-    <span role="button" tabIndex={0} onClick={() => addOneItem(item)}>
-      +
-    </span>
-    <span
-      role="button"
-      tabIndex={0}
-      onClick={() => removeAllItemsOfAKind(item.id)}
-    >
-      <FontAwesomeIcon icon={faTrashCan} size="sm" />
-    </span>
-  </div>
+      <div className={styles.badge}>
+        <button onClick={() => removeOneItem(item)}>
+          -
+        </button>
+        {item.quantity}
+        <button onClick={() => addOneItem(item)}>
+          +
+        </button>
+      </div>
+      <span
+        role="button"
+        tabIndex={0}
+        onClick={() => removeAllItemsOfAKind(item.id)}
+        className={styles.delete}
+      >
+        <FontAwesomeIcon icon={faTrashCan} size="sm" />
+      </span>
+    </div>
   );
 };
 
