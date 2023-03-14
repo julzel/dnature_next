@@ -20,7 +20,6 @@ const ProductDetail = ({ productDetail }) => (
       <div className={styles.productDetailIngredients}>
         <h2>Ingredientes</h2>
         <p className={styles.ingredients}>
-          <br />
           {productDetail.ingredientes}
         </p>
         {productDetail.iconos && (
