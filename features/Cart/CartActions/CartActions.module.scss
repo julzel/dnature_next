@@ -1,0 +1,21 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.cartActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+
+  @include mdq(md) {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+
+  .button {
+    @include button-styles(
+      $font-family: $regular,
+      $width: calc((100% / 3) - 16px),
+    );
+  }
+}

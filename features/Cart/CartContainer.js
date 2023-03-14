@@ -1,38 +1,37 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import html2canvas from "html2canvas";
-import { useCartContext } from "../../contexts/shopping-cart-context";
+
+// local imports
+// components
 import Cart from "./Cart";
+
+// contexts
+import { useCartContext } from "../../contexts/shopping-cart-context";
+
+// util
 
 const CartContainer = () => {
   const [showPurchaseOrder, setShowPurchaseOrder] = useState(false);
+  const [requestClientInfo, setRequestClientInfo] = useState(false);
+  const { cart, updateCartClient } = useCartContext();
   const canvasElem = useRef(null);
-  const {
-    cart,
-    addOneItem,
-    addItems,
-    removeOneItem,
-    removeAllItems,
-    removeAllItemsOfAKind,
-  } = useCartContext();
 
   const generatePurchaseLink = useCallback(() => {
-    // // Use html2canvas to convert the div to an image
-    // html2canvas(canvasElem.current).then(async (canvas) => {
-    //   // Create a new link object and set its href to the canvas data
-    //   var link = document.createElement("a");
-    //   link.href = canvas.toDataURL("image/png");
-
-    //   // Set the link object's attributes to enable downloading the image
-    //   link.download = "my-image.png";
-
-    //   // Click the link object to download the image
-    //   link.click();
-    // });
+   
   }, []);
 
-  const createPurchaseOrder = () => {
-    // Display the purchase order
+
+  const onClientInfoSubmit = (client) => {
+    updateCartClient(client);
+    setRequestClientInfo(false);
     setShowPurchaseOrder(true);
+  };
+
+  const proceedToPurchase = () => {
+    if (cart.client.firstName) {
+      setShowPurchaseOrder(true);
+    } else {
+      setRequestClientInfo(true)
+    }
   };
 
   useEffect(() => {
@@ -44,14 +43,12 @@ const CartContainer = () => {
   return (
     <Cart
       cart={cart}
-      addItems={addItems}
-      addOneItem={addOneItem}
-      removeOneItem={removeOneItem}
-      removeAllItems={removeAllItems}
-      removeAllItemsOfAKind={removeAllItemsOfAKind}
-      createPurchaseOrder={createPurchaseOrder}
+      proceedToPurchase={proceedToPurchase}
       showPurchaseOrder={showPurchaseOrder}
       canvasElem={canvasElem}
+      requestClientInfo={requestClientInfo}
+      closeClientInfoModal={() => setRequestClientInfo(false)}
+      onClientInfoSubmit={onClientInfoSubmit}
     />
   );
 };

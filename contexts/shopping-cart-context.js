@@ -8,6 +8,12 @@ const ShoppingCartContextProvider = ({ children }) => {
     () => new ShoppingCart()
   );
 
+  const updateCartClient = useCallback((client) => {
+    const updatedCart = { ...currentShoppingCart };
+    updatedCart.client = client;
+    setCurrentShoppingCart(updatedCart);
+  }, [currentShoppingCart]);
+
   const addOneToCart = useCallback(
     (item) => {
       const { id } = item;
@@ -30,10 +36,11 @@ const ShoppingCartContextProvider = ({ children }) => {
       updatedCart.totalItems += 1;
       updatedCart.subtotal += item.price;
       updatedCart.tax += 0;
-      updatedCart.total =
-        updatedCart.subtotal + updatedCart.tax;
+      updatedCart.total = updatedCart.subtotal + updatedCart.tax;
       setCurrentShoppingCart(updatedCart);
-    }, [currentShoppingCart])
+    },
+    [currentShoppingCart]
+  );
 
   const addToCart = useCallback(
     (item) => {
@@ -75,8 +82,7 @@ const ShoppingCartContextProvider = ({ children }) => {
       updatedCart.totalItems -= 1;
       updatedCart.subtotal -= itemToRemove.price;
       updatedCart.tax = 0;
-      updatedCart.total =
-        updatedCart.subtotal + updatedCart.tax;
+      updatedCart.total = updatedCart.subtotal + updatedCart.tax;
       setCurrentShoppingCart(updatedCart);
     },
     [currentShoppingCart]
@@ -98,8 +104,7 @@ const ShoppingCartContextProvider = ({ children }) => {
         updatedCart.totalItems -= foundItem.quantity;
         updatedCart.subtotal -= foundItem.price * foundItem.quantity;
         updatedCart.tax = 0;
-        updatedCart.total =
-          updatedCart.subtotal + updatedCart.tax;
+        updatedCart.total = updatedCart.subtotal + updatedCart.tax;
         setCurrentShoppingCart(updatedCart);
       }
     },
@@ -115,6 +120,7 @@ const ShoppingCartContextProvider = ({ children }) => {
         removeOneItem: removeFromCart,
         removeAllItems: removeAllFromCart,
         removeAllItemsOfAKind: removeAllOfAKindFromCart,
+        updateCartClient: updateCartClient,
       }}
     >
       {children}

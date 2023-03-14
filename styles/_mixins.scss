@@ -1,18 +1,73 @@
+@import "./variables";
+
 $media: (
-    sm: 576px,
-    md: 768px,
-    lg: 1024px,
-    xl: 1280px,
-    xxl: 1440px,
-    xxxl: 1920px,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1440px,
+  xxxl: 1920px,
 );
 
-@mixin mdq ($breakpoint) {
-    @each $breakpoints, $size in $media {
-        @if $breakpoint==$breakpoints {
-            @media screen and (min-width: $size) {
-                @content;
-            }
-        }
+@mixin mdq($breakpoint) {
+  @each $breakpoints, $size in $media {
+    @if $breakpoint==$breakpoints {
+      @media screen and (min-width: $size) {
+        @content;
+      }
     }
+  }
+}
+
+@mixin button-styles(
+  //$bg-color: $black,
+  $bg-color: $blue,
+  $text-color: $white,
+  $font-family: $light,
+  $secondary-bg-color: lighten($gray, 45%),
+  $secondary-text-color: $gray,
+  $width: 320px
+) {
+  color: $text-color;
+  background-color: $bg-color;
+  font-size: 16px;
+  font-family: $font-family;
+  letter-spacing: 1.2px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  transition: all 200ms ease-out;
+  width: 100%;
+
+  @include mdq(lg) {
+    padding: 8px 16px;
+    width: $width;
+  }
+
+  &:hover {
+    color: $text-color;
+    background-color: lighten($bg-color, 5%);
+  }
+
+  &.secondary {
+    background-color: $secondary-bg-color;
+    color: $secondary-text-color;
+
+    &:hover {
+      color: darken($secondary-text-color, 25%);
+      background-color: darken($secondary-bg-color, 5%);
+    }
+  }
+
+  &.variant {
+    background-color: transparent;
+    border: 1px solid $bg-color;
+    color: $bg-color;
+
+    &:hover {
+      color: darken($bg-color, 2%);
+      border-color: lighten($bg-color, 55%);
+      background-color: lighten($bg-color, 55%);
+    }
+  }
 }

@@ -1,66 +1,46 @@
-import { useRef } from "react";
 // local imports
 // styles
 import styles from "./Cart.module.scss";
 
 // components
-import Button from "../../components/Button";
+import Modal from '../../components/Modal';
+import ClientForm from '../../components/ClientForm';
 import CurrencyText from "../../components/Currency";
-import CartItemController from "./CartItemController";
 import CartPurchaseOrderContainer from "./CartPurchaseOrder";
+import CartActionsContainer from "./CartActions";
+import CartItemsContainer from "./CartItems";
+import ModalContainer from "../../components/Modal";
 
 const Cart = ({
   cart,
-  addOneItem,
-  removeOneItem,
-  removeAllItems,
-  removeAllItemsOfAKind,
-  createPurchaseOrder,
+  proceedToPurchase,
   showPurchaseOrder,
   canvasElem,
+  requestClientInfo,
+  closeClientInfoModal,
+  onClientInfoSubmit,
 }) => (
   <div className={styles.cart}>
-    <h2 className={styles.header}>Tu Carrito:</h2>
-    <div className={styles.items}>
-      {cart.items.map((item) => (
-        <div key={item.id} className={styles.item}>
-          <div className={styles.itemInfo}>
-            <h3>{item.productName}</h3>
-            <p>
-              <CurrencyText value={item.price * item.quantity} />{" "}
-              <span className={styles.unds}>
-                (<CurrencyText value={item.price} /> c/u)
-              </span>
-            </p>
-          </div>
-          <div>
-            <CartItemController
-              item={item}
-              addOneItem={addOneItem}
-              removeOneItem={removeOneItem}
-              removeAllItemsOfAKind={removeAllItemsOfAKind}
-            />
-          </div>
+    <div className={styles.cartContent}>
+      <div>
+        <h2 className={styles.header}>Tu Carrito:</h2>
+
+        <CartItemsContainer items={cart.items} />
+
+        <div className={styles.total}>
+          <span>Total:</span> <CurrencyText value={cart.total} />
         </div>
-      ))}
-    </div>
-    <div className={styles.total}>
-      <span>Total:</span> <CurrencyText value={cart.total} />
-    </div>
-    <div className={styles.purchase}>
-      <Button
-        className={`${styles.button} ${styles.empty}`}
-        onClick={() => console.log("generar orden")}
-      >
-        Vaciar Carrito
-      </Button>
-      <Button className={styles.button} onClick={() => createPurchaseOrder()}>
-        Generar Orden
-      </Button>
+      </div>
+      <CartActionsContainer proceedToPurchase={proceedToPurchase} />
     </div>
     <div ref={canvasElem}>
       {showPurchaseOrder && <CartPurchaseOrderContainer />}
     </div>
+    {requestClientInfo && (
+      <ModalContainer closeModal={closeClientInfoModal}>
+        <ClientForm onSubmit={onClientInfoSubmit} />
+      </ModalContainer>
+    )}
   </div>
 );
 

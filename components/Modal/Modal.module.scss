@@ -1,22 +1,37 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
-.modal {
+.modalContainer {
+    background-color: rgba(21, 21, 21, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
     position: fixed;
+    left: 0;
     top: 0;
-    left: 100vw;
-    height: 100vh;
-    width: 100vw;
-    background-color: $white;
-    z-index: 3;
-    animation: 390ms ease-in-out 10ms 1 normal forwards;
+    z-index: 6;
+  
+    .modal {
+      background-color: $white;
+      height: calc(100% - 20px);
+      width: calc(100% - 20px);
+      max-width: 600px;
+      padding: 32px 16px;
+      position: relative;
+  
+      @include mdq(md) {
+        height: auto;
+        padding: 32px;
+      }
 
-    &Close {
-        color: $white;
-        font-size: 45px;
+      .close {
         position: absolute;
-        top: 15px;
-        right: 30px;
-        z-index: 3;
+        right: 16px;
+        top: 16px;
+        cursor: pointer;
+      }
     }
 }
-

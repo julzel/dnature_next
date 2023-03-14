@@ -4,7 +4,7 @@
 .product {
   max-width: 600px;
   margin: 0 auto;
-  padding: 60px 25px 0;
+  padding: 32px;
 
   @include mdq(lg) {
     width: 100%;
@@ -15,8 +15,7 @@
     color: $gray;
     font-family: $light;
     font-size: 14px;
-    margin-bottom: 10px;
-    padding-top: 25px;
+    margin-bottom: 16px;
 
     span {
       display: inline-block;
