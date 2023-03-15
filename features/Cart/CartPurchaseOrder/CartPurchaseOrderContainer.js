@@ -1,9 +1,12 @@
-import React from 'react';
-import CartPurchaseOrder from './CartPurchaseOrder';
+import React from "react";
+import CartPurchaseOrder from "./CartPurchaseOrder";
 
-const CartPurchaseOrderContainer = () => {
+const CartPurchaseOrderContainer = ({ onPurchaseCancel, onPurchaseConfirm }) => {
   return (
-    <CartPurchaseOrder />
+    <CartPurchaseOrder
+      onPurchaseCancel={onPurchaseCancel}
+      onPurchaseConfirm={onPurchaseConfirm}
+    />
   );
 };
 

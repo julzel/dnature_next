@@ -17,31 +17,50 @@
   
   .cartContent {
     background-color: $white;
-    padding: 32px;
-    max-width: 768px;
-    width: 100%;
+    border: 1px solid $border;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
+    padding: 32px;
+    max-width: 768px;
+    width: 100%;
 
-    border: 1px solid $border;
+    .header {
+      font-family: $bold2;
+      font-size: 12px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+  
+    .total {
+      border: 1px solid $border;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: $bold;
+      margin-bottom: 32px;
+      padding: 16px;
+      text-align: right;
+    }
   }
 
-  .header {
-    font-family: $bold2;
-    font-size: 12px;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-  }
-
-  .total {
-    border: 1px solid $border;
+  .cartClientForm {
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: $bold;
-    margin-bottom: 32px;
-    padding: 16px;
-    text-align: right;
+    flex-flow: column;
+    padding-top: 16px;
+
+    form {
+      border: 1px solid $border;
+      padding: 16px;
+    }
+  }
+
+  .canvas {
+    margin: 0 auto;
+    padding: 24px 16px;
+    position: absolute;
+    width: 100%;
+    max-width: 320px;
   }
 }

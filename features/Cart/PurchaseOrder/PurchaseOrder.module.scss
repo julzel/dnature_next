@@ -17,10 +17,14 @@
   }
 
   .client {
-    > div > span {
-        font-size: 13px;
+    margin-bottom: 16px;
+    > div {
+      font-size: 13px;
+      > span {
+        font-family: $bold;
         margin-right: 5px;
         text-transform: uppercase;
+      }
     }
   }
 

@@ -13,10 +13,8 @@ import { getDateDMY } from "../../../util/dates";
 const PurchaseOrderContainer = () => {
   const { cart } = useCartContext();
 
-  const currentDate = getDateDMY();
-
   return (
-    <PurchaseOrder cart={cart} currentDate={currentDate} />
+    <PurchaseOrder cart={cart} currentDate={getDateDMY()} />
   );
 };
 

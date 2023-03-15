@@ -7,35 +7,6 @@ import styles from "./PurchaseOrder.module.scss";
 // components
 import CurrencyText from "../../../components/Currency";
 
-/*
-{
-    "items": [
-        {
-            "id": "5eEfu2xGibqbMTr4GFgvyM",
-            "quantity": 2,
-            "price": 2000,
-            "productName": "Bofé de res deshidratado ",
-            "containers": [
-                {
-                    "description": "1000 gramos",
-                    "quantity": 2
-                }
-            ]
-        }
-    ],
-    "totalItems": 2,
-    "total": 4000,
-    "subtotal": 4000,
-    "tax": 0,
-    "discount": 0,
-    "client": {
-        "id": "",
-        "firstName": "",
-        "lastName": ""
-    }
-}
-*/
-
 const PurchaseOrder = ({ cart, currentDate }) => {
   console.log(cart);
   return (
@@ -45,8 +16,19 @@ const PurchaseOrder = ({ cart, currentDate }) => {
       </h1>
       {true && (
         <div className={styles.client}>
-          <div><span>Cliente:</span>{cart.client?.firstName} {cart.client?.lastName}</div>
-          <div><span></span></div>
+          <div>
+            <span>Cliente:</span>
+            {cart.client?.firstName} {cart.client?.lastName}
+          </div>
+          <div>
+            <span>Teléfono:</span>
+            {cart.client?.contactPhoneNumber}
+          </div>
+          <div>
+            <span>Dirección</span>
+            {cart.client.address.direccion}. {cart.client.address.canton},{" "}
+            {cart.client.address.provincia}
+          </div>
         </div>
       )}
       <table className={styles.table}>
@@ -78,15 +60,21 @@ const PurchaseOrder = ({ cart, currentDate }) => {
         <tfoot className={styles.tableFoot}>
           <tr>
             <td colSpan="3">Subtotal</td>
-            <td><CurrencyText value={cart.subtotal} /></td>
+            <td>
+              <CurrencyText value={cart.subtotal} />
+            </td>
           </tr>
           <tr>
             <td colSpan="3">Descuento</td>
-            <td><CurrencyText value={0.00} /></td>
+            <td>
+              <CurrencyText value={0.0} />
+            </td>
           </tr>
           <tr>
             <td colSpan="3">Total</td>
-            <td><CurrencyText value={cart.total} /></td>
+            <td>
+              <CurrencyText value={cart.total} />
+            </td>
           </tr>
         </tfoot>
       </table>

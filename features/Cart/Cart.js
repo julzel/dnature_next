@@ -3,22 +3,24 @@
 import styles from "./Cart.module.scss";
 
 // components
-import Modal from '../../components/Modal';
-import ClientForm from '../../components/ClientForm';
+import ClientForm from "../../components/ClientForm";
 import CurrencyText from "../../components/Currency";
 import CartPurchaseOrderContainer from "./CartPurchaseOrder";
 import CartActionsContainer from "./CartActions";
 import CartItemsContainer from "./CartItems";
 import ModalContainer from "../../components/Modal";
+import PurchaseOrderContainer from "./PurchaseOrder";
 
 const Cart = ({
   cart,
+  canvasElem,
   proceedToPurchase,
   showPurchaseOrder,
-  canvasElem,
   requestClientInfo,
   closeClientInfoModal,
   onClientInfoSubmit,
+  onPurchaseCancel,
+  onPurchaseConfirm,
 }) => (
   <div className={styles.cart}>
     <div className={styles.cartContent}>
@@ -33,13 +35,25 @@ const Cart = ({
       </div>
       <CartActionsContainer proceedToPurchase={proceedToPurchase} />
     </div>
-    <div ref={canvasElem}>
-      {showPurchaseOrder && <CartPurchaseOrderContainer />}
-    </div>
+
     {requestClientInfo && (
       <ModalContainer closeModal={closeClientInfoModal}>
-        <ClientForm onSubmit={onClientInfoSubmit} />
+        <ClientForm onSubmit={onClientInfoSubmit} className={styles.cartClientForm} />
       </ModalContainer>
+    )}
+
+    {showPurchaseOrder && (
+      <>
+        <ModalContainer closeModal={onPurchaseCancel}>
+          <CartPurchaseOrderContainer
+            onPurchaseCancel={onPurchaseCancel}
+            onPurchaseConfirm={onPurchaseConfirm}
+          />
+        </ModalContainer>
+        <div ref={canvasElem} className={styles.canvas}>
+          <PurchaseOrderContainer />
+        </div>
+      </>
     )}
   </div>
 );

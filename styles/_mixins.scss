@@ -71,3 +71,27 @@ $media: (
     }
   }
 }
+
+@mixin input-styles(
+  $border-color: $border,
+  $text-color: $text-color,
+  $active-border-color: $blue,
+  $error-color: $important,
+) {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  color: $text-color;
+  font-size: 16px;
+  font-family: $light;
+  padding: 8px 16px;
+  transition: all 200ms ease-out;
+  width: 100%;
+
+  &:focus {
+    border-color: $active-border-color;
+  }
+
+  &.error {
+    border-color: $error-color;
+  }
+}

@@ -1,3 +1,43 @@
-.ClientForm {
-  
+@import '../../styles/mixins';
+
+.clientForm {
+
+    h2 {
+        font-size: 24px;
+        font-family: $bold;
+        margin-bottom: 16px;
+    }
+
+    form {
+        > div {
+            margin-bottom: 24px;
+    
+            &:last-of-type {
+                margin-bottom: 32px;
+            }
+        }   
+    }
+
+    label,
+    input {
+        display: block;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    label {
+        font-size: 12px;
+        font-family: $bold2;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+    }
+
+    input {
+        padding: 8px;
+        @include input-styles();
+    }
+
+    button {
+        @include button-styles();
+    }
 }

@@ -14,7 +14,7 @@ const downloadScreenShot = (dataUrl, filename) => {
 const captureElementScreenshot = async (element) => {
   try {
     // Capture the screenshot as a canvas
-    const canvas = await html2canvas(element);
+    const canvas = await html2canvas(element, { useCORS: true });
 
     // Convert the canvas to a data URL (Base64 encoded image)
     const screenshotDataUrl = canvas.toDataURL("image/png");

@@ -7,7 +7,7 @@ import ClientForm from "./ClientForm";
 // classes
 import { Client } from "../../models/client";
 
-const ClientFormContainer = ({ onSubmit }) => {
+const ClientFormContainer = ({ onSubmit, className }) => {
   const [client, setClient] = useState(new Client());
 
   const handleChange = (e) => {
@@ -37,6 +37,7 @@ const ClientFormContainer = ({ onSubmit }) => {
       client={client}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
+      className={className}
     />
   );
 };

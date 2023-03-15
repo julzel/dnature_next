@@ -1,4 +1,4 @@
-import { captureElementScreenshot } from "./images";
+import { captureElementScreenshot, downloadScreenShot } from "./images";
 import { getDateDMY } from "./dates";
 
 const dog = {
@@ -167,5 +167,6 @@ export {
   labelKeys,
   valueKeys,
   captureElementScreenshot,
+  downloadScreenShot,
   getDateDMY,
 };
