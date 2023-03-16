@@ -7,6 +7,7 @@ const useAuth = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        // add comment
         const response = await fetch('/api/current_user');
         const data = await response.json();
         setUser(data.user);
