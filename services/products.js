@@ -1,12 +1,11 @@
-import { fetchFromContentful } from './util';
+import { fetchFromContentful } from "./util";
 
-// update from category
 const categoriesPriority = [
-  'recetas',
-  'snacks',
-  'suplementos',
-  'proteinas',
-  'organos',
+  "snacks",
+  "recetas",
+  "suplementos",
+  "proteinas",
+  "organos",
 ];
 
 const productsQuery = () => `
@@ -32,6 +31,7 @@ const productsQuery = () => `
     }
 }
 `;
+
 const productQuery = (productId) => `
         {
             product(id:"${productId}") {
@@ -60,26 +60,24 @@ const productQuery = (productId) => `
         }
         `;
 
+// const formatImageCollection = (imageCollection) => imageCollection.items;
+
 const formatProductsData = (productItems) => {
   const catalog = {};
   productItems.forEach((item) => {
     const { categorySlug, category, imageCollection } = item;
-    const images = imageCollection.items.map((image) => image);
-    item.images = images;
+    item.images = imageCollection.items;
     delete item.imageCollection;
 
-    // After the first iteration, the catalog object will have a property
     if (catalog.hasOwnProperty(categorySlug)) {
       catalog[categorySlug].products.push(item);
     } else {
-      // If not, we create it
       catalog[categorySlug] = {
         label: category,
         id: categorySlug,
-        products: [],
+        products: [item],
         index: categoriesPriority.indexOf(categorySlug),
       };
-      catalog[categorySlug].products.push(item);
     }
   });
   return catalog;
@@ -91,12 +89,10 @@ const getProducts = async () => {
 };
 
 const formatProductData = (product) => {
-  const images = product.imageCollection?.items.map((image) => image);
-  product.images = images;
+  product.images = product.imageCollection.items;
   delete product.imageCollection;
 
-  const iconos = product.iconosCollection?.items.map((image) => image);
-  product.iconos = iconos;
+  product.iconos = product.iconosCollection.items;
   delete product.iconosCollection;
   return product;
 };

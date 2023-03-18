@@ -23,7 +23,7 @@ const HeroContainer = () => {
 
   const handleComprarClick = (e) => {
     e.preventDefault();
-    router.push('/tienda');
+    router.push('/productos');
   }
 
   return (

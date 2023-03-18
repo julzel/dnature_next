@@ -9,7 +9,7 @@ const Filter = props => {
 
     return (
         <>
-            <FilterMobile {...props} />
+            {/* <FilterMobile {...props} /> */}
             <FilterDesktop {...props} />
         </>
     )

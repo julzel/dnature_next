@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 // import ResponsiveImage from '../../../components/ResponsiveImage';
-import HeroButton from './HeroButton';
-import styles from './Hero.module.scss';
+import Button from "../../../components/Button";
+import styles from "./Hero.module.scss";
 
 const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
   return (
     <div className={styles.heroContainer}>
-      <h1 className='seo-hidden'>
+      <h1 className="seo-hidden">
         Alimentación natural y dieta cruda para mascotas
       </h1>
       <div className={styles.heroAction}>
@@ -21,8 +21,16 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
         </p>
 
         <div className={styles.heroActionButtons}>
-          <HeroButton text={'Plan DNA'} onClick={handlePlanDnaClick} />
-          <HeroButton text={'Comprar'} onClick={handleComprarClick} variant={'secondary'} />
+          <Button
+            text={"Plan DNA"}
+            className={`${styles.button} ${styles.secondary}`}
+            onClick={handlePlanDnaClick}
+          />
+          <Button
+            text={"Comprar"}
+            className={styles.button}
+            onClick={handleComprarClick}
+          />
         </div>
       </div>
       <div className={styles.hero}>

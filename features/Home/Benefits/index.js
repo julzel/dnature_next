@@ -9,7 +9,7 @@ import benefits from './benefits';
 import styles from './Benefits.module.scss';
 
 // images
-import pawIcon from '../../../public/images/paw.svg';
+import benefitsImage from '../../../public/images/benefits.jpg';
 
 // components
 import AnimationBox from '../../../components/AnimationBox';
@@ -17,19 +17,22 @@ import AnimationBox from '../../../components/AnimationBox';
 const Benefits = () => {
   return (
     <div className={styles.benefits}>
-      <h2 className={`title ${styles.title}`}>Beneficios</h2>
       <div className={styles.benefitsContainer}>
-        <ul>
+        <h2 className={`title ${styles.title}`}>Beneficios</h2>
+        <ul className={styles.list}>
           {benefits.map((benefit, i) => (
             <li key={i}>
               <AnimationBox animation='fade-in-from-left'>
-                {/* <Image src={pawIcon} alt='pawIcon' /> */}
+                {/*  */}
                 {benefit}
               </AnimationBox>
             </li>
           ))}
         </ul>
       </div>
+      <div className={styles.benefitsImage}>
+          <Image src={benefitsImage} alt='Perrito saludable comiendo' /> 
+        </div>
     </div>
   );
 };

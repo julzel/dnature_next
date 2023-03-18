@@ -6,23 +6,20 @@ import React, { useState } from 'react'
 // styles
 import styles from './FilterDesktop.module.scss'
 
-const FilterDesktop = ({ optionsList, selectedOption }) => {
-    const [activeOption, setActiveOption] = useState(selectedOption.id)
+const FilterDesktop = ({ options, selected, onOptionSelect }) => {
+    console.log(selected)
 
     return (
         <div className={styles.filter}>
             <ul className={styles.filterList}>
-                {optionsList.map(item => {
+                {options.map(item => {
                     return (
                         <li
                             role='button'
                             key={`filter-by-${item.id}`}
                             tabIndex='0'
-                            onClick={() => {
-                                item.onClick(item.id)
-                                setActiveOption(item.id)
-                            }}
-                            className={activeOption === item.id ? styles.active : ''}
+                            onClick={() =>onOptionSelect(item.id) }
+                            className={selected === item.id ? styles.active : ''}
                         >
                             {item.label}
                         </li>

@@ -1,32 +1,46 @@
-@import '../../../styles/_variables';
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .benefits {
   background-color: $green;
   display: flex;
   flex-flow: column;
-  padding: 80px 20px 60px;
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+
+  @include mdq(md) {
+    flex-flow: row;
+    justify-content: space-around;
+  }
 
   .title {
     font-family: $cursiveTitle;
     font-size: 32px;
     margin: 0 auto;
     margin-bottom: 40px;
-    // color: $green;
   }
 
   &Container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ul {
+    .list {
       li {
-        font-size: 24px;
-        font-family: $light2;
+        font-size: 18px;
+        font-family: $bold2;
         margin-bottom: 16px;
         text-transform: uppercase;
+        text-align: center;
       }
     }
   }
+  &Image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+      // background-color: $black;
+      // padding: 32px;
+      width: 100%;
+      max-width: 320px;
+      // object-fit: cover;
+      // object-position: center;
+    }
 }
