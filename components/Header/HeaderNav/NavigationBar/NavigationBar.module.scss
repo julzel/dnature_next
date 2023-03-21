@@ -13,7 +13,7 @@
     padding: 8px 16px;
     text-align: center;
     text-transform: uppercase;
-    transition: all 750ms ease;
+    transition: all 250ms ease;
     cursor: pointer;
 
     &.active {
@@ -27,7 +27,7 @@
 
     &:hover {
       background-color: $snow;
-      color: darken($orange, 7.5%);
+      color: lighten($orange, 7.5%);
     }
 
     &:last-child {

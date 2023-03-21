@@ -23,7 +23,6 @@ const Catalog = ({
     {selectedCategory === 'all' ? (
         <div>
           {categoriesList.map((category) => {
-            console.log({category});
             return (
               <div className={styles.category} key={category.id || selectedCategory}>
                 <CatalogTitle text={category.label} />

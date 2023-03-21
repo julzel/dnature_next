@@ -18,13 +18,16 @@
     font-size: 32px;
     margin: 0 auto;
     margin-bottom: 48px;
+
+    @include mdq(md) {
+      margin-bottom: 64px;
+    }
   }
 
   &Categories {
     display: flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    max-width: 1440px;
     justify-content: center;
   }
 
@@ -37,16 +40,20 @@
     cursor: pointer;
 
     @include mdq(lg) {
-      margin: 0 20px 20px;
-      width: 256px;
-      height: 256px;
+      margin: 0 32px;
+      height: auto;
+      width: calc((100% / 5) - 64px);
     }
+    //   margin: 0 20px 20px;
+    //   width: 256px;
+    //   height: 256px;
+    // }
 
-    @include mdq(xxl) {
-      margin: 0 20px;
-      width: 208px;
-      height: 208px;
-    }
+    // @include mdq(xxl) {
+    //   margin: 0 20px;
+    //   width: 208px;
+    //   height: 208px;
+    // }
 
     &Content {
       position: absolute;

@@ -30,8 +30,8 @@ const Home = () => {
       <Hero />
       <Banner />
       <Welcome />
-      <Benefits />
       <Products />
+      {/* <Benefits /> */}
       <DNAtureSystem />
       <OurCostumers />
       <Contact />

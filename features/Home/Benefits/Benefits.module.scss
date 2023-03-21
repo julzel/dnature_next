@@ -2,7 +2,8 @@
 @import '../../../styles/mixins';
 
 .benefits {
-  background-color: $green;
+  color: $text-color;
+  background-color: $pale-dogwood;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -29,6 +30,10 @@
         margin-bottom: 16px;
         text-transform: uppercase;
         text-align: center;
+        
+        @include mdq(md) {
+          text-align: left;
+        }
       }
     }
   }
@@ -36,11 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-      // background-color: $black;
-      // padding: 32px;
       width: 100%;
       max-width: 320px;
-      // object-fit: cover;
-      // object-position: center;
     }
 }

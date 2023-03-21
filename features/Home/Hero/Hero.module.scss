@@ -3,7 +3,7 @@
 
 .heroContainer {
   display: flex;
-  background-color: $dim-gray;
+  background-color: $text-color;
   flex-flow: column;
 
   @include mdq(md) {
@@ -51,7 +51,7 @@
   }
 
   &Title {
-    color: $platinum;
+    color: $blue;
     font-family: $bold;
     font-size: 32px;
     line-height: 40px;
@@ -67,7 +67,7 @@
     }
 
     span {
-      color: $secondary-color;
+      color: $orange;
       display: inline-block;
       font-family: $cursiveTitle;
       font-size: 48px;
@@ -90,7 +90,7 @@
     font-family: $light;
     font-size: 20px;
     line-height: 24px;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
     text-align: center;
 
     @include mdq(md) {
@@ -106,12 +106,7 @@
     justify-content: center;
 
     .button {
-      @include button-styles(
-        $bg-color: $orange,
-        $secondary-bg-color: $white,
-        $secondary-text-color: $orange,
-        $width: 160px
-      );
+      @include button-styles();
       margin: 0 8px;
     }
   }

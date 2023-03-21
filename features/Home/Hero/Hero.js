@@ -23,7 +23,7 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
         <div className={styles.heroActionButtons}>
           <Button
             text={"Plan DNA"}
-            className={`${styles.button} ${styles.secondary}`}
+            className={`${styles.button} ${styles.variant}`}
             onClick={handlePlanDnaClick}
           />
           <Button

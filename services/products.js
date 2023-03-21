@@ -60,8 +60,6 @@ const productQuery = (productId) => `
         }
         `;
 
-// const formatImageCollection = (imageCollection) => imageCollection.items;
-
 const formatProductsData = (productItems) => {
   const catalog = {};
   productItems.forEach((item) => {

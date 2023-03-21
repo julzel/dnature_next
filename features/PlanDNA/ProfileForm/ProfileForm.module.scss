@@ -1,14 +1,24 @@
 @import '../../../styles/variables';
+@import '../../../styles/mixins';
 
-.stepContainer {
+.stepSection {
   flex: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
   background-color: $darkGray;
   color: $green;
-  padding: 40px 20px;
-  box-sizing: border-box;
+  padding: 32px 16px;
+
+  @include mdq(lg) {
+    padding: 64px;
+  }
+}
+
+.stepContainer {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
 
   h2 {
     font-family: $bold2;

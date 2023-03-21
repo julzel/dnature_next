@@ -1,62 +1,139 @@
-@import '../../../styles/variables';
-@import '../../../styles/mixins';
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
 
 .dnatureSystem {
-  background-color: $text-color;
-  padding: 80px 20px;
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  @include mdq(lg) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
   .title {
     font-family: $cursiveTitle;
     font-size: 32px;
     margin: 0 auto;
     margin-bottom: 40px;
-    color: $rosy-brown;
   }
 
-  &Container {
-    margin: 0 auto;
-    width: 100%;
-    z-index: 1;
-  }
-
-  &Item {
-    margin: 0 auto 32px;
-    background-color: $rosy-brown;
-    padding: 12px 32px;
-    border-radius: 50px;
-    width: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &Title {
-      color: $text-color;
-      font-family: $regular2;
-      font-size: 16px;
-      width: 100%;
-    }
-  }
-}
-
-.dnaturePlate {
-  position: relative;
-  min-height: 66.6vh;
-
-  &::after {
-    content: '';
-    background-image: url('/images/plandna-mobile.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: absolute;
+  .steps,
+  .benefits {
+    padding: 32px 16px;
 
     @include mdq(md) {
-      background-attachment: fixed;
+      padding: 32px;
+    }
+
+    @include mdq(lg) {
+      flex-shrink: 0;
+      padding: 64px;
+      width: 50%;
+    }
+
+    div {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    h3 {
+      font-family: $bold2;
+      font-size: 14px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+
+      @include mdq(lg) {
+        font-size: 16px;
+      }
+
+      span {
+        display: inline-block;
+        padding: 8px 16px;
+      }
+    }
+
+    p {
+      font-family: $light;
+      font-size: 18px;
+      margin-bottom: 40px;
+
+      @include mdq(lg) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .steps {
+    background-color: $text-color;
+    color: $rosy-brown;
+
+    h3 {
+      span {
+        background-color: $rosy-brown;
+        color: $text-color;
+      }
+    }
+
+    p {
+      border-left: 1px solid $rosy-brown;
+      margin-left: 16px;
+      padding-left: 16px;
+    }
+
+    .action {
+      margin-bottom: 16px;
+      padding-top: 32px;
+      display: flex;
+      justify-content: center
+    }
+
+    .button {
+      @include button-styles($rosy-brown, $text-color, $bold);
+      margin: 0 auto;
+    }
+  }
+
+  .benefits {
+    background-color: $rosy-brown;
+    color: $text-color;
+
+    h3 {
+      text-align: right;
+      span {
+        background-color: $text-color;
+        color: $rosy-brown;
+      }
+    }
+
+    p {
+      text-align: right;
+      border-right: 1px solid $text-color;
+      margin-right: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  .dnaturePlate {
+    position: relative;
+    min-height: 66.6vh;
+
+    @include mdq(lg) {
+      width: 100%;
+    }
+
+    &::after {
+      content: "";
+      background-image: url("/images/plandna-mobile.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+
+      @include mdq(md) {
+        background-attachment: fixed;
+      }
     }
   }
 }

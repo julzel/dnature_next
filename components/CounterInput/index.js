@@ -10,16 +10,16 @@ const CounterInput = ({
   classes,
   errorMessageText,
 }) => {
-  const [inputValue, setInputValue] = useState(value);
+  const [inputValue, setInputValue] = useState(parseInt(value, 10));
 
   const handleInputChange = (event) => {
-    const newValue = event.target.value.replace(/\D/g, "");
+    const newValue = parseInt(event.target.value.replace(/\D/g, ""), 10) || 1;
     setInputValue(newValue);
     onChange(newValue);
   };
 
   const decreaseValue = () => {
-    const newValue = Math.max(parseInt(inputValue, 10) - 1, 0);
+    const newValue = Math.max(parseInt(inputValue, 10) - 1, 1);
     setInputValue(newValue);
     onChange(newValue);
   };
@@ -30,13 +30,13 @@ const CounterInput = ({
     onChange(newValue);
   };
 
-  const isMaxValueExceeded = parseInt(inputValue, 10) >= maxValue;
+  const isMaxValueExceeded = parseInt(inputValue, 10) > maxValue;
 
   return (
     <div className={classes ? classes.counter : ""}>
       <div>
         {controls && (
-          <button onClick={decreaseValue} disabled={inputValue === "0"}>
+          <button onClick={decreaseValue} disabled={inputValue === "1"}>
             -
           </button>
         )}
@@ -46,6 +46,8 @@ const CounterInput = ({
           type="text"
           value={inputValue}
           onChange={handleInputChange}
+          min="1"
+          max={maxValue}
         />
         {controls && (
           <button onClick={increaseValue} disabled={isMaxValueExceeded}>
