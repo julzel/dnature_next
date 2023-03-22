@@ -4,7 +4,7 @@
 const benefits = [
   {
     title: "Digestión Óptima y Defensas Fuertes",
-    text: "Mejora la digestión y absorción de nutrientes. Además fortalece el sistema inmunológico y contribuye a la prevención de enfermedades."
+    text: "Mejora la digestión y absorción de nutrientes. Además fortalece el sistema inmunológico."
   },
   {
     title: "Sonrisa Radiante y Belleza Natural",

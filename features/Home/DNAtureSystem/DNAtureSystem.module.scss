@@ -4,30 +4,24 @@
 .dnatureSystem {
   display: flex;
   flex-direction: column;
-  @include mdq(lg) {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
+  align-items: center;
+  background-color: $text-color;
 
   .title {
     font-family: $cursiveTitle;
-    font-size: 32px;
+    font-size: 40px;
     margin: 0 auto;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
   }
 
   .steps,
   .benefits {
-    padding: 32px 16px;
-
-    @include mdq(md) {
-      padding: 32px;
-    }
+    color: $platinum;
+    padding: 40px 32px;
 
     @include mdq(lg) {
       flex-shrink: 0;
       padding: 64px;
-      width: 50%;
     }
 
     div {
@@ -36,7 +30,7 @@
     }
 
     h3 {
-      font-family: $bold2;
+      font-family: $regular2;
       font-size: 14px;
       margin-bottom: 24px;
       text-transform: uppercase;
@@ -53,28 +47,30 @@
 
     p {
       font-family: $light;
-      font-size: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
 
       @include mdq(lg) {
-        font-size: 20px;
+        width: 75%;
+        font-size: 18px;
       }
     }
   }
 
   .steps {
-    background-color: $text-color;
-    color: $rosy-brown;
+
+    .title {
+      color: $orange;
+    }
 
     h3 {
       span {
-        background-color: $rosy-brown;
-        color: $text-color;
+        color: $orange;
+        border: 1px solid $orange;
       }
     }
 
     p {
-      border-left: 1px solid $rosy-brown;
+      border-left: 1px solid $orange;
       margin-left: 16px;
       padding-left: 16px;
     }
@@ -87,40 +83,47 @@
     }
 
     .button {
-      @include button-styles($rosy-brown, $text-color, $bold);
+      @include button-styles($orange, $text-color);
       margin: 0 auto;
     }
   }
 
   .benefits {
-    background-color: $rosy-brown;
-    color: $text-color;
+    padding-bottom: 64px;
+
+    .title {
+      color: $blue;
+    }
 
     h3 {
       text-align: right;
       span {
-        background-color: $text-color;
-        color: $rosy-brown;
+        color: $blue;
+        border: 1px solid $blue;
       }
     }
 
     p {
       text-align: right;
-      border-right: 1px solid $text-color;
+      border-right: 1px solid $blue;
       margin-right: 16px;
+      margin-left: auto;
       padding-right: 16px;
     }
   }
 
   .dnaturePlate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    min-height: 66.6vh;
+    min-height: 75vh;
 
     @include mdq(lg) {
       width: 100%;
     }
 
-    &::after {
+    &::before {
       content: "";
       background-image: url("/images/plandna-mobile.jpg");
       background-repeat: no-repeat;
@@ -133,6 +136,54 @@
 
       @include mdq(md) {
         background-attachment: fixed;
+      }
+    }
+
+    .content {
+      background-color: rgba(255, 111, 0, 0.05);
+      color: $white;
+      text-shadow: 1px 1px #414141;
+      z-index: 1;
+      padding: 16px;
+      text-align: center;
+
+      @include mdq(lg) {
+        background-color: rgba(255, 111, 0, 0.25);
+        padding: 32px;
+      }
+    }
+
+    h3 {
+      font-family: $cursiveTitle;
+      font-size: 40px;
+      margin-bottom: 32px;
+
+      @include mdq(lg) {
+        font-size: 48px;
+      }
+    }
+
+    ul {
+      text-align: center;
+      margin-bottom: 32px;
+
+      li {
+        font-family: $light;
+        font-size: 24px;
+        margin-bottom: 16px;
+
+        @include mdq(lg) {
+          font-size: 28px;
+        }
+      }
+    }
+
+    h4 {
+      font-family: $bold2;
+      font-size: 28px;
+
+      @include mdq(lg) {
+        font-size: 32px;
       }
     }
   }

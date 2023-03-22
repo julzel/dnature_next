@@ -32,7 +32,7 @@ const PlanSteps = () => {
           </div>
           <div className={styles.action}>
             <Button
-              className={`${styles.button} ${styles.variant}`}
+              className={styles.button}
               onClick={(e) => {
                 e.preventDefault();
                 router.push("/plan-dnature");
@@ -41,6 +41,19 @@ const PlanSteps = () => {
               Conocer más
             </Button>
           </div>
+        </div>
+        <div className={styles.dnaturePlate}>
+          <div className={styles.content}>
+          <h3>¡Transforma la vida de tu mascota!</h3>
+          <ul>
+            <li>Proteína cruda de alta calidad</li>
+            <li>Nutrientes esenciales para una vida sana</li>
+            <li>Menús personalizados para cada peludo amigo</li>
+            <li>Servicio a domicilio: ¡comodidad y frescura garantizada!</li>
+          </ul>
+
+          <h4>¡Regala salud y felicidad a tu mejor amigo!</h4>
+        </div>
         </div>
         <div className={styles.benefits}>
           <h2 className={`title ${styles.title}`}>Beneficios</h2>
@@ -55,7 +68,6 @@ const PlanSteps = () => {
             ))}
           </div>
         </div>
-        <div className={styles.dnaturePlate} />
       </section>
     </>
   );

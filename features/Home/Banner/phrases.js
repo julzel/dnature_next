@@ -1,10 +1,10 @@
 const phrases = [
   'Transforma la vida de tu mascota',
-  'Dales amor, salud y bienestar',
-  'Mascotas más sanas, fuertes y felices',
-  'De la manera que la naturaleza lo diseñó',
-  'Ingredientes naturales y sin aditivos',
   'Di adiós a los ultraprocesados',
+  'Alimentación natural real',
+  'Ingredientes naturales y sin aditivos',
+  'Mascotas más sanas, fuertes y felices',
+  'Dales amor, salud y bienestar',
 ];
 
 export default phrases;

@@ -3,7 +3,6 @@
 
 .OurCostumers {
   padding: 64px 32px;
-  background-color: $snow;
 
   @include mdq(md) {
     padding: 128px 32px;
@@ -29,8 +28,8 @@
         line-height: 30px;
         margin-bottom: 40px;
         position: relative;
-        background-color: $seashell;
-        padding: 8px;
+        background-color: rgba(255, 111, 0, 0.125);
+        padding: 8px 16px;
 
         &::before {
           content: '“';

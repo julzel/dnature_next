@@ -8,7 +8,6 @@ import styles from './Home.module.scss';
 import Hero from './Hero';
 import Banner from './Banner';
 import Welcome from './Welcome';
-import Benefits from './Benefits';
 import Products from './Products';
 import Contact from './Contact';
 import DNAtureSystem from './DNAtureSystem';

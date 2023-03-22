@@ -2,8 +2,10 @@
 @import '../../../styles/mixins';
 
 .products {
-  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 64px 0;
+  position: relative;
 
   @include mdq(md) {
     padding: 64px 0;
@@ -15,7 +17,7 @@
 
   .title {
     font-family: $cursiveTitle;
-    font-size: 32px;
+    font-size: 48px;
     margin: 0 auto;
     margin-bottom: 48px;
 
@@ -39,21 +41,17 @@
     position: relative;
     cursor: pointer;
 
-    @include mdq(lg) {
+    @include mdq(md) {
       margin: 0 32px;
       height: auto;
-      width: calc((100% / 5) - 64px);
+      width: calc((100% / 3) - 64px);
     }
-    //   margin: 0 20px 20px;
-    //   width: 256px;
-    //   height: 256px;
-    // }
 
-    // @include mdq(xxl) {
-    //   margin: 0 20px;
-    //   width: 208px;
-    //   height: 208px;
-    // }
+    @include mdq(lg) {
+      margin: 0 64px;
+      height: auto;
+      width: calc((100% / 3) - 128px);
+    }
 
     &Content {
       position: absolute;
