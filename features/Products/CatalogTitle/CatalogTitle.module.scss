@@ -12,30 +12,4 @@
         margin-bottom: 20px;
         text-align: left;
     }
-
-    &::before {
-        background-color: $blue;
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 1px;
-        width:40%;
-        @include mdq(lg) {
-            display: none;
-        }
-    }
-    
-    &::after {
-        background-color: $orange;
-        content: '';
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 1px;
-        width:40%;
-        @include mdq(lg) {
-            display: none;
-        }
-    }
 }

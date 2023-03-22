@@ -118,10 +118,7 @@
     justify-content: center;
     position: relative;
     min-height: 75vh;
-
-    @include mdq(lg) {
-      width: 100%;
-    }
+    width: 100%;
 
     &::before {
       content: "";

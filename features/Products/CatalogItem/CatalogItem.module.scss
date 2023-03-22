@@ -1,7 +1,9 @@
 @import '../../../styles/_variables';
 
 .catalogItem {
+  cursor: pointer;
   display: block;
+
   &Images {
     margin-bottom: 10px;
 
