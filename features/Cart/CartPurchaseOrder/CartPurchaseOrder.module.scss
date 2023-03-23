@@ -13,6 +13,11 @@
     flex-flow: column;
     align-items: center;
 
+    @include mdq(lg) {
+      flex-flow: row;
+      justify-content: space-between;
+    }
+
     .button {
       @include button-styles(
         $font-family: $regular,

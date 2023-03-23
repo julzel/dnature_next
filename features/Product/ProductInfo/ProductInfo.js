@@ -82,13 +82,13 @@ const ProductInfo = ({
         onClick={() => onAddToCart(productDetail, quantity, presentation)}
         className={addToCartStyles.addToCart}
       />
-      <Link href={"/cart"} passHref>
+      {(cartTotalItems > 0) && <Link href={"/cart"} passHref>
         <a>
           Ver Carrito
           <FontAwesomeIcon icon={faCartShopping} />
-          {cartTotalItems > 0 && <span>({cartTotalItems})</span>}
+          <span>({cartTotalItems})</span>
         </a>
-      </Link>
+      </Link>}
     </div>
   </div>
 );

@@ -49,6 +49,12 @@ $media: (
     background-color: lighten($bg-color, 5%);
   }
 
+  &:disabled {
+    opacity: 0.25;
+    color: $white;
+    cursor: not-allowed;
+  }
+
   &.secondary {
     background-color: $secondary-bg-color;
     color: $secondary-text-color;

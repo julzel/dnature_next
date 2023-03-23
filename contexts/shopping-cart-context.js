@@ -8,11 +8,14 @@ const ShoppingCartContextProvider = ({ children }) => {
     () => new ShoppingCart()
   );
 
-  const updateCartClient = useCallback((client) => {
-    const updatedCart = { ...currentShoppingCart };
-    updatedCart.client = client;
-    setCurrentShoppingCart(updatedCart);
-  }, [currentShoppingCart]);
+  const updateCartClient = useCallback(
+    (client) => {
+      const updatedCart = { ...currentShoppingCart };
+      updatedCart.client = client;
+      setCurrentShoppingCart(updatedCart);
+    },
+    [currentShoppingCart]
+  );
 
   const addOneToCart = useCallback(
     (item) => {

@@ -3,13 +3,13 @@
 import styles from "./Cart.module.scss";
 
 // components
-import ClientForm from "../../components/ClientForm";
 import CurrencyText from "../../components/Currency";
 import CartPurchaseOrderContainer from "./CartPurchaseOrder";
 import CartActionsContainer from "./CartActions";
 import CartItemsContainer from "./CartItems";
 import ModalContainer from "../../components/Modal";
 import PurchaseOrderContainer from "./PurchaseOrder";
+import ClientFormContainer from "../../components/ClientForm/ClientFormContainer";
 
 const Cart = ({
   cart,
@@ -38,7 +38,10 @@ const Cart = ({
 
     {requestClientInfo && (
       <ModalContainer closeModal={closeClientInfoModal}>
-        <ClientForm onSubmit={onClientInfoSubmit} className={styles.cartClientForm} />
+        <ClientFormContainer
+          onSubmit={onClientInfoSubmit}
+          className={styles.cartClientForm}
+        />
       </ModalContainer>
     )}
 

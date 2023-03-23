@@ -1,43 +1,52 @@
-@import '../../styles/mixins';
+@import "../../styles/mixins";
+@import "../../styles/variables";
 
 .clientForm {
+  h2 {
+    font-size: 24px;
+    font-family: $bold;
+    margin-bottom: 16px;
+  }
 
-    h2 {
-        font-size: 24px;
-        font-family: $bold;
-        margin-bottom: 16px;
-    }
+  form {
+    > div {
+      margin-bottom: 24px;
 
-    form {
-        > div {
-            margin-bottom: 24px;
-    
-            &:last-of-type {
-                margin-bottom: 32px;
-            }
-        }   
+      &:last-of-type {
+        margin-bottom: 32px;
+      }
     }
+  }
 
-    label,
-    input {
-        display: block;
-        width: 100%;
-        max-width: 320px;
-    }
+  label,
+  input {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+  }
 
-    label {
-        font-size: 12px;
-        font-family: $bold2;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-    }
+  label {
+    font-size: 12px;
+    font-family: $bold2;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
 
-    input {
-        padding: 8px;
-        @include input-styles();
-    }
+  input {
+    margin-top: 8px;
+    padding: 8px;
+    @include input-styles();
+  }
 
-    button {
-        @include button-styles();
-    }
+  button {
+    @include button-styles();
+    display: block;
+    margin: 0 auto;
+  }
+
+  .error {
+    color: $important;
+    font-size: 12px;
+    font-family: $bold2;
+  }
 }

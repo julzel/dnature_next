@@ -20,7 +20,7 @@ const CartPurchaseOrder = ({ onPurchaseCancel, onPurchaseConfirm }) => {
           Cancelar
         </Button>
         <Button className={styles.button} onClick={onPurchaseConfirm}>
-          Descargar Orden de Compra
+          Confirmar
         </Button>
       </div>
     </div>

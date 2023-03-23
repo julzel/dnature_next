@@ -7,7 +7,7 @@ import styles from './Banner.module.scss';
 // data
 import phrases from './phrases';
 
-const PHRASE_INTERVAL = 7000; // 7 seconds
+const PHRASE_INTERVAL = 5000; // 7 seconds
 
 const Banner = () => {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
@@ -27,7 +27,16 @@ const Banner = () => {
 
   return (
     <div className={styles.banner}>
-      <p>{phrases[currentPhraseIndex]}</p>
+      {phrases.map((phrase, index) => {
+        return (
+          <p
+            key={phrase}
+            className={index === currentPhraseIndex ? styles.active : ''}
+          >
+            {phrase}
+          </p>
+        );
+      })}
     </div>
   );
 };
