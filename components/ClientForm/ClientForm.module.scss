@@ -49,4 +49,56 @@
     font-size: 12px;
     font-family: $bold2;
   }
+
+  .checkbox {
+    display: flex;
+    align-items: center;
+    font-family: $regular;
+    font-size: 14px;
+    text-transform: none;
+
+    &:hover input + .checkmark {
+      cursor: pointer;
+      border-color: $blue;
+    }
+
+    input {
+      position: absolute;
+      left: -1000px;
+      top: -1000px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+
+      &:checked + .checkmark {
+        border-color: $blue;
+
+        &:after {
+          background-color: $blue;
+        }
+      }
+    }
+
+    .checkmark {
+      border-radius: $br-full;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid $border;
+      margin-right: 10px;
+      position: relative;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 11px;
+        height: 11px;
+        border-radius: $br-full;
+        background-color: transparent;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
 }

@@ -11,13 +11,14 @@ const ClientForm = ({
   client,
   handleBlur,
   handleChange,
+  handleRememberToggle,
   handleSubmit,
   isInputValid,
   isFormValid,
   className,
   interactedFields,
   inputFields,
-  handleRememberClient,
+  rememberClient,
 }) => {
   return (
     <div className={`${styles.clientForm} ${className ? className : ""}`}>
@@ -31,26 +32,29 @@ const ClientForm = ({
           )
             ? client.address[field.name]
             : client[field.name];
-          const isInValid =
+          const isInvalidField =
             !isInputValid(value, field.isRequired) &&
             interactedFields[field.name];
+          const pattern = field.type === "tel" ? "+506\\d{8}" : undefined;
           return (
             <div key={field.name}>
-              <label>
+              <label htmlFor={field.name}>
                 {field.label}:
                 <input
                   type={field.type || "text"}
                   name={field.name}
+                  id={field.name}
                   value={value}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required={field.isRequired}
                   aria-required={field.isRequired}
                   aria-label={field.label}
-                  className={isInValid ? styles.error : null}
+                  className={isInvalidField ? styles.error : null}
+                  pattern={pattern}
                 />
               </label>
-              {isInValid && (
+              {isInvalidField && (
                 <p className={styles.error}>
                   {field.label} es un campo requerido.
                 </p>
@@ -59,9 +63,14 @@ const ClientForm = ({
           );
         })}
         <div>
-          <label>
-            Recuérdame:
-            <input type={"checkbox"} onChange={handleRememberClient} />
+          <label className={styles.checkbox}>
+            <input
+              type={"checkbox"}
+              onChange={handleRememberToggle}
+              checked={rememberClient}
+            />
+            <span className={styles.checkmark}></span>
+            Recordar mis datos
           </label>
         </div>
         <Button type="submit" disabled={!isFormValid()}>

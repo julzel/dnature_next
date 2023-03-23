@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // local imports
 // components
@@ -6,6 +6,8 @@ import ClientForm from "./ClientForm";
 
 // classes
 import { Client } from "../../models/client";
+
+import { storage } from "../../util";
 
 const inputFields = [
   { name: "firstName", label: "Nombre", isRequired: true, type: "text" },
@@ -27,8 +29,15 @@ const inputFields = [
 ];
 
 const ClientFormContainer = ({ onSubmit, className }) => {
-  const [client, setClient] = useState(new Client());
+  const [rememberClient, setRememberClient] = useState(true);
+  const [client, setClient] = useState(
+    storage.getItem("client") || new Client()
+  );
   const [interactedFields, setInteractedFields] = useState({});
+
+  const handleRememberToggle = () => {
+    setRememberClient((prevRememberClient) => !prevRememberClient);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,8 +70,17 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform necessary actions with the client information
+    if (rememberClient) {
+      storage.setItem("client", client);
+    }
     onSubmit(client);
   };
+
+  useEffect(() => {
+    if (!rememberClient) {
+      storage.removeItem("client");
+    }
+  }, [rememberClient]);
 
   return (
     <ClientForm
@@ -70,11 +88,13 @@ const ClientFormContainer = ({ onSubmit, className }) => {
       handleBlur={handleBlur}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
+      handleRememberToggle={handleRememberToggle}
       isInputValid={isInputValid}
       isFormValid={isFormValid}
       className={className}
       interactedFields={interactedFields}
       inputFields={inputFields}
+      rememberClient={rememberClient}
     />
   );
 };
