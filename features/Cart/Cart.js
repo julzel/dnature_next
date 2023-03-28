@@ -72,8 +72,9 @@ const Cart = ({
           <p>
             En DNAture, estamos trabajando para brindarte un mejor servicio.
             Pronto habilitaremos el pago en línea con tarjeta de crédito o
-            débito. Por ahora, puedes hacer tus pedidos por WhatsApp adjuntando
-            la imagen de la orden de compra que hemos generado para ti.
+            débito. Por ahora, puedes hacer tus pedidos por{" "}
+            <a href="https://wa.me/50671732328">WhatsApp</a> adjuntando la
+            imagen de la orden de compra que hemos generado para ti.
           </p>
           <p>
             Aceptamos pagos por SINPE Móvil o transferencia bancaria. Por favor,

@@ -44,13 +44,15 @@ const CartContainer = () => {
     }
   };
 
-  const handlePurchaseConfirm = () => setDisplayInfoModal(true);
+  const handlePurchaseConfirm = () => {
+    setDisplayInfoModal(true);
+    setDownloadPurchaseOrder(true);
+  };
 
   const handleCloseInfoModal = () => {
     // removeAllItems();
-    setDownloadPurchaseOrder(true);
+    // setDownloadPurchaseOrder(true);
     setDisplayInfoModal(false);
-    // setShowPurchaseOrder(false);
   };
 
   // Effect to handle the download of the purchase order

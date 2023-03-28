@@ -19,6 +19,10 @@ const PurchaseOrder = ({ cart, currentDate }) => (
           {cart.client?.firstName} {cart.client?.lastName}
         </div>
         <div>
+          <span>Correo:</span>
+          {cart.client?.email}
+        </div>
+        <div>
           <span>Teléfono:</span>
           {cart.client?.contactPhoneNumber}
         </div>
