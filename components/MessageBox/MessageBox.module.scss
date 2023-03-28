@@ -1,0 +1,92 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+$warning: #ffbf00;
+$success: #4caf50;
+$error: #d33f49;
+$info: #0d5c8e;
+
+.messageBoxContainer {
+  border: 2px solid $border;
+  display: flex;
+  flex-flow: column;
+  padding: 48px 16px 16px;
+  max-width: 375px;
+
+  @include mdq(md) {
+    padding: 48px 32px 32px;
+    max-width: 640px;
+  }
+
+  &.error {
+    border-color: $error;
+    h3 {
+      background-color: $error;
+    }
+    .button {
+      @include button-styles($error, $white);
+    }
+  }
+  &.warning {
+    border-color: $warning;
+    h3 {
+      border: 1px solid $warning;
+      color: $warning;
+    }
+    .button {
+      @include button-styles($warning, $white);
+    }
+  }
+  &.info {
+    border-color: $info;
+    h3 {
+      border: 1px solid $info;
+      color: $info;
+    }
+    .button {
+      @include button-styles($info, $white);
+    }
+  }
+  &.success {
+    border-color: $success;
+    h3 {
+      border: 1px solid $success;
+      color: $success;
+      color: $text-color;
+    }
+    .button {
+      @include button-styles($success, $text-color);
+    }
+  }
+
+  h3 {
+    padding: 4px 16px;
+    font-family: $bold2;
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    @include mdq(md) {
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+    }
+
+    .button {
+      margin: 8px auto;
+      width: calc(50% - 16px);
+
+      @include mdq(md) {
+        margin: 8px;
+        width: 200px;
+      }
+    }
+  }
+}

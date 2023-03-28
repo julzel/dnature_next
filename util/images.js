@@ -1,15 +1,14 @@
 import html2canvas from "html2canvas";
 
-
 const downloadScreenShot = (dataUrl, filename) => {
-    const link = document.createElement('a');
-    link.href = dataUrl;
-    link.download = filename;
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  const link = document.createElement("a");
+  link.href = dataUrl;
+  link.download = filename;
+  link.style.display = "none";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 const captureElementScreenshot = async (element) => {
   try {
@@ -25,6 +24,5 @@ const captureElementScreenshot = async (element) => {
     return null;
   }
 };
-
 
 export { captureElementScreenshot, downloadScreenShot };

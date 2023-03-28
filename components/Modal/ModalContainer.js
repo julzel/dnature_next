@@ -4,8 +4,7 @@ import React, { useEffect } from "react";
 // components
 import Modal from "./Modal";
 
-const ModalContainer = ({ children, closeModal }) => {
-
+const ModalContainer = ({ children, closeModal, padding, fullScreen }) => {
   useEffect(() => {
     // Disable scroll when the modal is mounted
     document.body.style.overflow = "hidden";
@@ -16,7 +15,11 @@ const ModalContainer = ({ children, closeModal }) => {
     };
   }, []);
 
-  return <Modal closeModal={closeModal}>{children}</Modal>;
+  return (
+    <Modal closeModal={closeModal} padding={padding} fullScreen={fullScreen}>
+      {children}
+    </Modal>
+  );
 };
 
 export default ModalContainer;

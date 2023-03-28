@@ -12,6 +12,12 @@ import { storage } from "../../util";
 const inputFields = [
   { name: "firstName", label: "Nombre", isRequired: true, type: "text" },
   { name: "lastName", label: "Apellidos", isRequired: true, type: "text" },
+  {
+    name: "email",
+    label: "Correo electrónico",
+    isRequired: true,
+    type: "email",
+  },
   { name: "provincia", label: "Provincia", isRequired: true, type: "text" },
   { name: "canton", label: "Cantón", isRequired: true, type: "text" },
   {
@@ -24,7 +30,9 @@ const inputFields = [
     name: "contactPhoneNumber",
     label: "Teléfono de contacto",
     isRequired: true,
-    type: "tel",
+    type: "text",
+    pattern: "^(?:\\d{4}-\\d{4}|\\d{8})$", // 8 digits or 4 digits + dash + 4 digits
+    maxLength: 9,
   },
 ];
 

@@ -6,10 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // styles
 import styles from "./Modal.module.scss";
 
-const Modal = ({ children, closeModal }) => {
+const Modal = ({ children, closeModal, padding, fullScreen }) => {
   return (
     <div className={styles.modalContainer}>
-      <div className={styles.modal}>
+      <div
+        className={`${styles.modal} ${padding ? styles.padding : ""} ${
+          fullScreen ? styles.fullScreen : ""
+        }`}
+      >
         {closeModal && (
           <button className={styles.close} onClick={closeModal}>
             <FontAwesomeIcon icon={faXmark} />

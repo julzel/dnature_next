@@ -1,15 +1,18 @@
 class Client {
-  constructor() {
-    this.firstName = "";
-    this.lastName = "";
-    this.address = {
-      direccion: "",
-      provincia: "",
-      canton: "",
-    };
-    this.contactPhoneNumber = "";
-    this.pets = [];
+  constructor(
+    firstName = "",
+    lastName = "",
+    email = "",
+    address = {},
+    contactPhoneNumber = "",
+    pets = []
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.address = address;
+    this.contactPhoneNumber = contactPhoneNumber;
+    this.pets = pets;
   }
 }
-
-export { Client }
+export { Client };

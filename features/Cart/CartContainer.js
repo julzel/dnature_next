@@ -15,7 +15,8 @@ const CartContainer = () => {
   const [showPurchaseOrder, setShowPurchaseOrder] = useState(false);
   const [requestClientInfo, setRequestClientInfo] = useState(false);
   const [downloadPurchaseOrder, setDownloadPurchaseOrder] = useState(false);
-  const { cart, updateCartClient } = useCartContext();
+  const [displayInfoModal, setDisplayInfoModal] = useState(false);
+  const { cart, updateCartClient, removeAllItems } = useCartContext();
   const canvasElem = useRef(null);
 
   // Generate purchase link by capturing the screenshot and downloading it
@@ -23,6 +24,7 @@ const CartContainer = () => {
     captureElementScreenshot(canvasElem.current).then((dataUrl) => {
       downloadScreenShot(dataUrl, "purchase-order.png");
       setDownloadPurchaseOrder(false);
+      setShowPurchaseOrder(false);
     });
   }, []);
 
@@ -42,6 +44,15 @@ const CartContainer = () => {
     }
   };
 
+  const handlePurchaseConfirm = () => setDisplayInfoModal(true);
+
+  const handleCloseInfoModal = () => {
+    // removeAllItems();
+    setDownloadPurchaseOrder(true);
+    setDisplayInfoModal(false);
+    // setShowPurchaseOrder(false);
+  };
+
   // Effect to handle the download of the purchase order
   useEffect(() => {
     if (downloadPurchaseOrder) {
@@ -59,8 +70,10 @@ const CartContainer = () => {
       closeClientInfoModal={() => setRequestClientInfo(false)}
       onClientInfoSubmit={onClientInfoSubmit}
       onPurchaseCancel={() => setShowPurchaseOrder(false)}
-      onPurchaseConfirm={() => setDownloadPurchaseOrder(true)}
+      onPurchaseConfirm={handlePurchaseConfirm}
       downloadPurchaseOrder={downloadPurchaseOrder}
+      displayInfoModal={displayInfoModal}
+      onCloseInfoModal={handleCloseInfoModal}
     />
   );
 };

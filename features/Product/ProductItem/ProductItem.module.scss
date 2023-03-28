@@ -1,7 +1,8 @@
-@import '../../../styles/_variables';
-@import '../../../styles/mixins';
+@import "../../../styles/_variables";
+@import "../../../styles/mixins";
 
 .product {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 32px;

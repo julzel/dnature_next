@@ -14,7 +14,7 @@
   @include mdq(lg) {
     padding: 64px;
   }
-  
+
   .cartContent {
     background-color: $white;
     border: 1px solid $border;
@@ -31,7 +31,7 @@
       margin-bottom: 16px;
       text-transform: uppercase;
     }
-  
+
     .total {
       border: 1px solid $border;
       display: flex;
@@ -51,16 +51,28 @@
     padding-top: 16px;
 
     form {
-      border: 1px solid $border;
-      padding: 16px;
+      @include mdq(md) {
+        border: 1px solid $border;
+        padding: 32px;
+      }
     }
   }
 
   .canvas {
+    visibility: hidden;
     margin: 0 auto;
     padding: 24px 16px;
     position: absolute;
     width: 100%;
     max-width: 320px;
+    z-index: -1;
+
+    &.visible {
+      visibility: visible;
+    }
+  }
+
+  a {
+    color: $blue;
   }
 }

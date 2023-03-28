@@ -21,7 +21,7 @@ const ClientForm = ({
   rememberClient,
 }) => {
   return (
-    <div className={`${styles.clientForm} ${className ? className : ""}`}>
+    <div className={`${styles.clientForm} ${className ? className : null}`}>
       <div>
         <h2>Detalles de entrega:</h2>
       </div>
@@ -35,7 +35,6 @@ const ClientForm = ({
           const isInvalidField =
             !isInputValid(value, field.isRequired) &&
             interactedFields[field.name];
-          const pattern = field.type === "tel" ? "+506\\d{8}" : undefined;
           return (
             <div key={field.name}>
               <label htmlFor={field.name}>
@@ -51,7 +50,8 @@ const ClientForm = ({
                   aria-required={field.isRequired}
                   aria-label={field.label}
                   className={isInvalidField ? styles.error : null}
-                  pattern={pattern}
+                  pattern={field.pattern}
+                  maxLength={field.maxLength}
                 />
               </label>
               {isInvalidField && (
