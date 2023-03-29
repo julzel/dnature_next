@@ -1,21 +1,19 @@
-import React from 'react';
+import React from "react";
 
 // local imports
 // components
-import PurchaseOrder from './PurchaseOrder';
+import PurchaseOrder from "./PurchaseOrder";
 
 // context
 import { useCartContext } from "../../../contexts/shopping-cart-context";
 
 // utils
-import { getDateDMY } from "../../../util/dates";
+import { generatePurchaseOrderId } from "../../../util";
 
 const PurchaseOrderContainer = () => {
   const { cart } = useCartContext();
 
-  return (
-    <PurchaseOrder cart={cart} currentDate={getDateDMY()} />
-  );
+  return <PurchaseOrder cart={cart} currentDate={generatePurchaseOrderId()} />;
 };
 
 export default PurchaseOrderContainer;
