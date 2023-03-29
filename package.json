@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@googlemaps/js-api-loader": "^1.13.10",
     "contentful": "^9.1.24",
+    "crypto": "^1.0.1",
     "graphql": "^16.3.0",
     "html2canvas": "^1.4.1",
     "i": "^0.3.7",

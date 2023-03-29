@@ -7,11 +7,14 @@ import styles from "./PurchaseOrder.module.scss";
 // components
 import CurrencyText from "../../../components/Currency";
 
-const PurchaseOrder = ({ cart, currentDate }) => (
+const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => (
   <div className={styles.purchaseOrder}>
-    <h1 className={styles.title}>
-      Orden de compra: <span>{currentDate}</span>
-    </h1>
+    {cart.client?.email && (
+      <h1 className={styles.title}>
+        Orden de compra:{" "}
+        <span>{generatePurchaseOrderId(cart.client.email)}</span>
+      </h1>
+    )}
     {true && (
       <div className={styles.client}>
         <div>

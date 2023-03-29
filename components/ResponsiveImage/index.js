@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import LazyLoad from 'react-lazy-load-image-component';
+import React, { useState } from "react";
+import Image from "next/image";
+import LazyLoad from "react-lazy-load-image-component";
 
 // local imports
 // styles
-import styles from './ResponsiveImage.module.scss';
+import styles from "./ResponsiveImage.module.scss";
 
 // components
-import ImagePlaceholder from '../ImagePlaceholder';
+import ImagePlaceholder from "../ImagePlaceholder";
 
 function ResponsiveImage({ src, alt, lazy, threshold, flipY }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className={`${styles.responsiveImage} ${flipY ? styles.flipY : ''}`}>
+    <div className={`${styles.responsiveImage} ${flipY ? styles.flipY : ""}`}>
       {lazy ? (
         <LazyLoad
           threshold={threshold || 300}
@@ -22,7 +22,7 @@ function ResponsiveImage({ src, alt, lazy, threshold, flipY }) {
           onContentVisible={() => setLoaded(true)}
         >
           {loaded ? (
-            <Image src={src} alt={alt} layout='responsive' />
+            <Image src={src} alt={alt} layout="responsive" />
           ) : (
             <ImagePlaceholder />
           )}
@@ -31,7 +31,7 @@ function ResponsiveImage({ src, alt, lazy, threshold, flipY }) {
         <Image
           src={src}
           alt={alt}
-          layout='responsive'
+          layout="responsive"
           onLoad={() => setLoaded(true)}
         />
       )}
@@ -40,18 +40,3 @@ function ResponsiveImage({ src, alt, lazy, threshold, flipY }) {
 }
 
 export default ResponsiveImage;
-
-// import React from 'react';
-// import Image from 'next/image'
-
-// import styles from './ResponsiveImage.module.scss'
-
-// const ResponsiveImage = ({ src, altText }) => {
-//     return (
-//         <div className={styles.responsiveImage}>
-//             <Image src={src} alt={altText} />
-//         </div>
-//     );
-// }
-
-// export default ResponsiveImage;

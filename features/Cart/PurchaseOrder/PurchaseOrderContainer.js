@@ -13,7 +13,12 @@ import { generatePurchaseOrderId } from "../../../util";
 const PurchaseOrderContainer = () => {
   const { cart } = useCartContext();
 
-  return <PurchaseOrder cart={cart} currentDate={generatePurchaseOrderId()} />;
+  return (
+    <PurchaseOrder
+      cart={cart}
+      generatePurchaseOrderId={generatePurchaseOrderId}
+    />
+  );
 };
 
 export default PurchaseOrderContainer;

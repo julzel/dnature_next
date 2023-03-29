@@ -1,8 +1,16 @@
-const generatePurchaseOrderId = () => {
-  const timestamp = Date.now(); // Get the current time in milliseconds
-  const random_number = Math.floor(Math.random() * 9000) + 1000; // Generate a random number between 1000 and 9999
-  const purchase_order_id = `PO-${timestamp}-${random_number}`;
+const crypto = require("crypto");
+
+const generateHashFromEmail = (email) => {
+  const hash = crypto.createHash("sha256").update(email).digest("hex");
+  const hash_4_digits = parseInt(hash.substring(0, 4), 16);
+  return hash_4_digits;
+};
+
+const generatePurchaseOrderId = (email) => {
+  const hashedEmail = generateHashFromEmail(email);
+  const random_number = Math.floor(Math.random() * 90) + 10;
+  const purchase_order_id = `DN-${random_number}-${hashedEmail}`;
   return purchase_order_id;
 };
 
-export default generatePurchaseOrderId;
+export { generatePurchaseOrderId };

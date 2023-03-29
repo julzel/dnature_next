@@ -9,6 +9,7 @@ import {
 import storage from "./storage";
 
 export {
+  generatePurchaseOrderId,
   calculatePortionSizeInGrams,
   labelKeys,
   valueKeys,

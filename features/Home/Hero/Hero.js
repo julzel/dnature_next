@@ -1,5 +1,4 @@
 import React from "react";
-// import ResponsiveImage from '../../../components/ResponsiveImage';
 import Button from "../../../components/Button";
 import styles from "./Hero.module.scss";
 
