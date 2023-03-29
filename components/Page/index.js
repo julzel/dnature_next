@@ -5,7 +5,7 @@ import Script from "next/script";
 // components
 import Layout from "../Layout";
 
-const Page = ({ children }) => {
+const Page = ({ title = "DNAture Comida natural para mascotas", children }) => {
   return (
     <>
       <Script
@@ -24,7 +24,7 @@ const Page = ({ children }) => {
     `}
       </Script>
       <Head>
-        <title>DNAture Comida natural para mascotas</title>
+        <title>{title}</title>
         <meta
           name="description"
           content="Buscas la mejor alimentación para tu mascota. Has llegado al lugar indicado"

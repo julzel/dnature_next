@@ -1,10 +1,10 @@
 // local imports
-import Page from '../../components/Page';
-import Products from '../../features/Products';
+import Page from "../../components/Page";
+import Products from "../../features/Products";
 
 export default function App() {
   return (
-    <Page>
+    <Page title="DNAture - Nuestros productos">
       <Products />
     </Page>
   );
