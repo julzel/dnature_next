@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
   // Initialize Google Analytics tracking code
   useEffect(() => {
-    ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID);
+    ReactGA.initialize(process.env.NEXT_PUBLIC_ANALYTICS_ID);
   }, []);
 
   // Track pageviews on route change
