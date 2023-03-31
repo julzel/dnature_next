@@ -6,7 +6,8 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
   return (
     <div className={styles.heroContainer}>
       <h1 className="seo-hidden">
-        Alimentación natural y dieta cruda para mascotas
+        Alimentación natural y dieta cruda para mascotas. Snacks, suplementos y
+        planes de nutrición personalizados
       </h1>
       <div className={styles.heroAction}>
         <h2 className={styles.heroActionTitle}>
