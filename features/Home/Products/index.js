@@ -1,23 +1,18 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 // local imports
 //styles
-import styles from './Products.module.scss';
+import styles from "./Products.module.scss";
 
 // data
-import AnimationBox from '../../../components/AnimationBox';
+import AnimationBox from "../../../components/AnimationBox";
 
 // components
-import ProductButton from './ProductButton';
+import ProductButton from "./ProductButton";
 
-// hooks
-import { useCategories } from '../../../hooks';
-
-const Products = () => {
-  const { categories } = useCategories();
-
+const Products = ({ categories }) => {
   return (
     <div className={styles.products}>
       <h2 className={`title ${styles.title}`}>Nuestros productos</h2>
@@ -28,24 +23,24 @@ const Products = () => {
               <li key={i} className={styles.productsCategory}>
                 <Link href={`/productos?category=${category.slug}`} passHref>
                   <div>
-                    <AnimationBox animation='fade-in-from-bottom'>
+                    <AnimationBox animation="fade-in-from-bottom">
                       <div className={styles.image}>
                         <Image
                           src={category.image.url}
                           alt={category.image.title}
-                          width='100%'
-                          height='100%'
-                          layout='responsive'
-                          objectFit='contain'
+                          width="100%"
+                          height="100%"
+                          layout="responsive"
+                          objectFit="contain"
                         />
                       </div>
                     </AnimationBox>
                     <div className={styles.productsCategoryContent}>
-                      <AnimationBox animation='fade-in-from-bottom'>
+                      <AnimationBox animation="fade-in-from-bottom">
                         <div
-                          role='button'
-                          className='flex-center-column'
-                          tabIndex='0'
+                          role="button"
+                          className="flex-center-column"
+                          tabIndex="0"
                         >
                           <ProductButton text={category.label} />
                         </div>

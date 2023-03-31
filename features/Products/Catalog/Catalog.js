@@ -14,29 +14,39 @@ const Catalog = ({
   handleSelectedCategoryChange,
 }) => (
   <section className={styles.catalog}>
-
-    <Filter
-      options={filterOptions}
-      selected={selectedCategory}
-      onOptionSelect={handleSelectedCategoryChange}
-    />
-    {selectedCategory === 'all' ? (
-        <div>
-          {categoriesList.map((category) => {
-            return (
-              <div className={styles.category} key={category.id || selectedCategory}>
-                <CatalogTitle text={category.label} />
-                <CatalogList products={category.products} />
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className={styles.category}>
-          <CatalogTitle text={selectedCategory.label} />
-          <CatalogList products={selectedCategory.products} />
-        </div>
-      )}
+    {selectedCategory && (
+      <>
+        <Filter
+          options={filterOptions}
+          selected={selectedCategory}
+          onOptionSelect={handleSelectedCategoryChange}
+        />
+        {selectedCategory.id === "all" ? (
+          <div>
+            {categoriesList.map((category) => {
+              return (
+                <div
+                  className={styles.category}
+                  key={category.id || selectedCategory}
+                >
+                  <CatalogTitle text={category.label} />
+                  {categoriesList && (
+                    <CatalogList products={category.products} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className={styles.category}>
+            <CatalogTitle text={selectedCategory.label} />
+            {selectedCategory.id && (
+              <CatalogList products={selectedCategory.products} />
+            )}
+          </div>
+        )}
+      </>
+    )}
   </section>
 );
 

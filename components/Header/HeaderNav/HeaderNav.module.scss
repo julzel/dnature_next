@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@import "../../../styles/variables";
 
 .headerNav {
   background-color: $white;
@@ -17,6 +17,7 @@
   }
 
   .logoContainer {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

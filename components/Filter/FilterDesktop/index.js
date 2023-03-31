@@ -14,7 +14,7 @@ const FilterDesktop = ({ options, selected, onOptionSelect }) => (
             key={`filter-by-${item.id}`}
             tabIndex="0"
             onClick={() => onOptionSelect(item.id)}
-            className={selected === item.id ? styles.active : ""}
+            className={selected.id === item.id ? styles.active : ""}
           >
             {item.label}
           </li>

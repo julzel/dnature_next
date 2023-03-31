@@ -1,4 +1,4 @@
-import { fetchFromContentful } from "./util"
+import { fetchFromContentful } from "./util";
 
 const categoriesQuery = `
 {
@@ -13,11 +13,11 @@ const categoriesQuery = `
         }
     }
 }
-`
+`;
 
 const getCategories = async () => {
-    const data = await fetchFromContentful(categoriesQuery)
-    return data.categoryCollection.items
-}
+  const data = await fetchFromContentful(categoriesQuery);
+  return data.categoryCollection.items;
+};
 
-export { getCategories }
+export { getCategories };
