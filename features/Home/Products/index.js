@@ -37,11 +37,7 @@ const Products = ({ categories }) => {
                     </AnimationBox>
                     <div className={styles.productsCategoryContent}>
                       <AnimationBox animation="fade-in-from-bottom">
-                        <div
-                          role="button"
-                          className="flex-center-column"
-                          tabIndex="0"
-                        >
+                        <div className="flex-center-column">
                           <ProductButton text={category.label} />
                         </div>
                       </AnimationBox>

@@ -1,6 +1,8 @@
 @import "../../../styles/_variables";
 @import "../../../styles/mixins";
 
+$hero-btn: #008088;
+
 .heroContainer {
   display: flex;
   background-color: $text-color;
@@ -106,7 +108,7 @@
     justify-content: center;
 
     .button {
-      @include button-styles();
+      @include button-styles($hero-btn);
       margin: 0 8px;
     }
   }

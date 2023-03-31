@@ -1,4 +1,6 @@
-@import '../../../../styles/variables';
+@import "../../../../styles/variables";
+
+$active: #c35400;
 
 .navbar {
   display: flex;
@@ -18,7 +20,7 @@
 
     &.active {
       font-family: $bold2;
-      color: $orange !important;
+      color: $active !important;
     }
 
     &.dark {
@@ -27,7 +29,7 @@
 
     &:hover {
       background-color: $snow;
-      color: lighten($orange, 7.5%);
+      color: lighten($active, 7.5%);
     }
 
     &:last-child {
