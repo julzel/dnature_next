@@ -1,5 +1,5 @@
-@import '../../../styles/_variables';
-@import '../../../styles/mixins';
+@import "../../../styles/_variables";
+@import "../../../styles/mixins";
 
 .products {
   max-width: 1440px;
@@ -40,6 +40,7 @@
     margin-bottom: 20px;
     position: relative;
     cursor: pointer;
+    max-width: 320px;
 
     @include mdq(md) {
       margin: 0 32px;
@@ -51,6 +52,7 @@
       margin: 0 64px;
       height: auto;
       width: calc((100% / 3) - 128px);
+      max-width: 275px;
     }
 
     &Content {
