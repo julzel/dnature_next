@@ -1,13 +1,13 @@
-@import '../../../styles/variables';
-@import '../../../styles/mixins';
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
 
 .banner {
+  background-color: #049faa;
   padding: 64px;
-  background-color: $blue;
   position: relative;
 
   p {
-    color: $text-color;
+    color: $white;
     font-family: $cursiveTitle;
     font-size: 28px;
     line-height: 1.5;

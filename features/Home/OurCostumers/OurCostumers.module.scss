@@ -1,5 +1,7 @@
-@import '../../../styles/variables';
-@import '../../../styles/mixins';
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+$social-media: #008088;
 
 .OurCostumers {
   padding: 64px 32px;
@@ -32,7 +34,7 @@
         padding: 8px 16px;
 
         &::before {
-          content: '“';
+          content: "“";
           position: absolute;
           color: $blue;
           font-size: 100px;
@@ -43,7 +45,7 @@
         }
 
         &::after {
-          content: '”';
+          content: "”";
           position: absolute;
           color: $blue;
           font-size: 100px;
@@ -57,10 +59,6 @@
           position: relative;
           z-index: 1;
         }
-
-        // &::after {
-        //     content: '”';
-        // }
       }
 
       &Name {
@@ -69,7 +67,7 @@
       }
 
       &SocialMedia {
-        background-color: $blue;
+        background-color: $social-media;
         color: $white;
         display: inline-block;
         font-family: $bold2;
