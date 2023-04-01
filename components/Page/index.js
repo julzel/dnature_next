@@ -42,7 +42,6 @@ const Page = ({
         `}
       </Script>
       <Head>
-        <html lang="es" />
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta property="og:title" content={title} />
