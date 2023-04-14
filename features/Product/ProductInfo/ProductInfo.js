@@ -64,7 +64,7 @@ const ProductInfo = ({
           controls
         />
       </div>
-      {productDetail.category === RECETAS_COMPLETAS && (
+      {/* {productDetail.category === RECETAS_COMPLETAS && (
         <div className={styles.presentation}>
           <label htmlFor="presentation">Presentación</label>
           <CustomSelect
@@ -73,22 +73,22 @@ const ProductInfo = ({
             onSelect={onPresentationChange}
             classes={{ select: presentationStyles.select }}
           />
-          <p></p>
-          {/* TODO: add dynamic selector: quantiy by type */}
         </div>
-      )}
+      )} */}
       <Button
         text={"Agregar al carrito"}
         onClick={() => onAddToCart(productDetail, quantity, presentation)}
         className={addToCartStyles.addToCart}
       />
-      {(cartTotalItems > 0) && <Link href={"/cart"} passHref>
-        <a>
-          Ver Carrito
-          <FontAwesomeIcon icon={faCartShopping} />
-          <span>({cartTotalItems})</span>
-        </a>
-      </Link>}
+      {cartTotalItems > 0 && (
+        <Link href={"/cart"} passHref>
+          <a>
+            Ver Carrito
+            <FontAwesomeIcon icon={faCartShopping} />
+            <span>({cartTotalItems})</span>
+          </a>
+        </Link>
+      )}
     </div>
   </div>
 );

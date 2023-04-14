@@ -21,11 +21,11 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
         </p>
 
         <div className={styles.heroActionButtons}>
-          {/* <Button
+          <Button
             text={"Plan DNA"}
             className={`${styles.button} ${styles.variant}`}
             onClick={handlePlanDnaClick}
-          /> */}
+          />
           <Button
             text={"Comprar"}
             className={styles.button}

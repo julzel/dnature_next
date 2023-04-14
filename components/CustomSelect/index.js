@@ -1,15 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
-function CustomSelect({ options, onSelect, selectedOption, classes }) {
+function CustomSelect({ name, options, onSelect, selectedOption, className }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
   const handleSelect = (option) => {
-    onSelect(option);
+    onSelect({ target: { name, value: option.value } });
     setIsOpen(false);
   };
 
-  const toggleOpen = () => {
+  const toggleOpen = (e) => {
+    e.preventDefault();
     setIsOpen(!isOpen);
   };
 
@@ -20,15 +21,15 @@ function CustomSelect({ options, onSelect, selectedOption, classes }) {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref]);
 
   return (
-    <div ref={ref} className={classes ? classes.select : ''}>
+    <div ref={ref}>
       <button onClick={toggleOpen}>{selectedOption.label}</button>
       {isOpen && (
         <ul>

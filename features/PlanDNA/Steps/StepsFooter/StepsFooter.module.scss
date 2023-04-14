@@ -1,0 +1,12 @@
+@import "../../../../styles/_variables";
+@import "../../../../styles/mixins";
+
+.stepsActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  .stepsButton {
+    @include button-styles($width: 200px);
+  }
+}

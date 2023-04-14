@@ -30,6 +30,7 @@ $media: (
 ) {
   color: $text-color;
   background-color: $bg-color;
+  border: 1px solid $bg-color;
   font-size: 16px;
   font-family: $font-family;
   letter-spacing: 1.2px;
@@ -82,7 +83,7 @@ $media: (
   $border-color: $border,
   $text-color: $text-color,
   $active-border-color: $blue,
-  $error-color: $important,
+  $error-color: $important
 ) {
   border: 1px solid $border-color;
   border-radius: 4px;
@@ -99,5 +100,36 @@ $media: (
 
   &.error {
     border-color: $error-color;
+  }
+}
+
+@mixin custom-select-styles(
+  $border-color: $border,
+  $text-color: $text-color,
+  $active-border-color: $blue
+) {
+  width: 100%;
+  margin-bottom: 16px;
+
+  button {
+    border: 1px solid $border-color;
+    border-radius: $br-base;
+    &:focus {
+      border-color: $active-border-color;
+    }
+  }
+
+  ul {
+    border: 1px solid $active-border-color;
+    border-top: none;
+    li {
+      cursor: pointer;
+      padding: 8px 16px;
+      text-align: center;
+      border-bottom: 1px solid $snow;
+      &:hover {
+        background-color: $snow;
+      }
+    }
   }
 }

@@ -20,7 +20,7 @@ $active: #c35400;
 
     &.active {
       font-family: $bold2;
-      color: $active !important;
+      color: $orange !important;
     }
 
     &.dark {
@@ -29,7 +29,7 @@ $active: #c35400;
 
     &:hover {
       background-color: $snow;
-      color: lighten($active, 7.5%);
+      color: lighten($orange, 7.5%);
     }
 
     &:last-child {
