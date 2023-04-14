@@ -76,6 +76,12 @@ const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => (
           </td>
         </tr>
         <tr>
+          <td colSpan="3">Envío</td>
+          <td>
+            <CurrencyText value={3000.0} />
+          </td>
+        </tr>
+        <tr>
           <td colSpan="3">Total</td>
           <td>
             <CurrencyText value={cart.total} />
