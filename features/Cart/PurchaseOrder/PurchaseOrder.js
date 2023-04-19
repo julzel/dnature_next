@@ -84,7 +84,7 @@ const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => (
         <tr>
           <td colSpan="3">Total</td>
           <td>
-            <CurrencyText value={cart.total} />
+            <CurrencyText value={cart.total + 3000.0} />
           </td>
         </tr>
       </tfoot>
