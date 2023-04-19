@@ -8,21 +8,20 @@ import styles from "./PetInfoForm.module.scss";
 import Button from "../../../components/Button";
 import CustomSelect from "../../../components/CustomSelect";
 import FormFieldsAdult from "./FormFields/FormFieldsAdult";
+import FormFieldsPuppy from "./FormFields/FormFieldsPuppy";
 
 const PetInfoForm = ({ petData, ageOptions, handleChange, handleSubmit }) => {
   const { age } = petData;
   return (
-    <form className={styles.formContainer} onSubmit={handleSubmit}>
+    <form className={styles.petFormContainer} onSubmit={handleSubmit}>
       {/* Add other form fields here */}
       <div className={styles.fieldGroup}>
-        <label htmlFor="age" className={styles.fieldLabel}>
-          Age:
-        </label>
         <CustomSelect
-          onSelect={handleChange}
-          options={ageOptions}
-          selectedOption={ageOptions.find((option) => option.value === age)}
           name="age"
+          label="Edad"
+          options={ageOptions}
+          onSelect={handleChange}
+          selectedOption={ageOptions.find((option) => option.value === age)}
         />
       </div>
 
@@ -30,12 +29,14 @@ const PetInfoForm = ({ petData, ageOptions, handleChange, handleSubmit }) => {
         // <div>Render adult dog specific fields</div>
         <FormFieldsAdult handleChange={handleChange} petData={petData} />
       ) : age === "cachorro" ? (
-        <div>Render puppy specific fields</div>
+        <FormFieldsPuppy handleChange={handleChange} petData={petData} />
       ) : null}
 
-      <Button type="submit" className={styles.submitButton}>
-        Add Pet
-      </Button>
+      <div className={styles.petFormActions}>
+        <Button type="submit" className={styles.submitButton}>
+          Add Pet
+        </Button>
+      </div>
     </form>
   );
 };

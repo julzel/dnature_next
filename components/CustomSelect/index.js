@@ -1,6 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function CustomSelect({ name, options, onSelect, selectedOption, className }) {
+// local imports
+// styles
+import styles from "./CustomSelect.module.scss";
+
+function CustomSelect({
+  label,
+  name,
+  options,
+  onSelect,
+  selectedOption,
+  className,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
@@ -29,8 +42,17 @@ function CustomSelect({ name, options, onSelect, selectedOption, className }) {
   }, [ref]);
 
   return (
-    <div ref={ref}>
-      <button onClick={toggleOpen}>{selectedOption.label}</button>
+    <div
+      ref={ref}
+      className={`${styles.customSelect} ${className ? className : ""}`}
+    >
+      {label && <label>{label}:</label>}
+      <button onClick={toggleOpen}>
+        {selectedOption.label}
+        <span>
+          <FontAwesomeIcon icon={faChevronDown} />
+        </span>
+      </button>
       {isOpen && (
         <ul>
           {options.map((option) => (

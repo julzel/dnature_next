@@ -21,7 +21,7 @@ const ClientForm = ({
   rememberClient,
 }) => {
   return (
-    <div className={`${styles.clientForm} ${className ? className : null}`}>
+    <div className={`${styles.clientForm} ${className ? className : ""}`}>
       <div>
         <h2>Detalles de entrega:</h2>
       </div>

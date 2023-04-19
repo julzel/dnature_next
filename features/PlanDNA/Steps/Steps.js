@@ -12,6 +12,7 @@ const Steps = ({
   setStep,
   currentStep,
   steps,
+  enableNext,
 }) => {
   return (
     <div>
@@ -26,6 +27,7 @@ const Steps = ({
         prevStep={prevStep}
         currentStep={currentStep}
         lastStep={steps.length}
+        enableNext={enableNext}
       />
     </div>
   );

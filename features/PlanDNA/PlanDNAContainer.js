@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 
 // local imports
 // components
@@ -8,6 +8,13 @@ import StepsContainer from "./Steps";
 
 // styles
 import styles from "./PlanDNA.module.scss";
+
+const steps = [
+  "1. Cuéntanos sobre tu mascota",
+  "2. Elige los sabores que quieres llevar",
+  "3. Elige la forma de entrega",
+  "4. Confirma tu información",
+];
 
 const initialState = {
   step: 0,
@@ -26,7 +33,7 @@ const reducer = (state, action) => {
     case "PREV_STEP":
       return { ...state, step: state.step - 1 };
     case "UPDATE_PET_DATA":
-      return { ...state, petsData: action.payload };
+      return { ...state, petsData: [...state.petsData, action.payload] };
     case "UPDATE_SELECTED_PROTEINS":
       return { ...state, selectedProteins: action.payload };
     case "UPDATE_DELIVERY_DATA":
@@ -40,12 +47,15 @@ const reducer = (state, action) => {
 
 const PlanDNAContainer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const steps = [
-    "1. Cuéntanos sobre tu mascota",
-    "2. Elige los sabores que quieres llevar",
-    "3. Elige la forma de entrega",
-    "4. Confirma tu información",
-  ];
+  const [enableNext, setEnableNext] = useState(false);
+
+  useEffect(() => {
+    if (state.step === 0 && state.petsData.length > 1) {
+      setEnableNext(true);
+    } else {
+      setEnableNext(false);
+    }
+  }, [state.petsData, state.step]);
 
   return (
     <div className={styles.planDnaContainer}>
@@ -58,12 +68,11 @@ const PlanDNAContainer = () => {
           setStep={(step) => dispatch({ type: "SET_STEP", payload: step })}
           steps={steps}
           currentStep={state.step}
+          enableNext={enableNext}
         >
           <PlanDNA
             formData={state}
-            updatepetsData={(data) =>
-              dispatch({ type: "UPDATE_PET_DATA", payload: data })
-            }
+            updatePetsData={() => console.log("updatePetsData")}
             updateSelectedProteins={(data) =>
               dispatch({ type: "UPDATE_SELECTED_PROTEINS", payload: data })
             }

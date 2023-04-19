@@ -1,23 +1,10 @@
 .petFormContainer {
   // Add styles for the form container
+  padding: 16px;
 }
 
-.fieldGroup {
-  // Add styles for each form field group
-}
-
-.fieldLabel {
-  // Add styles for field labels
-}
-
-.fieldInput {
-  // Add styles for input fields
-}
-
-.dropdownSelect {
-  // Add styles for dropdown selects
-}
-
-.submitButton {
-  // Add styles for the submit button
+.petFormActions {
+  // Add styles for the form actions
+  display: flex;
+  justify-content: flex-end;
 }

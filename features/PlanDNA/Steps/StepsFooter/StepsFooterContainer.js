@@ -6,6 +6,7 @@ const StepsFooterContainer = ({
   prevStep,
   currentStep,
   lastStep,
+  enableNext,
 }) => {
   return (
     <StepsFooter
@@ -13,6 +14,7 @@ const StepsFooterContainer = ({
       prevStep={prevStep}
       currentStep={currentStep}
       lastStep={lastStep}
+      enableNext={enableNext}
     />
   );
 };

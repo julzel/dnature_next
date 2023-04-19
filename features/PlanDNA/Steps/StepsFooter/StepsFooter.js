@@ -7,7 +7,13 @@ import Button from "../../../../components/Button";
 // styles
 import styles from "./StepsFooter.module.scss";
 
-const StepsFooter = ({ nextStep, prevStep, currentStep, lastStep }) => {
+const StepsFooter = ({
+  nextStep,
+  prevStep,
+  currentStep,
+  lastStep,
+  enableNext,
+}) => {
   return (
     <div className={styles.stepsActions}>
       <Button
@@ -16,7 +22,11 @@ const StepsFooter = ({ nextStep, prevStep, currentStep, lastStep }) => {
       >
         Anterior
       </Button>
-      <Button className={styles.stepsButton} onClick={nextStep}>
+      <Button
+        className={styles.stepsButton}
+        onClick={nextStep}
+        disabled={!enableNext}
+      >
         Siguiente
       </Button>
     </div>

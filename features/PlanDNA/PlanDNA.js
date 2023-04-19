@@ -2,19 +2,26 @@ import React, { useState } from "react";
 
 // local imports
 // components
-import PetInfoForm from "./PetInfoForm";
+import PetInfoFormContainer from "./PetInfoForm";
 import ProteinSelection from "./ProteinSelection";
 import DeliveryOptions from "./DeliveryOptions";
 
-const PlanDnature = ({
+const PlanDNA = ({
   formData,
-  updatePetData,
+  updatePetsData,
   updateSelectedProteins,
   updateDeliveryData,
 }) => {
   switch (formData.step) {
     case 1:
-      return <PetInfoForm onSubmit={updatePetData} />;
+      return (
+        <PetInfoFormContainer
+          onAddPetData={(data) => {
+            console.log(data);
+            updatePetsData(data);
+          }}
+        />
+      );
     case 2:
       return (
         <ProteinSelection
@@ -34,4 +41,4 @@ const PlanDnature = ({
   }
 };
 
-export default PlanDnature;
+export default PlanDNA;

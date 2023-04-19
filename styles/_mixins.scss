@@ -108,27 +108,45 @@ $media: (
   $text-color: $text-color,
   $active-border-color: $blue
 ) {
-  width: 100%;
-  margin-bottom: 16px;
+  display: flex;
+  flex-flow: column;
+  position: relative;
 
   button {
     border: 1px solid $border-color;
-    border-radius: $br-base;
-    &:focus {
+    font-family: $regular;
+    font-size: 16px;
+    position: relative;
+
+    &:focus,
+    &:hover {
       border-color: $active-border-color;
+    }
+
+    span {
+      color: $border-color;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 
   ul {
+    background-color: white;
     border: 1px solid $active-border-color;
     border-top: none;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 1;
     li {
       cursor: pointer;
       padding: 8px 16px;
       text-align: center;
-      border-bottom: 1px solid $snow;
+      border-bottom: 1px solid $border;
       &:hover {
-        background-color: $snow;
+        background-color: $border;
       }
     }
   }

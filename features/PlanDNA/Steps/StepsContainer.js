@@ -8,6 +8,7 @@ const StepsContainer = ({
   setStep,
   currentStep,
   steps,
+  enableNext,
 }) => {
   return (
     <Steps
@@ -16,6 +17,7 @@ const StepsContainer = ({
       setStep={setStep}
       currentStep={currentStep}
       steps={steps}
+      enableNext={enableNext}
     >
       {children}
     </Steps>

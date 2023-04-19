@@ -1,28 +1,30 @@
 import React, { useState, useCallback } from "react";
 import PetInfoForm from "./PetInfoForm";
 
-const PetInfoFormContainer = ({ onSubmit }) => {
-  const [petData, setPetData] = useState({
-    name: "",
-    age: "adulto",
-    size: "",
-    weight: "",
-    castrated: "",
-    weightStatus: "",
-    activity: "",
-    stage: "",
-  });
+const ageOptions = [
+  {
+    value: "adulto",
+    label: "Adulto",
+  },
+  {
+    value: "cachorro",
+    label: "Cachorro",
+  },
+];
 
-  const ageOptions = [
-    {
-      value: "adulto",
-      label: "Adulto",
-    },
-    {
-      value: "cachorro",
-      label: "Cachorro",
-    },
-  ];
+const initialPetData = {
+  name: "",
+  age: "adulto",
+  size: "medium",
+  weight: 0,
+  castrated: "castrated",
+  weightStatus: "ideal",
+  activity: "active",
+  stage: "stage3",
+};
+
+const PetInfoFormContainer = ({ onAddPetData }) => {
+  const [petData, setPetData] = useState(initialPetData);
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -32,19 +34,11 @@ const PetInfoFormContainer = ({ onSubmit }) => {
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      onSubmit(petData);
-      setPetData({
-        name: "",
-        age: "",
-        size: "",
-        weight: "",
-        castrated: "",
-        weightStatus: "",
-        activity: "",
-        stage: "",
-      });
+      console.log(petData);
+      onAddPetData(petData);
+      // setPetData(initialPetData);
     },
-    [onSubmit, petData]
+    [onAddPetData, petData]
   );
 
   return (

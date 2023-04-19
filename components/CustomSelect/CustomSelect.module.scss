@@ -1,0 +1,20 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.customSelect {
+  margin-bottom: 16px;
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-family: $bold2;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  button {
+    padding: 8px 0px;
+  }
+
+  @include custom-select-styles();
+}
