@@ -1,5 +1,5 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
 
 .productInfo {
   margin-bottom: 32px;
@@ -7,31 +7,27 @@
   @include mdq(lg) {
     display: flex;
     align-items: stretch;
-    justify-content: space-between;
     margin-bottom: 0;
   }
 
   .images {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
 
     @include mdq(lg) {
-      width: 275px;
-      flex-grow: 1;
+      padding: 0 48px 0 0;
+      width: 60%;
     }
 
     span {
-      width: 100%!important;
-      max-width: 320px;
+      width: 100% !important;
     }
   }
 
   .info {
     @include mdq(lg) {
       padding: 32px 0;
-      flex-shrink: 0;
+      flex: 1;
       display: flex;
       align-items: flex-end;
       flex-flow: column;
@@ -116,4 +112,13 @@
   svg {
     margin-left: 4px;
   }
+}
+
+.presentationNote {
+  // font-family: $light;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  text-align: right;
 }

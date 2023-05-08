@@ -88,4 +88,13 @@
       }
     }
   }
+
+  .footNote {
+    font-size: 12px;
+    margin-bottom: 32px;
+
+    span {
+      font-family: $bold;
+    }
+  }
 }

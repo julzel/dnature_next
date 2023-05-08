@@ -53,7 +53,6 @@ const ShoppingCartContextProvider = ({ children }) => {
       );
       if (foundItem) {
         foundItem.quantity += item.quantity;
-        foundItem.containers = [...foundItem.containers, ...item.containers];
       } else {
         currentShoppingCart.items.push(item);
       }

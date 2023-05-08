@@ -76,7 +76,7 @@ const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => (
           </td>
         </tr>
         <tr>
-          <td colSpan="3">Envío</td>
+          <td colSpan="3">Envío*</td>
           <td>
             <CurrencyText value={3000.0} />
           </td>
@@ -89,6 +89,14 @@ const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => (
         </tr>
       </tfoot>
     </table>
+    <div className={styles.footNote}>
+      <p>
+        <span>*</span> Precio aplica para la Gran Área Metropolitana.
+      </p>
+      <p>
+        <span>Atención</span>: Fecha de entrega por coordinar.
+      </p>
+    </div>
   </div>
 );
 
