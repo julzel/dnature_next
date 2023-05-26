@@ -1,15 +1,18 @@
-@import '../../../styles/_variables';
-@import '../../../styles/mixins';
+@import "../../../styles/_variables";
+@import "../../../styles/mixins";
 
 .categoryTitle {
-    font-family: $cursiveTitle;
-    margin-bottom: 10px;
-    padding: 20px 0;
-    position: relative;
+  font-family: $cursiveTitle;
+  margin: 0 auto 10px;
+  padding: 8px 16px;
+  position: relative;
+  //   color: $white;
+  background: $lightBlue;
 
-    @include mdq(lg) {
-        padding: 0;
-        margin-bottom: 20px;
-        text-align: left;
-    }
+  @include mdq(lg) {
+    background: $blue-white-gradient;
+    padding: 8px 32px;
+    margin: 0 0 20px;
+    text-align: left;
+  }
 }

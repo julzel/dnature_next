@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 
 // local imports
 // components
-import Catalog from "./Catalog";
+import CatalogContainer from "./Catalog";
 
 const Productos = ({ products }) => {
   const router = useRouter();
   const { category } = router.query;
 
-  return <Catalog queryCategory={category} products={products} />;
+  return <CatalogContainer queryCategory={category} products={products} />;
 };
 
 export default Productos;

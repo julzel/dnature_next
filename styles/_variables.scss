@@ -11,20 +11,21 @@ $darkGray: #2c2c2c;
 $gray: #888585;
 $black: #3a3a3a;
 $border: #efefef;
+$blue-white-gradient: linear-gradient(to right, #5dd8db 30%, #ffffff);
 
-$light: 'Poppins Light';
-$regular: 'Poppins';
-$bold: 'Poppins Bold';
+$light: "Poppins Light";
+$regular: "Poppins";
+$bold: "Poppins Bold";
 
-$light2: 'OpenSans Light';
-$regular2: 'OpenSans';
-$bold2: 'OpenSans Bold';
+$light2: "OpenSans Light";
+$regular2: "OpenSans";
+$bold2: "OpenSans Bold";
 
-$quote: 'Raleway Light';
-$quoteItalic: 'Raleway Light Italic';
-$quoteItalicBold: 'Raleway Regular Italic';
+$quote: "Raleway Light";
+$quoteItalic: "Raleway Light Italic";
+$quoteItalicBold: "Raleway Regular Italic";
 
-$cursiveTitle: 'Lobster';
+$cursiveTitle: "Lobster";
 
 // default-sizes
 $headerHeight: 70px;

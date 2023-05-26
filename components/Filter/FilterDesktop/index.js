@@ -1,22 +1,26 @@
 import React from "react";
+import Link from "next/link";
 
 // local imports
 // styles
 import styles from "./FilterDesktop.module.scss";
 
-const FilterDesktop = ({ options, selected, onOptionSelect }) => (
+const FilterDesktop = ({ options, selected }) => (
   <div className={styles.filter}>
     <ul className={styles.filterList}>
       {options.map((item) => {
         return (
           <li
-            role="button"
             key={`filter-by-${item.id}`}
-            tabIndex="0"
-            onClick={() => onOptionSelect(item.id)}
             className={selected.id === item.id ? styles.active : ""}
           >
-            {item.label}
+            <Link
+              key={`filter-by-${item.id}`}
+              href={`/productos?category=${item.id}`}
+              passHref
+            >
+              {item.label}
+            </Link>
           </li>
         );
       })}

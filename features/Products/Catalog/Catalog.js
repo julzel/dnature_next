@@ -7,20 +7,11 @@ import CatalogList from "../CatalogList";
 // styles
 import styles from "./Catalog.module.scss";
 
-const Catalog = ({
-  categoriesList,
-  selectedCategory,
-  filterOptions,
-  handleSelectedCategoryChange,
-}) => (
+const Catalog = ({ categoriesList, selectedCategory, filterOptions }) => (
   <section className={styles.catalog}>
     {selectedCategory && (
       <>
-        <Filter
-          options={filterOptions}
-          selected={selectedCategory}
-          onOptionSelect={handleSelectedCategoryChange}
-        />
+        <Filter options={filterOptions} selected={selectedCategory} />
         {selectedCategory.id === "all" ? (
           <div>
             {categoriesList.map((category) => {

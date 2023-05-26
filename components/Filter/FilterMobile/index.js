@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -6,7 +7,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 // styles
 import styles from "./FilterMobile.module.scss";
 
-const FilterMobile = ({ options, selected, onOptionSelect }) => {
+const FilterMobile = ({ options, selected }) => {
   const [showList, setShowList] = useState(false);
 
   return (
@@ -31,14 +32,16 @@ const FilterMobile = ({ options, selected, onOptionSelect }) => {
         {options.map((item) => {
           return (
             <li
-              role="button"
               key={`filter-by-${item.id}`}
-              tabIndex="0"
-              onClick={() => onOptionSelect(item.id)}
+              className={selected.id === item.id ? styles.active : ""}
             >
-              <span className={selected.id === item.id ? styles.active : ""}>
+              <Link
+                key={`filter-by-${item.id}`}
+                href={`/productos?category=${item.id}`}
+                passHref
+              >
                 {item.label}
-              </span>
+              </Link>
             </li>
           );
         })}
