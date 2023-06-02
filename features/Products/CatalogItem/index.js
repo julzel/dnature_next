@@ -62,18 +62,16 @@ const CatalogItem = ({ product }) => {
             ₡{product.precio}{" "}
             {product.medida && <span> | {product.medida}</span>}
           </p>
-          <div>
+          <div className={styles.quickAdd}>
             <button onClick={addItemToCart}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </button>
-          </div>
-          {itemsInCart > 0 && (
-            <div>
+            {itemsInCart > 0 && (
               <Link passHref href="/cart">
                 <a className={styles.badge}>{itemsInCart}</a>
               </Link>
-            </div>
-          )}
+            )}
+          </div>
         </span>
       </span>
     </Link>

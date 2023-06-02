@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding-right: 16px;
+  position: relative;
 
   @include mdq("md") {
     flex-direction: column;
@@ -38,6 +39,7 @@
       text-transform: uppercase;
       margin-bottom: 5px;
     }
+
     p {
       font-family: $bold;
 
@@ -46,11 +48,31 @@
         font-size: 14px;
       }
     }
+
+    .quickAdd {
+      margin-top: 8px;
+      display: flex;
+      flex-flow: column;
+      align-items: flex-end;
+
+      @include mdq("md") {
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
     button {
-      margin: 16px 0 4px;
+      margin-bottom: 4px;
       font-size: 24px;
       color: $darkGreen;
+
+      @include mdq("md") {
+        margin-bottom: 0;
+        margin-right: 8px;
+      }
     }
+
     .badge {
       background-color: $black;
       border-radius: 50%;
