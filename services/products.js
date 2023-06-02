@@ -79,6 +79,16 @@ const formatProductsData = (productItems) => {
       };
     }
   });
+
+  // Sort the products by rating, if the rating exists and is a number.
+  for (let category in catalog) {
+    catalog[category].products.sort((a, b) => {
+      const aRating =  a.rating || 100;
+      const bRating =  b.rating || 100;
+      return aRating - bRating; // Sort in descending order. Swap 'aRating' and 'bRating' for ascending order.
+    });
+  }
+
   return catalog;
 };
 

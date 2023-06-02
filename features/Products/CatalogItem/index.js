@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faCircleMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // local imports
@@ -15,7 +15,7 @@ import { useCartContext } from "../../../contexts/shopping-cart-context";
 const CatalogItem = ({ product }) => {
   const { images } = product;
   const itemImage = images[0];
-  const { addOneItem, cart } = useCartContext();
+  const { addOneItem, removeOneItem, cart } = useCartContext();
 
   const getItemsInCart = (cart) => {
     const itemInCart = cart.items.find((item) => item.id === product.sys.id);
@@ -33,6 +33,19 @@ const CatalogItem = ({ product }) => {
       null
     );
     addOneItem(newItem);
+  };
+
+  const removeOneItemFromCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const item = new ShoppingCartItem(
+      product.sys.id,
+      1,
+      product.precio,
+      product.productName,
+      null
+    );
+    removeOneItem(item);
   };
 
   const itemsInCart = getItemsInCart(cart);
@@ -63,14 +76,20 @@ const CatalogItem = ({ product }) => {
             {product.medida && <span> | {product.medida}</span>}
           </p>
           <div className={styles.quickAdd}>
+            {itemsInCart > 0 && (
+              <>
+                <button
+                  className={styles.light}
+                  onClick={removeOneItemFromCart}
+                >
+                  <FontAwesomeIcon icon={faCircleMinus} />
+                </button>
+                <span className={styles.badge}>{itemsInCart}</span>
+              </>
+            )}
             <button onClick={addItemToCart}>
               <FontAwesomeIcon icon={faCirclePlus} />
             </button>
-            {itemsInCart > 0 && (
-              <Link passHref href="/cart">
-                <a className={styles.badge}>{itemsInCart}</a>
-              </Link>
-            )}
           </div>
         </span>
       </span>

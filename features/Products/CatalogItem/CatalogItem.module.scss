@@ -19,7 +19,7 @@
 
     @include mdq("md") {
       width: 100%;
-      padding: 40px;
+      padding: 8px 42px;
     }
   }
 
@@ -50,25 +50,22 @@
     }
 
     .quickAdd {
-      margin-top: 8px;
+      margin-top: 12px;
       display: flex;
-      flex-flow: column;
-      align-items: flex-end;
+      justify-content: flex-end;
+      align-items: center;
 
       @include mdq("md") {
-        flex-flow: row;
         justify-content: center;
-        align-items: center;
       }
     }
 
     button {
-      margin-bottom: 4px;
       font-size: 24px;
       color: $darkGreen;
 
-      @include mdq("md") {
-        margin-bottom: 0;
+      &.light {
+        color: $lightGray;
         margin-right: 8px;
       }
     }
@@ -81,8 +78,10 @@
       align-items: center;
       justify-content: center;
       font-size: 12px;
+      margin-right: 8px;
       width: 24px;
       height: 24px;
+      pointer-events: none;
     }
   }
 }
