@@ -18,6 +18,7 @@ const productsQuery = () => `
             urlSlug
             medida
             precio
+            rating
             imageCollection {
                 items {
                     title

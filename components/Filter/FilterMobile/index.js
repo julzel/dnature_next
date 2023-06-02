@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 // local imports
 // styles
@@ -9,25 +9,27 @@ import styles from "./FilterMobile.module.scss";
 
 const FilterMobile = ({ options, selected }) => {
   const [showList, setShowList] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(selected);
+
+  useEffect(() => {
+    if (selected.id !== selectedOption.id) {
+      setSelectedOption(selected);
+      setShowList(false);
+    }
+  }, [selected, selectedOption.id]); 
 
   return (
     <div className={styles.filter}>
-      <div
+      <button
         className={styles.filterHeader}
-        role="button"
-        tabIndex="0"
         onClick={() => setShowList(!showList)}
       >
-        <span>Filtrar&nbsp;</span>
-        <span
-          style={{
-            transform: `rotate(${showList ? "180" : "0"}deg)`,
-          }}
-          className={styles.icon}
+        <span className={styles.icon}
         >
-          <FontAwesomeIcon icon={faChevronDown} />
+          <FontAwesomeIcon icon={faFilter} />
         </span>
-      </div>
+        <span>&nbsp;Filtrar</span>
+      </button>
       <ul className={`${styles.filterList} ${showList ? styles.show : ""}`}>
         {options.map((item) => {
           return (
@@ -36,7 +38,6 @@ const FilterMobile = ({ options, selected }) => {
               className={selected.id === item.id ? styles.active : ""}
             >
               <Link
-                key={`filter-by-${item.id}`}
                 href={`/productos?category=${item.id}`}
                 passHref
               >

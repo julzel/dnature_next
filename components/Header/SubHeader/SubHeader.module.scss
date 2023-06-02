@@ -9,7 +9,7 @@
   padding: 0 32px;
 
   .link {
-    border-right: 1px solid $black;
+    border-right: 1px solid $darkGray;
     display: inline-flex;
     font-family: $regular2;
     padding: 0 16px;
@@ -33,7 +33,7 @@
     }
 
     svg path {
-        fill: $black;
+        fill: $darkGray;
     }
 
     &:hover {

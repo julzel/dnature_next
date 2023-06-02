@@ -6,6 +6,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 32px 16px;
+  position: relative;
 
   @include mdq(lg) {
     display: flex;
@@ -15,7 +16,6 @@
   }
 
   .category {
-    padding: 40px 0;
     margin-bottom: 40px;
 
     @include mdq(lg) {

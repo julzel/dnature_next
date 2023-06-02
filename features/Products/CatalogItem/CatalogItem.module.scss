@@ -1,24 +1,38 @@
-@import '../../../styles/_variables';
+@import "../../../styles/_variables";
+@import "../../../styles/_mixins";
 
 .catalogItem {
   cursor: pointer;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 16px;
+
+  @include mdq("md") {
+    flex-direction: column;
+  }
 
   &Images {
-    margin-bottom: 10px;
+    width: 150px;
+    flex-shrink: 0;
 
-    > span {
-      max-width: 250px !important;
-      margin: 0 auto !important;
+    @include mdq("md") {
+      width: 100%;
+      padding: 40px;
     }
   }
 
   &Details {
-    text-align: center;
+    text-align: right;
+
+    @include mdq("md") {
+      text-align: center;
+    }
+
     h3 {
-      color: $darkGray;
+      color: $black;
       font-family: $bold2;
-      font-size: 14px;
+      font-size: 12px;
       letter-spacing: 1px;
       padding-top: 4px;
       text-transform: uppercase;
@@ -31,6 +45,22 @@
         font-family: $regular;
         font-size: 14px;
       }
+    }
+    button {
+      margin: 16px 0 4px;
+      font-size: 24px;
+      color: $darkGreen;
+    }
+    .badge {
+      background-color: $black;
+      border-radius: 50%;
+      color: $white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      width: 24px;
+      height: 24px;
     }
   }
 }

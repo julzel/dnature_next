@@ -5,6 +5,10 @@
     display: flex;
     position: relative;
     flex-flow: column;
+    position: fixed;
+    left: 32px;
+    top: 80px;
+    z-index: 2;
 
     @include mdq(lg) {
         display: none;
@@ -13,9 +17,11 @@
     &Header {
         display: flex;
         align-items: center;
-        font-size: 14px;
+        font-size: 12px;
+        font-family: $bold;
         letter-spacing: 1px;
         text-transform: uppercase;
+        margin-bottom: 5px;
 
         .icon {
             -webkit-transition:  -webkit-transform 200ms linear;
@@ -26,23 +32,29 @@
     }
 
     &List {
-        padding-top: 10px;
+        background: $white;
+        box-shadow: -1px 1px 5px -1px rgba(21, 21, 21, 0.125);
         height: 0;
         overflow: hidden;
-        transition: height 200ms ease-in;
+        transform: translateX(-32px);
 
         li {
-            font-size: 14px;
-            padding: 4px 0 4px 16px;
+            font-size: 16px;
+            padding: 16px 16px 16px 16px;
+            border-bottom: 1px solid $border;
 
             .active {
                 color: $orange;
+            }
+            &:last-child {
+                border-bottom: none;
             }
         }
     }
 
     .show {
-        height: 190px;
-        width: 100%;
+        height: auto;
+        width: 300px;
+        padding: 8px 16px 4px;
     }
 }
