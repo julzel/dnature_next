@@ -1,0 +1,23 @@
+.pet-data {
+  padding: 16px;
+}
+
+.steps-carousel {
+  // padding: 32px 0;
+}
+
+.steps-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.step-item {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+
+  &_title {
+    margin-bottom: 8px;
+  }
+}
