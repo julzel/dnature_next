@@ -14,14 +14,13 @@ const petDefaultInfo = {
   castrated: 'castrated',
   bodyContexture: 'ideal',
   dailyActivity: 'active',
-  weight: null,
+  weight: '',
   portionSize: null,
 };
 
 const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
   const [currentStep, setCurrentStep] = React.useState(0);
   const [petInfo, setPetInfo] = React.useState(initialPetInfo || petDefaultInfo);
-  console.log(petInfo)
 
   const handleInfoChange = (field) => (value) => {
     setPetInfo((prevInfo) => ({ ...prevInfo, [field]: value }));

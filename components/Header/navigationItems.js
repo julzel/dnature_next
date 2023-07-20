@@ -12,9 +12,13 @@ const navigationItems = [
         label: 'preguntas frecuentes'
     },
     {
+        href:'/blog',
+        label: 'blog'
+    },
+    {
         href:'/calculadora',
         label: 'calcular porción'
-    }
+    },
 ]
 
 export default navigationItems
