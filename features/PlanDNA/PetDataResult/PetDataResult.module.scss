@@ -1,0 +1,11 @@
+.pet-data-result {
+  flex: 1;
+  position: relative;
+  padding-bottom: 64px;
+
+  &_add {
+    position: absolute !important;
+    right: 0;
+    bottom: 0;
+  }
+}

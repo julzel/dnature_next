@@ -1,7 +1,8 @@
+@import '../../styles/variables';
 .plan-dna {
   flex: 1;
-  padding: 16px;
+  padding: 32px;
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  background-color: #fdfdfd;
 }

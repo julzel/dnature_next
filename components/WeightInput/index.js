@@ -39,16 +39,17 @@ const WeightInput = ({ weight, handleChange, label, helpText }) => {
   };
 
   return (
+    
     <TextField
       error={error}
       helperText={helperText}
       fullWidth
       label={label}
-      variant="filled"
+      variant="outlined"
       value={weight}
       onChange={handleWeightChange}
       InputProps={{
-        startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+        endAdornment: <InputAdornment position="end">kg</InputAdornment>,
         inputComponent: NumberFormatCustom,
       }}
     />

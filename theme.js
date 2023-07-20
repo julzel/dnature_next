@@ -11,8 +11,20 @@ const createMyTheme = (mode) => {
       secondary: {
         main: '#ff6f00',
       },
+      tertiary: {
+        main: '#dbe077',
+      },
+      success: {
+        main: '#a8b247'
+      },
     },
     typography: {
+      subtitle1: {
+        fontWeight: 700,
+      },
+      subtitle2: {
+        fontWeight: 400,
+      },
       fontFamily: 'Roboto, sans-serif',
     },
     components: {

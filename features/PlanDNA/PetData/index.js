@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Button, Typography } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import styles from './PetData.module.scss';
 
 // components
@@ -11,15 +11,17 @@ const petDefaultInfo = {
   age: 'adult',
   puppyStage: 'stage1',
   size: 'medium',
-  castrated: true,
+  castrated: 'castrated',
   bodyContexture: 'ideal',
   dailyActivity: 'active',
-  weight: 0,
+  weight: null,
+  portionSize: null,
 };
 
-const PetData = ({ initialPetInfo = petDefaultInfo, onSubmit, startOver }) => {
+const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
   const [currentStep, setCurrentStep] = React.useState(0);
-  const [petInfo, setPetInfo] = React.useState(initialPetInfo);
+  const [petInfo, setPetInfo] = React.useState(initialPetInfo || petDefaultInfo);
+  console.log(petInfo)
 
   const handleInfoChange = (field) => (value) => {
     setPetInfo((prevInfo) => ({ ...prevInfo, [field]: value }));
@@ -38,7 +40,6 @@ const PetData = ({ initialPetInfo = petDefaultInfo, onSubmit, startOver }) => {
       setCurrentStep(currentStep + 1);
     }
   };
-  
 
   const onPrevStep = () => {
     if (currentStep > 0) {
@@ -72,19 +73,27 @@ const PetData = ({ initialPetInfo = petDefaultInfo, onSubmit, startOver }) => {
   return (
     <div className={styles['pet-data']}>
       <div className={styles['steps-carousel']}>
+        <Typography
+          color="textSecondary"
+          mb={2}
+          variant="caption"
+          display="block"
+          gutterBottom
+        >
+          Paso {currentStep + 1} de {steps.length}
+        </Typography>
         <Carousel
+          height={150}
           animation="slide"
           autoPlay={false}
           indicators={false}
           navButtonsAlwaysInvisible={true}
           index={currentStep}
-          height={150}
         >
           {steps.map((item, i) => (
-            <div key={`item-${i}`} className={styles['step-item']}>
-              <h2 className={styles['step-item_title']}>{item.title}</h2>
+            <Box key={`item-${i}`} className={styles['step-item']}>
               {item.component}
-            </div>
+            </Box>
           ))}
         </Carousel>
       </div>

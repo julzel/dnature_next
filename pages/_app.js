@@ -1,3 +1,4 @@
+import React from 'react';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -6,11 +7,11 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import { ThemeProvider, useMediaQuery } from '@mui/material';
 import { CacheProvider } from '@emotion/react';
-import { lightTheme } from '../theme';
-import createEmotionCache from '../emotionCache';
 
 // local imports
 // styles
+import { lightTheme } from '../theme';
+import createEmotionCache from '../emotionCache';
 import '../styles/globals.scss';
 
 // providers
@@ -23,10 +24,6 @@ function MyApp({
   pageProps: { session, ...pageProps },
   emotionCache = clientSideEmotionCache,
 }) {
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  // const theme = prefersDarkMode ? darkTheme : lightTheme;
-
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={lightTheme}>

@@ -8,7 +8,7 @@ const PetNameInput = ({ value, handleChange }) => (
     fullWidth
     label="Nombre"
     id="petName"
-    variant="filled"
+    variant="outlined"
     value={value}
     onChange={(e) => handleChange(e.target.value)}
   />
@@ -64,10 +64,10 @@ const PetSizeInput = ({ value = 'medium', handleChange }) => {
   );
 };
 
-const PetIsCastratedInput = ({ value = true, handleChange }) => {
+const PetIsCastratedInput = ({ value = 'castrated', handleChange }) => {
   const options = [
-    { value: true, label: 'Castrado' },
-    { value: false, label: 'Sin castrar' },
+    { value: 'castrated', label: 'Castrado' },
+    { value: 'notCastrated', label: 'Sin castrar' },
   ];
   return (
     <SelectInput
@@ -114,12 +114,12 @@ const PetDailyActivityInput = ({ value = 'active', handleChange }) => {
   );
 };
 
-const PetWeightInput = ({ weight, handleChange }) => (
+const PetWeightInput = ({ value, handleChange }) => (
   // weight, handleChange, label, helpText
   <WeightInput
     label="Peso de tu mascota"
     helpText="El peso debe estar entre 0.1kg y 100kg"
-    weight={weight}
+    weight={value}
     handleChange={handleChange}
   />
 );
