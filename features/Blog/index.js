@@ -1,51 +1,34 @@
 import React from 'react';
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-  Box,
-} from '@mui/material';
+import { Box } from '@mui/material';
 import Head from 'next/head';
+
+// local imports
+// styles
 import styles from './Blog.module.scss';
+
+// components
 import BlogIntro from './BlogIntro';
+import BlogHero from './BlogHero';
+import BlogPosts from './BlogPosts';
 
 const Blog = ({ posts }) => {
+  console.log(posts)
   return (
-    <Box px={2} py={4} className={styles['blog-container']}>
+    <Box pb={4} className={styles['blog-container']}>
       <Head>
-        <title>Blog | My Online Store</title>
+        <title>DNAture Blog | Nutrición con amor</title>
         <meta
           name="description"
           content="Check out the latest blog posts from My Online Store"
         />
       </Head>
-      <Typography variant="h2" component="h1" gutterBottom>
-        Nutrición con Amor: Guía para Mascotas Felices
-      </Typography>
-      <BlogIntro />
-      <Grid container spacing={4}>
-        {posts.map((post, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4}>
-            <Card className={styles['blog-card']}>
-              {/* <CardMedia
-                className={styles['blog-media']}
-                image={post.mediaCollection.items[0].url}
-                title={post.title}
-              /> */}
-              <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
-                  {post.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {post.excerpt}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      <header>
+        <BlogHero />
+      </header>
+      <div className={styles['pull-up']}>
+        <BlogIntro />
+        <BlogPosts posts={posts} />
+      </div>
     </Box>
   );
 };

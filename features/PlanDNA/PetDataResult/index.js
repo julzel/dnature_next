@@ -7,7 +7,6 @@ import styles from './PetDataResult.module.scss';
 import PetCard from '../../../components/PetCard';
 
 const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => {
-  console.log(petData)
   return (
     <div className={styles['pet-data-result']}>
       <Box mb={2}>

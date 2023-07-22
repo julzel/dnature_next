@@ -1,3 +1,4 @@
-import useAuth from "./useAuth.js";
+import useAuth from "./useAuth";
+import useWindow from './useWindow'
 
-export { useAuth };
+export { useAuth, useWindow };

@@ -120,15 +120,6 @@ const calculatePortionSizeInGrams = ({
   weight,
 }) => {
   let weightPercentage;
-  console.log({
-    age,
-    puppyStage,
-    size,
-    castrated,
-    bodyContexture,
-    dailyActivity,
-    weight,
-  });
 
   if (age === 'adult') {
     weightPercentage =

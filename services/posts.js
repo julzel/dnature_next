@@ -4,8 +4,16 @@ const BLOG_PREVIEW_QUERY = `
   {
     blogEntryCollection {
       items {
+        sys {
+          id
+        }
         title
         excerpt
+        mediaCollection {
+          items {
+            url
+          }
+        }
       }
     }
   }
