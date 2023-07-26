@@ -11,9 +11,9 @@ const graphQLClient = new GraphQLClient(endpoint, {
   },
 });
 
-const fetchFromContentful = async (query) => {
+const fetchFromContentful = async (query, variables) => {
   try {
-    const data = await graphQLClient.request(query);
+    const data = await graphQLClient.request(query, variables);
     return data;
   } catch (error) {
     console.error("Error fetching data from Contentful:", error);

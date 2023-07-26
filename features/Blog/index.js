@@ -12,14 +12,13 @@ import BlogHero from './BlogHero';
 import BlogPosts from './BlogPosts';
 
 const Blog = ({ posts }) => {
-  console.log(posts)
   return (
     <Box pb={4} className={styles['blog-container']}>
       <Head>
         <title>DNAture Blog | Nutrición con amor</title>
         <meta
           name="description"
-          content="Check out the latest blog posts from My Online Store"
+          content="Blog de DNAture, tips de nutrición, tenencia responsable, y todo lo que necesitas saber sobre alimentación natural para mascotas."
         />
       </Head>
       <header>

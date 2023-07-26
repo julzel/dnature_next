@@ -18,13 +18,13 @@ import { useWindow } from '../../hooks';
 import styles from './Blog.module.scss';
 
 const colors = [
-  pink[500],
-  teal[500],
-  purple[500],
-  blue[500],
-  green[500],
-  red[500],
-  orange[500],
+  pink[700],
+  purple[700],
+  blue[700],
+  teal[700],
+  green[700],
+  red[700],
+  orange[700],
 ];
 
 const BlogPosts = ({ posts }) => {
@@ -32,68 +32,41 @@ const BlogPosts = ({ posts }) => {
 
   return (
     <Box sx={{ maxWidth: '900px', margin: '0 auto' }}>
-      <ImageList variant='masonry' gap={16} cols={isMobile ? 1 : 3}>
+      <ImageList gap={16} cols={isMobile ? 1 : 3}>
         {posts.map((post, index) => (
           <ImageListItem
             key={index}
             sx={{ marginBottom: isMobile ? '32px' : 'inherit ' }}
           >
-            <Card>
-              <Box position={'relative'}>
-                {post.mediaCollection.items.length > 0 && (
-                  <Image
-                    src={post.mediaCollection.items[0].url}
-                    alt={post.title}
-                    layout="responsive"
-                    objectFit="cover"
-                    width={300} // replace with actual width
-                    height={300} // replace with actual height
-                  />
-                )}
-              </Box>
-              <Link href={`/blog/${post.sys.id}`} passHref>
-                <a>
-                  <Box height="100%" flex={1} bgcolor={colors[index % colors.length]} p={1}>
-                    <Typography color="white" variant="h5" gutterBottom>
+            <Link href={`/blog/${post.sys.id}`} passHref>
+              <a className={styles['blog-posts_link']}>
+                <Card variant="outlined">
+                  <Box position={'relative'}>
+                    <Image
+                      src={post.media.url}
+                      alt={post.title}
+                      layout="responsive"
+                      objectFit="cover"
+                      width={300}
+                      height={250}
+                    />
+                  </Box>
+                  <Box p={1} bgcolor={colors[index % colors.length]}>
+                    <Typography color="white" variant="h6" gutterBottom>
                       {post.title}
                     </Typography>
-                    <Typography color="white" variant="body2">
+                  </Box>
+                  <Box height="100%" flex={1} p={1}>
+                    <Typography color variant="body2">
                       {post.excerpt}
                     </Typography>
                   </Box>
-                </a>
-              </Link>
-            </Card>
-          </ImageListItem>
-        ))}
-      </ImageList>
-      {/* <Grid container spacing={2} className={styles['blog-posts']}>
-        {posts.map((post, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4}>
-            <Link href={`/blog/${post.sys.id}`} passHref>
-              <a>
-                <Card className={styles['blog-card']}>
-                  {post.mediaCollection.items.length > 0 && (
-                    <CardMedia
-                      className={styles['blog-media']}
-                      image={post.mediaCollection.items[0].url}
-                      title={post.title}
-                    />
-                  )}
-                  <CardContent>
-                    <Typography variant="h5" component="div" gutterBottom>
-                      {post.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {post.excerpt}
-                    </Typography>
-                  </CardContent>
                 </Card>
               </a>
             </Link>
-          </Grid>
+          </ImageListItem>
         ))}
-      </Grid> */}
+      </ImageList>
     </Box>
   );
 };

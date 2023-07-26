@@ -57,9 +57,11 @@
 
 .blog-posts {
 
-  .blog-media {
-    height: 0;
-    padding-top: 56.25%; // 16:9 aspect ratio
-    background-size: cover;
+  &_link {
+    &:active,
+    &:hover {
+      color: white;
+    }
+
   }
 }

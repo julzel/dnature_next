@@ -1,53 +1,56 @@
-import { fetchFromContentful } from "./util";
+import { fetchFromContentful } from './util';
 
 const BLOG_PREVIEW_QUERY = `
   {
-    blogEntryCollection {
+    blogPostCollection {
       items {
         sys {
           id
         }
         title
         excerpt
-        mediaCollection {
-          items {
-            url
-          }
+        hashtags
+        media {
+          url
         }
       }
     }
   }
 `;
 
-const BLOG_POSTS_QUERY = `
-  query {
-    blogEntryCollection {
+const POST_QUERY = `
+  query getBlogEntry($id: String!) {
+    blogPostCollection(where: {sys: {id: $id}}) {
       items {
         sys {
           id
+          firstPublishedAt
         }
         title
-        body
+        body {
+          json
+        }
+        hashtags
         media {
-          title
           url
         }
-        recommendedPostsCollection {
-          items {
-            title
-            sys {
-              id
-            }
-          }
+      }
+    }
+  }
+`;
+
+const POSTS_BY_HASHTAG_QUERY = `
+  query getBlogEntriesByHashtag($hashtag: [String!]!) {
+    blogPostCollection(where: {hashtags_contains_some: $hashtag}) {
+      items {
+        sys {
+          id
+          firstPublishedAt
         }
-        author {
-          name
-          bio
-          avatar {
-            title
-            url
-          }
-          socialNetworks
+        excerpt
+        title
+        media {
+          url
         }
       }
     }
@@ -56,23 +59,32 @@ const BLOG_POSTS_QUERY = `
 
 export const getPosts = async () => {
   try {
-    const { blogEntryCollection } = await fetchFromContentful(BLOG_PREVIEW_QUERY);
-    return blogEntryCollection.items;
+    const { blogPostCollection } = await fetchFromContentful(
+      BLOG_PREVIEW_QUERY
+    );
+    return blogPostCollection.items;
   } catch (error) {
     console.error('Error fetching blog posts from Contentful:', error);
     throw error;
   }
 };
 
+export async function getPost(id) {
+  try {
+    const data = await fetchFromContentful(POST_QUERY, { id });
+    return data.blogPostCollection.items[0];
+  } catch (error) {
+    console.error('Error fetching blog posts from Contentful:', error);
+    throw error;
+  }
+};
 
-
-// export const fetchBlogPosts = async () => {
-//   try {
-//     const { blogEntryCollection } = await fetchFromContentful(BLOG_POSTS_QUERY);
-//     return blogEntryCollection.items;
-//   } catch (error) {
-//     console.error('Error fetching blog posts from Contentful:', error);
-//     throw error;
-//   }
-// };
-
+export async function getPostsByHashtag(hashtag) {
+  try {
+    const data = await fetchFromContentful(POSTS_BY_HASHTAG_QUERY, { hashtag });
+    return data.blogPostCollection.items;
+  } catch (error) {
+    console.error('Error fetching blog posts from Contentful:', error);
+    throw error;
+  }
+};
