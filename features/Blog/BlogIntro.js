@@ -18,7 +18,7 @@ const BlogIntro = () => {
   };
 
   return (
-    <Card sx={{ marginBottom: '32px'}} className={styles['blog-intro']}>
+    <Card variant='outlined' sx={{ marginBottom: '32px' }} className={styles['blog-intro']}>
       <CardContent>
         <Box p={2} pb={0}>
           <Typography component="p" mb={2} variant="body1" gutterBottom>

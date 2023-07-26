@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import {
   Chip,
   Box,
@@ -24,32 +25,33 @@ export default function PostListByTag({ posts, tag }) {
         <List>
           {posts.map((post) => (
             <ListItem key={post.sys.id} alignItems="flex-start">
-              <ListItemAvatar>
-                <Avatar alt={post.title} src={post.media.url} />
-              </ListItemAvatar>
-              <ListItemText
-                primary={
-                  <React.Fragment>
-                    <Typography
-                      component="h6"
-                      variant='h6'
-                    >
-                      {post.title}
-                    </Typography>
-                  </React.Fragment>
-                }
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      color="textSecondary"
-                    >
-                      {post.excerpt}
-                    </Typography>
-                  </React.Fragment>
-                }
-              />
+              <Link href={`/blog/${post.sys.id}`} passHref>
+                <a>
+                  <ListItemAvatar>
+                    <Avatar alt={post.title} src={post.media.url} />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography component="h6" variant="h6">
+                          {post.title}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                    secondary={
+                      <React.Fragment>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          color="textSecondary"
+                        >
+                          {post.excerpt}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </a>
+              </Link>
             </ListItem>
           ))}
         </List>
