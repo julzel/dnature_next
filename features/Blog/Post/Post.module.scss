@@ -1,5 +1,14 @@
+@import '../../../styles/_variables';
+
 .post {
   &_body {
+    p {
+      text-align: justify;
+      margin-bottom: 8px;
+    }
+  }
+  &_aside {
+    background-color: $border;
     p {
       text-align: justify;
       margin-bottom: 8px;

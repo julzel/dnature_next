@@ -14,15 +14,6 @@ import DNAtureSystem from "./DNAtureSystem";
 import OurCostumers from "./OurCostumers";
 
 const Home = ({ categories }) => {
-  // function callApi() {
-  //   fetch('https://dnature-be.herokuapp.com/', { method: 'GET' })
-  //     .then((data) => data.json())
-  //     .then((json) => console.log(JSON.stringify(json)));
-  // }
-
-  // useEffect(() => {
-  //   callApi();
-  // }, []);
 
   return (
     <div className={styles.home}>

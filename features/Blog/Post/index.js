@@ -1,48 +1,36 @@
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Box, Chip, Container, Typography } from '@mui/material';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Container, Divider, Grid } from '@mui/material';
 
+// local imports
 import styles from './Post.module.scss';
 
-function Post({ post }) {
+import PostTags from './PostTags';
+import PostHeader from './PostHeader';
+import PostBody from './PostBody';
+import PostAside from './PostAside';
+import PostProducts from './PostProducts';
+
+const Post = ({ post }) => {
   return (
-    <Container maxWidth="md" className={styles.post}>
-      <Box sx={{ maxWidth: 900, margin: '0 auto', mt: 2, mb: 4 }}>
-        <Typography variant="h3" component="h1" gutterBottom>
-          {post.title}
-        </Typography>
-        <Box my={2}>
-          <Image
-            src={post.media.url}
-            alt={post.title}
-            layout="responsive"
-            objectFit="cover"
-            width={300}
-            height={250}
-          />
-        </Box>
-        <Box pt={2} mb={2} className={styles.post_body}>
-          {documentToReactComponents(post.body.json)}
-        </Box>
-        <Box>
-          <Typography variant="h6" component="h6" gutterBottom>
-            Etiquetas
-          </Typography>
-          {post.hashtags.map((hashtag) => (
-            <Link key={hashtag} href={`/blog/etiquetas/${hashtag}`} passHref>
-              <Chip
-                component={'a'}
-                label={hashtag.toUpperCase()}
-                sx={{ mr: 1, fontSize: '10px' }}
-              />
-            </Link>
-          ))}
-        </Box>
-      </Box>
+    <Container className={styles.post} sx={{ marginY: 4 }} component={'article'}>
+      <PostHeader title={post.title} media={post.media} />
+      <Grid container sx={{ marginBottom: 4 }} component={'section'}>
+        <Grid item xs={12} md={8}>
+          {post.body && post.imagesCollection?.items && (
+            <PostBody body={post.body} images={post.imagesCollection.items} />
+          )}
+        </Grid>
+        <Grid item xs={12} md={4} component={'aside'}>
+          {post.asideContent && <PostAside content={post.asideContent} />}
+        </Grid>
+      </Grid>
+      <Divider />
+      {post.productsCollection?.items && post.productsCollection?.items.length > 0 && (
+        <PostProducts products={post.productsCollection.items} />
+      )}
+      {post.hashtags && <PostTags tags={post.hashtags} />}
     </Container>
   );
-}
+};
 
 export default Post;

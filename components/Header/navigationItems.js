@@ -11,10 +11,10 @@ const navigationItems = [
         href:'/preguntas-frecuentes',
         label: 'preguntas frecuentes'
     },
-    {
-        href:'/blog',
-        label: 'blog'
-    },
+    // {
+    //     href:'/blog',
+    //     label: 'blog'
+    // },
     {
         href:'/calculadora',
         label: 'calcular porción'

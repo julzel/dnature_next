@@ -27,13 +27,37 @@ const POST_QUERY = `
           firstPublishedAt
         }
         title
-        body {
-          json
-        }
-        hashtags
         media {
           url
         }
+        body {
+          json
+        }
+        asideContent {
+          json
+        }
+        imagesCollection (limit: 5) {
+          items {
+            url
+            title
+          }
+        }
+        productsCollection (limit: 3) {
+          items {
+            sys {
+              id
+            }
+            urlSlug
+            productName
+            imageCollection (limit: 1) {
+              items {
+                  title
+                  url
+              }
+            }
+          }
+        }
+        hashtags
       }
     }
   }
@@ -77,7 +101,7 @@ export async function getPost(id) {
     console.error('Error fetching blog posts from Contentful:', error);
     throw error;
   }
-};
+}
 
 export async function getPostsByHashtag(hashtag) {
   try {
@@ -87,4 +111,4 @@ export async function getPostsByHashtag(hashtag) {
     console.error('Error fetching blog posts from Contentful:', error);
     throw error;
   }
-};
+}
