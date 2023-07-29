@@ -1,6 +1,7 @@
 @import '../../../styles/_variables';
 
 .post {
+  background-color: lighten($blue, 58%);
   &_body {
     p {
       text-align: justify;
@@ -8,7 +9,6 @@
     }
   }
   &_aside {
-    background-color: $border;
     p {
       text-align: justify;
       margin-bottom: 8px;

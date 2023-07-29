@@ -42,7 +42,7 @@ const POST_QUERY = `
             title
           }
         }
-        productsCollection (limit: 3) {
+        productsCollection (limit: 5) {
           items {
             sys {
               id
@@ -58,6 +58,13 @@ const POST_QUERY = `
           }
         }
         hashtags
+        category
+        author {
+          name
+          avatar {
+            url
+          }
+        }
       }
     }
   }
