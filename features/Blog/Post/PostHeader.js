@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Avatar, Box, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardMedia, Grid, Typography } from '@mui/material';
 
 const PostHeader = ({ title, media, date, author }) => {
   // Create a Date object
@@ -45,20 +45,25 @@ const PostHeader = ({ title, media, date, author }) => {
             variant="subtitle2"
             component="h2"
             gutterBottom
+            align="right"
           >
             {localDateString}
           </Typography>
         </Grid>
       </Grid>
 
-      <Image
-        src={media.url}
-        alt={title}
-        layout="responsive"
-        objectFit="cover"
-        width={300}
-        height={250}
-      />
+      <Card>
+        <CardMedia>
+          <Image
+            src={media.url}
+            alt={title}
+            layout="responsive"
+            objectFit="cover"
+            width={300}
+            height={250}
+          />
+        </CardMedia>
+      </Card>
     </Box>
   );
 };

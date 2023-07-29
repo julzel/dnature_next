@@ -6,10 +6,11 @@ const BLOG_PREVIEW_QUERY = `
       items {
         sys {
           id
+          publishedAt
         }
         title
         excerpt
-        hashtags
+        category
         media {
           url
         }
@@ -24,7 +25,7 @@ const POST_QUERY = `
       items {
         sys {
           id
-          firstPublishedAt
+          publishedAt
         }
         title
         media {
@@ -76,7 +77,7 @@ const POSTS_BY_HASHTAG_QUERY = `
       items {
         sys {
           id
-          firstPublishedAt
+          publishedAt
         }
         excerpt
         title

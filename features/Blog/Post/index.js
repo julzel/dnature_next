@@ -18,10 +18,10 @@ const Post = ({ post }) => {
         <PostHeader
           title={post.title}
           media={post.media}
-          date={post.sys.firstPublishedAt}
+          date={post.sys.publishedAt}
           author={post.author}
         />
-        <Card elevation={0}>
+        <Card>
           <Grid
             container
             sx={{
