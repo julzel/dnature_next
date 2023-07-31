@@ -11,7 +11,6 @@ import PostAside from './PostAside';
 import PostProducts from './PostProducts';
 
 const Post = ({ post }) => {
-  console.log(post);
   return (
     <div className={styles.post}>
       <Container sx={{ paddingY: 4 }} component={'article'}>

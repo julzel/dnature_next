@@ -26,7 +26,7 @@ const PostBody = ({ body, images }) => {
           // index={currentStep}
         >
           {images.map((img, i) => (
-            <Card key={`img-${i}`}>
+            <Card elevation={0} key={`img-${i}`}>
               <Image
                 src={img.url}
                 alt={'tbd'}

@@ -28,16 +28,18 @@ const PostHeader = ({ title, media, date, author }) => {
         }}
       >
         <Grid item xs={9}>
-          <Grid container alignItems={'center'}>
-            <Grid item>
-              <Avatar src={author.avatar.url} alt={author.name} />
+          {author && (
+            <Grid container alignItems={'center'}>
+              <Grid item>
+                <Avatar src={author.avatar.url} alt={author.name} />
+              </Grid>
+              <Grid item ml={1}>
+                <Typography variant="subtitle2" component="h2" gutterBottom>
+                  Por: {author.name}
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item ml={1}>
-              <Typography variant="subtitle2" component="h2" gutterBottom>
-                Por: {author.name}
-              </Typography>
-            </Grid>
-          </Grid>
+          )}
         </Grid>
         <Grid item xs={3}>
           <Typography
@@ -52,18 +54,20 @@ const PostHeader = ({ title, media, date, author }) => {
         </Grid>
       </Grid>
 
-      <Card>
-        <CardMedia>
-          <Image
-            src={media.url}
-            alt={title}
-            layout="responsive"
-            objectFit="cover"
-            width={300}
-            height={250}
-          />
-        </CardMedia>
-      </Card>
+      {media && (
+        <Card elevation={0}>
+          <CardMedia>
+            <Image
+              src={media.url}
+              alt={title}
+              layout="responsive"
+              objectFit="cover"
+              width={300}
+              height={250}
+            />
+          </CardMedia>
+        </Card>
+      )}
     </Box>
   );
 };

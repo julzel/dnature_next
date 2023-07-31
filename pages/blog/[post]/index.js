@@ -3,8 +3,8 @@ import Post from '../../../features/Blog/Post';
 
 import { getPost } from '../../../services/posts';
 
-export async function getServerSideProps({ params }) {
-  const post = await getPost(params.post);
+export async function getServerSideProps({ query }) {
+  const post = await getPost(query.id);
   return {
     props: { post },
   };

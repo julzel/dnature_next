@@ -14,6 +14,7 @@ const BLOG_PREVIEW_QUERY = `
         media {
           url
         }
+        slug
       }
     }
   }

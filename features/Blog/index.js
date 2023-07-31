@@ -25,11 +25,11 @@ const Blog = ({ posts }) => {
       <header>
         <BlogHero />
       </header>
-      <div className={styles['pull-up']}>
+      <Box component={'section'} p={[2, 4]} maxWidth={'md'} mx={'auto'}>
         <BlogIntro />
         <BlogCategoryGrid />
         <BlogPosts posts={posts} />
-      </div>
+      </Box>
     </Box>
   );
 };

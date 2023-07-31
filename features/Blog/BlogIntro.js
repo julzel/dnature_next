@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import {
-  Card,
-  CardActions,
   Box,
   Typography,
-  Button,
-  CardContent,
 } from '@mui/material';
 
 import styles from './Blog.module.scss';
@@ -18,41 +14,30 @@ const BlogIntro = () => {
   };
 
   return (
-    <Card variant='outlined' sx={{ marginBottom: '32px' }} className={styles['blog-intro']}>
-      <CardContent>
-        <Box p={2} pb={0}>
-          <Typography component="p" mb={2} variant="body1" gutterBottom>
-            ¡Bienvenidos! Este es un espacio dedicado a ofrecerte valiosa y
-            confiable información sobre la alimentación natural y tenencia
-            responsable de tus amados compañeros de cuatro patas.
-          </Typography>
-          {isExpanded && (
-            <>
-              <Typography component="p" mb={2} variant="body1" gutterBottom>
-                Abordaremos también aspectos de cuidado responsable, para que
-                puedas disfrutar plenamente de la experiencia de ser dueño de
-                una mascota, sabiendo que estás brindando el mejor cuidado
-                posible.
-              </Typography>
-              <Typography component="p" mb={0} variant="body1" gutterBottom>
-                Este blog es tu recurso para comprender mejor cómo nutrir y
-                cuidar a tus mascotas de la manera más saludable y amorosa
-                posible. Queremos que te sientas empoderado para proporcionarles
-                una vida excepcional. Únete a nosotros en esta aventura de amor
-                y cuidado por nuestros amigos peludos.
-              </Typography>
-            </>
-          )}
-        </Box>
-      </CardContent>
-      <CardActions>
-        <Box width="100%" display={'flex'} justifyContent={'flex-end'}>
-          <Button color="primary" onClick={handleClick} size="small">
-            {isExpanded ? 'Leer menos' : 'Leer más'}
-          </Button>
-        </Box>
-      </CardActions>
-    </Card>
+    <Box my={[4, 8]} className={styles['blog-intro']}>
+      <Typography mb={[2, 4]} component="h2" variant="h2" gutterBottom>
+        Este es un espacio dedicado a ofrecerte información valiosa y confiable
+        sobre la alimentación natural y tenencia responsable de tus compañeros
+        de cuatro patas
+      </Typography>
+      <Typography component="p" mb={2} variant="body1" gutterBottom>
+        Aquí encontrarás una gama de artículos y guías que abordan una variedad
+        de temas, desde la nutrición y la tenencia responsable, hasta consejos
+        para crear entornos saludables y entender el comportamiento de tus
+        mascotas. Nuestros contenidos están respaldados por expertos en
+        nutrición animal y veterinarios, quienes nos ayudan a proporcionar
+        información exclusiva, práctica y basada en investigaciones científicas,
+        todo ello presentado de una manera fácil de entender.
+      </Typography>
+      <Typography component="p" mb={0} variant="body1" gutterBottom>
+        Estamos emocionados de tener la oportunidad de ayudarte en este viaje.
+        Así que siéntete libre de explorar, aprender y compartir los
+        conocimientos que encuentres aquí con otros dueños de mascotas.
+        ¡Empecemos este viaje hacia el bienestar natural de nuestras mascotas
+        juntos!
+      </Typography>
+      {isExpanded && <></>}
+    </Box>
   );
 };
 

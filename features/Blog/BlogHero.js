@@ -1,30 +1,32 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import styles from './BlogHero.module.scss';
 
-// local imports
-
-// styles
-import styles from './Blog.module.scss';
-
-const BlogHero = ({ onScrollDown }) => {
+const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
   return (
-    <Box
-      display={'flex'}
-      justifyContent={'center'}
-      p={8}
-      pb={16}
-      className={styles['blog-hero']}
-    >
-      <Typography
-        variant="h3"
-        component="h1"
-        gutterBottom
-        className={styles['blog-hero_title']}
-      >
-        Nutrición con <span>amor</span>: Guía para mascotas <span>felices</span>
-      </Typography>
-    </Box>
+    <div className={styles.blogHeroContainer}>
+      <h1 className="seo-hidden">
+        Alimentación natural y dieta cruda para mascotas. Snacks, suplementos y
+        planes de nutrición personalizados
+      </h1>
+      <div className={styles.heroAction}>
+        <h2 className={styles.heroActionTitle}>
+          DNAture Blog
+          <br /><span>Nutrición con amor</span>
+        </h2>
+
+        {/* <p className={styles.heroActionParagraph}>
+          Este es un espacio dedicado a ofrecerte valiosa y confiable
+          información sobre la alimentación natural y tenencia responsable de
+          tus amados compañeros de cuatro patas.
+        </p> */}
+
+        <div className={styles.heroActionButtons}></div>
+      </div>
+      <div className={styles.hero}>
+        <div className={styles.heroImg} />
+      </div>
+    </div>
   );
 };
 
-export default BlogHero;
+export default Hero;

@@ -8,7 +8,7 @@ import { useWindow } from '../../hooks';
 import styles from './Blog.module.scss';
 
 const BlogPostItem = ({ post }) => (
-  <Card variant="outlined">
+  <Card elevation={1} sx={{ mb: 1 }}>
     <Box position={'relative'}>
       <Image
         src={post.media.url}
@@ -19,10 +19,7 @@ const BlogPostItem = ({ post }) => (
         height={250}
       />
     </Box>
-    <Box
-      p={1}
-      bgcolor={postCategories[post.category].color}
-    >
+    <Box p={1} bgcolor={postCategories[post.category].color}>
       <Typography color="white" variant="h6" gutterBottom>
         {post.title}
       </Typography>
@@ -39,13 +36,17 @@ const BlogPosts = ({ posts }) => {
   const isMobile = useWindow();
 
   return (
-    <Box sx={{ maxWidth: '900px', margin: '0 auto' }}>
+    <Box pb={1}>
       <ImageList gap={16} cols={isMobile ? 1 : 3}>
         {posts.map((post, index) => (
-          <ImageListItem
-            key={index}
-          >
-            <Link href={`/blog/${post.sys.id}`} passHref>
+          <ImageListItem key={index}>
+            <Link
+              href={{
+                pathname: `/blog/${post.slug}`,
+                query: { id: post.sys.id },
+              }}
+              passHref
+            >
               <a className={styles['blog-posts_link']}>
                 <BlogPostItem post={post} />
               </a>

@@ -1,21 +1,18 @@
-@import "../../../styles/_variables";
-@import "../../../styles/mixins";
+@import "../../styles/_variables";
+@import "../../styles/mixins";
 
-$hero-btn: #008088;
-
-.heroContainer {
+.blogHeroContainer {
   display: flex;
   background-color: #29434e;
   flex-flow: column;
 
   @include mdq(md) {
-    flex-flow: row;
+    flex-direction: row-reverse;
   }
 }
 
 .hero {
   overflow: hidden;
-  transform: rotateY(180deg);
   min-height: 402px;
   position: relative;
 
@@ -26,7 +23,7 @@ $hero-btn: #008088;
   &Img {
     width: 100%;
     height: 100%;
-    background-image: url("../../../public/images/hero3_wide.jpg");
+    background-image: url("../../public/images/blog/hero.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -88,7 +85,7 @@ $hero-btn: #008088;
   }
 
   &Paragraph {
-    color: $platinum;
+    color: white;
     font-family: $light;
     font-size: 20px;
     line-height: 24px;
@@ -98,18 +95,6 @@ $hero-btn: #008088;
     @include mdq(md) {
       font-size: 18px;
       line-height: 28px;
-      text-align: left;
-    }
-  }
-
-  &Buttons {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    .button {
-      @include button-styles($hero-btn);
-      margin: 0 8px;
     }
   }
 }

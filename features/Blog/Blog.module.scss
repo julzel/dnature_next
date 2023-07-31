@@ -2,7 +2,7 @@
 @import '../../styles/mixins';
 
 .blog-container {
-  background-color: lighten($blue, 58%);
+  background-color: lighten($blue, 57%);
   flex: 1;
   overflow: hidden;
 
@@ -48,10 +48,10 @@
 }
 
 .blog-intro {
-  background-color: white;
   
   p {
     font-size: 18px;
+    text-align: justify;
   }
 }
 
