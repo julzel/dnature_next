@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, Chip, Typography } from '@mui/material';
+import { Card, CardContent, CardHeader, Chip } from '@mui/material';
 
 const PostTags = ({ tags }) => {
   return (
@@ -7,7 +7,11 @@ const PostTags = ({ tags }) => {
       <CardHeader title="Etiquetas" />
       <CardContent>
         {tags.map((hashtag) => (
-          <Link key={hashtag} href={`/blog/etiquetas/${hashtag}`} passHref>
+          <Link
+            key={hashtag}
+            href={`/blog/query-result/?field=hashtags_contains_some&value=${hashtag}`}
+            passHref
+          >
             <Chip
               component={'a'}
               label={hashtag.toUpperCase()}

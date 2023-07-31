@@ -13,19 +13,25 @@ import {
   Divider,
 } from '@mui/material';
 
-export default function PostListByTag({ posts, tag }) {
+export default function PostQueryResult({ posts, query }) {
   return (
     <Container maxWidth="md">
       <Box sx={{ maxWidth: 900, margin: '0 auto', mt: 4, mb: 4 }}>
         <Typography variant="h5" component="h1" gutterBottom>
-          Posts relacionados con
-          <Chip label={tag.toUpperCase()} sx={{ ml: 1, fontSize: '10px' }} />
+          {/* Posts relacionados con
+          {tag && <Chip label={tag.toUpperCase()} sx={{ ml: 1, fontSize: '10px' }} />} */}
         </Typography>
         <Divider />
         <List>
           {posts.map((post) => (
             <ListItem key={post.sys.id} alignItems="flex-start">
-              <Link href={`/blog/${post.sys.id}`} passHref>
+              <Link
+                href={{
+                  pathname: `/blog/${post.slug}`,
+                  query: { id: post.sys.id },
+                }}
+                passHref
+              >
                 <a>
                   <ListItemAvatar>
                     <Avatar alt={post.title} src={post.media.url} />

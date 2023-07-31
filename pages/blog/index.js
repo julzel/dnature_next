@@ -16,7 +16,7 @@ export async function getStaticProps() {
 
 export default function App({ posts }) {
   return (
-    <Page title="Calcula la porción ideal de comida para tu mascota">
+    <Page title="DNAture - Blog">
       <Blog posts={posts} />
     </Page>
   );

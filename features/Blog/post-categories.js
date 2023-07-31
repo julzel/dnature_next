@@ -17,15 +17,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const postCategories = {
-  Salud: {
+  salud: {
     color: lightBlue[800],
     icon: <FontAwesomeIcon size='xl' icon={faHeartbeat} />,
   },
-  Nutrición: { color: pink[800], icon: <FontAwesomeIcon size='xl' icon={faBone} /> },
-  Entorno: { color: lime[800], icon: <FontAwesomeIcon size='xl' icon={faSignsPost} /> },
-  Comportamiento: { color: teal[800], icon: <FontAwesomeIcon size='xl' icon={faPaw} /> },
-  Tenencia: { color: cyan[800], icon: <FontAwesomeIcon size='xl' icon={faPeopleRoof} /> },
-  Otro: {
+  nutrición: { color: pink[800], icon: <FontAwesomeIcon size='xl' icon={faBone} /> },
+  entorno: { color: lime[800], icon: <FontAwesomeIcon size='xl' icon={faSignsPost} /> },
+  comportamiento: { color: teal[800], icon: <FontAwesomeIcon size='xl' icon={faPaw} /> },
+  tenencia: { color: cyan[800], icon: <FontAwesomeIcon size='xl' icon={faPeopleRoof} /> },
+  otro: {
     color: purple[800],
     icon: <FontAwesomeIcon size='xl' icon={faCircleQuestion} />,
   },

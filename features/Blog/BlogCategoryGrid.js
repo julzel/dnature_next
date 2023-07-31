@@ -6,6 +6,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { useRouter } from 'next/router'; // import useRouter
 
 // local imports
 import postCategories from './post-categories';
@@ -13,6 +14,7 @@ import postCategories from './post-categories';
 const BlogCategoryGrid = () => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.between('xs', 'sm'));
+  const router = useRouter(); // instantiate useRouter
 
   let spacing;
 
@@ -21,6 +23,10 @@ const BlogCategoryGrid = () => {
   } else {
     spacing = 2;
   }
+
+  const handleCategoryClick = (category) => {
+    router.push(`/blog/query-result/?field=category&value=${category}`);
+  };
 
   return (
     <Box mb={4}>
@@ -35,7 +41,9 @@ const BlogCategoryGrid = () => {
                 alignItems: 'center',
                 flexDirection: 'column',
                 backgroundColor: color,
+                cursor: 'pointer', // make the Paper component act like a button
               }}
+              onClick={() => handleCategoryClick(category)} // attach click event
             >
               <Typography color="white">{icon}</Typography>
               <Typography color="white">{category}</Typography>
