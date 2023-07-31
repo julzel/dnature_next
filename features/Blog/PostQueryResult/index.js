@@ -18,21 +18,28 @@ export default function PostQueryResult({ posts, query }) {
     <Container maxWidth="md">
       <Box sx={{ maxWidth: 900, margin: '0 auto', mt: 4, mb: 4 }}>
         <Typography variant="h5" component="h1" gutterBottom>
-          {/* Posts relacionados con
-          {tag && <Chip label={tag.toUpperCase()} sx={{ ml: 1, fontSize: '10px' }} />} */}
+          Resultados para:
+          {query.value && (
+            <Chip
+              label={query.value.toUpperCase()}
+              sx={{ ml: 1, fontSize: '12px' }}
+            />
+          )}
         </Typography>
         <Divider />
+        <Box mb={[2, 4]} />
         <List>
           {posts.map((post) => (
-            <ListItem key={post.sys.id} alignItems="flex-start">
-              <Link
-                href={{
-                  pathname: `/blog/${post.slug}`,
-                  query: { id: post.sys.id },
-                }}
-                passHref
-              >
-                <a>
+            <Link
+              key={post.sys.id}
+              href={{
+                pathname: `/blog/${post.slug}`,
+                query: { id: post.sys.id },
+              }}
+              passHref
+            >
+              <a>
+                <ListItem alignItems="flex-start">
                   <ListItemAvatar>
                     <Avatar alt={post.title} src={post.media.url} />
                   </ListItemAvatar>
@@ -56,9 +63,10 @@ export default function PostQueryResult({ posts, query }) {
                       </React.Fragment>
                     }
                   />
-                </a>
-              </Link>
-            </ListItem>
+                </ListItem>
+                <Divider variant="inset" />
+              </a>
+            </Link>
           ))}
         </List>
       </Box>
