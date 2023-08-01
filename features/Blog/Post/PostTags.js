@@ -9,7 +9,7 @@ const PostTags = ({ tags }) => {
         {tags.map((hashtag) => (
           <Link
             key={hashtag}
-            href={`/blog/query-result/?field=hashtags_contains_some&value=${hashtag}`}
+            href={`/blog/busqueda/?field=hashtags_contains_some&value=${hashtag}`}
             passHref
           >
             <Chip

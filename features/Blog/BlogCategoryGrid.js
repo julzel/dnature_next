@@ -25,7 +25,7 @@ const BlogCategoryGrid = () => {
   }
 
   const handleCategoryClick = (category) => {
-    router.push(`/blog/query-result/?field=category&value=${category}`);
+    router.push(`/blog/busqueda/?field=category&value=${category}`);
   };
 
   return (

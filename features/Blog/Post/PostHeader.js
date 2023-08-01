@@ -1,7 +1,21 @@
 import Image from 'next/image';
-import { Avatar, Box, Card, CardMedia, Grid, Typography } from '@mui/material';
+import Link from 'next/link';
+import {
+  Avatar,
+  Breadcrumbs,
+  Box,
+  Card,
+  CardMedia,
+  Chip,
+  Grid,
+  Link as MuiLink,
+  Typography,
+} from '@mui/material';
 
-const PostHeader = ({ title, media, date, author }) => {
+// local imports
+import postCategories from '../post-categories.js';
+
+const PostHeader = ({ title, media, date, author, category }) => {
   // Create a Date object
   const dateObject = new Date(date);
   // Format date to local string in day-month-year order
@@ -13,20 +27,19 @@ const PostHeader = ({ title, media, date, author }) => {
 
   return (
     <Box mb={4}>
+      <Breadcrumbs aria-label="breadcrumb" mb={[2, 4]}>
+        <MuiLink component={Link} href="/" underline="none">
+          Inicio
+        </MuiLink>
+        <MuiLink component={Link} href="/blog" underline="none">
+          Blog
+        </MuiLink>
+      </Breadcrumbs>
       <Typography variant="h3" component="h1" gutterBottom mb={2}>
         {title}
       </Typography>
 
-      <Grid
-        container
-        alignItems={'center'}
-        sx={{
-          marginBottom: {
-            xs: 4,
-            sm: 4,
-          },
-        }}
-      >
+      <Grid container alignItems={'center'}>
         <Grid item xs={9}>
           {author && (
             <Grid container alignItems={'center'}>
@@ -53,7 +66,6 @@ const PostHeader = ({ title, media, date, author }) => {
           </Typography>
         </Grid>
       </Grid>
-
       {media && (
         <Card elevation={0}>
           <CardMedia>
@@ -68,6 +80,18 @@ const PostHeader = ({ title, media, date, author }) => {
           </CardMedia>
         </Card>
       )}
+      <Box mt={[2, 4]}>
+        <Chip
+          label={category.toUpperCase()}
+          sx={{
+            fontSize: '10px',
+            background: postCategories[category].color,
+            color: 'white',
+            pl: 1,
+          }}
+          icon={postCategories[category].icon}
+        />
+      </Box>
     </Box>
   );
 };

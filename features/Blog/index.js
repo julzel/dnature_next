@@ -16,7 +16,7 @@ const Blog = ({ posts }) => {
   return (
     <Box pb={4} className={styles['blog-container']}>
       <Head>
-        <title>DNAture Blog | Nutrición con amor</title>
+        <title>DNAture Blog | Nutrición con conciencia</title>
         <meta
           name="description"
           content="Blog de DNAture, tips de nutrición, tenencia responsable, y todo lo que necesitas saber sobre alimentación natural para mascotas."

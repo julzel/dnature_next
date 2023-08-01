@@ -119,6 +119,7 @@ export const getPostsByField = async (field, value) => {
             }
             excerpt
             title
+            category
             slug
             media {
               url

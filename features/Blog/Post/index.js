@@ -13,12 +13,13 @@ import PostProducts from './PostProducts';
 const Post = ({ post }) => {
   return (
     <div className={styles.post}>
-      <Container sx={{ paddingY: 4 }} component={'article'}>
+      <Container sx={{ paddingY: 3 }} component={'article'}>
         <PostHeader
           title={post.title}
           media={post.media}
           date={post.sys.publishedAt}
           author={post.author}
+          category={post.category}
         />
         <Card>
           <Grid
