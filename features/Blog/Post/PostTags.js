@@ -1,25 +1,36 @@
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, Chip } from '@mui/material';
+import { Box, Card, CardHeader, Chip, Typography } from '@mui/material';
 
 const PostTags = ({ tags }) => {
   return (
-    <Card sx={{ my: 2 }} elevation={1}>
-      <CardHeader title="Etiquetas" />
-      <CardContent>
-        {tags.map((hashtag) => (
-          <Link
-            key={hashtag}
-            href={`/blog/busqueda/?field=hashtags_contains_some&value=${hashtag}`}
-            passHref
-          >
-            <Chip
-              component={'a'}
-              label={hashtag.toUpperCase()}
-              sx={{ mr: 1, mb: 1, fontSize: '10px' }}
-            />
-          </Link>
-        ))}
-      </CardContent>
+    <Card sx={{ my: 2, bgcolor: 'primary.light' }} elevation={1}>
+      <CardHeader
+        title={
+          <Box display={'flex'} flexWrap={'wrap'}>
+            <Typography variant="h5" color={'textSecondary'} mr={2}>
+              Etiquetas:
+            </Typography>
+            {tags.map((hashtag) => (
+              <Link
+                key={hashtag}
+                href={`/blog/busqueda/?field=hashtags_contains_some&value=${hashtag}`}
+                passHref
+              >
+                <Chip
+                  component={'a'}
+                  label={hashtag.toUpperCase()}
+                  sx={{
+                    bgcolor: 'white',
+                    mr: 1,
+                    mb: { xs: 2, md: 1 },
+                    fontSize: '12px',
+                  }}
+                />
+              </Link>
+            ))}
+          </Box>
+        }
+      />
     </Card>
   );
 };

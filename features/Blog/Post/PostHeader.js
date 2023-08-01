@@ -2,44 +2,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   Avatar,
-  Breadcrumbs,
   Box,
   Card,
   CardMedia,
   Chip,
   Grid,
-  Link as MuiLink,
   Typography,
 } from '@mui/material';
 
 // local imports
+import { formatContentfulDate } from '../../../util/dates';
 import postCategories from '../post-categories.js';
+import BlogBreadcrumbs from '../BlogBreadcrumbs';
 
 const PostHeader = ({ title, media, date, author, category }) => {
-  // Create a Date object
-  const dateObject = new Date(date);
-  // Format date to local string in day-month-year order
-  const localDateString = dateObject.toLocaleString('en-GB', {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-  });
+  const localDateString = formatContentfulDate(date);
 
   return (
     <Box mb={4}>
-      <Breadcrumbs aria-label="breadcrumb" mb={[2, 4]}>
-        <MuiLink component={Link} href="/" underline="none">
-          Inicio
-        </MuiLink>
-        <MuiLink component={Link} href="/blog" underline="none">
-          Blog
-        </MuiLink>
-      </Breadcrumbs>
+      <BlogBreadcrumbs currentCrumb={'Resultados'} />
       <Typography variant="h3" component="h1" gutterBottom mb={2}>
         {title}
       </Typography>
 
-      <Grid container alignItems={'center'}>
+      <Grid container alignItems={'center'} mb={[2, 4]}>
         <Grid item xs={9}>
           {author && (
             <Grid container alignItems={'center'}>

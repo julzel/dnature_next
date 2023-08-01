@@ -14,11 +14,15 @@ import {
 } from '@mui/material';
 
 // local imports
+import { formatContentfulDate } from '../../../util/dates';
+
 import postCategories from '../post-categories';
+import BlogBreadcrumbs from '../BlogBreadcrumbs';
 
 export default function PostQueryResult({ posts, query }) {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" sx={{ paddingY: 3 }}>
+      <BlogBreadcrumbs currentCrumb={'Resultados'} />
       <Box sx={{ maxWidth: 900, margin: '0 auto', mt: 4, mb: 4 }}>
         <Typography variant="h5" component="h1" gutterBottom>
           Resultados para:
@@ -32,7 +36,7 @@ export default function PostQueryResult({ posts, query }) {
         <Divider />
         <Box mb={[2, 4]} />
         <List>
-          {(Array.isArray(posts) && posts.length > 0) ?
+          {Array.isArray(posts) && posts.length > 0 ? (
             posts.map((post) => (
               <Link
                 key={post.sys.id}
@@ -45,38 +49,58 @@ export default function PostQueryResult({ posts, query }) {
                 <a>
                   <ListItem alignItems="flex-start">
                     <ListItemAvatar>
-                      <Avatar sx={{ width: 70, height: 70, mr: 2 }} alt={post.title} src={post.media.url} />
+                      <Avatar
+                        sx={{
+                          width: {
+                            xs: 70,
+                            sm: 90,
+                            md: 100,
+                          },
+                          height: {
+                            xs: 70,
+                            sm: 90,
+                            md: 100,
+                          },
+                          mr: 2,
+                        }}
+                        alt={post.title}
+                        src={post.media.url}
+                      />
                     </ListItemAvatar>
                     <ListItemText
                       primary={
-                        <React.Fragment>
-                          <Typography component="h6" variant="h6">
-                            {post.title}
+                        <Typography component="h6" variant="h6" mb={1}>
+                          {post.title}
+                          <Typography component="div" variant="subtitle2" color={'textSecondary'}>
+                            {formatContentfulDate(post.sys.publishedAt)}
                           </Typography>
-                        </React.Fragment>
+                        </Typography>
                       }
                       secondary={
-                        <React.Fragment>
-                          <Typography
-                            component="span"
-                            variant="body2"
-                            color="textSecondary"
-                          >
-                            {post.excerpt}
-                          </Typography>
-                        </React.Fragment>
+                        <Typography
+                          component="span"
+                          variant="body2"
+                          color="textSecondary"
+                        >
+                          {post.excerpt}
+                        </Typography>
                       }
-                      sx={{ borderTop: `3px solid ${postCategories[post.category].color}`, pt: 1}}
+                      sx={{
+                        borderTop: `3px solid ${
+                          postCategories[post.category].color
+                        }`,
+                        pt: 1,
+                      }}
                     />
                   </ListItem>
                 </a>
               </Link>
             ))
-            :
-            <Typography variant="h6" component="h2" gutterBottom>
+          ) : (
+            <Typography variant="h6" component="h2" textAlign={'center'} gutterBottom>
               No se encontraron resultados
             </Typography>
-          }
+          )}
         </List>
       </Box>
     </Container>

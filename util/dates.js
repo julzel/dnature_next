@@ -7,4 +7,16 @@ const getDateDMY = () => {
 };
 
 
-export { getDateDMY };
+const formatContentfulDate = (date) => {
+  // Create a Date object
+  const dateObject = new Date(date);
+  // Format date to local string in day-month-year order
+  return dateObject.toLocaleString('en-GB', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
+};
+
+
+export { getDateDMY, formatContentfulDate };

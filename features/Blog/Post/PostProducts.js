@@ -1,19 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  Card,
-  Grid,
-  Typography,
-  Divider,
-  CardHeader,
-  CardContent,
-} from '@mui/material';
+import { Card, Grid, Typography, CardHeader, CardContent } from '@mui/material';
 import { blue } from '@mui/material/colors';
 
 const ProductItem = ({ product }) => (
-  <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1}}>
-    <Card variant="outlined" sx={{ borderLeft: `3px solid ${blue[700]}` }}>
+  <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1 }}>
+    <Card>
       <Link
         passHref
         href={{
@@ -23,7 +16,7 @@ const ProductItem = ({ product }) => (
       >
         <Grid container alignItems="center">
           {/* Thumbnail */}
-          <Grid item xs={3} md={4}>
+          <Grid item xs={4} md={4}>
             <Image
               src={product.imageCollection.items[0].url}
               alt={product.imageCollection.items[0].title}
@@ -35,8 +28,8 @@ const ProductItem = ({ product }) => (
           </Grid>
 
           {/* Name */}
-          <Grid item xs={9} md={8}>
-            <Typography variant="subtitle2">{product.productName}</Typography>
+          <Grid item xs={8} md={8}>
+            <Typography sx={{ fontWeight: 700 }} variant="subtitle2">{product.productName}</Typography>
           </Grid>
         </Grid>
       </Link>
@@ -45,11 +38,11 @@ const ProductItem = ({ product }) => (
 );
 
 const PostProducts = ({ products }) => (
-  <Card sx={{ my: 2 }} elevation={1}>
+  <Card sx={{ my: 2, bgcolor: 'tertiary.main' }} elevation={1}>
     <CardHeader
       title={
-        <Typography variant="h5">
-          Si este post te gustó, acá te compartimos algunos productos que te
+        <Typography variant="subtitle1" color={'textSecondary'}>
+          Si te gustó este post, acá te compartimos algunos productos que te
           pueden interesar:
         </Typography>
       }
