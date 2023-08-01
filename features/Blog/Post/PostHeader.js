@@ -10,7 +10,6 @@ import {
 
 // local imports
 import { formatContentfulDate } from '../../../util/dates';
-import postCategories from '../post-categories.js';
 import BlogBreadcrumbs from '../BlogBreadcrumbs';
 
 const PostHeader = ({ title, media, date, author }) => {
@@ -18,7 +17,7 @@ const PostHeader = ({ title, media, date, author }) => {
 
   return (
     <Box mb={4}>
-      <BlogBreadcrumbs currentCrumb={'Resultados'} />
+      <BlogBreadcrumbs currentCrumb="Post" />
       <Typography variant="h3" component="h1" gutterBottom mb={2}>
         {title}
       </Typography>

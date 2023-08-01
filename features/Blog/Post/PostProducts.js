@@ -2,16 +2,16 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, Grid, Typography, CardHeader, CardContent } from '@mui/material';
-import { grey, cyan } from '@mui/material/colors';
-import postCategories from '../post-categories';
+import { grey, lime } from '@mui/material/colors';
 
 const ProductItem = ({ product }) => (
   <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1 }}>
     <Card
       sx={{
+        bgcolor: lime[300],
         mb: 2,
         ':active': {
-          bgcolor: grey[100],
+          bgcolor: lime[500],
           transform: 'scale(0.99)',
           transition: 'all 0.1s ease-in-out',
         },
@@ -40,7 +40,7 @@ const ProductItem = ({ product }) => (
 
           {/* Name */}
           <Grid item xs={8} md={8}>
-            <Typography sx={{ fontWeight: 700 }} variant="subtitle2" pl={[1, 2]}>
+            <Typography color="textSecondary" sx={{ fontWeight: 700 }} variant="subtitle2" px={[1, 2]}>
               {product.productName}
             </Typography>
           </Grid>
@@ -51,7 +51,7 @@ const ProductItem = ({ product }) => (
 );
 
 const PostProducts = ({ products, category }) => (
-  <Card elevation={1} sx={{ bgcolor: cyan[100] }}>
+  <Card elevation={1}>
     <CardHeader
       title={
         <Typography variant="subtitle1" color="secondaryText">
