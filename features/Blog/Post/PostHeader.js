@@ -1,11 +1,9 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import {
   Avatar,
   Box,
   Card,
   CardMedia,
-  Chip,
   Grid,
   Typography,
 } from '@mui/material';
@@ -15,7 +13,7 @@ import { formatContentfulDate } from '../../../util/dates';
 import postCategories from '../post-categories.js';
 import BlogBreadcrumbs from '../BlogBreadcrumbs';
 
-const PostHeader = ({ title, media, date, author, category }) => {
+const PostHeader = ({ title, media, date, author }) => {
   const localDateString = formatContentfulDate(date);
 
   return (
@@ -66,18 +64,6 @@ const PostHeader = ({ title, media, date, author, category }) => {
           </CardMedia>
         </Card>
       )}
-      <Box mt={[2, 4]}>
-        <Chip
-          label={category.toUpperCase()}
-          sx={{
-            fontSize: '10px',
-            background: postCategories[category].color,
-            color: 'white',
-            pl: 1,
-          }}
-          icon={postCategories[category].icon}
-        />
-      </Box>
     </Box>
   );
 };

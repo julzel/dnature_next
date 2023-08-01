@@ -21,7 +21,7 @@ const Post = ({ post }) => {
           author={post.author}
           category={post.category}
         />
-        <Card>
+        <Card sx={{ mb: { xs: 2, md: 4 } }}>
           <Grid
             container
             sx={{
@@ -42,14 +42,19 @@ const Post = ({ post }) => {
             </Grid>
             <Grid item xs={12} md={4} component={'aside'}>
               {post.asideContent && <PostAside content={post.asideContent} />}
+              {post.hashtags && (
+                <PostTags tags={post.hashtags} category={post.category} />
+              )}
             </Grid>
           </Grid>
         </Card>
         {post.productsCollection?.items &&
           post.productsCollection?.items.length > 0 && (
-            <PostProducts products={post.productsCollection.items} />
+            <PostProducts
+              products={post.productsCollection.items}
+              category={post.category}
+            />
           )}
-        {post.hashtags && <PostTags tags={post.hashtags} />}
       </Container>
     </div>
   );

@@ -2,11 +2,21 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, Grid, Typography, CardHeader, CardContent } from '@mui/material';
-import { blue } from '@mui/material/colors';
+import { grey, cyan } from '@mui/material/colors';
+import postCategories from '../post-categories';
 
 const ProductItem = ({ product }) => (
   <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1 }}>
-    <Card>
+    <Card
+      sx={{
+        mb: 2,
+        ':active': {
+          bgcolor: grey[100],
+          transform: 'scale(0.99)',
+          transition: 'all 0.1s ease-in-out',
+        },
+      }}
+    >
       <Link
         passHref
         href={{
@@ -16,7 +26,7 @@ const ProductItem = ({ product }) => (
       >
         <Grid container alignItems="center">
           {/* Thumbnail */}
-          <Grid item xs={4} md={4}>
+          <Grid item xs={4} md={4} p={1}>
             <Image
               src={product.imageCollection.items[0].url}
               alt={product.imageCollection.items[0].title}
@@ -24,12 +34,15 @@ const ProductItem = ({ product }) => (
               objectFit="cover"
               width={75}
               height={75}
+              style={{ borderRadius: '50%' }}
             />
           </Grid>
 
           {/* Name */}
           <Grid item xs={8} md={8}>
-            <Typography sx={{ fontWeight: 700 }} variant="subtitle2">{product.productName}</Typography>
+            <Typography sx={{ fontWeight: 700 }} variant="subtitle2" pl={[1, 2]}>
+              {product.productName}
+            </Typography>
           </Grid>
         </Grid>
       </Link>
@@ -37,11 +50,11 @@ const ProductItem = ({ product }) => (
   </Grid>
 );
 
-const PostProducts = ({ products }) => (
-  <Card sx={{ my: 2, bgcolor: 'tertiary.main' }} elevation={1}>
+const PostProducts = ({ products, category }) => (
+  <Card elevation={1} sx={{ bgcolor: cyan[100] }}>
     <CardHeader
       title={
-        <Typography variant="subtitle1" color={'textSecondary'}>
+        <Typography variant="subtitle1" color="secondaryText">
           Si te gustó este post, acá te compartimos algunos productos que te
           pueden interesar:
         </Typography>
