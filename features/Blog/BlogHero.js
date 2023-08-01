@@ -14,12 +14,6 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
           <br /><span>Nutrición con conciencia</span>
         </h2>
 
-        {/* <p className={styles.heroActionParagraph}>
-          Este es un espacio dedicado a ofrecerte valiosa y confiable
-          información sobre la alimentación natural y tenencia responsable de
-          tus amados compañeros de cuatro patas.
-        </p> */}
-
         <div className={styles.heroActionButtons}></div>
       </div>
       <div className={styles.hero}>

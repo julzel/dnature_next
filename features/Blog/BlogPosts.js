@@ -2,10 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Box, Card, ImageList, ImageListItem, Typography } from '@mui/material';
-import postCategories from './post-categories';
-import { useWindow } from '../../hooks';
 
+// local imports
 import styles from './Blog.module.scss';
+import { useWindow } from '../../hooks';
+import { formatContentfulDate } from '../../util/dates';
+import postCategories from './post-categories';
 
 const BlogPostItem = ({ post }) => (
   <Card elevation={1} sx={{ mb: 1 }}>
@@ -23,6 +25,9 @@ const BlogPostItem = ({ post }) => (
       <Typography color="white" variant="h6" gutterBottom>
         {post.title}
       </Typography>
+      <Typography textAlign="right" color="white" variant="subtitle2" gutterBottom>
+        {formatContentfulDate(post.sys.publishedAt)}
+      </Typography>
     </Box>
     <Box height="100%" flex={1} p={1}>
       <Typography color variant="body2">
@@ -36,7 +41,10 @@ const BlogPosts = ({ posts }) => {
   const isMobile = useWindow();
 
   return (
-    <Box pb={1}>
+    <Box pt={[2, 4]} pb={[1, 3]}>
+      <Typography mb={[2, 4]} component="h3" variant="h4" gutterBottom>
+        Entradas más recientes
+      </Typography>
       <ImageList gap={16} cols={isMobile ? 1 : 3}>
         {posts.map((post, index) => (
           <ImageListItem key={index}>
