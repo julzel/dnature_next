@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, Grid, Typography, CardHeader, CardContent } from '@mui/material';
-import { grey } from '@mui/material/colors';
+import { grey, teal } from '@mui/material/colors';
 
 const ProductItem = ({ product }) => (
   <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1 }}>
@@ -19,7 +19,7 @@ const ProductItem = ({ product }) => (
           transition: 'all 0.1s ease-in-out',
         },
         ':hover': {
-          bgcolor: teal[100],
+          bgcolor: teal[50],
         }
       }}
     >
