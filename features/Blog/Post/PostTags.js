@@ -46,7 +46,7 @@ const PostTags = ({ category, tags }) => {
               component={'a'}
               label={hashtag.toUpperCase()}
               sx={{
-                color: 'white',
+                color: 'white !important',
                 bgcolor: 'primary.main',
                 mr: 1,
                 mb: { xs: 2, md: 1 },

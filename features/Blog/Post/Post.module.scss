@@ -14,4 +14,70 @@
       margin-bottom: 8px;
     }
   }
+
+  // html overrides
+  h2, h3 {
+    margin: 16px 0 8px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  section {
+    a {
+      color: darken($blue, 10%);
+      cursor: pointer;
+
+      &:hover {
+        color: darken($blue, 25%);
+      }
+    };
+  }
+  // Base table styling
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    margin-bottom: 32px;
+
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    td p {
+      font-family: $regular2;
+    }
+
+    th {
+      font-weight: $regular;
+    }
+  }
+
+  // Zebra-striping for table rows
+  table tr:nth-child(odd) {
+    background-color: #fff;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f6f6f6;
+  }
+
+  hr {
+    margin: 24px 0;
+  }
+
+  ul {
+    padding-left: 20px;
+    list-style: disc;
+
+    li {
+      font-size: 14px; 
+    }
+  }
 }

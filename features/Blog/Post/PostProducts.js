@@ -2,19 +2,25 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, Grid, Typography, CardHeader, CardContent } from '@mui/material';
-import { grey, lime } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
 const ProductItem = ({ product }) => (
   <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1 }}>
     <Card
+      // elevation={0}
+      variant='outlined'
       sx={{
-        bgcolor: lime[300],
+        bgcolor: grey[50],
+        cursor: 'pointer',
         mb: 2,
         ':active': {
-          bgcolor: lime[500],
+          bgcolor: teal[100],
           transform: 'scale(0.99)',
           transition: 'all 0.1s ease-in-out',
         },
+        ':hover': {
+          bgcolor: teal[100],
+        }
       }}
     >
       <Link
@@ -40,7 +46,7 @@ const ProductItem = ({ product }) => (
 
           {/* Name */}
           <Grid item xs={8} md={8}>
-            <Typography color="textSecondary" sx={{ fontWeight: 700 }} variant="subtitle2" px={[1, 2]}>
+            <Typography sx={{ fontWeight: 700 }} variant="subtitle2" px={[1, 2]}>
               {product.productName}
             </Typography>
           </Grid>
