@@ -15,6 +15,7 @@ export async function getStaticProps() {
 }
 
 export default function App({ posts }) {
+  console.log(posts);
   return (
     <Page title="DNAture - Blog">
       <Blog posts={posts} />
