@@ -5,23 +5,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $text-color;
+  background-color: #29434e;
 
-  .title {
-    font-family: $cursiveTitle;
-    font-size: 40px;
-    margin: 0 auto;
-    margin-bottom: 48px;
-  }
-
-  .steps,
   .benefits {
     color: $platinum;
-    padding: 40px 32px;
+    padding: 0 32px;
 
     @include mdq(lg) {
       flex-shrink: 0;
-      padding: 64px;
     }
 
     div {
@@ -56,41 +47,10 @@
     }
   }
 
-  .steps {
-    .title {
-      color: $orange;
-    }
-
-    h3 {
-      span {
-        color: $orange;
-        border: 1px solid $orange;
-      }
-    }
-
-    p {
-      border-left: 1px solid $orange;
-      margin-left: 16px;
-      padding-left: 16px;
-    }
-
-    .action {
-      margin-bottom: 16px;
-      padding-top: 32px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .button {
-      @include button-styles($orange, $text-color);
-      margin: 0 auto;
-    }
-  }
-
   .benefits {
-    padding-bottom: 64px;
+    padding: 64px 32px;
 
-    .title {
+    h2 {
       color: $blue;
     }
 
@@ -116,7 +76,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    min-height: 75vh;
+    min-height: 80vh;
     width: 100%;
 
     &::before {

@@ -1,21 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Divider, Typography } from "@mui/material";
 
 // local imports
 //styles
 import styles from "./Products.module.scss";
 
-// data
-import AnimationBox from "../../../components/AnimationBox";
-
 // components
+import AnimationBox from "../../../components/AnimationBox";
+import CursiveTitle from "../../../components/CursiveTitle";
 import ProductButton from "./ProductButton";
 
 const Products = ({ categories }) => {
   return (
     <div className={styles.products}>
-      <h2 className={`title ${styles.title}`}>Nuestros productos</h2>
+      <CursiveTitle>Nuestros productos</CursiveTitle>
+      <Divider sx={{ mb: 8, mx: 2 }} />
       <ul className={styles.productsCategories}>
         {categories &&
           categories.map((category, i) => {

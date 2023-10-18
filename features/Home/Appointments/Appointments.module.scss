@@ -1,0 +1,24 @@
+@import "../../../styles/_variables";
+@import "../../../styles/mixins";
+
+.appointments-container {
+  color: $white;
+  background-color: #29434e;
+  padding: 128px 32px;
+
+  .appointments {
+
+    @include mdq('md') {
+      max-width: 768px;
+      margin: 0 auto;
+    }
+
+    @include mdq('lg') {
+      max-width: 900px;
+    }
+
+    h2 {
+      color: $blue;
+    }
+  }
+}

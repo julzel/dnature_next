@@ -3,12 +3,16 @@
 
 .contact {
   padding: 64px 32px;
-  background-color: $text-color;
+  background-color: #29434e;
   position: relative;
   overflow: hidden;
 
   @include mdq(md) {
     padding: 128px 32px;
+  }
+
+  h2 {
+    color: $green;
   }
 
   .title {

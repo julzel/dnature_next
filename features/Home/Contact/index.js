@@ -10,11 +10,13 @@ import AnimationBox from '../../../components/AnimationBox';
 
 // styles
 import styles from './Contact.module.scss';
+import CursiveTitle from '../../../components/CursiveTitle';
 
 const Contact = () => {
   return (
     <div className={styles.contact}>
-      <h3 className={`title ${styles.title}`}>Contáctanos</h3>
+      <CursiveTitle>Contáctanos</CursiveTitle>
+      
       <ul className={styles.contactList}>
         <li>
           <AnimationBox animation='fade-in-from-left'>
