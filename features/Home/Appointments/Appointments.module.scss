@@ -8,17 +8,45 @@
 
   .appointments {
 
+    h2 {
+      color: $blue;
+    }
+
     @include mdq('md') {
       max-width: 768px;
       margin: 0 auto;
     }
 
-    @include mdq('lg') {
-      max-width: 900px;
+    &_types {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
-    h2 {
-      color: $blue;
+    &_type {
+      border: 1px solid $blue;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+
+      @include mdq('md') {
+        flex: 1;
+      }
+
+      &-title {
+        display: flex;
+        color: $green;
+      }
+
+      h6 {
+        color: $blue;
+      }
+
+      h4 {
+        color: $green;
+      }
     }
   }
 }
