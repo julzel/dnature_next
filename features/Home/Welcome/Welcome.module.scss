@@ -6,15 +6,15 @@
   position: relative;
 
   &Items {
-    background-color: $white;
+    background-color: $background-color;
     display: flex;
     flex-flow: column;
     align-items: center;
     margin: 0 auto;
-    padding: 64px 24px 8px;
+    padding: 64px 24px;
 
     @include mdq(lg) {
-      padding: 96px 32px 16px;
+      padding: 96px 32px;
     }
 
     ul {
@@ -40,6 +40,7 @@
 
       @include mdq(lg) {
         margin: 0 16px;
+        padding: 0 20px;
       }
     }
 

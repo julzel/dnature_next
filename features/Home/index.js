@@ -12,6 +12,7 @@ import Products from "./Products";
 import Contact from "./Contact";
 import DNAtureSystem from "./DNAtureSystem";
 import OurCostumers from "./OurCostumers";
+import NutritionalAppointments from "./NutritionalAppointments";
 
 const Home = ({ categories }) => {
 
@@ -22,6 +23,7 @@ const Home = ({ categories }) => {
       <Welcome />
       <Products categories={categories} />
       <DNAtureSystem />
+      <NutritionalAppointments />
       <OurCostumers />
       <Contact />
     </div>

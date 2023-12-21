@@ -1,113 +1,60 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .dnatureSystem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: $text-color;
+  background-color: #29434e;
 
   .title {
+    color: $blue;
     font-family: $cursiveTitle;
     font-size: 40px;
     margin: 0 auto;
-    margin-bottom: 48px;
+    margin-bottom: 64px;
+    margin-top: 32px;
   }
-
-  .steps,
   .benefits {
-    color: $platinum;
-    padding: 40px 32px;
+    color: $white;
+    height: 100%;
+    padding: 96px 32px;
 
-    @include mdq(lg) {
-      flex-shrink: 0;
-      padding: 64px;
-    }
-
-    div {
-      max-width: 640px;
+    .benefit {
       margin: 0 auto;
-    }
-
-    h3 {
-      font-family: $regular2;
-      font-size: 14px;
-      margin-bottom: 24px;
-      text-transform: uppercase;
+      margin-bottom: 64px;
 
       @include mdq(lg) {
-        font-size: 16px;
+        max-width: 640px;
+        margin-bottom: 64px;
       }
 
-      span {
-        display: inline-block;
-        padding: 8px 16px;
-      }
-    }
-
-    p {
-      font-family: $light;
-      margin-bottom: 48px;
-
-      @include mdq(lg) {
-        width: 75%;
-        font-size: 18px;
-      }
-    }
-  }
-
-  .steps {
-    .title {
-      color: $orange;
-    }
-
-    h3 {
-      span {
-        color: $orange;
-        border: 1px solid $orange;
-      }
-    }
-
-    p {
-      border-left: 1px solid $orange;
-      margin-left: 16px;
-      padding-left: 16px;
-    }
-
-    .action {
-      margin-bottom: 16px;
-      padding-top: 32px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .button {
-      @include button-styles($orange, $text-color);
-      margin: 0 auto;
-    }
-  }
-
-  .benefits {
-    padding-bottom: 64px;
-
-    .title {
-      color: $blue;
-    }
-
-    h3 {
-      text-align: right;
-      span {
+      h3 {
+        border-bottom: 1px solid $blue;
         color: $blue;
-        border: 1px solid $blue;
-      }
-    }
+        display: inline-block;
+        font-family: $bold2;
+        font-size: 32px;
+        margin-bottom: 48px;
+        text-transform: uppercase;
+        padding: 0 16px 8px;
 
-    p {
-      text-align: right;
-      border-right: 1px solid $blue;
-      margin-right: 16px;
-      margin-left: auto;
-      padding-right: 16px;
+        @include mdq(lg) {
+          margin-bottom: 64px;
+        }
+      }
+
+      p {
+        border-right: 1px solid $blue;
+        font-size: 18px;
+        font-family: $light;
+        margin-right: 8px;
+        padding: 8px 16px;
+        text-align: right;
+
+        @include mdq(lg) {
+          font-size: 20px;
+          letter-spacing: 1px;
+          padding: 4px 16px;
+        }
+      }
     }
   }
 
@@ -116,12 +63,12 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    min-height: 75vh;
+    height: 100vh;
     width: 100%;
 
     &::before {
-      content: "";
-      background-image: url("/images/plandna-mobile.jpg");
+      content: '';
+      background-image: url('/images/plandna-mobile.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -182,30 +129,9 @@
         font-size: 32px;
       }
     }
-  }
-
-  .planInfo {
-    padding: 16px;
-    border: 1px solid $blue;
 
     @include mdq(lg) {
-      padding: 32px;
-    }
-
-    h2 {
-      background-color: $blue;
-      color: $white;
-      margin-bottom: 32px;
-      padding: 8px;
-      text-align: center;
-    }
-
-    p {
-      margin-bottom: 16px;
-    }
-
-    a {
-      @include button-styles();
+      padding: 0 64px;
     }
   }
 }

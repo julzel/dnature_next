@@ -4,6 +4,7 @@
 $social-media: #008088;
 
 .OurCostumers {
+  background-color: $background-color;
   padding: 64px 32px;
 
   @include mdq(md) {

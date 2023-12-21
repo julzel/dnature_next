@@ -1,0 +1,73 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.container {
+  padding: 64px 16px;
+}
+
+.appointments {
+  margin: 0 auto;
+  max-width: 768px;
+
+  &-info {
+    margin-bottom: 32px;
+    h2 {
+      margin: 0 auto 32px;
+    }
+  }
+
+  &-types {
+
+    padding: 0 8px;
+    @include mdq(lg) {
+      display: flex;
+    }
+  }
+
+  .appointment-type {
+    border: 1px solid $blue;
+    padding: 16px;
+    margin-bottom: 32px;
+
+    @include mdq(lg) {
+      margin-right: 16px;
+
+      &:last-child {
+        margin-left: 16px;
+        margin-right: 0;
+      }
+    }
+
+    &_title {
+      color: #29434e;
+      font-family: $bold2;
+      font-size: 24px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    &_description {
+      color: #29434e;
+      font-family: $light;
+      font-size: 18px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    &_price {
+      color: #29434e;
+      font-family: $bold2;
+      font-size: 18px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+     &_cta {
+      color: #29434e;
+      font-family: $bold2;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: underline;
+     }
+  }
+}
