@@ -1,4 +1,20 @@
+import { faShieldDog } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import styles from './NutritionalAppointments.module.scss';
+
+const appointmentTypes = [
+  {
+    title: 'Standard Nutritional Consultation',
+    description: 'Our standard consultation offers a comprehensive assessment and tailored dietary advice.',
+    price: '$100',
+  },
+  {
+    title: 'Extended Nutritional Consultation',
+    description: 'Includes an in-depth analysis of your dietary habits, lifestyle, and a customized nutrition plan.',
+    price: '$150',
+  },
+];
 
 const NutritionalAppointments = () => {
   return (
@@ -13,29 +29,21 @@ const NutritionalAppointments = () => {
         </div>
 
         <div className={styles['appointments-types']}>
-          <div className={styles['appointment-type']}>
-            <h3 className={styles['appointment-type_title']}>
-              Standard Nutritional Consultation
-            </h3>
-            <p className={styles['appointment-type_description']}>
-              Our standard consultation offers a comprehensive assessment and
-              tailored dietary advice.
-            </p>
-            <p className={styles['appointment-type_price']}>Price: $100</p>
-            <button className={styles['appointment-type_cta']}>Book Now</button>
-          </div>
-
-          <div className={styles['appointment-type']}>
-            <h3 className={styles['appointment-type_title']}>
-              Extended Nutritional Consultation
-            </h3>
-            <p className={styles['appointment-type_description']}>
-              Includes an in-depth analysis of your dietary habits, lifestyle,
-              and a customized nutrition plan.
-            </p>
-            <p className={styles['appointment-type_price']}>Price: $150</p>
-            <button className={styles['appointment-type_cta']}>Book Now</button>
-          </div>
+          {appointmentTypes.map((appointment, index) => (
+            <div key={index} className={styles['appointment-type']}>
+              <FontAwesomeIcon className={styles.icon} icon={faShieldDog} />
+              <h3 className={styles['appointment-type_title']}>
+                {appointment.title}
+              </h3>
+              <p className={styles['appointment-type_description']}>
+                {appointment.description}
+              </p>
+              <p className={styles['appointment-type_price']}>
+                Precio: {appointment.price}
+              </p>
+              <button className={styles['appointment-type_cta']}>Agendar</button>
+            </div>
+          ))}
         </div>
       </div>
     </div>

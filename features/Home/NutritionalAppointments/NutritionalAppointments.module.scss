@@ -11,14 +11,15 @@
 
   &-info {
     margin-bottom: 32px;
+
     h2 {
       margin: 0 auto 32px;
     }
   }
 
   &-types {
-
     padding: 0 8px;
+
     @include mdq(lg) {
       display: flex;
     }
@@ -28,46 +29,66 @@
     border: 1px solid $blue;
     padding: 16px;
     margin-bottom: 32px;
+    text-align: center;
+    border: 1px solid $darkGreen;
 
     @include mdq(lg) {
+      // Default styles for all children, previously applied with &:not(:last-child)
       margin-right: 16px;
+    }
 
-      &:last-child {
-        margin-left: 16px;
+    .appointment-type_cta {
+      color: #29434e;
+      background-color: $green;
+    }
+
+    .icon {
+      color: $darkGreen;
+      font-size: 36px;
+      padding: 16px;
+    }
+
+    &:last-child {
+      // Override styles for the last child
+      border: 1px solid $blue;
+
+      @include mdq(lg) {
         margin-right: 0;
+        margin-left: 16px;
+      }
+
+      .appointment-type_cta {
+        color: $white;
+        background-color: $blue;
+      }
+
+      .icon {
+        color: $blue;
       }
     }
 
-    &_title {
+    &_title,
+    &_description,
+    &_price,
+    &_cta {
       color: #29434e;
       font-family: $bold2;
-      font-size: 24px;
+      font-size: 18px;
       margin-bottom: 16px;
       text-align: center;
     }
 
     &_description {
-      color: #29434e;
       font-family: $light;
-      font-size: 18px;
-      margin-bottom: 16px;
-      text-align: center;
     }
 
-    &_price {
-      color: #29434e;
-      font-family: $bold2;
+    &_cta {
+      font-family: $light;
+      color: $white;
+      background-color: $blue;
       font-size: 18px;
-      margin-bottom: 16px;
-      text-align: center;
+      padding: 4px 16px;
+      text-transform: uppercase;
     }
-
-     &_cta {
-      color: #29434e;
-      font-family: $bold2;
-      font-size: 18px;
-      text-align: center;
-      text-decoration: underline;
-     }
   }
 }
