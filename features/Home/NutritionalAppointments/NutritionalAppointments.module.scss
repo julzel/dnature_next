@@ -33,7 +33,7 @@
     border: 1px solid $darkGreen;
 
     @include mdq(lg) {
-      // Default styles for all children, previously applied with &:not(:last-child)
+      width: 50%;
       margin-right: 16px;
     }
 
@@ -49,7 +49,6 @@
     }
 
     &:last-child {
-      // Override styles for the last child
       border: 1px solid $blue;
 
       @include mdq(lg) {
@@ -89,6 +88,12 @@
       font-size: 18px;
       padding: 4px 16px;
       text-transform: uppercase;
+    }
+
+    &_followUp {
+      margin-top: 24px;
+      font-family: $light;
+      font-size: 12px;
     }
   }
 }

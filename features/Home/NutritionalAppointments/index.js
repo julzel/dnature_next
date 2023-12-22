@@ -10,18 +10,22 @@ const appointmentTypes = [
       'Comprender las bases nutricionales y obtener recomendaciones personalizadas. Requiere llenar anamnesis y últimos exámenes de sangre.',
     price: '$60',
     followUp: 'Revisión adicional disponible por $30.',
+    waMessage: 'Hola,%20estoy%20interesado%20en%20una%20consulta%20nutricional%20básica.'
   },
   {
     title: 'Plan Nutricional Personalizado',
     description:
-      'Para condiciones específicas o nutrición especializada. Requiere anamnesis, caso clínico completo, exámenes y dictamen médico veterinario.',
+      'Para condiciones específicas o nutrición especializada. Requiere llenar anamnesis y últimos exámenes de sangre.',
     price: '$90',
     followUp:
-      'Incluye seguimiento en semana 4. Ajustes gratuitos dentro de las primeras 4 semanas. Segunda valoración después de 4 semanas por $30.',
+      'Segunda valoración después de 4 semanas por $30.',
+      waMessage: 'Hola,%20estoy%20interesado%20en%20el%20plan%20nutricional%20personalizado.'
   },
 ];
 
 const NutritionalAppointments = () => {
+  const phoneNumber = "50671732328";
+
   return (
     <div className={styles.container}>
       <div className={styles.appointments}>
@@ -46,9 +50,14 @@ const NutritionalAppointments = () => {
               <p className={styles['appointment-type_price']}>
                 Precio: {appointment.price}
               </p>
-              <button className={styles['appointment-type_cta']}>
+              <a 
+                href={`https://wa.me/${phoneNumber}?text=${appointment.waMessage}`}
+                className={styles['appointment-type_cta']}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Agendar
-              </button>
+              </a>
               <p className={styles['appointment-type_followUp']}>
                 {appointment.followUp}
               </p>
