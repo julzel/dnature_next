@@ -1,29 +1,38 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback } from 'react';
 
 // local imports
 // components
-import Cart from "./Cart";
+import Cart from './Cart';
 
 // contexts
-import { useCartContext } from "../../contexts/shopping-cart-context";
+import { useCartContext } from '../../contexts/shopping-cart-context';
 
 // util
-import { downloadScreenShot, captureElementScreenshot } from "../../util";
+import { downloadScreenShot, captureElementScreenshot } from '../../util';
 
 const CartContainer = () => {
   // State management
   const [showPurchaseOrder, setShowPurchaseOrder] = useState(false);
   const [requestClientInfo, setRequestClientInfo] = useState(false);
-  const [downloadPurchaseOrder, setDownloadPurchaseOrder] = useState(false);
   const [displayInfoModal, setDisplayInfoModal] = useState(false);
-  const { cart, updateCartClient, removeAllItems } = useCartContext();
+  const { cart, updateCartClient } = useCartContext();
   const canvasElem = useRef(null);
+
+  // store the cart in local storage array to handle up to 5 carts in local storage
+  const storeCartInLocalStorage = useCallback(() => {
+    const storedCarts = JSON.parse(localStorage.getItem('carts')) || [];
+    if (storedCarts.length >= 5) {
+      // If array is full, delete the oldest cart (FIFO)
+      storedCarts.shift();
+    }
+    storedCarts.push(cart);
+    localStorage.setItem('carts', JSON.stringify(storedCarts));
+  }, [cart]);
 
   // Generate purchase link by capturing the screenshot and downloading it
   const generatePurchaseLink = useCallback(() => {
     captureElementScreenshot(canvasElem.current).then((dataUrl) => {
-      downloadScreenShot(dataUrl, "purchase-order.png");
-      setDownloadPurchaseOrder(false);
+      downloadScreenShot(dataUrl, 'purchase-order.png');
       setShowPurchaseOrder(false);
     });
   }, []);
@@ -46,21 +55,14 @@ const CartContainer = () => {
 
   const handlePurchaseConfirm = () => {
     setDisplayInfoModal(true);
-    setDownloadPurchaseOrder(true);
+    generatePurchaseLink();
+    storeCartInLocalStorage();
   };
 
   const handleCloseInfoModal = () => {
     // removeAllItems();
-    // setDownloadPurchaseOrder(true);
     setDisplayInfoModal(false);
   };
-
-  // Effect to handle the download of the purchase order
-  useEffect(() => {
-    if (downloadPurchaseOrder) {
-      generatePurchaseLink();
-    }
-  }, [downloadPurchaseOrder, generatePurchaseLink]);
 
   return (
     <Cart
@@ -73,7 +75,6 @@ const CartContainer = () => {
       onClientInfoSubmit={onClientInfoSubmit}
       onPurchaseCancel={() => setShowPurchaseOrder(false)}
       onPurchaseConfirm={handlePurchaseConfirm}
-      downloadPurchaseOrder={downloadPurchaseOrder}
       displayInfoModal={displayInfoModal}
       onCloseInfoModal={handleCloseInfoModal}
     />
