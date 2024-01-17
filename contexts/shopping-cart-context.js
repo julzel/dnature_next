@@ -1,4 +1,4 @@
-import { createContext, useContext, useCallback, useState } from 'react';
+import { createContext, useContext, useCallback, useState, useEffect } from 'react';
 import { ShoppingCart, ShoppingCartItem } from '../models/shopping-cart';
 
 const ShoppingCartContext = createContext();
@@ -7,6 +7,7 @@ const ShoppingCartContextProvider = ({ children }) => {
   const [currentShoppingCart, setCurrentShoppingCart] = useState(
     () => new ShoppingCart()
   );
+  const [localCarts, setLocalCarts] = useState([]);
 
   // Function to store the cart in local storage
   const storeCartInLocalStorage = useCallback(() => {
@@ -16,6 +17,7 @@ const ShoppingCartContextProvider = ({ children }) => {
     }
     storedCarts.push(currentShoppingCart); // Add the current cart
     localStorage.setItem('carts', JSON.stringify(storedCarts));
+    setLocalCarts(storedCarts);
   }, [currentShoppingCart]);
 
   // Function to retrieve the cart from local storage
@@ -142,10 +144,15 @@ const ShoppingCartContextProvider = ({ children }) => {
     [currentShoppingCart]
   );
 
+  useEffect(() => {
+    setLocalCarts(getLocalCarts());
+  }, [getLocalCarts]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
         cart: currentShoppingCart,
+        localCarts: localCarts,
         addItems: addToCart,
         addOneItem: addOneToCart,
         removeOneItem: removeFromCart,
@@ -154,7 +161,6 @@ const ShoppingCartContextProvider = ({ children }) => {
         updateCartClient: updateCartClient,
         updateCurrentCart: updateCurrentCart,
         storeCartInLocalStorage: storeCartInLocalStorage,
-        getLocalCarts: getLocalCarts,
       }}
     >
       {children}

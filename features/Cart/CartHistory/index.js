@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useCartContext } from '../../../contexts/shopping-cart-context';
 import { formatToLocaleDate } from '../../../util/dates';
 import CurrencyText from '../../../components/Currency';
@@ -7,12 +6,7 @@ import styles from './CartHistory.module.scss';
 
 const CartHistory = () => {
   // Shopping cart context
-  const { getLocalCarts, updateCurrentCart } = useCartContext();
-  const [localCarts, setLocalCarts] = useState([]);
-
-  useEffect(() => {
-    setLocalCarts(getLocalCarts());
-  }, [getLocalCarts]);
+  const { updateCurrentCart, localCarts } = useCartContext();
 
   if (localCarts.length === 0) {
     return <div>No hay órdenes de compras anteriores</div>;
