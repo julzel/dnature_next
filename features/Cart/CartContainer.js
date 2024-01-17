@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 
 // local imports
 // components
@@ -11,23 +11,18 @@ import { useCartContext } from '../../contexts/shopping-cart-context';
 import { downloadScreenShot, captureElementScreenshot } from '../../util';
 
 const CartContainer = () => {
+  // Shopping cart context
+  const {
+    cart,
+    updateCartClient,
+    storeCartInLocalStorage,
+  } = useCartContext();
+  
   // State management
   const [showPurchaseOrder, setShowPurchaseOrder] = useState(false);
   const [requestClientInfo, setRequestClientInfo] = useState(false);
   const [displayInfoModal, setDisplayInfoModal] = useState(false);
-  const { cart, updateCartClient } = useCartContext();
   const canvasElem = useRef(null);
-
-  // store the cart in local storage array to handle up to 5 carts in local storage
-  const storeCartInLocalStorage = useCallback(() => {
-    const storedCarts = JSON.parse(localStorage.getItem('carts')) || [];
-    if (storedCarts.length >= 5) {
-      // If array is full, delete the oldest cart (FIFO)
-      storedCarts.shift();
-    }
-    storedCarts.push(cart);
-    localStorage.setItem('carts', JSON.stringify(storedCarts));
-  }, [cart]);
 
   // Generate purchase link by capturing the screenshot and downloading it
   const generatePurchaseLink = useCallback(() => {
@@ -59,10 +54,7 @@ const CartContainer = () => {
     storeCartInLocalStorage();
   };
 
-  const handleCloseInfoModal = () => {
-    // removeAllItems();
-    setDisplayInfoModal(false);
-  };
+  const handleCloseInfoModal = () => setDisplayInfoModal(false);
 
   return (
     <Cart

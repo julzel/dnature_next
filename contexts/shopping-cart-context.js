@@ -1,11 +1,40 @@
-import { createContext, useContext, useCallback, useState } from "react";
-import { ShoppingCart, ShoppingCartItem } from "../models/shopping-cart";
+import { createContext, useContext, useCallback, useState } from 'react';
+import { ShoppingCart, ShoppingCartItem } from '../models/shopping-cart';
 
 const ShoppingCartContext = createContext();
 
 const ShoppingCartContextProvider = ({ children }) => {
   const [currentShoppingCart, setCurrentShoppingCart] = useState(
     () => new ShoppingCart()
+  );
+
+  // Function to store the cart in local storage
+  const storeCartInLocalStorage = useCallback(() => {
+    const storedCarts = JSON.parse(localStorage.getItem('carts')) || [];
+    if (storedCarts.length >= 5) {
+      storedCarts.shift(); // Remove the oldest cart
+    }
+    storedCarts.push(currentShoppingCart); // Add the current cart
+    localStorage.setItem('carts', JSON.stringify(storedCarts));
+  }, [currentShoppingCart]);
+
+  // Function to retrieve the cart from local storage
+  const getLocalCarts = useCallback(() => {
+    const storedCartsString = localStorage.getItem('carts');
+    try {
+      const storedCarts = JSON.parse(storedCartsString);
+      return Array.isArray(storedCarts) ? storedCarts : [];
+    } catch (error) {
+      // In case the stored value is not valid JSON
+      return [];
+    }
+  }, []);
+
+  const updateCurrentCart = useCallback(
+    (newCart) => {
+      setCurrentShoppingCart(newCart);
+    },
+    [setCurrentShoppingCart]
   );
 
   const updateCartClient = useCallback(
@@ -123,6 +152,9 @@ const ShoppingCartContextProvider = ({ children }) => {
         removeAllItems: removeAllFromCart,
         removeAllItemsOfAKind: removeAllOfAKindFromCart,
         updateCartClient: updateCartClient,
+        updateCurrentCart: updateCurrentCart,
+        storeCartInLocalStorage: storeCartInLocalStorage,
+        getLocalCarts: getLocalCarts,
       }}
     >
       {children}
