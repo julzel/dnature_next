@@ -1,0 +1,46 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.cartHistory {
+  padding: 32px;
+
+  @include mdq(md) {
+    // border: 1px solid $border;
+    padding-top: 0;
+    padding-right: 0;
+  }
+
+  strong {
+    font-family: $bold2;
+  }
+
+  &Item {
+    margin-bottom: 16px;
+    border-bottom: 1px solid $border;
+    padding: 8px;
+    font-size: 14px;
+
+    &:hover {
+      background-color: #fafafa;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+
+      &:first-child {
+        margin-bottom: 4px;
+      }
+    }
+
+    button {
+      background-color: $green;
+      border-radius: 5px;
+      font-family: $bold;
+      font-size: 10px;
+      margin-left: 16px;
+      padding: 2px 8px;
+      text-transform: uppercase;
+    }
+  }
+}

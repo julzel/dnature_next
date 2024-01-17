@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useCartContext } from '../../../contexts/shopping-cart-context';
+import { formatToLocaleDate } from '../../../util/dates';
+import CurrencyText from '../../../components/Currency';
+
+import styles from './CartHistory.module.scss';
 
 const CartHistory = () => {
   // Shopping cart context
-  const {
-    getLocalCarts,
-    updateCurrentCart,
-  } = useCartContext();
+  const { getLocalCarts, updateCurrentCart } = useCartContext();
   const [localCarts, setLocalCarts] = useState([]);
 
   useEffect(() => {
@@ -14,23 +15,28 @@ const CartHistory = () => {
   }, [getLocalCarts]);
 
   if (localCarts.length === 0) {
-    return <div>No hay carritos guardados</div>;
+    return <div>No hay órdenes de compras anteriores</div>;
   }
 
-  console.log(localCarts)
-
   return (
-    <div>
-      <h2>Carritos guardados:</h2>
+    <div className={styles.cartHistory}>
+      <h3>Órdenes anteriores:</h3>
       {localCarts.map((cart, ind) => (
-        <div key={ind}>
-          <span>{cart.client.firstName}</span>
-          <span>{cart.total}</span>
-          <button onClick={() => updateCurrentCart(cart)}>Cargar</button>
+        <div className={styles.cartHistoryItem} key={ind}>
+          <div>
+            <strong>Fecha: </strong><span>{formatToLocaleDate(cart.date)}</span>
+            <button onClick={() => updateCurrentCart(cart)}>Seleccionar</button>
+          </div>
+          <div>
+            <span>
+              <strong>Total: </strong>
+              <CurrencyText value={cart.total} />
+            </span>
+          </div>
         </div>
       ))}
     </div>
   );
-}
- 
+};
+
 export default CartHistory;

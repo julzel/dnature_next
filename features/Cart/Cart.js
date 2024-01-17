@@ -40,9 +40,7 @@ const Cart = ({
       </div>
       <CartActionsContainer proceedToPurchase={proceedToPurchase} />
     </div>
-    <div>
-      <CartHistory />
-    </div>
+    <CartHistory />
 
     {requestClientInfo && (
       <ModalContainer

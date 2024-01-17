@@ -5,9 +5,11 @@
   flex: 1;
   background-color: $white;
   display: flex;
-  justify-content: center;
+  flex-flow: column;
 
   @include mdq(md) {
+    justify-content: center;
+    flex-flow: row;
     padding: 32px;
   }
 

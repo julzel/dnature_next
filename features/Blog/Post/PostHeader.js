@@ -9,11 +9,11 @@ import {
 } from '@mui/material';
 
 // local imports
-import { formatContentfulDate } from '../../../util/dates';
+import { formatToLocaleDate } from '../../../util/dates';
 import BlogBreadcrumbs from '../BlogBreadcrumbs';
 
 const PostHeader = ({ title, media, date, author }) => {
-  const localDateString = formatContentfulDate(date);
+  const localDateString = formatToLocaleDate(date);
 
   return (
     <Box mb={4}>
