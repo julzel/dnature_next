@@ -16,7 +16,7 @@ import {
 import { grey } from '@mui/material/colors';
 
 // local imports
-import { formatContentfulDate } from '../../../util/dates';
+import { formatToLocaleDate } from '../../../util/dates';
 
 import postCategories from '../post-categories';
 import BlogBreadcrumbs from '../BlogBreadcrumbs';
@@ -88,7 +88,7 @@ export default function PostQueryResult({ posts, query }) {
                               variant="subtitle2"
                               color={'textSecondary'}
                             >
-                              {formatContentfulDate(post.sys.publishedAt)}
+                              {formatToLocaleDate(post.sys.publishedAt)}
                             </Typography>
                           </Typography>
                         }

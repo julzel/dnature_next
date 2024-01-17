@@ -10,6 +10,7 @@ class ShoppingCartItem {
 
 class ShoppingCart {
   constructor() {
+    this.date = new Date();
     this.items = [];
     this.totalItems = 0;
     this.total = 0;

@@ -6,7 +6,7 @@ import { Box, Card, ImageList, ImageListItem, Typography } from '@mui/material';
 // local imports
 import styles from './Blog.module.scss';
 import { useWindow } from '../../hooks';
-import { formatContentfulDate } from '../../util/dates';
+import { formatToLocaleDate } from '../../util/dates';
 import postCategories from './post-categories';
 
 const BlogPostItem = ({ post }) => (
@@ -26,7 +26,7 @@ const BlogPostItem = ({ post }) => (
         {post.title}
       </Typography>
       <Typography textAlign="right" color="white" variant="subtitle2" gutterBottom>
-        {formatContentfulDate(post.sys.publishedAt)}
+        {formatToLocaleDate(post.sys.publishedAt)}
       </Typography>
     </Box>
     <Box height="100%" flex={1} p={1}>
