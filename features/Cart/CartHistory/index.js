@@ -9,7 +9,7 @@ const CartHistory = () => {
   const { updateCurrentCart, localCarts } = useCartContext();
 
   if (localCarts.length === 0) {
-    return <div>No hay órdenes de compras anteriores</div>;
+    return <div className={styles.cartHistory}>No hay órdenes de compras anteriores</div>;
   }
 
   return (
