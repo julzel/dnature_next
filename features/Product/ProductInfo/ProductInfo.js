@@ -76,11 +76,6 @@ const ProductInfo = ({
             {/* TODO: add dynamic selector: quantiy by type */}
           </div>
         )}
-        {/* <Button
-          text={"Agregar al carrito"}
-          onClick={() => onAddToCart(productDetail, quantity, presentation)}
-          className={addToCartStyles.addToCart}
-        /> */}
         {cartTotalItems > 0 && (
           <Link href={'/cart'} passHref>
             <a>
