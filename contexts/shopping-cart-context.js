@@ -98,9 +98,9 @@ const ShoppingCartContextProvider = ({ children }) => {
   );
 
   const removeFromCart = useCallback(
-    (item) => {
+    (itemId) => {
       const itemIndex = currentShoppingCart.items.findIndex(
-        (shoppingCartItem) => shoppingCartItem.id === item.id
+        (shoppingCartItem) => shoppingCartItem.id === itemId
       );
       if (itemIndex === -1) {
         return; // item not found in cart
@@ -144,6 +144,11 @@ const ShoppingCartContextProvider = ({ children }) => {
     [currentShoppingCart]
   );
 
+  const getItemsInCart = (itemId) => {
+    const itemInCart = currentShoppingCart.items.find((item) => item.id === itemId);
+    return itemInCart ? itemInCart.quantity : '';
+  };
+
   useEffect(() => {
     setLocalCarts(getLocalCarts());
   }, [getLocalCarts]);
@@ -153,6 +158,7 @@ const ShoppingCartContextProvider = ({ children }) => {
       value={{
         cart: currentShoppingCart,
         localCarts: localCarts,
+        getItemsInCart: getItemsInCart,
         addItems: addToCart,
         addOneItem: addOneToCart,
         removeOneItem: removeFromCart,
