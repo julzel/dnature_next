@@ -11,7 +11,7 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
       </h1>
       <div className={styles.heroAction}>
         <h2 className={styles.heroActionTitle}>
-          La forma <span>natural</span>de <span>alimentar</span> a tu mascota
+          Las formas <span>natural</span>de <span>alimentar</span> a tu mascota
         </h2>
 
         <p className={styles.heroActionParagraph}>
