@@ -5,7 +5,8 @@ import { ShoppingCartItem } from "../../../models/shopping-cart";
 import { PRESENTATION_OPTIONS } from "../consts";
 
 const ProductInfoContainer = ({ productDetail }) => {
-  const { cart, addItems } = useCartContext();
+  // const { cart, addItems } = useCartContext();
+  const { cart, addOneItem, removeOneItem, getItemsInCart } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const [presentation, setPresentation] = useState(
     PRESENTATION_OPTIONS[2]
@@ -16,12 +17,12 @@ const ProductInfoContainer = ({ productDetail }) => {
   const handleSelectPresentation = (option) =>
     setPresentation(option);
 
-  const handleAddToCart = (item) => {
+  const handleAddToCart = () => {
     const newItem = new ShoppingCartItem(
-      item.sys.id,
-      quantity,
-      item.precio,
-      item.productName,
+      productDetail.sys.id,
+      1,
+      productDetail.precio,
+      productDetail.productName,
       presentation
         ? [{
             description: presentation.label,
@@ -29,8 +30,12 @@ const ProductInfoContainer = ({ productDetail }) => {
           }]
         : null,
     );
-    addItems(newItem);
+    addOneItem(newItem);
   };
+
+  const handleRemoveOneItem = (itemId) => removeOneItem(itemId);
+
+  const itemsInCart = getItemsInCart(productDetail.sys.id);
 
   return (
     <ProductInfo
@@ -42,6 +47,8 @@ const ProductInfoContainer = ({ productDetail }) => {
       onAddToCart={handleAddToCart}
       cartTotalItems={cart.totalItems}
       presentationOptions={PRESENTATION_OPTIONS}
+      onRemoveOneItem={handleRemoveOneItem}
+      itemsInCart={itemsInCart}
     />
   );
 };

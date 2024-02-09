@@ -15,7 +15,7 @@ const CartItemController = ({
   return (
     <div className={styles.cartItemController}>
       <div className={styles.badge}>
-        <button onClick={() => removeOneItem(item)}>
+        <button onClick={() => removeOneItem(item.id)}>
           -
         </button>
         {item.quantity}
