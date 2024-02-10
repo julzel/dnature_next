@@ -5,14 +5,11 @@ import { ShoppingCartItem } from "../../../models/shopping-cart";
 import { PRESENTATION_OPTIONS } from "../consts";
 
 const ProductInfoContainer = ({ productDetail }) => {
-  // const { cart, addItems } = useCartContext();
   const { cart, addOneItem, removeOneItem, getItemsInCart } = useCartContext();
   const [quantity, setQuantity] = useState(1);
   const [presentation, setPresentation] = useState(
     PRESENTATION_OPTIONS[2]
   );
-
-  const handleQuantityChange = (newQuantity) => setQuantity(+newQuantity);
 
   const handleSelectPresentation = (option) =>
     setPresentation(option);
@@ -37,17 +34,17 @@ const ProductInfoContainer = ({ productDetail }) => {
 
   const itemsInCart = getItemsInCart(productDetail.sys.id);
 
+  console.log(productDetail);
+
   return (
     <ProductInfo
-      quantity={quantity}
-      onQuantityChange={handleQuantityChange}
+      productDetail={productDetail}
       presentation={presentation}
       onPresentationChange={handleSelectPresentation}
-      productDetail={productDetail}
-      onAddToCart={handleAddToCart}
-      cartTotalItems={cart.totalItems}
       presentationOptions={PRESENTATION_OPTIONS}
+      onAddToCart={handleAddToCart}
       onRemoveOneItem={handleRemoveOneItem}
+      cartTotalItems={cart.totalItems}
       itemsInCart={itemsInCart}
     />
   );

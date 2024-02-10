@@ -23,8 +23,6 @@ import QuickAdd from '../../../components/QuickAdd';
 
 const ProductInfo = ({
   productDetail,
-  quantity,
-  onQuantityChange,
   presentation,
   onPresentationChange,
   presentationOptions,

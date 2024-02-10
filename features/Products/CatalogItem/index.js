@@ -11,10 +11,23 @@ import styles from './CatalogItem.module.scss';
 import { useCartContext } from '../../../contexts/shopping-cart-context';
 import QuickAdd from '../../../components/QuickAdd';
 
+const PresentationSelector = ({ presentations, handlePresentationSelect }) => (
+  <select
+    name='presentation'
+    id='presentation-select'
+    onClick={handlePresentationSelect}
+  >
+    {Object.entries(presentations).map(([size, price]) => (
+      <option value={size} key={size}>{`${size} - $${price}`}</option>
+    ))}
+  </select>
+);
+
 const CatalogItem = ({ product }) => {
-  const { images } = product;
+  const { images, preciosPorUnidad } = product;
   const itemImage = images[0];
   const { addOneItem, removeOneItem, getItemsInCart } = useCartContext();
+  const hasPriceByUnit = !!preciosPorUnidad;
 
   const addItemToCart = (e) => {
     e.preventDefault();
@@ -35,7 +48,13 @@ const CatalogItem = ({ product }) => {
     removeOneItem(product.sys.id);
   };
 
+  const handlePresentationSelect = (e) => {
+    e.stopPropagation();
+  };
+
   const itemsInCart = getItemsInCart(product.sys.id);
+
+  console.log(product);
 
   return (
     <Link
@@ -62,6 +81,14 @@ const CatalogItem = ({ product }) => {
             ₡{product.precio}{' '}
             {product.medida && <span> | {product.medida}</span>}
           </p>
+          {hasPriceByUnit && (
+            <div>
+              <PresentationSelector
+                presentations={preciosPorUnidad}
+                handlePresentationSelect={handlePresentationSelect}
+              />
+            </div>
+          )}
           <QuickAdd
             removeOneItemFromCart={removeOneItemFromCart}
             addItemToCart={addItemToCart}
