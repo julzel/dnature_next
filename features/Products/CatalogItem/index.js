@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,32 +13,41 @@ import QuickAdd from '../../../components/QuickAdd';
 
 const PresentationSelector = ({ presentations, handlePresentationSelect }) => (
   <select
-    name='presentation'
-    id='presentation-select'
-    onClick={handlePresentationSelect}
+    name="presentation"
+    id="presentation-select"
+    onChange={handlePresentationSelect} // Changed from onClick to onChange
+    onClick={(e) => e.stopPropagation()}
   >
     {Object.entries(presentations).map(([size, price]) => (
-      <option value={size} key={size}>{`${size} - $${price}`}</option>
+      <option value={price} key={size}>{`${size} - $${price}`}</option>
     ))}
   </select>
 );
 
 const CatalogItem = ({ product }) => {
-  const { images, preciosPorUnidad } = product;
-  const itemImage = images[0];
-  const { addOneItem, removeOneItem, getItemsInCart } = useCartContext();
+  const { sys: { id }, images, preciosPorUnidad, precio, productName, urlSlug, medida } = product; // Destructured for better readability
   const hasPriceByUnit = !!preciosPorUnidad;
+  const [selectedPresentation, setSelectedPresentation] = useState(hasPriceByUnit ? preciosPorUnidad['1kg'] * 1 : null);
+  const { addOneItem, removeOneItem, getItemsInCart } = useCartContext();
+  const itemImage = images[0];
 
   const addItemToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
+
     const newItem = new ShoppingCartItem(
-      product.sys.id,
+      id,
       1,
-      product.precio,
-      product.productName,
+      precio,
+      productName,
       null
     );
+
+    if (hasPriceByUnit) {
+      newItem.price = selectedPresentation;
+      newItem.id = `${id}-${selectedPresentation}`;
+    }
+
     addOneItem(newItem);
   };
 
@@ -49,15 +58,16 @@ const CatalogItem = ({ product }) => {
   };
 
   const handlePresentationSelect = (e) => {
+    e.preventDefault();
     e.stopPropagation();
+    setSelectedPresentation(e.target.value * 1); // Ensures the value is a number
   };
 
-  const itemsInCart = getItemsInCart(product.sys.id);
-
-  console.log(product);
+  const itemsInCart = getItemsInCart(id);
 
   return (
     <Link
+      key={product.sys.id}
       passHref
       href={{
         pathname: `/productos/${product.urlSlug}`,

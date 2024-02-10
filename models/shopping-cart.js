@@ -1,10 +1,9 @@
 class ShoppingCartItem {
-  constructor(id, quantity, price, productName, containers) {
+  constructor(id, quantity, price, productName) {
     this.id = id;
     this.quantity = quantity;
     this.price = price;
     this.productName = productName;
-    this.containers = containers;
   }
 }
 

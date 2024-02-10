@@ -34,8 +34,6 @@ const ProductInfoContainer = ({ productDetail }) => {
 
   const itemsInCart = getItemsInCart(productDetail.sys.id);
 
-  console.log(productDetail);
-
   return (
     <ProductInfo
       productDetail={productDetail}

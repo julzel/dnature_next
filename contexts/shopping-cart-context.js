@@ -62,7 +62,6 @@ const ShoppingCartContextProvider = ({ children }) => {
           1,
           item.price,
           item.productName,
-          item.containers
         );
         currentShoppingCart.items.push(newItem);
       }
@@ -152,6 +151,11 @@ const ShoppingCartContextProvider = ({ children }) => {
   useEffect(() => {
     setLocalCarts(getLocalCarts());
   }, [getLocalCarts]);
+
+  // TO REMOVE
+  useEffect(() => {
+    console.log('currentShoppingCart', currentShoppingCart);
+  }, [currentShoppingCart]);
 
   return (
     <ShoppingCartContext.Provider
