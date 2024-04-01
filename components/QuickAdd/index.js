@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './QuickAdd.module.scss';
 
 const QuickAdd = ({ itemsInCart, removeOneItemFromCart, addItemToCart }) => {
+  console.log("itemsInCart > 0 = ", itemsInCart > 0)
   return (
     <div className={styles.quickAdd}>
       {itemsInCart > 0 && (

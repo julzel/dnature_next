@@ -1,78 +1,71 @@
-import { useState } from 'react';
+// Import statements
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Box } from '@mui/material';
+import { ShoppingCartItem } from '../../../models/shopping-cart'; // Local imports
+import styles from './CatalogItem.module.scss'; // Styles
+import { useCartContext } from '../../../contexts/shopping-cart-context'; // Context
+import QuickAdd from '../../../components/QuickAdd'; // Components
+import PresentationSelector, {
+  convertObjectToArray,
+} from '../../../components/PresentationSelector'; // Components
 
-// local imports
-import { ShoppingCartItem } from '../../../models/shopping-cart';
-// styles
-import styles from './CatalogItem.module.scss';
-
-// context
-import { useCartContext } from '../../../contexts/shopping-cart-context';
-import QuickAdd from '../../../components/QuickAdd';
-
-const PresentationSelector = ({ presentations, handlePresentationSelect }) => (
-  <select
-    name="presentation"
-    id="presentation-select"
-    onChange={handlePresentationSelect} // Changed from onClick to onChange
-    onClick={(e) => e.stopPropagation()}
-  >
-    {Object.entries(presentations).map(([size, price]) => (
-      <option value={price} key={size}>{`${size} - $${price}`}</option>
-    ))}
-  </select>
-);
+const DEFAULT_SIZE = '500g';
 
 const CatalogItem = ({ product }) => {
-  const { sys: { id }, images, preciosPorUnidad, precio, productName, urlSlug, medida } = product; // Destructured for better readability
+  const {
+    sys: { id },
+    images,
+    preciosPorUnidad,
+    precio,
+    productName,
+    urlSlug,
+    medida,
+  } = product;
   const hasPriceByUnit = !!preciosPorUnidad;
-  const [selectedPresentation, setSelectedPresentation] = useState(hasPriceByUnit ? preciosPorUnidad['1kg'] * 1 : null);
+  const [selectedPresentation, setSelectedPresentation] = useState(null);
   const { addOneItem, removeOneItem, getItemsInCart } = useCartContext();
   const itemImage = images[0];
+
+  const handlePresentationSelect = (selected) => {
+    setSelectedPresentation(selected); // Now expects the whole selected object
+  };
 
   const addItemToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-
-    const newItem = new ShoppingCartItem(
-      id,
-      1,
-      precio,
-      productName,
-      null
-    );
-
-    if (hasPriceByUnit) {
-      newItem.price = selectedPresentation;
-      newItem.id = `${id}-${selectedPresentation}`;
+    const newItem = new ShoppingCartItem(id, 1, precio, productName, null);
+    if (hasPriceByUnit && selectedPresentation) {
+      newItem.price = parseFloat(selectedPresentation.price);
+      newItem.id = `${id}-${selectedPresentation.size}`;
+      newItem.productName = `${productName} ${selectedPresentation.size}`;
     }
-
     addOneItem(newItem);
   };
 
   const removeOneItemFromCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    removeOneItem(product.sys.id);
+    removeOneItem(id);
   };
 
-  const handlePresentationSelect = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setSelectedPresentation(e.target.value * 1); // Ensures the value is a number
-  };
+  useEffect(() => {
+    if (hasPriceByUnit) {
+      const presentationArray = convertObjectToArray(preciosPorUnidad);
+      setSelectedPresentation(
+        presentationArray.find((p) => p.size === DEFAULT_SIZE)
+      );
+    }
+  }, [hasPriceByUnit, preciosPorUnidad]);
 
-  const itemsInCart = getItemsInCart(id);
+  const itemsInCart = hasPriceByUnit && selectedPresentation ? getItemsInCart(`${id}-${selectedPresentation.size}`) : getItemsInCart(id);
 
   return (
     <Link
-      key={product.sys.id}
+      key={id}
       passHref
-      href={{
-        pathname: `/productos/${product.urlSlug}`,
-        query: { id: product.sys.id },
-      }}
+      href={{ pathname: `/productos/${urlSlug}`, query: { id } }}
     >
       <span className={styles.catalogItem}>
         <span className={styles.catalogItemImages}>
@@ -86,18 +79,28 @@ const CatalogItem = ({ product }) => {
           />
         </span>
         <span className={styles.catalogItemDetails}>
-          <h3>{product.productName}</h3>
-          <p>
-            ₡{product.precio}{' '}
-            {product.medida && <span> | {product.medida}</span>}
-          </p>
+          <h3>{productName}</h3>
+          {hasPriceByUnit ? (
+            <p>
+              ₡{selectedPresentation ? selectedPresentation.price : ''}{' '}
+              {selectedPresentation && (
+                <span> | {selectedPresentation.size}</span>
+              )}
+            </p>
+          ) : (
+            <p>
+              ₡{precio} {medida && <span> | {medida}</span>}
+            </p>
+          )}
+
           {hasPriceByUnit && (
-            <div>
+            <Box my={2} width='100%'>
               <PresentationSelector
                 presentations={preciosPorUnidad}
-                handlePresentationSelect={handlePresentationSelect}
+                selectedPresentation={selectedPresentation}
+                onPresentationSelect={handlePresentationSelect}
               />
-            </div>
+            </Box>
           )}
           <QuickAdd
             removeOneItemFromCart={removeOneItemFromCart}

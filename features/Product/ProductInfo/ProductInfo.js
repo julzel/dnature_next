@@ -3,18 +3,19 @@ import { Box } from '@mui/material';
 import Image from 'next/image';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PresentationSelector from '../../../components/PresentationSelector'; // Components
 
 // local imports
 // styles
 import styles from './ProductInfo.module.scss';
-import counterStyles from './Counter.module.scss';
-import addToCartStyles from './AddToCart.module.scss';
-import presentationStyles from './PresentationSelect.module.scss';
+// import counterStyles from './Counter.module.scss';
+// import addToCartStyles from './AddToCart.module.scss';
+// import presentationStyles from './PresentationSelect.module.scss';
 
 // components
-import Button from '../../../components/Button';
-import CounterInput from '../../../components/CounterInput';
-import CustomSelect from '../../../components/CustomSelect';
+// import Button from '../../../components/Button';
+// import CounterInput from '../../../components/CounterInput';
+// import CustomSelect from '../../../components/CustomSelect';
 
 // consts
 // import { RECETAS_COMPLETAS } from "../consts";
@@ -23,9 +24,9 @@ import QuickAdd from '../../../components/QuickAdd';
 
 const ProductInfo = ({
   productDetail,
-  presentation,
-  onPresentationChange,
-  presentationOptions,
+  hasPriceByUnit,
+  selectedPresentation,
+  handlePresentationSelect,
   onAddToCart,
   onRemoveOneItem,
   cartTotalItems,
@@ -49,31 +50,44 @@ const ProductInfo = ({
       <div className={styles.info}>
         <div>
           <h1>{productDetail.productName}</h1>
-          <p className={styles.price}>
-            ₡{productDetail.precio}{' '}
-            <span className={styles.small}>| {productDetail.medida}</span>
-          </p>
+          {hasPriceByUnit ? (
+            <p className={styles.price}>
+              ₡{selectedPresentation ? selectedPresentation.price : ''}{' '}
+              {selectedPresentation && (
+                <span className={styles.small}> | {selectedPresentation.size}</span>
+              )}
+            </p>
+          ) : (
+            <p className={styles.price}>
+              ₡{productDetail.precio}{' '}
+              <span className={styles.small}>| {productDetail.medida}</span>
+            </p>
+          )}
         </div>
-        <Box p={4} mb={2} display='flex' justifyContent='center' sx={{ transform: 'scale(1.25)'}}>
+        {hasPriceByUnit && (
+            <Box my={4} width='100%'>
+              <PresentationSelector
+                presentations={productDetail.preciosPorUnidad}
+                selectedPresentation={selectedPresentation}
+                onPresentationSelect={handlePresentationSelect}
+              />
+            </Box>
+          )}
+        <Box
+          pt={2}
+          pb={4}
+          mb={2}
+          display='flex'
+          justifyContent='center'
+          sx={{ transform: 'scale(1.25)' }}
+        >
           <QuickAdd
             itemsInCart={itemsInCart}
             removeOneItemFromCart={() => onRemoveOneItem(productDetail.sys.id)}
             addItemToCart={onAddToCart}
           />
         </Box>
-        {false && (
-          <div className={styles.presentation}>
-            <label htmlFor='presentation'>Presentación *</label>
-            <CustomSelect
-              options={presentationOptions}
-              selectedOption={presentation}
-              onSelect={onPresentationChange}
-              classes={{ select: presentationStyles.select }}
-            />
-            <p></p>
-            {/* TODO: add dynamic selector: quantiy by type */}
-          </div>
-        )}
+
         {cartTotalItems > 0 && (
           <Link href={'/cart'} passHref>
             <a>
@@ -85,15 +99,6 @@ const ProductInfo = ({
         )}
       </div>
     </div>
-    {false && (
-      <div className={styles.presentationNote}>
-        <p>* Precio por unidad: </p>
-        <p>
-          1kg = <CurrencyText value={3500} /> | 500g ={' '}
-          <CurrencyText value={1750} /> | 200g = <CurrencyText value={800} />
-        </p>
-      </div>
-    )}
   </>
 );
 

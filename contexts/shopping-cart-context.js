@@ -152,11 +152,6 @@ const ShoppingCartContextProvider = ({ children }) => {
     setLocalCarts(getLocalCarts());
   }, [getLocalCarts]);
 
-  // TO REMOVE
-  useEffect(() => {
-    console.log('currentShoppingCart', currentShoppingCart);
-  }, [currentShoppingCart]);
-
   return (
     <ShoppingCartContext.Provider
       value={{
