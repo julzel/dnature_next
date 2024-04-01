@@ -8,18 +8,6 @@ import PresentationSelector from '../../../components/PresentationSelector'; // 
 // local imports
 // styles
 import styles from './ProductInfo.module.scss';
-// import counterStyles from './Counter.module.scss';
-// import addToCartStyles from './AddToCart.module.scss';
-// import presentationStyles from './PresentationSelect.module.scss';
-
-// components
-// import Button from '../../../components/Button';
-// import CounterInput from '../../../components/CounterInput';
-// import CustomSelect from '../../../components/CustomSelect';
-
-// consts
-// import { RECETAS_COMPLETAS } from "../consts";
-import CurrencyText from '../../../components/Currency';
 import QuickAdd from '../../../components/QuickAdd';
 
 const ProductInfo = ({
