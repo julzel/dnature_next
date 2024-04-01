@@ -1,49 +1,71 @@
-import React from 'react';
+// Import statements
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Box } from '@mui/material';
+import { ShoppingCartItem } from '../../../models/shopping-cart'; // Local imports
+import styles from './CatalogItem.module.scss'; // Styles
+import { useCartContext } from '../../../contexts/shopping-cart-context'; // Context
+import QuickAdd from '../../../components/QuickAdd'; // Components
+import PresentationSelector, {
+  convertObjectToArray,
+} from '../../../components/PresentationSelector'; // Components
 
-// local imports
-import { ShoppingCartItem } from '../../../models/shopping-cart';
-// styles
-import styles from './CatalogItem.module.scss';
-
-// context
-import { useCartContext } from '../../../contexts/shopping-cart-context';
-import QuickAdd from '../../../components/QuickAdd';
+const DEFAULT_SIZE = '500g';
 
 const CatalogItem = ({ product }) => {
-  const { images } = product;
-  const itemImage = images[0];
+  const {
+    sys: { id },
+    images,
+    preciosPorUnidad,
+    precio,
+    productName,
+    urlSlug,
+    medida,
+  } = product;
+  const hasPriceByUnit = !!preciosPorUnidad;
+  const [selectedPresentation, setSelectedPresentation] = useState(null);
   const { addOneItem, removeOneItem, getItemsInCart } = useCartContext();
+  const itemImage = images[0];
+
+  const handlePresentationSelect = (selected) => {
+    setSelectedPresentation(selected); // Now expects the whole selected object
+  };
 
   const addItemToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const newItem = new ShoppingCartItem(
-      product.sys.id,
-      1,
-      product.precio,
-      product.productName,
-      null
-    );
+    const newItem = new ShoppingCartItem(id, 1, precio, productName, null);
+    if (hasPriceByUnit && selectedPresentation) {
+      newItem.price = parseFloat(selectedPresentation.price);
+      newItem.id = `${id}-${selectedPresentation.size}`;
+      newItem.productName = `${productName} ${selectedPresentation.size}`;
+    }
     addOneItem(newItem);
   };
 
   const removeOneItemFromCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    removeOneItem(product.sys.id);
+    removeOneItem(id);
   };
 
-  const itemsInCart = getItemsInCart(product.sys.id);
+  useEffect(() => {
+    if (hasPriceByUnit) {
+      const presentationArray = convertObjectToArray(preciosPorUnidad);
+      setSelectedPresentation(
+        presentationArray.find((p) => p.size === DEFAULT_SIZE)
+      );
+    }
+  }, [hasPriceByUnit, preciosPorUnidad]);
+
+  const itemsInCart = hasPriceByUnit && selectedPresentation ? getItemsInCart(`${id}-${selectedPresentation.size}`) : getItemsInCart(id);
 
   return (
     <Link
+      key={id}
       passHref
-      href={{
-        pathname: `/productos/${product.urlSlug}`,
-        query: { id: product.sys.id },
-      }}
+      href={{ pathname: `/productos/${urlSlug}`, query: { id } }}
     >
       <span className={styles.catalogItem}>
         <span className={styles.catalogItemImages}>
@@ -57,11 +79,29 @@ const CatalogItem = ({ product }) => {
           />
         </span>
         <span className={styles.catalogItemDetails}>
-          <h3>{product.productName}</h3>
-          <p>
-            ₡{product.precio}{' '}
-            {product.medida && <span> | {product.medida}</span>}
-          </p>
+          <h3>{productName}</h3>
+          {hasPriceByUnit ? (
+            <p>
+              ₡{selectedPresentation ? selectedPresentation.price : ''}{' '}
+              {selectedPresentation && (
+                <span> | {selectedPresentation.size}</span>
+              )}
+            </p>
+          ) : (
+            <p>
+              ₡{precio} {medida && <span> | {medida}</span>}
+            </p>
+          )}
+
+          {hasPriceByUnit && (
+            <Box my={2} width='100%'>
+              <PresentationSelector
+                presentations={preciosPorUnidad}
+                selectedPresentation={selectedPresentation}
+                onPresentationSelect={handlePresentationSelect}
+              />
+            </Box>
+          )}
           <QuickAdd
             removeOneItemFromCart={removeOneItemFromCart}
             addItemToCart={addItemToCart}

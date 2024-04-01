@@ -62,7 +62,6 @@ const ShoppingCartContextProvider = ({ children }) => {
           1,
           item.price,
           item.productName,
-          item.containers
         );
         currentShoppingCart.items.push(newItem);
       }

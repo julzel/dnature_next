@@ -18,6 +18,7 @@ const productsQuery = () => `
             urlSlug
             medida
             precio
+            preciosPorUnidad
             rating
             imageCollection {
                 items {
@@ -41,6 +42,7 @@ const productQuery = (productId) => `
                 category
                 medida
                 precio
+                preciosPorUnidad
                 ingredientes
                 imageCollection {
                     items {
