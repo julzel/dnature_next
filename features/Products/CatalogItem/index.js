@@ -47,7 +47,11 @@ const CatalogItem = ({ product }) => {
   const removeOneItemFromCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    removeOneItem(id);
+    if (hasPriceByUnit && selectedPresentation) {
+      removeOneItem(`${id}-${selectedPresentation.size}`);
+    } else {
+      removeOneItem(id);
+    }
   };
 
   useEffect(() => {
