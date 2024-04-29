@@ -11,7 +11,7 @@ import PresentationSelector, {
   convertObjectToArray,
 } from '../../../components/PresentationSelector'; // Components
 
-const DEFAULT_SIZE = '500g';
+const DEFAULT_SIZE = '1kg';
 
 const CatalogItem = ({ product }) => {
   const {
@@ -47,7 +47,11 @@ const CatalogItem = ({ product }) => {
   const removeOneItemFromCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    removeOneItem(id);
+    if (hasPriceByUnit && selectedPresentation) {
+      removeOneItem(`${id}-${selectedPresentation.size}`);
+    } else {
+      removeOneItem(id);
+    }
   };
 
   useEffect(() => {
