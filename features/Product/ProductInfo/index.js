@@ -4,7 +4,7 @@ import { useCartContext } from '../../../contexts/shopping-cart-context';
 import { ShoppingCartItem } from '../../../models/shopping-cart';
 import { convertObjectToArray } from '../../../components/PresentationSelector'; // Components
 
-const DEFAULT_SIZE = '500g';
+const DEFAULT_SIZE = '1kg';
 
 const ProductInfoContainer = ({ productDetail }) => {
   const { cart, addOneItem, removeOneItem, getItemsInCart } = useCartContext();
@@ -31,7 +31,13 @@ const ProductInfoContainer = ({ productDetail }) => {
     addOneItem(newItem);
   };
 
-  const handleRemoveOneItem = (itemId) => removeOneItem(itemId);
+  const handleRemoveOneItem = () => {
+    if (hasPriceByUnit && selectedPresentation) {
+      removeOneItem(`${productDetail.sys.id}-${selectedPresentation.size}`);
+    } else {
+      removeOneItem(productDetail.sys.id);
+    }
+  }
 
   const itemsInCart =
     hasPriceByUnit && selectedPresentation
