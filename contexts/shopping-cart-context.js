@@ -96,7 +96,7 @@ const ShoppingCartContextProvider = ({ children }) => {
     [currentShoppingCart]
   );
 
-  const removeFromCart = useCallback(
+  const removeItemFromCart = useCallback(
     (itemId) => {
       const itemIndex = currentShoppingCart.items.findIndex(
         (shoppingCartItem) => shoppingCartItem.id === itemId
@@ -160,7 +160,7 @@ const ShoppingCartContextProvider = ({ children }) => {
         getItemsInCart: getItemsInCart,
         addItems: addToCart,
         addOneItem: addOneToCart,
-        removeOneItem: removeFromCart,
+        removeOneItem: removeItemFromCart,
         removeAllItems: removeAllFromCart,
         removeAllItemsOfAKind: removeAllOfAKindFromCart,
         updateCartClient: updateCartClient,

@@ -10,8 +10,7 @@ export function convertObjectToArray(obj) {
 
 const PresentationSelector = ({ presentations, selectedPresentation, onPresentationSelect }) => {
   const presentationArray = convertObjectToArray(presentations);
-  const [selectedValue, setSelectedValue] = useState(null);
-  
+  const [selectedValue, setSelectedValue] = useState(presentationArray[0]);
 
   const handleChange = (event) => {
     const selectedSize = event.target.value;
@@ -38,7 +37,7 @@ const PresentationSelector = ({ presentations, selectedPresentation, onPresentat
         onChange={handleChange}
         onClick={(e) => e.stopPropagation()}
       >
-        {presentationArray.map(({ size, price }) => (
+        {presentationArray.map(({ size }) => (
           <MenuItem value={size} key={size}>
             {size}
           </MenuItem>
