@@ -37,7 +37,7 @@ const PresentationSelector = ({ presentations, selectedPresentation, onPresentat
         onChange={handleChange}
         onClick={(e) => e.stopPropagation()}
       >
-        {presentationArray.map(({ size, price }) => (
+        {presentationArray.map(({ size }) => (
           <MenuItem value={size} key={size}>
             {size}
           </MenuItem>
