@@ -11,21 +11,10 @@ import 'slick-carousel/slick/slick-theme.css';
 // styles
 import styles from './ProductInfo.module.scss';
 import QuickAdd from '../../../components/QuickAdd';
+import CurrencyText from '../../../components/Currency';
 
 // components
 import PresentationSelector from '../../../components/PresentationSelector'; // Components
-
-const sliderSettings = {
-  dots: true, // Shows dot indicators at the bottom
-  infinite: true, // Infinite looping
-  speed: 500, // Animation speed
-  slidesToShow: 1, // Number of slides to show at a time
-  slidesToScroll: 1, // Number of slides to scroll
-  initialSlide: 0, // Initial slide index
-  swipeToSlide: true, // Allows slides to be dragged
-  adaptiveHeight: true, // Adjusts height to the current slide
-  arrows: true, // Enables navigation arrows
-};
 
 const ProductInfo = ({
   productDetail,
@@ -36,7 +25,19 @@ const ProductInfo = ({
   onRemoveOneItem,
   cartTotalItems,
   itemsInCart,
-}) => (
+}) => {
+  const sliderSettings = {
+    dots: productDetail.images.length > 1, // Shows dot indicators at the bottom
+    infinite: true, // Infinite looping
+    speed: 500, // Animation speed
+    slidesToShow: 1, // Number of slides to show at a time
+    slidesToScroll: 1, // Number of slides to scroll
+    initialSlide: 0, // Initial slide index
+    swipeToSlide: true, // Allows slides to be dragged
+    adaptiveHeight: true, // Adjusts height to the current slide
+    arrows: productDetail.images.length > 1, // Enables navigation arrows
+  };
+  return (
   <>
     <div className={styles.productInfo}>
       <div className={styles.images}>
@@ -60,7 +61,7 @@ const ProductInfo = ({
           <h1>{productDetail.productName}</h1>
           {hasPriceByUnit ? (
             <p className={styles.price}>
-              ₡{selectedPresentation ? selectedPresentation.price : ''}{' '}
+              {selectedPresentation ? <CurrencyText value={selectedPresentation.price} /> : ''}{' '}
               {selectedPresentation && (
                 <span className={styles.small}>
                   {' '}
@@ -70,7 +71,7 @@ const ProductInfo = ({
             </p>
           ) : (
             <p className={styles.price}>
-              ₡{productDetail.precio}{' '}
+              <CurrencyText value={productDetail.precio} />{' '}
               <span className={styles.small}>| {productDetail.medida}</span>
             </p>
           )}
@@ -108,6 +109,6 @@ const ProductInfo = ({
       </div>
     </div>
   </>
-);
+)};
 
 export default ProductInfo;
