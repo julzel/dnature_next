@@ -12,10 +12,10 @@ const CurrencyText = ({ value, curr }) => {
   };
 
   return (
-    <span>
+    <>
       <span>{currency === 'CRC' ? '₡' : '$'}</span>
       <span>{formatNumber(value)}</span>
-    </span>
+    </>
   );
 };
 
