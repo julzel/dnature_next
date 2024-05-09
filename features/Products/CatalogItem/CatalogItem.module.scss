@@ -43,9 +43,12 @@
     }
 
     p {
-      font-family: $bold;
 
       span {
+        font-family: $bold;
+      }
+
+      span:last-child {
         font-family: $regular;
         font-size: 14px;
       }

@@ -10,6 +10,7 @@ import QuickAdd from '../../../components/QuickAdd'; // Components
 import PresentationSelector, {
   convertObjectToArray,
 } from '../../../components/PresentationSelector'; // Components
+import CurrencyText from '../../../components/Currency';
 
 const DEFAULT_SIZE = '1kg';
 
@@ -86,14 +87,14 @@ const CatalogItem = ({ product }) => {
           <h3>{productName}</h3>
           {hasPriceByUnit ? (
             <p>
-              ₡{selectedPresentation ? selectedPresentation.price : ''}{' '}
+              {selectedPresentation ? <CurrencyText value={selectedPresentation.price} /> : ''}{' '}
               {selectedPresentation && (
                 <span> | {selectedPresentation.size}</span>
               )}
             </p>
           ) : (
             <p>
-              ₡{precio} {medida && <span> | {medida}</span>}
+              <CurrencyText value={precio} /> {medida && <span> | {medida}</span>}
             </p>
           )}
 
