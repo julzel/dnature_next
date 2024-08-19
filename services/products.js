@@ -1,11 +1,11 @@
-import { fetchFromContentful } from "./util";
+import { fetchFromContentful } from './util';
 
 const categoriesPriority = [
-  "snacks",
-  "recetas",
-  "suplementos",
-  "proteinas",
-  "organos",
+  'snacks',
+  'recetas',
+  'suplementos',
+  'proteinas',
+  'organos',
 ];
 
 const productsQuery = () => `
@@ -85,8 +85,8 @@ const formatProductsData = (productItems) => {
   // Sort the products by rating, if the rating exists and is a number.
   for (let category in catalog) {
     catalog[category].products.sort((a, b) => {
-      const aRating =  a.rating || 100;
-      const bRating =  b.rating || 100;
+      const aRating = a.rating || 100;
+      const bRating = b.rating || 100;
       return aRating - bRating; // Sort in descending order. Swap 'aRating' and 'bRating' for ascending order.
     });
   }

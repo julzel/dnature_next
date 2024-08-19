@@ -64,7 +64,10 @@ const CatalogItem = ({ product }) => {
     }
   }, [hasPriceByUnit, preciosPorUnidad]);
 
-  const itemsInCart = hasPriceByUnit && selectedPresentation ? getItemsInCart(`${id}-${selectedPresentation.size}`) : getItemsInCart(id);
+  const itemsInCart =
+    hasPriceByUnit && selectedPresentation
+      ? getItemsInCart(`${id}-${selectedPresentation.size}`)
+      : getItemsInCart(id);
 
   return (
     <Link
@@ -73,28 +76,35 @@ const CatalogItem = ({ product }) => {
       href={{ pathname: `/productos/${urlSlug}`, query: { id } }}
     >
       <span className={styles.catalogItem}>
-        <span className={styles.catalogItemImages}>
-          <Image
-            src={itemImage.url}
-            alt={itemImage.title}
-            width='100%'
-            height='100%'
-            layout='responsive'
-            objectFit='contain'
-          />
-        </span>
+        {itemImage && (
+          <span className={styles.catalogItemImages}>
+            <Image
+              src={itemImage.url}
+              alt={itemImage.title}
+              width='100%'
+              height='100%'
+              layout='responsive'
+              objectFit='contain'
+            />
+          </span>
+        )}
         <span className={styles.catalogItemDetails}>
           <h3>{productName}</h3>
           {hasPriceByUnit ? (
             <p>
-              {selectedPresentation ? <CurrencyText value={selectedPresentation.price} /> : ''}{' '}
+              {selectedPresentation ? (
+                <CurrencyText value={selectedPresentation.price} />
+              ) : (
+                ''
+              )}{' '}
               {selectedPresentation && (
                 <span> | {selectedPresentation.size}</span>
               )}
             </p>
           ) : (
             <p>
-              <CurrencyText value={precio} /> {medida && <span> | {medida}</span>}
+              <CurrencyText value={precio} />{' '}
+              {medida && <span> | {medida}</span>}
             </p>
           )}
 
