@@ -58,12 +58,12 @@ const CatalogItem = ({ product }) => {
   useEffect(() => {
     if (hasPriceByUnit) {
       const presentationArray = convertObjectToArray(preciosPorUnidad);
-      setSelectedPresentation(
-        presentationArray.find((p) => p.size === DEFAULT_SIZE)
-      );
+      const selectedPresentation = productName.toLowerCase() !== 'dnature para gato'
+        ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
+        : presentationArray[1];
+      setSelectedPresentation(selectedPresentation);
     }
-  }, [hasPriceByUnit, preciosPorUnidad]);
-
+  }, [hasPriceByUnit, preciosPorUnidad, productName]);
   const itemsInCart =
     hasPriceByUnit && selectedPresentation
       ? getItemsInCart(`${id}-${selectedPresentation.size}`)
