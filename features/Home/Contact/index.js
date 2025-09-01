@@ -21,8 +21,8 @@ const Contact = () => {
             <span className={styles.contactIcon}>
               <FontAwesomeIcon icon={faWhatsapp} size='2x' />
             </span>
-            <a href='tel:50671732328' className={styles.contactItem}>
-              7173 - 2328
+            <a href='tel:71848868' className={styles.contactItem}>
+              7184 - 8868
             </a>
           </AnimationBox>
         </li>
