@@ -49,7 +49,7 @@ const ProductInfoContainer = ({ productDetail }) => {
       const presentationArray = convertObjectToArray(
         productDetail.preciosPorUnidad
       );
-      const selectedPresentation = productName.toLowerCase() !== 'dnature para gato'
+      const selectedPresentation = productDetail.productName.toLowerCase() !== 'dnature para gato'
         ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
         : (presentationArray.length > 1 ? presentationArray[1] : presentationArray[0] || null);
       setSelectedPresentation(selectedPresentation);
