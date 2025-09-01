@@ -49,9 +49,10 @@ const ProductInfoContainer = ({ productDetail }) => {
       const presentationArray = convertObjectToArray(
         productDetail.preciosPorUnidad
       );
-      setSelectedPresentation(
-        presentationArray.find((p) => p.size === DEFAULT_SIZE)
-      );
+      const selectedPresentation = productName.toLowerCase() !== 'dnature para gato'
+        ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
+        : (presentationArray.length > 1 ? presentationArray[1] : presentationArray[0] || null);
+      setSelectedPresentation(selectedPresentation);
     }
   }, [hasPriceByUnit, productDetail]);
 
