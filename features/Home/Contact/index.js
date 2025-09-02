@@ -7,6 +7,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 // components
 import Map from '../../../components/Map';
 import AnimationBox from '../../../components/AnimationBox';
+import WhatsAppLink from '../../../components/WhatsAppLink';
 
 // styles
 import styles from './Contact.module.scss';
@@ -18,12 +19,7 @@ const Contact = () => {
       <ul className={styles.contactList}>
         <li>
           <AnimationBox animation='fade-in-from-left'>
-            <span className={styles.contactIcon}>
-              <FontAwesomeIcon icon={faWhatsapp} size='2x' />
-            </span>
-            <a href='tel:71848868' className={styles.contactItem}>
-              7184 - 8868
-            </a>
+            <WhatsAppLink phone='71848868' className={styles.contactItem} withIcon />
           </AnimationBox>
         </li>
 
