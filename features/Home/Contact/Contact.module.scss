@@ -42,10 +42,6 @@
 
       &:last-child {
         margin-bottom: 0;
-
-        .contactIcon {
-          font-size: 14px;
-        }
       }
 
       @include mdq(sm) {
