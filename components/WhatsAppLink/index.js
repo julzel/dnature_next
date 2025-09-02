@@ -33,8 +33,7 @@ const WhatsAppLink = ({
     <a
       href={href}
       className={className}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(targetBlank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
       {...otherProps}
     >
