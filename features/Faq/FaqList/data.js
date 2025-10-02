@@ -19,7 +19,7 @@ const FAQ = [
                         <span class="small bold">3</span>Coordinamos el retiro en nuestro local o el envío a domicilio. (*)
                     </li>
                     <li>
-                        <span class="small bold">4</span>El pago se realiza por sinpemóvil al número 7173 - 2328.
+                        <span class="small bold">4</span>El pago se realiza por sinpemóvil al número 7184 - 8868.
                     </li>
                 </ol>
                 <p class="mb">

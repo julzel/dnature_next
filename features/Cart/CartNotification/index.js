@@ -20,7 +20,7 @@ const CartNotification = ({ onCloseInfoModal}) => {
               }}
             >
               Mientras, puedes hacer tus pedidos a nuestro{' '}
-              <a href="https://wa.me/50671732328">WhatsApp</a> adjuntando la
+              <a href="https://wa.me/50671848868">WhatsApp</a> adjuntando la
               imagen de la orden de compra que hemos generado para ti.
             </Typography>
           </p>
@@ -37,7 +37,7 @@ const CartNotification = ({ onCloseInfoModal}) => {
                 textDecoration: 'underline',
               }}
             >
-              <a href="https://wa.me/50671732328">+506 7173-2328</a>
+              <a href="https://wa.me/50671848868">+506 7184-8868</a>
             </Typography>. ¡Gracias por confiar en DNAture!
           </p>
         </MessageBox>
