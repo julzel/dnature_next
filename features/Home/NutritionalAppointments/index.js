@@ -25,7 +25,7 @@ const appointmentTypes = [
 ];
 
 const NutritionalAppointments = () => {
-  const phoneNumber = '50671732328';
+  const phoneNumber = '50671848868';
 
   return (
     <div className={styles.container}>
