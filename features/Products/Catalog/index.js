@@ -78,7 +78,7 @@ const CatalogContainer = ({ queryCategory, products }) => {
       setSearchQuery("");
       router.push({
         pathname: `/productos/${product.urlSlug}`,
-        query: { id: product.sys.id },
+        query: { id: product.sys?.id || product.urlSlug },
       });
     },
     [router]
