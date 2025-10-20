@@ -43,12 +43,12 @@ const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
         <div className={styles.results}>
           {suggestions.length ? (
             <ul className={styles.resultsList}>
-              {suggestions.map((product) => {
+              {suggestions.map((product, idx) => {
                 const thumbnail = product.images?.[0];
-                const productId = product.sys?.id || product.urlSlug;
+                const productKey = [product.sys?.id, product.urlSlug, idx].filter(Boolean).join('-');
 
                 return (
-                  <li key={productId} className={styles.resultItem}>
+                  <li key={productKey} className={styles.resultItem}>
                     <button
                       type="button"
                       className={styles.suggestionButton}
