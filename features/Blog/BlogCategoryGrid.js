@@ -6,7 +6,16 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { useRouter } from 'next/router'; // import useRouter
+'use client';
+
+import React from 'react';
+import PetCard from '../../components/PetCard';
+
+// styles
+import styles from './BlogCategoryGrid.module.scss';
+
+//utils
+import { useRouter } from 'next/navigation'; // import useRouter
 
 // local imports
 import postCategories from './post-categories';

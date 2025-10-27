@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import ProductInfo from './ProductInfo';
 import { useCartContext } from '../../../contexts/shopping-cart-context';

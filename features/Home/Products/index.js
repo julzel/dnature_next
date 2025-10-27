@@ -28,8 +28,9 @@ const Products = ({ categories }) => {
                         <Image
                           src={category.image.url}
                           alt={category.image.title}
-                          width="100%"
-                          height="100%"
+                          sizes="(max-width: 768px) 100vw, 500px" // Added responsive sizes
+                          width={500} // Updated to a numeric value in pixels
+                          height={500} // Updated to a numeric value in pixels
                           layout="responsive"
                           objectFit="contain"
                         />

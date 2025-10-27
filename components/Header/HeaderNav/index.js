@@ -19,7 +19,7 @@ const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
       <div className={styles.logoContainer}>
         <Link href={'/'} passHref>
           <span className={styles.logo}>
-            <Image src={logo} alt='DNAture Logo' />
+            <Image src={logo} alt='DNAture Logo' width={75} height={58} />
           </span>
         </Link>
       </div>
