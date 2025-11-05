@@ -29,10 +29,9 @@ const ProductDetail = ({ productDetail }) => (
                 <Image
                   src={icono.url}
                   alt={icono.title}
-                  width='100%'
-                  height='100%'
-                  layout='responsive'
-                  objectFit='contain'
+                  width={500} // Updated to numeric value
+                  height={500} // Updated to numeric value
+                  style={{ objectFit: 'contain' }} // Replaced legacy layout prop
                 />
               </div>
             ))}

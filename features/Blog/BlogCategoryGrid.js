@@ -1,3 +1,4 @@
+'use client';
 import {
   Box,
   Grid,
@@ -6,13 +7,6 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-'use client';
-
-import React from 'react';
-import PetCard from '../../components/PetCard';
-
-// styles
-import styles from './BlogCategoryGrid.module.scss';
 
 //utils
 import { useRouter } from 'next/navigation'; // import useRouter

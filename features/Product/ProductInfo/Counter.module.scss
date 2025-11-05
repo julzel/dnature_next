@@ -1,5 +1,7 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
+
+@use "sass:color";
+@use "../../../styles/variables" as *;
+@use '../../../styles/_mixins' as *;
 
 .counter {
     > div:first-child {
@@ -28,7 +30,7 @@
       justify-content: center;
       font-size: 18px;
       height: 59px;
-      background-color: lighten($green, 15%);
+      color: color.adjust($green, $lightness: 15%);
       width: 15%;
 
       @include mdq(lg) {

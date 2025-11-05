@@ -1,7 +1,8 @@
-@import '../../../styles/_variables';
+@use "sass:color";
+@use '../../../styles/_variables' as *;
 
 .post {
-  background-color: lighten($blue, 58%);
+  color: color.adjust($blue, $lightness: 58%);
   &_body {
     p {
       text-align: justify;

@@ -63,7 +63,7 @@ const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
                             alt={thumbnail.title || product.productName}
                             width={48}
                             height={48}
-                            objectFit="cover"
+                            style={{ objectFit: 'cover' }}
                           />
                         ) : (
                           <span className={styles.thumbnailFallback}>

@@ -1,9 +1,11 @@
-@import "../../../../styles/variables";
+@use "sass:color";
+@use "../../../../styles/variables" as *;
 
 $active: #c35400;
 
 .navbar {
   display: flex;
+  align-items: center; // Align items vertically to the middle
   &Item {
     border-right: 1px solid $border;
     display: flex;
@@ -29,7 +31,7 @@ $active: #c35400;
 
     &:hover {
       background-color: $snow;
-      color: lighten($active, 7.5%);
+      color: color.adjust($active, $lightness: 7.5%);
     }
 
     &:last-child {

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 // local imports
 // services
@@ -27,7 +27,7 @@ const formatDescription = (description) => {
 };
 
 const ProductItemContainer = () => {
-  const router = useRouter();
+  const searchParams = useSearchParams();
 
   // state
   const [productDetail, setProductDetail] = useState(null);
@@ -35,14 +35,14 @@ const ProductItemContainer = () => {
 
   // functions
   const fetchProduct = useCallback(async () => {
-    const { query } = router;
-    if (query.id) {
-      const product = await getProduct(query.id);
+    const id = searchParams.get('id');
+    if (id) {
+      const product = await getProduct(id);
       product.description = formatDescription(product.description);
       setProductDetail(product);
       setLoading(false);
     }
-  }, [router]);
+  }, [searchParams]);
 
   // state updates
   useEffect(() => {

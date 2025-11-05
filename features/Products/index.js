@@ -1,15 +1,15 @@
 'use client';
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 // local imports
 // components
 import CatalogContainer from "./Catalog";
 
 const Productos = ({ products }) => {
-  const router = useRouter();
-  const { category } = router.query;
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category');
 
   return <CatalogContainer queryCategory={category} products={products} />;
 };

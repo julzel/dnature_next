@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@use "../../styles/variables" as *;
 .planButton {
   background-color: $white;
   border: 2px solid $white;

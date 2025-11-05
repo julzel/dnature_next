@@ -55,10 +55,9 @@ const PostHeader = ({ title, media, date, author }) => {
             <Image
               src={media.url}
               alt={title}
-              layout="responsive"
-              objectFit="cover"
               width={300}
               height={250}
+              style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
             />
           </CardMedia>
         </Card>

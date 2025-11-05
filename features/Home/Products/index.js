@@ -28,11 +28,11 @@ const Products = ({ categories }) => {
                         <Image
                           src={category.image.url}
                           alt={category.image.title}
-                          sizes="(max-width: 768px) 100vw, 500px" // Added responsive sizes
-                          width={500} // Updated to a numeric value in pixels
-                          height={500} // Updated to a numeric value in pixels
-                          layout="responsive"
-                          objectFit="contain"
+                          sizes="(max-width: 768px) 100vw, 500px"
+                          width={500}
+                          height={500}
+                          style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
+                          loading="eager"
                         />
                       </div>
                     </AnimationBox>

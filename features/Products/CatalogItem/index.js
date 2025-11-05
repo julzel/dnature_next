@@ -85,10 +85,9 @@ const CatalogItem = ({ product }) => {
             <Image
               src={itemImage.url}
               alt={itemImage.title}
-              width='100%'
-              height='100%'
-              layout='responsive'
-              objectFit='contain'
+              width={500}
+              height={500}
+              style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
             />
           </span>
         )}

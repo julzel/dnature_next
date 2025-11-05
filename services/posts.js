@@ -96,6 +96,12 @@ export const getPost = async (id) => {
 
 export const getPostsByField = async (field, value) => {
   try {
+    // Validate inputs
+    if (!field || !value) {
+      console.warn('Missing field or value parameter');
+      return [];
+    }
+
     let variables;
     let queryValue;
 

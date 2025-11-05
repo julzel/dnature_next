@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@use "../../styles/variables" as *;
 .plan-dna {
   flex: 1;
   padding: 32px;
