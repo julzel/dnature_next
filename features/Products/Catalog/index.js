@@ -78,10 +78,7 @@ const CatalogContainer = ({ queryCategory, products }) => {
   const handleSuggestionSelect = useCallback(
     (product) => {
       setSearchQuery("");
-      router.push({
-        pathname: `/productos/${product.urlSlug}`,
-        query: { id: product.sys?.id || product.urlSlug },
-      });
+      router.push(`/productos/${product.urlSlug}?id=${product.sys?.id || product.urlSlug}`);
     },
     [router]
   );
