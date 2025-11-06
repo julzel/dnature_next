@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import '../styles/globals.scss';
 
 import Providers from './providers';
+import { generateOrganizationSchema, generateWebSiteSchema } from '../lib/seo';
 
 export const metadata = {
   metadataBase: new URL('https://dnaturefood.com'),
@@ -16,7 +17,7 @@ export const metadata = {
   },
   description: 'DNAture - Nutrición fisiológica personalizada para tu mascota basada en ADN',
   keywords: ['dnature', 'nutrición canina', 'dieta fisiológica', 'comida para perros', 'comida para gatos', 'alimentación personalizada', 'ADN canino', 'Costa Rica'],
-  authors: [{ name: 'DAture' }],
+  authors: [{ name: 'DNAture' }],
   creator: 'DNAture',
   publisher: 'DNAture',
   robots: {
@@ -37,11 +38,20 @@ export const metadata = {
     siteName: 'DNAture',
     title: 'DNAture - Nutrición personalizada para tu mascota',
     description: 'DNAture - Nutrición personalizada para tu mascota basada en ADN',
+    images: [
+      {
+        url: '/images/hero3_wide.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'DNAture - Nutrición personalizada para mascotas',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'DNAture - Nutrición personalizada para tu mascota',
     description: 'DNAture - Nutrición personalizada para tu mascota basada en ADN',
+    images: ['/images/hero3_wide.jpg'],
   },
   alternates: {
     canonical: '/',
@@ -49,8 +59,25 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const organizationSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebSiteSchema();
+
   return (
     <html lang="es">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
