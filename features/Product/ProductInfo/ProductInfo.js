@@ -97,11 +97,9 @@ const ProductInfo = ({
 
           {cartTotalItems > 0 && (
             <Link href={'/cart'} passHref>
-              <a>
                 Ver Carrito
                 <FontAwesomeIcon icon={faCartShopping} />
                 <span>({cartTotalItems})</span>
-              </a>
             </Link>
           )}
         </Box>

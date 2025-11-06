@@ -3,7 +3,7 @@
 @use '../../styles/mixins' as *;
 
 .blog-container {
-  color: color.adjust($blue, $lightness: 57%);
+  background-color: color.adjust($blue, $lightness: 57%);
   flex: 1;
   overflow: hidden;
 
