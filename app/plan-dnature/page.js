@@ -3,8 +3,11 @@ import Page from '../../components/Page';
 import PlanDNA from '../../features/PlanDNA';
 
 export const metadata = {
-  title: 'Plan Nutricional DNAture',
-  description: 'Plan Nutricional DNAture',
+  title: 'Plan Nutricional',
+  description: 'Descubre el Plan Nutricional DNAture. Nutrición personalizada basada en el análisis de ADN de tu mascota para una salud óptima.',
+  alternates: {
+    canonical: '/plan-dnature',
+  },
 };
 
 export default function PlanDNAturePage() {

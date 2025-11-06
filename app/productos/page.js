@@ -4,8 +4,11 @@ import Products from '../../features/Products';
 import { getProducts } from '../../services/products';
 
 export const metadata = {
-  title: 'DNAture - Nuestros productos',
-  description: 'Productos DNAture',
+  title: 'Nuestros productos',
+  description: 'Descubre nuestra línea completa de alimentos balanceados para perros y gatos. Nutrición personalizada basada en el ADN de tu mascota con ingredientes de alta calidad.',
+  alternates: {
+    canonical: '/productos',
+  },
 };
 
 export const revalidate = 120; // Revalidate every 120 seconds

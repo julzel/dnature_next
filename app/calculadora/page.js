@@ -3,8 +3,11 @@ import Page from '../../components/Page';
 import Calculator from '../../features/Calculator';
 
 export const metadata = {
-  title: 'Calcula la porción ideal de comida para tu mascota',
-  description: 'Calculadora de porciones DNAture',
+  title: 'Calculadora de porciones',
+  description: 'Calcula la porción ideal de comida para tu mascota según su peso, edad y nivel de actividad. Herramienta gratuita de DNAture.',
+  alternates: {
+    canonical: '/calculadora',
+  },
 };
 
 export default function CalculadoraPage() {

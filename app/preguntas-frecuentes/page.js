@@ -3,8 +3,11 @@ import Page from '../../components/Page';
 import Faq from '../../features/Faq';
 
 export const metadata = {
-  title: 'DNAture - Preguntas frecuentes',
-  description: 'Preguntas frecuentes DNAture',
+  title: 'Preguntas frecuentes',
+  description: 'Encuentra respuestas a las preguntas más comunes sobre DNAture, nuestros productos y servicios de nutrición personalizada para mascotas.',
+  alternates: {
+    canonical: '/preguntas-frecuentes',
+  },
 };
 
 export default function PreguntasFrecuentesPage() {
