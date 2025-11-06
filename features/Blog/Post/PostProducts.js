@@ -36,11 +36,9 @@ const ProductItem = ({ product }) => (
             <Image
               src={product.imageCollection.items[0].url}
               alt={product.imageCollection.items[0].title}
-              layout="responsive"
-              objectFit="cover"
               width={75}
               height={75}
-              style={{ borderRadius: '50%' }}
+              style={{ borderRadius: '50%', objectFit: 'cover' }}
             />
           </Grid>
 

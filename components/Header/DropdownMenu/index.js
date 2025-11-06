@@ -1,17 +1,18 @@
-import Link from 'next/link';
-import React from 'react';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from "next/link";
+import React from "react";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import WhatsAppLink from "../../WhatsAppLink";
 
 // local imports
-import styles from './DropdownMenu.module.scss';
+import styles from "./DropdownMenu.module.scss";
 
 const DropdownMenu = ({ items, show }) => {
   return (
     <div
       className={styles.dropdown}
       style={{
-        transform: show ? 'translateX(0)' : 'translateX(-100%)',
+        transform: show ? "translateX(0)" : "translateX(-100%)",
       }}
     >
       <ul className={styles.dropdownMenu}>
@@ -25,6 +26,12 @@ const DropdownMenu = ({ items, show }) => {
             </Link>
           </li>
         ))}
+        <li className={styles.item}>
+          <span className={styles.itemLink}>
+            <span>Contáctanos</span>
+            <WhatsAppLink phone="71848868" iconOnly />
+          </span>
+        </li>
       </ul>
     </div>
   );

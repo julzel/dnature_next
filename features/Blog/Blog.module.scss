@@ -1,8 +1,9 @@
-@import '../../styles/_variables';
-@import '../../styles/mixins';
+@use "sass:color";
+@use '../../styles/_variables' as *;
+@use '../../styles/mixins' as *;
 
 .blog-container {
-  background-color: lighten($blue, 57%);
+  background-color: color.adjust($blue, $lightness: 57%);
   flex: 1;
   overflow: hidden;
 

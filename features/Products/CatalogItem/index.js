@@ -1,4 +1,7 @@
 // Import statements
+'use client';
+
+import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -58,12 +61,13 @@ const CatalogItem = ({ product }) => {
   useEffect(() => {
     if (hasPriceByUnit) {
       const presentationArray = convertObjectToArray(preciosPorUnidad);
-      setSelectedPresentation(
-        presentationArray.find((p) => p.size === DEFAULT_SIZE)
-      );
+      const selectedPresentation = productName.toLowerCase() !== 'dnature para gato'
+        ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
+        : (presentationArray.length > 1 ? presentationArray[1] : presentationArray[0] || null);
+      setSelectedPresentation(selectedPresentation);
     }
-  }, [hasPriceByUnit, preciosPorUnidad]);
-
+  }, [hasPriceByUnit, preciosPorUnidad, productName]);
+  
   const itemsInCart =
     hasPriceByUnit && selectedPresentation
       ? getItemsInCart(`${id}-${selectedPresentation.size}`)
@@ -81,10 +85,9 @@ const CatalogItem = ({ product }) => {
             <Image
               src={itemImage.url}
               alt={itemImage.title}
-              width='100%'
-              height='100%'
-              layout='responsive'
-              objectFit='contain'
+              width={500}
+              height={500}
+              style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
             />
           </span>
         )}

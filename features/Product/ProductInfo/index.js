@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import ProductInfo from './ProductInfo';
 import { useCartContext } from '../../../contexts/shopping-cart-context';
@@ -49,9 +51,10 @@ const ProductInfoContainer = ({ productDetail }) => {
       const presentationArray = convertObjectToArray(
         productDetail.preciosPorUnidad
       );
-      setSelectedPresentation(
-        presentationArray.find((p) => p.size === DEFAULT_SIZE)
-      );
+      const selectedPresentation = productDetail.productName.toLowerCase() !== 'dnature para gato'
+        ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
+        : (presentationArray.length > 1 ? presentationArray[1] : presentationArray[0] || null);
+      setSelectedPresentation(selectedPresentation);
     }
   }, [hasPriceByUnit, productDetail]);
 

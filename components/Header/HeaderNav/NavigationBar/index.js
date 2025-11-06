@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import WhatsAppLink from '../../../WhatsAppLink';
 
 // styles
 import styles from './NavigationBar.module.scss';
@@ -21,6 +24,9 @@ const NavigationBar = ({ items }) => {
           </span>
         </Link>
       ))}
+      <span className={`${styles.navbarItem} ${styles.dark}`}>
+        <WhatsAppLink phone='71848868' iconOnly />
+      </span>
     </nav>
   );
 };

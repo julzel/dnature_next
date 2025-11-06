@@ -1,3 +1,4 @@
+'use client';
 import {
   Box,
   Grid,
@@ -6,7 +7,9 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { useRouter } from 'next/router'; // import useRouter
+
+//utils
+import { useRouter } from 'next/navigation'; // import useRouter
 
 // local imports
 import postCategories from './post-categories';

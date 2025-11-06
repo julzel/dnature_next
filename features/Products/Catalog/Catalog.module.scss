@@ -1,5 +1,5 @@
-@import "../../../styles/_variables";
-@import "../../../styles/mixins";
+@use "../../../styles/_variables" as *;
+@use "../../../styles/mixins" as *;
 
 .catalog {
   width: 100%;
@@ -14,19 +14,27 @@
     margin: 0 auto;
     padding: 64px 32px;
   }
+}
 
-  .category {
-    margin-bottom: 40px;
+.catalogContent {
+  width: 100%;
 
-    @include mdq(lg) {
-      border-left: 1px solid $border;
-      flex-grow: 1;
-      padding: 40px;
-      padding-top: 7px;
-    }
+  @include mdq(lg) {
+    border-left: 1px solid $border;
+    flex: 1;
+    margin-left: 40px;
+    padding: 7px 40px 40px;
+  }
+}
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+.searchWrapper {
+  margin-bottom: 24px;
+}
+
+.category {
+  margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }

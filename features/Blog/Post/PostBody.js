@@ -30,10 +30,9 @@ const PostBody = ({ body, images }) => {
               <Image
                 src={img.url}
                 alt={'tbd'}
-                layout="responsive"
-                objectFit="cover"
                 width={300}
                 height={250}
+                style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
               />
             </Card>
           ))}

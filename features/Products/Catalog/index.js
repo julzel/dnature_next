@@ -1,4 +1,7 @@
-import React, { useState, useCallback, useEffect } from "react";
+'use client';
+
+import React, { useState, useCallback, useEffect, useMemo } from "react";
+import { useRouter } from "next/navigation";
 
 // local imports
 // components
@@ -10,11 +13,35 @@ const defaultCategory = {
 };
 
 const CatalogContainer = ({ queryCategory, products }) => {
+  const router = useRouter();
   const [categoriesList, setCategoriesList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(
     queryCategory ? queryCategory : defaultCategory
   );
   const [filterOptions, setFilterOptions] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const allProducts = useMemo(() => {
+    return Object.values(products || {}).reduce((acc, category) => {
+      if (category?.products?.length) {
+        return acc.concat(category.products);
+      }
+      return acc;
+    }, []);
+  }, [products]);
+
+  const suggestions = useMemo(() => {
+    const trimmedQuery = searchQuery.trim().toLowerCase();
+    if (!trimmedQuery) {
+      return [];
+    }
+
+    return allProducts
+      .filter((product) =>
+        product.productName.toLowerCase().includes(trimmedQuery)
+      )
+      .slice(0, 8);
+  }, [allProducts, searchQuery]);
 
   const handleSelectedCategoryChange = useCallback(
     (categoryId) => {
@@ -44,11 +71,28 @@ const CatalogContainer = ({ queryCategory, products }) => {
     }
   }, [queryCategory, handleSelectedCategoryChange]);
 
+  const handleSearchChange = useCallback((value) => {
+    setSearchQuery(value);
+  }, []);
+
+  const handleSuggestionSelect = useCallback(
+    (product) => {
+      setSearchQuery("");
+      const productId = product.sys?.id || product.urlSlug;
+      router.push(`/productos/${product.urlSlug}?id=${productId}`);
+    },
+    [router]
+  );
+
   return (
     <Catalog
       filterOptions={filterOptions}
       selectedCategory={selectedCategory}
       categoriesList={categoriesList}
+      searchQuery={searchQuery}
+      onSearchChange={handleSearchChange}
+      suggestions={suggestions}
+      onSuggestionSelect={handleSuggestionSelect}
     />
   );
 };

@@ -13,22 +13,26 @@ const Map = () => {
         const loader = new Loader({
             apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
             version: 'weekly',
+            libraries: ['marker'],
         });
         let map;
         let marker;
-        loader.load().then(() => {
-            const google = window.google; // ADDED
-            map = new google.maps.Map(googlemap.current, {
+        loader.load().then(async () => {
+            const { Map } = await google.maps.importLibrary('maps');
+            const { AdvancedMarkerElement } = await google.maps.importLibrary('marker');
+            
+            map = new Map(googlemap.current, {
                 center: STORE_LOCATION,
                 zoom: 16,
-                disableDefaultUI: true
+                disableDefaultUI: true,
+                mapId: 'DNATURE_MAP', // Required for AdvancedMarkerElement
             });
-            marker = new google.maps.Marker({
+            
+            marker = new AdvancedMarkerElement({
                 position: STORE_LOCATION,
                 map,
                 title: "DNAture. #1 en alimentación natural para mascotas",
-              });
-            marker.setMap(map);
+            });
         });
     });
 
