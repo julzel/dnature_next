@@ -40,6 +40,7 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+        suppressHydrationWarning
       />
       <Page>
         <Home categories={categories} />

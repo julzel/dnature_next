@@ -36,6 +36,7 @@ export default function PlanDNAturePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+        suppressHydrationWarning
       />
       <Page>
         <PlanDNA headTitle={'Plan Nutricional DNAture'} />

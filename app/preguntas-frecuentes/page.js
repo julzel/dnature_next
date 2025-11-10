@@ -45,12 +45,14 @@ export default function PreguntasFrecuentesPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+        suppressHydrationWarning
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqSchema),
         }}
+        suppressHydrationWarning
       />
       <Page title="DNAture - Preguntas frecuentes">
         <Faq />

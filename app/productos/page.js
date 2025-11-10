@@ -41,6 +41,7 @@ export default async function ProductosPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+        suppressHydrationWarning
       />
       <Page title="DNAture - Nuestros productos">
         <Products products={products} />

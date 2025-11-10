@@ -85,6 +85,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(productSchema),
           }}
+          suppressHydrationWarning
         />
       )}
       <script
@@ -92,6 +93,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+        suppressHydrationWarning
       />
       <Page title="DNAture - Detalle">
         <Product />

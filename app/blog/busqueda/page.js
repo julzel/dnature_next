@@ -43,6 +43,7 @@ export default async function BusquedaPage({ searchParams }) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+        suppressHydrationWarning
       />
       <Page>
         <PostQueryResult posts={posts} query={query} />

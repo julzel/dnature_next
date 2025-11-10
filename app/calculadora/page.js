@@ -36,6 +36,7 @@ export default function CalculadoraPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema),
         }}
+        suppressHydrationWarning
       />
       <Page title="Calcula la porción ideal de comida para tu mascota">
         <Calculator />
