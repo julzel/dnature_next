@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import { fetchFromContentful } from './util';
 
 const categoriesPriority = [
@@ -38,12 +39,14 @@ const productQuery = (productId) => `
         {
             product(id:"${productId}") {
                 productName
+                urlSlug
                 description
                 category
                 medida
                 precio
                 preciosPorUnidad
                 ingredientes
+                rating
                 imageCollection {
                     items {
                         title
@@ -108,7 +111,10 @@ const formatProductData = (product) => {
   return product;
 };
 
-const getProduct = async (productId) => {
+// Wrap getProduct with React cache to deduplicate requests
+// This ensures that if the same product is fetched multiple times 
+// (e.g., in generateMetadata and the page component), only one request is made
+const getProduct = cache(async (productId) => {
   try {
     const product = await fetchFromContentful(productQuery(productId));
     if (product.product) {
@@ -116,8 +122,9 @@ const getProduct = async (productId) => {
     }
     return null;
   } catch (error) {
-    console.log(error, error?.message);
+    console.error(error, error?.message);
+    return null;
   }
-};
+});
 
 export { getProducts, getProduct };
