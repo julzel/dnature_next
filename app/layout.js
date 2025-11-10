@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="es">
-      <body suppressHydrationWarning>
+      <body>
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <Providers>{children}</Providers>
