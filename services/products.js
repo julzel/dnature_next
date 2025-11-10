@@ -123,6 +123,7 @@ const getProduct = cache(async (productId) => {
     return null;
   } catch (error) {
     console.log(error, error?.message);
+    return null;
   }
 });
 
