@@ -54,6 +54,7 @@ export const metadata = {
     description: 'DNAture - Nutrición personalizada para tu mascota basada en ADN',
     images: ['/images/hero3_wide.jpg'],
   },
+  // Use relative canonical URLs throughout the app for consistency with metadataBase.
   alternates: {
     canonical: '/',
   },
