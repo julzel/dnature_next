@@ -122,7 +122,7 @@ const getProduct = cache(async (productId) => {
     }
     return null;
   } catch (error) {
-    console.log(error, error?.message);
+    console.error(error, error?.message);
     return null;
   }
 });
