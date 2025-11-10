@@ -84,11 +84,12 @@ export default async function ProductDetailPage({ params, searchParams }) {
 
   // Generate breadcrumb with proper fallback
   // Convert slug to readable format if product name is not available
-  const productName = product?.productName || 
-    productSlug
+  const productName = product?.productName ||
+    (productSlug
       ?.split('-')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+      .join(' ')) ||
+    'Producto';
 
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Inicio', url: '/' },
