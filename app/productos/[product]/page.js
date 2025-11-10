@@ -39,7 +39,7 @@ export async function generateMetadata({ params, searchParams }) {
           alt: title,
         },
       ],
-      type: 'product',
+      type: 'website',
     },
     twitter: {
       card: 'summary_large_image',

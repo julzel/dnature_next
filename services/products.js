@@ -38,6 +38,7 @@ const productQuery = (productId) => `
         {
             product(id:"${productId}") {
                 productName
+                urlSlug
                 description
                 category
                 medida
