@@ -16,7 +16,7 @@ export const metadata = {
     default: 'DNAture - Nutrición personalizada para tu mascota',
     template: '%s | DNAture',
   },
-  description: 'DNAture - Nutrición fisiológica personalizada para tu mascota basada en ADN',
+  description: 'DNAture - Nutrición personalizada para tu mascota basada en ADN',
   keywords: ['dnature', 'nutrición canina', 'dieta fisiológica', 'comida para perros', 'comida para gatos', 'alimentación personalizada', 'ADN canino', 'Costa Rica'],
   authors: [{ name: 'DNAture' }],
   creator: 'DNAture',
