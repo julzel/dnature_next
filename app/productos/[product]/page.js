@@ -6,52 +6,60 @@ import JsonLd from '../../../components/JsonLd';
 import { generateProductSchema, generateBreadcrumbSchema } from '../../../lib/seo';
 
 export async function generateMetadata({ params, searchParams }) {
-  const resolvedParams = await params;
-  const { product: productSlug } = resolvedParams;
-  const resolvedSearchParams = await searchParams;
-  const productId = resolvedSearchParams?.id;
-  
-  // Fetch product data for metadata
-  let product = null;
-  if (productId) {
-    try {
-      product = await getProduct(productId);
-    } catch (error) {
-      console.error('Error fetching product for metadata:', error);
+  try {
+    const resolvedParams = await params;
+    const { product: productSlug } = resolvedParams;
+    const resolvedSearchParams = await searchParams;
+    const productId = resolvedSearchParams?.id;
+    
+    // Fetch product data for metadata
+    let product = null;
+    if (productId) {
+      try {
+        product = await getProduct(productId);
+      } catch (error) {
+        console.error('Error fetching product for metadata:', error);
+      }
     }
+
+    const title = product?.productName || 'Detalle del producto';
+    const description = product?.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 
+      'Descubre los detalles de nuestros productos de nutrición personalizada para mascotas.';
+    const image = product?.images?.[0]?.url || '/images/dnatureproducts.jpg';
+
+    return {
+      title,
+      description,
+      openGraph: {
+        title: `${title} | DNAture`,
+        description,
+        images: [
+          {
+            url: image,
+            width: 1200,
+            height: 630,
+            alt: title,
+          },
+        ],
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${title} | DNAture`,
+        description,
+        images: [image],
+      },
+      alternates: {
+        canonical: `/productos/${productSlug}`,
+      },
+    };
+  } catch (error) {
+    console.error('Error resolving params:', error);
+    return {
+      title: 'Detalle del producto',
+      description: 'Producto no encontrado',
+    };
   }
-
-  const title = product?.productName || 'Detalle del producto';
-  const description = product?.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 
-    'Descubre los detalles de nuestros productos de nutrición personalizada para mascotas.';
-  const image = product?.images?.[0]?.url || '/images/dnatureproducts.jpg';
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title: `${title} | DNAture`,
-      description,
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
-      type: 'product',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${title} | DNAture`,
-      description,
-      images: [image],
-    },
-    alternates: {
-      canonical: `/productos/${productSlug}`,
-    },
-  };
 }
 
 export default async function ProductDetailPage({ params, searchParams }) {
