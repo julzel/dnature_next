@@ -32,7 +32,7 @@ export default function PlanDNAturePage() {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
+      <JsonLd data={breadcrumbSchema} />
       <Page>
         <PlanDNA headTitle={'Plan Nutricional DNAture'} />
       </Page>

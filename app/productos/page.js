@@ -37,7 +37,7 @@ export default async function ProductosPage() {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
+      <JsonLd data={breadcrumbSchema} />
       <Page title="DNAture - Nuestros productos">
         <Products products={products} />
       </Page>

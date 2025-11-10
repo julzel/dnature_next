@@ -6,7 +6,8 @@ import JsonLd from '../../../components/JsonLd';
 import { generateProductSchema, generateBreadcrumbSchema } from '../../../lib/seo';
 
 export async function generateMetadata({ params, searchParams }) {
-  const { product: productSlug } = params;
+  const resolvedParams = await params;
+  const { product: productSlug } = resolvedParams;
   const resolvedSearchParams = await searchParams;
   const productId = resolvedSearchParams?.id;
   
@@ -54,7 +55,8 @@ export async function generateMetadata({ params, searchParams }) {
 }
 
 export default async function ProductDetailPage({ params, searchParams }) {
-  const { product: productSlug } = params;
+  const resolvedParams = await params;
+  const { product: productSlug } = resolvedParams;
   const resolvedSearchParams = await searchParams;
   const productId = resolvedSearchParams?.id;
 
@@ -72,18 +74,26 @@ export default async function ProductDetailPage({ params, searchParams }) {
     }
   }
 
+  // Generate breadcrumb with proper fallback
+  // Convert slug to readable format if product name is not available
+  const productName = product?.productName || 
+    productSlug
+      ?.split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: 'Inicio', url: '/' },
     { name: 'Productos', url: '/productos' },
-    { name: product?.productName || 'Producto', url: `/productos/${productSlug}` },
+    { name: productName, url: `/productos/${productSlug}` },
   ]);
 
   return (
     <>
       {productSchema && (
-        <JsonLd data={productSchema} id="product-schema" />
+        <JsonLd data={productSchema} />
       )}
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
+      <JsonLd data={breadcrumbSchema} />
       <Page title="DNAture - Detalle">
         <Product />
       </Page>

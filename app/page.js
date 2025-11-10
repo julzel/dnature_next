@@ -2,8 +2,6 @@ import React from 'react';
 import Page from '../components/Page';
 import Home from '../features/Home';
 import { getCategories } from '../services/categories';
-import JsonLd from '../components/JsonLd';
-import { generateBreadcrumbSchema } from '../lib/seo';
 
 export const metadata = {
   title: 'Inicio',
@@ -30,16 +28,9 @@ export const revalidate = 120; // Revalidate every 120 seconds
 export default async function HomePage() {
   const categories = await getCategories();
 
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Inicio', url: '/' },
-  ]);
-
   return (
-    <>
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
-      <Page>
-        <Home categories={categories} />
-      </Page>
-    </>
+    <Page>
+      <Home categories={categories} />
+    </Page>
   );
 }

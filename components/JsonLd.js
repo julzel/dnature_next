@@ -1,19 +1,12 @@
-'use client';
-
-import Script from 'next/script';
-
 /**
  * JsonLd component for rendering structured data
- * Client component to avoid hydration issues with Next.js Script
+ * Renders a script tag directly without wrapper to avoid hydration issues
  */
-export default function JsonLd({ data, id }) {
+export default function JsonLd({ data }) {
   return (
-    <Script
-      id={id || 'json-ld'}
+    <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data),
-      }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );
 }

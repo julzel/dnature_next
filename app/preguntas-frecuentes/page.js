@@ -41,8 +41,8 @@ export default function PreguntasFrecuentesPage() {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
-      <JsonLd data={faqSchema} id="faq-schema" />
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={faqSchema} />
       <Page title="DNAture - Preguntas frecuentes">
         <Faq />
       </Page>

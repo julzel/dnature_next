@@ -32,7 +32,7 @@ export default function CalculadoraPage() {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
+      <JsonLd data={breadcrumbSchema} />
       <Page title="Calcula la porción ideal de comida para tu mascota">
         <Calculator />
       </Page>

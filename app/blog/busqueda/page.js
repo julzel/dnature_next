@@ -39,7 +39,7 @@ export default async function BusquedaPage({ searchParams }) {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
+      <JsonLd data={breadcrumbSchema} />
       <Page>
         <PostQueryResult posts={posts} query={query} />
       </Page>
