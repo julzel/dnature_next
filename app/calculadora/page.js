@@ -1,6 +1,7 @@
 import React from 'react';
 import Page from '../../components/Page';
 import Calculator from '../../features/Calculator';
+import JsonLd from '../../components/JsonLd';
 import { generateBreadcrumbSchema } from '../../lib/seo';
 
 export const metadata = {
@@ -31,13 +32,7 @@ export default function CalculadoraPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-        suppressHydrationWarning
-      />
+      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
       <Page title="Calcula la porción ideal de comida para tu mascota">
         <Calculator />
       </Page>

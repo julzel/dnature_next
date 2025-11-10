@@ -2,6 +2,7 @@ import React from 'react';
 import Page from '../../components/Page';
 import Products from '../../features/Products';
 import { getProducts } from '../../services/products';
+import JsonLd from '../../components/JsonLd';
 import { generateBreadcrumbSchema } from '../../lib/seo';
 
 export const metadata = {
@@ -36,13 +37,7 @@ export default async function ProductosPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-        suppressHydrationWarning
-      />
+      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
       <Page title="DNAture - Nuestros productos">
         <Products products={products} />
       </Page>

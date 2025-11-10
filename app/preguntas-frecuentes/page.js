@@ -1,6 +1,7 @@
 import React from 'react';
 import Page from '../../components/Page';
 import Faq from '../../features/Faq';
+import JsonLd from '../../components/JsonLd';
 import { generateBreadcrumbSchema, generateFAQSchema } from '../../lib/seo';
 import FAQ from '../../features/Faq/FaqList/data';
 
@@ -40,20 +41,8 @@ export default function PreguntasFrecuentesPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-        suppressHydrationWarning
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-        suppressHydrationWarning
-      />
+      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
+      <JsonLd data={faqSchema} id="faq-schema" />
       <Page title="DNAture - Preguntas frecuentes">
         <Faq />
       </Page>

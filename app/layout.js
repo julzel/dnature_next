@@ -7,6 +7,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import '../styles/globals.scss';
 
 import Providers from './providers';
+import JsonLd from '../components/JsonLd';
 import { generateOrganizationSchema, generateWebSiteSchema } from '../lib/seo';
 
 export const metadata = {
@@ -64,23 +65,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="es">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-          suppressHydrationWarning
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
-          suppressHydrationWarning
-        />
-      </head>
       <body>
+        <JsonLd data={organizationSchema} id="organization-schema" />
+        <JsonLd data={websiteSchema} id="website-schema" />
         <Providers>{children}</Providers>
       </body>
     </html>

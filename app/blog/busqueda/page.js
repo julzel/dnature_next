@@ -2,6 +2,7 @@ import React from 'react';
 import Page from '../../../components/Page';
 import PostQueryResult from '../../../features/Blog/PostQueryResult';
 import { getPostsByField } from '../../../services/posts';
+import JsonLd from '../../../components/JsonLd';
 import { generateBreadcrumbSchema } from '../../../lib/seo';
 
 export const metadata = {
@@ -38,13 +39,7 @@ export default async function BusquedaPage({ searchParams }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-        suppressHydrationWarning
-      />
+      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
       <Page>
         <PostQueryResult posts={posts} query={query} />
       </Page>

@@ -2,6 +2,7 @@ import React from 'react';
 import Page from '../../../components/Page';
 import Product from '../../../features/Product';
 import { getProduct } from '../../../services/products';
+import JsonLd from '../../../components/JsonLd';
 import { generateProductSchema, generateBreadcrumbSchema } from '../../../lib/seo';
 
 export async function generateMetadata({ params, searchParams }) {
@@ -80,21 +81,9 @@ export default async function ProductDetailPage({ params, searchParams }) {
   return (
     <>
       {productSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(productSchema),
-          }}
-          suppressHydrationWarning
-        />
+        <JsonLd data={productSchema} id="product-schema" />
       )}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-        suppressHydrationWarning
-      />
+      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
       <Page title="DNAture - Detalle">
         <Product />
       </Page>
