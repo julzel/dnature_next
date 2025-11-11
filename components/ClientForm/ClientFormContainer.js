@@ -9,6 +9,8 @@ import { Client } from '../../models/client';
 
 import { storage } from '../../util';
 
+const addressFields = ['provincia', 'canton', 'direccion'];
+
 const inputFields = [
   { name: 'firstName', label: 'Nombre', isRequired: true, type: 'text' },
   { name: 'lastName', label: 'Apellidos', isRequired: true, type: 'text' },
@@ -47,13 +49,18 @@ const ClientFormContainer = ({ onSubmit, className }) => {
     setRememberClient((prevRememberClient) => !prevRememberClient);
   };
 
+  const getFieldValue = (data, fieldName) =>
+    addressFields.includes(fieldName)
+      ? data.address?.[fieldName] ?? ''
+      : data[fieldName] ?? '';
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (['direccion', 'provincia', 'canton'].includes(name)) {
+    if (addressFields.includes(name)) {
       setClient((prevClient) => ({
         ...prevClient,
-        address: { ...prevClient.address, [name]: value },
+        address: { ...(prevClient.address || {}), [name]: value },
       }));
     } else {
       setClient((prevClient) => ({ ...prevClient, [name]: value }));
@@ -62,16 +69,15 @@ const ClientFormContainer = ({ onSubmit, className }) => {
 
   const handleBlur = (e) => {
     const { name } = e.target;
-    setInteractedFields({ ...interactedFields, [name]: true });
+    setInteractedFields((prev) => ({ ...prev, [name]: true }));
   };
 
   const isInputValid = (value, isRequired) =>
     isRequired ? value?.trim() !== '' : true;
 
   const isFormValid = () => {
-    // Check if all required fields have values
     return inputFields.every((field) =>
-      isInputValid(client[field.name], field.isRequired)
+      isInputValid(getFieldValue(client, field.name), field.isRequired)
     );
   };
 
@@ -103,6 +109,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
       interactedFields={interactedFields}
       inputFields={inputFields}
       rememberClient={rememberClient}
+      addressFields={addressFields}
     />
   );
 };

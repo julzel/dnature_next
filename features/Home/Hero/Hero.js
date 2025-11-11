@@ -31,6 +31,7 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
           <Button
             text={'Comprar'}
             className={styles.button}
+            intent="cta"
             onClick={handleComprarClick}
           />
         </div>

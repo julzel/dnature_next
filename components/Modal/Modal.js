@@ -1,26 +1,47 @@
 import React from 'react';
+import { Modal as MuiModal, Fade, Backdrop, Box, IconButton } from '@mui/material';
 import { X } from 'lucide-react';
 
-// local imports
-// styles
-import styles from './Modal.module.scss';
+const Modal = ({
+  children,
+  closeModal,
+  open = true,
+  keepMounted = false,
+  disableBackdropClose = false,
+  ariaLabel,
+}) => {
+  const handleClose = (_, reason) => {
+    if (disableBackdropClose && reason === 'backdropClick') {
+      return;
+    }
+    closeModal?.();
+  };
 
-const Modal = ({ children, closeModal, padding, fullScreen }) => {
   return (
-    <div className={styles.modalContainer}>
-      <div
-        className={`${styles.modal} ${padding ? styles.padding : ''} ${
-          fullScreen ? styles.fullScreen : ''
-        }`}
-      >
-        {closeModal && (
-          <button className={styles.close} onClick={closeModal}>
-            <X size={24} />
-          </button>
-        )}
-        {children}
-      </div>
-    </div>
+    <MuiModal
+      open={open}
+      onClose={handleClose}
+      keepMounted={keepMounted}
+      closeAfterTransition
+      slots={{ backdrop: Backdrop }}
+      slotProps={{ backdrop: { timeout: 200 } }}
+      aria-label={ariaLabel}
+    >
+      <Fade in={open}>
+        <Box>
+          {closeModal && (
+            <IconButton
+              size="small"
+              onClick={closeModal}
+              aria-label="Cerrar modal"
+            >
+              <X size={20} />
+            </IconButton>
+          )}
+          {children}
+        </Box>
+      </Fade>
+    </MuiModal>
   );
 };
 
