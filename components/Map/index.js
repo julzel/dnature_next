@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 
 // local imports
@@ -10,8 +10,33 @@ const STORE_LOCATION = { lat: 9.962592, lng: -84.07752 };
 
 const Map = () => {
   const googlemap = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Intersection Observer to load map only when visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { rootMargin: '100px' }
+    );
+
+    if (googlemap.current) {
+      observer.observe(googlemap.current);
+    }
+
+    return () => {
+      if (googlemap.current) {
+        observer.unobserve(googlemap.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     const loader = new Loader({
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
       version: 'weekly',
@@ -37,7 +62,7 @@ const Map = () => {
         title: 'DNAture. #1 en alimentación natural para mascotas',
       });
     });
-  });
+  }, [isVisible]);
 
   return (
     <div id="store-map" className={styles.storeMap}>

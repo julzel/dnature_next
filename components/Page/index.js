@@ -9,7 +9,7 @@ import Layout from '../Layout';
 const Page = ({
   title = 'DNAture - Alimentación natural para mascotas',
   description = 'Buscas la mejor alimentación para tu mascota. Has llegado al lugar indicado. Snacks, dieta blanda, barf, raw. Todo en comida natural y saludable para mascotas',
-  imageUrl = '/public/images/hero3.jpg',
+  imageUrl = '/public/images/hero3.avif',
   imageAlt = 'Perro comiendo alimentación natural',
   path = '/',
   children,
@@ -17,11 +17,11 @@ const Page = ({
   return (
     <>
       <Script
-        strategy="lazyOnload"
+        strategy="worker"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
 
-      <Script strategy="lazyOnload" id="gtag-strategy">
+      <Script strategy="worker" id="gtag-strategy">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

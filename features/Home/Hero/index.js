@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 // local imports
 // images
-import HeroImage from '../../../public/images/hero3.jpg';
+import HeroImage from '../../../public/images/hero3.avif';
 
 // hooks
 import useWindow from '../../../hooks/useWindow';

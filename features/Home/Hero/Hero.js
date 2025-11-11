@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Button from '../../../components/Button';
-import HeroImage from '../../../public/images/hero3_wide.jpg';
+import HeroImage from '../../../public/images/hero3_wide.avif';
 import styles from './Hero.module.scss';
 
 const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
