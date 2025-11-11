@@ -1,12 +1,25 @@
 @use '../../styles/_variables' as *;
+@use '../../styles/_mixins' as *;
 
 .slider {
   position: relative;
+  width: 100%;
+  min-height: 400px;
+
+  @include mdq(md) {
+    min-height: 500px;
+  }
+
+  @include mdq(lg) {
+    min-height: 600px;
+  }
 
   .container {
     height: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
+    position: relative;
   }
 }

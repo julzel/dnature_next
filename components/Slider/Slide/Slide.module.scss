@@ -1,10 +1,35 @@
+@use '../../../styles/_mixins' as *;
+
 .slide {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  min-height: 400px;
   width: 100%;
   flex-shrink: 0;
-  -webkit-transition: -webkit-transform 500ms ease-out;
   transition: transform 500ms ease-out;
+  padding: 20px;
+  box-sizing: border-box;
+
+  @include mdq(md) {
+    min-height: 500px;
+    padding: 40px;
+  }
+
+  @include mdq(lg) {
+    min-height: 600px;
+    padding: 60px;
+  }
+
+  // Ensure images inside slides are responsive
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  // Ensure content inside slides doesn't overflow
+  > * {
+    max-width: 100%;
+  }
 }
