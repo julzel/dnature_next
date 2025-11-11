@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { Search } from "lucide-react";
 
 // styles
 import styles from "./SearchBar.module.scss";
@@ -25,7 +24,7 @@ const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
       </label>
       <div className={styles.inputWrapper}>
         <span className={styles.icon}>
-          <FontAwesomeIcon icon={faSearch} />
+          <Search size={20} />
         </span>
         <input
           id="product-search"

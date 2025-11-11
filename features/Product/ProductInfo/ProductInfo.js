@@ -2,10 +2,12 @@ import Link from 'next/link';
 import { Box } from '@mui/material';
 import Image from 'next/image';
 import Slider from 'react-slick';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ShoppingCart } from 'lucide-react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+import React from 'react';
+import { ShoppingCart } from 'lucide-react';
 
 // local imports
 // styles
@@ -98,7 +100,7 @@ const ProductInfo = ({
           {cartTotalItems > 0 && (
             <Link href={'/cart'} passHref>
                 Ver Carrito
-                <FontAwesomeIcon icon={faCartShopping} />
+                <ShoppingCart size={20} />
                 <span>({cartTotalItems})</span>
             </Link>
           )}

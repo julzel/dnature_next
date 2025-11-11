@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { Filter } from "lucide-react";
 
 // local imports
 // styles
@@ -22,13 +21,13 @@ const FilterMobile = ({ options, selected }) => {
 
   return (
     <div className={styles.filter}>
-      <button
+            <button
         className={styles.filterHeader}
         onClick={() => setShowList(!showList)}
       >
         <span className={styles.icon}
         >
-          <FontAwesomeIcon icon={faFilter} />
+          <Filter size={20} />
         </span>
         <span>&nbsp;Filtrar</span>
       </button>

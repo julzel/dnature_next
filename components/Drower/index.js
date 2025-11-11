@@ -1,6 +1,5 @@
 import React from 'react';
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { X } from 'lucide-react';
 
 /**
  * TODO
@@ -21,7 +20,7 @@ const Drower = ({ children, close }) => {
             <div className={styles.drowerContainer}>
                 <div className={styles.drowerContainerHeader} onClick={() => close()}>
                     <span tabIndex='0' role="button">
-                        <FontAwesomeIcon icon={faXmark} />
+                        <X size={24} />
                     </span>
                 </div>
                 {children}

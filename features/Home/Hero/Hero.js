@@ -1,5 +1,7 @@
 import React from "react";
+import Image from "next/image";
 import Button from "../../../components/Button";
+import HeroImage from "../../../public/images/hero3_wide.jpg";
 import styles from "./Hero.module.scss";
 
 const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
@@ -34,7 +36,16 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
         </div>
       </div>
       <div className={styles.hero}>
-        <div className={styles.heroImg} />
+        <Image 
+          src={HeroImage}
+          alt="DNAture - Alimentación natural para mascotas"
+          fill
+          priority
+          fetchPriority="high"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className={styles.heroImg}
+          quality={85}
+        />
       </div>
     </div>
   );

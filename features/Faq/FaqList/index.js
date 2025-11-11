@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { ChevronRight } from 'lucide-react';
 
 // local imports
 // styles
@@ -36,7 +35,7 @@ const FaqList = () => {
                         <h3 style={{ borderLeftColor: selectedQuestion === i ? '#ff6f00' : 'transparent' }}>
                             {q.question}
                             <span className={selectedQuestion === i ? styles.active : ''}>
-                                <FontAwesomeIcon icon={faChevronRight} />
+                                <ChevronRight size={20} />
                             </span>
                         </h3>
                         <div

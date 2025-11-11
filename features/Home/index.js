@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useEffect } from "react";
+import React from "react";
 
 // local imports
 // styles
@@ -17,7 +15,6 @@ import OurCostumers from "./OurCostumers";
 import NutritionalAppointments from "./NutritionalAppointments";
 
 const Home = ({ categories }) => {
-
   return (
     <div className={styles.home}>
       <Hero />

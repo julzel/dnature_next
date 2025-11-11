@@ -32,7 +32,7 @@ const Products = ({ categories }) => {
                           width={500}
                           height={500}
                           style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
-                          loading="eager"
+                          loading="lazy"
                         />
                       </div>
                     </AnimationBox>

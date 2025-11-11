@@ -1,6 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { MessageCircle } from "lucide-react";
 
 // Reusable WhatsApp link wrapper
 // Props:
@@ -39,7 +38,7 @@ const WhatsAppLink = ({
     >
       {(withIcon || iconOnly) && (
         <span style={{ fontSize: "14px" }}>
-          <FontAwesomeIcon icon={faWhatsapp} size="2x" />
+          <MessageCircle size={32} />
         </span>
       )}
       {!iconOnly && content}

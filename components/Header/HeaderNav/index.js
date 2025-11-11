@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { Menu } from 'lucide-react';
 
 // local imports
 
@@ -25,7 +24,7 @@ const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
       </div>
       {showIcon ? (
         <span role='button' tabIndex='0' onClick={onMenuIconClick}>
-          <FontAwesomeIcon icon={faBars} size='lg' />
+          <Menu size={24} />
         </span>
       ) : (
         <NavigationBar items={navigationItems} />

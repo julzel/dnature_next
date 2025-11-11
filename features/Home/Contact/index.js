@@ -1,7 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { Instagram, Mail } from 'lucide-react';
 
 // local imports
 // components
@@ -26,7 +24,7 @@ const Contact = () => {
         <li>
           <AnimationBox animation='fade-in-from-left'>
             <span className={styles.contactIcon}>
-              <FontAwesomeIcon icon={faInstagram} size='2x' />
+              <Instagram size={32} />
             </span>
             <a
               className={styles.contactItem}
@@ -42,7 +40,7 @@ const Contact = () => {
         <li>
           <AnimationBox animation='fade-in-from-left'>
             <span className={styles.contactIcon}>
-              <FontAwesomeIcon icon={faEnvelope} size='2x' />
+              <Mail size={32} />
             </span>
             <a
               href='mailto:info@dnaturefood.com'

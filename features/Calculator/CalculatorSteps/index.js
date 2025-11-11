@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import { ChevronLeft } from 'lucide-react';
 
 // local imports
 
@@ -83,9 +82,13 @@ const CalculatorSteps = () => {
                     </button>
                 )}
                 {step > 0 && (
-                    <button onClick={handlePrevClick} className={styles.prevButton}>
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                        <span>Anterior</span>
+                                        <button
+                        className={styles.backButton}
+                        onClick={handleBack}
+                        style={{ visibility: step === 0 ? 'hidden' : 'visible' }}
+                    >
+                        <ChevronLeft size={20} />
+                        Atrás
                     </button>
                 )}
                 {step < 6 && enableNext && (

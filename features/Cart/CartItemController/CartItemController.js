@@ -1,6 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { Trash2 } from "lucide-react";
 
 // local imports
 // styles
@@ -29,7 +28,7 @@ const CartItemController = ({
         onClick={() => removeAllItemsOfAKind(item.id)}
         className={styles.delete}
       >
-        <FontAwesomeIcon icon={faTrashCan} size="sm" />
+        <Trash2 size={18} />
       </span>
     </div>
   );

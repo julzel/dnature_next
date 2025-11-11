@@ -14,17 +14,6 @@ const Page = ({
   path = "/",
   children,
 }) => {
-  const url = process.env.NEXT_PUBLIC_SITE_URL + path;
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: title,
-    description,
-    url,
-    image: imageUrl,
-  };
-
   return (
     <>
       <Script
@@ -42,12 +31,6 @@ const Page = ({
           });
         `}
       </Script>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
       <Layout>{children}</Layout>
     </>
   );
