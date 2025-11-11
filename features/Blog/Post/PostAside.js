@@ -7,11 +7,11 @@ import styles from './Post.module.scss';
 
 const PostAside = ({ content }) => {
   return (
-    <Card
-      variant="outlined"
-      sx={{ bgcolor: red[50], mb: { xs: 2, md: 4 } }}
-    >
-      <CardContent className={styles.post_aside} sx={{padding: { sm: 1, md: 3 }}}>
+    <Card variant="outlined" sx={{ bgcolor: red[50], mb: { xs: 2, md: 4 } }}>
+      <CardContent
+        className={styles.post_aside}
+        sx={{ padding: { sm: 1, md: 3 } }}
+      >
         {documentToReactComponents(content.json)}
       </CardContent>
     </Card>

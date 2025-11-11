@@ -1,5 +1,5 @@
-import { faShieldDog } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
+import { ShieldCheck } from 'lucide-react';
 
 import styles from './NutritionalAppointments.module.scss';
 
@@ -31,7 +31,7 @@ const NutritionalAppointments = () => {
     <div className={styles.container}>
       <div className={styles.appointments}>
         <div className={styles['appointments-info']}>
-          <h2 className='title'>Consultas Nutricionales para Mascotas</h2>
+          <h2 className="title">Consultas Nutricionales para Mascotas</h2>
           <p>
             Descubre nuestros servicios personalizados de consulta nutricional,
             diseñados para las necesidades únicas de tu mascota.
@@ -41,7 +41,7 @@ const NutritionalAppointments = () => {
         <div className={styles['appointments-types']}>
           {appointmentTypes.map((appointment, index) => (
             <div key={index} className={styles['appointment-type']}>
-              <FontAwesomeIcon className={styles.icon} icon={faShieldDog} />
+              <ShieldCheck className={styles.icon} size={48} />
               <h3 className={styles['appointment-type_title']}>
                 {appointment.title}
               </h3>
@@ -54,7 +54,7 @@ const NutritionalAppointments = () => {
               <a
                 href={`https://wa.me/${phoneNumber}?text=${appointment.waMessage}`}
                 className={styles['appointment-type_cta']}
-                rel='noopener noreferrer'
+                rel="noopener noreferrer"
               >
                 Agendar
               </a>

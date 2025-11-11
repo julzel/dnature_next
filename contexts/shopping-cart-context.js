@@ -1,4 +1,10 @@
-import { createContext, useContext, useCallback, useState, useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useState,
+  useEffect,
+} from 'react';
 import { ShoppingCart, ShoppingCartItem } from '../models/shopping-cart';
 
 const ShoppingCartContext = createContext();
@@ -61,7 +67,7 @@ const ShoppingCartContextProvider = ({ children }) => {
           id,
           1,
           item.price,
-          item.productName,
+          item.productName
         );
         currentShoppingCart.items.push(newItem);
       }
@@ -144,7 +150,9 @@ const ShoppingCartContextProvider = ({ children }) => {
   );
 
   const getItemsInCart = (itemId) => {
-    const itemInCart = currentShoppingCart.items.find((item) => item.id === itemId);
+    const itemInCart = currentShoppingCart.items.find(
+      (item) => item.id === itemId
+    );
     return itemInCart ? itemInCart.quantity : '';
   };
 

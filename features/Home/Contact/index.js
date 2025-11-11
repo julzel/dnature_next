@@ -1,7 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { Instagram, Mail } from 'lucide-react';
 
 // local imports
 // components
@@ -18,21 +16,25 @@ const Contact = () => {
       <h3 className={`title ${styles.title}`}>Contáctanos</h3>
       <ul className={styles.contactList}>
         <li>
-          <AnimationBox animation='fade-in-from-left'>
-            <WhatsAppLink phone='71848868' className={styles.contactItem} withIcon />
+          <AnimationBox animation="fade-in-from-left">
+            <WhatsAppLink
+              phone="71848868"
+              className={styles.contactItem}
+              withIcon
+            />
           </AnimationBox>
         </li>
 
         <li>
-          <AnimationBox animation='fade-in-from-left'>
+          <AnimationBox animation="fade-in-from-left">
             <span className={styles.contactIcon}>
-              <FontAwesomeIcon icon={faInstagram} size='2x' />
+              <Instagram size={32} />
             </span>
             <a
               className={styles.contactItem}
-              href='https://www.instagram.com/dnaturecr'
-              target='_blank'
-              rel='noopener noreferrer'
+              href="https://www.instagram.com/dnaturecr"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               @dnaturecr
             </a>
@@ -40,12 +42,12 @@ const Contact = () => {
         </li>
 
         <li>
-          <AnimationBox animation='fade-in-from-left'>
+          <AnimationBox animation="fade-in-from-left">
             <span className={styles.contactIcon}>
-              <FontAwesomeIcon icon={faEnvelope} size='2x' />
+              <Mail size={32} />
             </span>
             <a
-              href='mailto:info@dnaturefood.com'
+              href="mailto:info@dnaturefood.com"
               className={styles.contactItem}
             >
               info@dnaturefood.com

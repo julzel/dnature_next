@@ -5,10 +5,12 @@ import { getCategories } from '../services/categories';
 
 export const metadata = {
   title: 'Inicio',
-  description: 'DNAture - Nutrición personalizada para tu mascota basada en análisis de ADN. Alimento balanceado de alta calidad para perros en Costa Rica.',
+  description:
+    'DNAture - Nutrición personalizada para tu mascota basada en análisis de ADN. Alimento balanceado de alta calidad para perros en Costa Rica.',
   openGraph: {
     title: 'DNAture - Nutrición personalizada para tu mascota',
-    description: 'Nutrición personalizada para tu mascota basada en análisis de ADN',
+    description:
+      'Nutrición personalizada para tu mascota basada en análisis de ADN',
     images: [
       {
         url: '/images/hero3_wide.jpg',

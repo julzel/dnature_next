@@ -7,7 +7,8 @@ import { generateBreadcrumbSchema } from '../../../lib/seo';
 
 export const metadata = {
   title: 'Búsqueda de artículos',
-  description: 'Explora nuestros artículos sobre nutrición natural, cuidado y bienestar para mascotas.',
+  description:
+    'Explora nuestros artículos sobre nutrición natural, cuidado y bienestar para mascotas.',
   openGraph: {
     title: 'Blog DNAture - Búsqueda de artículos',
     description: 'Artículos sobre nutrición natural y cuidado de mascotas',

@@ -7,7 +7,8 @@ import FAQ from '../../features/Faq/FaqList/data';
 
 export const metadata = {
   title: 'Preguntas frecuentes',
-  description: 'Encuentra respuestas a las preguntas más comunes sobre DNAture, nuestros productos y servicios de nutrición personalizada para mascotas.',
+  description:
+    'Encuentra respuestas a las preguntas más comunes sobre DNAture, nuestros productos y servicios de nutrición personalizada para mascotas.',
   openGraph: {
     title: 'Preguntas frecuentes | DNAture',
     description: 'Respuestas a tus dudas sobre nutrición natural para mascotas',
@@ -27,7 +28,7 @@ export const metadata = {
 
 export default function PreguntasFrecuentesPage() {
   // Format FAQs for schema - strip HTML from answers
-  const faqsForSchema = FAQ.map(faq => ({
+  const faqsForSchema = FAQ.map((faq) => ({
     question: faq.question,
     answer: faq.answer.replace(/<[^>]*>/g, '').trim(),
   }));

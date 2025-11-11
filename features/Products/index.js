@@ -1,12 +1,12 @@
 'use client';
 
-import React, { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 // local imports
 // components
-import CatalogContainer from "./Catalog";
-import Loading from "../../components/Loading";
+import CatalogContainer from './Catalog';
+import Loading from '../../components/Loading';
 
 const ProductosContent = ({ products }) => {
   const searchParams = useSearchParams();

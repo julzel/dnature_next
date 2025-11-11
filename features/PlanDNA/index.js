@@ -2,9 +2,7 @@ import React from 'react';
 import PlanDNA from './PlanDNA';
 
 const PlanDNAContainer = () => {
-  return (
-    <PlanDNA />
-  );
+  return <PlanDNA />;
 };
 
 export default PlanDNAContainer;

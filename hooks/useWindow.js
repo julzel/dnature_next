@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { useEffect, useState, useCallback } from 'react';
 import SCREEN_SIZE from '../constants/breakpoints';
 

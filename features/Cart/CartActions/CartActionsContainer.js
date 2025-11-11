@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 // local imports
 // components
-import CartActions from "./CartActions";
+import CartActions from './CartActions';
 
 // contexts
-import { useCartContext } from "../../../contexts/shopping-cart-context";
+import { useCartContext } from '../../../contexts/shopping-cart-context';
 
 const CartActionsContainer = ({ proceedToPurchase }) => {
   const [displayRemoveAllModal, setDisplayRemoveAllModal] = useState(false);

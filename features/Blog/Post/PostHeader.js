@@ -1,12 +1,5 @@
 import Image from 'next/image';
-import {
-  Avatar,
-  Box,
-  Card,
-  CardMedia,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Avatar, Box, Card, CardMedia, Grid, Typography } from '@mui/material';
 
 // local imports
 import { formatToLocaleDate } from '../../../util/dates';

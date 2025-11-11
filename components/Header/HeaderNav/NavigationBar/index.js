@@ -25,7 +25,7 @@ const NavigationBar = ({ items }) => {
         </Link>
       ))}
       <span className={`${styles.navbarItem} ${styles.dark}`}>
-        <WhatsAppLink phone='71848868' iconOnly />
+        <WhatsAppLink phone="71848868" iconOnly />
       </span>
     </nav>
   );

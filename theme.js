@@ -15,7 +15,7 @@ const createMyTheme = (mode) => {
         main: '#dbe077',
       },
       success: {
-        main: '#a8b247'
+        main: '#a8b247',
       },
     },
     typography: {

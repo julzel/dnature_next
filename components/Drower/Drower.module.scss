@@ -1,45 +1,45 @@
 @use '../../styles/_variables' as *;
 
 .drower {
-    // background-color: rgba(0, 0, 0, 0.35);
-    position: fixed;
-    left: 0px;
-    top: 100%;
-    width: 100vw;
-    height: calc(100vh - 60px);
-    animation: slideFromBottom 250ms ease-out 50ms forwards;
-    z-index: 1;
-    padding: 0;
+  // background-color: rgba(0, 0, 0, 0.35);
+  position: fixed;
+  left: 0px;
+  top: 100%;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  animation: slideFromBottom 250ms ease-out 50ms forwards;
+  z-index: 1;
+  padding: 0;
 
-    &Container {
-        background-color: $white;
-        height: 100%;
-        padding: 76px 30px 160px;
-        overflow: scroll;
-        position: relative;
+  &Container {
+    background-color: $white;
+    height: 100%;
+    padding: 76px 30px 160px;
+    overflow: scroll;
+    position: relative;
 
-        &Header {
-            color: $lightGray;
-            display: flex;
-            justify-content: flex-end;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            padding: 20px;
-            font-size: 24px;
-        }
+    &Header {
+      color: $lightGray;
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 20px;
+      font-size: 24px;
     }
+  }
 }
 
 @keyframes slideFromBottom {
-    to {
-        top: 60px;
-    }
+  to {
+    top: 60px;
+  }
 }
 
 @keyframes slideToBottom {
-    to {
-        top: 100%
-    }
+  to {
+    top: 100%;
+  }
 }

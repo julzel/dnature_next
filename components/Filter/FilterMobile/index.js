@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Filter } from 'lucide-react';
 
 // local imports
 // styles
-import styles from "./FilterMobile.module.scss";
+import styles from './FilterMobile.module.scss';
 
 const FilterMobile = ({ options, selected }) => {
   const [showList, setShowList] = useState(false);
@@ -18,7 +17,7 @@ const FilterMobile = ({ options, selected }) => {
       setSelectedOption(selected);
       setShowList(false);
     }
-  }, [selected, selectedOption.id]); 
+  }, [selected, selectedOption.id]);
 
   return (
     <div className={styles.filter}>
@@ -26,23 +25,19 @@ const FilterMobile = ({ options, selected }) => {
         className={styles.filterHeader}
         onClick={() => setShowList(!showList)}
       >
-        <span className={styles.icon}
-        >
-          <FontAwesomeIcon icon={faFilter} />
+        <span className={styles.icon}>
+          <Filter size={20} />
         </span>
         <span>&nbsp;Filtrar</span>
       </button>
-      <ul className={`${styles.filterList} ${showList ? styles.show : ""}`}>
+      <ul className={`${styles.filterList} ${showList ? styles.show : ''}`}>
         {options.map((item) => {
           return (
             <li
               key={`filter-by-${item.id}`}
-              className={selected.id === item.id ? styles.active : ""}
+              className={selected.id === item.id ? styles.active : ''}
             >
-              <Link
-                href={`/productos?category=${item.id}`}
-                passHref
-              >
+              <Link href={`/productos?category=${item.id}`} passHref>
                 {item.label}
               </Link>
             </li>

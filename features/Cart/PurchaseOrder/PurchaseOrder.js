@@ -67,30 +67,30 @@ const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => {
             </tr>
           ))}
           <tr className={styles.empty}>
-            <td colSpan='4' />
+            <td colSpan="4" />
           </tr>
         </tbody>
         <tfoot className={styles.tableFoot}>
           <tr>
-            <td colSpan='3'>Subtotal</td>
+            <td colSpan="3">Subtotal</td>
             <td>
               <CurrencyText value={cart.subtotal} />
             </td>
           </tr>
           <tr>
-            <td colSpan='3'>Descuento</td>
+            <td colSpan="3">Descuento</td>
             <td>
               <CurrencyText value={0.0} />
             </td>
           </tr>
           <tr>
-            <td colSpan='3'>Envío*</td>
+            <td colSpan="3">Envío*</td>
             <td>
               <CurrencyText value={3000.0} />
             </td>
           </tr>
           <tr>
-            <td colSpan='3'>Total</td>
+            <td colSpan="3">Total</td>
             <td>
               <CurrencyText value={cart.total + 3000.0} />
             </td>

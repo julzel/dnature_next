@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 // local imports
 // components
-import Button from "../Button";
+import Button from '../Button';
 
 // styles
-import styles from "./ClientForm.module.scss";
+import styles from './ClientForm.module.scss';
 
 const ClientForm = ({
   client,
@@ -27,11 +27,11 @@ const ClientForm = ({
       </div>
       <form onSubmit={handleSubmit}>
         {inputFields.map((field) => {
-          const value = ["direccion", "provincia", "canton"].includes(
+          const value = ['direccion', 'provincia', 'canton'].includes(
             field.name
           )
-            ? client.address[field.name] ?? ""
-            : client[field.name] ?? "";
+            ? (client.address[field.name] ?? '')
+            : (client[field.name] ?? '');
           const isInvalidField =
             !isInputValid(value, field.isRequired) &&
             interactedFields[field.name];
@@ -40,7 +40,7 @@ const ClientForm = ({
               <label htmlFor={field.name}>
                 {field.label}:
                 <input
-                  type={field.type || "text"}
+                  type={field.type || 'text'}
                   name={field.name}
                   id={field.name}
                   value={value}
@@ -65,7 +65,7 @@ const ClientForm = ({
         <div>
           <label className={styles.checkbox}>
             <input
-              type={"checkbox"}
+              type={'checkbox'}
               onChange={handleRememberToggle}
               checked={rememberClient}
             />

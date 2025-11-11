@@ -1,5 +1,5 @@
-@use "../../styles/_variables" as *;
-@use "../../styles/_mixins" as *;
+@use '../../styles/_variables' as *;
+@use '../../styles/_mixins' as *;
 
 .quickAdd {
   margin-top: 12px;
@@ -7,7 +7,7 @@
   justify-content: flex-end;
   align-items: center;
 
-  @include mdq("md") {
+  @include mdq('md') {
     justify-content: center;
   }
 

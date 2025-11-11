@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 // local imports
-import useWindow from "../../hooks/useWindow";
-import navigationItems from "./navigationItems";
+import useWindow from '../../hooks/useWindow';
+import navigationItems from './navigationItems';
 
 // components
-import Header from "./Header";
+import Header from './Header';
 
 const HeaderContainer = () => {
   // state

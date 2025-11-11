@@ -1,19 +1,19 @@
 const navigationItems = [
   {
-    href: "/",
-    label: "inicio",
+    href: '/',
+    label: 'inicio',
   },
   {
-    href: "/productos",
-    label: "productos",
+    href: '/productos',
+    label: 'productos',
   },
   {
-    href: "/preguntas-frecuentes",
-    label: "preguntas frecuentes",
+    href: '/preguntas-frecuentes',
+    label: 'preguntas frecuentes',
   },
   {
-    href: "/calculadora",
-    label: "calcular porción",
+    href: '/calculadora',
+    label: 'calcular porción',
   },
 ];
 

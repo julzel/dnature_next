@@ -1,7 +1,8 @@
 const FAQ = [
-    {
-        question: '¿Cuáles son los pasos para darle una dieta natural de DNAture a mi mascota?',
-        answer: `<p>
+  {
+    question:
+      '¿Cuáles son los pasos para darle una dieta natural de DNAture a mi mascota?',
+    answer: `<p>
                     Las <span class='uppercase'>recetas completas DNAture</span> tienen todo lo necesario 
                     para satisfacer las necesidades nutricionales de tu mascota.
                 </p >
@@ -30,11 +31,11 @@ const FAQ = [
                     (*) Costo del envío corre por cuenta del cliente.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿En qué consisten las RECETAS COMPLETAS DNATURE?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿En qué consisten las RECETAS COMPLETAS DNATURE?',
+    answer: `<p>
                     Las <span class='uppercase'>recetas completas DNAture</span> están formuladas
                     para cumplir con todos los requerimientos nutricionales de tu mascota, de acuerdo
                     a los parámetros de <a class="link" href="https://www.aafco.org/">AAFCO</a> y la  
@@ -58,11 +59,11 @@ const FAQ = [
                     (**) Puedes consultar por presentaciones de 200g o 250g por un costo adicional.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿Cuáles ingredientes incluyen las RECETAS COMPLETAS DNATURE?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿Cuáles ingredientes incluyen las RECETAS COMPLETAS DNATURE?',
+    answer: `<p>
                     Las diferentes proteínas que conforman nuestra oferta de recetas han sido seleccionadas
                     para brindar el mayor porcentaje proteíco por porción.
                 </p>
@@ -73,11 +74,11 @@ const FAQ = [
                     omega 6.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿La dieta es cruda o cocinada?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿La dieta es cruda o cocinada?',
+    answer: `<p>
                     La carne cruda contiene una cantidad importante de nutrientes y proteínas que tu perro
                     requiere. Al cocinar la carne, este contenido disminuye considerablemente de dos maneras:
                     por la pérdida de humedad y por el cambio químico que ocurre durante el proceso de cocción.
@@ -88,11 +89,11 @@ const FAQ = [
                     y consultar por nuestras opciones de dietas blandas.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿Puedo cocinar la carne si a mi perro no le gusta cruda?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿Puedo cocinar la carne si a mi perro no le gusta cruda?',
+    answer: `<p>
                     Recomendamos hacer una transición progresiva hacia la carne cruda cocinándola a un 75% (no
                     demasiado cocida), salteándola en un sartén, sin aceite ni sal y sirviendo a temperatura
                     ambiente (enfriar unos minutos antes de servir).
@@ -103,11 +104,11 @@ const FAQ = [
                     flexibilidad de cada perro.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿Cómo transiciono a mi mascota a una dieta natural cruda?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿Cómo transiciono a mi mascota a una dieta natural cruda?',
+    answer: `<p>
                     Para perros sanos, cachorros, hembras en gestación o lactancia, seniors (mayor de 10 años)
                     al que se quiere cambiar a dieta natural:
                 </p>
@@ -137,11 +138,11 @@ const FAQ = [
                     de transición.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿En qué consiste la transición por ayuno?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿En qué consiste la transición por ayuno?',
+    answer: `<p>
                     En el caso de <span class="bold">perros sanos con buen apetito y que les gusta la carne cruda</span>,
                     la transición puede realizarse después de un día de ayuno.
                 </p>
@@ -160,11 +161,11 @@ const FAQ = [
                     raza mini, hembras en gestación o lactancia ni perros senior (mayor de 10 años).
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿Cuánto alimento le debo dar a mi mascota?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿Cuánto alimento le debo dar a mi mascota?',
+    answer: `<p>
                     La cantidad de alimento que tu perro en edad adulta necesita al día ronda entre  el 2.5% y
                     el 3.5% de su peso corporal. En cachorros menores a 7 meses un 10% y entre los 7 meses y el
                     primer año e edad un 4%.
@@ -175,11 +176,11 @@ const FAQ = [
                     mascota puedes utilizar nuestra <a class="link" href="/calculadora" target="_blank" rel="noopener noreferrer">calculadora</a>.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿Cuántas veces al día debo alimentar a mi mascota?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿Cuántas veces al día debo alimentar a mi mascota?',
+    answer: `<p>
                     La cantidad de veces que debe comer un perro al día va a depender de varios factores: edad,
                     estilo de vida, si se encuentra en gestación o lactancia. Debemos considerar también que cada
                     metabolismo es unico, por tanto no hay una regla aplicable al 100% de los casos.
@@ -202,11 +203,11 @@ const FAQ = [
                     se ajuste a nuestro estilo de vida y el de nuestra mascota.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿Cómo se sirve la comida?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿Cómo se sirve la comida?',
+    answer: `<p>
                     Se debe descongelar el producto en el refrigerador, por lo que es recomendable hacerlo
                     <span class='bold'>al menos 20-24 horas antes de servirlo</span>. Idealmente debe mantenerse una
                     temperatura <span class='bold'>no mayor a 5°C.</span>.
@@ -221,11 +222,11 @@ const FAQ = [
                     carne. Si te sobra producto en el envase, lo puedes almacenar en refrigeración hasta 3 días.
                 </p>
                 `,
-        tags: []
-    },
-    {
-        question: '¿Cómo debo almacenar el producto?',
-        answer: `<p>
+    tags: [],
+  },
+  {
+    question: '¿Cómo debo almacenar el producto?',
+    answer: `<p>
                     El producto debe mantenerse congelado. El producto congelado tiene una duración de
                     hasta 3 meses.
                 </p>
@@ -234,8 +235,8 @@ const FAQ = [
                     puede conservar 3 días en refrigeración.
                 </p>
                 `,
-        tags: []
-    },
-]
+    tags: [],
+  },
+];
 
-export default FAQ
+export default FAQ;

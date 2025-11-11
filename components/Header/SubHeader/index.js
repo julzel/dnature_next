@@ -5,14 +5,12 @@ import React from 'react';
 import SubHeader from './SubHeader';
 
 // context
-import { useCartContext} from "../../../contexts/shopping-cart-context";
+import { useCartContext } from '../../../contexts/shopping-cart-context';
 
 const SubHeaderContainer = () => {
   const { cart } = useCartContext();
-  
-  return (
-    <SubHeader totalCartItems={cart.totalItems} />
-  );
+
+  return <SubHeader totalCartItems={cart.totalItems} />;
 };
 
 export default SubHeaderContainer;

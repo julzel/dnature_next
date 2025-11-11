@@ -1,23 +1,20 @@
-'use client';
-
-import React, { useEffect } from "react";
+import React from 'react';
 
 // local imports
 // styles
-import styles from "./Home.module.scss";
+import styles from './Home.module.scss';
 
 // components
-import Hero from "./Hero";
-import Banner from "./Banner";
-import Welcome from "./Welcome";
-import Products from "./Products";
-import Contact from "./Contact";
-import DNAtureSystem from "./DNAtureSystem";
-import OurCostumers from "./OurCostumers";
-import NutritionalAppointments from "./NutritionalAppointments";
+import Hero from './Hero';
+import Banner from './Banner';
+import Welcome from './Welcome';
+import Products from './Products';
+import Contact from './Contact';
+import DNAtureSystem from './DNAtureSystem';
+import OurCostumers from './OurCostumers';
+import NutritionalAppointments from './NutritionalAppointments';
 
 const Home = ({ categories }) => {
-
   return (
     <div className={styles.home}>
       <Hero />

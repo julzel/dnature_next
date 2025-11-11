@@ -1,5 +1,5 @@
-@use "../../../styles/_variables" as *;
-@use "../../../styles/mixins" as *;
+@use '../../../styles/_variables' as *;
+@use '../../../styles/mixins' as *;
 
 .searchBar {
   position: relative;
@@ -46,7 +46,9 @@
   background-color: $white;
   color: $darkGray;
   font-size: 16px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 
   @include mdq(md) {
     font-size: 18px;

@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 // local imports
 // styles
-import styles from "./CartActions.module.scss";
+import styles from './CartActions.module.scss';
 
 // components
-import Button from "../../../components/Button";
-import Modal from "../../../components/Modal";
-import MessageBoxContainer from "../../../components/MessageBox";
+import Button from '../../../components/Button';
+import Modal from '../../../components/Modal';
+import MessageBoxContainer from '../../../components/MessageBox';
 
 const CartActions = ({
   router,
@@ -41,7 +41,7 @@ const CartActions = ({
       {displayRemoveAllModal && (
         <Modal closeModal={toggleRemoveAllModal}>
           <MessageBoxContainer
-            type={"warning"}
+            type={'warning'}
             onClose={handleRemoveAllItems}
             onCancel={toggleRemoveAllModal}
           >

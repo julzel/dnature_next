@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material';
 import Link from 'next/link';
 

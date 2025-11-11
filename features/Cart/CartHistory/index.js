@@ -9,7 +9,11 @@ const CartHistory = () => {
   const { updateCurrentCart, localCarts } = useCartContext();
 
   if (localCarts.length === 0) {
-    return <div className={styles.cartHistory}>No hay órdenes de compras anteriores</div>;
+    return (
+      <div className={styles.cartHistory}>
+        No hay órdenes de compras anteriores
+      </div>
+    );
   }
 
   return (
@@ -18,7 +22,8 @@ const CartHistory = () => {
       {localCarts.map((cart, ind) => (
         <div className={styles.cartHistoryItem} key={ind}>
           <div>
-            <strong>Fecha: </strong><span>{formatToLocaleDate(cart.date)}</span>
+            <strong>Fecha: </strong>
+            <span>{formatToLocaleDate(cart.date)}</span>
             <button onClick={() => updateCurrentCart(cart)}>Seleccionar</button>
           </div>
           <div>
