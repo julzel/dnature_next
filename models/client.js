@@ -1,10 +1,10 @@
 class Client {
   constructor(
-    firstName = "",
-    lastName = "",
-    email = "",
+    firstName = '',
+    lastName = '',
+    email = '',
     address = {},
-    contactPhoneNumber = "",
+    contactPhoneNumber = '',
     pets = []
   ) {
     this.firstName = firstName;

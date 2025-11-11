@@ -15,8 +15,18 @@ export const metadata = {
     default: 'DNAture - Nutrición personalizada para tu mascota',
     template: '%s | DNAture',
   },
-  description: 'DNAture - Nutrición personalizada para tu mascota basada en ADN',
-  keywords: ['dnature', 'nutrición canina', 'dieta fisiológica', 'comida para perros', 'comida para gatos', 'alimentación personalizada', 'ADN canino', 'Costa Rica'],
+  description:
+    'DNAture - Nutrición personalizada para tu mascota basada en ADN',
+  keywords: [
+    'dnature',
+    'nutrición canina',
+    'dieta fisiológica',
+    'comida para perros',
+    'comida para gatos',
+    'alimentación personalizada',
+    'ADN canino',
+    'Costa Rica',
+  ],
   authors: [{ name: 'DNAture' }],
   creator: 'DNAture',
   publisher: 'DNAture',
@@ -37,7 +47,8 @@ export const metadata = {
     url: 'https://dnaturefood.com',
     siteName: 'DNAture',
     title: 'DNAture - Nutrición personalizada para tu mascota',
-    description: 'DNAture - Nutrición personalizada para tu mascota basada en ADN',
+    description:
+      'DNAture - Nutrición personalizada para tu mascota basada en ADN',
     images: [
       {
         url: '/images/hero3_wide.jpg',
@@ -50,7 +61,8 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'DNAture - Nutrición personalizada para tu mascota',
-    description: 'DNAture - Nutrición personalizada para tu mascota basada en ADN',
+    description:
+      'DNAture - Nutrición personalizada para tu mascota basada en ADN',
     images: ['/images/hero3_wide.jpg'],
   },
   // Use relative canonical URLs throughout the app for consistency with metadataBase.

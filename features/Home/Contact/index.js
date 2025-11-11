@@ -16,21 +16,25 @@ const Contact = () => {
       <h3 className={`title ${styles.title}`}>Contáctanos</h3>
       <ul className={styles.contactList}>
         <li>
-          <AnimationBox animation='fade-in-from-left'>
-            <WhatsAppLink phone='71848868' className={styles.contactItem} withIcon />
+          <AnimationBox animation="fade-in-from-left">
+            <WhatsAppLink
+              phone="71848868"
+              className={styles.contactItem}
+              withIcon
+            />
           </AnimationBox>
         </li>
 
         <li>
-          <AnimationBox animation='fade-in-from-left'>
+          <AnimationBox animation="fade-in-from-left">
             <span className={styles.contactIcon}>
               <Instagram size={32} />
             </span>
             <a
               className={styles.contactItem}
-              href='https://www.instagram.com/dnaturecr'
-              target='_blank'
-              rel='noopener noreferrer'
+              href="https://www.instagram.com/dnaturecr"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               @dnaturecr
             </a>
@@ -38,12 +42,12 @@ const Contact = () => {
         </li>
 
         <li>
-          <AnimationBox animation='fade-in-from-left'>
+          <AnimationBox animation="fade-in-from-left">
             <span className={styles.contactIcon}>
               <Mail size={32} />
             </span>
             <a
-              href='mailto:info@dnaturefood.com'
+              href="mailto:info@dnaturefood.com"
               className={styles.contactItem}
             >
               info@dnaturefood.com

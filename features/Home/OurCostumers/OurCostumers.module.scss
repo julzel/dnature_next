@@ -1,5 +1,5 @@
-@use "../../../styles/variables" as *;
-@use "../../../styles/mixins" as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 $social-media: #008088;
 
@@ -35,7 +35,7 @@ $social-media: #008088;
         padding: 8px 16px;
 
         &::before {
-          content: "“";
+          content: '“';
           position: absolute;
           color: $blue;
           font-size: 100px;
@@ -46,7 +46,7 @@ $social-media: #008088;
         }
 
         &::after {
-          content: "”";
+          content: '”';
           position: absolute;
           color: $blue;
           font-size: 100px;

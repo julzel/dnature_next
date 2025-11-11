@@ -4,7 +4,7 @@ import Select from '@mui/material/Select';
 
 const SelectInput = ({ label, id, value, options, onChange }) => {
   const handleChange = (event) => onChange(event.target.value);
-  
+
   return (
     <FormControl fullWidth>
       <InputLabel id={id}>{label}</InputLabel>

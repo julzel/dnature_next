@@ -1,5 +1,5 @@
-@use "../../styles/mixins" as *;
-@use "../../styles/variables" as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
 
 .clientForm {
   padding: 16px;
@@ -91,7 +91,7 @@
       position: relative;
 
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;

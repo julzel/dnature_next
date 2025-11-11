@@ -22,9 +22,8 @@ const BLOG_PREVIEW_QUERY = `
 
 export const getPosts = async () => {
   try {
-    const { blogPostCollection } = await fetchFromContentful(
-      BLOG_PREVIEW_QUERY
-    );
+    const { blogPostCollection } =
+      await fetchFromContentful(BLOG_PREVIEW_QUERY);
     return blogPostCollection.items;
   } catch (error) {
     console.error('Error fetching blog posts from Contentful:', error);

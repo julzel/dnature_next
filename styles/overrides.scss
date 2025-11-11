@@ -1,29 +1,29 @@
 /* Custom arrow styling */
 .slick-prev,
 .slick-next {
-    z-index: 1; /* Ensure arrows are above the image */
-    top: 50%; /* Align arrows vertically */
-    transform: translateY(-50%); /* Center align vertically */
+  z-index: 1; /* Ensure arrows are above the image */
+  top: 50%; /* Align arrows vertically */
+  transform: translateY(-50%); /* Center align vertically */
 }
 
 .slick-prev {
-    left: -8px !important; /* Distance from the left edge */
+  left: -8px !important; /* Distance from the left edge */
 }
 
 .slick-next {
-    right: -8px !important; /* Distance from the right edge */
+  right: -8px !important; /* Distance from the right edge */
 }
 
 .slick-prev:before,
 .slick-next:before {
-    font-size: 24px !important; /* Arrow size */
-    color: #ff6f00 !important; /* Arrow color */
-    opacity: 0.25 !important; /* Arrow transparency */
+  font-size: 24px !important; /* Arrow size */
+  color: #ff6f00 !important; /* Arrow color */
+  opacity: 0.25 !important; /* Arrow transparency */
 }
 
 .slick-prev:hover:before,
 .slick-next:hover:before {
-    opacity: 1!important; /* Full opacity when hovered */
+  opacity: 1 !important; /* Full opacity when hovered */
 }
 
 .slick-dots {
@@ -31,5 +31,5 @@
 }
 
 .slick-dots li {
-    margin: 0 !important;
+  margin: 0 !important;
 }

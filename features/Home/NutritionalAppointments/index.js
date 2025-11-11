@@ -31,7 +31,7 @@ const NutritionalAppointments = () => {
     <div className={styles.container}>
       <div className={styles.appointments}>
         <div className={styles['appointments-info']}>
-          <h2 className='title'>Consultas Nutricionales para Mascotas</h2>
+          <h2 className="title">Consultas Nutricionales para Mascotas</h2>
           <p>
             Descubre nuestros servicios personalizados de consulta nutricional,
             diseñados para las necesidades únicas de tu mascota.
@@ -54,7 +54,7 @@ const NutritionalAppointments = () => {
               <a
                 href={`https://wa.me/${phoneNumber}?text=${appointment.waMessage}`}
                 className={styles['appointment-type_cta']}
-                rel='noopener noreferrer'
+                rel="noopener noreferrer"
               >
                 Agendar
               </a>

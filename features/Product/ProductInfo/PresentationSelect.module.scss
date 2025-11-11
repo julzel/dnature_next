@@ -1,6 +1,6 @@
-@use "sass:color";
-@use "../../../styles/variables" as *;
-@use "../../../styles/mixins" as *;
+@use 'sass:color';
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 .select {
   width: 100%;
   margin-bottom: 16px;
@@ -29,14 +29,14 @@
     border-top: none;
 
     li {
-        cursor: pointer;
-        padding: 8px 16px;
-        text-align: center;
-        border-bottom: 1px solid $snow;
+      cursor: pointer;
+      padding: 8px 16px;
+      text-align: center;
+      border-bottom: 1px solid $snow;
 
-        &:hover {
-          background-color: $snow;
-        }
+      &:hover {
+        background-color: $snow;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
-@use "../../styles/_variables" as *;
-@use "../../styles/mixins" as *;
+@use '../../styles/_variables' as *;
+@use '../../styles/mixins' as *;
 
 .blogHeroContainer {
   display: flex;
@@ -23,7 +23,7 @@
   &Img {
     width: 100%;
     height: 100%;
-    background-image: url("../../public/images/blog/hero.jpg");
+    background-image: url('../../public/images/blog/hero.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

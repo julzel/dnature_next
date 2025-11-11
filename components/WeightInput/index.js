@@ -1,26 +1,25 @@
 import React from 'react';
 import { TextField, InputAdornment } from '@mui/material';
 
-const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
-  props,
-  ref
-) {
-  const { onChange, ...other } = props;
-  return (
-    <input
-      {...other}
-      ref={ref}
-      onChange={(event) => {
-        onChange({
-          target: {
-            value: event.target.value,
-          },
-        });
-      }}
-      pattern="[0-9]*([.][0-9]*)?"
-    />
-  );
-});
+const NumberFormatCustom = React.forwardRef(
+  function NumberFormatCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+      <input
+        {...other}
+        ref={ref}
+        onChange={(event) => {
+          onChange({
+            target: {
+              value: event.target.value,
+            },
+          });
+        }}
+        pattern="[0-9]*([.][0-9]*)?"
+      />
+    );
+  }
+);
 
 const WeightInput = ({ weight, handleChange, label, helpText }) => {
   const [error, setError] = React.useState(false);
@@ -39,7 +38,6 @@ const WeightInput = ({ weight, handleChange, label, helpText }) => {
   };
 
   return (
-    
     <TextField
       error={error}
       helperText={helperText}

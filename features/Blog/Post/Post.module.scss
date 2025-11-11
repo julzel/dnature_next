@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 @use '../../../styles/_variables' as *;
 
 .post {
@@ -17,7 +17,8 @@
   }
 
   // html overrides
-  h2, h3 {
+  h2,
+  h3 {
     margin: 16px 0 8px;
   }
 
@@ -33,7 +34,7 @@
       &:hover {
         color: color.adjust($blue, $lightness: -25%);
       }
-    };
+    }
   }
   // Base table styling
   table {
@@ -78,7 +79,7 @@
     list-style: disc;
 
     li {
-      font-size: 14px; 
+      font-size: 14px;
     }
   }
 }

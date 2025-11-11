@@ -1,4 +1,11 @@
-import { Heartbeat, Bone, Signpost, Paw, Users, HelpCircle } from 'lucide-react';
+import {
+  Heart,
+  Bone,
+  Signpost,
+  PawPrint,
+  Users,
+  HelpCircle,
+} from 'lucide-react';
 import {
   lightBlue,
   lime,
@@ -11,12 +18,15 @@ import {
 const postCategories = {
   salud: {
     color: lightBlue[800],
-    icon: <Heartbeat size={24} color='white' />,
+    icon: <Heart size={24} color="white" />,
   },
-  nutrición: { color: pink[800], icon: <Bone size={24} color='white' /> },
-  entorno: { color: lime[800], icon: <Signpost size={24} color='white' /> },
-  comportamiento: { color: teal[800], icon: <Paw size={24} color='white' /> },
-  tenencia: { color: cyan[800], icon: <Users size={24} color='white' /> },
+  nutrición: { color: pink[800], icon: <Bone size={24} color="white" /> },
+  entorno: { color: lime[800], icon: <Signpost size={24} color="white" /> },
+  comportamiento: {
+    color: teal[800],
+    icon: <PawPrint size={24} color="white" />,
+  },
+  tenencia: { color: cyan[800], icon: <Users size={24} color="white" /> },
   otro: {
     color: purple[800],
     icon: <HelpCircle size={24} />,

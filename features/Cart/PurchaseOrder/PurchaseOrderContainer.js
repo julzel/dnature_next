@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
 // local imports
 // components
-import PurchaseOrder from "./PurchaseOrder";
+import PurchaseOrder from './PurchaseOrder';
 
 // context
-import { useCartContext } from "../../../contexts/shopping-cart-context";
+import { useCartContext } from '../../../contexts/shopping-cart-context';
 
 // utils
-import { generatePurchaseOrderId } from "../../../util";
+import { generatePurchaseOrderId } from '../../../util';
 
 const PurchaseOrderContainer = () => {
   const { cart } = useCartContext();

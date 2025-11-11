@@ -6,10 +6,12 @@ import { generateBreadcrumbSchema } from '../../lib/seo';
 
 export const metadata = {
   title: 'Plan Nutricional',
-  description: 'Descubre el Plan Nutricional DNAture. Nutrición personalizada basada en el análisis de ADN de tu mascota para una salud óptima.',
+  description:
+    'Descubre el Plan Nutricional DNAture. Nutrición personalizada basada en el análisis de ADN de tu mascota para una salud óptima.',
   openGraph: {
     title: 'Plan Nutricional DNAture',
-    description: 'Nutrición personalizada basada en el análisis de ADN de tu mascota',
+    description:
+      'Nutrición personalizada basada en el análisis de ADN de tu mascota',
     images: [
       {
         url: '/images/plandna-desk.jpg',

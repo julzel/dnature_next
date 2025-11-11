@@ -14,7 +14,13 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p>
         <span>
-          <Image src={logoBlack} alt='DNAture Logo' width={55} height={55} loading='eager' />
+          <Image
+            src={logoBlack}
+            alt="DNAture Logo"
+            width={55}
+            height={55}
+            loading="eager"
+          />
         </span>
       </p>
       <p>Todos los derechos reservados.</p>

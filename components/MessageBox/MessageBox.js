@@ -1,10 +1,10 @@
 // MessageBox.js
-import React from "react";
-import Button from "../Button";
+import React from 'react';
+import Button from '../Button';
 
 // local imports
 // styles
-import styles from "./MessageBox.module.scss";
+import styles from './MessageBox.module.scss';
 
 const MessageBox = ({ children, type, onClose, onCancel }) => {
   return (

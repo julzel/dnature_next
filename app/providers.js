@@ -12,9 +12,7 @@ export default function Providers({ children }) {
     <AppRouterCacheProvider>
       <ThemeProvider theme={lightTheme}>
         <CssBaseline />
-        <ShoppingCartContextProvider>
-          {children}
-        </ShoppingCartContextProvider>
+        <ShoppingCartContextProvider>{children}</ShoppingCartContextProvider>
       </ThemeProvider>
     </AppRouterCacheProvider>
   );

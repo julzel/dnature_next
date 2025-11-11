@@ -19,9 +19,7 @@ const ProductDetail = ({ productDetail }) => (
     {productDetail.ingredientes && (
       <div className={styles.productDetailIngredients}>
         <h2>Ingredientes</h2>
-        <p className={styles.ingredients}>
-          {productDetail.ingredientes}
-        </p>
+        <p className={styles.ingredients}>{productDetail.ingredientes}</p>
         {productDetail.iconos && (
           <div className={styles.icons}>
             {productDetail.iconos.map((icono, j) => (

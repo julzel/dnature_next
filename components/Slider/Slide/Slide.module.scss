@@ -1,10 +1,10 @@
 .slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    flex-shrink: 0;
-    -webkit-transition:  -webkit-transform 500ms ease-out;
-    transition: transform 500ms ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  -webkit-transition: -webkit-transform 500ms ease-out;
+  transition: transform 500ms ease-out;
 }

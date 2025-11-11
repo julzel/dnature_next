@@ -1,12 +1,12 @@
 // local imports
 // components
-import Filter from "../../../components/Filter";
-import CatalogTitle from "../CatalogTitle";
-import CatalogList from "../CatalogList";
-import SearchBar from "../SearchBar";
+import Filter from '../../../components/Filter';
+import CatalogTitle from '../CatalogTitle';
+import CatalogList from '../CatalogList';
+import SearchBar from '../SearchBar';
 
 // styles
-import styles from "./Catalog.module.scss";
+import styles from './Catalog.module.scss';
 
 const Catalog = ({
   categoriesList,
@@ -30,7 +30,7 @@ const Catalog = ({
               onSuggestionSelect={onSuggestionSelect}
             />
           </div>
-          {selectedCategory.id === "all" ? (
+          {selectedCategory.id === 'all' ? (
             <div>
               {categoriesList.map((category) => {
                 return (

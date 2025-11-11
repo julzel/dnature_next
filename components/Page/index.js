@@ -1,17 +1,17 @@
 'use client';
 
-import Script from "next/script";
+import Script from 'next/script';
 // local imports
 
 // components
-import Layout from "../Layout";
+import Layout from '../Layout';
 
 const Page = ({
-  title = "DNAture - Alimentación natural para mascotas",
-  description = "Buscas la mejor alimentación para tu mascota. Has llegado al lugar indicado. Snacks, dieta blanda, barf, raw. Todo en comida natural y saludable para mascotas",
-  imageUrl = "/public/images/hero3.jpg",
-  imageAlt = "Perro comiendo alimentación natural",
-  path = "/",
+  title = 'DNAture - Alimentación natural para mascotas',
+  description = 'Buscas la mejor alimentación para tu mascota. Has llegado al lugar indicado. Snacks, dieta blanda, barf, raw. Todo en comida natural y saludable para mascotas',
+  imageUrl = '/public/images/hero3.jpg',
+  imageAlt = 'Perro comiendo alimentación natural',
+  path = '/',
   children,
 }) => {
   return (

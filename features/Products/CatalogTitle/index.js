@@ -1,15 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 // local imports
 // styles
-import styles from './CatalogTitle.module.scss'
+import styles from './CatalogTitle.module.scss';
 
 const CatalogTitle = ({ text }) => {
-    return (
-        <h2 className={`title ${styles.categoryTitle}`}>
-            {text}
-        </h2>
-    )
-}
+  return <h2 className={`title ${styles.categoryTitle}`}>{text}</h2>;
+};
 
-export default CatalogTitle
+export default CatalogTitle;

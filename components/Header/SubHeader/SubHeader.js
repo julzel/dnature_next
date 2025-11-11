@@ -1,10 +1,10 @@
-import React from "react";
-import Link from "next/link";
-import { ShoppingCart } from "lucide-react";
+import React from 'react';
+import Link from 'next/link';
+import { ShoppingCart } from 'lucide-react';
 
 // local imports
 // styles
-import styles from "./SubHeader.module.scss";
+import styles from './SubHeader.module.scss';
 
 const SubHeader = ({ isLoggedIn = false, totalCartItems, totalPets }) => {
   return (
@@ -16,7 +16,7 @@ const SubHeader = ({ isLoggedIn = false, totalCartItems, totalPets }) => {
           </span>
         </Link>
       )} */}
-      <Link href={"/cart"} passHref>
+      <Link href={'/cart'} passHref>
         <span className={styles.link}>
           <ShoppingCart size={18} />
           {totalCartItems > 0 && (

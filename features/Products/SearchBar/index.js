@@ -1,9 +1,9 @@
-import React from "react";
-import Image from "next/image";
-import { Search } from "lucide-react";
+import React from 'react';
+import Image from 'next/image';
+import { Search } from 'lucide-react';
 
 // styles
-import styles from "./SearchBar.module.scss";
+import styles from './SearchBar.module.scss';
 
 const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
   const handleChange = (event) => {
@@ -44,16 +44,16 @@ const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
             <ul className={styles.resultsList}>
               {suggestions.map((product, idx) => {
                 const thumbnail = product.images?.[0];
-                const productKey = [product.sys?.id, product.urlSlug, idx].filter(Boolean).join('-');
+                const productKey = [product.sys?.id, product.urlSlug, idx]
+                  .filter(Boolean)
+                  .join('-');
 
                 return (
                   <li key={productKey} className={styles.resultItem}>
                     <button
                       type="button"
                       className={styles.suggestionButton}
-                      onClick={(event) =>
-                        handleSuggestionClick(event, product)
-                      }
+                      onClick={(event) => handleSuggestionClick(event, product)}
                     >
                       <span className={styles.thumbnail}>
                         {thumbnail ? (

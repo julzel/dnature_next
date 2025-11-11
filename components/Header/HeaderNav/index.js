@@ -18,12 +18,18 @@ const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
       <div className={styles.logoContainer}>
         <Link href={'/'} passHref>
           <span className={styles.logo}>
-            <Image src={logo} alt='DNAture Logo' width={75} height={58} loading='eager' />
+            <Image
+              src={logo}
+              alt="DNAture Logo"
+              width={75}
+              height={58}
+              loading="eager"
+            />
           </span>
         </Link>
       </div>
       {showIcon ? (
-        <span role='button' tabIndex='0' onClick={onMenuIconClick}>
+        <span role="button" tabIndex="0" onClick={onMenuIconClick}>
           <Menu size={24} />
         </span>
       ) : (

@@ -11,7 +11,8 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
       <div className={styles.heroAction}>
         <h2 className={styles.heroActionTitle}>
           DNAture Blog
-          <br /><span>Nutrición con conciencia</span>
+          <br />
+          <span>Nutrición con conciencia</span>
         </h2>
 
         <div className={styles.heroActionButtons}></div>

@@ -1,9 +1,9 @@
-import React from "react";
-import { Trash2 } from "lucide-react";
+import React from 'react';
+import { Trash2 } from 'lucide-react';
 
 // local imports
 // styles
-import styles from "./CartItemController.module.scss";
+import styles from './CartItemController.module.scss';
 
 const CartItemController = ({
   addOneItem,
@@ -14,13 +14,9 @@ const CartItemController = ({
   return (
     <div className={styles.cartItemController}>
       <div className={styles.badge}>
-        <button onClick={() => removeOneItem(item.id)}>
-          -
-        </button>
+        <button onClick={() => removeOneItem(item.id)}>-</button>
         {item.quantity}
-        <button onClick={() => addOneItem(item)}>
-          +
-        </button>
+        <button onClick={() => addOneItem(item)}>+</button>
       </div>
       <span
         role="button"

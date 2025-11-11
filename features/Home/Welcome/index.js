@@ -17,7 +17,7 @@ import items from './items';
 const Welcome = () => {
   return (
     <div className={styles.welcome}>
-      <h2 className='seo-hidden'>Alimentación DNAture</h2>
+      <h2 className="seo-hidden">Alimentación DNAture</h2>
 
       <div className={styles.welcomeItems}>
         <ul>

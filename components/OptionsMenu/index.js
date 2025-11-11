@@ -8,13 +8,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const getMenuDefaultOptions = (type) => {
   const defaultOptions = {
-    'simple-edit': [{
-      icon: <EditIcon />,
-      label: 'Editar',
-    }, {
-      icon: <DeleteIcon />,
-      label: 'Borrar',
-    }]
+    'simple-edit': [
+      {
+        icon: <EditIcon />,
+        label: 'Editar',
+      },
+      {
+        icon: <DeleteIcon />,
+        label: 'Borrar',
+      },
+    ],
   };
   return defaultOptions[type];
 };
@@ -46,11 +49,7 @@ const OptionsMenu = ({ type = 'simple-edit', editItem, deleteItem }) => {
       >
         <MoreVertIcon />
       </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {options.map((option) => (
           <MenuItem key={option} onClick={() => handleClose(option)}>
             {option.label} {option.icon}
@@ -59,6 +58,6 @@ const OptionsMenu = ({ type = 'simple-edit', editItem, deleteItem }) => {
       </Menu>
     </div>
   );
-}
+};
 
 export default OptionsMenu;

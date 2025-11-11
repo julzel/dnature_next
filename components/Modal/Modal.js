@@ -1,16 +1,16 @@
-import React from "react";
-import { X } from "lucide-react";
+import React from 'react';
+import { X } from 'lucide-react';
 
 // local imports
 // styles
-import styles from "./Modal.module.scss";
+import styles from './Modal.module.scss';
 
 const Modal = ({ children, closeModal, padding, fullScreen }) => {
   return (
     <div className={styles.modalContainer}>
       <div
-        className={`${styles.modal} ${padding ? styles.padding : ""} ${
-          fullScreen ? styles.fullScreen : ""
+        className={`${styles.modal} ${padding ? styles.padding : ''} ${
+          fullScreen ? styles.fullScreen : ''
         }`}
       >
         {closeModal && (

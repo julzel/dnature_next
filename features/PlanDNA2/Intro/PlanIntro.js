@@ -24,7 +24,7 @@ const PlanIntro = ({ handleStartClick }) => {
         fácil brindárselo!
       </p>
       <div>
-        <PlanButton text='¡Comencemos!' onClick={handleStartClick} />
+        <PlanButton text="¡Comencemos!" onClick={handleStartClick} />
       </div>
     </div>
   );

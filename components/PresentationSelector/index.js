@@ -4,23 +4,26 @@ import React, { useState, useEffect } from 'react';
 import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 export function convertObjectToArray(obj) {
-  return Object.keys(obj).map(key => ({
+  return Object.keys(obj).map((key) => ({
     size: key,
-    price: obj[key]
+    price: obj[key],
   }));
 }
 
-const PresentationSelector = ({ presentations, selectedPresentation, onPresentationSelect }) => {
+const PresentationSelector = ({
+  presentations,
+  selectedPresentation,
+  onPresentationSelect,
+}) => {
   const presentationArray = convertObjectToArray(presentations);
   const [selectedValue, setSelectedValue] = useState(presentationArray[0]);
 
   const handleChange = (event) => {
     const selectedSize = event.target.value;
-    const selected = presentationArray.find(p => p.size === selectedSize);
+    const selected = presentationArray.find((p) => p.size === selectedSize);
     setSelectedValue(selected);
     onPresentationSelect(selected); // Adjusted for clearer naming
   };
-
 
   useEffect(() => {
     if (selectedPresentation) {

@@ -10,7 +10,7 @@ const GoBack = ({ className }) => {
   const goBack = (event) => {
     event.preventDefault();
     router.back();
-  }
+  };
 
   return (
     <div className={className} onClick={goBack}>

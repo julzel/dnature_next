@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 @use '../../styles/_variables' as *;
 @use '../../styles/mixins' as *;
 
@@ -49,7 +49,6 @@
 }
 
 .blog-intro {
-  
   p {
     font-size: 18px;
     text-align: justify;
@@ -57,12 +56,10 @@
 }
 
 .blog-posts {
-
   &_link {
     &:active,
     &:hover {
       color: white;
     }
-
   }
 }

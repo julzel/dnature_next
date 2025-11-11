@@ -17,15 +17,15 @@ class ShoppingCart {
     this.tax = 0;
     this.discount = 0;
     this.client = {
-      firstName: "",
-      lastName: "",
+      firstName: '',
+      lastName: '',
       address: {
-        direccion: "",
-        provincia: "",
-        canton: "",
+        direccion: '',
+        provincia: '',
+        canton: '',
       },
-      contactPhoneNumber: "",
-      pets: []
+      contactPhoneNumber: '',
+      pets: [],
     };
   }
 }

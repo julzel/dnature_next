@@ -1,5 +1,5 @@
-import React from "react";
-import { MessageCircle } from "lucide-react";
+import React from 'react';
+import { MessageCircle } from 'lucide-react';
 
 // Reusable WhatsApp link wrapper
 // Props:
@@ -22,7 +22,7 @@ const WhatsAppLink = ({
   ...rest
 }) => {
   if (!phone) return null;
-  const sanitized = String(phone).replace(/[^0-9]/g, "");
+  const sanitized = String(phone).replace(/[^0-9]/g, '');
   const href = `https://wa.me/${sanitized}`;
   const content = children || display || formatPhoneForDisplay(sanitized);
   // We purposefully keep rel static when targetBlank so ESLint can verify the security tokens.
@@ -32,12 +32,12 @@ const WhatsAppLink = ({
     <a
       href={href}
       className={className}
-      {...(targetBlank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
+      {...(targetBlank ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      style={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}
       {...otherProps}
     >
       {(withIcon || iconOnly) && (
-        <span style={{ fontSize: "14px" }}>
+        <span style={{ fontSize: '14px' }}>
           <MessageCircle size={32} />
         </span>
       )}

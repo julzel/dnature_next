@@ -21,7 +21,12 @@ const BlogPostItem = ({ post }) => (
       <Typography color="white" variant="h6" gutterBottom>
         {post.title}
       </Typography>
-      <Typography textAlign="right" color="white" variant="subtitle2" gutterBottom>
+      <Typography
+        textAlign="right"
+        color="white"
+        variant="subtitle2"
+        gutterBottom
+      >
         {formatToLocaleDate(post.sys.publishedAt)}
       </Typography>
     </Box>

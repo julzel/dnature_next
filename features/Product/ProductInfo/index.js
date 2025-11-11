@@ -39,7 +39,7 @@ const ProductInfoContainer = ({ productDetail }) => {
     } else {
       removeOneItem(productDetail.sys.id);
     }
-  }
+  };
 
   const itemsInCart =
     hasPriceByUnit && selectedPresentation
@@ -51,9 +51,12 @@ const ProductInfoContainer = ({ productDetail }) => {
       const presentationArray = convertObjectToArray(
         productDetail.preciosPorUnidad
       );
-      const selectedPresentation = productDetail.productName.toLowerCase() !== 'dnature para gato'
-        ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
-        : (presentationArray.length > 1 ? presentationArray[1] : presentationArray[0] || null);
+      const selectedPresentation =
+        productDetail.productName.toLowerCase() !== 'dnature para gato'
+          ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
+          : presentationArray.length > 1
+            ? presentationArray[1]
+            : presentationArray[0] || null;
       setSelectedPresentation(selectedPresentation);
     }
   }, [hasPriceByUnit, productDetail]);
