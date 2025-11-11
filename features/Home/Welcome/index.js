@@ -8,9 +8,6 @@ import AnimationBox from '../../../components/AnimationBox';
 // styles
 import styles from './Welcome.module.scss';
 
-// images
-import rawFoodPlate from '../../../public/images/our-ingredients-plate.png';
-
 // data
 import items from './items';
 
