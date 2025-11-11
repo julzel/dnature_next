@@ -32,7 +32,13 @@ const slides = costumers.map((costumer, i) => {
       </div>
       {costumer.thumbnail && (
         <div className={styles.costumerThumbnail}>
-          <Image src={costumer.thumbnail.image} alt={costumer.thumbnail.alt} />
+          <Image
+            src={costumer.thumbnail.image}
+            alt={costumer.thumbnail.alt}
+            width={250}
+            height={250}
+            style={{ objectFit: 'cover' }}
+          />
         </div>
       )}
     </div>
