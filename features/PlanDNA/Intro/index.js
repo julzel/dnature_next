@@ -15,7 +15,7 @@ const Intro = ({ start }) => {
           mascota y poder recomendarte el mejor plan para ella.
         </Typography>
       </div>
-      
+
       <Box
         display="flex"
         justifyContent="center"

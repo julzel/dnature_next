@@ -9,11 +9,27 @@ import {
   CardActions,
   Typography,
 } from '@mui/material';
-import { cyan, pink, purple, teal, blue, green, yellow } from '@mui/material/colors';
+import {
+  cyan,
+  pink,
+  purple,
+  teal,
+  blue,
+  green,
+  yellow,
+} from '@mui/material/colors';
 import OptionsMenu from '../OptionsMenu';
 import petContentDictionary from './petContentDictionary';
 
-const colors = [cyan[500], pink[500], purple[500], teal[500], blue[500], green[500], yellow[500]];
+const colors = [
+  cyan[500],
+  pink[500],
+  purple[500],
+  teal[500],
+  blue[500],
+  green[500],
+  yellow[500],
+];
 
 const PetDataDisplay = ({ petInfo }) => {
   const rows = [
@@ -77,7 +93,7 @@ const PetCard = ({ petInfo, editPet, deletePet, colorIndex }) => {
           '& .MuiCardHeader-subheader': {
             fontSize: 16,
             color: 'white',
-          }
+          },
         }}
         avatar={
           <Avatar

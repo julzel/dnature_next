@@ -1,22 +1,21 @@
-import React from "react";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { X } from 'lucide-react';
 
 // local imports
 // styles
-import styles from "./Modal.module.scss";
+import styles from './Modal.module.scss';
 
 const Modal = ({ children, closeModal, padding, fullScreen }) => {
   return (
     <div className={styles.modalContainer}>
       <div
-        className={`${styles.modal} ${padding ? styles.padding : ""} ${
-          fullScreen ? styles.fullScreen : ""
+        className={`${styles.modal} ${padding ? styles.padding : ''} ${
+          fullScreen ? styles.fullScreen : ''
         }`}
       >
         {closeModal && (
           <button className={styles.close} onClick={closeModal}>
-            <FontAwesomeIcon icon={faXmark} />
+            <X size={24} />
           </button>
         )}
         {children}

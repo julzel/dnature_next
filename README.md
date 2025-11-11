@@ -33,16 +33,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
 ## DNAture own documentation
 
 colors
 
 Turquesa oscuro: #07bbc7
- Turquesa claro: #5dd8db
- Naranja oscuro: #ff6f00
-  Naranja claro: #ffa364
-   Verde oscuro: #a8b247
-    Verde claro: #dbe077
-     Gris claro: #bcbec0
-
+Turquesa claro: #5dd8db
+Naranja oscuro: #ff6f00
+Naranja claro: #ffa364
+Verde oscuro: #a8b247
+Verde claro: #dbe077
+Gris claro: #bcbec0

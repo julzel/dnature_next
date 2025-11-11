@@ -14,12 +14,8 @@ import { downloadScreenShot, captureElementScreenshot } from '../../util';
 
 const CartContainer = () => {
   // Shopping cart context
-  const {
-    cart,
-    updateCartClient,
-    storeCartInLocalStorage,
-  } = useCartContext();
-  
+  const { cart, updateCartClient, storeCartInLocalStorage } = useCartContext();
+
   // State management
   const [showPurchaseOrder, setShowPurchaseOrder] = useState(false);
   const [requestClientInfo, setRequestClientInfo] = useState(false);

@@ -79,7 +79,7 @@ const PlanDNA = () => {
 
   return (
     <div className={styles['plan-dna']}>
-      {step === 0  && <Intro start={() => setStep(1)} />}
+      {step === 0 && <Intro start={() => setStep(1)} />}
       {step === 1 && (
         <PetData
           initialPetInfo={petToEdit}
@@ -88,14 +88,14 @@ const PlanDNA = () => {
         />
       )}
       <div>
-      {(step === 2) && (
-        <PetDataResult
-          onEdit={onEdit}
-          onDeletePet={onDeletePet}
-          petData={client.pets}
-          addAnotherPet={addAnotherPet}
-        />
-      )}
+        {step === 2 && (
+          <PetDataResult
+            onEdit={onEdit}
+            onDeletePet={onDeletePet}
+            petData={client.pets}
+            addAnotherPet={addAnotherPet}
+          />
+        )}
       </div>
     </div>
   );

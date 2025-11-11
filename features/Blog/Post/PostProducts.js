@@ -8,7 +8,7 @@ const ProductItem = ({ product }) => (
   <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1 }}>
     <Card
       // elevation={0}
-      variant='outlined'
+      variant="outlined"
       sx={{
         bgcolor: grey[50],
         cursor: 'pointer',
@@ -20,7 +20,7 @@ const ProductItem = ({ product }) => (
         },
         ':hover': {
           bgcolor: teal[50],
-        }
+        },
       }}
     >
       <Link
@@ -44,7 +44,11 @@ const ProductItem = ({ product }) => (
 
           {/* Name */}
           <Grid item xs={8} md={8}>
-            <Typography sx={{ fontWeight: 700 }} variant="subtitle2" px={[1, 2]}>
+            <Typography
+              sx={{ fontWeight: 700 }}
+              variant="subtitle2"
+              px={[1, 2]}
+            >
               {product.productName}
             </Typography>
           </Grid>

@@ -1,5 +1,5 @@
-@use "../../../styles/_variables" as *;
-@use "../../../styles/_mixins" as *;
+@use '../../../styles/_variables' as *;
+@use '../../../styles/_mixins' as *;
 
 .catalogItem {
   cursor: pointer;
@@ -9,7 +9,7 @@
   padding-right: 16px;
   position: relative;
 
-  @include mdq("md") {
+  @include mdq('md') {
     flex-direction: column;
   }
 
@@ -17,7 +17,7 @@
     width: 150px;
     flex-shrink: 0;
 
-    @include mdq("md") {
+    @include mdq('md') {
       width: 100%;
       padding: 8px 42px;
     }
@@ -28,7 +28,7 @@
     text-align: right;
     padding-left: 16px;
 
-    @include mdq("md") {
+    @include mdq('md') {
       text-align: center;
     }
 
@@ -43,7 +43,6 @@
     }
 
     p {
-
       span {
         font-family: $bold;
       }

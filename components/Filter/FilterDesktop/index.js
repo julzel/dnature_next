@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
 // local imports
 // styles
-import styles from "./FilterDesktop.module.scss";
+import styles from './FilterDesktop.module.scss';
 
 const FilterDesktop = ({ options, selected }) => (
   <div className={styles.filter}>
@@ -12,7 +12,7 @@ const FilterDesktop = ({ options, selected }) => (
         return (
           <li
             key={`filter-by-${item.id}`}
-            className={selected.id === item.id ? styles.active : ""}
+            className={selected.id === item.id ? styles.active : ''}
           >
             <Link
               key={`filter-by-${item.id}`}

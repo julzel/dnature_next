@@ -1,16 +1,16 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 // local imports
 //styles
-import styles from "./Products.module.scss";
+import styles from './Products.module.scss';
 
 // data
-import AnimationBox from "../../../components/AnimationBox";
+import AnimationBox from '../../../components/AnimationBox';
 
 // components
-import ProductButton from "./ProductButton";
+import ProductButton from './ProductButton';
 
 const Products = ({ categories }) => {
   return (
@@ -31,8 +31,12 @@ const Products = ({ categories }) => {
                           sizes="(max-width: 768px) 100vw, 500px"
                           width={500}
                           height={500}
-                          style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
-                          loading="eager"
+                          style={{
+                            objectFit: 'contain',
+                            width: '100%',
+                            height: 'auto',
+                          }}
+                          loading="lazy"
                         />
                       </div>
                     </AnimationBox>

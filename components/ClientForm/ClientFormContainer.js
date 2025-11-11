@@ -1,37 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 // local imports
 // components
-import ClientForm from "./ClientForm";
+import ClientForm from './ClientForm';
 
 // classes
-import { Client } from "../../models/client";
+import { Client } from '../../models/client';
 
-import { storage } from "../../util";
+import { storage } from '../../util';
 
 const inputFields = [
-  { name: "firstName", label: "Nombre", isRequired: true, type: "text" },
-  { name: "lastName", label: "Apellidos", isRequired: true, type: "text" },
+  { name: 'firstName', label: 'Nombre', isRequired: true, type: 'text' },
+  { name: 'lastName', label: 'Apellidos', isRequired: true, type: 'text' },
   {
-    name: "email",
-    label: "Correo electrónico",
+    name: 'email',
+    label: 'Correo electrónico',
     isRequired: true,
-    type: "email",
+    type: 'email',
   },
-  { name: "provincia", label: "Provincia", isRequired: true, type: "text" },
-  { name: "canton", label: "Cantón", isRequired: true, type: "text" },
+  { name: 'provincia', label: 'Provincia', isRequired: true, type: 'text' },
+  { name: 'canton', label: 'Cantón', isRequired: true, type: 'text' },
   {
-    name: "direccion",
-    label: "Dirección exacta",
+    name: 'direccion',
+    label: 'Dirección exacta',
     isRequired: true,
-    type: "text",
+    type: 'text',
   },
   {
-    name: "contactPhoneNumber",
-    label: "Teléfono de contacto",
+    name: 'contactPhoneNumber',
+    label: 'Teléfono de contacto',
     isRequired: true,
-    type: "text",
-    pattern: "^(?:\\d{4}-\\d{4}|\\d{8})$", // 8 digits or 4 digits + dash + 4 digits
+    type: 'text',
+    pattern: '^(?:\\d{4}-\\d{4}|\\d{8})$', // 8 digits or 4 digits + dash + 4 digits
     maxLength: 9,
   },
 ];
@@ -39,7 +39,7 @@ const inputFields = [
 const ClientFormContainer = ({ onSubmit, className }) => {
   const [rememberClient, setRememberClient] = useState(true);
   const [client, setClient] = useState(
-    storage.getItem("client") || new Client()
+    storage.getItem('client') || new Client()
   );
   const [interactedFields, setInteractedFields] = useState({});
 
@@ -50,7 +50,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (["direccion", "provincia", "canton"].includes(name)) {
+    if (['direccion', 'provincia', 'canton'].includes(name)) {
       setClient((prevClient) => ({
         ...prevClient,
         address: { ...prevClient.address, [name]: value },
@@ -66,7 +66,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   };
 
   const isInputValid = (value, isRequired) =>
-    isRequired ? value?.trim() !== "" : true;
+    isRequired ? value?.trim() !== '' : true;
 
   const isFormValid = () => {
     // Check if all required fields have values
@@ -79,14 +79,14 @@ const ClientFormContainer = ({ onSubmit, className }) => {
     e.preventDefault();
     // Perform necessary actions with the client information
     if (rememberClient) {
-      storage.setItem("client", client);
+      storage.setItem('client', client);
     }
     onSubmit(client);
   };
 
   useEffect(() => {
     if (!rememberClient) {
-      storage.removeItem("client");
+      storage.removeItem('client');
     }
   }, [rememberClient]);
 

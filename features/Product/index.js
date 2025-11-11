@@ -1,29 +1,29 @@
 'use client';
 
-import React, { useEffect, useState, useCallback, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState, useCallback, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 // local imports
 // services
-import { getProduct } from "../../services/products";
+import { getProduct } from '../../services/products';
 
 // components
-import Loading from "../../components/Loading";
-import ProductItem from "./ProductItem/ProductItem";
+import Loading from '../../components/Loading';
+import ProductItem from './ProductItem/ProductItem';
 
-const NEW_LINE = "<br />";
-const SPAN = "</span>";
+const NEW_LINE = '<br />';
+const SPAN = '</span>';
 
 const formatDescription = (description) => {
   if (description) {
     return description
-      .replaceAll("-", `${NEW_LINE}- `)
-      .replaceAll("_", "<span>")
-      .replaceAll("%", `%${SPAN}${NEW_LINE}`)
-      .replace("@", `${NEW_LINE}${NEW_LINE}<div>`)
-      .replace("@", "<div>");
+      .replaceAll('-', `${NEW_LINE}- `)
+      .replaceAll('_', '<span>')
+      .replaceAll('%', `%${SPAN}${NEW_LINE}`)
+      .replace('@', `${NEW_LINE}${NEW_LINE}<div>`)
+      .replace('@', '<div>');
   }
-  return "";
+  return '';
 };
 
 const ProductItemContainer = () => {
@@ -52,9 +52,7 @@ const ProductItemContainer = () => {
   if (loading) {
     return <Loading />;
   }
-  return (
-    <ProductItem productDetail={productDetail} />
-  );
+  return <ProductItem productDetail={productDetail} />;
 };
 
 export default function Product() {

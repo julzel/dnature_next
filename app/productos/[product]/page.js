@@ -3,7 +3,10 @@ import Page from '../../../components/Page';
 import Product from '../../../features/Product';
 import { getProduct } from '../../../services/products';
 import JsonLd from '../../../components/JsonLd';
-import { generateProductSchema, generateBreadcrumbSchema } from '../../../lib/seo';
+import {
+  generateProductSchema,
+  generateBreadcrumbSchema,
+} from '../../../lib/seo';
 
 export async function generateMetadata({ params, searchParams }) {
   try {
@@ -11,7 +14,7 @@ export async function generateMetadata({ params, searchParams }) {
     const { product: productSlug } = resolvedParams;
     const resolvedSearchParams = await searchParams;
     const productId = resolvedSearchParams?.id;
-    
+
     // Fetch product data for metadata
     let product = null;
     if (productId) {
@@ -23,7 +26,8 @@ export async function generateMetadata({ params, searchParams }) {
     }
 
     const title = product?.productName || 'Detalle del producto';
-    const description = product?.description?.replace(/<[^>]*>/g, '').substring(0, 160) || 
+    const description =
+      product?.description?.replace(/<[^>]*>/g, '').substring(0, 160) ||
       'Descubre los detalles de nuestros productos de nutrición personalizada para mascotas.';
     const image = product?.images?.[0]?.url || '/images/dnatureproducts.jpg';
 
@@ -84,11 +88,12 @@ export default async function ProductDetailPage({ params, searchParams }) {
 
   // Generate breadcrumb with proper fallback
   // Convert slug to readable format if product name is not available
-  const productName = product?.productName ||
-    (productSlug
+  const productName =
+    product?.productName ||
+    productSlug
       ?.split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ')) ||
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ') ||
     'Producto';
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -99,9 +104,7 @@ export default async function ProductDetailPage({ params, searchParams }) {
 
   return (
     <>
-      {productSchema && (
-        <JsonLd data={productSchema} />
-      )}
+      {productSchema && <JsonLd data={productSchema} />}
       <JsonLd data={breadcrumbSchema} />
       <Page title="DNAture - Detalle">
         <Product />

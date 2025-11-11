@@ -26,7 +26,7 @@ const HeroContainer = () => {
   const handleComprarClick = (e) => {
     e.preventDefault();
     router.push('/productos');
-  }
+  };
 
   return (
     <Hero

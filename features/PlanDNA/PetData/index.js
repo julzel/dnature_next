@@ -20,7 +20,9 @@ const petDefaultInfo = {
 
 const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
   const [currentStep, setCurrentStep] = React.useState(0);
-  const [petInfo, setPetInfo] = React.useState(initialPetInfo || petDefaultInfo);
+  const [petInfo, setPetInfo] = React.useState(
+    initialPetInfo || petDefaultInfo
+  );
 
   const handleInfoChange = (field) => (value) => {
     setPetInfo((prevInfo) => ({ ...prevInfo, [field]: value }));

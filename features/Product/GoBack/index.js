@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { ChevronLeft } from 'lucide-react';
 
 const GoBack = ({ className }) => {
   const router = useRouter();
@@ -11,14 +10,12 @@ const GoBack = ({ className }) => {
   const goBack = (event) => {
     event.preventDefault();
     router.back();
-  }
+  };
 
   return (
     <div className={className} onClick={goBack}>
-      <span>
-        <FontAwesomeIcon icon={faCircleLeft} size='1x' />
-        &nbsp; Volver
-      </span>
+      <ChevronLeft size={24} />
+      <span>Volver</span>
     </div>
   );
 };

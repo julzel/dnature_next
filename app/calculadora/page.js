@@ -6,7 +6,8 @@ import { generateBreadcrumbSchema } from '../../lib/seo';
 
 export const metadata = {
   title: 'Calculadora de porciones',
-  description: 'Calcula la porción ideal de comida para tu mascota según su peso, edad y nivel de actividad. Herramienta gratuita de DNAture.',
+  description:
+    'Calcula la porción ideal de comida para tu mascota según su peso, edad y nivel de actividad. Herramienta gratuita de DNAture.',
   openGraph: {
     title: 'Calculadora de porciones para mascotas | DNAture',
     description: 'Calcula la porción ideal de comida para tu mascota',

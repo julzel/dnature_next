@@ -1,18 +1,17 @@
-import Link from "next/link";
-import React from "react";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import WhatsAppLink from "../../WhatsAppLink";
+import Link from 'next/link';
+import React from 'react';
+import { ChevronRight } from 'lucide-react';
+import WhatsAppLink from '../../WhatsAppLink';
 
 // local imports
-import styles from "./DropdownMenu.module.scss";
+import styles from './DropdownMenu.module.scss';
 
 const DropdownMenu = ({ items, show }) => {
   return (
     <div
       className={styles.dropdown}
       style={{
-        transform: show ? "translateX(0)" : "translateX(-100%)",
+        transform: show ? 'translateX(0)' : 'translateX(-100%)',
       }}
     >
       <ul className={styles.dropdownMenu}>
@@ -21,7 +20,7 @@ const DropdownMenu = ({ items, show }) => {
             <Link href={link.href} passHref>
               <span className={styles.itemLink}>
                 <span>{link.label}</span>
-                <FontAwesomeIcon icon={faChevronRight} />
+                <ChevronRight size={16} />
               </span>
             </Link>
           </li>

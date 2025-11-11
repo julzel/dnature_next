@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useState } from 'react';
+import { Box, Typography } from '@mui/material';
 
-import styles from "./Blog.module.scss";
+import styles from './Blog.module.scss';
 
 const BlogIntro = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -13,7 +13,7 @@ const BlogIntro = () => {
   };
 
   return (
-    <Box my={[4, 8]} className={styles["blog-intro"]}>
+    <Box my={[4, 8]} className={styles['blog-intro']}>
       {/* <Typography mb={[2, 4]} component="h2" variant="h2" gutterBottom>
         Este es un espacio dedicado a ofrecerte información valiosa y confiable
         sobre la alimentación natural y tenencia responsable de tus compañeros

@@ -112,7 +112,7 @@ const formatProductData = (product) => {
 };
 
 // Wrap getProduct with React cache to deduplicate requests
-// This ensures that if the same product is fetched multiple times 
+// This ensures that if the same product is fetched multiple times
 // (e.g., in generateMetadata and the page component), only one request is made
 const getProduct = cache(async (productId) => {
   try {

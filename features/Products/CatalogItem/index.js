@@ -61,13 +61,16 @@ const CatalogItem = ({ product }) => {
   useEffect(() => {
     if (hasPriceByUnit) {
       const presentationArray = convertObjectToArray(preciosPorUnidad);
-      const selectedPresentation = productName.toLowerCase() !== 'dnature para gato'
-        ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
-        : (presentationArray.length > 1 ? presentationArray[1] : presentationArray[0] || null);
+      const selectedPresentation =
+        productName.toLowerCase() !== 'dnature para gato'
+          ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
+          : presentationArray.length > 1
+            ? presentationArray[1]
+            : presentationArray[0] || null;
       setSelectedPresentation(selectedPresentation);
     }
   }, [hasPriceByUnit, preciosPorUnidad, productName]);
-  
+
   const itemsInCart =
     hasPriceByUnit && selectedPresentation
       ? getItemsInCart(`${id}-${selectedPresentation.size}`)
@@ -112,7 +115,7 @@ const CatalogItem = ({ product }) => {
           )}
 
           {hasPriceByUnit && (
-            <Box my={2} width='100%'>
+            <Box my={2} width="100%">
               <PresentationSelector
                 presentations={preciosPorUnidad}
                 selectedPresentation={selectedPresentation}

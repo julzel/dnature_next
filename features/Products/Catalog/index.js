@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState, useCallback, useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 
 // local imports
 // components
-import Catalog from "./Catalog";
+import Catalog from './Catalog';
 
 const defaultCategory = {
-  label: "Todos los productos",
-  id: "all",
+  label: 'Todos los productos',
+  id: 'all',
 };
 
 const CatalogContainer = ({ queryCategory, products }) => {
@@ -19,7 +19,7 @@ const CatalogContainer = ({ queryCategory, products }) => {
     queryCategory ? queryCategory : defaultCategory
   );
   const [filterOptions, setFilterOptions] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const allProducts = useMemo(() => {
     return Object.values(products || {}).reduce((acc, category) => {
@@ -45,7 +45,7 @@ const CatalogContainer = ({ queryCategory, products }) => {
 
   const handleSelectedCategoryChange = useCallback(
     (categoryId) => {
-      if (categoryId !== "all") {
+      if (categoryId !== 'all') {
         setSelectedCategory(categoriesList.find((c) => c.id === categoryId));
       } else {
         setSelectedCategory(defaultCategory);
@@ -77,7 +77,7 @@ const CatalogContainer = ({ queryCategory, products }) => {
 
   const handleSuggestionSelect = useCallback(
     (product) => {
-      setSearchQuery("");
+      setSearchQuery('');
       const productId = product.sys?.id || product.urlSlug;
       router.push(`/productos/${product.urlSlug}?id=${productId}`);
     },

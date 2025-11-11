@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
 // local imports
 // styles
-import styles from "./CartPurchaseOrder.module.scss";
+import styles from './CartPurchaseOrder.module.scss';
 
 // components
-import PurchaseOrderContainer from "../PurchaseOrder";
-import Button from "../../../components/Button";
+import PurchaseOrderContainer from '../PurchaseOrder';
+import Button from '../../../components/Button';
 
 const CartPurchaseOrder = ({ onPurchaseCancel, onPurchaseConfirm }) => {
   return (

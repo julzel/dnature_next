@@ -27,7 +27,7 @@ const InputNumber = ({
     <div className={`${className} ${errorClassName}`}>
       <label htmlFor={id}>{label}</label>
       <input
-        type='number'
+        type="number"
         id={id}
         name={name}
         value={value}

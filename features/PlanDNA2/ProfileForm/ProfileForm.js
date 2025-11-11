@@ -35,7 +35,7 @@ const ProfileForm = ({
             <WeightInput onChange={handleInputChange} />
             <Action
               action={handleNext}
-              text='Siguiente'
+              text="Siguiente"
               disabled={!profile.name || !profile.age || !profile.weight}
               goBack={handleStartOverClick}
             />
@@ -53,7 +53,7 @@ const ProfileForm = ({
             />
             <Action
               action={handleNext}
-              text='Siguiente'
+              text="Siguiente"
               disabled={!profile.size}
             />
           </div>
@@ -66,7 +66,7 @@ const ProfileForm = ({
             <ContextureInput onChange={handleInputChange} />
             <Action
               action={handleNext}
-              text='Siguiente'
+              text="Siguiente"
               disabled={!profile.activity || !profile.contexture}
             />
           </div>
@@ -89,13 +89,9 @@ const ProfileForm = ({
       default:
         return <div>Finished!</div>;
     }
-  }
+  };
 
-  return (
-    <div className={styles.stepSection}>
-      {getStep(step)}
-    </div>
-  )
+  return <div className={styles.stepSection}>{getStep(step)}</div>;
 };
 
 export default ProfileForm;

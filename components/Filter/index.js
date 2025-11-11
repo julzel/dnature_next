@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 // local imports
 // components
-import FilterDesktop from "./FilterDesktop";
-import FilterMobile from "./FilterMobile";
+import FilterDesktop from './FilterDesktop';
+import FilterMobile from './FilterMobile';
 
 const Filter = (props) => {
   return (

@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 // local imports
 // components
-import CartItemController from "./CartItemController";
+import CartItemController from './CartItemController';
 
 // contexts
-import { useCartContext } from "../../../contexts/shopping-cart-context";
+import { useCartContext } from '../../../contexts/shopping-cart-context';
 
 const CartItemControllerContainer = ({ item }) => {
   const { addOneItem, removeOneItem, removeAllItemsOfAKind } = useCartContext();

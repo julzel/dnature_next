@@ -1,22 +1,22 @@
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://dnaturefood.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://dnaturefood.com',
   generateRobotsTxt: true,
-  changefreq: "daily",
+  changefreq: 'daily',
   priority: 0.7,
   sitemapSize: 5000,
-  exclude: ["/login", "/cart"],
+  exclude: ['/login', '/cart'],
   robotsTxtOptions: {
     additionalSitemaps: [],
   },
   additionalPaths: async (config) => {
     return [
       {
-        loc: "/",
+        loc: '/',
         priority: 1.0,
         changefreq: config.changefreq,
       },
       {
-        loc: "/calculadora",
+        loc: '/calculadora',
         priority: 0.5,
         changefreq: config.changefreq,
       },

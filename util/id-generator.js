@@ -1,7 +1,7 @@
-const crypto = require("crypto");
+const crypto = require('crypto');
 
 const generateHashFromEmail = (email) => {
-  const hash = crypto.createHash("sha256").update(email).digest("hex");
+  const hash = crypto.createHash('sha256').update(email).digest('hex');
   const hash_4_digits = parseInt(hash.substring(0, 4), 16);
   return hash_4_digits;
 };

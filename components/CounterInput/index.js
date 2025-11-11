@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const CounterInput = ({
   id,
@@ -13,7 +13,7 @@ const CounterInput = ({
   const [inputValue, setInputValue] = useState(parseInt(value, 10));
 
   const handleInputChange = (event) => {
-    const newValue = parseInt(event.target.value.replace(/\D/g, ""), 10) || 1;
+    const newValue = parseInt(event.target.value.replace(/\D/g, ''), 10) || 1;
     setInputValue(newValue);
     onChange(newValue);
   };
@@ -33,10 +33,10 @@ const CounterInput = ({
   const isMaxValueExceeded = parseInt(inputValue, 10) > maxValue;
 
   return (
-    <div className={classes ? classes.counter : ""}>
+    <div className={classes ? classes.counter : ''}>
       <div>
         {controls && (
-          <button onClick={decreaseValue} disabled={inputValue === "1"}>
+          <button onClick={decreaseValue} disabled={inputValue === '1'}>
             -
           </button>
         )}
@@ -55,7 +55,9 @@ const CounterInput = ({
           </button>
         )}
       </div>
-      {errorMessageText && isMaxValueExceeded && <div style={{ padding: '4px 8px 0'}}>{errorMessageText}</div>}
+      {errorMessageText && isMaxValueExceeded && (
+        <div style={{ padding: '4px 8px 0' }}>{errorMessageText}</div>
+      )}
     </div>
   );
 };

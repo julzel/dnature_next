@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { Menu } from 'lucide-react';
 
 // local imports
 
@@ -19,13 +18,19 @@ const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
       <div className={styles.logoContainer}>
         <Link href={'/'} passHref>
           <span className={styles.logo}>
-            <Image src={logo} alt='DNAture Logo' width={75} height={58} loading='eager' />
+            <Image
+              src={logo}
+              alt="DNAture Logo"
+              width={75}
+              height={58}
+              loading="eager"
+            />
           </span>
         </Link>
       </div>
       {showIcon ? (
-        <span role='button' tabIndex='0' onClick={onMenuIconClick}>
-          <FontAwesomeIcon icon={faBars} size='lg' />
+        <span role="button" tabIndex="0" onClick={onMenuIconClick}>
+          <Menu size={24} />
         </span>
       ) : (
         <NavigationBar items={navigationItems} />

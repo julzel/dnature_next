@@ -1,4 +1,4 @@
-const isServer = typeof window === "undefined";
+const isServer = typeof window === 'undefined';
 
 const storage = {
   setItem: (key, value, isSession = false) => {

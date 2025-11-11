@@ -1,4 +1,4 @@
-import { fetchFromContentful } from "./util";
+import { fetchFromContentful } from './util';
 
 const categoriesQuery = `
 {

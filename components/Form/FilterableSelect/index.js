@@ -12,7 +12,7 @@ const FilterableSelect = ({ label, options, onChange, className }) => {
     <div className={className}>
       <label>{label}</label>
       <input
-        type='text'
+        type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onFocus={() => setIsOpen(true)}

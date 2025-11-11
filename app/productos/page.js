@@ -7,10 +7,12 @@ import { generateBreadcrumbSchema } from '../../lib/seo';
 
 export const metadata = {
   title: 'Nuestros productos',
-  description: 'Descubre nuestra línea completa de alimentos balanceados para perros. Nutrición personalizada basada en ADN con ingredientes de alta calidad.',
+  description:
+    'Descubre nuestra línea completa de alimentos balanceados para perros. Nutrición personalizada basada en ADN con ingredientes de alta calidad.',
   openGraph: {
     title: 'Nuestros productos | DNAture',
-    description: 'Alimentos balanceados, snacks, suplementos y proteínas naturales para tu mascota',
+    description:
+      'Alimentos balanceados, snacks, suplementos y proteínas naturales para tu mascota',
     images: [
       {
         url: '/images/dnatureproducts.jpg',

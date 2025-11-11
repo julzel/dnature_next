@@ -22,8 +22,8 @@ const slides = costumers.map((costumer, i) => {
         {costumer.socialMedia && (
           <a
             href={costumer.socialMedia.link}
-            target='_blank'
-            rel='noreferrer'
+            target="_blank"
+            rel="noreferrer"
             className={styles.costumerContentSocialMedia}
           >
             {costumer.socialMedia.user}

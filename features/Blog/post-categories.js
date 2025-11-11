@@ -1,4 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  Heart,
+  Bone,
+  Signpost,
+  PawPrint,
+  Users,
+  HelpCircle,
+} from 'lucide-react';
 import {
   lightBlue,
   lime,
@@ -7,27 +14,22 @@ import {
   cyan,
   purple,
 } from '@mui/material/colors';
-import {
-  faBone,
-  faHeartbeat,
-  faSignsPost,
-  faPaw,
-  faPeopleRoof,
-  faCircleQuestion,
-} from '@fortawesome/free-solid-svg-icons';
 
 const postCategories = {
   salud: {
     color: lightBlue[800],
-    icon: <FontAwesomeIcon size='xl' icon={faHeartbeat} color='white' />,
+    icon: <Heart size={24} color="white" />,
   },
-  nutrición: { color: pink[800], icon: <FontAwesomeIcon size='xl' icon={faBone} color='white' /> },
-  entorno: { color: lime[800], icon: <FontAwesomeIcon size='xl' icon={faSignsPost} color='white' /> },
-  comportamiento: { color: teal[800], icon: <FontAwesomeIcon size='xl' icon={faPaw} color='white' /> },
-  tenencia: { color: cyan[800], icon: <FontAwesomeIcon size='xl' icon={faPeopleRoof} color='white' /> },
+  nutrición: { color: pink[800], icon: <Bone size={24} color="white" /> },
+  entorno: { color: lime[800], icon: <Signpost size={24} color="white" /> },
+  comportamiento: {
+    color: teal[800],
+    icon: <PawPrint size={24} color="white" />,
+  },
+  tenencia: { color: cyan[800], icon: <Users size={24} color="white" /> },
   otro: {
     color: purple[800],
-    icon: <FontAwesomeIcon size='xl' icon={faCircleQuestion} />,
+    icon: <HelpCircle size={24} />,
   },
 };
 
