@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+import { use, useCallback, useEffect, useState } from 'react';
 
 // local imports
 // components
@@ -45,16 +46,19 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   );
   const [interactedFields, setInteractedFields] = useState({});
 
-  const handleRememberToggle = () => {
+  const handleRememberToggle = useCallback(() => {
     setRememberClient((prevRememberClient) => !prevRememberClient);
-  };
+  }, []);
 
-  const getFieldValue = (data, fieldName) =>
-    addressFields.includes(fieldName)
-      ? data.address?.[fieldName] ?? ''
-      : data[fieldName] ?? '';
+  const getFieldValue = useCallback(
+    (data, fieldName) =>
+      addressFields.includes(fieldName)
+        ? data.address?.[fieldName] ?? ''
+        : data[fieldName] ?? '',
+    [addressFields]
+  );
 
-  const handleChange = (e) => {
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
 
     if (addressFields.includes(name)) {
@@ -65,30 +69,35 @@ const ClientFormContainer = ({ onSubmit, className }) => {
     } else {
       setClient((prevClient) => ({ ...prevClient, [name]: value }));
     }
-  };
+  }, []);
 
-  const handleBlur = (e) => {
+  const handleBlur = useCallback((e) => {
     const { name } = e.target;
     setInteractedFields((prev) => ({ ...prev, [name]: true }));
-  };
+  }, []);
 
-  const isInputValid = (value, isRequired) =>
-    isRequired ? value?.trim() !== '' : true;
+  const isInputValid = useCallback(
+    (value, isRequired) => (isRequired ? value?.trim() !== '' : true),
+    []
+  );
 
-  const isFormValid = () => {
+  const isFormValid = useCallback(() => {
     return inputFields.every((field) =>
       isInputValid(getFieldValue(client, field.name), field.isRequired)
     );
-  };
+  }, [client, isInputValid]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform necessary actions with the client information
-    if (rememberClient) {
-      storage.setItem('client', client);
-    }
-    onSubmit(client);
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      // Perform necessary actions with the client information
+      if (rememberClient) {
+        storage.setItem('client', client);
+      }
+      onSubmit(client);
+    },
+    [client, rememberClient, onSubmit]
+  );
 
   useEffect(() => {
     if (!rememberClient) {

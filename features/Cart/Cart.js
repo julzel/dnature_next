@@ -10,7 +10,6 @@ import CartActionsContainer from './CartActions';
 import CartItemsContainer from './CartItems';
 import CartNotification from './CartNotification';
 import CartHistory from './CartHistory';
-import ModalContainer from '../../components/Modal';
 import PurchaseOrderContainer from './PurchaseOrder';
 import ClientFormContainer from '../../components/ClientForm/ClientFormContainer';
 
@@ -43,28 +42,18 @@ const Cart = ({
     <CartHistory />
 
     {requestClientInfo && (
-      <ModalContainer
-        closeModal={closeClientInfoModal}
-        fullScreen={window.innerWidth < 640}
-      >
-        <ClientFormContainer
-          onSubmit={onClientInfoSubmit}
-          className={styles.cartClientForm}
-        />
-      </ModalContainer>
+      <ClientFormContainer
+        onSubmit={onClientInfoSubmit}
+        className={styles.cartClientForm}
+      />
     )}
 
     {showPurchaseOrder && !displayInfoModal && (
       <>
-        <ModalContainer
-          closeModal={onPurchaseCancel}
-          fullScreen={window.innerWidth < 640}
-        >
-          <CartPurchaseOrderContainer
-            onPurchaseCancel={onPurchaseCancel}
-            onPurchaseConfirm={onPurchaseConfirm}
-          />
-        </ModalContainer>
+        <CartPurchaseOrderContainer
+          onPurchaseCancel={onPurchaseCancel}
+          onPurchaseConfirm={onPurchaseConfirm}
+        />
       </>
     )}
 

@@ -27,20 +27,20 @@ const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => {
           </div>
           <div>
             <span>Cliente:</span>
-            {cart.client?.firstName} {cart.client?.lastName}
+            {cart.client?.firstName || '-'} {cart.client?.lastName || ''}
           </div>
           <div>
             <span>Correo:</span>
-            {cart.client?.email}
+            {cart.client?.email || '-'}
           </div>
           <div>
             <span>Teléfono:</span>
-            {cart.client?.contactPhoneNumber}
+            {cart.client?.contactPhoneNumber || '-'}
           </div>
           <div>
             <span>Dirección</span>
-            {cart.client.address.direccion}. {cart.client.address.canton},{' '}
-            {cart.client.address.provincia}
+            {cart.client?.address?.direccion || '-'}.
+            {' '}{cart.client?.address?.canton || '-'}, {cart.client?.address?.provincia || '-'}
           </div>
         </div>
       )}

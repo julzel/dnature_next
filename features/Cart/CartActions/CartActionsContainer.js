@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 // local imports
@@ -15,10 +15,14 @@ const CartActionsContainer = ({ proceedToPurchase }) => {
   const { removeAllItems, cart } = useCartContext();
   const router = useRouter();
 
-  const handleRemoveAllItems = () => {
+  const handleRemoveAllItems = useCallback(() => {
     removeAllItems();
     setDisplayRemoveAllModal(false);
-  };
+  }, [removeAllItems]);
+
+  const toggleRemoveAllModal = useCallback(() => {
+    setDisplayRemoveAllModal(!displayRemoveAllModal);
+  }, [displayRemoveAllModal]);
 
   return (
     <CartActions
@@ -27,9 +31,7 @@ const CartActionsContainer = ({ proceedToPurchase }) => {
       proceedToPurchase={proceedToPurchase}
       handleRemoveAllItems={handleRemoveAllItems}
       displayRemoveAllModal={displayRemoveAllModal}
-      toggleRemoveAllModal={() =>
-        setDisplayRemoveAllModal(!displayRemoveAllModal)
-      }
+      toggleRemoveAllModal={toggleRemoveAllModal}
     />
   );
 };

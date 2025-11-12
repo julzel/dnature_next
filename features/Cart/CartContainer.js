@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 // local imports
 // components
@@ -13,6 +14,7 @@ import { useCartContext } from '../../contexts/shopping-cart-context';
 import { downloadScreenShot, captureElementScreenshot } from '../../util';
 
 const CartContainer = () => {
+  const router = useRouter();
   // Shopping cart context
   const { cart, updateCartClient, storeCartInLocalStorage } = useCartContext();
 
@@ -39,11 +41,7 @@ const CartContainer = () => {
 
   // Proceed to purchase, either show the purchase order or request client info
   const proceedToPurchase = () => {
-    if (cart.client.firstName) {
-      setShowPurchaseOrder(true);
-    } else {
-      setRequestClientInfo(true);
-    }
+    router.push('/carrito/check-out');
   };
 
   const handlePurchaseConfirm = () => {
