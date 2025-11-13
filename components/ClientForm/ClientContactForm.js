@@ -49,7 +49,7 @@ const initialValues = fieldConfig.reduce(
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_REGEX = /^(?:\d{4}-\d{4}|\d{8})$/;
-const STORAGE_KEY = 'carrito_contacto_cliente';
+const STORAGE_KEY = 'checkout_client_info';
 
 const ClientContactForm = () => {
   const [values, setValues] = useState(initialValues);
