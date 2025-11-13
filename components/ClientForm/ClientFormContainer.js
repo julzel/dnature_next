@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+import { useCallback, useEffect, useState } from 'react';
 
 // local imports
 // components
@@ -8,6 +9,8 @@ import ClientForm from './ClientForm';
 import { Client } from '../../models/client';
 
 import { storage } from '../../util';
+
+const addressFields = ['provincia', 'canton', 'direccion'];
 
 const inputFields = [
   { name: 'firstName', label: 'Nombre', isRequired: true, type: 'text' },
@@ -43,46 +46,58 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   );
   const [interactedFields, setInteractedFields] = useState({});
 
-  const handleRememberToggle = () => {
+  const handleRememberToggle = useCallback(() => {
     setRememberClient((prevRememberClient) => !prevRememberClient);
-  };
+  }, []);
 
-  const handleChange = (e) => {
+  const getFieldValue = useCallback(
+    (data, fieldName) =>
+      addressFields.includes(fieldName)
+        ? data.address?.[fieldName] ?? ''
+        : data[fieldName] ?? '',
+    []
+  );
+
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
 
-    if (['direccion', 'provincia', 'canton'].includes(name)) {
+    if (addressFields.includes(name)) {
       setClient((prevClient) => ({
         ...prevClient,
-        address: { ...prevClient.address, [name]: value },
+        address: { ...(prevClient.address || {}), [name]: value },
       }));
     } else {
       setClient((prevClient) => ({ ...prevClient, [name]: value }));
     }
-  };
+  }, []);
 
-  const handleBlur = (e) => {
+  const handleBlur = useCallback((e) => {
     const { name } = e.target;
-    setInteractedFields({ ...interactedFields, [name]: true });
-  };
+    setInteractedFields((prev) => ({ ...prev, [name]: true }));
+  }, []);
 
-  const isInputValid = (value, isRequired) =>
-    isRequired ? value?.trim() !== '' : true;
+  const isInputValid = useCallback(
+    (value, isRequired) => (isRequired ? value?.trim() !== '' : true),
+    []
+  );
 
-  const isFormValid = () => {
-    // Check if all required fields have values
+  const isFormValid = useCallback(() => {
     return inputFields.every((field) =>
-      isInputValid(client[field.name], field.isRequired)
+      isInputValid(getFieldValue(client, field.name), field.isRequired)
     );
-  };
+  }, [client, isInputValid, getFieldValue]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform necessary actions with the client information
-    if (rememberClient) {
-      storage.setItem('client', client);
-    }
-    onSubmit(client);
-  };
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      // Perform necessary actions with the client information
+      if (rememberClient) {
+        storage.setItem('client', client);
+      }
+      onSubmit(client);
+    },
+    [client, rememberClient, onSubmit]
+  );
 
   useEffect(() => {
     if (!rememberClient) {
@@ -103,6 +118,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
       interactedFields={interactedFields}
       inputFields={inputFields}
       rememberClient={rememberClient}
+      addressFields={addressFields}
     />
   );
 };

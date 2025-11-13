@@ -16,7 +16,7 @@ const SubHeader = ({ isLoggedIn = false, totalCartItems, totalPets }) => {
           </span>
         </Link>
       )} */}
-      <Link href={'/cart'} passHref>
+      <Link href={'/carrito'} passHref>
         <span className={styles.link}>
           <ShoppingCart size={18} />
           {totalCartItems > 0 && (

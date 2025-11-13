@@ -1,17 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, use, useCallback } from 'react';
 
 function CustomSelect({ options, onSelect, selectedOption, classes }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
-  const handleSelect = (option) => {
+  const handleSelect = useCallback((option) => () => {
     onSelect(option);
     setIsOpen(false);
-  };
+  }, [onSelect]);
 
-  const toggleOpen = () => {
+  const toggleOpen = useCallback(() => {
     setIsOpen(!isOpen);
-  };
+  }, [isOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,7 +33,7 @@ function CustomSelect({ options, onSelect, selectedOption, classes }) {
       {isOpen && (
         <ul>
           {options.map((option) => (
-            <li key={option.value} onClick={() => handleSelect(option)}>
+            <li key={option.value} onClick={handleSelect(option)}>
               {option.label}
             </li>
           ))}

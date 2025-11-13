@@ -109,7 +109,7 @@ const ProductInfo = ({
             </Box>
 
             {cartTotalItems > 0 && (
-              <Link href={'/cart'} passHref>
+              <Link href={'/carrito'} passHref>
                 Ver Carrito
                 <ShoppingCart size={20} />
                 <span>({cartTotalItems})</span>
