@@ -1,5 +1,5 @@
 'use client';
-import { use, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 // local imports
 // components
@@ -55,7 +55,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
       addressFields.includes(fieldName)
         ? data.address?.[fieldName] ?? ''
         : data[fieldName] ?? '',
-    [addressFields]
+    []
   );
 
   const handleChange = useCallback((e) => {
@@ -85,7 +85,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
     return inputFields.every((field) =>
       isInputValid(getFieldValue(client, field.name), field.isRequired)
     );
-  }, [client, isInputValid]);
+  }, [client, isInputValid, getFieldValue]);
 
   const handleSubmit = useCallback(
     (e) => {

@@ -1,29 +1,28 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
   Alert,
   Box,
   Button,
-  Checkbox,
   Container,
-  FormControlLabel,
   Stack,
   Step,
   StepLabel,
   Stepper,
-  TextField,
   Typography,
 } from '@mui/material';
 
 import { useCartContext } from '../../contexts/shopping-cart-context';
-import PurchaseOrderContainer from '../../features/Cart/PurchaseOrder';
 import CartNotification from '../../features/Cart/CartNotification';
 import {
   storage,
   captureElementScreenshot,
   downloadScreenShot,
 } from '../../util';
+import ClientInfoStep from './ClientInfoStep';
+import DeliveryInfoStep from './DeliveryInfoStep';
+import SummaryStep from './SummaryStep';
 
 const steps = [
   'Datos del cliente',
@@ -113,15 +112,18 @@ const CheckoutFlow = () => {
     return validationErrors;
   }, [values]);
 
-  const isStepValid = (stepIndex) => {
+  const isStepValid = useCallback(
+    (stepIndex) => {
     const stepFields = STEP_FIELDS[stepIndex];
     if (!stepFields.length) {
       return true;
     }
     return stepFields.every((field) => !errors[field]);
-  };
+  },
+    [errors]
+  );
 
-  const markStepAsTouched = (stepIndex) => {
+  const markStepAsTouched = useCallback((stepIndex) => {
     const stepFields = STEP_FIELDS[stepIndex];
     setTouched((prev) => ({
       ...prev,
@@ -133,9 +135,9 @@ const CheckoutFlow = () => {
         {}
       ),
     }));
-  };
+  }, []);
 
-  const persistClient = () => {
+  const persistClient = useCallback(() => {
     const clientPayload = {
       firstName: values.firstName.trim(),
       lastName: values.lastName.trim(),
@@ -153,10 +155,18 @@ const CheckoutFlow = () => {
     } else {
       storage.removeItem(STORAGE_KEY);
     }
-  };
+  }, [values]);
 
-  const handleNext = () => {
+  const handleStatusDismiss = useCallback(() => {
     setStatus(null);
+  }, []);
+
+  const handleNotificationClose = useCallback(() => {
+    setShowNotification(false);
+  }, []);
+
+  const handleNext = useCallback(() => {
+    handleStatusDismiss();
     if (!isStepValid(activeStep)) {
       markStepAsTouched(activeStep);
       return;
@@ -167,14 +177,20 @@ const CheckoutFlow = () => {
     }
 
     setActiveStep((prev) => Math.min(prev + 1, steps.length - 1));
-  };
+  }, [
+    activeStep,
+    handleStatusDismiss,
+    isStepValid,
+    markStepAsTouched,
+    persistClient,
+  ]);
 
-  const handleBack = () => {
-    setStatus(null);
+  const handleBack = useCallback(() => {
+    handleStatusDismiss();
     setActiveStep((prev) => Math.max(prev - 1, 0));
-  };
+  }, [handleStatusDismiss]);
 
-  const handleFinish = async () => {
+  const handleFinish = useCallback(async () => {
     if (!cart.items.length) {
       setStatus({
         type: 'error',
@@ -183,7 +199,7 @@ const CheckoutFlow = () => {
       return;
     }
 
-    setStatus(null);
+    handleStatusDismiss();
     persistClient();
     setShowNotification(true);
     setIsGeneratingOrder(true);
@@ -210,17 +226,28 @@ const CheckoutFlow = () => {
     } finally {
       setIsGeneratingOrder(false);
     }
-  };
+  }, [
+    cart.items.length,
+    handleStatusDismiss,
+    persistClient,
+    storeCartInLocalStorage,
+  ]);
 
-  const handleFieldChange = (event) => {
+  const handleFieldChange = useCallback((event) => {
     const { name, value, type, checked } = event.target;
     setValues((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
-  };
+  }, []);
 
-  const getHelperText = (field) => {
+  const handleFieldBlur = useCallback((event) => {
+    const { name } = event.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  }, []);
+
+  const getHelperText = useCallback(
+    (field) => {
     if (touched[field] && errors[field]) {
       return errors[field];
     }
@@ -228,135 +255,48 @@ const CheckoutFlow = () => {
       return 'Ejemplo: 8888-8888';
     }
     return ' ';
-  };
+    },
+    [errors, touched]
+  );
 
-  const renderStepContent = () => {
-    switch (activeStep) {
-      case 0:
-        return (
-          <Stack spacing={2.5}>
-            <TextField
-              label="Nombre"
-              name="firstName"
-              value={values.firstName}
-              onChange={handleFieldChange}
-              onBlur={() =>
-                setTouched((prev) => ({ ...prev, firstName: true }))
-              }
-              error={Boolean(touched.firstName && errors.firstName)}
-              helperText={getHelperText('firstName')}
-              fullWidth
-            />
-            <TextField
-              label="Apellidos"
-              name="lastName"
-              value={values.lastName}
-              onChange={handleFieldChange}
-              onBlur={() => setTouched((prev) => ({ ...prev, lastName: true }))}
-              error={Boolean(touched.lastName && errors.lastName)}
-              helperText={getHelperText('lastName')}
-              fullWidth
-            />
-            <TextField
-              label="Correo electrónico"
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={handleFieldChange}
-              onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
-              error={Boolean(touched.email && errors.email)}
-              helperText={getHelperText('email')}
-              fullWidth
-            />
-            <TextField
-              label="Teléfono"
-              name="contactPhoneNumber"
-              value={values.contactPhoneNumber}
-              onChange={handleFieldChange}
-              onBlur={() =>
-                setTouched((prev) => ({ ...prev, contactPhoneNumber: true }))
-              }
-              error={Boolean(
-                touched.contactPhoneNumber && errors.contactPhoneNumber
-              )}
-              helperText={getHelperText('contactPhoneNumber')}
-              fullWidth
-              inputProps={{ maxLength: 9 }}
-            />
-          </Stack>
-        );
-      case 1:
-        return (
-          <Stack spacing={2.5}>
-            <TextField
-              label="Provincia"
-              name="provincia"
-              value={values.provincia}
-              onChange={handleFieldChange}
-              onBlur={() =>
-                setTouched((prev) => ({ ...prev, provincia: true }))
-              }
-              error={Boolean(touched.provincia && errors.provincia)}
-              helperText={getHelperText('provincia')}
-              fullWidth
-            />
-            <TextField
-              label="Cantón"
-              name="canton"
-              value={values.canton}
-              onChange={handleFieldChange}
-              onBlur={() => setTouched((prev) => ({ ...prev, canton: true }))}
-              error={Boolean(touched.canton && errors.canton)}
-              helperText={getHelperText('canton')}
-              fullWidth
-            />
-            <TextField
-              label="Dirección exacta"
-              name="direccion"
-              value={values.direccion}
-              onChange={handleFieldChange}
-              onBlur={() =>
-                setTouched((prev) => ({ ...prev, direccion: true }))
-              }
-              error={Boolean(touched.direccion && errors.direccion)}
-              helperText={getHelperText('direccion')}
-              fullWidth
-              multiline
-              minRows={3}
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={values.rememberClient}
-                  onChange={handleFieldChange}
-                  name="rememberClient"
-                  color="primary"
-                />
-              }
-              label="Recordar mis datos para la próxima compra"
-            />
-          </Stack>
-        );
-      case 2:
-        return (
-          <Stack spacing={3}>
-            <Box>
-              <Typography variant="h5" gutterBottom>
-                Vista previa de la orden
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Revisa que los datos sean correctos antes de confirmar.
-              </Typography>
-            </Box>
-            <Box sx={{ overflowX: 'auto' }} ref={orderPreviewRef}>
-              <PurchaseOrderContainer />
-            </Box>
-          </Stack>
-        );
-      default:
-        return null;
+  const stepContent = useMemo(() => {
+    if (activeStep === 0) {
+      return (
+        <ClientInfoStep
+          values={values}
+          errors={errors}
+          touched={touched}
+          getHelperText={getHelperText}
+          onChange={handleFieldChange}
+          onBlur={handleFieldBlur}
+        />
+      );
     }
-  };
+
+    if (activeStep === 1) {
+      return (
+        <DeliveryInfoStep
+          values={values}
+          errors={errors}
+          touched={touched}
+          getHelperText={getHelperText}
+          onChange={handleFieldChange}
+          onBlur={handleFieldBlur}
+        />
+      );
+    }
+
+    return <SummaryStep orderPreviewRef={orderPreviewRef} />;
+  }, [
+    activeStep,
+    errors,
+    getHelperText,
+    handleFieldBlur,
+    handleFieldChange,
+    orderPreviewRef,
+    touched,
+    values,
+  ]);
 
   return (
     <Container component="section" maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
@@ -364,7 +304,7 @@ const CheckoutFlow = () => {
         <Stack spacing={4}>
           <Stack spacing={1}>
             <Typography variant="h4" component="h1">
-              Check-out
+              Check out
             </Typography>
             <Typography variant="body1" color="text.secondary">
               Completa los pasos para coordinar la entrega de tu pedido.
@@ -390,7 +330,7 @@ const CheckoutFlow = () => {
           {status && (
             <Alert
               severity={status.type}
-              onClose={() => setStatus(null)}
+              onClose={handleStatusDismiss}
               sx={{ borderRadius: 2 }}
             >
               {status.message}
@@ -398,7 +338,7 @@ const CheckoutFlow = () => {
           )}
 
           <Box component="form" noValidate>
-            {renderStepContent()}
+            {stepContent}
             <Box
               mt={4}
               display="flex"
@@ -437,9 +377,7 @@ const CheckoutFlow = () => {
         </Stack>
       </Box>
       {showNotification && (
-        <CartNotification
-          onCloseInfoModal={() => setShowNotification(false)}
-        />
+        <CartNotification onCloseInfoModal={handleNotificationClose} />
       )}
     </Container>
   );

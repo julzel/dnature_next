@@ -39,8 +39,9 @@ const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => {
           </div>
           <div>
             <span>Dirección</span>
-            {cart.client?.address?.direccion || '-'}.
-            {' '}{cart.client?.address?.canton || '-'}, {cart.client?.address?.provincia || '-'}
+            {cart.client?.address?.direccion || '-'}.{' '}
+            {cart.client?.address?.canton || '-'},{' '}
+            {cart.client?.address?.provincia || '-'}
           </div>
         </div>
       )}

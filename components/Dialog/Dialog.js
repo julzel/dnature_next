@@ -50,7 +50,9 @@ const AppDialog = ({
     >
       {title && (
         <DialogTitle id="dialog-title">
-          <Typography variant="h5">{title}</Typography>
+          <Typography variant="h5" component="span">
+            {title}
+          </Typography>
         </DialogTitle>
       )}
       <DialogContent dividers sx={{ px: { xs: 2, md: 3 }, py: { xs: 2, md: 3 } }}>

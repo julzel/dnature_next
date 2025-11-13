@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Alert,
   Box,
@@ -28,7 +28,12 @@ const fieldConfig = [
     multiline: true,
     minRows: 3,
   },
-  { name: 'email', label: 'Correo electrónico', type: 'email', required: false },
+  {
+    name: 'email',
+    label: 'Correo electrónico',
+    type: 'email',
+    required: false,
+  },
   {
     name: 'contactPhoneNumber',
     label: 'Teléfono de contacto',
@@ -90,46 +95,56 @@ const ClientContactForm = () => {
     return nextErrors;
   }, [values]);
 
-  const canSubmit = useMemo(
-    () => Object.keys(errors).length === 0,
-    [errors]
-  );
+  const canSubmit = useMemo(() => Object.keys(errors).length === 0, [errors]);
 
-  const handleChange = (event) => {
+  const handleChange = useCallback((event) => {
     const { name, value } = event.target;
     setValues((prev) => ({ ...prev, [name]: value }));
-  };
+  }, []);
 
-  const handleBlur = (event) => {
+  const handleBlur = useCallback((event) => {
     const { name } = event.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
-  };
+  }, []);
 
-  const handleRememberToggle = (event) => {
+  const handleRememberToggle = useCallback((event) => {
     const { checked } = event.target;
     setRememberClient(checked);
     if (!checked) {
       storage.removeItem(STORAGE_KEY);
     }
-  };
+  }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setTouched(
-      fieldConfig.reduce((acc, field) => ({ ...acc, [field.name]: true }), {})
-    );
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      setTouched(
+        fieldConfig.reduce((acc, field) => ({ ...acc, [field.name]: true }), {})
+      );
 
-    if (!canSubmit) {
-      setStatus({ type: 'error', message: 'Revisa los campos marcados en rojo.' });
-      return;
-    }
+      if (!canSubmit) {
+        setStatus({
+          type: 'error',
+          message: 'Revisa los campos marcados en rojo.',
+        });
+        return;
+      }
 
-    if (rememberClient) {
-      storage.setItem(STORAGE_KEY, values);
-    }
+      if (rememberClient) {
+        storage.setItem(STORAGE_KEY, values);
+      }
 
-    setStatus({ type: 'success', message: 'Información enviada correctamente.' });
-  };
+      setStatus({
+        type: 'success',
+        message: 'Información enviada correctamente.',
+      });
+    },
+    [canSubmit, rememberClient, values]
+  );
+
+  const handleCloseAlert = useCallback(() => {
+    setStatus(null);
+  }, []);
 
   return (
     <Container maxWidth="sm" component="section" sx={{ py: { xs: 5, md: 8 } }}>
@@ -148,13 +163,13 @@ const ClientContactForm = () => {
               Información de contacto
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Completa tus datos para coordinar la entrega de tu pedido. Al menos
-              un correo electrónico o un teléfono debe estar presente.
+              Completa tus datos para coordinar la entrega de tu pedido. Al
+              menos un correo electrónico o un teléfono debe estar presente.
             </Typography>
           </Stack>
 
           {status && (
-            <Alert severity={status.type} onClose={() => setStatus(null)}>
+            <Alert severity={status.type} onClose={handleCloseAlert}>
               {status.message}
             </Alert>
           )}
