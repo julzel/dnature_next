@@ -1,10 +1,10 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-$warning: #ffbf00;
-$success: #4caf50;
-$error: #d33f49;
-$info: #0d5c8e;
+$warning: #ff6a00;
+$success: #84a341;
+$error: #742019;
+$info: #00a9b5;
 
 .messageBoxContainer {
   border: 2px solid $border;
@@ -23,18 +23,12 @@ $info: #0d5c8e;
     h3 {
       background-color: $error;
     }
-    .button {
-      @include button-styles($error, $white);
-    }
   }
   &.warning {
     border-color: $warning;
     h3 {
       border: 1px solid $warning;
       color: $warning;
-    }
-    .button {
-      @include button-styles($warning, $white);
     }
   }
   &.info {
@@ -43,9 +37,6 @@ $info: #0d5c8e;
       border: 1px solid $info;
       color: $info;
     }
-    .button {
-      @include button-styles($info, $white);
-    }
   }
   &.success {
     border-color: $success;
@@ -53,9 +44,6 @@ $info: #0d5c8e;
       border: 1px solid $success;
       color: $success;
       color: $text-color;
-    }
-    .button {
-      @include button-styles($success, $text-color);
     }
   }
 

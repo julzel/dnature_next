@@ -14,12 +14,17 @@ const CartPurchaseOrder = ({ onPurchaseCancel, onPurchaseConfirm }) => {
       <PurchaseOrderContainer />
       <div className={styles.actions}>
         <Button
-          className={`${styles.button} ${styles.secondary}`}
+          className={styles.button}
+          intent="cancel"
           onClick={onPurchaseCancel}
         >
           Cancelar
         </Button>
-        <Button className={styles.button} onClick={onPurchaseConfirm}>
+        <Button
+          className={styles.button}
+          intent="submit"
+          onClick={onPurchaseConfirm}
+        >
           Confirmar
         </Button>
       </div>

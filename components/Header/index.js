@@ -1,27 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 
-// local imports
-import useWindow from '../../hooks/useWindow';
 import navigationItems from './navigationItems';
-
-// components
 import Header from './Header';
+import { useCartContext } from '../../contexts/shopping-cart-context';
 
 const HeaderContainer = () => {
-  // state
-  const [displayMenu, setDisplayMenu] = useState(false);
-  const isMobile = useWindow();
+  const { cart } = useCartContext();
+  const navItems = useMemo(() => navigationItems, []);
+  const cartCount = cart?.totalItems ?? 0;
 
-  return (
-    <Header
-      isMobile={isMobile}
-      navigationItems={navigationItems}
-      displayMobileMenu={displayMenu}
-      onMobileMenuIconClick={() => setDisplayMenu(!displayMenu)}
-    />
-  );
+  return <Header navigationItems={navItems} cartCount={cartCount} />;
 };
 
 export default HeaderContainer;
