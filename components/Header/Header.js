@@ -67,14 +67,14 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
         color="transparent"
         enableColorOnDark
         elevation={hideHeader ? 0 : 4}
+        aria-hidden={hideHeader}
         sx={{
           backgroundColor: (theme) => theme.palette.category?.wild ?? '#124563',
           color: (theme) => theme.palette.common.white,
           position: 'sticky',
           top: 0,
-          opacity: hideHeader ? 0 : 1,
           transform: hideHeader ? 'translateY(-100%)' : 'translateY(0)',
-          transition: 'opacity 300ms ease, transform 300ms ease, box-shadow 200ms ease',
+          transition: 'transform 300ms ease, box-shadow 200ms ease',
           pointerEvents: hideHeader ? 'none' : 'auto',
         }}
       >
