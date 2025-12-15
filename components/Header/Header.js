@@ -67,7 +67,7 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
         color="transparent"
         enableColorOnDark
         elevation={hideHeader ? 0 : 4}
-        aria-hidden={hideHeader}
+        
         sx={{
           backgroundColor: (theme) => theme.palette.category?.wild ?? '#124563',
           color: (theme) => theme.palette.common.white,
