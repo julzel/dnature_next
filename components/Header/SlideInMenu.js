@@ -8,6 +8,7 @@ import {
   Stack,
   Button,
   Typography,
+  alpha,
 } from '@mui/material';
 
 import NavLinks from './NavLinks';
@@ -30,11 +31,18 @@ const SlideInMenu = ({
       open={open}
       onClose={handleClose}
       ModalProps={{ keepMounted: true }}
+      PaperProps={{
+        sx: {
+          width: 'min(320px, 100vw)',
+          backgroundColor: (theme) =>
+            theme.palette.category?.wild ?? '#124563',
+          color: '#FFFFFF',
+        },
+      }}
     >
       <Box
         component="section"
         sx={{
-          width: 320,
           p: 3,
           display: 'flex',
           flexDirection: 'column',
@@ -50,12 +58,33 @@ const SlideInMenu = ({
           variant="drawer"
           onNavigate={handleClose}
         />
-        <Divider sx={{ my: 1 }} />
+        <Divider
+          sx={{ my: 1, borderColor: 'rgba(255,255,255,0.2)' }}
+        />
         <Stack spacing={1.5}>
-          <Button variant="contained" color="primary" onClick={onCartClick}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={onCartClick}
+            sx={{ borderRadius: 999, fontWeight: 600 }}
+          >
             Ver carrito
           </Button>
-          <Button variant="outlined" color="primary" onClick={onAccountClick}>
+          <Button
+            variant="outlined"
+            color="inherit"
+            onClick={onAccountClick}
+            sx={{
+              borderRadius: 999,
+              fontWeight: 600,
+              borderColor: 'rgba(255,255,255,0.5)',
+              color: '#FFFFFF',
+              '&:hover': {
+                borderColor: '#FFFFFF',
+                backgroundColor: alpha('#FFFFFF', 0.08),
+              },
+            }}
+          >
             Iniciar sesión
           </Button>
           <WhatsAppLink
@@ -66,6 +95,7 @@ const SlideInMenu = ({
               width: '100%',
               justifyContent: 'center',
               fontWeight: 600,
+              color: '#FFFFFF',
             }}
           />
         </Stack>

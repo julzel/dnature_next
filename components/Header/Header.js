@@ -52,6 +52,10 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
         display: 'inline-flex',
         alignItems: 'center',
         textDecoration: 'none',
+        mr: { xs: 2, md: 2.5 },
+        height: { xs: 44, md: 52 },
+        position: 'relative',
+        top: 3,
       },
     }),
     []
@@ -60,35 +64,45 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
   return (
     <>
       <AppBar
-        color="primary"
+        color="transparent"
+        enableColorOnDark
         elevation={hideHeader ? 0 : 4}
         sx={{
-          backgroundColor: 'background.paper',
-          color: 'text.primary',
+          backgroundColor: (theme) => theme.palette.category?.wild ?? '#124563',
+          color: '#FFFFFF',
           position: 'sticky',
           top: hideHeader ? -120 : 0,
           transition: 'top 220ms ease, box-shadow 200ms ease',
         }}
       >
-        <Toolbar disableGutters component="nav">
+        <Toolbar
+          disableGutters
+          component="nav"
+          sx={{ minHeight: { xs: 56, md: 64 } }}
+        >
           <Container
             maxWidth="xl"
             sx={{
-              minHeight: { xs: 64, md: 88 },
+              minHeight: { xs: 56, md: 64 },
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              gap: 2,
+              gap: { xs: 1, md: 2 },
               paddingX: { xs: 2, md: 3 },
+              flexWrap: 'nowrap',
             }}
           >
             <Box {...logoLinkProps}>
               <Image
                 src={logo}
                 alt="DNAture"
-                width={108}
+                width={180}
                 height={60}
                 priority
+                style={{
+                  height: '100%',
+                  width: 'auto',
+                }}
               />
             </Box>
 
@@ -117,8 +131,10 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
                 sx={{
                   display: { xs: 'inline-flex', md: 'none' },
                   borderRadius: 2,
-                  backgroundColor: (theme) =>
-                    alpha(theme.palette.grey[100], 0.7),
+                  width: 48,
+                  height: 48,
+                  backgroundColor: alpha('#FFFFFF', 0.15),
+                  border: '1px solid rgba(255,255,255,0.25)',
                 }}
               >
                 <MenuRoundedIcon />
