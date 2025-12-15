@@ -69,7 +69,7 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
         elevation={hideHeader ? 0 : 4}
         
         sx={{
-          backgroundColor: (theme) => theme.palette.category?.wild ?? '#124563',
+          backgroundColor: (theme) => theme.palette.category.wild,
           color: (theme) => theme.palette.common.white,
           position: 'sticky',
           top: 0,

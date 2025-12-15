@@ -34,8 +34,7 @@ const SlideInMenu = ({
       PaperProps={{
         sx: {
           width: 'min(320px, 100vw)',
-          backgroundColor: (theme) =>
-            theme.palette.category?.wild ?? '#124563',
+          backgroundColor: (theme) => theme.palette.category.wild,
           color: (theme) => theme.palette.common.white,
         },
       }}
@@ -91,11 +90,11 @@ const SlideInMenu = ({
             phone="71848868"
             withIcon
             display="Contáctanos por WhatsApp"
-            style={{
+            sx={{
               width: '100%',
               justifyContent: 'center',
               fontWeight: 600,
-              color: '#fff',
+              color: (theme) => theme.palette.common.white,
             }}
           />
         </Stack>
