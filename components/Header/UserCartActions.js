@@ -32,13 +32,13 @@ const UserCartActions = ({
           color="inherit"
           sx={{
             borderRadius: 2,
-            backgroundColor: alpha('#FFFFFF', 0.12),
-            border: '1px solid rgba(255,255,255,0.25)',
-            color: '#FFFFFF',
+            backgroundColor: (theme) => alpha(theme.palette.common.white, 0.12),
+            border: (theme) => `1px solid ${alpha(theme.palette.common.white, 0.25)}`,
+            color: (theme) => theme.palette.common.white,
             width: 44,
             height: 44,
             '&:hover': {
-              backgroundColor: alpha('#FFFFFF', 0.2),
+              backgroundColor: (theme) => alpha(theme.palette.common.white, 0.2),
             },
           }}
         >
@@ -66,13 +66,13 @@ const UserCartActions = ({
           color="inherit"
           sx={{
             borderRadius: 2,
-            backgroundColor: alpha('#FFFFFF', 0.12),
-            border: '1px solid rgba(255,255,255,0.25)',
-            color: '#FFFFFF',
+            backgroundColor: (theme) => alpha(theme.palette.common.white, 0.12),
+            border: (theme) => `1px solid ${alpha(theme.palette.common.white, 0.25)}`,
+            color: (theme) => theme.palette.common.white,
             width: 44,
             height: 44,
             '&:hover': {
-              backgroundColor: alpha('#FFFFFF', 0.2),
+              backgroundColor: (theme) => alpha(theme.palette.common.white, 0.2),
             },
           }}
         >

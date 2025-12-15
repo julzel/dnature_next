@@ -36,7 +36,7 @@ const SlideInMenu = ({
           width: 'min(320px, 100vw)',
           backgroundColor: (theme) =>
             theme.palette.category?.wild ?? '#124563',
-          color: '#FFFFFF',
+          color: (theme) => theme.palette.common.white,
         },
       }}
     >
@@ -59,7 +59,7 @@ const SlideInMenu = ({
           onNavigate={handleClose}
         />
         <Divider
-          sx={{ my: 1, borderColor: 'rgba(255,255,255,0.2)' }}
+          sx={{ my: 1, borderColor: (theme) => alpha(theme.palette.common.white, 0.2) }}
         />
         <Stack spacing={1.5}>
           <Button
@@ -77,11 +77,11 @@ const SlideInMenu = ({
             sx={{
               borderRadius: 999,
               fontWeight: 600,
-              borderColor: 'rgba(255,255,255,0.5)',
-              color: '#FFFFFF',
+              borderColor: (theme) => alpha(theme.palette.common.white, 0.5),
+              color: (theme) => theme.palette.common.white,
               '&:hover': {
-                borderColor: '#FFFFFF',
-                backgroundColor: alpha('#FFFFFF', 0.08),
+                borderColor: (theme) => theme.palette.common.white,
+                backgroundColor: (theme) => alpha(theme.palette.common.white, 0.08),
               },
             }}
           >
@@ -91,11 +91,11 @@ const SlideInMenu = ({
             phone="71848868"
             withIcon
             display="Contáctanos por WhatsApp"
-            style={{
+            sx={{
               width: '100%',
               justifyContent: 'center',
               fontWeight: 600,
-              color: '#FFFFFF',
+              color: (theme) => theme.palette.common.white,
             }}
           />
         </Stack>
