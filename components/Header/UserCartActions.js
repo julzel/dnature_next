@@ -24,7 +24,7 @@ const UserCartActions = ({
   );
 
   return (
-    <Stack direction="row" spacing={0.5} alignItems="center">
+    <Stack direction="row" spacing={1} alignItems="center">
       <Tooltip title={userName ? `Hola, ${userName}` : 'Inicia sesión'}>
         <IconButton
           aria-label="Ir a mi cuenta"
@@ -32,7 +32,14 @@ const UserCartActions = ({
           color="inherit"
           sx={{
             borderRadius: 2,
-            backgroundColor: (theme) => alpha(theme.palette.grey[100], 0.7),
+            backgroundColor: (theme) => alpha(theme.palette.common.white, 0.12),
+            border: (theme) => `1px solid ${alpha(theme.palette.common.white, 0.25)}`,
+            color: (theme) => theme.palette.common.white,
+            width: 44,
+            height: 44,
+            '&:hover': {
+              backgroundColor: (theme) => alpha(theme.palette.common.white, 0.2),
+            },
           }}
         >
           {initials ? (
@@ -59,7 +66,14 @@ const UserCartActions = ({
           color="inherit"
           sx={{
             borderRadius: 2,
-            backgroundColor: (theme) => alpha(theme.palette.grey[100], 0.7),
+            backgroundColor: (theme) => alpha(theme.palette.common.white, 0.12),
+            border: (theme) => `1px solid ${alpha(theme.palette.common.white, 0.25)}`,
+            color: (theme) => theme.palette.common.white,
+            width: 44,
+            height: 44,
+            '&:hover': {
+              backgroundColor: (theme) => alpha(theme.palette.common.white, 0.2),
+            },
           }}
         >
           <Badge
