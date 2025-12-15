@@ -71,8 +71,11 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
           backgroundColor: (theme) => theme.palette.category?.wild ?? '#124563',
           color: '#FFFFFF',
           position: 'sticky',
-          top: hideHeader ? -120 : 0,
-          transition: 'top 220ms ease, box-shadow 200ms ease',
+          top: 0,
+          opacity: hideHeader ? 0 : 1,
+          transform: hideHeader ? 'translateY(-100%)' : 'translateY(0)',
+          transition: 'opacity 300ms ease, transform 300ms ease, box-shadow 200ms ease',
+          pointerEvents: hideHeader ? 'none' : 'auto',
         }}
       >
         <Toolbar
