@@ -69,7 +69,7 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
         elevation={hideHeader ? 0 : 4}
         sx={{
           backgroundColor: (theme) => theme.palette.category?.wild ?? '#124563',
-          color: '#FFFFFF',
+          color: (theme) => theme.palette.common.white,
           position: 'sticky',
           top: 0,
           opacity: hideHeader ? 0 : 1,
@@ -136,8 +136,8 @@ const Header = ({ navigationItems, cartCount = 0, userName }) => {
                   borderRadius: 2,
                   width: 48,
                   height: 48,
-                  backgroundColor: alpha('#FFFFFF', 0.15),
-                  border: '1px solid rgba(255,255,255,0.25)',
+                  backgroundColor: (theme) => alpha(theme.palette.common.white, 0.15),
+                  border: (theme) => `1px solid ${alpha(theme.palette.common.white, 0.25)}`,
                 }}
               >
                 <MenuRoundedIcon />
