@@ -91,11 +91,11 @@ const SlideInMenu = ({
             phone="71848868"
             withIcon
             display="Contáctanos por WhatsApp"
-            sx={{
+            style={{
               width: '100%',
               justifyContent: 'center',
               fontWeight: 600,
-              color: (theme) => theme.palette.common.white,
+              color: '#fff',
             }}
           />
         </Stack>
