@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://dnaturefood.com
+
+# Sitemaps
+Sitemap: https://dnaturefood.com/sitemap.xml
