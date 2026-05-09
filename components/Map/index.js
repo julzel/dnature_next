@@ -4,7 +4,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 // local imports
 import styles from './Map.module.scss'
 
-const STORE_LOCATION = { lat: 9.962592, lng: -84.07752 }
+const STORE_LOCATION = { lat: 9.955621, lng: -84.085547 }
 
 const Map = () => {
     const googlemap = useRef(null);
