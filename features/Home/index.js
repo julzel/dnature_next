@@ -23,7 +23,6 @@ const Home = ({ categories }) => {
       <Welcome />
       <Products categories={categories} />
       <DNAtureSystem />
-      <NutritionalAppointments />
       <OurCostumers />
       <Contact />
     </div>
