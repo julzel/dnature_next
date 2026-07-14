@@ -56,10 +56,8 @@ export default function PostQueryResult({ posts, query }) {
                     pathname: `/blog/${post.slug}`,
                     query: { id: post.sys.id },
                   }}
-                  passHref
                 >
-                  <a>
-                    <ListItem alignItems="flex-start">
+                  <ListItem alignItems="flex-start">
                       <ListItemAvatar>
                         <Avatar
                           sx={{
@@ -108,8 +106,7 @@ export default function PostQueryResult({ posts, query }) {
                           pt: 1,
                         }}
                       />
-                    </ListItem>
-                  </a>
+                  </ListItem>
                 </Link>
               </Card>
             ))

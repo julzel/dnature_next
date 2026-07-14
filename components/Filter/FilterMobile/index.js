@@ -39,7 +39,6 @@ const FilterMobile = ({ options, selected }) => {
             >
               <Link
                 href={`/productos?category=${item.id}`}
-                passHref
               >
                 {item.label}
               </Link>

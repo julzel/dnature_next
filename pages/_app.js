@@ -5,8 +5,8 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
-import { ThemeProvider, useMediaQuery } from '@mui/material';
-import { CacheProvider } from '@emotion/react';
+import { ThemeProvider } from '@mui/material';
+import { AppCacheProvider } from '@mui/material-nextjs/v15-pagesRouter';
 
 // local imports
 // styles
@@ -25,7 +25,7 @@ function MyApp({
   emotionCache = clientSideEmotionCache,
 }) {
   return (
-    <CacheProvider value={emotionCache}>
+    <AppCacheProvider emotionCache={emotionCache}>
       <ThemeProvider theme={lightTheme}>
         <ShoppingCartContextProvider>
           <ScopedCssBaseline>
@@ -33,7 +33,7 @@ function MyApp({
           </ScopedCssBaseline>
         </ShoppingCartContextProvider>
       </ThemeProvider>
-    </CacheProvider>
+    </AppCacheProvider>
   );
 }
 

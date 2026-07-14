@@ -17,7 +17,6 @@ const FilterDesktop = ({ options, selected }) => (
             <Link
               key={`filter-by-${item.id}`}
               href={`/productos?category=${item.id}`}
-              passHref
             >
               {item.label}
             </Link>

@@ -14,21 +14,18 @@ const PostTags = ({ category, tags }) => {
         </Typography>
       </Box>
       <CardContent p={0}>
-        <Link
+        <Chip
+          component={Link}
           href={`/blog/busqueda/?field=category&value=${category}`}
-          passHref
-        >
-          <Chip
-            label={category.toUpperCase()}
-            sx={{
-              fontSize: '10px',
-              background: postCategories[category].color,
-              color: 'white',
-              pl: 1,
-            }}
-            icon={postCategories[category].icon}
-          />
-        </Link>
+          label={category.toUpperCase()}
+          sx={{
+            fontSize: '10px',
+            background: postCategories[category].color,
+            color: 'white',
+            pl: 1,
+          }}
+          icon={postCategories[category].icon}
+        />
       </CardContent>
       <Box px={2} pt={2}>
         <Typography variant="subtitle1" color={'textSecondary'}>
@@ -37,29 +34,25 @@ const PostTags = ({ category, tags }) => {
       </Box>
       <CardContent p={0}>
         {tags.map((hashtag) => (
-          <Link
+          <Chip
             key={hashtag}
+            component={Link}
             href={`/blog/busqueda/?field=hashtags_contains_some&value=${hashtag}`}
-            passHref
-          >
-            <Chip
-              component={'a'}
-              label={hashtag.toUpperCase()}
-              sx={{
-                color: 'white !important',
-                bgcolor: 'primary.main',
-                mr: 1,
-                mb: { xs: 2, md: 1 },
-                fontSize: '12px',
-                '&:hover': {
-                  bgcolor: 'primary.dark',
-                },
-                '&:active': {
-                  bgcolor: 'primary.dark',
-                },
-              }}
-            />
-          </Link>
+            label={hashtag.toUpperCase()}
+            sx={{
+              color: 'white !important',
+              bgcolor: 'primary.main',
+              mr: 1,
+              mb: { xs: 2, md: 1 },
+              fontSize: '12px',
+              '&:hover': {
+                bgcolor: 'primary.dark',
+              },
+              '&:active': {
+                bgcolor: 'primary.dark',
+              },
+            }}
+          />
         ))}
       </CardContent>
     </Card>

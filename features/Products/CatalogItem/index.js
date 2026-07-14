@@ -73,7 +73,6 @@ const CatalogItem = ({ product }) => {
   return (
     <Link
       key={id}
-      passHref
       href={{ pathname: `/productos/${urlSlug}`, query: { id } }}
     >
       <span className={styles.catalogItem}>
@@ -82,10 +81,10 @@ const CatalogItem = ({ product }) => {
             <Image
               src={itemImage.url}
               alt={itemImage.title}
-              width='100%'
-              height='100%'
-              layout='responsive'
-              objectFit='contain'
+              width={100}
+              height={100}
+              sizes='(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw'
+              style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
             />
           </span>
         )}

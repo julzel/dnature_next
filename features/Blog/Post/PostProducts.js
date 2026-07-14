@@ -24,7 +24,6 @@ const ProductItem = ({ product }) => (
       }}
     >
       <Link
-        passHref
         href={{
           pathname: `/productos/${product.urlSlug}`,
           query: { id: product.sys.id },
@@ -36,11 +35,10 @@ const ProductItem = ({ product }) => (
             <Image
               src={product.imageCollection.items[0].url}
               alt={product.imageCollection.items[0].title}
-              layout="responsive"
-              objectFit="cover"
               width={75}
               height={75}
-              style={{ borderRadius: '50%' }}
+              sizes="75px"
+              style={{ width: '100%', height: 'auto', objectFit: 'cover', borderRadius: '50%' }}
             />
           </Grid>
 

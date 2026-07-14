@@ -47,10 +47,11 @@ const ProductInfo = ({
               <Image
                 src={img.url}
                 alt={img.title}
-                width='100%'
-                height='100%'
-                layout='responsive'
-                objectFit='contain'
+                width={100}
+                height={100}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                sizes='(min-width: 900px) 50vw, 100vw'
+                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
               />
             </div>
           ))}
@@ -97,12 +98,10 @@ const ProductInfo = ({
           </Box>
 
           {cartTotalItems > 0 && (
-            <Link href={'/cart'} passHref>
-              <a>
-                Ver Carrito
-                <FontAwesomeIcon icon={faCartShopping} />
-                <span>({cartTotalItems})</span>
-              </a>
+            <Link href={'/cart'}>
+              Ver Carrito
+              <FontAwesomeIcon icon={faCartShopping} />
+              <span>({cartTotalItems})</span>
             </Link>
           )}
         </Box>

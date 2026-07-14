@@ -21,17 +21,17 @@ const Products = ({ categories }) => {
           categories.map((category, i) => {
             return (
               <li key={i} className={styles.productsCategory}>
-                <Link href={`/productos?category=${category.slug}`} passHref>
+                <Link href={`/productos?category=${category.slug}`}>
                   <div>
                     <AnimationBox animation="fade-in-from-bottom">
                       <div className={styles.image}>
                         <Image
                           src={category.image.url}
                           alt={category.image.title}
-                          width="100%"
-                          height="100%"
-                          layout="responsive"
-                          objectFit="contain"
+                          width={100}
+                          height={100}
+                          sizes="(min-width: 1024px) 25vw, 100vw"
+                          style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
                         />
                       </div>
                     </AnimationBox>

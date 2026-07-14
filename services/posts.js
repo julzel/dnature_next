@@ -89,7 +89,21 @@ export const getPost = async (id) => {
     const data = await fetchFromContentful(POST_QUERY, { id });
     return data.blogPostCollection.items[0];
   } catch (error) {
-    console.error('Error fetching blog posts from Contentful:', error);
+    const partialPost = error?.response?.data?.blogPostCollection?.items?.[0];
+
+    // Contentful can return usable post data together with errors for broken
+    // optional links (for example, an unpublished author avatar). Render the
+    // post with the available data instead of turning the whole page into a 500.
+    if (partialPost) {
+      const contentfulError = error?.response?.errors?.[0]?.message;
+      console.warn(
+        'Contentful returned partial blog post data:',
+        contentfulError || 'An optional linked entry could not be resolved.'
+      );
+      return partialPost;
+    }
+
+    console.error('Error fetching blog post from Contentful:', error);
     throw error;
   }
 };
