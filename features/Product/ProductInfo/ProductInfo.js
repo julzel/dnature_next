@@ -49,6 +49,7 @@ const ProductInfo = ({
                 alt={img.title}
                 width={100}
                 height={100}
+                loading={i === 0 ? 'eager' : 'lazy'}
                 sizes='(min-width: 900px) 50vw, 100vw'
                 style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
               />

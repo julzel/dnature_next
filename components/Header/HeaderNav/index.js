@@ -22,6 +22,7 @@ const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
               alt='DNAture Logo'
               width={75}
               height={58}
+              loading='eager'
             />
           </span>
         </Link>

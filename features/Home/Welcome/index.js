@@ -29,9 +29,7 @@ const Welcome = () => {
                 <AnimationBox animation={animation}>
                   <div
                     className={styles.welcomeItemsImage}
-                    style={{
-                      width: item.smallIcon ? '65px' : '',
-                    }}
+                    style={item.smallIcon ? { width: '65px' } : undefined}
                   >
                     <Image
                       src={item.icon}
