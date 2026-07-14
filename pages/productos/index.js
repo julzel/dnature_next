@@ -4,14 +4,23 @@ import Products from "../../features/Products";
 import { getProducts } from "../../services/products";
 
 export async function getStaticProps() {
-  const products = await getProducts();
+  try {
+    const products = await getProducts();
 
-  return {
-    props: {
-      products,
-    },
-    revalidate: 120, // Optional: Time (in seconds) to re-generate the page in the background
-  };
+    return {
+      props: {
+        products,
+      },
+      revalidate: 120,
+    };
+  } catch (error) {
+    console.error('Unable to load products from Contentful:', error);
+
+    return {
+      props: { products: {} },
+      revalidate: 60,
+    };
+  }
 }
 
 export default function ProductsPage({ products }) {

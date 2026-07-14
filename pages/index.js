@@ -4,14 +4,23 @@ import Home from "../features/Home";
 import { getCategories } from "../services/categories";
 
 export async function getStaticProps() {
-  const categories = await getCategories();
+  try {
+    const categories = await getCategories();
 
-  return {
-    props: {
-      categories,
-    },
-    revalidate: 120, // Optional: Time (in seconds) to re-generate the page in the background
-  };
+    return {
+      props: {
+        categories,
+      },
+      revalidate: 120,
+    };
+  } catch (error) {
+    console.error('Unable to load home categories from Contentful:', error);
+
+    return {
+      props: { categories: [] },
+      revalidate: 60,
+    };
+  }
 }
 
 export default function HomePage({ categories }) {
