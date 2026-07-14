@@ -1,7 +1,7 @@
 // local imports
 import Page from "../components/Page";
 import Home from "../features/Home";
-import { getCategories } from "../services/categories";
+import { fallbackCategories, getCategories } from "../services/categories";
 
 export async function getStaticProps() {
   try {
@@ -17,13 +17,13 @@ export async function getStaticProps() {
     console.error('Unable to load home categories from Contentful:', error);
 
     return {
-      props: { categories: [] },
+      props: { categories: fallbackCategories },
       revalidate: 60,
     };
   }
 }
 
-export default function HomePage({ categories }) {
+export default function HomePage({ categories = [] }) {
   return (
     <Page>
       <Home categories={categories} />
