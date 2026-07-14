@@ -18,7 +18,7 @@ const DropdownMenu = ({ items, show }) => {
       <ul className={styles.dropdownMenu}>
         {items.map((link, i) => (
           <li key={i} className={styles.item}>
-            <Link href={link.href} passHref>
+            <Link href={link.href}>
               <span className={styles.itemLink}>
                 <span>{link.label}</span>
                 <FontAwesomeIcon icon={faChevronRight} />

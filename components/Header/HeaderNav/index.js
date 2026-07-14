@@ -9,17 +9,20 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 // styles
 import styles from './HeaderNav.module.scss';
 
-// images
-import logo from '../../../public/images/dnature-logo.svg';
 import NavigationBar from './NavigationBar';
 
 const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
   return (
     <div className={styles.headerNav}>
       <div className={styles.logoContainer}>
-        <Link href={'/'} passHref>
+        <Link href={'/'}>
           <span className={styles.logo}>
-            <Image src={logo} alt='DNAture Logo' />
+            <Image
+              src='/images/dnature-logo.svg'
+              alt='DNAture Logo'
+              width={75}
+              height={58}
+            />
           </span>
         </Link>
       </div>

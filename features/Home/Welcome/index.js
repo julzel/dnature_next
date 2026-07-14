@@ -33,7 +33,13 @@ const Welcome = () => {
                       width: item.smallIcon ? '65px' : '',
                     }}
                   >
-                    <Image src={item.icon} alt={item.title} />
+                    <Image
+                      src={item.icon}
+                      alt={item.title}
+                      width={item.width}
+                      height={item.height}
+                      style={{ width: '100%', height: 'auto' }}
+                    />
                   </div>
                   <h4 className={styles.welcomeItemsTitle}>{item.title}</h4>
                   <p className={styles.welcomeItemsText}>{item.text}</p>

@@ -13,13 +13,13 @@ const SubHeader = ({ isLoggedIn = false, totalCartItems, totalPets }) => {
   return (
     <nav className={styles.subheader}>
       {/* {(totalPets > 0 || true ) && (
-        <Link href={"/mis-mascotas"} passHref>
+        <Link href={"/mis-mascotas"}>
           <span className={styles.link}>
             <FontAwesomeIcon icon={faDog} size="sm" />
           </span>
         </Link>
       )} */}
-      <Link href={"/cart"} passHref>
+      <Link href={"/cart"}>
         <span className={styles.link}>
           <FontAwesomeIcon icon={faCartShopping} size="sm" />
           {totalCartItems > 0 && (
@@ -27,7 +27,7 @@ const SubHeader = ({ isLoggedIn = false, totalCartItems, totalPets }) => {
           )}
         </span>
       </Link>
-      {/* <Link href={"/login"} passHref>
+      {/* <Link href={"/login"}>
         <span className={styles.link}>
           <FontAwesomeIcon
             icon={isLoggedIn ? faCircleUser : faCircleUserEmpty}

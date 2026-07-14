@@ -12,7 +12,7 @@ const NavigationBar = ({ items }) => {
   return (
     <nav className={styles.navbar}>
       {items.map((link, i) => (
-        <Link href={link.href} passHref key={i}>
+        <Link href={link.href} key={i}>
           <span
             className={`${styles.navbarItem} ${styles.dark} ${
               router.pathname == link.href ? styles.active : ''

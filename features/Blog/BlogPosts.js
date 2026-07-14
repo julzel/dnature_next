@@ -15,10 +15,10 @@ const BlogPostItem = ({ post }) => (
       <Image
         src={post.media.url}
         alt={post.title}
-        layout="responsive"
-        objectFit="cover"
         width={300}
         height={250}
+        sizes="(min-width: 900px) 33vw, 100vw"
+        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
       />
     </Box>
     <Box p={1} bgcolor={postCategories[post.category].color}>
@@ -53,11 +53,9 @@ const BlogPosts = ({ posts }) => {
                 pathname: `/blog/${post.slug}`,
                 query: { id: post.sys.id },
               }}
-              passHref
+              className={styles['blog-posts_link']}
             >
-              <a className={styles['blog-posts_link']}>
-                <BlogPostItem post={post} />
-              </a>
+              <BlogPostItem post={post} />
             </Link>
           </ImageListItem>
         ))}

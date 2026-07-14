@@ -5,16 +5,18 @@ import Image from 'next/image';
 // styles
 import styles from './Footer.module.scss';
 
-// images
-import logoBlack from '../../public/images/dnature-logo.svg';
-
 const Footer = () => {
   const date = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
       <p>
         <span>
-          <Image src={logoBlack} alt='DNAture Logo' />
+          <Image
+            src='/images/dnature-logo.svg'
+            alt='DNAture Logo'
+            width={55}
+            height={43}
+          />
         </span>
       </p>
       <p>Todos los derechos reservados.</p>

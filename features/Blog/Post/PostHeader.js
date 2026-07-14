@@ -27,7 +27,9 @@ const PostHeader = ({ title, media, date, author }) => {
           {author && (
             <Grid container alignItems={'center'}>
               <Grid item>
-                <Avatar src={author.avatar.url} alt={author.name} />
+                <Avatar src={author.avatar?.url} alt={author.name}>
+                  {author.name?.charAt(0)}
+                </Avatar>
               </Grid>
               <Grid item ml={1}>
                 <Typography variant="subtitle2" component="h2" gutterBottom>
@@ -55,10 +57,10 @@ const PostHeader = ({ title, media, date, author }) => {
             <Image
               src={media.url}
               alt={title}
-              layout="responsive"
-              objectFit="cover"
               width={300}
               height={250}
+              sizes="100vw"
+              style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
             />
           </CardMedia>
         </Card>
