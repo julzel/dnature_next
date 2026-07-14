@@ -11,14 +11,12 @@ export async function getStaticProps() {
       props: {
         categories,
       },
-      revalidate: 120,
     };
   } catch (error) {
     console.error('Unable to load home categories from Contentful:', error);
 
     return {
       props: { categories: fallbackCategories },
-      revalidate: 60,
     };
   }
 }
