@@ -95,7 +95,10 @@ const withFallbackCategories = (data) => {
 
 const getCategories = async () => {
   try {
-    const data = await fetchFromContentful(categoriesQuery);
+    const data = await fetchFromContentful(categoriesQuery, undefined, {
+      revalidate: 3600,
+      tags: ['categories'],
+    });
     const categories = normalizeCategories(data);
 
     return categories.length ? categories : fallbackCategories;

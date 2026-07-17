@@ -1,6 +1,6 @@
 const CONTENTFUL_TIMEOUT_MS = 5000;
 
-const fetchFromContentful = async (query, variables) => {
+const fetchFromContentful = async (query, variables, next) => {
   const spaceId =
     process.env.CONTENTFUL_SPACE_ID ||
     process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
@@ -21,6 +21,7 @@ const fetchFromContentful = async (query, variables) => {
         'content-type': 'application/json',
       },
       body: JSON.stringify({ query, variables }),
+      next,
       signal: AbortSignal.timeout(CONTENTFUL_TIMEOUT_MS),
     }
   );

@@ -76,9 +76,7 @@ const CatalogContainer = ({ queryCategory, products }) => {
   const handleSuggestionSelect = useCallback(
     (product) => {
       setSearchQuery("");
-      const productId = product.sys?.id || product.urlSlug;
-      const params = new URLSearchParams({ id: productId });
-      push(`/productos/${product.urlSlug}?${params.toString()}`);
+      push(`/productos/${encodeURIComponent(product.urlSlug)}`);
     },
     [push]
   );

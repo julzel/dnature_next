@@ -661,41 +661,42 @@ product discovery, cart state, header state, and navigation.
 
 #### Home
 
-- [ ] Create `app/page.js`.
-- [ ] Fetch categories directly in the async Server Component.
-- [ ] Preserve fallback categories.
-- [ ] Apply the categories cache policy.
-- [ ] Keep Hero, Banner, and other interactive home features behind client
+- [x] Create `app/page.js`.
+- [x] Fetch categories directly in the async Server Component.
+- [x] Preserve fallback categories.
+- [x] Apply the categories cache policy.
+- [x] Keep Hero, Banner, and other interactive home features behind client
       boundaries only where needed.
 
 #### Products listing
 
-- [ ] Create `app/productos/page.js`.
-- [ ] Fetch products directly on the server.
-- [ ] Preserve the 120-second refresh behavior.
-- [ ] Read the initial `category` from page `searchParams` or from a client
+- [x] Create `app/productos/page.js`.
+- [x] Fetch products directly on the server.
+- [x] Preserve the 120-second refresh behavior.
+- [x] Read the initial `category` from page `searchParams` or from a client
       search-parameter boundary.
-- [ ] Preserve filtering, search suggestions, and responsive filters.
-- [ ] Change product links to clean slug-only URLs.
+- [x] Preserve filtering, search suggestions, and responsive filters.
+- [x] Change product links to clean slug-only URLs.
 
 #### Product detail
 
-- [ ] Create `app/productos/[slug]/page.js`.
-- [ ] Fetch by `params.slug` on the server.
-- [ ] Move product description formatting to a server-safe utility.
-- [ ] Call `notFound()` for missing products.
-- [ ] Add `generateMetadata()`.
-- [ ] Optionally add `generateStaticParams()`.
-- [ ] Pass product data to client purchase controls.
-- [ ] Remove the client `useEffect` Contentful fetch.
+- [x] Create `app/productos/[slug]/page.js`.
+- [x] Fetch by `params.slug` on the server.
+- [x] Move product description formatting to a server-safe utility.
+- [x] Call `notFound()` for missing products.
+- [x] Add `generateMetadata()`.
+- [x] Deliberately defer `generateStaticParams()`; products are available on
+      first request through the dynamic route and 120-second data cache.
+- [x] Pass product data to client purchase controls.
+- [x] Remove the client `useEffect` Contentful fetch.
 
 #### Cart
 
-- [ ] Create `app/cart/page.js`.
-- [ ] Preserve cart context and current-cart behavior.
-- [ ] Replace render-time `window.innerWidth`.
-- [ ] Verify local cart history hydration.
-- [ ] Verify quantity changes, remove actions, forms, modals, canvas capture,
+- [x] Create `app/cart/page.js`.
+- [x] Preserve cart context and current-cart behavior.
+- [x] Replace render-time `window.innerWidth`.
+- [ ] Manually verify local cart history hydration in a browser.
+- [ ] Manually verify quantity changes, remove actions, forms, modals, canvas capture,
       purchase order, and WhatsApp flow.
 
 #### Exit criteria

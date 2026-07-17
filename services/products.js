@@ -63,6 +63,38 @@ const productQuery = (productId) => `
         }
         `;
 
+const productBySlugQuery = `
+  query getProductBySlug($slug: String!) {
+    productCollection(where: { urlSlug: $slug }, limit: 1) {
+      items {
+        productName
+        urlSlug
+        description
+        category
+        medida
+        precio
+        preciosPorUnidad
+        ingredientes
+        imageCollection {
+          items {
+            title
+            url
+          }
+        }
+        iconosCollection {
+          items {
+            title
+            url
+          }
+        }
+        sys {
+          id
+        }
+      }
+    }
+  }
+`;
+
 const formatProductsData = (productItems) => {
   const catalog = {};
   productItems.forEach((item) => {
@@ -95,7 +127,10 @@ const formatProductsData = (productItems) => {
 };
 
 const getProducts = async () => {
-  const data = await fetchFromContentful(productsQuery());
+  const data = await fetchFromContentful(productsQuery(), undefined, {
+    revalidate: 120,
+    tags: ['products'],
+  });
   return formatProductsData(data.productCollection.items);
 };
 
@@ -120,4 +155,18 @@ const getProduct = async (productId) => {
   }
 };
 
-export { getProducts, getProduct };
+const getProductBySlug = async (slug) => {
+  const data = await fetchFromContentful(
+    productBySlugQuery,
+    { slug },
+    {
+      revalidate: 120,
+      tags: ['products', `product:${slug}`],
+    }
+  );
+  const product = data?.productCollection?.items?.[0];
+
+  return product ? formatProductData(product) : null;
+};
+
+export { getProducts, getProduct, getProductBySlug };
