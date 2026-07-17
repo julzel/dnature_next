@@ -637,13 +637,13 @@ Migrate low-risk routes first:
 
 #### Tasks per route
 
-- [ ] Create the matching `app/.../page.js`.
-- [ ] Keep the page itself as a Server Component.
-- [ ] Render the existing interactive feature through a client boundary.
-- [ ] Add static metadata.
-- [ ] Remove the corresponding Pages Router file in the same change to avoid a
+- [x] Create the matching `app/.../page.js`.
+- [x] Keep the page itself as a Server Component.
+- [x] Render the existing interactive feature through a client boundary.
+- [x] Add static metadata.
+- [x] Remove the corresponding Pages Router file in the same change to avoid a
       duplicate route.
-- [ ] Run lint and build.
+- [x] Run lint and build.
 - [ ] Compare mobile and desktop screenshots.
 
 #### Exit criteria
