@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Carousel from 'react-material-ui-carousel';
 import { Box, Card } from '@mui/material';

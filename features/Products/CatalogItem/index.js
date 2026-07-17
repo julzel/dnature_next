@@ -71,10 +71,7 @@ const CatalogItem = ({ product }) => {
       : getItemsInCart(id);
 
   return (
-    <Link
-      key={id}
-      href={{ pathname: `/productos/${urlSlug}`, query: { id } }}
-    >
+    <Link key={id} href={`/productos/${encodeURIComponent(urlSlug)}`}>
       <span className={styles.catalogItem}>
         {itemImage && (
           <span className={styles.catalogItemImages}>

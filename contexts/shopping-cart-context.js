@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, useCallback, useState, useEffect } from 'react';
 import { ShoppingCart, ShoppingCartItem } from '../models/shopping-cart';
 

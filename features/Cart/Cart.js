@@ -1,4 +1,6 @@
-import { Typography } from '@mui/material';
+'use client';
+
+import { useMediaQuery } from '@mui/material';
 // local imports
 // styles
 import styles from './Cart.module.scss';
@@ -26,61 +28,63 @@ const Cart = ({
   onPurchaseConfirm,
   displayInfoModal,
   onCloseInfoModal,
-}) => (
-  <div className={styles.cart}>
-    <div className={styles.cartContent}>
-      <div>
-        <h2 className={styles.header}>Tu Carrito:</h2>
+}) => {
+  const isMobile = useMediaQuery('(max-width:639px)', { noSsr: true });
 
-        <CartItemsContainer items={cart.items} />
+  return (
+    <div className={styles.cart}>
+      <div className={styles.cartContent}>
+        <div>
+          <h2 className={styles.header}>Tu Carrito:</h2>
 
-        <div className={styles.total}>
-          <span>Total:</span> <CurrencyText value={cart.total} />
+          <CartItemsContainer items={cart.items} />
+
+          <div className={styles.total}>
+            <span>Total:</span> <CurrencyText value={cart.total} />
+          </div>
         </div>
+        <CartActionsContainer proceedToPurchase={proceedToPurchase} />
       </div>
-      <CartActionsContainer proceedToPurchase={proceedToPurchase} />
-    </div>
-    <CartHistory />
+      <CartHistory />
 
-    {requestClientInfo && (
-      <ModalContainer
-        closeModal={closeClientInfoModal}
-        fullScreen={window.innerWidth < 640}
-      >
-        <ClientFormContainer
-          onSubmit={onClientInfoSubmit}
-          className={styles.cartClientForm}
-        />
-      </ModalContainer>
-    )}
+      {requestClientInfo && (
+        <ModalContainer
+          closeModal={closeClientInfoModal}
+          fullScreen={isMobile}
+        >
+          <ClientFormContainer
+            onSubmit={onClientInfoSubmit}
+            className={styles.cartClientForm}
+          />
+        </ModalContainer>
+      )}
 
-    {showPurchaseOrder && !displayInfoModal && (
-      <>
+      {showPurchaseOrder && !displayInfoModal && (
         <ModalContainer
           closeModal={onPurchaseCancel}
-          fullScreen={window.innerWidth < 640}
+          fullScreen={isMobile}
         >
           <CartPurchaseOrderContainer
             onPurchaseCancel={onPurchaseCancel}
             onPurchaseConfirm={onPurchaseConfirm}
           />
         </ModalContainer>
-      </>
-    )}
+      )}
 
-    {displayInfoModal && (
-      <CartNotification onCloseInfoModal={onCloseInfoModal} />
-    )}
+      {displayInfoModal && (
+        <CartNotification onCloseInfoModal={onCloseInfoModal} />
+      )}
 
-    <div
-      ref={canvasElem}
-      className={`${styles.canvas} ${
-        showPurchaseOrder ? styles.visible : null
-      }`}
-    >
-      <PurchaseOrderContainer />
+      <div
+        ref={canvasElem}
+        className={`${styles.canvas} ${
+          showPurchaseOrder ? styles.visible : null
+        }`}
+      >
+        <PurchaseOrderContainer />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Cart;

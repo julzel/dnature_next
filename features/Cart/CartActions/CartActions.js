@@ -10,7 +10,7 @@ import Modal from "../../../components/Modal";
 import MessageBoxContainer from "../../../components/MessageBox";
 
 const CartActions = ({
-  router,
+  onBack,
   totalItems,
   proceedToPurchase,
   handleRemoveAllItems,
@@ -29,7 +29,7 @@ const CartActions = ({
       )}
       <Button
         className={`${styles.button} ${styles.variant}`}
-        onClick={() => router.back()}
+        onClick={onBack}
       >
         Regresar
       </Button>

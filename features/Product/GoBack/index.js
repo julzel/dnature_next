@@ -1,15 +1,15 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import useCompatibleNavigation from '../../../hooks/useCompatibleNavigation';
 
 const GoBack = ({ className }) => {
-  const router = useRouter();
+  const { back } = useCompatibleNavigation();
 
   const goBack = (event) => {
     event.preventDefault();
-    router.back();
-  }
+    back();
+  };
 
   return (
     <div className={className} onClick={goBack}>

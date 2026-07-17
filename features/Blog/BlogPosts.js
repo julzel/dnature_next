@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -48,13 +50,7 @@ const BlogPosts = ({ posts }) => {
       <ImageList gap={16} cols={isMobile ? 1 : 3}>
         {posts.map((post, index) => (
           <ImageListItem key={index}>
-            <Link
-              href={{
-                pathname: `/blog/${post.slug}`,
-                query: { id: post.sys.id },
-              }}
-              className={styles['blog-posts_link']}
-            >
+            <Link href={`/blog/${encodeURIComponent(post.slug)}`} className={styles['blog-posts_link']}>
               <BlogPostItem post={post} />
             </Link>
           </ImageListItem>

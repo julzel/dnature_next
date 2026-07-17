@@ -23,12 +23,7 @@ const ProductItem = ({ product }) => (
         }
       }}
     >
-      <Link
-        href={{
-          pathname: `/productos/${product.urlSlug}`,
-          query: { id: product.sys.id },
-        }}
-      >
+      <Link href={`/productos/${encodeURIComponent(product.urlSlug)}`}>
         <Grid container alignItems="center">
           {/* Thumbnail */}
           <Grid item xs={4} md={4} p={1}>

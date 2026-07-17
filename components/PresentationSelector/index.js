@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+
+import styles from './PresentationSelector.module.scss';
 
 export function convertObjectToArray(obj) {
   return Object.keys(obj).map(key => ({
@@ -27,23 +28,23 @@ const PresentationSelector = ({ presentations, selectedPresentation, onPresentat
   }, [selectedPresentation]);
 
   return (
-    <FormControl fullWidth>
-      <InputLabel id="presentation-select-label">Presentación</InputLabel>
-      <Select
-        labelId="presentation-select-label"
+    <div className={styles.field}>
+      <label className={styles.label} htmlFor="presentation-select">
+        Presentación
+      </label>
+      <select
+        className={styles.select}
         id="presentation-select"
         value={selectedValue ? selectedValue.size : ''}
-        label="Presentation"
         onChange={handleChange}
-        onClick={(e) => e.stopPropagation()}
       >
         {presentationArray.map(({ size }) => (
-          <MenuItem value={size} key={size}>
+          <option value={size} key={size}>
             {size}
-          </MenuItem>
+          </option>
         ))}
-      </Select>
-    </FormControl>
+      </select>
+    </div>
   );
 };
 

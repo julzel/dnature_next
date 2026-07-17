@@ -10,10 +10,9 @@ const ProductDetail = ({ productDetail }) => (
     {productDetail.description && (
       <div>
         <h2>Información</h2>
-        <div
-          className={styles.description}
-          dangerouslySetInnerHTML={{ __html: productDetail.description }}
-        />
+        <div className={styles.description} style={{ whiteSpace: 'pre-line' }}>
+          {productDetail.description}
+        </div>
       </div>
     )}
     {productDetail.ingredientes && (

@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import WhatsAppLink from '../../../WhatsAppLink';
 
 // styles
 import styles from './NavigationBar.module.scss';
 
 const NavigationBar = ({ items }) => {
-  const router = useRouter();
+  const pathname = usePathname();
+  const activePathname = pathname || '';
 
   return (
     <nav className={styles.navbar}>
@@ -15,7 +16,7 @@ const NavigationBar = ({ items }) => {
         <Link href={link.href} key={i}>
           <span
             className={`${styles.navbarItem} ${styles.dark} ${
-              router.pathname == link.href ? styles.active : ''
+              activePathname === link.href ? styles.active : ''
             }`}
           >
             {link.label}

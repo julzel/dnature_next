@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Box,
   Grid,
@@ -6,15 +8,15 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { useRouter } from 'next/router'; // import useRouter
 
 // local imports
 import postCategories from './post-categories';
+import useCompatibleNavigation from '../../hooks/useCompatibleNavigation';
 
 const BlogCategoryGrid = () => {
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.between('xs', 'sm'));
-  const router = useRouter(); // instantiate useRouter
+  const { push } = useCompatibleNavigation();
 
   let spacing;
 
@@ -25,7 +27,7 @@ const BlogCategoryGrid = () => {
   }
 
   const handleCategoryClick = (category) => {
-    router.push(`/blog/busqueda/?field=category&value=${category}`);
+    push(`/blog/busqueda/?field=category&value=${encodeURIComponent(category)}`);
   };
 
   return (

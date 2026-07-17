@@ -23,7 +23,9 @@ const BLOG_PREVIEW_QUERY = `
 export const getPosts = async () => {
   try {
     const { blogPostCollection } = await fetchFromContentful(
-      BLOG_PREVIEW_QUERY
+      BLOG_PREVIEW_QUERY,
+      undefined,
+      { revalidate: 120, tags: ['posts'] }
     );
     return blogPostCollection.items;
   } catch (error) {
@@ -32,15 +34,16 @@ export const getPosts = async () => {
   }
 };
 
-const POST_QUERY = `
-  query getBlogEntry($id: String!) {
-    blogPostCollection(where: {sys: {id: $id}}) {
+const POST_BY_SLUG_QUERY = `
+  query getBlogEntryBySlug($slug: String!) {
+    blogPostCollection(where: {slug: $slug}, limit: 1) {
       items {
         sys {
           id
           publishedAt
         }
         title
+        excerpt
         media {
           url
         }
@@ -84,9 +87,12 @@ const POST_QUERY = `
   }
 `;
 
-export const getPost = async (id) => {
+export const getPostBySlug = async (slug) => {
   try {
-    const data = await fetchFromContentful(POST_QUERY, { id });
+    const data = await fetchFromContentful(POST_BY_SLUG_QUERY, { slug }, {
+      revalidate: 120,
+      tags: ['posts', `post:${slug}`],
+    });
     return data.blogPostCollection.items[0];
   } catch (error) {
     const partialPost = error?.response?.data?.blogPostCollection?.items?.[0];
@@ -108,7 +114,13 @@ export const getPost = async (id) => {
   }
 };
 
+const SEARCH_FIELDS = new Set(['category', 'hashtags_contains_some']);
+
 export const getPostsByField = async (field, value) => {
+  if (!SEARCH_FIELDS.has(field) || !value) {
+    return [];
+  }
+
   try {
     let variables;
     let queryValue;
@@ -143,7 +155,10 @@ export const getPostsByField = async (field, value) => {
       }
     `;
 
-    const data = await fetchFromContentful(POSTS_BY_FIELD_QUERY, variables);
+    const data = await fetchFromContentful(POSTS_BY_FIELD_QUERY, variables, {
+      revalidate: 120,
+      tags: ['posts'],
+    });
     return data.blogPostCollection.items;
   } catch (error) {
     console.error('Error fetching blog posts from Contentful:', error);

@@ -1,6 +1,7 @@
-import Link from 'next/link';
+'use client';
+
 import { Box, Card, CardContent, Chip, Typography } from '@mui/material';
-import { lime } from '@mui/material/colors';
+import ClientLink from '../../../components/ClientLink';
 
 // local imports
 import postCategories from '../post-categories';
@@ -15,7 +16,7 @@ const PostTags = ({ category, tags }) => {
       </Box>
       <CardContent p={0}>
         <Chip
-          component={Link}
+          component={ClientLink}
           href={`/blog/busqueda/?field=category&value=${category}`}
           label={category.toUpperCase()}
           sx={{
@@ -36,7 +37,7 @@ const PostTags = ({ category, tags }) => {
         {tags.map((hashtag) => (
           <Chip
             key={hashtag}
-            component={Link}
+            component={ClientLink}
             href={`/blog/busqueda/?field=hashtags_contains_some&value=${hashtag}`}
             label={hashtag.toUpperCase()}
             sx={{

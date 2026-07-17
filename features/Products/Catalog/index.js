@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useEffect, useMemo } from "react";
-import { useRouter } from "next/router";
 
 // local imports
 // components
 import Catalog from "./Catalog";
+import useCompatibleNavigation from "../../../hooks/useCompatibleNavigation";
 
 const defaultCategory = {
   label: "Todos los productos",
@@ -11,7 +11,7 @@ const defaultCategory = {
 };
 
 const CatalogContainer = ({ queryCategory, products }) => {
-  const router = useRouter();
+  const { push } = useCompatibleNavigation();
   const [categoriesList, setCategoriesList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(
     queryCategory ? queryCategory : defaultCategory
@@ -76,12 +76,9 @@ const CatalogContainer = ({ queryCategory, products }) => {
   const handleSuggestionSelect = useCallback(
     (product) => {
       setSearchQuery("");
-      router.push({
-        pathname: `/productos/${product.urlSlug}`,
-        query: { id: product.sys?.id || product.urlSlug },
-      });
+      push(`/productos/${encodeURIComponent(product.urlSlug)}`);
     },
-    [router]
+    [push]
   );
 
   return (
