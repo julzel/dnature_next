@@ -571,21 +571,26 @@ public App Router route will be introduced in Phase 4.
 
 #### Tasks
 
-- [ ] Mark the Header entry component as a Client Component.
-- [ ] Mark the shopping cart provider as a Client Component.
-- [ ] Establish client entry points for Products, Cart, Calculator, Plan
+- [x] Mark the Header entry component as a Client Component.
+- [x] Mark the shopping cart provider as a Client Component.
+- [x] Establish client entry points for Products, Cart, Calculator, Plan
       DNAture, FAQ, and interactive Blog components.
-- [ ] Replace active-navigation `router.pathname` with `usePathname()`.
-- [ ] Replace product category `router.query` access.
-- [ ] Convert object-style `router.push()` calls to URL strings.
-- [ ] Keep `router.back()` behavior using `next/navigation`.
-- [ ] Wrap URL-reading client components in `Suspense`.
-- [ ] Fix MUI Link adapter boundaries where needed.
-- [ ] Remove direct `window.innerWidth` access from
+- [x] Replace active-navigation `router.pathname` with `usePathname()`.
+- [x] Replace product category `router.query` access.
+- [x] Convert object-style `router.push()` calls to URL strings.
+- [x] Preserve `router.back()` behavior through the Pages/App compatibility
+      layer.
+- [x] Wrap URL-reading client components in `Suspense`.
+- [x] Fix MUI Link adapter boundaries where needed.
+- [x] Remove direct `window.innerWidth` access from
       `features/Cart/Cart.js`; use the existing responsive hook, MUI media
       query, or CSS.
-- [ ] Verify every browser API is read in an effect, event handler, or guarded
+- [x] Verify every browser API is read in an effect, event handler, or guarded
       client-only path.
+
+`next/compat/router` remains in shared components while the Pages Router is
+still active. It is intentionally replaced with `next/navigation` route hooks
+when each component becomes App Router-only in later phases.
 
 #### Exit criteria
 

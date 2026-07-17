@@ -1,5 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/router";
+'use client';
+
+import React, { Suspense, useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/compat/router";
+import { useSearchParams } from "next/navigation";
 
 // local imports
 // services
@@ -24,8 +27,10 @@ const formatDescription = (description) => {
   return "";
 };
 
-const ProductItemContainer = () => {
+const ProductItemContent = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const productId = searchParams?.get("id") || router?.query?.id;
 
   // state
   const [productDetail, setProductDetail] = useState(null);
@@ -33,14 +38,13 @@ const ProductItemContainer = () => {
 
   // functions
   const fetchProduct = useCallback(async () => {
-    const { query } = router;
-    if (query.id) {
-      const product = await getProduct(query.id);
+    if (productId) {
+      const product = await getProduct(productId);
       product.description = formatDescription(product.description);
       setProductDetail(product);
       setLoading(false);
     }
-  }, [router]);
+  }, [productId]);
 
   // state updates
   useEffect(() => {
@@ -54,5 +58,11 @@ const ProductItemContainer = () => {
     <ProductItem productDetail={productDetail} />
   );
 };
+
+const ProductItemContainer = () => (
+  <Suspense fallback={<Loading />}>
+    <ProductItemContent />
+  </Suspense>
+);
 
 export default ProductItemContainer;

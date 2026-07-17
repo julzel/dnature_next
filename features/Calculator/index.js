@@ -1,4 +1,6 @@
-import { useState, useContext } from 'react';
+'use client';
+
+import { useState } from 'react';
 
 // local imports
 // styles
