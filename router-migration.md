@@ -534,25 +534,29 @@ No CSS rewrite should be bundled with this migration.
 
 #### Tasks
 
-- [ ] Create `app/layout.js`.
-- [ ] Create `app/providers.js` with `"use client"`.
-- [ ] Configure `AppRouterCacheProvider` from `v16-appRouter`.
-- [ ] Move ThemeProvider, cart provider, and ScopedCssBaseline into providers.
-- [ ] Import global Sass, Roboto weights, and Font Awesome CSS from the root
+- [x] Create `app/layout.js`.
+- [x] Create `app/providers.js` with `"use client"`.
+- [x] Configure `AppRouterCacheProvider` from `v16-appRouter`.
+- [x] Move ThemeProvider, cart provider, and ScopedCssBaseline into providers.
+- [x] Import global Sass, Roboto weights, and Font Awesome CSS from the root
       layout.
-- [ ] Move shared header/footer rendering into the root layout.
-- [ ] Add default metadata and `metadataBase`.
-- [ ] Add Organization JSON-LD.
-- [ ] Add root `loading.js`.
-- [ ] Add root `error.js`.
-- [ ] Add root `not-found.js`.
-- [ ] Add or move shared analytics.
+- [x] Move shared header/footer rendering into the root layout.
+- [x] Add default metadata and `metadataBase`.
+- [x] Add Organization JSON-LD.
+- [x] Add root `loading.js`.
+- [x] Add root `error.js`.
+- [x] Add root `not-found.js`.
+- [x] Add or move shared analytics.
 
 #### Compatibility requirement
 
 Keep `pages/_app.js` and `pages/_document.js` while any Pages Router routes
 remain. They are still required by those routes and must only be removed at the
 end.
+
+The foundation intentionally does not add an App Router `page.js`, because that
+would duplicate one of the existing public Pages Router routes. The first
+public App Router route will be introduced in Phase 4.
 
 #### Exit criteria
 
