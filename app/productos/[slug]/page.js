@@ -30,7 +30,9 @@ export const generateMetadata = async ({ params }) => {
   return {
     title: product.productName,
     description: product.ingredientes || `Conoce ${product.productName} de DNAture.`,
+    alternates: { canonical: `/productos/${slug}` },
     openGraph: {
+      url: `/productos/${slug}`,
       images: product.images?.[0]
         ? [{ url: product.images[0].url, alt: product.images[0].title }]
         : [],

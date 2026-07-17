@@ -7,6 +7,7 @@ export const metadata = {
   title: 'Blog | Nutrición con conciencia',
   description:
     'Blog de DNAture: tips de nutrición, tenencia responsable y alimentación natural para mascotas.',
+  alternates: { canonical: '/blog' },
 };
 
 const BlogPage = async () => {

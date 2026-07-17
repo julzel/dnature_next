@@ -6,6 +6,7 @@ export const revalidate = 120;
 export const metadata = {
   title: 'Resultados de búsqueda',
   description: 'Resultados de búsqueda del blog de DNAture.',
+  alternates: { canonical: '/blog/busqueda' },
   robots: { index: false, follow: true },
 };
 

@@ -789,6 +789,7 @@ The application builds without the `pages/` directory.
 
 #### Before deployment
 
+- [x] Add an executable production verification command and runbook.
 - [ ] Deploy to a preview or staging environment.
 - [ ] Verify server-only Contentful variables.
 - [ ] Verify direct product and blog URLs.

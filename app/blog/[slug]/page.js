@@ -25,7 +25,9 @@ export const generateMetadata = async ({ params }) => {
   return {
     title: post.title,
     description: post.excerpt || `Lee ${post.title} en el blog de DNAture.`,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
+      url: `/blog/${slug}`,
       images: post.media?.url
         ? [{ url: post.media.url, alt: post.title }]
         : [],

@@ -23,6 +23,9 @@ export const metadata = {
     template: '%s | DNAture',
   },
   description: defaultDescription,
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'es_CR',

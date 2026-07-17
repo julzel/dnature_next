@@ -7,6 +7,7 @@ export const metadata = {
   title: 'Nuestros productos',
   description:
     'Explora los productos naturales DNAture para la alimentación de tu mascota.',
+  alternates: { canonical: '/productos' },
 };
 
 const ProductsPage = async () => {
