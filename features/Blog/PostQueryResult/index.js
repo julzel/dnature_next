@@ -51,12 +51,7 @@ export default function PostQueryResult({ posts, query }) {
                   },
                 }}
               >
-                <Link
-                  href={{
-                    pathname: `/blog/${post.slug}`,
-                    query: { id: post.sys.id },
-                  }}
-                >
+                <Link href={`/blog/${encodeURIComponent(post.slug)}`}>
                   <ListItem alignItems="flex-start">
                       <ListItemAvatar>
                         <Avatar

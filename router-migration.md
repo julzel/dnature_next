@@ -713,33 +713,34 @@ product discovery, cart state, header state, and navigation.
 
 #### Blog listing
 
-- [ ] Create `app/blog/page.js`.
-- [ ] Fetch posts in the Server Component.
-- [ ] Preserve the 120-second refresh behavior.
-- [ ] Move blog metadata from `features/Blog/index.js` to the route.
-- [ ] Keep category-grid navigation client-side or replace clickable papers
+- [x] Create `app/blog/page.js`.
+- [x] Fetch posts in the Server Component.
+- [x] Preserve the 120-second refresh behavior.
+- [x] Move blog metadata from `features/Blog/index.js` to the route.
+- [x] Keep category-grid navigation client-side or replace clickable papers
       with links.
-- [ ] Change post links to clean slug-only URLs.
+- [x] Change post links to clean slug-only URLs.
 
 #### Blog post
 
-- [ ] Create `app/blog/[slug]/page.js`.
-- [ ] Fetch by `params.slug`.
-- [ ] Call `notFound()` for missing posts.
-- [ ] Add `generateMetadata()`.
-- [ ] Optionally add `generateStaticParams()`.
-- [ ] Preserve Contentful rich-text rendering and optional linked-entry
+- [x] Create `app/blog/[slug]/page.js`.
+- [x] Fetch by `params.slug`.
+- [x] Call `notFound()` for missing posts.
+- [x] Add `generateMetadata()`.
+- [x] Deliberately defer `generateStaticParams()`; posts are available on
+      first request through the dynamic route and 120-second data cache.
+- [x] Preserve Contentful rich-text rendering and optional linked-entry
       behavior.
-- [ ] Verify post product links use clean product slugs.
+- [x] Update post product links to use clean product slugs.
 
 #### Blog search
 
-- [ ] Create `app/blog/busqueda/page.js`.
-- [ ] Await `searchParams`.
-- [ ] Validate the `field` allowlist before constructing a Contentful query.
-- [ ] Normalize missing or malformed query values to an empty result.
-- [ ] Keep search results request-driven or assign a deliberate caching policy.
-- [ ] Add static search-page metadata.
+- [x] Create `app/blog/busqueda/page.js`.
+- [x] Await `searchParams`.
+- [x] Validate the `field` allowlist before constructing a Contentful query.
+- [x] Normalize missing or malformed query values to an empty result.
+- [x] Cache search results for 120 seconds.
+- [x] Add static search-page metadata.
 
 #### Exit criteria
 
