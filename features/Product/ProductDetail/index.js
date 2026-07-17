@@ -25,14 +25,14 @@ const ProductDetail = ({ productDetail }) => (
         {productDetail.iconos && (
           <div className={styles.icons}>
             {productDetail.iconos.map((icono, j) => (
-              <div key={j}>
+              <div className={styles.icon} key={j}>
                 <Image
                   src={icono.url}
                   alt={icono.title}
-                  width={100}
-                  height={100}
-                  sizes='100px'
-                  style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+                  width={48}
+                  height={48}
+                  sizes='48px'
+                  className={styles.iconImage}
                 />
               </div>
             ))}
