@@ -11,13 +11,10 @@ const valueFor = (flag) => {
 
 const baseUrl = valueFor('--base-url') || process.env.BASELINE_BASE_URL || DEFAULT_BASE_URL;
 const productUrl = valueFor('--product-url') || process.env.BASELINE_PRODUCT_URL;
-const postUrl = valueFor('--post-url') || process.env.BASELINE_POST_URL;
 
 const routes = [
   '/',
   '/productos',
-  '/blog',
-  '/blog/busqueda?field=category&value=nutrición',
   '/calculadora',
   '/cart',
   '/login',
@@ -26,7 +23,6 @@ const routes = [
 ];
 
 if (productUrl) routes.push(productUrl);
-if (postUrl) routes.push(postUrl);
 
 const requiredMetadata = [
   ['title', /<title(?:\s[^>]*)?>[^<]+<\/title>/i],
@@ -61,9 +57,9 @@ for (const route of routes) {
   }
 }
 
-if (!productUrl || !postUrl) {
+if (!productUrl) {
   process.stdout.write(
-    'NOTE Dynamic detail routes were skipped. Pass --product-url and --post-url with current Contentful URLs to include them.\n'
+    'NOTE Dynamic product detail routes were skipped. Pass --product-url with a current product URL to include them.\n'
   );
 }
 

@@ -12,14 +12,11 @@ const hasFlag = (flag) => args.includes(flag);
 const baseUrl = valueFor('--base-url') || process.env.PRODUCTION_BASE_URL || DEFAULT_BASE_URL;
 const analyticsId = valueFor('--analytics-id') || process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 const productUrl = valueFor('--product-url') || process.env.PRODUCTION_PRODUCT_URL;
-const postUrl = valueFor('--post-url') || process.env.PRODUCTION_POST_URL;
 const failures = [];
 
 const routes = [
   '/',
   '/productos',
-  '/blog',
-  '/blog/busqueda?field=category&value=nutrición',
   '/calculadora',
   '/cart',
   '/login',
@@ -28,7 +25,6 @@ const routes = [
 ];
 
 if (productUrl) routes.push(productUrl);
-if (postUrl) routes.push(postUrl);
 
 const assert = (condition, message) => {
   if (!condition) failures.push(message);
@@ -93,8 +89,8 @@ if (hasFlag('--require-server-contentful-env')) {
   assert(!process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_API_KEY, 'NEXT_PUBLIC_CONTENTFUL_DELIVERY_API_KEY must be removed.');
 }
 
-if (!productUrl || !postUrl) {
-  process.stdout.write('NOTE Dynamic detail routes were skipped. Pass --product-url and --post-url with current public slugs to include them.\n');
+if (!productUrl) {
+  process.stdout.write('NOTE Dynamic product detail routes were skipped. Pass --product-url with a current public slug to include them.\n');
 }
 
 if (failures.length) {

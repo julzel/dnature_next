@@ -14,7 +14,6 @@
     "node": ">=20.9 <25"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^15.17.0",
     "@emotion/react": "11.11.4",
     "@emotion/server": "11.11.0",
     "@emotion/styled": "^11.11.0",
