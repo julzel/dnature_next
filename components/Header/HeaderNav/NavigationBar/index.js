@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/compat/router';
 import { usePathname } from 'next/navigation';
 import WhatsAppLink from '../../../WhatsAppLink';
 
@@ -8,9 +7,8 @@ import WhatsAppLink from '../../../WhatsAppLink';
 import styles from './NavigationBar.module.scss';
 
 const NavigationBar = ({ items }) => {
-  const router = useRouter();
   const pathname = usePathname();
-  const activePathname = pathname || router?.pathname || '';
+  const activePathname = pathname || '';
 
   return (
     <nav className={styles.navbar}>

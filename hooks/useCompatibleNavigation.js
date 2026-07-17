@@ -1,36 +1,14 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useRouter } from 'next/compat/router';
+import { useRouter } from 'next/navigation';
 
 const useCompatibleNavigation = () => {
   const router = useRouter();
 
-  const push = useCallback(
-    (href) => {
-      if (router) {
-        return router.push(href);
-      }
+  const push = useCallback((href) => router.push(href), [router]);
 
-      window.location.assign(href);
-      return undefined;
-    },
-    [router]
-  );
-
-  const back = useCallback(() => {
-    if (router) {
-      router.back();
-      return;
-    }
-
-    if (window.history.length > 1) {
-      window.history.back();
-      return;
-    }
-
-    window.location.assign('/');
-  }, [router]);
+  const back = useCallback(() => router.back(), [router]);
 
   return { back, push, router };
 };

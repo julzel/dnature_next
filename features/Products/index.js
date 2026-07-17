@@ -1,7 +1,6 @@
 'use client';
 
 import React, { Suspense } from "react";
-import { useRouter } from "next/compat/router";
 import { useSearchParams } from "next/navigation";
 
 // local imports
@@ -9,9 +8,8 @@ import { useSearchParams } from "next/navigation";
 import CatalogContainer from "./Catalog";
 
 const ProductsContent = ({ products }) => {
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const category = searchParams?.get("category") || router?.query?.category;
+  const category = searchParams.get("category");
 
   return <CatalogContainer queryCategory={category} products={products} />;
 };

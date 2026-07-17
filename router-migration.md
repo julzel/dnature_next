@@ -756,20 +756,20 @@ product discovery, cart state, header state, and navigation.
 
 #### Tasks
 
-- [ ] Confirm all public routes now exist under `app/`.
-- [ ] Remove the `pages/` route files.
-- [ ] Remove `pages/_app.js`.
-- [ ] Remove `pages/_document.js`.
-- [ ] Remove the obsolete `components/Page` wrapper.
-- [ ] Remove obsolete `emotionCache.js` if no longer imported.
-- [ ] Remove all `next/router` imports.
-- [ ] Remove all `next/head` imports.
-- [ ] Remove all `getStaticProps`, `getServerSideProps`, and `getInitialProps`
+- [x] Confirm all public routes now exist under `app/`.
+- [x] Remove the `pages/` route files.
+- [x] Remove `pages/_app.js`.
+- [x] Remove `pages/_document.js`.
+- [x] Remove the obsolete `components/Page` wrapper.
+- [x] Remove obsolete `emotionCache.js` if no longer imported.
+- [x] Remove all `next/router` and `next/compat/router` imports.
+- [x] Remove all `next/head` imports.
+- [x] Remove all `getStaticProps`, `getServerSideProps`, and `getInitialProps`
       usage.
-- [ ] Remove old ID-based product/post query-string construction.
-- [ ] Remove unused imports exposed by migration.
-- [ ] Run lint and production build.
-- [ ] Inspect the build's route rendering output.
+- [x] Remove old ID-based product/post query-string construction.
+- [x] Remove unused imports exposed by migration.
+- [x] Run lint and production build.
+- [x] Inspect the build's route rendering output.
 - [ ] Run the complete browser regression suite.
 
 #### Exit criteria
