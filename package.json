@@ -6,7 +6,8 @@
     "build": "next build --webpack",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "verify:router-baseline": "node scripts/verify-router-baseline.mjs"
   },
   "engines": {
     "node": ">=20.9 <25"
