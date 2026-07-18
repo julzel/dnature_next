@@ -1044,6 +1044,15 @@ items, product details, and ingredients are present in the initial HTML.
 - [ ] Delete verified orphan assets in a separate, easy-to-review change.
 - [x] Run a clean `npm ci` and re-evaluate dependencies from a clean tree.
 
+Asset-gate status (2026-07-18): `scripts/audit-public-assets.mjs` now produces
+the canonical source-reference/access-log report and requires a declared
+30-day log window before classifying any candidate as verified. The refreshed
+scan found 72 source-unreferenced candidates totaling 85.4 MiB, but this
+workspace contains no production/CDN log export, so zero candidates are
+currently authorized for deletion. Ignored `.DS_Store` metadata is excluded
+from the inventory. See `public-asset-audit.md` for the evidence and completion
+procedure.
+
 **Exit criteria**
 
 - Lint, build, verification scripts, and route smoke tests pass.

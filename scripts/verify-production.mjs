@@ -13,6 +13,7 @@ const baseUrl = valueFor('--base-url') || process.env.PRODUCTION_BASE_URL || DEF
 const analyticsId = valueFor('--analytics-id') || process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 const productUrl = valueFor('--product-url') || process.env.PRODUCTION_PRODUCT_URL;
 const failures = [];
+const metadataAssetUrls = new Set();
 
 const routes = [
   '/',
@@ -27,6 +28,55 @@ if (productUrl) routes.push(productUrl);
 
 const assert = (condition, message) => {
   if (!condition) failures.push(message);
+};
+
+const unescapeHtml = (value) =>
+  value
+    .replaceAll('&amp;', '&')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#x27;', "'")
+    .replaceAll('&#39;', "'");
+
+const metadataContent = (html, attribute, value) => {
+  const escapedValue = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const patterns = [
+    new RegExp(
+      `<meta[^>]+${attribute}=["']${escapedValue}["'][^>]+content=["']([^"']+)["']`,
+      'i'
+    ),
+    new RegExp(
+      `<meta[^>]+content=["']([^"']+)["'][^>]+${attribute}=["']${escapedValue}["']`,
+      'i'
+    ),
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match) return unescapeHtml(match[1]);
+  }
+
+  return null;
+};
+
+const linkHref = (html, rel) => {
+  const escapedRel = rel.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const patterns = [
+    new RegExp(
+      `<link[^>]+rel=["'][^"']*${escapedRel}[^"']*["'][^>]+href=["']([^"']+)["']`,
+      'i'
+    ),
+    new RegExp(
+      `<link[^>]+href=["']([^"']+)["'][^>]+rel=["'][^"']*${escapedRel}[^"']*["']`,
+      'i'
+    ),
+  ];
+
+  for (const pattern of patterns) {
+    const match = html.match(pattern);
+    if (match) return unescapeHtml(match[1]);
+  }
+
+  return null;
 };
 
 const fetchText = async (route) => {
@@ -55,6 +105,14 @@ for (const route of routes) {
   assert(/<link[^>]+rel=["']canonical["'][^>]+href=["'][^"']+/i.test(text), `${url}: missing canonical URL.`);
   assert(/<link[^>]+rel=["']icon["'][^>]+href=["'][^"']+/i.test(text), `${url}: missing favicon metadata.`);
 
+  for (const assetUrl of [
+    metadataContent(text, 'property', 'og:image'),
+    metadataContent(text, 'name', 'twitter:image'),
+    linkHref(text, 'icon'),
+  ]) {
+    if (assetUrl) metadataAssetUrls.add(new URL(assetUrl, url).toString());
+  }
+
   if (analyticsId) {
     const analyticsScript = new RegExp(`googletagmanager\\.com/gtag/js\\?id=${analyticsId}`, 'g');
     const matches = text.match(analyticsScript) || [];
@@ -62,6 +120,28 @@ for (const route of routes) {
   }
 
   process.stdout.write(`PASS ${response.status} ${url}\n`);
+}
+
+for (const assetUrl of metadataAssetUrls) {
+  try {
+    const response = await fetch(assetUrl);
+    assert(
+      response.ok,
+      `${assetUrl}: metadata asset returned ${response.status}.`
+    );
+
+    const contentType = response.headers.get('content-type') || '';
+    assert(
+      contentType.startsWith('image/'),
+      `${assetUrl}: metadata asset returned ${contentType || 'no content type'} instead of an image.`
+    );
+
+    if (response.ok && contentType.startsWith('image/')) {
+      process.stdout.write(`PASS ${response.status} ${assetUrl}\n`);
+    }
+  } catch (error) {
+    failures.push(`${assetUrl}: metadata asset request failed (${error.message}).`);
+  }
 }
 
 const trailingSlashResult = await fetchText('/productos/');
