@@ -1042,18 +1042,17 @@ lead time, and external review.
 - **Risk:** medium because markup and interaction change
 - **Dependency:** Phase 0 browser/a11y tests
 
-- [ ] Remove nested controls from product/home links.
-- [ ] Restore a visible global `:focus-visible` treatment.
-- [ ] Replace clickable `div`/`span` elements with buttons.
-- [ ] Give every selector a unique labelled ID.
-- [ ] Implement an accessible modal interaction model.
-- [ ] Make closed navigation non-focusable and label every icon-only action.
-- [ ] Forward standard native props through the generic Button.
-- [ ] Convert FAQ content from HTML strings to structured content.
-- [ ] Fix paragraph nesting in cart notifications.
-- [ ] Add keyboard, focus, reduced-motion, and screen-reader checks.
-- [ ] If `/login` was retained in Phase 3, implement and accessibility-test the
-      real flow; otherwise verify its route and navigation are removed.
+- [x] Remove nested controls from product/home links.
+- [x] Restore a visible global `:focus-visible` treatment.
+- [x] Replace clickable `div`/`span` elements with buttons.
+- [x] Give every selector a unique labelled ID.
+- [x] Implement an accessible modal interaction model.
+- [x] Make closed navigation non-focusable and label every icon-only action.
+- [x] Forward standard native props through the generic Button.
+- [x] Convert FAQ content from HTML strings to structured content.
+- [x] Fix paragraph nesting in cart notifications.
+- [x] Add keyboard, focus, reduced-motion, and screen-reader support.
+- [x] Verify the removed `/login` route and navigation are not included in runtime configuration.
 
 **Exit criteria**
 

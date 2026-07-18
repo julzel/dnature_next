@@ -68,8 +68,8 @@ const CatalogItem = ({ product }) => {
   }
 
   return (
-    <Link key={id} href={productPath}>
-      <span className={styles.catalogItem}>
+    <article className={styles.catalogItem}>
+      <Link href={productPath} className={styles.productLink} aria-label={`Ver ${productName}`}>
         {itemImage && (
           <span className={styles.catalogItemImages}>
             <Image
@@ -101,24 +101,23 @@ const CatalogItem = ({ product }) => {
               {medida && <span> | {medida}</span>}
             </p>
           )}
-
-          {hasPriceByUnit && (
-            <Box my={2} width='100%'>
-              <PresentationSelector
-                presentations={preciosPorUnidad}
-                selectedPresentation={selectedPresentation}
-                onPresentationSelect={handlePresentationSelect}
-              />
-            </Box>
-          )}
-          <QuickAdd
-            removeOneItemFromCart={removeOneItemFromCart}
-            addItemToCart={addItemToCart}
-            itemsInCart={itemsInCart}
-          />
         </span>
-      </span>
-    </Link>
+      </Link>
+      {hasPriceByUnit && (
+        <Box my={2} width='100%'>
+          <PresentationSelector
+            presentations={preciosPorUnidad}
+            selectedPresentation={selectedPresentation}
+            onPresentationSelect={handlePresentationSelect}
+          />
+        </Box>
+      )}
+      <QuickAdd
+        removeOneItemFromCart={removeOneItemFromCart}
+        addItemToCart={addItemToCart}
+        itemsInCart={itemsInCart}
+      />
+    </article>
   );
 };
 

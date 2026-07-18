@@ -13,8 +13,11 @@ const FilterMobile = ({ options, selected }) => {
   return (
     <div className={styles.filter}>
       <button
+        type="button"
         className={styles.filterHeader}
         onClick={() => setShowList(!showList)}
+        aria-expanded={showList}
+        aria-controls="product-filter-options"
       >
         <span className={styles.icon}
         >
@@ -22,7 +25,7 @@ const FilterMobile = ({ options, selected }) => {
         </span>
         <span>&nbsp;Filtrar</span>
       </button>
-      <ul className={`${styles.filterList} ${showList ? styles.show : ""}`}>
+      <ul id="product-filter-options" className={`${styles.filterList} ${showList ? styles.show : ""}`} hidden={!showList}>
         {options.map((item) => {
           return (
             <li

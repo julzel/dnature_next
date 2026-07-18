@@ -1,7 +1,6 @@
 @import '../../styles/_variables';
 
 .drower {
-    // background-color: rgba(0, 0, 0, 0.35);
     position: fixed;
     left: 0px;
     top: 100%;
@@ -28,6 +27,11 @@
             width: 100%;
             padding: 20px;
             font-size: 24px;
+
+            button {
+                color: inherit;
+                font-size: inherit;
+            }
         }
     }
 }

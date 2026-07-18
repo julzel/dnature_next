@@ -8,18 +8,11 @@ import useCompatibleNavigation from '../../../hooks/useCompatibleNavigation';
 const GoBack = ({ className }) => {
   const { back } = useCompatibleNavigation();
 
-  const goBack = (event) => {
-    event.preventDefault();
-    back();
-  };
-
   return (
-    <div className={className} onClick={goBack}>
-      <span>
+    <button className={className} onClick={back} type="button">
         <FontAwesomeIcon icon={faCircleLeft} size='1x' />
         &nbsp; Volver
-      </span>
-    </div>
+    </button>
   );
 };
 

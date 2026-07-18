@@ -19,7 +19,7 @@ const CartHistory = () => {
         <div className={styles.cartHistoryItem} key={ind}>
           <div>
             <strong>Fecha: </strong><span>{formatToLocaleDate(cart.date)}</span>
-            <button onClick={() => updateCurrentCart(cart)}>Seleccionar</button>
+            <button type="button" onClick={() => updateCurrentCart(cart)}>Seleccionar</button>
           </div>
           <div>
             <span>

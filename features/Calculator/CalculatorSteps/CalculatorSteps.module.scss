@@ -14,7 +14,7 @@
       text-align: center;
     }
 
-    div[role='button'] {
+    button[aria-pressed] {
       cursor: pointer;
       border-radius: 1000px;
       border: 2px solid $blue;

@@ -21,6 +21,17 @@ import {
 import dogLg from '../../../public/calculator/dog_mobile_lg.jpg'
 import dogM from '../../../public/calculator/dog_mobile_peque_med.jpg'
 
+const OptionButton = ({ children, isSelected, onClick }) => (
+    <button
+        type="button"
+        className={isSelected ? styles.selected : ''}
+        aria-pressed={isSelected}
+        onClick={onClick}
+    >
+        {children}
+    </button>
+)
+
 const CalculatorSteps = () => {
     const [step, setStep] = useState(0)
     const [value, setValue] = useState('')
@@ -88,23 +99,23 @@ const CalculatorSteps = () => {
         return (
             <div className={styles.calculatorControls}>
                 {step === 7 && (
-                    <button onClick={restart} className={styles.actionButton}>
+                    <button type="button" onClick={restart} className={styles.actionButton}>
                         Calcular otra vez
                     </button>
                 )}
                 {step === 6 && validWeight && (
-                    <button onClick={getPortionSize} className={styles.actionButton}>
+                    <button type="button" onClick={getPortionSize} className={styles.actionButton}>
                         Calcular
                     </button>
                 )}
                 {step > 0 && (
-                    <button onClick={handlePrevClick} className={styles.prevButton}>
+                    <button type="button" onClick={handlePrevClick} className={styles.prevButton}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                         <span>Anterior</span>
                     </button>
                 )}
                 {step < 6 && enableNext && (
-                    <button onClick={hadleNextClick}>
+                    <button type="button" onClick={hadleNextClick}>
                         Siguiente
                     </button>
                 )}
@@ -115,85 +126,53 @@ const CalculatorSteps = () => {
     const renderAgeSelect = (cb) => (
         <div className={styles.step}>
             <h2>Edad</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('age', 'adulto')} className={dogProfile.age === 'adulto' ? styles.selected : ''}>
-                Adulto
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('age', 'cachorro')} className={dogProfile.age === 'cachorro' ? styles.selected : ''}>
-                Cachorro
-            </div>
+            <OptionButton isSelected={dogProfile.age === 'adulto'} onClick={() => cb('age', 'adulto')}>Adulto</OptionButton>
+            <OptionButton isSelected={dogProfile.age === 'cachorro'} onClick={() => cb('age', 'cachorro')}>Cachorro</OptionButton>
         </div>
     )
 
     const renderPuppyStage = (cb) => (
         <div className={styles.step}>
             <h2>Edad</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage1')} className={dogProfile.stage === 'stage1' ? styles.selected : ''}>
-                Etapa 1 <span>menor a 7 meses</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage2')} className={dogProfile.stage === 'stage2' ? styles.selected : ''}>
-                Etapa 2 <span>7 meses a 1 año</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage3')} className={dogProfile.stage === 'stage3' ? styles.selected : ''}>
-                Etapa 3 <span>más de 1 año hasta su etapa adulta</span>
-            </div>
+            <OptionButton isSelected={dogProfile.stage === 'stage1'} onClick={() => cb('stage', 'stage1')}>Etapa 1 <span>menor a 7 meses</span></OptionButton>
+            <OptionButton isSelected={dogProfile.stage === 'stage2'} onClick={() => cb('stage', 'stage2')}>Etapa 2 <span>7 meses a 1 año</span></OptionButton>
+            <OptionButton isSelected={dogProfile.stage === 'stage3'} onClick={() => cb('stage', 'stage3')}>Etapa 3 <span>más de 1 año hasta su etapa adulta</span></OptionButton>
         </div>
     )
 
     const renderSizeSelect = (cb) => (
         <div className={styles.step}>
             <h2>Tamaño</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('size', 'pequeno')} className={dogProfile.size === 'pequeno' ? styles.selected : ''}>
-                Mini <span>menos de 4kg</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('size', 'mediano')} className={dogProfile.size === 'mediano' ? styles.selected : ''}>
-                Pequeño - Mediano <span>5kg a 25kg</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('size', 'grande')} className={dogProfile.size === 'grande' ? styles.selected : ''}>
-                Grande - Gigante <span>más de 25kg</span>
-            </div>
+            <OptionButton isSelected={dogProfile.size === 'pequeno'} onClick={() => cb('size', 'pequeno')}>Mini <span>menos de 4kg</span></OptionButton>
+            <OptionButton isSelected={dogProfile.size === 'mediano'} onClick={() => cb('size', 'mediano')}>Pequeño - Mediano <span>5kg a 25kg</span></OptionButton>
+            <OptionButton isSelected={dogProfile.size === 'grande'} onClick={() => cb('size', 'grande')}>Grande - Gigante <span>más de 25kg</span></OptionButton>
         </div>
     )
 
     const renderCastratedSelect = (cb) => (
         <div className={styles.step}>
             <h2>Castración</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('castrated', 'noCastrado')} className={dogProfile.castrated === 'noCastrado' ? styles.selected : ''}>
-                Sin castrar
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('castrated', 'castrado')} className={dogProfile.castrated === 'castrado' ? styles.selected : ''}>
-                Castrado
-            </div>
+            <OptionButton isSelected={dogProfile.castrated === 'noCastrado'} onClick={() => cb('castrated', 'noCastrado')}>Sin castrar</OptionButton>
+            <OptionButton isSelected={dogProfile.castrated === 'castrado'} onClick={() => cb('castrated', 'castrado')}>Castrado</OptionButton>
         </div>
     )
 
     const renderWeightStatusSelect = (cb) => (
         <div className={styles.step}>
             <h2>Contextura</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('weightStatus', 'bajoPeso')} className={dogProfile.weightStatus === 'bajoPeso' ? styles.selected : ''}>
-                Bajo peso
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('weightStatus', 'pesoIdeal')} className={dogProfile.weightStatus === 'pesoIdeal' ? styles.selected : ''}>
-                Ideal
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('weightStatus', 'sobrepeso')} className={dogProfile.weightStatus === 'sobrepeso' ? styles.selected : ''}>
-                Sobrepeso
-            </div>
+            <OptionButton isSelected={dogProfile.weightStatus === 'bajoPeso'} onClick={() => cb('weightStatus', 'bajoPeso')}>Bajo peso</OptionButton>
+            <OptionButton isSelected={dogProfile.weightStatus === 'pesoIdeal'} onClick={() => cb('weightStatus', 'pesoIdeal')}>Ideal</OptionButton>
+            <OptionButton isSelected={dogProfile.weightStatus === 'sobrepeso'} onClick={() => cb('weightStatus', 'sobrepeso')}>Sobrepeso</OptionButton>
         </div>
     )
 
     const renderActivitySelect = (cb) => (
         <div className={styles.step}>
             <h2>Actividad física diaria</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('activity', 'sedentario')} className={dogProfile.activity === 'sedentario' ? styles.selected : ''}>
-                Sedentario
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('activity', 'activo')} className={dogProfile.activity === 'activo' ? styles.selected : ''}>
-                Activo
-            </div>
+            <OptionButton isSelected={dogProfile.activity === 'sedentario'} onClick={() => cb('activity', 'sedentario')}>Sedentario</OptionButton>
+            <OptionButton isSelected={dogProfile.activity === 'activo'} onClick={() => cb('activity', 'activo')}>Activo</OptionButton>
             {dogProfile.weightStatus !== 'sobrepeso' && (
-                <div role="button" tabIndex='0' onClick={() => cb('activity', 'deportista')} className={dogProfile.activity === 'deportista' ? styles.selected : ''}>
-                    Deportista
-                </div>
+                <OptionButton isSelected={dogProfile.activity === 'deportista'} onClick={() => cb('activity', 'deportista')}>Deportista</OptionButton>
             )}
         </div>
     )

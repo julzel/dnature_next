@@ -6,11 +6,11 @@ import styles from './QuickAdd.module.scss';
 const QuickAdd = ({ itemsInCart, removeOneItemFromCart, addItemToCart }) => {
   return (
     <div className={styles.quickAdd}>
-      <button disabled={itemsInCart === 0} className={styles.light} onClick={removeOneItemFromCart}>
+      <button type="button" aria-label="Quitar una unidad" disabled={itemsInCart === 0} className={styles.light} onClick={removeOneItemFromCart}>
         <FontAwesomeIcon icon={faCircleMinus} />
       </button>
       <span className={styles.badge}>{itemsInCart || 0}</span>
-      <button onClick={addItemToCart}>
+      <button type="button" aria-label="Agregar una unidad" onClick={addItemToCart}>
         <FontAwesomeIcon icon={faCirclePlus} />
       </button>
     </div>

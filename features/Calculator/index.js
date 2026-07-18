@@ -14,16 +14,12 @@ import Drower from '../../components/Drower';
 
 const Calculator = () => {
   const [startCalculator, setStartCalculator] = useState(false);
-  // const { setDisableGlobalScroll } = useContext(GlobalContext)
-
   const handleStartClick = () => {
     setStartCalculator(true);
-    // setDisableGlobalScroll(true)
   };
 
   const handleClose = () => {
     setStartCalculator(false);
-    // setDisableGlobalScroll(false)
   };
 
   const renderIntro = () => (
@@ -40,7 +36,7 @@ const Calculator = () => {
         algunos datos de tu mascota.
       </p>
       <div>
-        <button onClick={handleStartClick} className={styles.actionButton}>
+        <button type="button" onClick={handleStartClick} className={styles.actionButton}>
           Empezar
         </button>
       </div>

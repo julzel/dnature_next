@@ -2,56 +2,61 @@
 @import "../../../styles/_mixins";
 
 .catalogItem {
+  display: flex;
+  flex-flow: column;
+  padding-right: 16px;
+}
+
+.productLink {
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 16px;
   position: relative;
 
   @include mdq("md") {
     flex-direction: column;
   }
+}
 
-  &Images {
-    width: 150px;
-    flex-shrink: 0;
+.catalogItemImages {
+  width: 150px;
+  flex-shrink: 0;
 
-    @include mdq("md") {
-      width: 100%;
-      padding: 8px 42px;
-    }
+  @include mdq("md") {
+    width: 100%;
+    padding: 8px 42px;
+  }
+}
+
+.catalogItemDetails {
+  flex-grow: 1;
+  text-align: right;
+  padding-left: 16px;
+
+  @include mdq("md") {
+    text-align: center;
   }
 
-  &Details {
-    flex-grow: 1;
-    text-align: right;
-    padding-left: 16px;
+  h3 {
+    color: $black;
+    font-family: $bold2;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding-top: 4px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
 
-    @include mdq("md") {
-      text-align: center;
+  p {
+
+    span {
+      font-family: $bold;
     }
 
-    h3 {
-      color: $black;
-      font-family: $bold2;
-      font-size: 12px;
-      letter-spacing: 1px;
-      padding-top: 4px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    p {
-
-      span {
-        font-family: $bold;
-      }
-
-      span:last-child {
-        font-family: $regular;
-        font-size: 14px;
-      }
+    span:last-child {
+      font-family: $regular;
+      font-size: 14px;
     }
   }
 }

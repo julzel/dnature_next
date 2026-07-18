@@ -10,12 +10,16 @@ const SliderControls = ({
 }) => {
     return (
         <div className={styles.sliderControls}>
-            <div className={styles.bullets}>
+            <div className={styles.bullets} role="tablist" aria-label="Seleccionar diapositiva">
                 {slides.map((slide, i) => (
-                    <div
+                    <button
+                        type="button"
                         className={`${styles.bullet} ${i === currentBullet ? styles.active : ''}`}
                         key={`bullet-${i}`}
                         onClick={() => onBulletClick(i)}
+                        aria-label={`Ir a la diapositiva ${i + 1}`}
+                        aria-selected={i === currentBullet}
+                        role="tab"
                     />
                 ))}
             </div>
