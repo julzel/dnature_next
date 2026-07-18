@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 
 // local imports
 import Slide from './Slide'
@@ -9,6 +9,7 @@ import SliderControls from './SliderControls'
 
 const Slider = ({ slides, interval = 5, autoplay }) => {
     const [currentSlide, setCurrentSlide] = useState(0)
+    const idPrefix = useId()
 
     const onBulletClick = newCurrentSlide => {
         if (currentSlide !== newCurrentSlide) {
@@ -32,13 +33,19 @@ const Slider = ({ slides, interval = 5, autoplay }) => {
     }, [autoplay, interval, slides.length])
 
     return (
-        <div className={styles.slider}>
+        <section
+            className={styles.slider}
+            aria-label="Testimonios de clientes"
+            aria-roledescription="carrusel"
+        >
             <div className={styles.container}>
                 {slides.map((slide, i) => (
                     <Slide
                         key={i}
                         slide={slide}
+                        slideIndex={i}
                         currentSlide={currentSlide}
+                        idPrefix={idPrefix}
                     >
                         {slide}
                     </Slide>
@@ -48,8 +55,9 @@ const Slider = ({ slides, interval = 5, autoplay }) => {
                 slides={slides}
                 onBulletClick={onBulletClick}
                 currentBullet={currentSlide}
+                idPrefix={idPrefix}
             />
-        </div>
+        </section>
     )
 }
  

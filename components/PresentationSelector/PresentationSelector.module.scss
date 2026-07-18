@@ -7,7 +7,7 @@
 
 .label {
   background: $white;
-  color: $gray;
+  color: $davys-gray;
   font-family: $regular;
   font-size: 12px;
   left: 12px;
@@ -31,14 +31,13 @@
   color: $darkGray;
   font: inherit;
   height: 56px;
-  outline: 0;
   padding: 0 44px 0 14px;
   transition: border-color 150ms ease, box-shadow 150ms ease;
   width: 100%;
 
-  &:focus {
-    border: 2px solid $blue;
-    box-shadow: 0 0 0 1px rgba($blue, 0.2);
+  &:focus-visible {
+    border: 2px solid $accessibleBlue;
+    box-shadow: 0 0 0 1px rgba($accessibleBlue, 0.2);
     padding-left: 13px;
   }
 }

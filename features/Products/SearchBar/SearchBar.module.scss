@@ -52,10 +52,9 @@
     font-size: 18px;
   }
 
-  &:focus {
-    outline: none;
-    border-color: $primary-color;
-    box-shadow: 0 0 0 3px rgba(7, 187, 199, 0.15);
+  &:focus-visible {
+    border-color: $accessibleBlue;
+    box-shadow: none;
   }
 }
 
@@ -97,9 +96,8 @@
   transition: background-color 0.2s ease;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background-color: rgba(7, 187, 199, 0.08);
-    outline: none;
   }
 }
 
@@ -130,5 +128,5 @@
   margin: 0;
   padding: 16px;
   font-size: 14px;
-  color: $gray;
+  color: $davys-gray;
 }

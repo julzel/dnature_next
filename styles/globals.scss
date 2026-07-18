@@ -36,14 +36,18 @@ h3 {
   padding: 0;
 }
 
-.seo-hidden {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  opacity: 0;
+.seo-hidden,
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
   position: absolute;
-  left: 0;
-  top: 0;
+  white-space: nowrap;
+  width: 1px;
 }
 
 a {
@@ -58,7 +62,7 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid $blue;
+  outline: 3px solid $accessibleBlue;
   outline-offset: 3px;
 }
 

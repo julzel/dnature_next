@@ -6,14 +6,10 @@ import styles from "./Hero.module.scss";
 const Hero = () => {
   return (
     <div className={styles.heroContainer}>
-      <h1 className="seo-hidden">
-        Alimentación natural y dieta cruda para mascotas. Snacks, suplementos y
-        planes de nutrición personalizados
-      </h1>
       <div className={styles.heroAction}>
-        <h2 className={styles.heroActionTitle}>
-          La forma <span>natural</span>de <span>alimentar</span> a tu mascota
-        </h2>
+        <h1 className={styles.heroActionTitle}>
+          La forma <span>natural</span> de <span>alimentar</span> a tu mascota
+        </h1>
 
         <p className={styles.heroActionParagraph}>
           Nuestra gama de recetas, snacks y suplementos, ha sido seleccionada

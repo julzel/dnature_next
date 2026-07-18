@@ -6,20 +6,27 @@ import styles from './Drower.module.scss'
 
 const Drower = ({ children, close }) => {
     const drawerRef = useRef(null);
+    const closeRef = useRef(close);
+
+    useEffect(() => {
+        closeRef.current = close;
+    }, [close]);
 
     useEffect(() => {
         const previousActiveElement = document.activeElement;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
         drawerRef.current?.focus();
         const handleKeyDown = (event) => {
             if (event.key === 'Escape') {
-                close();
+                closeRef.current();
                 return;
             }
 
             if (event.key !== 'Tab') return;
 
             const focusableElements = [...drawerRef.current.querySelectorAll(
-                'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+                'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
             )];
             const first = focusableElements[0];
             const last = focusableElements[focusableElements.length - 1];
@@ -39,9 +46,12 @@ const Drower = ({ children, close }) => {
 
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
-            previousActiveElement?.focus?.();
+            document.body.style.overflow = previousOverflow;
+            if (previousActiveElement?.isConnected) {
+                previousActiveElement.focus();
+            }
         };
-    }, [close]);
+    }, []);
 
     return (
         <div className={styles.drower} role="presentation">

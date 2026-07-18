@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -6,10 +6,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // styles
 import styles from "./Modal.module.scss";
 
-const Modal = ({ children, closeModal, padding, responsiveFullScreen }) => {
+const Modal = ({
+  ariaLabel = 'Diálogo',
+  children,
+  closeModal,
+  padding,
+  responsiveFullScreen,
+  rootRef,
+}) => {
   const dialogRef = useRef(null);
   const previousActiveElement = useRef(null);
-  const titleId = useId();
+  const closeModalRef = useRef(closeModal);
+
+  useEffect(() => {
+    closeModalRef.current = closeModal;
+  }, [closeModal]);
 
   useEffect(() => {
     previousActiveElement.current = document.activeElement;
@@ -21,9 +32,9 @@ const Modal = ({ children, closeModal, padding, responsiveFullScreen }) => {
     initialFocusTarget.focus();
 
     const onKeyDown = (event) => {
-      if (event.key === 'Escape' && closeModal) {
+      if (event.key === 'Escape' && closeModalRef.current) {
         event.preventDefault();
-        closeModal();
+        closeModalRef.current();
         return;
       }
 
@@ -50,19 +61,21 @@ const Modal = ({ children, closeModal, padding, responsiveFullScreen }) => {
     dialog.addEventListener('keydown', onKeyDown);
     return () => {
       dialog.removeEventListener('keydown', onKeyDown);
-      previousActiveElement.current?.focus?.();
+      if (previousActiveElement.current?.isConnected) {
+        previousActiveElement.current.focus();
+      }
     };
-  }, [closeModal]);
+  }, []);
 
   return (
-    <div className={styles.modalContainer} onMouseDown={(event) => {
+    <div ref={rootRef} data-dnature-modal-root className={styles.modalContainer} onMouseDown={(event) => {
       if (event.target === event.currentTarget) closeModal?.();
     }}>
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby={titleId}
+        aria-label={ariaLabel}
         tabIndex={-1}
         className={`${styles.modal} ${padding ? styles.padding : ""} ${
           responsiveFullScreen ? styles.responsiveFullScreen : ""
@@ -73,7 +86,7 @@ const Modal = ({ children, closeModal, padding, responsiveFullScreen }) => {
             <FontAwesomeIcon icon={faXmark} />
           </button>
         )}
-        <div id={titleId}>{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );

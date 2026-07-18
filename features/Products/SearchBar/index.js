@@ -9,6 +9,8 @@ import styles from "./SearchBar.module.scss";
 import { getProductPath } from '../../../util/product-url';
 
 const SearchBar = ({ query, onChange, suggestions }) => {
+  const inputId = React.useId();
+  const resultsId = React.useId();
   const handleChange = (event) => {
     onChange(event.target.value);
   };
@@ -17,7 +19,7 @@ const SearchBar = ({ query, onChange, suggestions }) => {
 
   return (
     <div className={styles.searchBar}>
-      <label className={styles.label} htmlFor="product-search">
+      <label className={styles.label} htmlFor={inputId}>
         Buscar productos
       </label>
       <div className={styles.inputWrapper}>
@@ -25,7 +27,7 @@ const SearchBar = ({ query, onChange, suggestions }) => {
           <FontAwesomeIcon icon={faSearch} />
         </span>
         <input
-          id="product-search"
+          id={inputId}
           type="search"
           className={styles.input}
           placeholder="Buscar productos"
@@ -34,10 +36,17 @@ const SearchBar = ({ query, onChange, suggestions }) => {
           spellCheck="false"
           value={query}
           onChange={handleChange}
+          aria-controls={shouldDisplayResults ? resultsId : undefined}
         />
       </div>
       {shouldDisplayResults && (
-        <div className={styles.results}>
+        <div
+          id={resultsId}
+          className={styles.results}
+          role="region"
+          aria-label="Resultados de búsqueda"
+          aria-live="polite"
+        >
           {suggestions.length ? (
             <ul className={styles.resultsList}>
               {suggestions.map((product, idx) => {

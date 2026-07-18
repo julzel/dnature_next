@@ -33,7 +33,7 @@ const Cart = ({
     <div className={styles.cart}>
       <div className={styles.cartContent}>
         <div>
-          <h2 className={styles.header}>Tu Carrito:</h2>
+          <h1 className={styles.header}>Tu Carrito:</h1>
 
           <CartItemsContainer items={cart.items} />
 
@@ -47,6 +47,7 @@ const Cart = ({
 
       {requestClientInfo && (
         <ModalContainer
+          ariaLabel="Detalles de entrega"
           closeModal={closeClientInfoModal}
           responsiveFullScreen
         >
@@ -59,6 +60,7 @@ const Cart = ({
 
       {showPurchaseOrder && !displayInfoModal && (
         <ModalContainer
+          ariaLabel="Orden de compra"
           closeModal={onPurchaseCancel}
           responsiveFullScreen
         >

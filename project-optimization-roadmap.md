@@ -1080,6 +1080,15 @@ procedure.
 - [x] Add keyboard, focus, reduced-motion, and screen-reader support.
 - [x] Verify the removed `/login` route and navigation are not included in runtime configuration.
 
+Implementation verification (2026-07-18): the prior axe exception baseline was
+removed rather than updated. All protected routes, the open mobile navigation,
+the calculator dialog, and the checkout modal now pass with zero serious or
+critical axe violations. Dialog tests cover accessible naming, background
+inertness, focus entry/trapping/restoration, and Escape. Focused unit coverage
+also protects native Button props, menu arrow-key behavior, and connected
+carousel tab/panel semantics. Visible route headings and accessible contrast
+colors replace the remaining hidden, copied, or low-contrast text.
+
 **Exit criteria**
 
 - No interactive element is nested inside another interactive element.

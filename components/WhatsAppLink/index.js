@@ -20,6 +20,7 @@ const WhatsAppLink = ({
   targetBlank = true,
   withIcon = false,
   iconOnly = false,
+  ...props
 }) => {
   if (!phone) return null;
   const sanitized = String(phone).replace(/[^0-9]/g, "");
@@ -30,6 +31,7 @@ const WhatsAppLink = ({
       href={href}
       className={className}
       aria-label={iconOnly ? `Contactar por WhatsApp al ${content}` : undefined}
+      {...props}
       {...(targetBlank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
     >

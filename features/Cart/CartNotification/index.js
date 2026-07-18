@@ -3,7 +3,10 @@ import MessageBox from '../../../components/MessageBox';
 
 const CartNotification = ({ onCloseInfoModal}) => {
   return (
-    <ModalContainer closeModal={onCloseInfoModal}>
+    <ModalContainer
+      ariaLabel="Información del pedido"
+      closeModal={onCloseInfoModal}
+    >
         <MessageBox type="info" onClose={onCloseInfoModal}>
           <h3>Estimados clientes</h3>
           <div>

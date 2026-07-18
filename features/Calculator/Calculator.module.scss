@@ -9,7 +9,7 @@
 
     &Intro {
         padding-top: 40px;
-        h2 {
+        h1 {
             font-size: 24px;
             font-family: $bold2;
             text-align: center;
@@ -32,8 +32,8 @@
     .actionButton {
         cursor: pointer;
         border-radius: 1000px;
-        border: 2px solid $orange;
-        color: $orange;
+        border: 2px solid $accessibleOrange;
+        color: $accessibleOrange;
         display: block;
         font-size: 18px;
         font-family: $bold2;
@@ -44,7 +44,7 @@
         transition: all 200ms ease-out;
 
         &:hover {
-            background-color: $orange;
+            background-color: $accessibleOrange;
             color: $white;
         }
     }

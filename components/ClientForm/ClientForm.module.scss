@@ -61,7 +61,7 @@
 
     &:hover input + .checkmark {
       cursor: pointer;
-      border-color: $blue;
+      border-color: $accessibleBlue;
     }
 
     input {
@@ -73,10 +73,10 @@
       opacity: 0;
 
       &:checked + .checkmark {
-        border-color: $blue;
+        border-color: $accessibleBlue;
 
         &:after {
-          background-color: $blue;
+          background-color: $accessibleBlue;
         }
       }
     }

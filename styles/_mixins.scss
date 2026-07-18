@@ -21,11 +21,11 @@ $media: (
 
 @mixin button-styles(
   //$bg-color: $darkGray,
-  $bg-color: $blue,
+  $bg-color: $accessibleBlue,
   $text-color: $white,
   $font-family: $light,
   $secondary-bg-color: lighten($gray, 45%),
-  $secondary-text-color: $gray,
+  $secondary-text-color: $davys-gray,
   $width: 320px
 ) {
   color: $text-color;

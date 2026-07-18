@@ -24,7 +24,7 @@ const Calculator = () => {
 
   const renderIntro = () => (
     <>
-      <h2>¿Cuánto alimento le debo dar a mi mascota?</h2>
+      <h1>¿Cuánto alimento le debo dar a mi mascota?</h1>
       <p>
         Tu mascota irá teniendo diferentes necesidades nutricionales a lo largo
         de su vida. La cantidad de alimento que requiere diariamente depende de
