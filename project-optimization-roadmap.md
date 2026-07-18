@@ -1016,16 +1016,16 @@ lead time, and external review.
 - **Risk:** low for code; medium for public assets
 - **Dependency:** smoke coverage from Phase 0
 
-- [ ] Enable `no-unused-vars` after clearing all current violations.
-- [ ] Delete the canonical **Removal inventory** in small groups.
-- [ ] Remove obsolete product queries and unused exports.
-- [ ] Decide whether to remove or implement `/login`.
-- [ ] Decide whether nutritional appointments should be restored or deleted.
-- [ ] Remove commented-out feature branches and unused props/imports.
-- [ ] Select one image configuration and delete obsolete alternatives.
+- [x] Enable `no-unused-vars` after clearing all current violations.
+- [x] Delete the canonical **Removal inventory** in small groups.
+- [x] Remove obsolete product queries and unused exports.
+- [x] Remove the non-functional `/login` placeholder and fake-auth artifacts.
+- [x] Delete the unrendered nutritional appointments feature.
+- [x] Remove commented-out feature branches and unused props/imports.
+- [x] Keep the active image configuration and delete obsolete alternatives.
 - [ ] Check access logs for candidate orphan public URLs.
 - [ ] Delete verified orphan assets in a separate, easy-to-review change.
-- [ ] Run a clean `npm ci` and re-evaluate dependencies from a clean tree.
+- [x] Run a clean `npm ci` and re-evaluate dependencies from a clean tree.
 
 **Exit criteria**
 

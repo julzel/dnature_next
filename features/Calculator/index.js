@@ -7,7 +7,6 @@ import { useState } from 'react';
 import styles from './Calculator.module.scss';
 
 // contexts
-// import { GlobalContext } from '../../contexts/global-context'
 
 // components
 import CalculatorSteps from './CalculatorSteps';

@@ -47,7 +47,4 @@ const createMyTheme = (mode) => {
 // Create a light theme instance
 const lightTheme = createMyTheme('light');
 
-// Create a dark theme instance
-const darkTheme = createMyTheme('dark');
-
-export { lightTheme, darkTheme };
+export { lightTheme };

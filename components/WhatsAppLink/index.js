@@ -20,22 +20,17 @@ const WhatsAppLink = ({
   targetBlank = true,
   withIcon = false,
   iconOnly = false,
-  ...rest
 }) => {
   if (!phone) return null;
   const sanitized = String(phone).replace(/[^0-9]/g, "");
   const href = `https://wa.me/${sanitized}`;
   const content = children || display || formatPhoneForDisplay(sanitized);
-  // We purposefully keep rel static when targetBlank so ESLint can verify the security tokens.
-  const { rel: _ignoredRel, ...otherProps } = rest; // ignore custom rel when opening a new tab
-
   return (
     <a
       href={href}
       className={className}
       {...(targetBlank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
-      {...otherProps}
     >
       {(withIcon || iconOnly) && (
         <span style={{ fontSize: "14px" }}>

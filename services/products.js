@@ -35,36 +35,6 @@ const productsQuery = () => `
 }
 `;
 
-const productQuery = (productId) => `
-        {
-            product(id:"${productId}") {
-            productName
-            urlSlug
-            description
-                category
-                medida
-                precio
-                preciosPorUnidad
-                ingredientes
-                imageCollection {
-                    items {
-                        title
-                        url
-                    }
-                }
-                iconosCollection {
-                    items {
-                        title
-                        url
-                    }
-                }
-                sys {
-                    id
-                }
-            }
-        }
-        `;
-
 const productBySlugQuery = `
   query getProductBySlug($slug: String!) {
     productCollection(where: { urlSlug: $slug }, limit: 1) {
@@ -158,18 +128,6 @@ const getProducts = async () => {
 
 const formatProductData = formatProduct;
 
-const getProduct = async (productId) => {
-  try {
-    const product = await fetchFromContentful(productQuery(productId));
-    if (product.product) {
-      return formatProductData(product.product);
-    }
-    return null;
-  } catch (error) {
-    console.log(error, error?.message);
-  }
-};
-
 const getProductBySlug = async (slug) => {
   const normalizedSlug = normalizeProductSlug(slug);
 
@@ -190,4 +148,4 @@ const getProductBySlug = async (slug) => {
   return product ? formatProductData(product) : null;
 };
 
-export { getProducts, getProduct, getProductBySlug };
+export { getProducts, getProductBySlug };

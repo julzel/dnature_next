@@ -7,7 +7,7 @@ import ClientForm from "./ClientForm";
 // classes
 import { Client } from "../../models/client";
 
-import { storage } from "../../util";
+import storage from "../../util/storage";
 
 const inputFields = [
   { name: "firstName", label: "Nombre", isRequired: true, type: "text" },

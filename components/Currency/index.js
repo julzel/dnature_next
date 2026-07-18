@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const CurrencyText = ({ value, curr }) => {
-  const [currency, setCurrency] = useState(curr || 'CRC');
-
-  const handleCurrencyChange = (event) => {
-    setCurrency(event.target.value);
-  };
+  const currency = curr || 'CRC';
 
   const formatNumber = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');

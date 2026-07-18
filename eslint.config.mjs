@@ -7,6 +7,7 @@ export default defineConfig([
     rules: {
       'react-hooks/immutability': 'error',
       'react-hooks/set-state-in-effect': 'error',
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
   globalIgnores([

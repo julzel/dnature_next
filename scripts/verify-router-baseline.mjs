@@ -17,7 +17,6 @@ const routes = [
   '/productos',
   '/calculadora',
   '/cart',
-  '/login',
   '/plan-dnature',
   '/preguntas-frecuentes',
 ];
