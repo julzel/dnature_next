@@ -17,7 +17,7 @@ const categoriesPriority = [
 
 const productsQuery = () => `
 {
-    productCollection {
+    productCollection(limit: 100) {
         items {
             productName
             category
@@ -27,7 +27,7 @@ const productsQuery = () => `
             precio
             preciosPorUnidad
             rating
-            imageCollection {
+            imageCollection(limit: 10) {
                 items {
                     title
                     url
@@ -39,6 +39,19 @@ const productsQuery = () => `
         }
     }
 }
+`;
+
+const productSlugIndexQuery = `
+  query getProductSlugIndex {
+    productCollection(limit: 100) {
+      items {
+        urlSlug
+        sys {
+          id
+        }
+      }
+    }
+  }
 `;
 
 const productBySlugQuery = `
@@ -53,13 +66,13 @@ const productBySlugQuery = `
         precio
         preciosPorUnidad
         ingredientes
-        imageCollection {
+        imageCollection(limit: 20) {
           items {
             title
             url
           }
         }
-        iconosCollection {
+        iconosCollection(limit: 20) {
           items {
             title
             url
@@ -91,10 +104,19 @@ const formatProduct = (product) => {
 
 const formatProductsData = (productItems) => {
   const catalog = {};
-  productItems.forEach((rawItem) => {
-    const item = formatProduct(rawItem);
+  const formattedItems = productItems.map(formatProduct).filter(Boolean);
+  const slugCounts = formattedItems.reduce((counts, item) => {
+    counts.set(item.urlSlug, (counts.get(item.urlSlug) || 0) + 1);
+    return counts;
+  }, new Map());
+  const reportedCollisions = new Set();
 
-    if (!item) {
+  formattedItems.forEach((item) => {
+    if (slugCounts.get(item.urlSlug) > 1) {
+      if (!reportedCollisions.has(item.urlSlug)) {
+        console.warn(`Skipping products with colliding urlSlug: ${item.urlSlug}`);
+        reportedCollisions.add(item.urlSlug);
+      }
       return;
     }
 
@@ -138,6 +160,13 @@ const getProducts = async () => {
 
 const formatProductData = formatProduct;
 
+const findPersistedProductSlugs = (products, normalizedSlug) =>
+  (Array.isArray(products) ? products : [])
+    .filter(
+      (product) => normalizeProductSlug(product?.urlSlug) === normalizedSlug
+    )
+    .map((product) => product.urlSlug);
+
 const getProductBySlug = async (slug) => {
   const normalizedSlug = normalizeProductSlug(slug);
 
@@ -153,17 +182,42 @@ const getProductBySlug = async (slug) => {
     return getFixtureProductBySlug(normalizedSlug);
   }
 
-  const data = await fetchFromContentful(
-    productBySlugQuery,
-    { slug: normalizedSlug },
+  const slugIndexData = await fetchFromContentful(
+    productSlugIndexQuery,
+    undefined,
     {
       revalidate: 120,
-      tags: ['products', `product:${normalizedSlug}`],
+      tags: ['products'],
     }
   );
+  const matchingPersistedSlugs = findPersistedProductSlugs(
+    slugIndexData?.productCollection?.items,
+    normalizedSlug
+  );
+
+  if (matchingPersistedSlugs.length !== 1) {
+    if (matchingPersistedSlugs.length > 1) {
+      console.warn(`Unable to resolve colliding Contentful urlSlug: ${normalizedSlug}`);
+    }
+    return null;
+  }
+
+  const persistedSlug = matchingPersistedSlugs[0];
+  const data = await fetchFromContentful(productBySlugQuery, { slug: persistedSlug }, {
+    revalidate: 120,
+    tags: ['products', `product:${normalizedSlug}`],
+  });
   const product = data?.productCollection?.items?.[0];
 
   return product ? formatProductData(product) : null;
 };
 
-export { getProducts, getProductBySlug };
+export {
+  formatProductData,
+  formatProductsData,
+  findPersistedProductSlugs,
+  getProducts,
+  getProductBySlug,
+  productBySlugQuery,
+  productSlugIndexQuery,
+};

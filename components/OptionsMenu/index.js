@@ -1,10 +1,9 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import styles from './OptionsMenu.module.scss';
 
 const getMenuDefaultOptions = (type) => {
   const defaultOptions = {
@@ -19,44 +18,48 @@ const getMenuDefaultOptions = (type) => {
   return defaultOptions[type];
 };
 
-const OptionsMenu = ({ type = 'simple-edit', editItem, deleteItem }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+const OptionsMenu = ({
+  type = 'simple-edit',
+  editItem,
+  deleteItem,
+  ariaLabel = 'Opciones',
+}) => {
+  const [open, setOpen] = React.useState(false);
+  const menuId = React.useId();
   const options = getMenuDefaultOptions(type);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleClose = (option) => {
     if (option.label === 'Editar') editItem();
     if (option.label === 'Borrar') deleteItem();
-    setAnchorEl(null);
+    setOpen(false);
   };
 
   return (
-    <div>
+    <div className={styles.optionsMenu}>
       <IconButton
-        aria-label="more"
-        id="long-button"
-        aria-controls={open ? 'menu' : undefined}
+        aria-label={ariaLabel}
+        aria-controls={open ? menuId : undefined}
         aria-expanded={open ? 'true' : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
+        aria-haspopup="menu"
+        onClick={() => setOpen((isOpen) => !isOpen)}
       >
         <MoreVertIcon />
       </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-      >
-        {options.map((option) => (
-          <MenuItem key={option} onClick={() => handleClose(option)}>
-            {option.label} {option.icon}
-          </MenuItem>
-        ))}
-      </Menu>
+      {open && (
+        <div className={styles.menu} id={menuId} role="menu">
+          {options.map((option) => (
+            <button
+              key={option.label}
+              type="button"
+              role="menuitem"
+              onClick={() => handleClose(option)}
+            >
+              <span>{option.label}</span>
+              {option.icon}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

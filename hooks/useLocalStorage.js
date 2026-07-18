@@ -1,6 +1,7 @@
-import { useCallback, useMemo, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 
 const STORAGE_EVENT = 'dnature-local-storage';
+const identity = (value) => value;
 
 const parseStoredValue = (value, initialValue) => {
   if (value === null) {
@@ -15,7 +16,7 @@ const parseStoredValue = (value, initialValue) => {
   }
 };
 
-function useLocalStorage(key, initialValue) {
+function useLocalStorage(key, initialValue, normalizeValue = identity) {
   const subscribe = useCallback(
     (callback) => {
       const onStorageChange = (event) => {
@@ -35,13 +36,37 @@ function useLocalStorage(key, initialValue) {
     [key]
   );
 
-  const getSnapshot = useCallback(() => window.localStorage.getItem(key), [key]);
+  const getSnapshot = useCallback(() => {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (error) {
+      console.warn(`Unable to read ${key} from browser storage.`, error);
+      return null;
+    }
+  }, [key]);
   const getServerSnapshot = useCallback(() => null, []);
   const storedItem = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const storedValue = useMemo(
-    () => parseStoredValue(storedItem, initialValue),
-    [initialValue, storedItem]
-  );
+  const storedValue = useMemo(() => {
+    const parsedValue = parseStoredValue(storedItem, initialValue);
+    return normalizeValue(parsedValue);
+  }, [initialValue, normalizeValue, storedItem]);
+
+  useEffect(() => {
+    if (storedItem === null) {
+      return;
+    }
+
+    const normalizedItem = JSON.stringify(storedValue);
+
+    if (normalizedItem !== storedItem) {
+      try {
+        window.localStorage.setItem(key, normalizedItem);
+        window.dispatchEvent(new CustomEvent(STORAGE_EVENT, { detail: { key } }));
+      } catch (error) {
+        console.warn(`Unable to migrate ${key} in browser storage.`, error);
+      }
+    }
+  }, [key, storedItem, storedValue]);
 
   const setValue = useCallback(
     (value) => {

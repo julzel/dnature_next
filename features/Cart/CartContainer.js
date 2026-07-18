@@ -10,6 +10,25 @@ import { useCartContext } from '../../contexts/shopping-cart-context';
 // util
 import { downloadScreenShot, captureElementScreenshot } from '../../util/images';
 
+const completePurchaseCapture = async ({
+  element,
+  capture = captureElementScreenshot,
+  download = downloadScreenShot,
+  store,
+}) => {
+  const dataUrl = await capture(element);
+
+  if (!dataUrl) {
+    throw new Error('No se pudo generar la imagen de la orden.');
+  }
+
+  download(dataUrl, 'purchase-order.png');
+
+  if (!store()) {
+    throw new Error('No se pudo guardar la orden en este dispositivo.');
+  }
+};
+
 const CartContainer = () => {
   // Shopping cart context
   const {
@@ -32,17 +51,10 @@ const CartContainer = () => {
     setIsCapturingPurchase(true);
 
     try {
-      const dataUrl = await captureElementScreenshot(canvasElem.current);
-
-      if (!dataUrl) {
-        throw new Error('No se pudo generar la imagen de la orden.');
-      }
-
-      downloadScreenShot(dataUrl, 'purchase-order.png');
-
-      if (!storeCartInLocalStorage()) {
-        throw new Error('No se pudo guardar la orden en este dispositivo.');
-      }
+      await completePurchaseCapture({
+        element: canvasElem.current,
+        store: storeCartInLocalStorage,
+      });
 
       setShowPurchaseOrder(false);
       setDisplayInfoModal(true);
@@ -97,3 +109,4 @@ const CartContainer = () => {
 };
 
 export default CartContainer;
+export { completePurchaseCapture };

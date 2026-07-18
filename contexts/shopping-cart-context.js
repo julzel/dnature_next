@@ -123,7 +123,12 @@ const readStoredCarts = () => {
     return [];
   }
 
-  return parseStoredCarts(window.localStorage.getItem(CART_STORAGE_KEY));
+  try {
+    return parseStoredCarts(window.localStorage.getItem(CART_STORAGE_KEY));
+  } catch (error) {
+    console.warn('Unable to access saved carts in local storage.', error);
+    return [];
+  }
 };
 
 const writeStoredCarts = (carts) => {
@@ -213,14 +218,12 @@ const cartReducer = (cart, action) => {
         return cart;
       }
 
-      const timestamp = new Date().toISOString();
-
       return {
         ...cart,
         client: action.client ? normalizeClient(action.client) : cart.client,
-        date: timestamp,
-        purchaseOrderId: generatePurchaseOrderId(),
-        purchaseOrderDate: timestamp,
+        date: action.timestamp,
+        purchaseOrderId: action.purchaseOrderId,
+        purchaseOrderDate: action.timestamp,
       };
     }
 
@@ -246,10 +249,14 @@ const ShoppingCartContextProvider = ({ children }) => {
       window.removeEventListener(CART_STORAGE_EVENT, onStorageChange);
     };
   }, []);
-  const getSavedCartsSnapshot = useCallback(
-    () => window.localStorage.getItem(CART_STORAGE_KEY),
-    []
-  );
+  const getSavedCartsSnapshot = useCallback(() => {
+    try {
+      return window.localStorage.getItem(CART_STORAGE_KEY);
+    } catch (error) {
+      console.warn('Unable to access saved carts in local storage.', error);
+      return null;
+    }
+  }, []);
   const getServerSavedCartsSnapshot = useCallback(() => null, []);
   const savedCarts = useSyncExternalStore(
     subscribeToSavedCarts,
@@ -287,7 +294,12 @@ const ShoppingCartContextProvider = ({ children }) => {
   }, []);
 
   const finalizePurchase = useCallback((client) => {
-    dispatch({ type: 'FINALIZE_PURCHASE', client });
+    dispatch({
+      type: 'FINALIZE_PURCHASE',
+      client,
+      purchaseOrderId: generatePurchaseOrderId(),
+      timestamp: new Date().toISOString(),
+    });
   }, []);
 
   const storeCartInLocalStorage = useCallback(() => {
@@ -341,3 +353,10 @@ const ShoppingCartContextProvider = ({ children }) => {
 
 export default ShoppingCartContextProvider;
 export const useCartContext = () => useContext(ShoppingCartContext);
+export {
+  CART_STORAGE_VERSION,
+  cartReducer,
+  createEmptyCart,
+  normalizeCart,
+  parseStoredCarts,
+};

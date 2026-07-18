@@ -1,0 +1,33 @@
+.optionsMenu {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  z-index: 2;
+  top: 100%;
+  right: 0;
+  min-width: 128px;
+  padding: 4px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+
+  button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: rgb(0 0 0 / 8%);
+    }
+  }
+}

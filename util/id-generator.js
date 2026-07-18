@@ -1,12 +1,16 @@
-const generatePurchaseOrderId = () => {
-  const uuid = globalThis.crypto?.randomUUID?.();
-
-  if (uuid) {
-    return `DN-${uuid}`;
+const randomHex = (cryptoProvider) => {
+  if (!cryptoProvider?.getRandomValues) {
+    throw new Error('Secure random values are unavailable.');
   }
 
-  const randomPart = Math.random().toString(36).slice(2, 12);
-  return `DN-${Date.now().toString(36)}-${randomPart}`;
+  const bytes = cryptoProvider.getRandomValues(new Uint8Array(16));
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
+};
+
+const generatePurchaseOrderId = (cryptoProvider = globalThis.crypto) => {
+  const uuid = cryptoProvider?.randomUUID?.();
+
+  return `DN-${uuid || randomHex(cryptoProvider)}`;
 };
 
 export { generatePurchaseOrderId };

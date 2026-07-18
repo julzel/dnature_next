@@ -70,7 +70,7 @@ const CalculatorSteps = () => {
             if (step === 5) {
                 setStep(0)
             } else if (step === 6) {
-                if (dogProfile.age === 'cachorro') {
+                if (dogProfile.age === 'puppy') {
                     setStep(step - 1)    
                 } else {
                     setStep(step - 2)
@@ -126,53 +126,53 @@ const CalculatorSteps = () => {
     const renderAgeSelect = (cb) => (
         <div className={styles.step}>
             <h2>Edad</h2>
-            <OptionButton isSelected={dogProfile.age === 'adulto'} onClick={() => cb('age', 'adulto')}>Adulto</OptionButton>
-            <OptionButton isSelected={dogProfile.age === 'cachorro'} onClick={() => cb('age', 'cachorro')}>Cachorro</OptionButton>
+            <OptionButton isSelected={dogProfile.age === 'adult'} onClick={() => cb('age', 'adult')}>Adulto</OptionButton>
+            <OptionButton isSelected={dogProfile.age === 'puppy'} onClick={() => cb('age', 'puppy')}>Cachorro</OptionButton>
         </div>
     )
 
     const renderPuppyStage = (cb) => (
         <div className={styles.step}>
             <h2>Edad</h2>
-            <OptionButton isSelected={dogProfile.stage === 'stage1'} onClick={() => cb('stage', 'stage1')}>Etapa 1 <span>menor a 7 meses</span></OptionButton>
-            <OptionButton isSelected={dogProfile.stage === 'stage2'} onClick={() => cb('stage', 'stage2')}>Etapa 2 <span>7 meses a 1 año</span></OptionButton>
-            <OptionButton isSelected={dogProfile.stage === 'stage3'} onClick={() => cb('stage', 'stage3')}>Etapa 3 <span>más de 1 año hasta su etapa adulta</span></OptionButton>
+            <OptionButton isSelected={dogProfile.puppyStage === 'stage1'} onClick={() => cb('puppyStage', 'stage1')}>Etapa 1 <span>menor a 7 meses</span></OptionButton>
+            <OptionButton isSelected={dogProfile.puppyStage === 'stage2'} onClick={() => cb('puppyStage', 'stage2')}>Etapa 2 <span>7 meses a 1 año</span></OptionButton>
+            <OptionButton isSelected={dogProfile.puppyStage === 'stage3'} onClick={() => cb('puppyStage', 'stage3')}>Etapa 3 <span>más de 1 año hasta su etapa adulta</span></OptionButton>
         </div>
     )
 
     const renderSizeSelect = (cb) => (
         <div className={styles.step}>
             <h2>Tamaño</h2>
-            <OptionButton isSelected={dogProfile.size === 'pequeno'} onClick={() => cb('size', 'pequeno')}>Mini <span>menos de 4kg</span></OptionButton>
-            <OptionButton isSelected={dogProfile.size === 'mediano'} onClick={() => cb('size', 'mediano')}>Pequeño - Mediano <span>5kg a 25kg</span></OptionButton>
-            <OptionButton isSelected={dogProfile.size === 'grande'} onClick={() => cb('size', 'grande')}>Grande - Gigante <span>más de 25kg</span></OptionButton>
+            <OptionButton isSelected={dogProfile.size === 'small'} onClick={() => cb('size', 'small')}>Mini <span>menos de 4kg</span></OptionButton>
+            <OptionButton isSelected={dogProfile.size === 'medium'} onClick={() => cb('size', 'medium')}>Pequeño - Mediano <span>5kg a 25kg</span></OptionButton>
+            <OptionButton isSelected={dogProfile.size === 'large'} onClick={() => cb('size', 'large')}>Grande - Gigante <span>más de 25kg</span></OptionButton>
         </div>
     )
 
     const renderCastratedSelect = (cb) => (
         <div className={styles.step}>
             <h2>Castración</h2>
-            <OptionButton isSelected={dogProfile.castrated === 'noCastrado'} onClick={() => cb('castrated', 'noCastrado')}>Sin castrar</OptionButton>
-            <OptionButton isSelected={dogProfile.castrated === 'castrado'} onClick={() => cb('castrated', 'castrado')}>Castrado</OptionButton>
+            <OptionButton isSelected={dogProfile.castrated === 'notCastrated'} onClick={() => cb('castrated', 'notCastrated')}>Sin castrar</OptionButton>
+            <OptionButton isSelected={dogProfile.castrated === 'castrated'} onClick={() => cb('castrated', 'castrated')}>Castrado</OptionButton>
         </div>
     )
 
     const renderWeightStatusSelect = (cb) => (
         <div className={styles.step}>
             <h2>Contextura</h2>
-            <OptionButton isSelected={dogProfile.weightStatus === 'bajoPeso'} onClick={() => cb('weightStatus', 'bajoPeso')}>Bajo peso</OptionButton>
-            <OptionButton isSelected={dogProfile.weightStatus === 'pesoIdeal'} onClick={() => cb('weightStatus', 'pesoIdeal')}>Ideal</OptionButton>
-            <OptionButton isSelected={dogProfile.weightStatus === 'sobrepeso'} onClick={() => cb('weightStatus', 'sobrepeso')}>Sobrepeso</OptionButton>
+            <OptionButton isSelected={dogProfile.bodyContexture === 'underWeight'} onClick={() => cb('bodyContexture', 'underWeight')}>Bajo peso</OptionButton>
+            <OptionButton isSelected={dogProfile.bodyContexture === 'ideal'} onClick={() => cb('bodyContexture', 'ideal')}>Ideal</OptionButton>
+            <OptionButton isSelected={dogProfile.bodyContexture === 'overWeight'} onClick={() => cb('bodyContexture', 'overWeight')}>Sobrepeso</OptionButton>
         </div>
     )
 
     const renderActivitySelect = (cb) => (
         <div className={styles.step}>
             <h2>Actividad física diaria</h2>
-            <OptionButton isSelected={dogProfile.activity === 'sedentario'} onClick={() => cb('activity', 'sedentario')}>Sedentario</OptionButton>
-            <OptionButton isSelected={dogProfile.activity === 'activo'} onClick={() => cb('activity', 'activo')}>Activo</OptionButton>
-            {dogProfile.weightStatus !== 'sobrepeso' && (
-                <OptionButton isSelected={dogProfile.activity === 'deportista'} onClick={() => cb('activity', 'deportista')}>Deportista</OptionButton>
+            <OptionButton isSelected={dogProfile.dailyActivity === 'sedentary'} onClick={() => cb('dailyActivity', 'sedentary')}>Sedentario</OptionButton>
+            <OptionButton isSelected={dogProfile.dailyActivity === 'active'} onClick={() => cb('dailyActivity', 'active')}>Activo</OptionButton>
+            {dogProfile.bodyContexture !== 'overWeight' && (
+                <OptionButton isSelected={dogProfile.dailyActivity === 'veryActive'} onClick={() => cb('dailyActivity', 'veryActive')}>Deportista</OptionButton>
             )}
         </div>
     )
@@ -206,7 +206,7 @@ const CalculatorSteps = () => {
             </div>
             <div className={styles.resultImage}>
                 <Image
-                    src={dogProfile.size === 'grande' ? dogLg : dogM}
+                    src={dogProfile.size === 'large' ? dogLg : dogM}
                     alt="Perro de raza dálmata comiendo alimentación natural cruda"
                 />
             </div>
@@ -215,10 +215,10 @@ const CalculatorSteps = () => {
 
     const updatedogProfile = (key, value) => {
         setDogProfile((previousProfile) => ({ ...previousProfile, [key]: value }))
-        if (key === 'age' && value === 'cachorro') {
+        if (key === 'age' && value === 'puppy') {
             setTimeout(() => setStep(5), 250)
         } else {
-            if (key === 'activity') {
+            if (key === 'dailyActivity') {
                 setTimeout(() => setStep((currentStep) => currentStep + 2), 250)
             } else {
                 setTimeout(() => setStep((currentStep) => currentStep + 1), 250)

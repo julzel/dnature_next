@@ -1,4 +1,8 @@
 const dataURLToBlob = (dataUrl) => {
+  if (typeof dataUrl !== 'string' || !/^data:[^;,]+;base64,/.test(dataUrl)) {
+    throw new TypeError('A valid base64 data URL is required.');
+  }
+
   const parts = dataUrl.split(",");
   const mimeType = parts[0].split(":")[1].split(";")[0];
   const byteString = atob(parts[1]);
@@ -13,13 +17,17 @@ const dataURLToBlob = (dataUrl) => {
 const downloadScreenShot = (dataUrl, filename) => {
   const link = document.createElement("a");
   const blob = dataURLToBlob(dataUrl);
-  link.href = URL.createObjectURL(blob);
+  const objectUrl = URL.createObjectURL(blob);
+  link.href = objectUrl;
   link.download = filename;
   link.style.display = "none";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(link.href); // release the URL resource
+  try {
+    document.body.appendChild(link);
+    link.click();
+  } finally {
+    link.remove();
+    URL.revokeObjectURL(objectUrl);
+  }
 };
 
 const captureElementScreenshot = async (element) => {
@@ -37,4 +45,4 @@ const captureElementScreenshot = async (element) => {
   }
 };
 
-export { downloadScreenShot, captureElementScreenshot };
+export { captureElementScreenshot, dataURLToBlob, downloadScreenShot };

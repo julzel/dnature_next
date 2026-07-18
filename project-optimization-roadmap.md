@@ -952,25 +952,33 @@ lead time, and external review.
 
 ### Phase 1 — Customer-flow correctness
 
-- **Estimate:** 4–8 engineer days after the nutrition rule is approved
+- **Estimate:** 4–8 engineer days
 - **Risk:** medium
 - **Dependency:** Phase 0 focused tests
 
-- [ ] Fix nested checkout address validation.
-- [ ] Confirm the missing overweight/very-active nutrition rule with the domain
-      owner.
-- [ ] Align the `notCastrated`/`noCastrado` enum mismatch.
-- [ ] Consolidate the two portion-size engines and reject unsupported inputs.
-- [ ] Add finite, domain-bounded weight validation in both flows.
-- [ ] Give saved pets stable IDs, reset edit state correctly, and resolve the
+- [x] Fix nested checkout address validation.
+- [x] Treat the missing overweight/very-active nutrition rule as unsupported
+      until a domain owner approves a value.
+- [x] Align the `notCastrated`/`noCastrado` enum mismatch.
+- [x] Consolidate the two portion-size engines and reject unsupported inputs.
+- [x] Add finite, domain-bounded weight validation in both flows.
+- [x] Give saved pets stable IDs, reset edit state correctly, and resolve the
       inert final Plan DNAture CTA.
-- [ ] Normalize product slugs at the service boundary.
-- [ ] Centralize product URL generation.
-- [ ] Clean invalid Contentful slugs and add canonical redirects.
-- [ ] Replace mutable cart operations with a pure reducer.
-- [ ] Harden local-storage parsing and schema handling.
-- [ ] Generate stable order IDs/timestamps outside render.
-- [ ] Guard screenshot/download failure.
+- [x] Normalize product slugs at the service boundary.
+- [x] Centralize product URL generation.
+- [x] Quarantine invalid or colliding Contentful slugs and add canonical
+      redirects for normalizable legacy values.
+- [x] Replace mutable cart operations with a pure reducer.
+- [x] Harden local-storage parsing and schema handling.
+- [x] Generate stable order IDs/timestamps outside render.
+- [x] Guard screenshot/download failure.
+
+The application deliberately does not invent the absent nutrition percentage:
+both portion flows hide the unsupported choice and the shared domain function
+rejects it. Contentful values are normalized on read, invalid entries are
+excluded, and normalization collisions are blocked. Editorial correction of
+the underlying CMS records remains an operational content task rather than a
+runtime correctness dependency.
 
 **Exit criteria**
 

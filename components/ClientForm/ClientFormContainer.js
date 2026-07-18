@@ -142,4 +142,6 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   );
 };
 
+export { getClientFieldValue, inputFields, isInputValid };
+
 export default ClientFormContainer;

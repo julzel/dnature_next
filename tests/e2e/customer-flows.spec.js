@@ -1,11 +1,5 @@
 import { expect, test } from './runtime-test';
 
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    window.localStorage.clear();
-  });
-});
-
 test('home → catalogue → product → cart → checkout', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('link', { name: 'Comprar' }).click();
@@ -30,7 +24,14 @@ test('home → catalogue → product → cart → checkout', async ({ page }) =>
   await deliveryDialog.getByRole('textbox', { name: 'Cantón' }).fill('Central');
   await deliveryDialog.getByRole('textbox', { name: 'Dirección exacta' }).fill('Calle de prueba');
   await deliveryDialog.getByRole('textbox', { name: 'Teléfono de contacto' }).fill('88888888');
-  await expect(deliveryDialog.getByRole('button', { name: 'Ok' })).toBeEnabled();
+  const submitDelivery = deliveryDialog.getByRole('button', { name: 'Ok' });
+  await expect(submitDelivery).toBeEnabled();
+  await submitDelivery.click();
+
+  await expect(
+    page.getByRole('heading', { name: /Orden de compra: DN-/ }).first()
+  ).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Confirmar' })).toBeEnabled();
 });
 
 test('category query filters the catalogue', async ({ page }) => {
@@ -55,6 +56,21 @@ test('calculator produces a supported adult result', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /400g/ })).toBeVisible();
 });
 
+test('calculator does not offer the unapproved overweight/very-active profile', async ({
+  page,
+}) => {
+  await page.goto('/calculadora');
+  await page.getByRole('button', { name: 'Empezar' }).click();
+  await page.getByRole('button', { name: 'Adulto' }).click();
+  await page.getByRole('button', { name: /Mini/ }).click();
+  await page.getByRole('button', { name: 'Castrado', exact: true }).click();
+  await page.getByRole('button', { name: 'Sobrepeso' }).click();
+
+  await expect(page.getByRole('button', { name: 'Sedentario' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Activo' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Deportista' })).toHaveCount(0);
+});
+
 test('plan flow saves a calculated pet', async ({ page }) => {
   await page.goto('/plan-dnature');
   await page.getByRole('button', { name: 'Comencemos' }).click();
@@ -73,6 +89,35 @@ test('plan flow saves a calculated pet', async ({ page }) => {
 
   await expect(page.getByText('Luna')).toBeVisible();
   await expect(page.getByText(/PDR:/)).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Ver productos' })).toHaveAttribute(
+    'href',
+    '/productos/'
+  );
+
+  await page.getByRole('button', { name: 'Opciones para Luna' }).click();
+  await page.getByRole('menuitem', { name: /Editar/ }).click();
+  await page.getByLabel('Nombre').fill('Nala');
+
+  for (const stepNumber of [2, 4, 5, 6, 7, 8]) {
+    await page.getByRole('button', { name: 'Siguiente' }).click();
+    await expect(page.getByText(new RegExp(`Paso ${stepNumber} de`))).toBeVisible();
+  }
+  await page.getByRole('button', { name: 'Siguiente' }).click();
+
+  await expect(page.getByText('Nala')).toBeVisible();
+  await expect(page.getByText('Luna')).toHaveCount(0);
+
+  await page.reload();
+  await expect(page.getByText('Nala')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Opciones para Nala' })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Agregar otra mascota' }).click();
+  await expect(page.getByLabel('Nombre')).toHaveValue('');
+  await page.getByRole('button', { name: 'Anterior' }).click();
+
+  await page.getByRole('button', { name: 'Opciones para Nala' }).click();
+  await page.getByRole('menuitem', { name: /Borrar/ }).click();
+  await expect(page.getByText('Nala')).toHaveCount(0);
 });
 
 test('FAQ questions expand and collapse', async ({ page }) => {

@@ -12,6 +12,7 @@ import {
   supportedAdultProfiles,
   unsupportedAdultProfiles,
 } from '../fixtures/portion-matrix';
+import { getDailyActivityOptions } from '../../features/PlanDNA/PetData/questions';
 
 describe('portion-size domain matrix', () => {
   it('enumerates every adult input combination', () => {
@@ -74,4 +75,13 @@ describe('portion-size domain matrix', () => {
       expect(isValidPetWeight(weight)).toBe(true);
     }
   );
+
+  it('does not expose the unapproved overweight/very-active combination', () => {
+    expect(
+      getDailyActivityOptions('overWeight').map(({ value }) => value)
+    ).toEqual(['sedentary', 'active']);
+    expect(
+      getDailyActivityOptions('ideal').map(({ value }) => value)
+    ).toContain('veryActive');
+  });
 });

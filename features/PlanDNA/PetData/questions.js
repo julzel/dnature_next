@@ -97,14 +97,16 @@ const PetWeightContextureInput = ({ value = 'ideal', handleChange }) => {
   );
 };
 
-const PetDailyActivityInput = ({ value = 'active', handleChange, bodyContexture }) => {
-  const options = [
+const getDailyActivityOptions = (bodyContexture) => [
     { value: 'sedentary', label: 'Sedentario' },
     { value: 'active', label: 'Activo' },
     ...(bodyContexture === 'overWeight'
       ? []
       : [{ value: 'veryActive', label: 'Deportista' }]),
   ];
+
+const PetDailyActivityInput = ({ value = 'active', handleChange, bodyContexture }) => {
+  const options = getDailyActivityOptions(bodyContexture);
   return (
     <SelectInput
       label="Actividad física diaria"
@@ -208,5 +210,6 @@ export {
   PetDailyActivityInput,
   PetNameInput,
   PetWeightInput,
+  getDailyActivityOptions,
   stepsItems,
 };

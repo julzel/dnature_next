@@ -90,6 +90,7 @@ const PetCard = ({ petInfo, editPet, deletePet, colorIndex }) => {
         }
         action={
           <OptionsMenu
+            ariaLabel={`Opciones para ${name}`}
             deleteItem={() => deletePet(id)}
             editItem={() => editPet(id)}
           />
