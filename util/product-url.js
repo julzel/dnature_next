@@ -5,7 +5,15 @@ const normalizeProductSlug = (value) => {
     return null;
   }
 
-  const normalized = value.trim().normalize('NFC').toLowerCase();
+  let decodedValue;
+
+  try {
+    decodedValue = decodeURIComponent(value);
+  } catch {
+    return null;
+  }
+
+  const normalized = decodedValue.trim().normalize('NFC').toLowerCase();
 
   return PRODUCT_SLUG_PATTERN.test(normalized) ? normalized : null;
 };

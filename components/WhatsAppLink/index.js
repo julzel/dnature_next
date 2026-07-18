@@ -29,6 +29,7 @@ const WhatsAppLink = ({
     <a
       href={href}
       className={className}
+      aria-label={iconOnly ? `Contactar por WhatsApp al ${content}` : undefined}
       {...(targetBlank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
     >

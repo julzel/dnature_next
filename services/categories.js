@@ -1,4 +1,7 @@
 import { fetchFromContentful } from "./util";
+import { fixtureCategories } from "../test-support/contentful-fixtures";
+
+const useFixtures = process.env.E2E_USE_FIXTURES === "1";
 
 const fallbackCategories = [
   {
@@ -94,6 +97,10 @@ const withFallbackCategories = (data) => {
 };
 
 const getCategories = async () => {
+  if (useFixtures) {
+    return fixtureCategories;
+  }
+
   try {
     const data = await fetchFromContentful(categoriesQuery, undefined, {
       revalidate: 3600,

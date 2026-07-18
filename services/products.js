@@ -1,5 +1,11 @@
 import { fetchFromContentful } from './util';
 import { normalizeProductSlug } from '../util/product-url';
+import {
+  fixtureProducts,
+  getFixtureProductBySlug,
+} from '../test-support/contentful-fixtures';
+
+const useFixtures = process.env.E2E_USE_FIXTURES === '1';
 
 const categoriesPriority = [
   'snacks',
@@ -119,6 +125,10 @@ const formatProductsData = (productItems) => {
 };
 
 const getProducts = async () => {
+  if (useFixtures) {
+    return fixtureProducts;
+  }
+
   const data = await fetchFromContentful(productsQuery(), undefined, {
     revalidate: 120,
     tags: ['products'],
@@ -133,6 +143,14 @@ const getProductBySlug = async (slug) => {
 
   if (!normalizedSlug) {
     return null;
+  }
+
+  if (useFixtures) {
+    if (normalizedSlug === 'fixture-error') {
+      throw new Error('Intentional fixture error for error-boundary coverage');
+    }
+
+    return getFixtureProductBySlug(normalizedSlug);
   }
 
   const data = await fetchFromContentful(

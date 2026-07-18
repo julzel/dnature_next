@@ -1,5 +1,4 @@
 import React from 'react';
-import Carousel from 'react-material-ui-carousel';
 import { Button, Box, Typography } from '@mui/material';
 import styles from './PetData.module.scss';
 
@@ -82,20 +81,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
         >
           Paso {currentStep + 1} de {steps.length}
         </Typography>
-        <Carousel
-          height={150}
-          animation="slide"
-          autoPlay={false}
-          indicators={false}
-          navButtonsAlwaysInvisible={true}
-          index={currentStep}
-        >
-          {steps.map((item, i) => (
-            <Box key={`item-${i}`} className={styles['step-item']}>
-              {item.component}
-            </Box>
-          ))}
-        </Carousel>
+        <Box className={styles['step-item']}>{steps[currentStep].component}</Box>
       </div>
       <div className={styles['steps-navigation']}>
         <Button onClick={onPrevStep} variant="outlined">

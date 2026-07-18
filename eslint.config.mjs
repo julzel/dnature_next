@@ -12,6 +12,11 @@ export default defineConfig([
   },
   globalIgnores([
     '.next/**',
+    '.next-e2e/**',
+    '.next-baseline/**',
+    'coverage/**',
+    'playwright-report/**',
+    'test-results/**',
     'out/**',
     'build/**',
     'next-env.d.ts',

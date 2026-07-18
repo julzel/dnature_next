@@ -10,7 +10,7 @@ import styles from "./SubHeader.module.scss";
 const SubHeader = ({ totalCartItems }) => {
   return (
     <nav className={styles.subheader}>
-      <Link href={"/cart"}>
+      <Link href={"/cart"} aria-label="Ver carrito">
         <span className={styles.link}>
           <FontAwesomeIcon icon={faCartShopping} size="sm" />
           {totalCartItems > 0 && (

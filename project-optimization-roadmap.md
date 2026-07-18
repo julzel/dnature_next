@@ -926,21 +926,23 @@ lead time, and external review.
 - **Dependency:** none
 
 - [ ] Record a production/preview baseline for each protected route.
-- [ ] Capture route bundle sizes, Core Web Vitals/Lighthouse, request count, and
+      The reproducible capture is implemented and a local fixture baseline is
+      stored; run it with `BASELINE_BASE_URL` when the preview origin is known.
+- [x] Capture route bundle sizes, lab Web Vitals, request count, and
       transferred image bytes on mobile and desktop.
-- [ ] Add a unit-test runner and DOM/component testing support.
-- [ ] Enumerate the full portion-input matrix; characterize supported cases and
+- [x] Add a unit-test runner and DOM/component testing support.
+- [x] Enumerate the full portion-input matrix; characterize supported cases and
       record the known unsupported/mismatched cases as explicit Phase 1
       regressions pending the domain decision.
-- [ ] Add Playwright smoke coverage for:
+- [x] Add Playwright smoke coverage for:
       - home → catalogue → product → cart → checkout;
       - category query filtering;
       - calculator and plan flows;
       - FAQ interaction;
       - direct product load, malformed slug, not found, and error paths.
-- [ ] Fail browser tests on page errors, console errors, and hydration warnings.
-- [ ] Add axe checks for the main routes.
-- [ ] Add CI for install, lint, tests, build, and smoke tests.
+- [x] Fail browser tests on page errors, console errors, and hydration warnings.
+- [x] Add axe checks for the main routes.
+- [x] Add CI for install, lint, tests, build, and smoke tests.
 
 **Exit criteria**
 

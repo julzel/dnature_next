@@ -7,6 +7,12 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test --grep @a11y",
+    "dev:e2e": "E2E_USE_FIXTURES=1 E2E_DIST_DIR=.next-e2e next dev --webpack --hostname 127.0.0.1 --port 3100",
+    "baseline:performance": "node scripts/capture-performance-baseline.mjs",
     "verify:router-baseline": "node scripts/verify-router-baseline.mjs",
     "verify:production": "node scripts/verify-production.mjs"
   },
@@ -32,13 +38,22 @@
     "next-sitemap": "^4.0.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-material-ui-carousel": "^3.4.2",
     "react-slick": "^0.30.2",
     "sass": "^1.49.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.55.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.2.10"
+    "eslint-config-next": "16.2.10",
+    "jsdom": "^26.1.0",
+    "vitest": "^3.2.4"
   }
 }

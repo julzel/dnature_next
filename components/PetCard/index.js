@@ -43,12 +43,11 @@ const PetDataDisplay = ({ petInfo }) => {
       key: 'Peso en kilogramos',
       value: `${petInfo.weight} kg`,
     },
-    {},
   ];
   return (
     <>
       {rows.map((row) => (
-        <Box key={row.value} display="flex" justifyContent="space-between">
+        <Box key={row.key} display="flex" justifyContent="space-between">
           <Typography fontWeight={600} display="inline">
             {row.key}
           </Typography>{' '}
