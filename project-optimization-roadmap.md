@@ -995,22 +995,29 @@ runtime correctness dependency.
 - **Risk:** medium
 - **Dependency:** Phases 0–1
 
-- [ ] Remove effect-derived catalogue/filter state.
-- [ ] Read product `searchParams` in the Server Component so production HTML
+- [x] Remove effect-derived catalogue/filter state.
+- [x] Read product `searchParams` in the Server Component so production HTML
       contains the catalogue rather than only its Suspense fallback.
-- [ ] Make presentation selection controlled and synchronous.
-- [ ] Fix calculator mutations with functional immutable updates.
-- [ ] Refactor remaining strict-rule violations.
-- [ ] Re-enable `react-hooks/immutability` and
+- [x] Make presentation selection controlled and synchronous.
+- [x] Fix calculator mutations with functional immutable updates.
+- [x] Refactor remaining strict-rule violations.
+- [x] Re-enable `react-hooks/immutability` and
       `react-hooks/set-state-in-effect`.
-- [ ] Split home, FAQ, header, and product UI into Server Components plus small
+- [x] Split home, FAQ, header, and product UI into Server Components plus small
       client islands.
-- [ ] Replace viewport-render branching with CSS responsiveness.
-- [ ] Replace simple programmatic navigation with `Link`.
-- [ ] Measure metadata/page Contentful request counts and implement a
+- [x] Replace viewport-render branching with CSS responsiveness.
+- [x] Replace simple programmatic navigation with `Link`.
+- [x] Measure metadata/page Contentful request counts and implement a
       React-18-compatible deduplication path only if duplicate calls remain.
-- [ ] Add a `server-only` Contentful boundary and remove public env fallbacks.
-- [ ] Stop converting unexpected catalogue failures to empty `200` pages.
+- [x] Add a `server-only` Contentful boundary and remove public env fallbacks.
+- [x] Stop converting unexpected catalogue failures to empty `200` pages.
+
+Implementation verification: direct inspection found both `generateMetadata`
+and the product page calling the same loader. A bounded `unstable_cache` entry,
+keyed by slug and tagged with `products`, now shares that load with the existing
+120-second revalidation policy. Unit coverage verifies one underlying loader
+call, while Playwright raw-response assertions verify that catalogue headings,
+items, product details, and ingredients are present in the initial HTML.
 
 **Exit criteria**
 

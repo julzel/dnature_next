@@ -1,5 +1,23 @@
 import { expect, test } from './runtime-test';
 
+test('renders catalogue and product content in the initial HTML', async ({
+  request,
+}) => {
+  const catalogueResponse = await request.get('/productos?category=recetas');
+  expect(catalogueResponse.ok()).toBe(true);
+  const catalogueHtml = await catalogueResponse.text();
+
+  expect(catalogueHtml).toContain('Recetas completas');
+  expect(catalogueHtml).toContain('Receta de prueba');
+
+  const productResponse = await request.get('/productos/receta-de-prueba');
+  expect(productResponse.ok()).toBe(true);
+  const productHtml = await productResponse.text();
+
+  expect(productHtml).toContain('Receta de prueba');
+  expect(productHtml).toContain('Ingredientes');
+});
+
 test('loads a product directly', async ({ page }) => {
   await page.goto('/productos/receta-de-prueba');
   await expect(page.getByRole('heading', { name: 'Receta de prueba' })).toBeVisible();

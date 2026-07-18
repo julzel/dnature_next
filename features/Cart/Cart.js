@@ -1,6 +1,4 @@
 'use client';
-
-import { useMediaQuery } from '@mui/material';
 // local imports
 // styles
 import styles from './Cart.module.scss';
@@ -31,8 +29,6 @@ const Cart = ({
   purchaseError,
   isCapturingPurchase,
 }) => {
-  const isMobile = useMediaQuery('(max-width:639px)', { noSsr: true });
-
   return (
     <div className={styles.cart}>
       <div className={styles.cartContent}>
@@ -52,7 +48,7 @@ const Cart = ({
       {requestClientInfo && (
         <ModalContainer
           closeModal={closeClientInfoModal}
-          fullScreen={isMobile}
+          responsiveFullScreen
         >
           <ClientFormContainer
             onSubmit={onClientInfoSubmit}
@@ -64,7 +60,7 @@ const Cart = ({
       {showPurchaseOrder && !displayInfoModal && (
         <ModalContainer
           closeModal={onPurchaseCancel}
-          fullScreen={isMobile}
+          responsiveFullScreen
         >
           <CartPurchaseOrderContainer
             onPurchaseCancel={onPurchaseCancel}

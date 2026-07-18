@@ -7,24 +7,13 @@ import styles from "./Header.module.scss";
 // components
 import HeaderNav from "./HeaderNav";
 import SubHeader from "./SubHeader";
-import DropdownMenu from "./DropdownMenu";
-
-const Header = ({
-  displayMobileMenu,
-  onMobileMenuIconClick,
-  navigationItems,
-  totalCartItems,
-}) => (
+const Header = ({ navigationItems, mobileNavigation }) => (
   <header className={styles.header}>
-    {displayMobileMenu && (
-      <DropdownMenu items={navigationItems} />
-    )}
     <HeaderNav
-      onMenuIconClick={onMobileMenuIconClick}
-      displayMobileMenu={displayMobileMenu}
       navigationItems={navigationItems}
+      mobileNavigation={mobileNavigation}
     />
-    <SubHeader totalCartItems={totalCartItems} />
+    <SubHeader />
   </header>
 );
 

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // styles
 import styles from "./Modal.module.scss";
 
-const Modal = ({ children, closeModal, padding, fullScreen }) => {
+const Modal = ({ children, closeModal, padding, responsiveFullScreen }) => {
   const dialogRef = useRef(null);
   const previousActiveElement = useRef(null);
   const titleId = useId();
@@ -65,7 +65,7 @@ const Modal = ({ children, closeModal, padding, fullScreen }) => {
         aria-labelledby={titleId}
         tabIndex={-1}
         className={`${styles.modal} ${padding ? styles.padding : ""} ${
-          fullScreen ? styles.fullScreen : ""
+          responsiveFullScreen ? styles.responsiveFullScreen : ""
         }`}
       >
         {closeModal && (

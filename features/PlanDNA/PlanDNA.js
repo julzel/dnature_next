@@ -50,16 +50,17 @@ const PlanDNA = () => {
     };
 
     setClient((prevClient) => {
-      const updatedPets = normalizePets(prevClient.pets);
-      const existingPetIndex = updatedPets.findIndex(
+      const currentPets = normalizePets(prevClient.pets);
+      const existingPetIndex = currentPets.findIndex(
         (currentPet) => currentPet.id === pet.id
       );
 
-      if (existingPetIndex !== -1) {
-        updatedPets[existingPetIndex] = pet;
-      } else {
-        updatedPets.push(pet);
-      }
+      const updatedPets =
+        existingPetIndex === -1
+          ? [...currentPets, pet]
+          : currentPets.map((currentPet, index) =>
+              index === existingPetIndex ? pet : currentPet
+            );
 
       return { ...prevClient, pets: updatedPets };
     });

@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache';
 import { notFound, permanentRedirect } from 'next/navigation';
 
 import Product from '../../../features/Product';
@@ -7,18 +8,25 @@ import { getProductPath, normalizeProductSlug } from '../../../util/product-url'
 
 export const revalidate = 120;
 
-const getProduct = async (slug) => {
-  const product = await getProductBySlug(slug);
+const getProduct = unstable_cache(
+  async (slug) => {
+    const product = await getProductBySlug(slug);
 
-  if (!product) {
-    return null;
+    if (!product) {
+      return null;
+    }
+
+    return {
+      ...product,
+      description: formatProductDescription(product.description),
+    };
+  },
+  ['product-page'],
+  {
+    revalidate,
+    tags: ['products'],
   }
-
-  return {
-    ...product,
-    description: formatProductDescription(product.description),
-  };
-};
+);
 
 export const generateMetadata = async ({ params }) => {
   const { slug: rawSlug } = await params;

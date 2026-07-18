@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 // local imports
 // components
@@ -6,12 +7,11 @@ import CartActions from "./CartActions";
 
 // contexts
 import { useCartContext } from "../../../contexts/shopping-cart-context";
-import useCompatibleNavigation from "../../../hooks/useCompatibleNavigation";
 
 const CartActionsContainer = ({ proceedToPurchase }) => {
   const [displayRemoveAllModal, setDisplayRemoveAllModal] = useState(false);
   const { removeAllItems, cart } = useCartContext();
-  const { back } = useCompatibleNavigation();
+  const router = useRouter();
 
   const handleRemoveAllItems = () => {
     removeAllItems();
@@ -20,7 +20,7 @@ const CartActionsContainer = ({ proceedToPurchase }) => {
 
   return (
     <CartActions
-      onBack={back}
+      onBack={() => router.back()}
       totalItems={cart.totalItems}
       proceedToPurchase={proceedToPurchase}
       handleRemoveAllItems={handleRemoveAllItems}

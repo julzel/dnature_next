@@ -36,7 +36,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
     } else if (currentStep === 2) {
       setCurrentStep(7);
     } else {
-      setCurrentStep(currentStep + 1);
+      setCurrentStep((step) => step + 1);
     }
   };
 
@@ -51,7 +51,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
       } else if (currentStep === 3 && petInfo.age === 'adult') {
         setCurrentStep(1);
       } else {
-        setCurrentStep(currentStep - 1);
+        setCurrentStep((step) => step - 1);
       }
     } else {
       startOver();

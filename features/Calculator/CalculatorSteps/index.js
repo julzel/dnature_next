@@ -71,12 +71,12 @@ const CalculatorSteps = () => {
                 setStep(0)
             } else if (step === 6) {
                 if (dogProfile.age === 'puppy') {
-                    setStep(step - 1)    
+                    setStep((currentStep) => currentStep - 1)
                 } else {
-                    setStep(step - 2)
+                    setStep((currentStep) => currentStep - 2)
                 }
             } else {
-                setStep(step - 1)
+                setStep((currentStep) => currentStep - 1)
             }
         } else {
             restart()
@@ -85,7 +85,7 @@ const CalculatorSteps = () => {
 
     const hadleNextClick = () => {
         setEnableNext(false)
-        setStep(step + 1)
+        setStep((currentStep) => currentStep + 1)
     }
 
     const handleOnChange = ({ target }) => {

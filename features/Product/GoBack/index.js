@@ -1,18 +1,14 @@
-'use client';
-
 import React from 'react';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import useCompatibleNavigation from '../../../hooks/useCompatibleNavigation';
 
 const GoBack = ({ className }) => {
-  const { back } = useCompatibleNavigation();
-
   return (
-    <button className={className} onClick={back} type="button">
-        <FontAwesomeIcon icon={faCircleLeft} size='1x' />
-        &nbsp; Volver
-    </button>
+    <Link className={className} href="/productos">
+      <FontAwesomeIcon icon={faCircleLeft} size="1x" />
+      &nbsp; Volver
+    </Link>
   );
 };
 

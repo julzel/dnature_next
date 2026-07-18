@@ -13,12 +13,10 @@
   position: relative;
   z-index: 1;
 
-  .menuButton {
+  .mobileNavigation {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 44px;
-    min-height: 44px;
   }
 
   .desktopNavigation {
@@ -26,7 +24,7 @@
   }
 
   @include mdq(md) {
-    .menuButton {
+    .mobileNavigation {
       display: none;
     }
 
