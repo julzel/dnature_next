@@ -1,56 +1,66 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useMemo, useSyncExternalStore } from 'react';
+
+const STORAGE_EVENT = 'dnature-local-storage';
+
+const parseStoredValue = (value, initialValue) => {
+  if (value === null) {
+    return initialValue;
+  }
+
+  try {
+    return JSON.parse(value);
+  } catch (error) {
+    console.warn('Unable to parse browser storage value.', error);
+    return initialValue;
+  }
+};
 
 function useLocalStorage(key, initialValue) {
-  // Get from local storage then
-  // parse stored json or if none return initialValue
-  const readValue = useCallback(() => {
-    // Prevent build error "window is undefined" but keep keep working
-    if (typeof window === 'undefined') {
-      return initialValue;
-    }
+  const subscribe = useCallback(
+    (callback) => {
+      const onStorageChange = (event) => {
+        if (event.type === STORAGE_EVENT ? event.detail?.key === key : event.key === key) {
+          callback();
+        }
+      };
 
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.warn(`Error reading localStorage key “${key}”:`, error);
-      return initialValue;
-    }
-  }, [key, initialValue]);
+      window.addEventListener('storage', onStorageChange);
+      window.addEventListener(STORAGE_EVENT, onStorageChange);
 
-  // State to store our value
-  // Pass initial state function to useState so logic is only executed once
-  const [storedValue, setStoredValue] = useState(readValue);
+      return () => {
+        window.removeEventListener('storage', onStorageChange);
+        window.removeEventListener(STORAGE_EVENT, onStorageChange);
+      };
+    },
+    [key]
+  );
 
-  // Return a wrapped version of useState's setter function that ...
-  // ... persists the new value to localStorage.
-  const setValue = useCallback((value) => {
-    // Prevent build error "window is undefined" but keep keep working
-    if (typeof window === 'undefined') {
-      console.warn(
-        `Tried setting localStorage key “${key}” even though environment is not a client`
-      );
-      return;
-    }
+  const getSnapshot = useCallback(() => window.localStorage.getItem(key), [key]);
+  const getServerSnapshot = useCallback(() => null, []);
+  const storedItem = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const storedValue = useMemo(
+    () => parseStoredValue(storedItem, initialValue),
+    [initialValue, storedItem]
+  );
 
-    setStoredValue((currentValue) => {
+  const setValue = useCallback(
+    (value) => {
+      if (typeof window === 'undefined') {
+        return;
+      }
+
       try {
-        const valueToStore =
-          value instanceof Function ? value(currentValue) : value;
+        const currentValue = parseStoredValue(window.localStorage.getItem(key), initialValue);
+        const valueToStore = value instanceof Function ? value(currentValue) : value;
 
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
-        return valueToStore;
+        window.dispatchEvent(new CustomEvent(STORAGE_EVENT, { detail: { key } }));
       } catch (error) {
-        console.warn(`Error setting localStorage key “${key}”:`, error);
-        return currentValue;
+        console.warn(`Unable to save ${key} to browser storage.`, error);
       }
-    });
-  }, [key]);
-
-  // Read from local storage when key changes
-  useEffect(() => {
-    setStoredValue(readValue());
-  }, [key, readValue]);
+    },
+    [initialValue, key]
+  );
 
   return [storedValue, setValue];
 }

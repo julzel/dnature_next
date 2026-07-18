@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
 import { importLibrary, setOptions } from '@googlemaps/js-api-loader';
 

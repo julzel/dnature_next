@@ -1,12 +1,10 @@
+import 'server-only';
+
 const CONTENTFUL_TIMEOUT_MS = 5000;
 
 const fetchFromContentful = async (query, variables, next) => {
-  const spaceId =
-    process.env.CONTENTFUL_SPACE_ID ||
-    process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID;
-  const accessToken =
-    process.env.CONTENTFUL_DELIVERY_API_KEY ||
-    process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_API_KEY;
+  const spaceId = process.env.CONTENTFUL_SPACE_ID;
+  const accessToken = process.env.CONTENTFUL_DELIVERY_API_KEY;
 
   if (!spaceId || !accessToken) {
     throw new Error('Contentful space ID or delivery API key is missing.');

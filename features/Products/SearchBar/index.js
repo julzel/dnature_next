@@ -1,19 +1,16 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 // styles
 import styles from "./SearchBar.module.scss";
+import { getProductPath } from '../../../util/product-url';
 
-const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
+const SearchBar = ({ query, onChange, suggestions }) => {
   const handleChange = (event) => {
     onChange(event.target.value);
-  };
-
-  const handleSuggestionClick = (event, product) => {
-    event.preventDefault();
-    onSuggestionSelect(product);
   };
 
   const shouldDisplayResults = query.trim().length > 0;
@@ -46,15 +43,17 @@ const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
               {suggestions.map((product, idx) => {
                 const thumbnail = product.images?.[0];
                 const productKey = [product.sys?.id, product.urlSlug, idx].filter(Boolean).join('-');
+                const productPath = getProductPath(product.urlSlug);
+
+                if (!productPath) {
+                  return null;
+                }
 
                 return (
                   <li key={productKey} className={styles.resultItem}>
-                    <button
-                      type="button"
+                    <Link
+                      href={productPath}
                       className={styles.suggestionButton}
-                      onClick={(event) =>
-                        handleSuggestionClick(event, product)
-                      }
                     >
                       <span className={styles.thumbnail}>
                         {thumbnail ? (
@@ -75,7 +74,7 @@ const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
                       <span className={styles.productName}>
                         {product.productName}
                       </span>
-                    </button>
+                    </Link>
                   </li>
                 );
               })}

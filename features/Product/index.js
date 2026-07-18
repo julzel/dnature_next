@@ -1,5 +1,3 @@
-'use client';
-
 import ProductItem from "./ProductItem/ProductItem";
 
 const ProductItemContainer = ({ productDetail }) => (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
@@ -9,14 +9,6 @@ import styles from "./FilterMobile.module.scss";
 
 const FilterMobile = ({ options, selected }) => {
   const [showList, setShowList] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(selected);
-
-  useEffect(() => {
-    if (selected.id !== selectedOption.id) {
-      setSelectedOption(selected);
-      setShowList(false);
-    }
-  }, [selected, selectedOption.id]); 
 
   return (
     <div className={styles.filter}>

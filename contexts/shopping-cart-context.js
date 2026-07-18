@@ -4,15 +4,15 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useReducer,
-  useState,
+  useSyncExternalStore,
 } from 'react';
 import { ShoppingCart } from '../models/shopping-cart';
 import { generatePurchaseOrderId } from '../util/id-generator';
 
 const CART_STORAGE_KEY = 'carts';
+const CART_STORAGE_EVENT = 'dnature-cart-history';
 const CART_STORAGE_VERSION = 1;
 const MAX_SAVED_CARTS = 5;
 
@@ -98,14 +98,8 @@ const normalizeCart = (cart) => {
   );
 };
 
-const readStoredCarts = () => {
-  if (typeof window === 'undefined') {
-    return [];
-  }
-
+const parseStoredCarts = (rawValue) => {
   try {
-    const rawValue = window.localStorage.getItem(CART_STORAGE_KEY);
-
     if (!rawValue) {
       return [];
     }
@@ -124,6 +118,14 @@ const readStoredCarts = () => {
   }
 };
 
+const readStoredCarts = () => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  return parseStoredCarts(window.localStorage.getItem(CART_STORAGE_KEY));
+};
+
 const writeStoredCarts = (carts) => {
   if (typeof window === 'undefined') {
     return false;
@@ -134,6 +136,7 @@ const writeStoredCarts = (carts) => {
       CART_STORAGE_KEY,
       JSON.stringify({ version: CART_STORAGE_VERSION, carts })
     );
+    window.dispatchEvent(new CustomEvent(CART_STORAGE_EVENT));
     return true;
   } catch (error) {
     console.warn('Unable to save cart history to local storage.', error);
@@ -228,11 +231,32 @@ const cartReducer = (cart, action) => {
 
 const ShoppingCartContextProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, undefined, createEmptyCart);
-  const [localCarts, setLocalCarts] = useState([]);
+  const subscribeToSavedCarts = useCallback((callback) => {
+    const onStorageChange = (event) => {
+      if (event.type === CART_STORAGE_EVENT || event.key === CART_STORAGE_KEY) {
+        callback();
+      }
+    };
 
-  useEffect(() => {
-    setLocalCarts(readStoredCarts());
+    window.addEventListener('storage', onStorageChange);
+    window.addEventListener(CART_STORAGE_EVENT, onStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', onStorageChange);
+      window.removeEventListener(CART_STORAGE_EVENT, onStorageChange);
+    };
   }, []);
+  const getSavedCartsSnapshot = useCallback(
+    () => window.localStorage.getItem(CART_STORAGE_KEY),
+    []
+  );
+  const getServerSavedCartsSnapshot = useCallback(() => null, []);
+  const savedCarts = useSyncExternalStore(
+    subscribeToSavedCarts,
+    getSavedCartsSnapshot,
+    getServerSavedCartsSnapshot
+  );
+  const localCarts = useMemo(() => parseStoredCarts(savedCarts), [savedCarts]);
 
   const addItems = useCallback((item) => {
     dispatch({ type: 'ADD_ITEM', item });
@@ -273,7 +297,6 @@ const ShoppingCartContextProvider = ({ children }) => {
       return false;
     }
 
-    setLocalCarts(nextCarts);
     return true;
   }, [cart]);
 

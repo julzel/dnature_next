@@ -1,10 +1,10 @@
-import React, { useState, useCallback, useEffect, useMemo } from "react";
+'use client';
+
+import { useMemo, useState } from "react";
 
 // local imports
 // components
 import Catalog from "./Catalog";
-import useCompatibleNavigation from "../../../hooks/useCompatibleNavigation";
-import { getProductPath } from '../../../util/product-url';
 
 const defaultCategory = {
   label: "Todos los productos",
@@ -12,13 +12,28 @@ const defaultCategory = {
 };
 
 const CatalogContainer = ({ queryCategory, products }) => {
-  const { push } = useCompatibleNavigation();
-  const [categoriesList, setCategoriesList] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(
-    queryCategory ? queryCategory : defaultCategory
-  );
-  const [filterOptions, setFilterOptions] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const categoriesList = useMemo(
+    () => Object.values(products || {}).sort((a, b) => a.index - b.index),
+    [products]
+  );
+
+  const filterOptions = useMemo(
+    () => [
+      defaultCategory,
+      ...categoriesList.map(({ label, id }) => ({ label, id })),
+    ],
+    [categoriesList]
+  );
+
+  const selectedCategory = useMemo(() => {
+    if (!queryCategory) {
+      return defaultCategory;
+    }
+
+    return categoriesList.find((category) => category.id === queryCategory) || defaultCategory;
+  }, [categoriesList, queryCategory]);
 
   const allProducts = useMemo(() => {
     return Object.values(products || {}).reduce((acc, category) => {
@@ -42,59 +57,14 @@ const CatalogContainer = ({ queryCategory, products }) => {
       .slice(0, 8);
   }, [allProducts, searchQuery]);
 
-  const handleSelectedCategoryChange = useCallback(
-    (categoryId) => {
-      if (categoryId !== "all") {
-        setSelectedCategory(categoriesList.find((c) => c.id === categoryId));
-      } else {
-        setSelectedCategory(defaultCategory);
-      }
-    },
-    [categoriesList]
-  );
-
-  useEffect(() => {
-    const categories = Object.values(products).sort(
-      (a, b) => a.index - b.index
-    );
-    setCategoriesList(categories);
-    setFilterOptions([
-      defaultCategory,
-      ...categories.map(({ label, id }) => ({ label, id })),
-    ]);
-  }, [products]);
-
-  useEffect(() => {
-    if (queryCategory) {
-      handleSelectedCategoryChange(queryCategory);
-    }
-  }, [queryCategory, handleSelectedCategoryChange]);
-
-  const handleSearchChange = useCallback((value) => {
-    setSearchQuery(value);
-  }, []);
-
-  const handleSuggestionSelect = useCallback(
-    (product) => {
-      setSearchQuery("");
-      const productPath = getProductPath(product.urlSlug);
-
-      if (productPath) {
-        push(productPath);
-      }
-    },
-    [push]
-  );
-
   return (
     <Catalog
       filterOptions={filterOptions}
       selectedCategory={selectedCategory}
       categoriesList={categoriesList}
       searchQuery={searchQuery}
-      onSearchChange={handleSearchChange}
+      onSearchChange={setSearchQuery}
       suggestions={suggestions}
-      onSuggestionSelect={handleSuggestionSelect}
     />
   );
 };

@@ -15,7 +15,6 @@ const Catalog = ({
   searchQuery,
   onSearchChange,
   suggestions,
-  onSuggestionSelect,
 }) => (
   <section className={styles.catalog}>
     {selectedCategory && (
@@ -27,7 +26,6 @@ const Catalog = ({
               query={searchQuery}
               onChange={onSearchChange}
               suggestions={suggestions}
-              onSuggestionSelect={onSuggestionSelect}
             />
           </div>
           {selectedCategory.id === "all" ? (

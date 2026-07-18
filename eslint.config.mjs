@@ -5,12 +5,8 @@ export default defineConfig([
   ...nextVitals,
   {
     rules: {
-      // The legacy Pages Router code intentionally derives local UI state in
-      // effects and mutates model instances before committing cloned state.
-      // Keep these React Compiler-oriented rules out until those flows are
-      // refactored independently of the framework upgrade.
-      'react-hooks/immutability': 'off',
-      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/immutability': 'error',
+      'react-hooks/set-state-in-effect': 'error',
     },
   },
   globalIgnores([

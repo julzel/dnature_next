@@ -11,7 +11,7 @@ import styles from './HeaderNav.module.scss';
 
 import NavigationBar from './NavigationBar';
 
-const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
+const HeaderNav = ({ onMenuIconClick, displayMobileMenu, navigationItems }) => {
   return (
     <div className={styles.headerNav}>
       <div className={styles.logoContainer}>
@@ -27,13 +27,19 @@ const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
           </span>
         </Link>
       </div>
-      {showIcon ? (
-        <span role='button' tabIndex='0' onClick={onMenuIconClick}>
+      <button
+        type='button'
+        className={styles.menuButton}
+        onClick={onMenuIconClick}
+        aria-expanded={displayMobileMenu}
+        aria-controls='mobile-navigation'
+        aria-label={displayMobileMenu ? 'Cerrar menú' : 'Abrir menú'}
+      >
           <FontAwesomeIcon icon={faBars} size='lg' />
-        </span>
-      ) : (
+      </button>
+      <div className={styles.desktopNavigation}>
         <NavigationBar items={navigationItems} />
-      )}
+      </div>
     </div>
   );
 };

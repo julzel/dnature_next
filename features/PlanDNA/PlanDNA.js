@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 // local imports
 // models
@@ -23,24 +23,16 @@ const createPetId = () =>
   globalThis.crypto?.randomUUID?.() ||
   `pet-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 
-const ensurePetIds = (pets = []) =>
-  pets.map((pet) => ({ ...pet, id: pet.id || createPetId() }));
+const getPetId = (pet, index) => pet.id || `legacy-pet-${index}`;
 
 const PlanDNA = () => {
   const [step, setStep] = useState(0);
   const [client, setClient] = useLocalStorage('client', initialClient);
   const [petToEdit, setPetToEdit] = useState(null);
 
-  useEffect(() => {
-    if (client.pets && client.pets.length > 0) {
-      const petsWithIds = ensurePetIds(client.pets);
-
-      if (petsWithIds.some((pet, index) => pet.id !== client.pets[index].id)) {
-        setClient((previousClient) => ({ ...previousClient, pets: petsWithIds }));
-      }
-      setStep(2);
-    }
-  }, [client, setClient]);
+  const pets = client.pets || [];
+  const visibleStep = step === 0 && pets.length > 0 ? 2 : step;
+  const petsForDisplay = pets.map((pet, index) => ({ ...pet, id: getPetId(pet, index) }));
 
   const handlePetDataSubmit = (data) => {
     const portionSize = calculatePortionSizeInGrams(data);
@@ -58,7 +50,7 @@ const PlanDNA = () => {
     setClient((prevClient) => {
       const updatedPets = prevClient.pets ? [...prevClient.pets] : [];
       const existingPetIndex = updatedPets.findIndex(
-        (currentPet) => currentPet.id === pet.id
+        (currentPet, index) => getPetId(currentPet, index) === pet.id
       );
 
       if (existingPetIndex !== -1) {
@@ -80,13 +72,16 @@ const PlanDNA = () => {
   };
 
   const onEdit = (petId) => {
-    setPetToEdit(client.pets.find((pet) => pet.id === petId) || null);
+    const petIndex = pets.findIndex((pet, index) => getPetId(pet, index) === petId);
+    setPetToEdit(petIndex === -1 ? null : { ...pets[petIndex], id: petId });
     setStep(1);
   };
 
   const onDeletePet = (petId) => {
     setClient((prevClient) => {
-      const updatedPets = (prevClient.pets || []).filter((pet) => pet.id !== petId);
+      const updatedPets = (prevClient.pets || []).filter(
+        (pet, index) => getPetId(pet, index) !== petId
+      );
 
       return { ...prevClient, pets: updatedPets };
     });
@@ -98,8 +93,8 @@ const PlanDNA = () => {
 
   return (
     <div className={styles['plan-dna']}>
-      {step === 0  && <Intro start={() => setStep(1)} />}
-      {step === 1 && (
+      {visibleStep === 0 && <Intro start={() => setStep(1)} />}
+      {visibleStep === 1 && (
         <PetData
           initialPetInfo={petToEdit}
           startOver={() => setStep(0)}
@@ -107,11 +102,11 @@ const PlanDNA = () => {
         />
       )}
       <div>
-      {(step === 2) && (
+      {visibleStep === 2 && (
         <PetDataResult
           onEdit={onEdit}
           onDeletePet={onDeletePet}
-          petData={client.pets}
+          petData={petsForDisplay}
           addAnotherPet={addAnotherPet}
         />
       )}

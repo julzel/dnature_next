@@ -10,16 +10,11 @@ export const metadata = {
   alternates: { canonical: '/productos' },
 };
 
-const ProductsPage = async () => {
-  let products = {};
+const ProductsPage = async ({ searchParams }) => {
+  const products = await getProducts();
+  const { category } = await searchParams;
 
-  try {
-    products = await getProducts();
-  } catch (error) {
-    console.error('Unable to load products from Contentful:', error);
-  }
-
-  return <Products products={products} />;
+  return <Products products={products} queryCategory={category} />;
 };
 
 export default ProductsPage;

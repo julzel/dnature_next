@@ -8,7 +8,7 @@ import FilterMobile from "./FilterMobile";
 const Filter = (props) => {
   return (
     <>
-      <FilterMobile {...props} />
+      <FilterMobile key={props.selected.id} {...props} />
       <FilterDesktop {...props} />
     </>
   );

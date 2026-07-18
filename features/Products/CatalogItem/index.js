@@ -1,5 +1,5 @@
 // Import statements
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Box } from '@mui/material';
@@ -8,12 +8,10 @@ import styles from './CatalogItem.module.scss'; // Styles
 import { useCartContext } from '../../../contexts/shopping-cart-context'; // Context
 import QuickAdd from '../../../components/QuickAdd'; // Components
 import PresentationSelector, {
-  convertObjectToArray,
+  getDefaultPresentation,
 } from '../../../components/PresentationSelector'; // Components
 import CurrencyText from '../../../components/Currency';
 import { getProductPath } from '../../../util/product-url';
-
-const DEFAULT_SIZE = '1kg';
 
 const CatalogItem = ({ product }) => {
   const {
@@ -26,7 +24,9 @@ const CatalogItem = ({ product }) => {
     medida,
   } = product;
   const hasPriceByUnit = !!preciosPorUnidad;
-  const [selectedPresentation, setSelectedPresentation] = useState(null);
+  const [selectedPresentation, setSelectedPresentation] = useState(() =>
+    getDefaultPresentation(preciosPorUnidad, productName)
+  );
   const { addOneItem, removeOneItem, getItemsInCart } = useCartContext();
   const itemImage = images[0];
 
@@ -56,16 +56,6 @@ const CatalogItem = ({ product }) => {
     }
   };
 
-  useEffect(() => {
-    if (hasPriceByUnit) {
-      const presentationArray = convertObjectToArray(preciosPorUnidad);
-      const selectedPresentation = productName.toLowerCase() !== 'dnature para gato'
-        ? presentationArray.find((p) => p.size === DEFAULT_SIZE)
-        : (presentationArray.length > 1 ? presentationArray[1] : presentationArray[0] || null);
-      setSelectedPresentation(selectedPresentation);
-    }
-  }, [hasPriceByUnit, preciosPorUnidad, productName]);
-  
   const itemsInCart =
     hasPriceByUnit && selectedPresentation
       ? getItemsInCart(`${id}-${selectedPresentation.size}`)

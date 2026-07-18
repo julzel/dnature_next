@@ -1,8 +1,7 @@
-import React from "react";
-import Button from "../../../components/Button";
+import Link from "next/link";
 import styles from "./Hero.module.scss";
 
-const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
+const Hero = () => {
   return (
     <div className={styles.heroContainer}>
       <h1 className="seo-hidden">
@@ -21,16 +20,9 @@ const Hero = ({ handlePlanDnaClick, handleComprarClick }) => {
         </p>
 
         <div className={styles.heroActionButtons}>
-          {/* <Button
-            text={"Plan DNA"}
-            className={`${styles.button} ${styles.variant}`}
-            onClick={handlePlanDnaClick}
-          /> */}
-          <Button
-            text={"Comprar"}
-            className={styles.button}
-            onClick={handleComprarClick}
-          />
+          <Link href="/productos" className={styles.button}>
+            Comprar
+          </Link>
         </div>
       </div>
       <div className={styles.hero}>

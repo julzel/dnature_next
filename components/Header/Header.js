@@ -10,19 +10,18 @@ import SubHeader from "./SubHeader";
 import DropdownMenu from "./DropdownMenu";
 
 const Header = ({
-  isMobile,
   displayMobileMenu,
   onMobileMenuIconClick,
   navigationItems,
   totalCartItems,
 }) => (
   <header className={styles.header}>
-    {isMobile && (
-      <DropdownMenu show={displayMobileMenu} items={navigationItems} totalCartItems={totalCartItems} />
+    {displayMobileMenu && (
+      <DropdownMenu items={navigationItems} />
     )}
     <HeaderNav
       onMenuIconClick={onMobileMenuIconClick}
-      showIcon={isMobile}
+      displayMobileMenu={displayMobileMenu}
       navigationItems={navigationItems}
     />
     <SubHeader totalCartItems={totalCartItems} />

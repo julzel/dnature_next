@@ -1,22 +1,17 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import SCREEN_SIZE from '../constants/breakpoints';
 
+const subscribeToViewport = (callback) => {
+  window.addEventListener('resize', callback);
+  return () => window.removeEventListener('resize', callback);
+};
+
 const useWindow = () => {
-  const [isMobile, setIsMobile] = useState(true);
   const { TABLET } = SCREEN_SIZE;
+  const getSnapshot = useCallback(() => window.innerWidth < TABLET, [TABLET]);
+  const getServerSnapshot = useCallback(() => false, []);
 
-  const handleWindowResize = useCallback(() => {
-    setIsMobile(window.innerWidth < TABLET);
-  }, [TABLET]);
-
-  useEffect(() => {
-    handleWindowResize();
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => window.removeEventListener('resize', handleWindowResize);
-  }, [handleWindowResize]);
-
-  return isMobile;
+  return useSyncExternalStore(subscribeToViewport, getSnapshot, getServerSnapshot);
 };
 
 export default useWindow;

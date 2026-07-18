@@ -1,7 +1,3 @@
-'use client';
-
-import React from "react";
-
 // local imports
 // styles
 import styles from "./Home.module.scss";
@@ -14,7 +10,6 @@ import Products from "./Products";
 import Contact from "./Contact";
 import DNAtureSystem from "./DNAtureSystem";
 import OurCostumers from "./OurCostumers";
-import NutritionalAppointments from "./NutritionalAppointments";
 
 const Home = ({ categories = [] }) => {
   return (

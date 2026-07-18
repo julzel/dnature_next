@@ -7,13 +7,11 @@ import WhatsAppLink from "../../WhatsAppLink";
 // local imports
 import styles from "./DropdownMenu.module.scss";
 
-const DropdownMenu = ({ items, show }) => {
+const DropdownMenu = ({ items }) => {
   return (
     <div
+      id="mobile-navigation"
       className={styles.dropdown}
-      style={{
-        transform: show ? "translateX(0)" : "translateX(-100%)",
-      }}
     >
       <ul className={styles.dropdownMenu}>
         {items.map((link, i) => (
