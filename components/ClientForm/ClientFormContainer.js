@@ -36,11 +36,44 @@ const inputFields = [
   },
 ];
 
+const addressFieldNames = new Set(['direccion', 'provincia', 'canton']);
+
+const getClientFieldValue = (client, fieldName) =>
+  addressFieldNames.has(fieldName)
+    ? client.address?.[fieldName]
+    : client[fieldName];
+
+const isInputValid = (value, field) => {
+  const normalizedValue = typeof value === 'string' ? value.trim() : '';
+
+  if (field.isRequired && !normalizedValue) {
+    return false;
+  }
+
+  if (!normalizedValue) {
+    return true;
+  }
+
+  if (field.type === 'email') {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedValue);
+  }
+
+  return field.pattern ? new RegExp(field.pattern).test(normalizedValue) : true;
+};
+
+const createClient = (savedClient) =>
+  new Client(
+    savedClient?.firstName,
+    savedClient?.lastName,
+    savedClient?.email,
+    savedClient?.address,
+    savedClient?.contactPhoneNumber,
+    savedClient?.pets
+  );
+
 const ClientFormContainer = ({ onSubmit, className }) => {
   const [rememberClient, setRememberClient] = useState(true);
-  const [client, setClient] = useState(
-    storage.getItem("client") || new Client()
-  );
+  const [client, setClient] = useState(() => createClient(storage.getItem('client')));
   const [interactedFields, setInteractedFields] = useState({});
 
   const handleRememberToggle = () => {
@@ -50,7 +83,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (["direccion", "provincia", "canton"].includes(name)) {
+    if (addressFieldNames.has(name)) {
       setClient((prevClient) => ({
         ...prevClient,
         address: { ...prevClient.address, [name]: value },
@@ -62,22 +95,24 @@ const ClientFormContainer = ({ onSubmit, className }) => {
 
   const handleBlur = (e) => {
     const { name } = e.target;
-    setInteractedFields({ ...interactedFields, [name]: true });
+    setInteractedFields((previousFields) => ({ ...previousFields, [name]: true }));
   };
 
-  const isInputValid = (value, isRequired) =>
-    isRequired ? value?.trim() !== "" : true;
-
   const isFormValid = () => {
-    // Check if all required fields have values
     return inputFields.every((field) =>
-      isInputValid(client[field.name], field.isRequired)
+      isInputValid(getClientFieldValue(client, field.name), field)
     );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Perform necessary actions with the client information
+    if (!isFormValid()) {
+      setInteractedFields(
+        inputFields.reduce((fields, field) => ({ ...fields, [field.name]: true }), {})
+      );
+      return;
+    }
+
     if (rememberClient) {
       storage.setItem("client", client);
     }

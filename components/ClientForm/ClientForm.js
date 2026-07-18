@@ -30,10 +30,10 @@ const ClientForm = ({
           const value = ["direccion", "provincia", "canton"].includes(
             field.name
           )
-            ? client.address[field.name]
-            : client[field.name];
+            ? client.address?.[field.name] || ""
+            : client[field.name] || "";
           const isInvalidField =
-            !isInputValid(value, field.isRequired) &&
+            !isInputValid(value, field) &&
             interactedFields[field.name];
           return (
             <div key={field.name}>

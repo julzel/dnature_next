@@ -28,6 +28,8 @@ const Cart = ({
   onPurchaseConfirm,
   displayInfoModal,
   onCloseInfoModal,
+  purchaseError,
+  isCapturingPurchase,
 }) => {
   const isMobile = useMediaQuery('(max-width:639px)', { noSsr: true });
 
@@ -67,6 +69,8 @@ const Cart = ({
           <CartPurchaseOrderContainer
             onPurchaseCancel={onPurchaseCancel}
             onPurchaseConfirm={onPurchaseConfirm}
+            purchaseError={purchaseError}
+            isCapturingPurchase={isCapturingPurchase}
           />
         </ModalContainer>
       )}

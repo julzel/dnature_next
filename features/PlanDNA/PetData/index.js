@@ -5,6 +5,7 @@ import styles from './PetData.module.scss';
 
 // components
 import { stepsItems } from './questions';
+import { isSupportedPortionProfile, isValidPetWeight } from '../../../util/portion-size';
 
 const petDefaultInfo = {
   name: '',
@@ -63,7 +64,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
       case 0:
         return !!petInfo.name;
       case 7:
-        return !!petInfo.weight;
+        return isValidPetWeight(petInfo.weight) && isSupportedPortionProfile(petInfo);
       default:
         return true;
     }

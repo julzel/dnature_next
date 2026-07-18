@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, InputAdornment } from '@mui/material';
+import { isValidPetWeight } from '../../util/portion-size';
 
 const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
   props,
@@ -27,15 +28,13 @@ const WeightInput = ({ weight, handleChange, label, helpText }) => {
   const [helperText, setHelperText] = React.useState('');
 
   const handleWeightChange = (e) => {
-    const value = parseFloat(e.target.value);
-    if (value < 0.1 || value > 200) {
-      setError(true);
-      setHelperText(helpText);
-    } else {
-      setError(false);
-      setHelperText('');
-      handleChange(e.target.value);
-    }
+    const value = e.target.value;
+    const hasValue = value.trim() !== '';
+    const validWeight = !hasValue || isValidPetWeight(value);
+
+    setError(!validWeight);
+    setHelperText(validWeight ? '' : helpText);
+    handleChange(value);
   };
 
   return (
@@ -52,6 +51,7 @@ const WeightInput = ({ weight, handleChange, label, helpText }) => {
         endAdornment: <InputAdornment position="end">kg</InputAdornment>,
         inputComponent: NumberFormatCustom,
       }}
+      inputProps={{ inputMode: 'decimal', min: 0.1, max: 100, step: 0.1 }}
     />
   );
 };

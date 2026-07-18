@@ -3,14 +3,19 @@ class Client {
     firstName = "",
     lastName = "",
     email = "",
-    address = {},
+    address = { direccion: '', provincia: '', canton: '' },
     contactPhoneNumber = "",
     pets = []
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.address = address;
+    this.address = {
+      direccion: '',
+      provincia: '',
+      canton: '',
+      ...address,
+    };
     this.contactPhoneNumber = contactPhoneNumber;
     this.pets = pets;
   }

@@ -1,4 +1,5 @@
 import { fetchFromContentful } from './util';
+import { normalizeProductSlug } from '../util/product-url';
 
 const categoriesPriority = [
   'snacks',
@@ -37,8 +38,9 @@ const productsQuery = () => `
 const productQuery = (productId) => `
         {
             product(id:"${productId}") {
-                productName
-                description
+            productName
+            urlSlug
+            description
                 category
                 medida
                 precio
@@ -95,12 +97,32 @@ const productBySlugQuery = `
   }
 `;
 
+const formatProduct = (product) => {
+  const normalizedSlug = normalizeProductSlug(product?.urlSlug);
+
+  if (!normalizedSlug) {
+    console.warn(`Skipping product with invalid urlSlug: ${product?.sys?.id || 'unknown'}`);
+    return null;
+  }
+
+  return {
+    ...product,
+    urlSlug: normalizedSlug,
+    images: product.imageCollection?.items || [],
+    iconos: product.iconosCollection?.items || [],
+  };
+};
+
 const formatProductsData = (productItems) => {
   const catalog = {};
-  productItems.forEach((item) => {
-    const { categorySlug, category, imageCollection } = item;
-    item.images = imageCollection.items;
-    delete item.imageCollection;
+  productItems.forEach((rawItem) => {
+    const item = formatProduct(rawItem);
+
+    if (!item) {
+      return;
+    }
+
+    const { categorySlug, category } = item;
 
     if (catalog.hasOwnProperty(categorySlug)) {
       catalog[categorySlug].products.push(item);
@@ -134,14 +156,7 @@ const getProducts = async () => {
   return formatProductsData(data.productCollection.items);
 };
 
-const formatProductData = (product) => {
-  product.images = product.imageCollection.items;
-  delete product.imageCollection;
-
-  product.iconos = product.iconosCollection.items;
-  delete product.iconosCollection;
-  return product;
-};
+const formatProductData = formatProduct;
 
 const getProduct = async (productId) => {
   try {
@@ -156,12 +171,18 @@ const getProduct = async (productId) => {
 };
 
 const getProductBySlug = async (slug) => {
+  const normalizedSlug = normalizeProductSlug(slug);
+
+  if (!normalizedSlug) {
+    return null;
+  }
+
   const data = await fetchFromContentful(
     productBySlugQuery,
-    { slug },
+    { slug: normalizedSlug },
     {
       revalidate: 120,
-      tags: ['products', `product:${slug}`],
+      tags: ['products', `product:${normalizedSlug}`],
     }
   );
   const product = data?.productCollection?.items?.[0];

@@ -97,11 +97,13 @@ const PetWeightContextureInput = ({ value = 'ideal', handleChange }) => {
   );
 };
 
-const PetDailyActivityInput = ({ value = 'active', handleChange }) => {
+const PetDailyActivityInput = ({ value = 'active', handleChange, bodyContexture }) => {
   const options = [
     { value: 'sedentary', label: 'Sedentario' },
     { value: 'active', label: 'Activo' },
-    { value: 'veryActive', label: 'Deportista' },
+    ...(bodyContexture === 'overWeight'
+      ? []
+      : [{ value: 'veryActive', label: 'Deportista' }]),
   ];
   return (
     <SelectInput
@@ -182,6 +184,7 @@ const stepsItems = (petInfo, handleInfoChange) => [
       <PetDailyActivityInput
         value={petInfo.dailyActivity}
         handleChange={handleInfoChange('dailyActivity')}
+        bodyContexture={petInfo.bodyContexture}
       />
     ),
   },

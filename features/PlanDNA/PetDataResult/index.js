@@ -18,7 +18,7 @@ const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => {
         </Typography>
       </Box>
       {petData.map((pet, index) => (
-        <Box mb={4} key={index}>
+        <Box mb={4} key={pet.id}>
           <PetCard colorIndex={index} petInfo={pet} editPet={onEdit} deletePet={onDeletePet} />
         </Box>
       ))}

@@ -9,7 +9,13 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import styles from './CalculatorSteps.module.scss'
 
 // util
-import { calculatePortionSizeInGrams, labelKeys, valueKeys } from '../../../util'
+import {
+    calculatePortionSizeInGrams,
+    isSupportedPortionProfile,
+    isValidPetWeight,
+    labelKeys,
+    valueKeys,
+} from '../../../util/portion-size'
 
 // images
 import dogLg from '../../../public/calculator/dog_mobile_lg.jpg'
@@ -21,6 +27,7 @@ const CalculatorSteps = () => {
     const [dogProfile, setDogProfile] = useState({})
     const [result, setResult] = useState(null)
     const [enableNext, setEnableNext] = useState(false)
+    const [weightError, setWeightError] = useState(false)
 
     const restart = () => {
         setStep(0)
@@ -28,14 +35,23 @@ const CalculatorSteps = () => {
         setDogProfile({})
         setResult(null)
         setEnableNext(false)
+        setWeightError(false)
     }
 
     const getPortionSize = () => {
 
-        if (dogProfile.weight !== '') { // add regex validation as well
-            setResult(calculatePortionSizeInGrams(dogProfile))
-            setStep(step + 1)
+        if (isValidPetWeight(dogProfile.weight) && isSupportedPortionProfile(dogProfile)) {
+            const portionSize = calculatePortionSizeInGrams(dogProfile)
+
+            if (portionSize) {
+                setResult(portionSize)
+                setWeightError(false)
+                setStep((currentStep) => currentStep + 1)
+                return
+            }
         }
+
+        setWeightError(true)
     }
 
     const handlePrevClick = () => {
@@ -62,12 +78,13 @@ const CalculatorSteps = () => {
     }
 
     const handleOnChange = ({ target }) => {
-        dogProfile.weight = target.value
         setValue(target.value)
+        setDogProfile((previousProfile) => ({ ...previousProfile, weight: target.value }))
+        setWeightError(false)
     }
 
     const renderControls = () => {
-        const validWeight = dogProfile.weight && dogProfile.weight !== ''
+        const validWeight = isValidPetWeight(dogProfile.weight) && isSupportedPortionProfile(dogProfile)
         return (
             <div className={styles.calculatorControls}>
                 {step === 7 && (
@@ -173,16 +190,19 @@ const CalculatorSteps = () => {
             <div role="button" tabIndex='0' onClick={() => cb('activity', 'activo')} className={dogProfile.activity === 'activo' ? styles.selected : ''}>
                 Activo
             </div>
-            <div role="button" tabIndex='0' onClick={() => cb('activity', 'deportista')} className={dogProfile.activity === 'deportista' ? styles.selected : ''}>
-                Deportista
-            </div>
+            {dogProfile.weightStatus !== 'sobrepeso' && (
+                <div role="button" tabIndex='0' onClick={() => cb('activity', 'deportista')} className={dogProfile.activity === 'deportista' ? styles.selected : ''}>
+                    Deportista
+                </div>
+            )}
         </div>
     )
 
     const renderWeightInput = () => (
         <div className={`${styles.step} ${styles.short}`}>
             <h2>Peso en kg</h2>
-            <input required type="number" inputMode='number' onChange={handleOnChange} value={value} />
+            <input required type="number" inputMode='decimal' min="0.1" max="100" step="0.1" onChange={handleOnChange} value={value} />
+            {weightError && <p className={styles.warning}>Ingresa un peso válido entre 0.1kg y 100kg.</p>}
         </div>
     )
 
@@ -215,15 +235,14 @@ const CalculatorSteps = () => {
     )
 
     const updatedogProfile = (key, value) => {
-        dogProfile[key] = value
-        setDogProfile({ ...dogProfile })
+        setDogProfile((previousProfile) => ({ ...previousProfile, [key]: value }))
         if (key === 'age' && value === 'cachorro') {
             setTimeout(() => setStep(5), 250)
         } else {
             if (key === 'activity') {
-                setTimeout(() => setStep(step + 2), 250)
+                setTimeout(() => setStep((currentStep) => currentStep + 2), 250)
             } else {
-                setTimeout(() => setStep(step + 1), 250)
+                setTimeout(() => setStep((currentStep) => currentStep + 1), 250)
             }
         }
     }

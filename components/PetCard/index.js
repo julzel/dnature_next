@@ -1,12 +1,10 @@
 import React from 'react';
 import {
   Avatar,
-  Button,
   Box,
   Card,
   CardHeader,
   CardContent,
-  CardActions,
   Typography,
 } from '@mui/material';
 import { cyan, pink, purple, teal, blue, green, yellow } from '@mui/material/colors';
@@ -62,7 +60,7 @@ const PetDataDisplay = ({ petInfo }) => {
 };
 
 const PetCard = ({ petInfo, editPet, deletePet, colorIndex }) => {
-  const { name, portionSize } = petInfo;
+  const { id, name, portionSize } = petInfo;
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -93,8 +91,8 @@ const PetCard = ({ petInfo, editPet, deletePet, colorIndex }) => {
         }
         action={
           <OptionsMenu
-            deleteItem={() => deletePet(name)}
-            editItem={() => editPet(name)}
+            deleteItem={() => deletePet(id)}
+            editItem={() => editPet(id)}
           />
         }
         title={name}
@@ -103,24 +101,6 @@ const PetCard = ({ petInfo, editPet, deletePet, colorIndex }) => {
       <CardContent>
         <PetDataDisplay petInfo={petInfo} />
       </CardContent>
-      <CardActions>
-        <Box
-          width="100%"
-          pb={1}
-          pr={1}
-          display="flex"
-          justifyContent="flex-end"
-        >
-          <Button
-            disableElevation
-            size="small"
-            color="tertiary"
-            variant="contained"
-          >
-            Plan DNAture
-          </Button>
-        </Box>
-      </CardActions>
     </Card>
   );
 };

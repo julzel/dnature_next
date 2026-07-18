@@ -4,6 +4,7 @@ import React, { useState, useCallback, useEffect, useMemo } from "react";
 // components
 import Catalog from "./Catalog";
 import useCompatibleNavigation from "../../../hooks/useCompatibleNavigation";
+import { getProductPath } from '../../../util/product-url';
 
 const defaultCategory = {
   label: "Todos los productos",
@@ -76,7 +77,11 @@ const CatalogContainer = ({ queryCategory, products }) => {
   const handleSuggestionSelect = useCallback(
     (product) => {
       setSearchQuery("");
-      push(`/productos/${encodeURIComponent(product.urlSlug)}`);
+      const productPath = getProductPath(product.urlSlug);
+
+      if (productPath) {
+        push(productPath);
+      }
     },
     [push]
   );

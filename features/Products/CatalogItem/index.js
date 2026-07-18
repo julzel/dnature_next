@@ -11,6 +11,7 @@ import PresentationSelector, {
   convertObjectToArray,
 } from '../../../components/PresentationSelector'; // Components
 import CurrencyText from '../../../components/Currency';
+import { getProductPath } from '../../../util/product-url';
 
 const DEFAULT_SIZE = '1kg';
 
@@ -70,8 +71,14 @@ const CatalogItem = ({ product }) => {
       ? getItemsInCart(`${id}-${selectedPresentation.size}`)
       : getItemsInCart(id);
 
+  const productPath = getProductPath(urlSlug);
+
+  if (!productPath) {
+    return null;
+  }
+
   return (
-    <Link key={id} href={`/productos/${encodeURIComponent(urlSlug)}`}>
+    <Link key={id} href={productPath}>
       <span className={styles.catalogItem}>
         {itemImage && (
           <span className={styles.catalogItemImages}>
