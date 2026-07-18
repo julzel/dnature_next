@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useCallback, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // local imports
 // styles
@@ -41,30 +41,20 @@ const AnimationBox = ({ children, animation }) => {
     const boxElement = useRef(null);
     const [visible, setVisible] = useState(false);
 
-    const checkIfElementIsInViewPort = element => {
-        const bounding = element.getBoundingClientRect();
-        const elementHeight = element.offsetHeight/2;
-        const elementWidth = element.offsetWidth;
-        if (bounding.top >= -elementHeight 
-            && bounding.left >= -elementWidth
-            && bounding.right <= (window.innerWidth || document.documentElement.clientWidth) + elementWidth
-            && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) + elementHeight) {
-    
-            setVisible(true);
-        }
-    }
-
-    const handleScroll = useCallback(() => {
-        if (!visible) {
-            boxElement?.current && checkIfElementIsInViewPort(boxElement.current);
-        }
-    }, [visible])
-
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: '0px 0px -10% 0px' }
+        );
 
-        return () =>  window.removeEventListener('scroll', handleScroll);
-    }, [handleScroll])
+        if (boxElement.current) observer.observe(boxElement.current);
+        return () => observer.disconnect();
+    }, [])
 
     const elemAnimation = animations[animation]
     const cssClass = visible ? `${elemAnimation.classname} ${elemAnimation.animation}` : elemAnimation.classname

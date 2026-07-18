@@ -23,15 +23,10 @@ $hero-btn: #008088;
     width: 50%;
   }
 
-  &Img {
-    width: 100%;
-    height: 100%;
-    background-image: url("../../../public/images/hero3_wide.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-  }
+}
+
+.heroImage {
+  object-fit: cover;
 }
 
 .heroAction {

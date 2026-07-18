@@ -1071,16 +1071,16 @@ lead time, and external review.
 **5A — Image pipeline and assets (4–8 days after a 1–2 day hosting spike)**
 
 - [ ] Restore tested image optimization.
-- [ ] Replace the home hero CSS background with a responsive LCP image strategy.
+- [x] Replace the home hero CSS background with a responsive LCP image strategy.
 - [ ] Resize/compress retained assets and simplify the oversized SVG.
-- [ ] Add explicit image dimensions, `sizes`, and intentional LCP priority.
+- [x] Add explicit image dimensions, `sizes`, and intentional LCP priority.
 
 **5B — Runtime loading and route bundles (3–6 days)**
 
-- [ ] Replace utility-barrel client imports with direct imports.
-- [ ] Lazy-load screenshot and Maps code.
-- [ ] Replace per-instance scroll work with `IntersectionObserver`.
-- [ ] Make slider timers instance-local and motion-aware.
+- [x] Replace utility-barrel client imports with direct imports.
+- [x] Lazy-load screenshot and Maps code.
+- [x] Replace per-instance scroll work with `IntersectionObserver`.
+- [x] Make slider timers instance-local and motion-aware.
 - [ ] Add a bundle analyzer and route-level JS/image budgets.
 
 **5C — Fonts and UI dependency consolidation (3–6 days)**

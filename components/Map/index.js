@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import { importLibrary, setOptions } from '@googlemaps/js-api-loader';
+import { useEffect, useRef, useState } from 'react';
 
 // local imports
 import styles from './Map.module.scss';
@@ -12,13 +11,34 @@ const MAP_ID = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID';
 let loaderConfigured = false;
 
 const Map = () => {
+  const container = useRef(null);
   const googlemap = useRef(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    if (container.current) observer.observe(container.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoad) return undefined;
+
     let cancelled = false;
     let marker;
 
     const initializeMap = async () => {
+      const { importLibrary, setOptions } = await import('@googlemaps/js-api-loader');
+
       if (!loaderConfigured) {
         setOptions({
           key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
@@ -62,10 +82,10 @@ const Map = () => {
         marker.map = null;
       }
     };
-  }, []);
+  }, [shouldLoad]);
 
   return (
-    <div id="store-map" className={styles.storeMap}>
+    <div id="store-map" ref={container} className={styles.storeMap}>
       <div id="map" ref={googlemap} className={styles.map} />
     </div>
   );

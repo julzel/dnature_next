@@ -1,5 +1,3 @@
-import html2canvas from "html2canvas";
-
 const dataURLToBlob = (dataUrl) => {
   const parts = dataUrl.split(",");
   const mimeType = parts[0].split(":")[1].split(";")[0];
@@ -26,7 +24,7 @@ const downloadScreenShot = (dataUrl, filename) => {
 
 const captureElementScreenshot = async (element) => {
   try {
-    // Capture the screenshot as a canvas
+    const { default: html2canvas } = await import("html2canvas");
     const canvas = await html2canvas(element, { useCORS: true });
 
     // Convert the canvas to a data URL (Base64 encoded image)

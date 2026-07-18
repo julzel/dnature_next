@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import heroImage from "../../../public/images/hero3_wide.jpg";
 import styles from "./Hero.module.scss";
 
 const Hero = () => {
@@ -26,7 +28,14 @@ const Hero = () => {
         </div>
       </div>
       <div className={styles.hero}>
-        <div className={styles.heroImg} />
+        <Image
+          src={heroImage}
+          alt=""
+          fill
+          priority
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className={styles.heroImage}
+        />
       </div>
     </div>
   );
