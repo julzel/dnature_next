@@ -14,6 +14,7 @@
     "check:licenses": "node scripts/check-dependency-licenses.mjs",
     "dev:e2e": "E2E_USE_FIXTURES=1 E2E_DIST_DIR=.next-e2e next dev --webpack --hostname 127.0.0.1 --port 3100",
     "baseline:performance": "node scripts/capture-performance-baseline.mjs",
+    "review:performance": "BASELINE_OUTPUT=performance-current.json node scripts/capture-performance-baseline.mjs && node scripts/compare-performance-baselines.mjs",
     "verify:router-baseline": "node scripts/verify-router-baseline.mjs",
     "verify:production": "node scripts/verify-production.mjs"
   },

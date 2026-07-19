@@ -1197,12 +1197,21 @@ from this repository.
 
 **Estimate:** ongoing
 
-- [ ] Review bundle and Web Vitals changes on performance-sensitive work.
+- [x] Review bundle and Web Vitals changes on performance-sensitive work.
 - [ ] Keep strict lint, unit, browser, and accessibility gates required in CI.
 - [ ] Review dependency updates on a regular cadence.
 - [ ] Run quarterly dead-code/public-asset scans.
 - [ ] Track Contentful slug/content validation failures.
 - [ ] Revisit client boundaries whenever a static parent gains `"use client"`.
+
+Implementation verification (2026-07-18): the first continuous performance
+review adds a repeatable capture/comparison command and a CI artifact for every
+quality run. It compares route-level JavaScript/image transfer, request count,
+CLS, and lab LCP against the checked-in fixture baseline. The first review is
+recorded in `phase-7-performance-review.md`; it reduces JavaScript transfer but
+flags four single-run lab warnings for preview median confirmation rather than
+silently rewriting the baseline. INP remains an explicit follow-up because a
+navigation-only capture has no qualifying interaction timing entry.
 
 ## Suggested PR-sized change sequence
 

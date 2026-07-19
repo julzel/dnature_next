@@ -60,6 +60,7 @@ npm run test:a11y           # accessibility subset
 npm run verify:production   # verify a deployed origin
 npm run audit:public-assets # report potentially orphaned public assets
 npm run check:licenses      # verify installed packages declare license metadata
+npm run review:performance  # capture and compare route bundle/Web Vitals signals
 ```
 
 For deterministic browser/build tests without Contentful, use
@@ -84,6 +85,7 @@ The native `/sitemap.xml` route includes normalized catalogue product URLs, whil
 - [Operations runbook](docs/operations.md)
 - [Browser storage and privacy policy](docs/privacy.md)
 - [Contentful schema and slug governance](docs/contentful-governance.md)
+- [First continuous performance review](phase-7-performance-review.md)
 - [Optimization roadmap](project-optimization-roadmap.md)
 
 Historical migration proposals are retained for context only and are not the

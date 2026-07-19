@@ -90,23 +90,36 @@ const measureRoute = async (browser, device, route) => {
   const requests = [];
 
   await page.addInitScript(() => {
-    window.__phase0Vitals = { cls: 0, lcpMs: null };
+    window.__performanceVitals = { cls: 0, inpMs: null, lcpMs: null };
 
     new PerformanceObserver((list) => {
       const entries = list.getEntries();
       const lastEntry = entries.at(-1);
       if (lastEntry) {
-        window.__phase0Vitals.lcpMs = lastEntry.startTime;
+        window.__performanceVitals.lcpMs = lastEntry.startTime;
       }
     }).observe({ type: 'largest-contentful-paint', buffered: true });
 
     new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
         if (!entry.hadRecentInput) {
-          window.__phase0Vitals.cls += entry.value;
+          window.__performanceVitals.cls += entry.value;
         }
       }
     }).observe({ type: 'layout-shift', buffered: true });
+
+    try {
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          window.__performanceVitals.inpMs = Math.max(
+            window.__performanceVitals.inpMs || 0,
+            entry.duration
+          );
+        }
+      }).observe({ type: 'interaction', buffered: true, durationThreshold: 40 });
+    } catch {
+      // Interaction timing is not available in every Chromium build.
+    }
   });
 
   page.on('response', (response) => {
@@ -138,9 +151,12 @@ const measureRoute = async (browser, device, route) => {
   const browserMetrics = await page.evaluate(() => {
     const navigation = performance.getEntriesByType('navigation')[0];
     return {
-      cls: Number(window.__phase0Vitals.cls.toFixed(4)),
-      lcpMs: window.__phase0Vitals.lcpMs
-        ? Math.round(window.__phase0Vitals.lcpMs)
+      cls: Number(window.__performanceVitals.cls.toFixed(4)),
+      inpMs: window.__performanceVitals.inpMs
+        ? Math.round(window.__performanceVitals.inpMs)
+        : null,
+      lcpMs: window.__performanceVitals.lcpMs
+        ? Math.round(window.__performanceVitals.lcpMs)
         : null,
       domContentLoadedMs: Math.round(navigation.domContentLoadedEventEnd),
       loadMs: Math.round(navigation.loadEventEnd),
@@ -218,6 +234,7 @@ try {
       'Lab measurements are directional and are not field Core Web Vitals.',
       'Response body sizes include uncompressed local transfer bytes.',
       'Re-run against the deployment URL before a release comparison.',
+      'INP is null when this route capture has no qualifying interaction; use browser interaction tests or field data for INP sign-off.',
     ],
     measurements,
   };
