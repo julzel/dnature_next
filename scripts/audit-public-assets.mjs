@@ -20,14 +20,10 @@ const runtimeRoots = [
 ];
 const runtimeRootFiles = [
   'next.config.js',
-  'next-sitemap.config.js',
   'package.json',
 ];
 const generatedOrOperationalAssets = new Set([
   'favicon.ico',
-  'robots.txt',
-  'sitemap.xml',
-  'sitemap-0.xml',
 ]);
 
 const args = process.argv.slice(2);

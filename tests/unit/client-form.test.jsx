@@ -3,10 +3,12 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import ClientFormContainer, {
+  clientFieldsForStorage,
   getClientFieldValue,
   inputFields,
   isInputValid,
 } from '../../components/ClientForm/ClientFormContainer';
+import storage from '../../util/storage';
 
 const validClient = {
   firstName: 'Ada',
@@ -77,12 +79,18 @@ describe('checkout form validation', () => {
   });
 
   it('validates remembered customer data instead of trusting storage', () => {
-    window.localStorage.setItem(
+    storage.setItem(
       'client',
-      JSON.stringify({ ...validClient, address: { ...validClient.address, canton: '' } })
+      { ...validClient, address: { ...validClient.address, canton: '' } },
+      { expiresInDays: 30 }
     );
     render(<ClientFormContainer onSubmit={vi.fn()} />);
 
     expect(screen.getByRole('button', { name: 'Ok' })).toBeDisabled();
+  });
+
+  it('minimizes remembered customer data before saving it', () => {
+    expect(clientFieldsForStorage({ ...validClient, pets: [{ name: 'Luna' }], extra: 'discard' }))
+      .toEqual(validClient);
   });
 });

@@ -37,6 +37,7 @@ const inputFields = [
 ];
 
 const addressFieldNames = new Set(['direccion', 'provincia', 'canton']);
+const REMEMBERED_CLIENT_RETENTION_DAYS = 30;
 
 const getClientFieldValue = (client, fieldName) =>
   addressFieldNames.has(fieldName)
@@ -70,6 +71,18 @@ const createClient = (savedClient) =>
     savedClient?.contactPhoneNumber,
     savedClient?.pets
   );
+
+const clientFieldsForStorage = (client) => ({
+  firstName: client.firstName,
+  lastName: client.lastName,
+  email: client.email,
+  address: {
+    direccion: client.address?.direccion,
+    provincia: client.address?.provincia,
+    canton: client.address?.canton,
+  },
+  contactPhoneNumber: client.contactPhoneNumber,
+});
 
 const ClientFormContainer = ({ onSubmit, className }) => {
   const [rememberClient, setRememberClient] = useState(true);
@@ -114,7 +127,9 @@ const ClientFormContainer = ({ onSubmit, className }) => {
     }
 
     if (rememberClient) {
-      storage.setItem("client", client);
+      storage.setItem('client', clientFieldsForStorage(client), {
+        expiresInDays: REMEMBERED_CLIENT_RETENTION_DAYS,
+      });
     }
     onSubmit(client);
   };
@@ -142,6 +157,12 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   );
 };
 
-export { getClientFieldValue, inputFields, isInputValid };
+export {
+  clientFieldsForStorage,
+  getClientFieldValue,
+  inputFields,
+  isInputValid,
+  REMEMBERED_CLIENT_RETENTION_DAYS,
+};
 
 export default ClientFormContainer;

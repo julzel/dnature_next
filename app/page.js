@@ -1,5 +1,6 @@
 import Home from '../features/Home';
 import { fallbackCategories, getCategories } from '../services/categories';
+import { reportServerError } from '../services/monitoring';
 
 export const revalidate = 3600;
 
@@ -9,7 +10,7 @@ const HomePage = async () => {
   try {
     categories = await getCategories();
   } catch (error) {
-    console.error('Unable to load home categories from Contentful:', error);
+    await reportServerError(error, { source: 'home-categories' });
   }
 
   return <Home categories={categories} />;

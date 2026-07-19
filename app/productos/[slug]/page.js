@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from 'next/navigation';
 import Product from '../../../features/Product';
 import formatProductDescription from '../../../features/Product/formatDescription';
 import { getProductBySlug } from '../../../services/products';
+import { createPageMetadata } from '../../../constants/seo';
 import { getProductPath, normalizeProductSlug } from '../../../util/product-url';
 
 export const revalidate = 120;
@@ -42,17 +43,15 @@ export const generateMetadata = async ({ params }) => {
     return {};
   }
 
-  return {
+  const image = product.images?.[0];
+
+  return createPageMetadata({
     title: product.productName,
     description: product.ingredientes || `Conoce ${product.productName} de DNAture.`,
-    alternates: { canonical: getProductPath(slug) },
-    openGraph: {
-      url: getProductPath(slug),
-      images: product.images?.[0]
-        ? [{ url: product.images[0].url, alt: product.images[0].title }]
-        : [],
-    },
-  };
+    path: getProductPath(slug),
+    image: image?.url,
+    imageAlt: image?.title || product.productName,
+  });
 };
 
 const ProductPage = async ({ params }) => {

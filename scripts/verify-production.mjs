@@ -102,8 +102,27 @@ for (const route of routes) {
   assert(/<title(?:\s[^>]*)?>[^<]+<\/title>/i.test(text), `${url}: missing title metadata.`);
   assert(/<meta[^>]+name=["']description["'][^>]+content=["'][^"']+/i.test(text), `${url}: missing description metadata.`);
   assert(/<meta[^>]+property=["']og:title["'][^>]+content=["'][^"']+/i.test(text), `${url}: missing Open Graph title metadata.`);
+  assert(/<meta[^>]+name=["']twitter:card["'][^>]+content=["'][^"']+/i.test(text), `${url}: missing Twitter card metadata.`);
+  assert(/<meta[^>]+name=["']twitter:title["'][^>]+content=["'][^"']+/i.test(text), `${url}: missing Twitter title metadata.`);
   assert(/<link[^>]+rel=["']canonical["'][^>]+href=["'][^"']+/i.test(text), `${url}: missing canonical URL.`);
   assert(/<link[^>]+rel=["']icon["'][^>]+href=["'][^"']+/i.test(text), `${url}: missing favicon metadata.`);
+
+  const canonical = linkHref(text, 'canonical');
+  if (canonical) {
+    const canonicalUrl = new URL(canonical, url);
+    assert(
+      canonicalUrl.pathname === '/' || canonicalUrl.pathname.endsWith('/'),
+      `${url}: canonical URL must use the production trailing-slash convention.`
+    );
+  }
+  assert(
+    Boolean(response.headers.get('content-security-policy')),
+    `${url}: missing Content-Security-Policy header.`
+  );
+  assert(
+    response.headers.get('x-content-type-options') === 'nosniff',
+    `${url}: missing X-Content-Type-Options: nosniff header.`
+  );
 
   for (const assetUrl of [
     metadataContent(text, 'property', 'og:image'),
@@ -153,12 +172,23 @@ const robotsResult = await fetchText('/robots.txt');
 if (robotsResult) {
   assert(robotsResult.response.ok, `${robotsResult.url}: robots.txt did not resolve.`);
   assert(/Sitemap:\s*https?:\/\//i.test(robotsResult.text), `${robotsResult.url}: sitemap reference is missing.`);
+  assert(/Disallow:\s*\/cart\//i.test(robotsResult.text), `${robotsResult.url}: cart must be excluded from robots.`);
 }
 
 const sitemapResult = await fetchText('/sitemap.xml');
 if (sitemapResult) {
   assert(sitemapResult.response.ok, `${sitemapResult.url}: sitemap did not resolve.`);
   assert(/<sitemapindex\b|<urlset\b/i.test(sitemapResult.text), `${sitemapResult.url}: invalid sitemap XML.`);
+  if (productUrl) {
+    const canonicalProductUrl = new URL(productUrl, baseUrl);
+    const productPath = canonicalProductUrl.pathname.endsWith('/')
+      ? canonicalProductUrl.pathname
+      : `${canonicalProductUrl.pathname}/`;
+    assert(
+      sitemapResult.text.includes(productPath),
+      `${sitemapResult.url}: missing dynamic product URL ${productPath}.`
+    );
+  }
 }
 
 if (hasFlag('--require-server-contentful-env')) {

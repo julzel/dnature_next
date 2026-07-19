@@ -13,8 +13,10 @@ import { generatePurchaseOrderId } from '../util/id-generator';
 
 const CART_STORAGE_KEY = 'carts';
 const CART_STORAGE_EVENT = 'dnature-cart-history';
-const CART_STORAGE_VERSION = 1;
+const CART_STORAGE_VERSION = 2;
 const MAX_SAVED_CARTS = 5;
+const CART_RETENTION_DAYS = 30;
+const CART_RETENTION_MS = CART_RETENTION_DAYS * 24 * 60 * 60 * 1000;
 
 const ShoppingCartContext = createContext();
 
@@ -98,40 +100,54 @@ const normalizeCart = (cart) => {
   );
 };
 
-const parseStoredCarts = (rawValue) => {
+const isRetainedCartRecord = (record) => {
+  const storedAt = Date.parse(record?.storedAt);
+
+  return Number.isFinite(storedAt) && storedAt > Date.now() - CART_RETENTION_MS;
+};
+
+const parseStoredCartRecords = (rawValue) => {
   try {
     if (!rawValue) {
       return [];
     }
 
     const parsed = JSON.parse(rawValue);
-    const carts = Array.isArray(parsed)
-      ? parsed
-      : parsed?.version === CART_STORAGE_VERSION && Array.isArray(parsed.carts)
-        ? parsed.carts
-        : [];
+    const migratedStoredAt = new Date().toISOString();
+    const records = Array.isArray(parsed)
+      ? parsed.map((cart) => ({ storedAt: migratedStoredAt, cart }))
+      : parsed?.version === 1 && Array.isArray(parsed.carts)
+        ? parsed.carts.map((cart) => ({ storedAt: migratedStoredAt, cart }))
+        : parsed?.version === CART_STORAGE_VERSION && Array.isArray(parsed.carts)
+          ? parsed.carts
+          : [];
 
-    return carts.map(normalizeCart);
+    return records
+      .filter(isRetainedCartRecord)
+      .map(({ storedAt, cart }) => ({ storedAt, cart: normalizeCart(cart) }));
   } catch (error) {
     console.warn('Unable to read saved carts from local storage.', error);
     return [];
   }
 };
 
-const readStoredCarts = () => {
+const parseStoredCarts = (rawValue) =>
+  parseStoredCartRecords(rawValue).map(({ cart }) => cart);
+
+const readStoredCartRecords = () => {
   if (typeof window === 'undefined') {
     return [];
   }
 
   try {
-    return parseStoredCarts(window.localStorage.getItem(CART_STORAGE_KEY));
+    return parseStoredCartRecords(window.localStorage.getItem(CART_STORAGE_KEY));
   } catch (error) {
     console.warn('Unable to access saved carts in local storage.', error);
     return [];
   }
 };
 
-const writeStoredCarts = (carts) => {
+const writeStoredCartRecords = (carts) => {
   if (typeof window === 'undefined') {
     return false;
   }
@@ -303,14 +319,30 @@ const ShoppingCartContextProvider = ({ children }) => {
   }, []);
 
   const storeCartInLocalStorage = useCallback(() => {
-    const nextCarts = [...readStoredCarts(), normalizeCart(cart)].slice(-MAX_SAVED_CARTS);
+    const nextCarts = [
+      ...readStoredCartRecords(),
+      { storedAt: new Date().toISOString(), cart: normalizeCart(cart) },
+    ].slice(-MAX_SAVED_CARTS);
 
-    if (!writeStoredCarts(nextCarts)) {
+    if (!writeStoredCartRecords(nextCarts)) {
       return false;
     }
 
     return true;
   }, [cart]);
+
+  const clearSavedCarts = useCallback(() => {
+    if (typeof window === 'undefined') return false;
+
+    try {
+      window.localStorage.removeItem(CART_STORAGE_KEY);
+      window.dispatchEvent(new CustomEvent(CART_STORAGE_EVENT));
+      return true;
+    } catch (error) {
+      console.warn('Unable to clear saved carts from local storage.', error);
+      return false;
+    }
+  }, []);
 
   const getItemsInCart = useCallback(
     (itemId) => cart.items.find((item) => item.id === itemId)?.quantity || 0,
@@ -320,6 +352,7 @@ const ShoppingCartContextProvider = ({ children }) => {
   const value = useMemo(
     () => ({
       cart,
+      clearSavedCarts,
       localCarts,
       getItemsInCart,
       addItems,
@@ -336,6 +369,7 @@ const ShoppingCartContextProvider = ({ children }) => {
       addItems,
       addOneItem,
       cart,
+      clearSavedCarts,
       finalizePurchase,
       getItemsInCart,
       localCarts,
@@ -355,8 +389,10 @@ export default ShoppingCartContextProvider;
 export const useCartContext = () => useContext(ShoppingCartContext);
 export {
   CART_STORAGE_VERSION,
+  CART_RETENTION_DAYS,
   cartReducer,
   createEmptyCart,
   normalizeCart,
+  parseStoredCartRecords,
   parseStoredCarts,
 };

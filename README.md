@@ -1,48 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DNAture
 
-## Getting Started
+DNAture is a Spanish-language catalogue and ordering assistant for natural pet
+food. It uses Next.js 16 App Router, React 18, and Contentful’s GraphQL delivery
+API. The application does not process payment or submit orders to a DNAture
+backend; checkout creates a customer-side order image.
 
-First, run the development server:
+## Requirements
+
+- Node.js `>=20.9 <25`
+- Contentful delivery credentials for non-fixture development
+
+## Setup
 
 ```bash
+npm ci
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`. The main routes live in `app/`; this project no
+longer uses the Pages Router or `pages/api` routes.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Environment
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Required outside fixture mode:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```text
+CONTENTFUL_SPACE_ID=
+CONTENTFUL_DELIVERY_API_KEY=
+```
 
-## Learn More
+Optional public configuration:
 
-To learn more about Next.js, take a look at the following resources:
+```text
+NEXT_PUBLIC_SITE_URL=https://dnaturefood.com
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
+NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=
+NEXT_PUBLIC_GOOGLE_ANALYTICS=
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`CONTENTFUL_DELIVERY_API_KEY` and monitoring credentials are server-only: never
+give them a `NEXT_PUBLIC_` prefix. Analytics requires an external consent manager
+to grant `dnature-analytics-consent`; setting a measurement ID alone does not
+load analytics.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+See [operations documentation](docs/operations.md) for deployment, Maps,
+monitoring, security-header, and dependency-maintenance requirements.
 
-## Deploy on Vercel
+## Commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run dev                 # local development server
+npm run build               # production build
+npm run start               # serve the production build
+npm run lint                # ESLint
+npm test                    # unit and component tests
+npm run test:e2e            # Playwright customer-flow and accessibility tests
+npm run test:a11y           # accessibility subset
+npm run verify:production   # verify a deployed origin
+npm run audit:public-assets # report potentially orphaned public assets
+npm run check:licenses      # verify installed packages declare license metadata
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For deterministic browser/build tests without Contentful, use
+`E2E_USE_FIXTURES=1`. The CI workflow uses this mode for the production build
+and browser tests.
 
+## Architecture
 
-## DNAture own documentation
+- `app/` — App Router routes, metadata, dynamic sitemap/robots, and error boundaries.
+- `features/` and `components/` — page features and reusable UI.
+- `services/` — server-only Contentful and monitoring boundaries.
+- `contexts/` — client-side cart state and browser persistence.
+- `util/` and `constants/` — pure domain, storage, URL, monitoring, and SEO helpers.
+- `tests/` — Vitest unit/component tests and Playwright browser tests.
 
-colors
+Product slugs are normalized to lowercase kebab case at the service boundary.
+The native `/sitemap.xml` route includes normalized catalogue product URLs, while
+`/cart/` is intentionally excluded from indexing.
 
-Turquesa oscuro: #07bbc7
- Turquesa claro: #5dd8db
- Naranja oscuro: #ff6f00
-  Naranja claro: #ffa364
-   Verde oscuro: #a8b247
-    Verde claro: #dbe077
-     Gris claro: #bcbec0
+## Operational policies
 
+- [Operations runbook](docs/operations.md)
+- [Browser storage and privacy policy](docs/privacy.md)
+- [Contentful schema and slug governance](docs/contentful-governance.md)
+- [Optimization roadmap](project-optimization-roadmap.md)
+
+Historical migration proposals are retained for context only and are not the
+current implementation specification.

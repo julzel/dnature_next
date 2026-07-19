@@ -70,7 +70,7 @@ const ClientForm = ({
               checked={rememberClient}
             />
             <span className={styles.checkmark}></span>
-            Recordar mis datos
+            Recordar mis datos durante 30 días
           </label>
         </div>
         <Button type="submit" disabled={!isFormValid()}>

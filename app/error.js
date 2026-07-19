@@ -3,10 +3,11 @@
 import { useEffect } from 'react';
 
 import styles from './Fallback.module.scss';
+import { reportClientError } from '../util/monitoring';
 
 const Error = ({ error, reset }) => {
   useEffect(() => {
-    console.error(error);
+    reportClientError(error, { source: 'app-error' });
   }, [error]);
 
   return (

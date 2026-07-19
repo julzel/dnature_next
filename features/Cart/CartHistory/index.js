@@ -6,7 +6,7 @@ import styles from './CartHistory.module.scss';
 
 const CartHistory = () => {
   // Shopping cart context
-  const { updateCurrentCart, localCarts } = useCartContext();
+  const { clearSavedCarts, updateCurrentCart, localCarts } = useCartContext();
 
   if (localCarts.length === 0) {
     return <div className={styles.cartHistory}>No hay órdenes de compras anteriores</div>;
@@ -15,6 +15,9 @@ const CartHistory = () => {
   return (
     <div className={styles.cartHistory}>
       <h3>Órdenes anteriores:</h3>
+      <button type='button' onClick={clearSavedCarts}>
+        Eliminar historial guardado
+      </button>
       {localCarts.map((cart, ind) => (
         <div className={styles.cartHistoryItem} key={ind}>
           <div>

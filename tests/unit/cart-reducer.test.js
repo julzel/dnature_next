@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import {
+  CART_RETENTION_DAYS,
   CART_STORAGE_VERSION,
   cartReducer,
   createEmptyCart,
@@ -98,10 +99,13 @@ describe('cart storage schema', () => {
     });
   });
 
-  it('accepts the current version and rejects unknown or malformed schemas', () => {
+  it('accepts non-expired current records and rejects unknown or malformed schemas', () => {
     expect(
       parseStoredCarts(
-        JSON.stringify({ version: CART_STORAGE_VERSION, carts: [{ items: [item] }] })
+        JSON.stringify({
+          version: CART_STORAGE_VERSION,
+          carts: [{ storedAt: new Date().toISOString(), cart: { items: [item] } }],
+        })
       )
     ).toHaveLength(1);
     expect(
@@ -124,5 +128,20 @@ describe('cart storage schema', () => {
         ],
       }).items
     ).toEqual([item]);
+  });
+
+  it('expires saved cart records after the retention period', () => {
+    const expiredAt = new Date(
+      Date.now() - (CART_RETENTION_DAYS + 1) * 24 * 60 * 60 * 1000
+    ).toISOString();
+
+    expect(
+      parseStoredCarts(
+        JSON.stringify({
+          version: CART_STORAGE_VERSION,
+          carts: [{ storedAt: expiredAt, cart: { items: [item] } }],
+        })
+      )
+    ).toEqual([]);
   });
 });

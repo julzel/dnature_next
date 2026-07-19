@@ -23,6 +23,37 @@ test('loads a product directly', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Receta de prueba' })).toBeVisible();
 });
 
+test('publishes canonical metadata, headers, and dynamic product discovery', async ({
+  page,
+  request,
+}) => {
+  const productResponse = await request.get('/productos/receta-de-prueba');
+  const headers = productResponse.headers();
+  expect(headers['content-security-policy']).toContain("default-src 'self'");
+  expect(headers['x-content-type-options']).toBe('nosniff');
+
+  await page.goto('/productos/receta-de-prueba');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    /\/productos\/receta-de-prueba\/$/
+  );
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    'content',
+    'Receta de prueba'
+  );
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
+    'content',
+    'summary_large_image'
+  );
+
+  const [robotsResponse, sitemapResponse] = await Promise.all([
+    request.get('/robots.txt'),
+    request.get('/sitemap.xml'),
+  ]);
+  expect(await robotsResponse.text()).toContain('Disallow: /cart/');
+  expect(await sitemapResponse.text()).toContain('/productos/receta-de-prueba/');
+});
+
 test('redirects an encoded-whitespace product URL to its canonical URL', async ({
   page,
 }) => {

@@ -1144,24 +1144,47 @@ colors replace the remaining hidden, copied, or low-contrast text.
 
 **6A — SEO and content discovery (2–4 days)**
 
-- [ ] Generate route-specific social metadata.
-- [ ] Give every public route one correct, preferably visible H1.
-- [ ] Add dynamic product URLs to the sitemap.
-- [ ] Align canonical trailing-slash behavior with final production URLs.
-- [ ] Consider Product JSON-LD after validating the available product fields.
+- [x] Generate route-specific social metadata.
+- [x] Give every public route one correct, preferably visible H1.
+- [x] Add dynamic product URLs to the sitemap.
+- [x] Align canonical trailing-slash behavior with final production URLs.
+- [x] Consider Product JSON-LD after validating the available product fields.
 
 **6B — Security, monitoring, and privacy (4–8 days plus review)**
 
-- [ ] Add security headers with integration-specific CSP testing.
-- [ ] Verify Google Maps key restrictions and document Analytics consent policy.
-- [ ] Add production monitoring and redaction rules.
-- [ ] Define storage retention/privacy behavior.
+- [x] Add security headers with integration-specific CSP testing.
+- [x] Document Google Maps key restrictions and Analytics consent policy.
+- [x] Add production monitoring and redaction rules.
+- [x] Define storage retention/privacy behavior.
 
 **6C — Maintenance automation and documentation (2–4 days)**
 
-- [ ] Add dependency update automation and scheduled audit/license checks.
-- [ ] Rewrite the README and archive/update stale planning documents.
-- [ ] Document ownership for Contentful schema and slug quality.
+- [x] Add dependency update automation and scheduled audit/license checks.
+- [x] Rewrite the README and archive/update stale planning documents.
+- [x] Document ownership for Contentful schema and slug quality.
+
+Implementation verification (2026-07-18): native App Router `robots` and
+dynamic `sitemap` routes replace stale generated XML, with normalized product
+URLs, `/cart/` exclusion, and a single trailing-slash canonical convention.
+Every public route now has route-specific Open Graph/Twitter metadata; Phase 4
+already supplied visible route H1s. `Product` JSON-LD remains deliberately
+deferred and documented because the Contentful schema lacks approved
+availability, currency, SKU/GTIN, and return-policy fields.
+
+The configured CSP was browser-tested against the application and permits only
+the current Contentful, Maps, Analytics, and same-origin integrations; it keeps
+`unsafe-eval` limited to Next development mode. Production error events are
+redacted and can be forwarded through a server-only monitoring endpoint. Browser
+storage now uses versioned 30-day retention, minimization, corruption recovery,
+and customer-controlled removal. Dependabot plus scheduled production audit and
+license-metadata checks are in place. Current README and `docs/` own deployment,
+privacy, consent, monitoring, and Contentful-slug governance.
+
+Before a production release, the DNAture project owner must still record external
+evidence of Google Cloud referrer/API restrictions, quota/billing alerts, the
+approved Analytics consent notice/lawful basis, monitoring endpoint delivery,
+hosting-layer HSTS, and preview verification. Those controls cannot be verified
+from this repository.
 
 **Exit criteria**
 
