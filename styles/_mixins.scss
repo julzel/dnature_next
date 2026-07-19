@@ -1,4 +1,5 @@
-@import "./variables";
+@use "sass:color";
+@use "./variables" as *;
 
 $media: (
   sm: 576px,
@@ -24,7 +25,7 @@ $media: (
   $bg-color: $accessibleBlue,
   $text-color: $white,
   $font-family: $light,
-  $secondary-bg-color: lighten($gray, 45%),
+  $secondary-bg-color: color.adjust($gray, $lightness: 45%),
   $secondary-text-color: $davys-gray,
   $width: 320px
 ) {
@@ -46,7 +47,7 @@ $media: (
 
   &:hover {
     color: $text-color;
-    background-color: lighten($bg-color, 5%);
+    background-color: color.adjust($bg-color, $lightness: 5%);
   }
 
   &:disabled {
@@ -60,8 +61,8 @@ $media: (
     color: $secondary-text-color;
 
     &:hover {
-      color: darken($secondary-text-color, 25%);
-      background-color: darken($secondary-bg-color, 5%);
+      color: color.adjust($secondary-text-color, $lightness: -25%);
+      background-color: color.adjust($secondary-bg-color, $lightness: -5%);
     }
   }
 
@@ -71,9 +72,9 @@ $media: (
     color: $bg-color;
 
     &:hover {
-      color: darken($bg-color, 2%);
-      border-color: lighten($bg-color, 55%);
-      background-color: lighten($bg-color, 55%);
+      color: color.adjust($bg-color, $lightness: -2%);
+      border-color: color.adjust($bg-color, $lightness: 55%);
+      background-color: color.adjust($bg-color, $lightness: 55%);
     }
   }
 }

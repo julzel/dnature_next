@@ -1,9 +1,10 @@
-@import "../../../styles/variables.scss";
-@import "../../../styles/mixins.scss";
+@use "sass:color";
+@use "../../../styles/variables.scss" as *;
+@use "../../../styles/mixins.scss" as *;
 .select {
   width: 100%;
   margin-bottom: 16px;
-  border: 1px solid lighten($green, 15%);
+  border: 1px solid color.adjust($green, $lightness: 15%);
   border-radius: $br-base;
 
   button {
