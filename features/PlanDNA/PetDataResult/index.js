@@ -5,7 +5,7 @@ import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 import styles from './PetDataResult.module.scss';
 
-import PetCard from '../../../components/PetCard';
+import PetCard from '../PetCard';
 
 const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => {
   return (

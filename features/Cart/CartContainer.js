@@ -5,10 +5,13 @@ import React, { useState, useRef, useCallback } from 'react';
 import Cart from './Cart';
 
 // contexts
-import { useCartContext } from '../../contexts/shopping-cart-context';
+import { useCartContext } from './model/shopping-cart-context';
 
 // util
-import { downloadScreenShot, captureElementScreenshot } from '../../util/images';
+import {
+  downloadScreenShot,
+  captureElementScreenshot,
+} from './lib/purchase-image';
 
 const completePurchaseCapture = async ({
   element,

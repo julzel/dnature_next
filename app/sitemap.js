@@ -1,6 +1,8 @@
-import { getProducts } from '../services/products';
+import {
+  getProductPath,
+  getProducts,
+} from '../features/Catalog/server';
 import { absoluteUrl } from '../constants/seo';
-import { getProductPath } from '../util/product-url';
 
 export const revalidate = 3600;
 

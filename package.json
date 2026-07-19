@@ -11,6 +11,7 @@
     "test:e2e": "playwright test",
     "test:a11y": "playwright test --grep @a11y",
     "audit:public-assets": "node scripts/audit-public-assets.mjs",
+    "check:architecture": "node scripts/check-architecture.mjs",
     "check:licenses": "node scripts/check-dependency-licenses.mjs",
     "dev:e2e": "E2E_USE_FIXTURES=1 E2E_DIST_DIR=.next-e2e next dev --webpack --hostname 127.0.0.1 --port 3100",
     "baseline:performance": "node scripts/capture-performance-baseline.mjs",

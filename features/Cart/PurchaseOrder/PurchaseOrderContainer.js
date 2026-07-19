@@ -5,7 +5,7 @@ import React from "react";
 import PurchaseOrder from "./PurchaseOrder";
 
 // context
-import { useCartContext } from "../../../contexts/shopping-cart-context";
+import { useCartContext } from "../model/shopping-cart-context";
 
 const PurchaseOrderContainer = () => {
   const { cart } = useCartContext();

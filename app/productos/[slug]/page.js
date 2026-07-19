@@ -1,11 +1,15 @@
 import { unstable_cache } from 'next/cache';
 import { notFound, permanentRedirect } from 'next/navigation';
 
-import Product from '../../../features/Product';
-import formatProductDescription from '../../../features/Product/formatDescription';
-import { getProductBySlug } from '../../../services/products';
+import Product, {
+  formatProductDescription,
+} from '../../../features/Catalog/product-page';
 import { createPageMetadata } from '../../../constants/seo';
-import { getProductPath, normalizeProductSlug } from '../../../util/product-url';
+import {
+  getProductBySlug,
+  getProductPath,
+  normalizeProductSlug,
+} from '../../../features/Catalog/server';
 
 export const revalidate = 120;
 

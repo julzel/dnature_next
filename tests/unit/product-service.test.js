@@ -6,7 +6,7 @@ import {
   findPersistedProductSlugs,
   productBySlugQuery,
   productSlugIndexQuery,
-} from '../../services/products';
+} from '../../features/Catalog/api/products';
 
 const product = (id, urlSlug) => ({
   productName: `Product ${id}`,

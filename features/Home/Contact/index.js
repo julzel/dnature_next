@@ -5,8 +5,8 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 // local imports
 // components
-import Map from '../../../components/Map';
-import AnimationBox from '../../../components/AnimationBox';
+import Map from './Map';
+import AnimationBox from '../AnimationBox';
 import WhatsAppLink from '../../../components/WhatsAppLink';
 
 // styles

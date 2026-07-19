@@ -7,7 +7,7 @@ import {
   createEmptyCart,
   normalizeCart,
   parseStoredCarts,
-} from '../../contexts/shopping-cart-context';
+} from '../../features/Cart/model/shopping-cart-context';
 
 const item = {
   id: 'product-1',

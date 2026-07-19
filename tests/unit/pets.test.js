@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { normalizeClientPets, normalizePets } from '../../util/pets';
+import {
+  normalizeClientPets,
+  normalizePets,
+} from '../../features/PlanDNA/lib/pets';
 
 describe('saved pet identity migration', () => {
   it('assigns deterministic IDs to legacy pets', () => {

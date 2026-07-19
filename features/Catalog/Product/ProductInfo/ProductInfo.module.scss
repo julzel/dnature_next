@@ -1,0 +1,126 @@
+@use "../../../../styles/variables.scss" as *;
+@use "../../../../styles/mixins.scss" as *;
+
+.productInfo {
+  margin-bottom: 32px;
+
+  @include mdq(lg) {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 0;
+  }
+
+  .images {
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+    margin-bottom: 16px;
+
+    @include mdq(lg) {
+      padding: 0 48px 0 0;
+      width: 60%;
+    }
+
+    span {
+      width: 100% !important;
+    }
+  }
+
+  .info {
+    @include mdq(lg) {
+      padding: 32px 0;
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      flex-flow: column;
+      justify-content: space-between;
+    }
+  }
+
+  h1 {
+    color: $black;
+    font-family: $regular2;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+
+    @include mdq(lg) {
+      text-align: right;
+    }
+  }
+
+  label {
+    color: $text-color;
+    display: block;
+    font-family: $bold2;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .price {
+    font-family: $bold;
+    font-size: 18px;
+    letter-spacing: 1.25;
+    line-height: 1.5;
+    text-align: center;
+
+    @include mdq(lg) {
+      text-align: right;
+    }
+
+    .small {
+      color: $black;
+      font-family: $regular2;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+  }
+
+  .quantity,
+  .presentation {
+    width: 100%;
+  }
+
+  .quantity {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 16px;
+    padding-top: 32px;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: $light;
+    color: $davys-gray;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+
+    &:hover {
+      color: $davys-gray;
+    }
+
+    span {
+      font-size: 12px;
+      display: inline-block;
+      margin-left: 8px;
+    }
+  }
+}
+
+.presentationNote {
+  // font-family: $light;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  text-align: right;
+}

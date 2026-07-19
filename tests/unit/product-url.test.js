@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { getProductPath, normalizeProductSlug } from '../../util/product-url';
+import {
+  getProductPath,
+  normalizeProductSlug,
+} from '../../features/Catalog/lib/product-url';
 
 describe('product URL boundaries', () => {
   it('normalizes canonical Contentful slugs', () => {

@@ -1,5 +1,8 @@
 import Home from '../features/Home';
-import { fallbackCategories, getCategories } from '../services/categories';
+import {
+  fallbackCategories,
+  getCategories,
+} from '../features/Home/server';
 import { reportServerError } from '../services/monitoring';
 
 export const revalidate = 3600;

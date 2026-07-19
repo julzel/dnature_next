@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import CartActions from "./CartActions";
 
 // contexts
-import { useCartContext } from "../../../contexts/shopping-cart-context";
+import { useCartContext } from "../model/shopping-cart-context";
 
 const CartActionsContainer = ({ proceedToPurchase }) => {
   const [displayRemoveAllModal, setDisplayRemoveAllModal] = useState(false);

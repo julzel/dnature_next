@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
-import SelectInput from '../../../components/SelectInput';
-import WeightInput from '../../../components/WeightInput';
+import SelectInput from './SelectInput';
+import WeightInput from './WeightInput';
 
 const PetNameInput = ({ value, handleChange }) => (
   <TextField

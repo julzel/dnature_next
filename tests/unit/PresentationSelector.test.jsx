@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
-import PresentationSelector from '../../components/PresentationSelector';
+import PresentationSelector from '../../features/Catalog/PresentationSelector';
 
 describe('PresentationSelector', () => {
   it('uses unique accessible labels and reports the selected presentation', async () => {

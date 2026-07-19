@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 // local imports
 // components
-import AnimationBox from '../../../components/AnimationBox';
+import AnimationBox from '../AnimationBox';
 
 // styles
 import styles from './Welcome.module.scss';

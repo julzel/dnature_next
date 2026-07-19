@@ -1,5 +1,5 @@
-import Products from '../../features/Products';
-import { getProducts } from '../../services/products';
+import Products from '../../features/Catalog';
+import { getProducts } from '../../features/Catalog/server';
 import { createPageMetadata } from '../../constants/seo';
 
 export const revalidate = 120;

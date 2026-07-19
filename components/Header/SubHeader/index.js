@@ -7,7 +7,7 @@ import React from 'react';
 import SubHeader from './SubHeader';
 
 // context
-import { useCartContext } from "../../../contexts/shopping-cart-context";
+import { useCartContext } from "../../../features/Cart/state";
 
 const SubHeaderContainer = () => {
   const { cart } = useCartContext();

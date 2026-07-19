@@ -7,8 +7,8 @@ import ClientFormContainer, {
   getClientFieldValue,
   inputFields,
   isInputValid,
-} from '../../components/ClientForm/ClientFormContainer';
-import storage from '../../util/storage';
+} from '../../features/Cart/ClientForm/ClientFormContainer';
+import storage from '../../features/Cart/lib/browser-storage';
 
 const validClient = {
   firstName: 'Ada',

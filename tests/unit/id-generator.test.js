@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { generatePurchaseOrderId } from '../../util/id-generator';
+import { generatePurchaseOrderId } from '../../features/Cart/lib/id-generator';
 
 describe('purchase order IDs', () => {
   it('uses randomUUID when available', () => {

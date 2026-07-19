@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 
 // local imports
-// models
-import { Client } from '../../models/client';
-
 // hooks
-import useLocalStorage from '../../hooks/useLocalStorage';
+import useLocalStorage from './hooks/useLocalStorage';
 
 // util
 import { calculatePortionSizeInGrams } from '../../util/portion-size';
@@ -13,7 +10,7 @@ import {
   createPetId,
   normalizeClientPets,
   normalizePets,
-} from '../../util/pets';
+} from './lib/pets';
 
 // components
 import Intro from './Intro';
@@ -22,7 +19,18 @@ import PetDataResult from './PetDataResult';
 
 import styles from './PlanDNA.module.scss';
 
-const initialClient = new Client();
+const initialClient = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  address: {
+    direccion: '',
+    provincia: '',
+    canton: '',
+  },
+  contactPhoneNumber: '',
+  pets: [],
+};
 
 const PlanDNA = () => {
   const [step, setStep] = useState(0);

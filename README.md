@@ -54,6 +54,7 @@ npm run dev                 # local development server
 npm run build               # production build
 npm run start               # serve the production build
 npm run lint                # ESLint
+npm run check:architecture  # vertical-slice import boundaries
 npm test                    # unit and component tests
 npm run test:e2e            # Playwright customer-flow and accessibility tests
 npm run test:a11y           # accessibility subset
@@ -69,12 +70,16 @@ and browser tests.
 
 ## Architecture
 
-- `app/` — App Router routes, metadata, dynamic sitemap/robots, and error boundaries.
-- `features/` and `components/` — page features and reusable UI.
-- `services/` — server-only Contentful and monitoring boundaries.
-- `contexts/` — client-side cart state and browser persistence.
-- `util/` and `constants/` — pure domain, storage, URL, monitoring, and SEO helpers.
+- `app/` — thin App Router adapters, metadata, sitemap/robots, and boundaries.
+- `features/` — vertical customer-capability slices that own their UI, state,
+  data access, and private helpers.
+- `components/` — reusable UI primitives and the application shell.
+- `services/` — server-only external-integration boundaries.
+- `util/` and `constants/` — genuinely shared utilities and application config.
 - `tests/` — Vitest unit/component tests and Playwright browser tests.
+
+See the [vertical-slice architecture guide](docs/architecture.md) for ownership,
+public entry-point, dependency, and automated enforcement rules.
 
 Product slugs are normalized to lowercase kebab case at the service boundary.
 The native `/sitemap.xml` route includes normalized catalogue product URLs, while

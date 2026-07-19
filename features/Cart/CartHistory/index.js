@@ -1,5 +1,5 @@
-import { useCartContext } from '../../../contexts/shopping-cart-context';
-import { formatToLocaleDate } from '../../../util/dates';
+import { useCartContext } from '../model/shopping-cart-context';
+import { formatToLocaleDate } from '../lib/dates';
 import CurrencyText from '../../../components/Currency';
 
 import styles from './CartHistory.module.scss';

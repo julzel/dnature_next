@@ -1,0 +1,29 @@
+@use '../../../../styles/_variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.filter {
+    display: none;
+
+    @include mdq(lg) {
+        display: block;
+    }
+
+    &List {
+        width: 200px;
+
+        li {
+            color: $darkGray;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px 0;
+            padding-left: 6px;
+            position: relative;
+            transition: color 100ms ease;
+
+            &.active,
+            &:hover {
+                color: $accessibleOrange;
+            }
+        }
+    }
+}

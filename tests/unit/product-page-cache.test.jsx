@@ -25,16 +25,15 @@ vi.mock('next/navigation', () => ({
   permanentRedirect: vi.fn(),
 }));
 
-vi.mock('../../features/Product', () => ({
+vi.mock('../../features/Catalog/product-page', () => ({
   default: () => null,
+  formatProductDescription: (description) => description,
 }));
 
-vi.mock('../../features/Product/formatDescription', () => ({
-  default: (description) => description,
-}));
-
-vi.mock('../../services/products', () => ({
+vi.mock('../../features/Catalog/server', () => ({
   getProductBySlug: mocks.getProductBySlug,
+  getProductPath: (slug) => `/productos/${slug}/`,
+  normalizeProductSlug: (slug) => slug,
 }));
 
 import ProductPage, {

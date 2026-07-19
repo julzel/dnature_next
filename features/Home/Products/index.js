@@ -7,7 +7,7 @@ import Link from "next/link";
 import styles from "./Products.module.scss";
 
 // data
-import AnimationBox from "../../../components/AnimationBox";
+import AnimationBox from "../AnimationBox";
 
 // components
 import ProductButton from "./ProductButton";

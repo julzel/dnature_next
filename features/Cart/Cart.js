@@ -12,7 +12,7 @@ import CartNotification from './CartNotification';
 import CartHistory from './CartHistory';
 import ModalContainer from '../../components/Modal';
 import PurchaseOrderContainer from './PurchaseOrder';
-import ClientFormContainer from '../../components/ClientForm/ClientFormContainer';
+import ClientFormContainer from './ClientForm/ClientFormContainer';
 
 const Cart = ({
   cart,

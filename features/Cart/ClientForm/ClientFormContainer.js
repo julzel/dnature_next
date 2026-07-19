@@ -1,0 +1,173 @@
+import React, { useEffect, useState } from "react";
+
+// local imports
+// components
+import ClientForm from "./ClientForm";
+
+import storage from "../lib/browser-storage";
+
+const inputFields = [
+  { name: "firstName", label: "Nombre", isRequired: true, type: "text" },
+  { name: "lastName", label: "Apellidos", isRequired: true, type: "text" },
+  {
+    name: "email",
+    label: "Correo electrónico",
+    isRequired: true,
+    type: "email",
+  },
+  { name: "provincia", label: "Provincia", isRequired: true, type: "text" },
+  { name: "canton", label: "Cantón", isRequired: true, type: "text" },
+  {
+    name: "direccion",
+    label: "Dirección exacta",
+    isRequired: true,
+    type: "text",
+  },
+  {
+    name: "contactPhoneNumber",
+    label: "Teléfono de contacto",
+    isRequired: true,
+    type: "text",
+    pattern: "^(?:\\d{4}-\\d{4}|\\d{8})$", // 8 digits or 4 digits + dash + 4 digits
+    maxLength: 9,
+  },
+];
+
+const addressFieldNames = new Set(['direccion', 'provincia', 'canton']);
+const REMEMBERED_CLIENT_RETENTION_DAYS = 30;
+
+const getClientFieldValue = (client, fieldName) =>
+  addressFieldNames.has(fieldName)
+    ? client.address?.[fieldName]
+    : client[fieldName];
+
+const isInputValid = (value, field) => {
+  const normalizedValue = typeof value === 'string' ? value.trim() : '';
+
+  if (field.isRequired && !normalizedValue) {
+    return false;
+  }
+
+  if (!normalizedValue) {
+    return true;
+  }
+
+  if (field.type === 'email') {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedValue);
+  }
+
+  return field.pattern ? new RegExp(field.pattern).test(normalizedValue) : true;
+};
+
+const createClient = (savedClient) => {
+  const client = savedClient || {};
+
+  return {
+    firstName: client.firstName || "",
+    lastName: client.lastName || "",
+    email: client.email || "",
+    address: {
+      direccion: "",
+      provincia: "",
+      canton: "",
+      ...client.address,
+    },
+    contactPhoneNumber: client.contactPhoneNumber || "",
+    pets: Array.isArray(client.pets) ? client.pets : [],
+  };
+};
+
+const clientFieldsForStorage = (client) => ({
+  firstName: client.firstName,
+  lastName: client.lastName,
+  email: client.email,
+  address: {
+    direccion: client.address?.direccion,
+    provincia: client.address?.provincia,
+    canton: client.address?.canton,
+  },
+  contactPhoneNumber: client.contactPhoneNumber,
+});
+
+const ClientFormContainer = ({ onSubmit, className }) => {
+  const [rememberClient, setRememberClient] = useState(true);
+  const [client, setClient] = useState(() => createClient(storage.getItem('client')));
+  const [interactedFields, setInteractedFields] = useState({});
+
+  const handleRememberToggle = () => {
+    setRememberClient((prevRememberClient) => !prevRememberClient);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (addressFieldNames.has(name)) {
+      setClient((prevClient) => ({
+        ...prevClient,
+        address: { ...prevClient.address, [name]: value },
+      }));
+    } else {
+      setClient((prevClient) => ({ ...prevClient, [name]: value }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setInteractedFields((previousFields) => ({ ...previousFields, [name]: true }));
+  };
+
+  const isFormValid = () => {
+    return inputFields.every((field) =>
+      isInputValid(getClientFieldValue(client, field.name), field)
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isFormValid()) {
+      setInteractedFields(
+        inputFields.reduce((fields, field) => ({ ...fields, [field.name]: true }), {})
+      );
+      return;
+    }
+
+    if (rememberClient) {
+      storage.setItem('client', clientFieldsForStorage(client), {
+        expiresInDays: REMEMBERED_CLIENT_RETENTION_DAYS,
+      });
+    }
+    onSubmit(client);
+  };
+
+  useEffect(() => {
+    if (!rememberClient) {
+      storage.removeItem("client");
+    }
+  }, [rememberClient]);
+
+  return (
+    <ClientForm
+      client={client}
+      handleBlur={handleBlur}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      handleRememberToggle={handleRememberToggle}
+      isInputValid={isInputValid}
+      isFormValid={isFormValid}
+      className={className}
+      interactedFields={interactedFields}
+      inputFields={inputFields}
+      rememberClient={rememberClient}
+    />
+  );
+};
+
+export {
+  clientFieldsForStorage,
+  getClientFieldValue,
+  inputFields,
+  isInputValid,
+  REMEMBERED_CLIENT_RETENTION_DAYS,
+};
+
+export default ClientFormContainer;

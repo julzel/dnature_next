@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import { completePurchaseCapture } from '../../features/Cart/CartContainer';
-import { dataURLToBlob } from '../../util/images';
+import { dataURLToBlob } from '../../features/Cart/lib/purchase-image';
 
 describe('purchase screenshot completion', () => {
   it('does not download or store when capture fails', async () => {
