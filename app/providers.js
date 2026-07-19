@@ -3,14 +3,14 @@
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 
-import ShoppingCartContextProvider from '../contexts/shopping-cart-context';
+import { ShoppingCartProvider } from '../features/Cart/state';
 import { lightTheme } from '../theme';
 
 const Providers = ({ children }) => (
   <ThemeProvider theme={lightTheme}>
-    <ShoppingCartContextProvider>
+    <ShoppingCartProvider>
       <ScopedCssBaseline>{children}</ScopedCssBaseline>
-    </ShoppingCartContextProvider>
+    </ShoppingCartProvider>
   </ThemeProvider>
 );
 

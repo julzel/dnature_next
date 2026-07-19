@@ -1,7 +1,7 @@
-@import './overrides';
-@import './fonts';
-@import './variables';
-@import './mixins';
+@use './overrides' as *;
+@use './fonts' as *;
+@use './variables' as *;
+@use './mixins' as *;
 
 html,
 body {
@@ -36,14 +36,18 @@ h3 {
   padding: 0;
 }
 
-.seo-hidden {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  opacity: 0;
+.seo-hidden,
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
   position: absolute;
-  left: 0;
-  top: 0;
+  white-space: nowrap;
+  width: 1px;
 }
 
 a {
@@ -55,12 +59,21 @@ button {
   background-color: transparent;
   border: none;
   color: $darkGray;
-  outline: none;
 }
 
-input {
-  &:focus {
-    outline: none;
+:focus-visible {
+  outline: 3px solid $accessibleBlue;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

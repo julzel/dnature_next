@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
-import SelectInput from '../../../components/SelectInput';
-import WeightInput from '../../../components/WeightInput';
+import SelectInput from './SelectInput';
+import WeightInput from './WeightInput';
 
 const PetNameInput = ({ value, handleChange }) => (
   <TextField
@@ -97,12 +97,16 @@ const PetWeightContextureInput = ({ value = 'ideal', handleChange }) => {
   );
 };
 
-const PetDailyActivityInput = ({ value = 'active', handleChange }) => {
-  const options = [
+const getDailyActivityOptions = (bodyContexture) => [
     { value: 'sedentary', label: 'Sedentario' },
     { value: 'active', label: 'Activo' },
-    { value: 'veryActive', label: 'Deportista' },
+    ...(bodyContexture === 'overWeight'
+      ? []
+      : [{ value: 'veryActive', label: 'Deportista' }]),
   ];
+
+const PetDailyActivityInput = ({ value = 'active', handleChange, bodyContexture }) => {
+  const options = getDailyActivityOptions(bodyContexture);
   return (
     <SelectInput
       label="Actividad física diaria"
@@ -182,6 +186,7 @@ const stepsItems = (petInfo, handleInfoChange) => [
       <PetDailyActivityInput
         value={petInfo.dailyActivity}
         handleChange={handleInfoChange('dailyActivity')}
+        bodyContexture={petInfo.bodyContexture}
       />
     ),
   },
@@ -205,5 +210,6 @@ export {
   PetDailyActivityInput,
   PetNameInput,
   PetWeightInput,
+  getDailyActivityOptions,
   stepsItems,
 };

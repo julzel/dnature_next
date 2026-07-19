@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@use '../../../styles/variables' as *;
 
 .dropdown {
   height: 100vh;
@@ -9,8 +9,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  transform: translateX(-100%);
-  transition: all 200ms linear 100ms;
+  transform: translateX(0);
 
   &Menu {
     background-color: $white;

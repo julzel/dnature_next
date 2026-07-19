@@ -1,51 +1,79 @@
-import { notFound } from 'next/navigation';
+import { unstable_cache } from 'next/cache';
+import { notFound, permanentRedirect } from 'next/navigation';
 
-import Product from '../../../features/Product';
-import formatProductDescription from '../../../features/Product/formatDescription';
-import { getProductBySlug } from '../../../services/products';
+import Product, {
+  formatProductDescription,
+} from '../../../features/Catalog/product-page';
+import { createPageMetadata } from '../../../constants/seo';
+import {
+  getProductBySlug,
+  getProductPath,
+  normalizeProductSlug,
+} from '../../../features/Catalog/server';
 
 export const revalidate = 120;
 
-const getProduct = async (slug) => {
-  const product = await getProductBySlug(slug);
+const getProduct = unstable_cache(
+  async (slug) => {
+    const product = await getProductBySlug(slug);
 
-  if (!product) {
-    return null;
+    if (!product) {
+      return null;
+    }
+
+    return {
+      ...product,
+      description: formatProductDescription(product.description),
+    };
+  },
+  ['product-page'],
+  {
+    revalidate,
+    tags: ['products'],
   }
-
-  return {
-    ...product,
-    description: formatProductDescription(product.description),
-  };
-};
+);
 
 export const generateMetadata = async ({ params }) => {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = normalizeProductSlug(rawSlug);
+
+  if (!slug) {
+    return {};
+  }
+
   const product = await getProduct(slug);
 
   if (!product) {
     return {};
   }
 
-  return {
+  const image = product.images?.[0];
+
+  return createPageMetadata({
     title: product.productName,
     description: product.ingredientes || `Conoce ${product.productName} de DNAture.`,
-    alternates: { canonical: `/productos/${slug}` },
-    openGraph: {
-      url: `/productos/${slug}`,
-      images: product.images?.[0]
-        ? [{ url: product.images[0].url, alt: product.images[0].title }]
-        : [],
-    },
-  };
+    path: getProductPath(slug),
+    image: image?.url,
+    imageAlt: image?.title || product.productName,
+  });
 };
 
 const ProductPage = async ({ params }) => {
-  const { slug } = await params;
+  const { slug: rawSlug } = await params;
+  const slug = normalizeProductSlug(rawSlug);
+
+  if (!slug) {
+    notFound();
+  }
+
   const product = await getProduct(slug);
 
   if (!product) {
     notFound();
+  }
+
+  if (rawSlug !== slug) {
+    permanentRedirect(getProductPath(slug));
   }
 
   return <Product productDetail={product} />;

@@ -7,16 +7,22 @@ import styles from './PurchaseOrder.module.scss';
 // components
 import CurrencyText from '../../../components/Currency';
 
-const PurchaseOrder = ({ cart, generatePurchaseOrderId }) => {
-  let date = new Date(cart.date);
-  let options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  let formattedDate = date.toLocaleDateString('es-419', options);
+const PurchaseOrder = ({ cart }) => {
+  const date = cart.purchaseOrderDate || cart.date;
+  const formattedDate = date
+    ? new Intl.DateTimeFormat('es-419', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        timeZone: 'America/Costa_Rica',
+      }).format(new Date(date))
+    : '';
   return (
     <div className={styles.purchaseOrder}>
-      {cart.client?.email && (
+      {cart.purchaseOrderId && (
         <h1 className={styles.title}>
           Orden de compra:{' '}
-          <span>{generatePurchaseOrderId(cart.client.email)}</span>
+          <span>{cart.purchaseOrderId}</span>
         </h1>
       )}
       {true && (

@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 // local imports
 
@@ -11,7 +9,7 @@ import styles from './HeaderNav.module.scss';
 
 import NavigationBar from './NavigationBar';
 
-const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
+const HeaderNav = ({ navigationItems, mobileNavigation }) => {
   return (
     <div className={styles.headerNav}>
       <div className={styles.logoContainer}>
@@ -27,13 +25,10 @@ const HeaderNav = ({ onMenuIconClick, showIcon, navigationItems }) => {
           </span>
         </Link>
       </div>
-      {showIcon ? (
-        <span role='button' tabIndex='0' onClick={onMenuIconClick}>
-          <FontAwesomeIcon icon={faBars} size='lg' />
-        </span>
-      ) : (
+      <div className={styles.mobileNavigation}>{mobileNavigation}</div>
+      <div className={styles.desktopNavigation}>
         <NavigationBar items={navigationItems} />
-      )}
+      </div>
     </div>
   );
 };

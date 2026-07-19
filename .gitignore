@@ -7,9 +7,15 @@
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
 
 # next.js
 /.next/
+/.next-e2e/
+/.next-baseline/
+/performance-current.json
+/performance-review.md
 /out/
 
 # production

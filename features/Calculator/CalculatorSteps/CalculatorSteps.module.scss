@@ -1,4 +1,4 @@
-@import '../../../styles/_variables';
+@use '../../../styles/_variables' as *;
 
 .calculatorSteps {
   margin: 0 auto;
@@ -14,11 +14,11 @@
       text-align: center;
     }
 
-    div[role='button'] {
+    button[aria-pressed] {
       cursor: pointer;
       border-radius: 1000px;
-      border: 2px solid $blue;
-      color: $blue;
+      border: 2px solid $accessibleBlue;
+      color: $accessibleBlue;
       display: flex;
       flex-flow: column;
       align-items: center;
@@ -37,7 +37,7 @@
 
       &.selected,
       &:hover {
-        background-color: $blue;
+        background-color: $accessibleBlue;
         color: $white;
       }
     }
@@ -106,7 +106,7 @@
   }
 
   .prevButton {
-    color: $gray;
+    color: $davys-gray;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,8 +127,8 @@
 
   .actionButton {
     border-radius: 15px;
-    border: 2px solid $orange;
-    color: $orange;
+    border: 2px solid $accessibleOrange;
+    color: $accessibleOrange;
     display: block;
     font-size: 18px;
     font-family: $bold2;

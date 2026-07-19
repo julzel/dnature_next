@@ -1,0 +1,224 @@
+{
+  "capturedAt": "2026-07-18T02:24:42.224Z",
+  "source": "local-fixture",
+  "baseURL": "http://127.0.0.1:3100",
+  "gitRevision": "212902d",
+  "runtime": {
+    "node": "v24.15.0",
+    "platform": "darwin-arm64",
+    "browser": "Playwright Chromium"
+  },
+  "profiles": {
+    "desktop": {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false
+    },
+    "mobile": {
+      "viewport": {
+        "width": 390,
+        "height": 664
+      },
+      "deviceScaleFactor": 3,
+      "isMobile": true,
+      "hasTouch": true
+    }
+  },
+  "notes": [
+    "Lab measurements are directional and are not field Core Web Vitals.",
+    "Response body sizes include uncompressed local transfer bytes.",
+    "Re-run against the deployment URL before a release comparison."
+  ],
+  "measurements": {
+    "desktop": [
+      {
+        "route": "/",
+        "status": 200,
+        "navigationMs": 1294,
+        "requestCount": 62,
+        "transferredBytes": 23469650,
+        "imageBytes": 20832075,
+        "scriptBytes": 1125691,
+        "cls": 0.0029,
+        "lcpMs": 64,
+        "domContentLoadedMs": 20,
+        "loadMs": 192
+      },
+      {
+        "route": "/productos",
+        "status": 200,
+        "navigationMs": 1453,
+        "requestCount": 68,
+        "transferredBytes": 10526768,
+        "imageBytes": 8211340,
+        "scriptBytes": 1140983,
+        "cls": 0.0003,
+        "lcpMs": 716,
+        "domContentLoadedMs": 61,
+        "loadMs": 201
+      },
+      {
+        "route": "/productos/receta-de-prueba",
+        "status": 200,
+        "navigationMs": 1481,
+        "requestCount": 59,
+        "transferredBytes": 6348715,
+        "imageBytes": 4074044,
+        "scriptBytes": 1201955,
+        "cls": 0.0468,
+        "lcpMs": 456,
+        "domContentLoadedMs": 24,
+        "loadMs": 150
+      },
+      {
+        "route": "/calculadora",
+        "status": 200,
+        "navigationMs": 1101,
+        "requestCount": 51,
+        "transferredBytes": 1998867,
+        "imageBytes": 428576,
+        "scriptBytes": 1125691,
+        "cls": 0.001,
+        "lcpMs": 32,
+        "domContentLoadedMs": 11,
+        "loadMs": 83
+      },
+      {
+        "route": "/plan-dnature",
+        "status": 200,
+        "navigationMs": 1146,
+        "requestCount": 56,
+        "transferredBytes": 2080582,
+        "imageBytes": 428576,
+        "scriptBytes": 1273626,
+        "cls": 0.0009,
+        "lcpMs": 32,
+        "domContentLoadedMs": 14,
+        "loadMs": 92
+      },
+      {
+        "route": "/preguntas-frecuentes",
+        "status": 200,
+        "navigationMs": 1145,
+        "requestCount": 55,
+        "transferredBytes": 3519032,
+        "imageBytes": 1367558,
+        "scriptBytes": 1125691,
+        "cls": 0.0033,
+        "lcpMs": 120,
+        "domContentLoadedMs": 12,
+        "loadMs": 93
+      },
+      {
+        "route": "/cart",
+        "status": 200,
+        "navigationMs": 1158,
+        "requestCount": 54,
+        "transferredBytes": 2328076,
+        "imageBytes": 428576,
+        "scriptBytes": 1125691,
+        "cls": 0.0013,
+        "lcpMs": 36,
+        "domContentLoadedMs": 10,
+        "loadMs": 111
+      }
+    ],
+    "mobile": [
+      {
+        "route": "/",
+        "status": 200,
+        "navigationMs": 1151,
+        "requestCount": 49,
+        "transferredBytes": 23339877,
+        "imageBytes": 20832075,
+        "scriptBytes": 1106023,
+        "cls": 0,
+        "lcpMs": 332,
+        "domContentLoadedMs": 32,
+        "loadMs": 87
+      },
+      {
+        "route": "/productos",
+        "status": 200,
+        "navigationMs": 1181,
+        "requestCount": 48,
+        "transferredBytes": 10390058,
+        "imageBytes": 8211340,
+        "scriptBytes": 1121580,
+        "cls": 0,
+        "lcpMs": 116,
+        "domContentLoadedMs": 19,
+        "loadMs": 132
+      },
+      {
+        "route": "/productos/receta-de-prueba",
+        "status": 200,
+        "navigationMs": 1155,
+        "requestCount": 45,
+        "transferredBytes": 6313835,
+        "imageBytes": 4074044,
+        "scriptBytes": 1182552,
+        "cls": 0,
+        "lcpMs": 84,
+        "domContentLoadedMs": 24,
+        "loadMs": 136
+      },
+      {
+        "route": "/calculadora",
+        "status": 200,
+        "navigationMs": 1125,
+        "requestCount": 39,
+        "transferredBytes": 1884078,
+        "imageBytes": 428576,
+        "scriptBytes": 1118122,
+        "cls": 0,
+        "lcpMs": 40,
+        "domContentLoadedMs": 22,
+        "loadMs": 83
+      },
+      {
+        "route": "/plan-dnature",
+        "status": 200,
+        "navigationMs": 1139,
+        "requestCount": 41,
+        "transferredBytes": 1948582,
+        "imageBytes": 428576,
+        "scriptBytes": 1254223,
+        "cls": 0,
+        "lcpMs": 32,
+        "domContentLoadedMs": 12,
+        "loadMs": 94
+      },
+      {
+        "route": "/preguntas-frecuentes",
+        "status": 200,
+        "navigationMs": 1124,
+        "requestCount": 43,
+        "transferredBytes": 3398042,
+        "imageBytes": 1367558,
+        "scriptBytes": 1113592,
+        "cls": 0,
+        "lcpMs": 352,
+        "domContentLoadedMs": 24,
+        "loadMs": 80
+      },
+      {
+        "route": "/cart",
+        "status": 200,
+        "navigationMs": 1167,
+        "requestCount": 39,
+        "transferredBytes": 2195999,
+        "imageBytes": 428576,
+        "scriptBytes": 1106023,
+        "cls": 0,
+        "lcpMs": 32,
+        "domContentLoadedMs": 38,
+        "loadMs": 110
+      }
+    ]
+  }
+}

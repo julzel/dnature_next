@@ -4,9 +4,18 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test --grep @a11y",
+    "audit:public-assets": "node scripts/audit-public-assets.mjs",
+    "check:architecture": "node scripts/check-architecture.mjs",
+    "check:licenses": "node scripts/check-dependency-licenses.mjs",
+    "dev:e2e": "E2E_USE_FIXTURES=1 E2E_DIST_DIR=.next-e2e next dev --webpack --hostname 127.0.0.1 --port 3100",
+    "baseline:performance": "node scripts/capture-performance-baseline.mjs",
+    "review:performance": "BASELINE_OUTPUT=performance-current.json node scripts/capture-performance-baseline.mjs && node scripts/compare-performance-baselines.mjs",
     "verify:router-baseline": "node scripts/verify-router-baseline.mjs",
     "verify:production": "node scripts/verify-production.mjs"
   },
@@ -14,7 +23,6 @@
     "node": ">=20.9 <25"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^15.17.0",
     "@emotion/react": "11.11.4",
     "@emotion/server": "11.11.0",
     "@emotion/styled": "^11.11.0",
@@ -30,16 +38,24 @@
     "@mui/material-nextjs": "9.1.1",
     "html2canvas": "^1.4.1",
     "next": "16.2.10",
-    "next-sitemap": "^4.0.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-material-ui-carousel": "^3.4.2",
     "react-slick": "^0.30.2",
     "sass": "^1.49.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.55.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.2.10"
+    "eslint-config-next": "16.2.10",
+    "jsdom": "^26.1.0",
+    "vitest": "^3.2.4"
   }
 }

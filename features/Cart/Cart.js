@@ -1,6 +1,4 @@
 'use client';
-
-import { useMediaQuery } from '@mui/material';
 // local imports
 // styles
 import styles from './Cart.module.scss';
@@ -14,7 +12,7 @@ import CartNotification from './CartNotification';
 import CartHistory from './CartHistory';
 import ModalContainer from '../../components/Modal';
 import PurchaseOrderContainer from './PurchaseOrder';
-import ClientFormContainer from '../../components/ClientForm/ClientFormContainer';
+import ClientFormContainer from './ClientForm/ClientFormContainer';
 
 const Cart = ({
   cart,
@@ -28,14 +26,14 @@ const Cart = ({
   onPurchaseConfirm,
   displayInfoModal,
   onCloseInfoModal,
+  purchaseError,
+  isCapturingPurchase,
 }) => {
-  const isMobile = useMediaQuery('(max-width:639px)', { noSsr: true });
-
   return (
     <div className={styles.cart}>
       <div className={styles.cartContent}>
         <div>
-          <h2 className={styles.header}>Tu Carrito:</h2>
+          <h1 className={styles.header}>Tu Carrito:</h1>
 
           <CartItemsContainer items={cart.items} />
 
@@ -49,8 +47,9 @@ const Cart = ({
 
       {requestClientInfo && (
         <ModalContainer
+          ariaLabel="Detalles de entrega"
           closeModal={closeClientInfoModal}
-          fullScreen={isMobile}
+          responsiveFullScreen
         >
           <ClientFormContainer
             onSubmit={onClientInfoSubmit}
@@ -61,12 +60,15 @@ const Cart = ({
 
       {showPurchaseOrder && !displayInfoModal && (
         <ModalContainer
+          ariaLabel="Orden de compra"
           closeModal={onPurchaseCancel}
-          fullScreen={isMobile}
+          responsiveFullScreen
         >
           <CartPurchaseOrderContainer
             onPurchaseCancel={onPurchaseCancel}
             onPurchaseConfirm={onPurchaseConfirm}
+            purchaseError={purchaseError}
+            isCapturingPurchase={isCapturingPurchase}
           />
         </ModalContainer>
       )}

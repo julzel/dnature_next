@@ -1,0 +1,54 @@
+# Operations runbook
+
+## Ownership
+
+The DNAture project owner owns deployment configuration, production verification,
+dependency-update review, monitoring triage, and the external policy decisions
+listed below. The technical maintainer owns the App Router implementation and
+must update this runbook when integrations change.
+
+## Required environment variables
+
+| Variable | Visibility | Purpose |
+| --- | --- | --- |
+| `CONTENTFUL_SPACE_ID` | server only | Contentful space identifier |
+| `CONTENTFUL_DELIVERY_API_KEY` | server only | Contentful delivery token |
+| `NEXT_PUBLIC_SITE_URL` | public | Canonical production origin; defaults to `https://dnaturefood.com` |
+| `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | public | Browser Maps key |
+| `NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID` | public | Maps style identifier |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS` | public | GA measurement ID; no script loads without consent |
+| `MONITORING_INGEST_URL` | server only | Approved monitoring endpoint |
+| `MONITORING_INGEST_TOKEN` | server only | Optional bearer token for that endpoint |
+
+Do not use a `NEXT_PUBLIC_` prefix for Contentful or monitoring credentials.
+
+## Pre-release checklist
+
+1. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin, without a path.
+2. Deploy preview, then run `npm run verify:production -- --base-url <preview-url> --product-url <normalized-product-url>`.
+3. Confirm `/robots.txt` references `/sitemap.xml`, and confirm normalized product URLs occur in the sitemap.
+4. Inspect response headers for every public route. The configured CSP permits only the current Contentful image host, Google Maps, Google Analytics, and same-origin resources. Update and preview-test it whenever an integration changes.
+5. Configure HSTS at the hosting/CDN layer after HTTPS is confirmed; it is intentionally not set by application code because the host controls HTTPS termination.
+6. Set `MONITORING_INGEST_URL` to the approved provider and test a deliberately triggered preview error. Monitoring events contain only a redacted name, message, route, source, and timestamp.
+
+## Google integrations
+
+Before production, the project owner must record evidence that the Maps key is
+restricted to production/preview HTTP referrers and only the Maps JavaScript API
+and required Places/marker APIs, with quotas and billing alerts enabled. The key
+is intentionally public because Maps loads it in the browser.
+
+Analytics is opt-in. `app/analytics.js` loads Google Analytics only when a
+consent manager sets local-storage key `dnature-analytics-consent` to `granted`
+and dispatches a `dnature-analytics-consent` event. Do not configure the
+measurement ID in a market until the project owner has approved the consent
+notice, lawful basis, and retention settings with the relevant legal/privacy
+reviewer.
+
+## Maintenance
+
+Dependabot opens weekly dependency and GitHub Actions updates. The scheduled
+`Dependency maintenance` workflow runs a production dependency audit and checks
+that every installed package declares license metadata. The project owner reviews
+and resolves failures weekly; legal/privacy review approves new or changed
+licenses before release.

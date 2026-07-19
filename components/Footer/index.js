@@ -16,6 +16,7 @@ const Footer = () => {
             alt='DNAture Logo'
             width={55}
             height={43}
+            loading='eager'
           />
         </span>
       </p>

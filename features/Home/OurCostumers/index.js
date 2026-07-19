@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 
@@ -32,7 +34,11 @@ const slides = costumers.map((costumer, i) => {
       </div>
       {costumer.thumbnail && (
         <div className={styles.costumerThumbnail}>
-          <Image src={costumer.thumbnail.image} alt={costumer.thumbnail.alt} />
+          <Image
+            src={costumer.thumbnail.image}
+            alt={costumer.thumbnail.alt}
+            sizes="(min-width: 768px) 35vw, 80vw"
+          />
         </div>
       )}
     </div>

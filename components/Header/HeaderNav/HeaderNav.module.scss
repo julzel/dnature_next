@@ -1,4 +1,5 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .headerNav {
   background-color: $white;
@@ -12,8 +13,24 @@
   position: relative;
   z-index: 1;
 
-  span {
-    outline: none;
+  .mobileNavigation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .desktopNavigation {
+    display: none;
+  }
+
+  @include mdq(md) {
+    .mobileNavigation {
+      display: none;
+    }
+
+    .desktopNavigation {
+      display: block;
+    }
   }
 
   .logoContainer {

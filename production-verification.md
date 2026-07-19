@@ -8,7 +8,6 @@ loader.
 ```bash
 PRODUCTION_BASE_URL=https://preview.example.com \
 PRODUCTION_PRODUCT_URL=/productos/current-product-slug \
-PRODUCTION_POST_URL=/blog/current-post-slug \
 npm run verify:production
 ```
 
@@ -20,7 +19,6 @@ either legacy `NEXT_PUBLIC_CONTENTFUL_*` variable is still present.
 ```bash
 npm run verify:production -- --base-url=https://preview.example.com \
   --product-url=/productos/current-product-slug \
-  --post-url=/blog/current-post-slug \
   --analytics-id=G-XXXXXXXXXX \
   --require-server-contentful-env
 ```
@@ -35,8 +33,8 @@ Manual checks still required on the preview deployment:
 - Mobile Safari/Chrome and desktop Chrome/Safari/Firefox smoke tests.
 - Cart persistence, quantity changes, checkout modal, purchase order, and
   WhatsApp flow.
-- Copied dynamic product and blog URLs in an incognito window.
-- Contentful publishing visibility within the 120-second product/blog cache
-  window (and the one-hour category cache window).
+- Copied dynamic product URLs in an incognito window.
+- Contentful publishing visibility within the 120-second product cache window
+  (and the one-hour category cache window).
 - Analytics page views and hosting logs for 404/500 rates and Contentful
   request volume after deployment.

@@ -2,24 +2,15 @@ import React from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { faCircleUser, faDog } from "@fortawesome/free-solid-svg-icons";
-import { faCircleUser as faCircleUserEmpty } from "@fortawesome/free-regular-svg-icons";
 
 // local imports
 // styles
 import styles from "./SubHeader.module.scss";
 
-const SubHeader = ({ isLoggedIn = false, totalCartItems, totalPets }) => {
+const SubHeader = ({ totalCartItems }) => {
   return (
     <nav className={styles.subheader}>
-      {/* {(totalPets > 0 || true ) && (
-        <Link href={"/mis-mascotas"}>
-          <span className={styles.link}>
-            <FontAwesomeIcon icon={faDog} size="sm" />
-          </span>
-        </Link>
-      )} */}
-      <Link href={"/cart"}>
+      <Link href={"/cart"} aria-label="Ver carrito">
         <span className={styles.link}>
           <FontAwesomeIcon icon={faCartShopping} size="sm" />
           {totalCartItems > 0 && (
@@ -27,14 +18,6 @@ const SubHeader = ({ isLoggedIn = false, totalCartItems, totalPets }) => {
           )}
         </span>
       </Link>
-      {/* <Link href={"/login"}>
-        <span className={styles.link}>
-          <FontAwesomeIcon
-            icon={isLoggedIn ? faCircleUser : faCircleUserEmpty}
-            size="sm"
-          />
-        </span>
-      </Link> */}
     </nav>
   );
 };

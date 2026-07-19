@@ -5,20 +5,12 @@ import React from "react";
 import PurchaseOrder from "./PurchaseOrder";
 
 // context
-import { useCartContext } from "../../../contexts/shopping-cart-context";
-
-// utils
-import { generatePurchaseOrderId } from "../../../util";
+import { useCartContext } from "../model/shopping-cart-context";
 
 const PurchaseOrderContainer = () => {
   const { cart } = useCartContext();
 
-  return (
-    <PurchaseOrder
-      cart={cart}
-      generatePurchaseOrderId={generatePurchaseOrderId}
-    />
-  );
+  return <PurchaseOrder cart={cart} />;
 };
 
 export default PurchaseOrderContainer;

@@ -1,25 +1,21 @@
-import Products from '../../features/Products';
-import { getProducts } from '../../services/products';
+import Products from '../../features/Catalog';
+import { getProducts } from '../../features/Catalog/server';
+import { createPageMetadata } from '../../constants/seo';
 
 export const revalidate = 120;
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: 'Nuestros productos',
   description:
     'Explora los productos naturales DNAture para la alimentación de tu mascota.',
-  alternates: { canonical: '/productos' },
-};
+  path: '/productos',
+});
 
-const ProductsPage = async () => {
-  let products = {};
+const ProductsPage = async ({ searchParams }) => {
+  const products = await getProducts();
+  const { category } = await searchParams;
 
-  try {
-    products = await getProducts();
-  } catch (error) {
-    console.error('Unable to load products from Contentful:', error);
-  }
-
-  return <Products products={products} />;
+  return <Products products={products} queryCategory={category} />;
 };
 
 export default ProductsPage;

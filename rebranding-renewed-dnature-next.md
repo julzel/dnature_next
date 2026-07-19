@@ -1,4 +1,8 @@
-# DNAture Next — Rebranding & Modernization Blueprint
+# Historical document — DNAture Next Rebranding & Modernization Blueprint
+
+> **Status:** Historical planning reference. It predates the completed App
+> Router migration and includes removed Blog/Pages Router proposals. Do not use
+> it as deployment or architecture guidance; use `README.md` and `docs/`.
 
 > **Purpose**: A comprehensive, actionable reference for refactoring `dnature_next` from its current Next.js 12 / React 17 / JavaScript architecture to a modern **Next.js 16.2 App Router / React 19.2 / TypeScript** stack with Cache Components (`"use cache"`), optimized Contentful integration, SSR/ISR best practices, and a modern UI layer.
 

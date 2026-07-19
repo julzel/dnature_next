@@ -1,25 +1,12 @@
-'use client';
-
-import React, { useState } from "react";
-
-// local imports
-import useWindow from "../../hooks/useWindow";
 import navigationItems from "./navigationItems";
-
-// components
 import Header from "./Header";
+import MobileNavigation from "./MobileNavigation";
 
 const HeaderContainer = () => {
-  // state
-  const [displayMenu, setDisplayMenu] = useState(false);
-  const isMobile = useWindow();
-
   return (
     <Header
-      isMobile={isMobile}
       navigationItems={navigationItems}
-      displayMobileMenu={displayMenu}
-      onMobileMenuIconClick={() => setDisplayMenu(!displayMenu)}
+      mobileNavigation={<MobileNavigation items={navigationItems} />}
     />
   );
 };

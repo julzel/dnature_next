@@ -9,11 +9,28 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import styles from './CalculatorSteps.module.scss'
 
 // util
-import { calculatePortionSizeInGrams, labelKeys, valueKeys } from '../../../util'
+import {
+    calculatePortionSizeInGrams,
+    isSupportedPortionProfile,
+    isValidPetWeight,
+    labelKeys,
+    valueKeys,
+} from '../../../util/portion-size'
 
 // images
 import dogLg from '../../../public/calculator/dog_mobile_lg.jpg'
 import dogM from '../../../public/calculator/dog_mobile_peque_med.jpg'
+
+const OptionButton = ({ children, isSelected, onClick }) => (
+    <button
+        type="button"
+        className={isSelected ? styles.selected : ''}
+        aria-pressed={isSelected}
+        onClick={onClick}
+    >
+        {children}
+    </button>
+)
 
 const CalculatorSteps = () => {
     const [step, setStep] = useState(0)
@@ -21,6 +38,7 @@ const CalculatorSteps = () => {
     const [dogProfile, setDogProfile] = useState({})
     const [result, setResult] = useState(null)
     const [enableNext, setEnableNext] = useState(false)
+    const [weightError, setWeightError] = useState(false)
 
     const restart = () => {
         setStep(0)
@@ -28,14 +46,23 @@ const CalculatorSteps = () => {
         setDogProfile({})
         setResult(null)
         setEnableNext(false)
+        setWeightError(false)
     }
 
     const getPortionSize = () => {
 
-        if (dogProfile.weight !== '') { // add regex validation as well
-            setResult(calculatePortionSizeInGrams(dogProfile))
-            setStep(step + 1)
+        if (isValidPetWeight(dogProfile.weight) && isSupportedPortionProfile(dogProfile)) {
+            const portionSize = calculatePortionSizeInGrams(dogProfile)
+
+            if (portionSize) {
+                setResult(portionSize)
+                setWeightError(false)
+                setStep((currentStep) => currentStep + 1)
+                return
+            }
         }
+
+        setWeightError(true)
     }
 
     const handlePrevClick = () => {
@@ -43,13 +70,13 @@ const CalculatorSteps = () => {
             if (step === 5) {
                 setStep(0)
             } else if (step === 6) {
-                if (dogProfile.age === 'cachorro') {
-                    setStep(step - 1)    
+                if (dogProfile.age === 'puppy') {
+                    setStep((currentStep) => currentStep - 1)
                 } else {
-                    setStep(step - 2)
+                    setStep((currentStep) => currentStep - 2)
                 }
             } else {
-                setStep(step - 1)
+                setStep((currentStep) => currentStep - 1)
             }
         } else {
             restart()
@@ -58,36 +85,37 @@ const CalculatorSteps = () => {
 
     const hadleNextClick = () => {
         setEnableNext(false)
-        setStep(step + 1)
+        setStep((currentStep) => currentStep + 1)
     }
 
     const handleOnChange = ({ target }) => {
-        dogProfile.weight = target.value
         setValue(target.value)
+        setDogProfile((previousProfile) => ({ ...previousProfile, weight: target.value }))
+        setWeightError(false)
     }
 
     const renderControls = () => {
-        const validWeight = dogProfile.weight && dogProfile.weight !== ''
+        const validWeight = isValidPetWeight(dogProfile.weight) && isSupportedPortionProfile(dogProfile)
         return (
             <div className={styles.calculatorControls}>
                 {step === 7 && (
-                    <button onClick={restart} className={styles.actionButton}>
+                    <button type="button" onClick={restart} className={styles.actionButton}>
                         Calcular otra vez
                     </button>
                 )}
                 {step === 6 && validWeight && (
-                    <button onClick={getPortionSize} className={styles.actionButton}>
+                    <button type="button" onClick={getPortionSize} className={styles.actionButton}>
                         Calcular
                     </button>
                 )}
                 {step > 0 && (
-                    <button onClick={handlePrevClick} className={styles.prevButton}>
+                    <button type="button" onClick={handlePrevClick} className={styles.prevButton}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                         <span>Anterior</span>
                     </button>
                 )}
                 {step < 6 && enableNext && (
-                    <button onClick={hadleNextClick}>
+                    <button type="button" onClick={hadleNextClick}>
                         Siguiente
                     </button>
                 )}
@@ -98,91 +126,62 @@ const CalculatorSteps = () => {
     const renderAgeSelect = (cb) => (
         <div className={styles.step}>
             <h2>Edad</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('age', 'adulto')} className={dogProfile.age === 'adulto' ? styles.selected : ''}>
-                Adulto
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('age', 'cachorro')} className={dogProfile.age === 'cachorro' ? styles.selected : ''}>
-                Cachorro
-            </div>
+            <OptionButton isSelected={dogProfile.age === 'adult'} onClick={() => cb('age', 'adult')}>Adulto</OptionButton>
+            <OptionButton isSelected={dogProfile.age === 'puppy'} onClick={() => cb('age', 'puppy')}>Cachorro</OptionButton>
         </div>
     )
 
     const renderPuppyStage = (cb) => (
         <div className={styles.step}>
             <h2>Edad</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage1')} className={dogProfile.stage === 'stage1' ? styles.selected : ''}>
-                Etapa 1 <span>menor a 7 meses</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage2')} className={dogProfile.stage === 'stage2' ? styles.selected : ''}>
-                Etapa 2 <span>7 meses a 1 año</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('stage', 'stage3')} className={dogProfile.stage === 'stage3' ? styles.selected : ''}>
-                Etapa 3 <span>más de 1 año hasta su etapa adulta</span>
-            </div>
+            <OptionButton isSelected={dogProfile.puppyStage === 'stage1'} onClick={() => cb('puppyStage', 'stage1')}>Etapa 1 <span>menor a 7 meses</span></OptionButton>
+            <OptionButton isSelected={dogProfile.puppyStage === 'stage2'} onClick={() => cb('puppyStage', 'stage2')}>Etapa 2 <span>7 meses a 1 año</span></OptionButton>
+            <OptionButton isSelected={dogProfile.puppyStage === 'stage3'} onClick={() => cb('puppyStage', 'stage3')}>Etapa 3 <span>más de 1 año hasta su etapa adulta</span></OptionButton>
         </div>
     )
 
     const renderSizeSelect = (cb) => (
         <div className={styles.step}>
             <h2>Tamaño</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('size', 'pequeno')} className={dogProfile.size === 'pequeno' ? styles.selected : ''}>
-                Mini <span>menos de 4kg</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('size', 'mediano')} className={dogProfile.size === 'mediano' ? styles.selected : ''}>
-                Pequeño - Mediano <span>5kg a 25kg</span>
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('size', 'grande')} className={dogProfile.size === 'grande' ? styles.selected : ''}>
-                Grande - Gigante <span>más de 25kg</span>
-            </div>
+            <OptionButton isSelected={dogProfile.size === 'small'} onClick={() => cb('size', 'small')}>Mini <span>menos de 4kg</span></OptionButton>
+            <OptionButton isSelected={dogProfile.size === 'medium'} onClick={() => cb('size', 'medium')}>Pequeño - Mediano <span>5kg a 25kg</span></OptionButton>
+            <OptionButton isSelected={dogProfile.size === 'large'} onClick={() => cb('size', 'large')}>Grande - Gigante <span>más de 25kg</span></OptionButton>
         </div>
     )
 
     const renderCastratedSelect = (cb) => (
         <div className={styles.step}>
             <h2>Castración</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('castrated', 'noCastrado')} className={dogProfile.castrated === 'noCastrado' ? styles.selected : ''}>
-                Sin castrar
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('castrated', 'castrado')} className={dogProfile.castrated === 'castrado' ? styles.selected : ''}>
-                Castrado
-            </div>
+            <OptionButton isSelected={dogProfile.castrated === 'notCastrated'} onClick={() => cb('castrated', 'notCastrated')}>Sin castrar</OptionButton>
+            <OptionButton isSelected={dogProfile.castrated === 'castrated'} onClick={() => cb('castrated', 'castrated')}>Castrado</OptionButton>
         </div>
     )
 
     const renderWeightStatusSelect = (cb) => (
         <div className={styles.step}>
             <h2>Contextura</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('weightStatus', 'bajoPeso')} className={dogProfile.weightStatus === 'bajoPeso' ? styles.selected : ''}>
-                Bajo peso
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('weightStatus', 'pesoIdeal')} className={dogProfile.weightStatus === 'pesoIdeal' ? styles.selected : ''}>
-                Ideal
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('weightStatus', 'sobrepeso')} className={dogProfile.weightStatus === 'sobrepeso' ? styles.selected : ''}>
-                Sobrepeso
-            </div>
+            <OptionButton isSelected={dogProfile.bodyContexture === 'underWeight'} onClick={() => cb('bodyContexture', 'underWeight')}>Bajo peso</OptionButton>
+            <OptionButton isSelected={dogProfile.bodyContexture === 'ideal'} onClick={() => cb('bodyContexture', 'ideal')}>Ideal</OptionButton>
+            <OptionButton isSelected={dogProfile.bodyContexture === 'overWeight'} onClick={() => cb('bodyContexture', 'overWeight')}>Sobrepeso</OptionButton>
         </div>
     )
 
     const renderActivitySelect = (cb) => (
         <div className={styles.step}>
             <h2>Actividad física diaria</h2>
-            <div role="button" tabIndex='0' onClick={() => cb('activity', 'sedentario')} className={dogProfile.activity === 'sedentario' ? styles.selected : ''}>
-                Sedentario
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('activity', 'activo')} className={dogProfile.activity === 'activo' ? styles.selected : ''}>
-                Activo
-            </div>
-            <div role="button" tabIndex='0' onClick={() => cb('activity', 'deportista')} className={dogProfile.activity === 'deportista' ? styles.selected : ''}>
-                Deportista
-            </div>
+            <OptionButton isSelected={dogProfile.dailyActivity === 'sedentary'} onClick={() => cb('dailyActivity', 'sedentary')}>Sedentario</OptionButton>
+            <OptionButton isSelected={dogProfile.dailyActivity === 'active'} onClick={() => cb('dailyActivity', 'active')}>Activo</OptionButton>
+            {dogProfile.bodyContexture !== 'overWeight' && (
+                <OptionButton isSelected={dogProfile.dailyActivity === 'veryActive'} onClick={() => cb('dailyActivity', 'veryActive')}>Deportista</OptionButton>
+            )}
         </div>
     )
 
     const renderWeightInput = () => (
         <div className={`${styles.step} ${styles.short}`}>
             <h2>Peso en kg</h2>
-            <input required type="number" inputMode='number' onChange={handleOnChange} value={value} />
+            <input required type="number" inputMode='decimal' min="0.1" max="100" step="0.1" onChange={handleOnChange} value={value} />
+            {weightError && <p className={styles.warning}>Ingresa un peso válido entre 0.1kg y 100kg.</p>}
         </div>
     )
 
@@ -207,7 +206,7 @@ const CalculatorSteps = () => {
             </div>
             <div className={styles.resultImage}>
                 <Image
-                    src={dogProfile.size === 'grande' ? dogLg : dogM}
+                    src={dogProfile.size === 'large' ? dogLg : dogM}
                     alt="Perro de raza dálmata comiendo alimentación natural cruda"
                 />
             </div>
@@ -215,15 +214,14 @@ const CalculatorSteps = () => {
     )
 
     const updatedogProfile = (key, value) => {
-        dogProfile[key] = value
-        setDogProfile({ ...dogProfile })
-        if (key === 'age' && value === 'cachorro') {
+        setDogProfile((previousProfile) => ({ ...previousProfile, [key]: value }))
+        if (key === 'age' && value === 'puppy') {
             setTimeout(() => setStep(5), 250)
         } else {
-            if (key === 'activity') {
-                setTimeout(() => setStep(step + 2), 250)
+            if (key === 'dailyActivity') {
+                setTimeout(() => setStep((currentStep) => currentStep + 2), 250)
             } else {
-                setTimeout(() => setStep(step + 1), 250)
+                setTimeout(() => setStep((currentStep) => currentStep + 1), 250)
             }
         }
     }

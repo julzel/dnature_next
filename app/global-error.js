@@ -2,9 +2,11 @@
 
 import { useEffect } from 'react';
 
+import { reportClientError } from '../util/monitoring';
+
 const GlobalError = ({ error, reset }) => {
   useEffect(() => {
-    console.error(error);
+    reportClientError(error, { source: 'global-error' });
   }, [error]);
 
   return (

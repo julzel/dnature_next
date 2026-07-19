@@ -8,7 +8,7 @@ import styles from "./CartPurchaseOrder.module.scss";
 import PurchaseOrderContainer from "../PurchaseOrder";
 import Button from "../../../components/Button";
 
-const CartPurchaseOrder = ({ onPurchaseCancel, onPurchaseConfirm }) => {
+const CartPurchaseOrder = ({ onPurchaseCancel, onPurchaseConfirm, purchaseError, isCapturingPurchase }) => {
   return (
     <div className={styles.cartPurchaseOrder}>
       <PurchaseOrderContainer />
@@ -16,13 +16,15 @@ const CartPurchaseOrder = ({ onPurchaseCancel, onPurchaseConfirm }) => {
         <Button
           className={`${styles.button} ${styles.secondary}`}
           onClick={onPurchaseCancel}
+          disabled={isCapturingPurchase}
         >
           Cancelar
         </Button>
-        <Button className={styles.button} onClick={onPurchaseConfirm}>
-          Confirmar
+        <Button className={styles.button} onClick={onPurchaseConfirm} disabled={isCapturingPurchase}>
+          {isCapturingPurchase ? 'Generando…' : 'Confirmar'}
         </Button>
       </div>
+      {purchaseError && <p role="alert">{purchaseError}</p>}
     </div>
   );
 };

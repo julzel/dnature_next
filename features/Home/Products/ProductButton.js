@@ -2,14 +2,11 @@ import React from 'react';
 
 import styles from './ProductButton.module.scss';
 
-const ProductButton = ({ text, onClick, variant = 'primary' }) => {
+const ProductButton = ({ text, variant = 'primary' }) => {
   return (
-    <button
-      className={`${styles.heroButton} ${styles[variant]}`}
-      onClick={onClick}
-    >
+    <span className={`${styles.heroButton} ${styles[variant]}`}>
       {text}
-    </button>
+    </span>
   );
 };
 

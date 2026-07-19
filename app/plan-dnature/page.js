@@ -1,11 +1,12 @@
 import PlanDNA from '../../features/PlanDNA';
+import { createPageMetadata } from '../../constants/seo';
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: 'Plan Nutricional DNAture',
   description:
     'Crea un plan nutricional personalizado para acompañar el bienestar de tu mascota.',
-  alternates: { canonical: '/plan-dnature' },
-};
+  path: '/plan-dnature',
+});
 
 const PlanDNAPage = () => <PlanDNA />;
 

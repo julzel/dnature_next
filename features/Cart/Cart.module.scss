@@ -1,5 +1,5 @@
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .cart {
   flex: 1;
@@ -75,6 +75,6 @@
   }
 
   a {
-    color: $blue;
+    color: $accessibleBlue;
   }
 }

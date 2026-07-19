@@ -1,11 +1,12 @@
 import Faq from '../../features/Faq';
+import { createPageMetadata } from '../../constants/seo';
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: 'Preguntas frecuentes',
   description:
     'Encuentra respuestas sobre la alimentación natural y los productos DNAture.',
-  alternates: { canonical: '/preguntas-frecuentes' },
-};
+  path: '/preguntas-frecuentes',
+});
 
 const FaqPage = () => <Faq />;
 

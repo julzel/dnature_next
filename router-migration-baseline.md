@@ -1,4 +1,7 @@
-# Router Migration Baseline
+# Historical document — Router Migration Baseline
+
+> **Status:** Baseline captured before the completed App Router migration. It is
+> retained for history only and must not be treated as current operational docs.
 
 This record captures the verification contract for Phase 0 of the Pages Router
 to App Router migration. It is intentionally separate from

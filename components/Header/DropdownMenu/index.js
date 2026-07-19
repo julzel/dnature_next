@@ -7,18 +7,17 @@ import WhatsAppLink from "../../WhatsAppLink";
 // local imports
 import styles from "./DropdownMenu.module.scss";
 
-const DropdownMenu = ({ items, show }) => {
+const DropdownMenu = ({ items, onNavigate }) => {
   return (
-    <div
+    <nav
+      id="mobile-navigation"
       className={styles.dropdown}
-      style={{
-        transform: show ? "translateX(0)" : "translateX(-100%)",
-      }}
+      aria-label="Navegación móvil"
     >
       <ul className={styles.dropdownMenu}>
         {items.map((link, i) => (
           <li key={i} className={styles.item}>
-            <Link href={link.href}>
+            <Link href={link.href} onClick={onNavigate}>
               <span className={styles.itemLink}>
                 <span>{link.label}</span>
                 <FontAwesomeIcon icon={faChevronRight} />
@@ -29,11 +28,11 @@ const DropdownMenu = ({ items, show }) => {
         <li className={styles.item}>
           <span className={styles.itemLink}>
             <span>Contáctanos</span>
-            <WhatsAppLink phone="71848868" iconOnly />
+            <WhatsAppLink phone="71848868" iconOnly onClick={onNavigate} />
           </span>
         </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 

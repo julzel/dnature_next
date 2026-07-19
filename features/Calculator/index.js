@@ -7,7 +7,6 @@ import { useState } from 'react';
 import styles from './Calculator.module.scss';
 
 // contexts
-// import { GlobalContext } from '../../contexts/global-context'
 
 // components
 import CalculatorSteps from './CalculatorSteps';
@@ -15,21 +14,17 @@ import Drower from '../../components/Drower';
 
 const Calculator = () => {
   const [startCalculator, setStartCalculator] = useState(false);
-  // const { setDisableGlobalScroll } = useContext(GlobalContext)
-
   const handleStartClick = () => {
     setStartCalculator(true);
-    // setDisableGlobalScroll(true)
   };
 
   const handleClose = () => {
     setStartCalculator(false);
-    // setDisableGlobalScroll(false)
   };
 
   const renderIntro = () => (
     <>
-      <h2>¿Cuánto alimento le debo dar a mi mascota?</h2>
+      <h1>¿Cuánto alimento le debo dar a mi mascota?</h1>
       <p>
         Tu mascota irá teniendo diferentes necesidades nutricionales a lo largo
         de su vida. La cantidad de alimento que requiere diariamente depende de
@@ -41,7 +36,7 @@ const Calculator = () => {
         algunos datos de tu mascota.
       </p>
       <div>
-        <button onClick={handleStartClick} className={styles.actionButton}>
+        <button type="button" onClick={handleStartClick} className={styles.actionButton}>
           Empezar
         </button>
       </div>

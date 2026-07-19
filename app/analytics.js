@@ -1,23 +1,42 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
 
 const analyticsId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+const ANALYTICS_CONSENT_KEY = 'dnature-analytics-consent';
+
+const hasAnalyticsConsent = () =>
+  typeof window !== 'undefined' &&
+  window.localStorage.getItem(ANALYTICS_CONSENT_KEY) === 'granted';
 
 const Analytics = () => {
   const pathname = usePathname();
+  const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
-    if (!analyticsId || typeof window.gtag !== 'function') {
+    const updateConsent = () => setHasConsent(hasAnalyticsConsent());
+
+    updateConsent();
+    window.addEventListener('dnature-analytics-consent', updateConsent);
+    window.addEventListener('storage', updateConsent);
+
+    return () => {
+      window.removeEventListener('dnature-analytics-consent', updateConsent);
+      window.removeEventListener('storage', updateConsent);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!analyticsId || !hasConsent || typeof window.gtag !== 'function') {
       return;
     }
 
     window.gtag('config', analyticsId, { page_path: pathname });
-  }, [pathname]);
+  }, [hasConsent, pathname]);
 
-  if (!analyticsId) {
+  if (!analyticsId || !hasConsent) {
     return null;
   }
 
@@ -41,3 +60,4 @@ const Analytics = () => {
 };
 
 export default Analytics;
+export { ANALYTICS_CONSENT_KEY, hasAnalyticsConsent };

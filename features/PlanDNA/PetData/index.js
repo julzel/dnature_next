@@ -1,10 +1,10 @@
 import React from 'react';
-import Carousel from 'react-material-ui-carousel';
 import { Button, Box, Typography } from '@mui/material';
 import styles from './PetData.module.scss';
 
 // components
 import { stepsItems } from './questions';
+import { isSupportedPortionProfile, isValidPetWeight } from '../../../util/portion-size';
 
 const petDefaultInfo = {
   name: '',
@@ -36,7 +36,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
     } else if (currentStep === 2) {
       setCurrentStep(7);
     } else {
-      setCurrentStep(currentStep + 1);
+      setCurrentStep((step) => step + 1);
     }
   };
 
@@ -51,7 +51,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
       } else if (currentStep === 3 && petInfo.age === 'adult') {
         setCurrentStep(1);
       } else {
-        setCurrentStep(currentStep - 1);
+        setCurrentStep((step) => step - 1);
       }
     } else {
       startOver();
@@ -63,7 +63,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
       case 0:
         return !!petInfo.name;
       case 7:
-        return !!petInfo.weight;
+        return isValidPetWeight(petInfo.weight) && isSupportedPortionProfile(petInfo);
       default:
         return true;
     }
@@ -81,20 +81,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
         >
           Paso {currentStep + 1} de {steps.length}
         </Typography>
-        <Carousel
-          height={150}
-          animation="slide"
-          autoPlay={false}
-          indicators={false}
-          navButtonsAlwaysInvisible={true}
-          index={currentStep}
-        >
-          {steps.map((item, i) => (
-            <Box key={`item-${i}`} className={styles['step-item']}>
-              {item.component}
-            </Box>
-          ))}
-        </Carousel>
+        <Box className={styles['step-item']}>{steps[currentStep].component}</Box>
       </div>
       <div className={styles['steps-navigation']}>
         <Button onClick={onPrevStep} variant="outlined">

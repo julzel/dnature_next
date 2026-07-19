@@ -1,20 +1,42 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 
 // local imports
 // components
 import Cart from './Cart';
 
 // contexts
-import { useCartContext } from '../../contexts/shopping-cart-context';
+import { useCartContext } from './model/shopping-cart-context';
 
 // util
-import { downloadScreenShot, captureElementScreenshot } from '../../util';
+import {
+  downloadScreenShot,
+  captureElementScreenshot,
+} from './lib/purchase-image';
+
+const completePurchaseCapture = async ({
+  element,
+  capture = captureElementScreenshot,
+  download = downloadScreenShot,
+  store,
+}) => {
+  const dataUrl = await capture(element);
+
+  if (!dataUrl) {
+    throw new Error('No se pudo generar la imagen de la orden.');
+  }
+
+  download(dataUrl, 'purchase-order.png');
+
+  if (!store()) {
+    throw new Error('No se pudo guardar la orden en este dispositivo.');
+  }
+};
 
 const CartContainer = () => {
   // Shopping cart context
   const {
     cart,
-    updateCartClient,
+    finalizePurchase,
     storeCartInLocalStorage,
   } = useCartContext();
   
@@ -22,37 +44,51 @@ const CartContainer = () => {
   const [showPurchaseOrder, setShowPurchaseOrder] = useState(false);
   const [requestClientInfo, setRequestClientInfo] = useState(false);
   const [displayInfoModal, setDisplayInfoModal] = useState(false);
+  const [purchaseError, setPurchaseError] = useState('');
+  const [isCapturingPurchase, setIsCapturingPurchase] = useState(false);
   const canvasElem = useRef(null);
 
   // Generate purchase link by capturing the screenshot and downloading it
-  const generatePurchaseLink = useCallback(() => {
-    captureElementScreenshot(canvasElem.current).then((dataUrl) => {
-      downloadScreenShot(dataUrl, 'purchase-order.png');
+  const generatePurchaseLink = useCallback(async () => {
+    setPurchaseError('');
+    setIsCapturingPurchase(true);
+
+    try {
+      await completePurchaseCapture({
+        element: canvasElem.current,
+        store: storeCartInLocalStorage,
+      });
+
       setShowPurchaseOrder(false);
-    });
-  }, []);
+      setDisplayInfoModal(true);
+    } catch (error) {
+      console.error('Unable to complete purchase-order capture:', error);
+      setPurchaseError(error.message || 'No se pudo generar la orden. Intenta nuevamente.');
+    } finally {
+      setIsCapturingPurchase(false);
+    }
+  }, [storeCartInLocalStorage]);
 
   // Update cart client information and show purchase order
   const onClientInfoSubmit = (client) => {
-    updateCartClient(client);
+    finalizePurchase(client);
     setRequestClientInfo(false);
     setShowPurchaseOrder(true);
   };
 
   // Proceed to purchase, either show the purchase order or request client info
   const proceedToPurchase = () => {
+    setPurchaseError('');
+
     if (cart.client.firstName) {
+      finalizePurchase();
       setShowPurchaseOrder(true);
     } else {
       setRequestClientInfo(true);
     }
   };
 
-  const handlePurchaseConfirm = () => {
-    setDisplayInfoModal(true);
-    generatePurchaseLink();
-    storeCartInLocalStorage();
-  };
+  const handlePurchaseConfirm = () => generatePurchaseLink();
 
   const handleCloseInfoModal = () => setDisplayInfoModal(false);
 
@@ -69,8 +105,11 @@ const CartContainer = () => {
       onPurchaseConfirm={handlePurchaseConfirm}
       displayInfoModal={displayInfoModal}
       onCloseInfoModal={handleCloseInfoModal}
+      purchaseError={purchaseError}
+      isCapturingPurchase={isCapturingPurchase}
     />
   );
 };
 
 export default CartContainer;
+export { completePurchaseCapture };

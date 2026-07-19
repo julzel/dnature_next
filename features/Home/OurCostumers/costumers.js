@@ -2,7 +2,6 @@ import hirokai from '../../../public/customers/hirokai.png';
 import kaax from '../../../public/customers/Kaax.png';
 import lanaNoche from '../../../public/customers/lana_noche.png';
 import luluKisha from '../../../public/customers/lulu_kisha.png';
-// import dolcePiero from '../../../public/costumers/dolce_piero.png'
 
 const customers = [
   {
@@ -28,18 +27,6 @@ const customers = [
     quote:
       'Para mí, saber que estoy dándole a Lulú y a Kisha no solo un alimento de calidad, si no lo que ellas necesitan a nivel nutricional me da la tranquilidad que necesitaba, especialmente después de tanto tiempo de buscar sin encontrar soluciones realmente adecuadas para ellas. El interés que vi en la asesoría nutricional por el bienestar de mis perritas significó mucho y me dio la confianza para continuar adquiriendo sus productos.',
   },
-  // {
-  //     name: 'Gustavo Rojas',
-  //     socialMedia:{
-  //         user:'@dolce_y_la_manada',
-  //         link: 'https://www.instagram.com/dolce_y_la_manada/',
-  //     },
-  //     thumbnail: {
-  //         image: dolcePiero,
-  //         alt: 'Dos perros blancos con manchas oscuras posando para la cámara'
-  //     },
-  //     quote: 'DNAture ha estado con nosotros desde que yo (Dolce) tengo 2 meses de edad; de verdad llegaron a cambiarnos la vida tanto a mí  como a mi hooman. A los 2 meses de edad conocí por redes a Yuli Otoya y créanme que tanto yo como mi hooman cambiamos por completo nuestro significado de Alimentar por el significado de Nutrir. Empezamos a consumir alimentación Natural y aprender día a día de la importancia que tiene en nuestras vidas perrunas 🐶, pasé de no querer comer a comerme toda la comida con unas ganas y un placer tan grande que mi crecimiento y cambio fue espectacular, hoy en día tengo 1año y 8 meses de comer natural y mi pelaje es espectacular, me veo esbelto, musculoso y saludable y todo se lo debo a Yuli y a todas las chicas de DNAture. Mi "hermano" Piero llegó hace 5 meses a nuestras vidas, lo encontré en un saco mientras sacaba a mi hooman a caminar donde regularmente lo llevo, Piero estaba en un estado de desnutrición tremendo y tuvieron que ponerle un suero multivitamínico a la vena para que logrará sobrevivir la noche, hoy por hoy Pierín, como le decimos de cariño, ha aumentado 6 kilos y se encuentra en su peso ideal, todo hooman que lo ve se queda impresionado de los músculos que tiene, de verdad es impresionante las meras piernotas que se tiene, su semblante cambió, su ansiedad bajó, sus dientes son SÚPER blancos y tanto él como yo podemos dar fé de que estas chicas nos cambiaron la vida y le enseñaron a nuestro hooman todo lo que sabe sobre alimentación natural y les estamos 100% agradecidos.'
-  // },
   {
     name: 'Diana Murillo',
     socialMedia: {

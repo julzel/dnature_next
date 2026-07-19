@@ -1,13 +1,15 @@
 import Cart from '../../features/Cart';
+import { createPageMetadata } from '../../constants/seo';
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: 'Carrito de compras',
-  alternates: { canonical: '/cart' },
+  description: 'Revisa los productos seleccionados antes de generar tu orden.',
+  path: '/cart',
   robots: {
     index: false,
     follow: false,
   },
-};
+});
 
 const CartPage = () => <Cart />;
 

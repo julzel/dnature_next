@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, IconButton, Typography } from '@mui/material';
+import Link from 'next/link';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 import styles from './PetDataResult.module.scss';
 
-import PetCard from '../../../components/PetCard';
+import PetCard from '../PetCard';
 
 const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => {
   return (
@@ -18,17 +19,21 @@ const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => {
         </Typography>
       </Box>
       {petData.map((pet, index) => (
-        <Box mb={4} key={index}>
+        <Box mb={4} key={pet.id}>
           <PetCard colorIndex={index} petInfo={pet} editPet={onEdit} deletePet={onDeletePet} />
         </Box>
       ))}
       <IconButton
+        aria-label="Agregar otra mascota"
         color="secondary"
         className={styles['pet-data-result_add']}
         onClick={addAnotherPet}
       >
         <AddCircleRoundedIcon fontSize="large" />
       </IconButton>
+      <Button component={Link} href="/productos/" variant="contained">
+        Ver productos
+      </Button>
     </div>
   );
 };

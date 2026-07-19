@@ -15,22 +15,22 @@ const CartItemController = ({
   return (
     <div className={styles.cartItemController}>
       <div className={styles.badge}>
-        <button onClick={() => removeOneItem(item.id)}>
+        <button type="button" aria-label={`Restar una unidad de ${item.productName}`} onClick={() => removeOneItem(item.id)}>
           -
         </button>
         {item.quantity}
-        <button onClick={() => addOneItem(item)}>
+        <button type="button" aria-label={`Agregar una unidad de ${item.productName}`} onClick={() => addOneItem(item)}>
           +
         </button>
       </div>
-      <span
-        role="button"
-        tabIndex={0}
+      <button
+        type="button"
+        aria-label={`Eliminar ${item.productName} del carrito`}
         onClick={() => removeAllItemsOfAKind(item.id)}
         className={styles.delete}
       >
         <FontAwesomeIcon icon={faTrashCan} size="sm" />
-      </span>
+      </button>
     </div>
   );
 };

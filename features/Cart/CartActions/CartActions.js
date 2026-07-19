@@ -39,7 +39,10 @@ const CartActions = ({
         </Button>
       )}
       {displayRemoveAllModal && (
-        <Modal closeModal={toggleRemoveAllModal}>
+        <Modal
+          ariaLabel="Confirmar vaciado del carrito"
+          closeModal={toggleRemoveAllModal}
+        >
           <MessageBoxContainer
             type={"warning"}
             onClose={handleRemoveAllItems}

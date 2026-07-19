@@ -1,11 +1,12 @@
 import Calculator from '../../features/Calculator';
+import { createPageMetadata } from '../../constants/seo';
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: 'Calcula la porción ideal de comida para tu mascota',
   description:
     'Calcula la ración diaria de comida natural adecuada para tu mascota.',
-  alternates: { canonical: '/calculadora' },
-};
+  path: '/calculadora',
+});
 
 const CalculatorPage = () => <Calculator />;
 

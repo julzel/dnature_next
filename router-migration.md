@@ -1,4 +1,7 @@
-# Pages Router to App Router Migration Roadmap
+# Historical document — Pages Router to App Router Migration Roadmap
+
+> **Status:** Migration completed. This roadmap is retained for history only;
+> use `README.md` and `docs/operations.md` for current application guidance.
 
 ## Document status
 

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 
 // local imports
@@ -14,6 +16,13 @@ const Banner = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
+      if (
+        document.visibilityState === 'hidden' ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        return;
+      }
+
       setCurrentPhraseIndex((prevIndex) => {
         // Increment the current phrase index, wrapping around to 0 if necessary
         return (prevIndex + 1) % phrases.length;
