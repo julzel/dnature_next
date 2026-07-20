@@ -14,13 +14,14 @@ const CartPurchaseOrder = ({ onPurchaseCancel, onPurchaseConfirm, purchaseError,
       <PurchaseOrderContainer />
       <div className={styles.actions}>
         <Button
-          className={`${styles.button} ${styles.secondary}`}
+          className={styles.button}
+          variant="secondary"
           onClick={onPurchaseCancel}
           disabled={isCapturingPurchase}
         >
           Cancelar
         </Button>
-        <Button className={styles.button} onClick={onPurchaseConfirm} disabled={isCapturingPurchase}>
+        <Button className={styles.button} variant="primary" onClick={onPurchaseConfirm} disabled={isCapturingPurchase} loading={isCapturingPurchase}>
           {isCapturingPurchase ? 'Generando…' : 'Confirmar'}
         </Button>
       </div>

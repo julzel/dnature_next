@@ -13,14 +13,19 @@ const MessageBox = ({ children, type, onClose, onCancel }) => {
       <div className={styles.actions}>
         {onCancel && (
           <Button
-            className={`${styles.button} ${styles.variant}`}
+            className={styles.button}
+            variant="secondary"
             onClick={onCancel}
           >
             Cancelar
           </Button>
         )}
         {onClose && (
-          <Button className={styles.button} onClick={onClose}>
+          <Button
+            className={styles.button}
+            variant={type === 'warning' || type === 'error' ? 'danger' : 'primary'}
+            onClick={onClose}
+          >
             Ok
           </Button>
         )}

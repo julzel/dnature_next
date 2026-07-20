@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
 import heroImage from "../../../public/images/hero3_wide.jpg";
 import styles from "./Hero.module.scss";
+import Button from '../../../components/Button';
 
 const Hero = () => {
   return (
@@ -18,9 +18,9 @@ const Hero = () => {
         </p>
 
         <div className={styles.heroActionButtons}>
-          <Link href="/productos" className={styles.button}>
+          <Button href="/productos" variant="primary" size="large">
             Comprar
-          </Link>
+          </Button>
         </div>
       </div>
       <div className={styles.hero}>

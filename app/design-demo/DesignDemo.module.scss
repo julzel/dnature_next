@@ -1,0 +1,337 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.demo {
+  background:
+    radial-gradient(circle at 100% 0, rgba(93, 216, 219, 0.22), transparent 28rem),
+    $background-color;
+  color: $darkGray;
+  padding: 48px 20px 88px;
+}
+
+.hero,
+.section {
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+.hero {
+  padding: 48px 0 72px;
+
+  h1,
+  h2,
+  h3 {
+    color: $accent-color-teal;
+  }
+
+  h1 {
+    font-family: $bold2;
+    font-size: clamp(42px, 7vw, 76px);
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+    margin: 10px 0 22px;
+    max-width: 760px;
+  }
+
+  > p:not(.eyebrow) {
+    color: $davys-gray;
+    font-family: $light;
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 660px;
+  }
+}
+
+.eyebrow {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heroActions,
+.iconRow,
+.cartActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.heroActions {
+  margin-top: 32px;
+}
+
+.section {
+  border-top: 1px solid $border;
+  padding: 56px 0;
+}
+
+.sectionHeading {
+  margin-bottom: 28px;
+
+  h2 {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: clamp(30px, 4vw, 48px);
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin: 8px 0;
+  }
+
+  > p:not(.eyebrow) {
+    color: $davys-gray;
+    line-height: 1.6;
+  }
+}
+
+.buttonGrid,
+.statesGrid,
+.commerceGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.buttonGrid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.buttonExample,
+.surface,
+.productCard,
+.cartCard,
+.fieldSurface {
+  background: $white;
+  border: 1px solid $border;
+  border-radius: $br-xl;
+}
+
+.buttonExample {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 132px;
+  padding: 20px;
+
+  code {
+    color: $gray;
+    font-family: monospace;
+    font-size: 12px;
+  }
+}
+
+.statesGrid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.surface {
+  padding: 24px;
+
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+}
+
+.stack {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.commerceGrid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.productCard,
+.cartCard {
+  padding: 20px;
+}
+
+.productVisual {
+  align-items: center;
+  background: linear-gradient(145deg, rgba(93, 216, 219, 0.45), rgba(255, 163, 100, 0.35));
+  border-radius: $br-lg;
+  display: flex;
+  height: 220px;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  span {
+    color: $accessibleBlue;
+    font-family: $bold2;
+    font-size: 72px;
+    letter-spacing: -0.1em;
+  }
+}
+
+.productType {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.productCard h3,
+.cartCard h3 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: 30px;
+  line-height: 1;
+  margin: 8px 0;
+}
+
+.price {
+  color: $accessibleBlue;
+  font-family: $bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+
+  span {
+    color: $gray;
+    font-family: $regular;
+    font-size: 14px;
+  }
+}
+
+.productCard label,
+.fieldSurface label {
+  color: $davys-gray;
+  display: block;
+  font-family: $bold;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+}
+
+.productCard select,
+.fieldSurface input {
+  background: $white;
+  border: 1px solid $lightGray;
+  border-radius: $br-md;
+  color: $darkGray;
+  font: inherit;
+  margin-bottom: 18px;
+  min-height: 46px;
+  padding: 10px 12px;
+  width: 100%;
+
+  &:focus-visible {
+    border-color: $accessibleBlue;
+    outline: 3px solid rgba(93, 216, 219, 0.45);
+    outline-offset: 1px;
+  }
+}
+
+.cartHeading,
+.cartItem,
+.total {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cartHeading {
+  border-bottom: 1px solid $border;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+}
+
+.cartCount {
+  align-items: center;
+  background: $accessibleBlue;
+  border-radius: 50%;
+  color: $white;
+  display: inline-flex;
+  font-family: $bold;
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+
+.cartItem {
+  gap: 16px;
+  padding-bottom: 20px;
+
+  strong,
+  span {
+    display: block;
+  }
+
+  strong {
+    color: $accent-color-teal;
+    font-family: $bold;
+  }
+
+  > div > span {
+    color: $gray;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+}
+
+.quantity {
+  align-items: center;
+  background: $snow;
+  border: 1px solid $border;
+  border-radius: $br-full;
+  display: inline-flex;
+  gap: 8px;
+  padding: 4px;
+
+  button {
+    align-items: center;
+    background: $white;
+    border: 1px solid $border;
+    border-radius: 50%;
+    color: $accessibleBlue;
+    display: inline-flex;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+  }
+
+  > span {
+    color: $accent-color-teal;
+    font-family: $bold;
+    min-width: 16px;
+    text-align: center;
+  }
+}
+
+.total {
+  border-top: 1px solid $border;
+  font-family: $bold;
+  margin: 0 0 20px;
+  padding-top: 18px;
+
+  strong {
+    color: $accessibleBlue;
+    font-size: 20px;
+  }
+}
+
+.cartActions {
+  justify-content: flex-end;
+}
+
+.fieldSurface {
+  display: grid;
+  gap: 0;
+  margin: 0 auto;
+  max-width: 560px;
+  padding: 28px;
+}
+
+@include mdq(md) {
+  .demo {
+    padding-inline: 48px;
+  }
+}

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import styles from './Fallback.module.scss';
 import { reportClientError } from '../util/monitoring';
+import Button from '../components/Button';
 
 const Error = ({ error, reset }) => {
   useEffect(() => {
@@ -17,9 +18,9 @@ const Error = ({ error, reset }) => {
         <p className={styles.copy}>
           Inténtalo de nuevo. Si el problema continúa, vuelve más tarde.
         </p>
-        <button className={styles.button} onClick={reset} type='button'>
+        <Button onClick={reset}>
           Reintentar
-        </button>
+        </Button>
       </div>
     </div>
   );

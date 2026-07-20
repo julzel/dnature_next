@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
+import Button from '../../../components/Button'
 
 // local imports
 
@@ -99,25 +100,28 @@ const CalculatorSteps = () => {
         return (
             <div className={styles.calculatorControls}>
                 {step === 7 && (
-                    <button type="button" onClick={restart} className={styles.actionButton}>
+                    <Button variant="secondary" fullWidth onClick={restart}>
                         Calcular otra vez
-                    </button>
+                    </Button>
                 )}
                 {step === 6 && validWeight && (
-                    <button type="button" onClick={getPortionSize} className={styles.actionButton}>
+                    <Button variant="primary" fullWidth onClick={getPortionSize}>
                         Calcular
-                    </button>
+                    </Button>
                 )}
                 {step > 0 && (
-                    <button type="button" onClick={handlePrevClick} className={styles.prevButton}>
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                        <span>Anterior</span>
-                    </button>
+                    <Button
+                        variant="tertiary"
+                        iconStart={<FontAwesomeIcon icon={faChevronLeft} />}
+                        onClick={handlePrevClick}
+                    >
+                        Anterior
+                    </Button>
                 )}
                 {step < 6 && enableNext && (
-                    <button type="button" onClick={hadleNextClick}>
+                    <Button variant="primary" onClick={hadleNextClick}>
                         Siguiente
-                    </button>
+                    </Button>
                 )}
             </div>
         )

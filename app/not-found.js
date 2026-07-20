@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Button from '../components/Button';
 
 import styles from './Fallback.module.scss';
 
@@ -9,9 +9,9 @@ const NotFound = () => (
       <p className={styles.copy}>
         Lo sentimos, la página que buscas no está disponible.
       </p>
-      <Link className={styles.button} href='/'>
+      <Button href='/' variant='primary'>
         Volver al inicio
-      </Link>
+      </Button>
     </div>
   </div>
 );

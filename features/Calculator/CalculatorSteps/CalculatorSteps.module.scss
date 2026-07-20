@@ -105,40 +105,14 @@
     max-width: 375px;
   }
 
-  .prevButton {
-    color: $davys-gray;
+  .calculatorControls {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
     justify-content: center;
-    font-family: $bold2;
-    font-size: 18px;
-    margin: 0 auto;
-    max-width: 400px;
-    width: 100%;
 
-    span {
-      margin-left: 5px;
+    :global(.Button_fullWidth) {
+      max-width: 400px;
     }
-
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-
-  .actionButton {
-    border-radius: 15px;
-    border: 2px solid $accessibleOrange;
-    color: $accessibleOrange;
-    display: block;
-    font-size: 18px;
-    font-family: $bold2;
-    margin: 0 auto 20px;
-    padding: 15px;
-    width: 100%;
-    max-width: 400px;
-
-    // &:focus {
-    //     background-color: $lightOrange;
-    // }
   }
 }

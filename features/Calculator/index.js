@@ -11,6 +11,7 @@ import styles from './Calculator.module.scss';
 // components
 import CalculatorSteps from './CalculatorSteps';
 import Drower from '../../components/Drower';
+import Button from '../../components/Button';
 
 const Calculator = () => {
   const [startCalculator, setStartCalculator] = useState(false);
@@ -36,9 +37,9 @@ const Calculator = () => {
         algunos datos de tu mascota.
       </p>
       <div>
-        <button type="button" onClick={handleStartClick} className={styles.actionButton}>
+        <Button className={styles.actionButton} variant="accent" size="large" fullWidth onClick={handleStartClick}>
           Empezar
-        </button>
+        </Button>
       </div>
     </>
   );
