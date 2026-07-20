@@ -26,6 +26,38 @@ describe('keyboard-accessible controls', () => {
     expect(button).toHaveAccessibleName('Guardar cambios');
   });
 
+  it('uses link semantics for navigation CTAs and preserves disabled state', () => {
+    const { rerender } = render(
+      <Button href='/productos' variant='primary'>
+        Comprar
+      </Button>
+    );
+
+    const link = screen.getByRole('link', { name: 'Comprar' });
+    expect(link).toHaveAttribute('href', '/productos');
+
+    rerender(
+      <Button href='/productos' disabled>
+        Comprar
+      </Button>
+    );
+
+    expect(screen.getByRole('link', { name: 'Comprar' })).toHaveAttribute(
+      'aria-disabled',
+      'true'
+    );
+  });
+
+  it('keeps a named loading CTA disabled while it is busy', () => {
+    render(
+      <Button loading>Generando orden</Button>
+    );
+
+    const button = screen.getByRole('button', { name: 'Generando orden' });
+    expect(button).toBeDisabled();
+    expect(button).toHaveAttribute('aria-busy', 'true');
+  });
+
   it('supports arrow navigation and Escape in the options menu', async () => {
     const user = userEvent.setup();
     render(

@@ -21,20 +21,22 @@ const CartActions = ({
     <div className={styles.cartActions}>
       {totalItems > 0 && (
         <Button
-          className={`${styles.button} ${styles.secondary}`}
+          className={styles.button}
+          variant="danger"
           onClick={toggleRemoveAllModal}
         >
           Vaciar Carrito
         </Button>
       )}
       <Button
-        className={`${styles.button} ${styles.variant}`}
+        className={styles.button}
+        variant="tertiary"
         onClick={onBack}
       >
         Regresar
       </Button>
       {totalItems > 0 && (
-        <Button className={styles.button} onClick={() => proceedToPurchase()}>
+        <Button className={styles.button} variant="primary" onClick={() => proceedToPurchase()}>
           Continuar
         </Button>
       )}

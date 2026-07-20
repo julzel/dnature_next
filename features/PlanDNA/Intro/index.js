@@ -1,5 +1,7 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
+
+import Button from '../../../components/Button';
 
 import styles from './Intro.module.scss';
 
@@ -21,7 +23,7 @@ const Intro = ({ start }) => {
         justifyContent="center"
         className={styles.intro_actions}
       >
-        <Button disableElevation variant="contained" onClick={start}>
+        <Button variant="primary" onClick={start}>
           Comencemos
         </Button>
       </Box>

@@ -1,0 +1,138 @@
+@use '../../styles/variables' as *;
+
+.button {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: $br-full;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: $bold;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 8px;
+  justify-content: center;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  min-height: 44px;
+  padding: 11px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+
+  &:hover:not(:disabled):not([aria-disabled='true']) {
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $lightBlue;
+    outline-offset: 3px;
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.48;
+  }
+}
+
+.primary {
+  background: $accessibleBlue;
+  box-shadow: 0 6px 16px rgba(0, 110, 117, 0.22);
+  color: $white;
+
+  &:hover:not(:disabled):not([aria-disabled='true']) {
+    background: $primary-hover;
+  }
+}
+
+.secondary {
+  background: $white;
+  border-color: $accessibleBlue;
+  color: $accessibleBlue;
+
+  &:hover:not(:disabled):not([aria-disabled='true']) {
+    background: rgba(7, 187, 199, 0.1);
+  }
+}
+
+.tertiary {
+  background: transparent;
+  color: $accessibleBlue;
+  padding-inline: 8px;
+
+  &:hover:not(:disabled):not([aria-disabled='true']) {
+    background: rgba(7, 187, 199, 0.1);
+  }
+}
+
+.accent {
+  background: $accessibleOrange;
+  box-shadow: 0 6px 16px rgba(169, 71, 0, 0.2);
+  color: $white;
+
+  &:hover:not(:disabled):not([aria-disabled='true']) {
+    background: $secondary-hover;
+  }
+}
+
+.danger {
+  background: $important;
+  box-shadow: 0 6px 16px rgba(211, 63, 73, 0.18);
+  color: $white;
+
+  &:hover:not(:disabled):not([aria-disabled='true']) {
+    background: #b92c36;
+  }
+}
+
+.small {
+  font-size: 12px;
+  min-height: 36px;
+  padding: 8px 14px;
+}
+
+.medium {
+  min-height: 44px;
+}
+
+.large {
+  font-size: 16px;
+  min-height: 52px;
+  padding: 14px 26px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.iconOnly {
+  border-radius: 50%;
+  min-width: 44px;
+  padding: 0;
+  width: 44px;
+}
+
+.icon {
+  align-items: center;
+  display: inline-flex;
+}
+
+.spinner {
+  animation: spin 700ms linear infinite;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

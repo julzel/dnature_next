@@ -1,11 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
-import { Box, Button, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 import styles from './PetDataResult.module.scss';
 
 import PetCard from '../PetCard';
+import Button from '../../../components/Button';
 
 const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => {
   return (
@@ -31,7 +31,7 @@ const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => {
       >
         <AddCircleRoundedIcon fontSize="large" />
       </IconButton>
-      <Button component={Link} href="/productos/" variant="contained">
+      <Button href="/productos/" variant="primary">
         Ver productos
       </Button>
     </div>

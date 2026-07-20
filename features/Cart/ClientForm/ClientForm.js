@@ -73,7 +73,7 @@ const ClientForm = ({
             Recordar mis datos durante 30 días
           </label>
         </div>
-        <Button type="submit" disabled={!isFormValid()}>
+        <Button type="submit" variant="primary" fullWidth disabled={!isFormValid()}>
           Ok
         </Button>
       </form>

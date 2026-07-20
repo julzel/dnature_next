@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 
 import { reportClientError } from '../util/monitoring';
+import Button from '../components/Button';
 
 const GlobalError = ({ error, reset }) => {
   useEffect(() => {
@@ -15,9 +16,9 @@ const GlobalError = ({ error, reset }) => {
         <main>
           <h1>Ocurrió un error inesperado</h1>
           <p>Inténtalo de nuevo. Si el problema continúa, vuelve más tarde.</p>
-          <button onClick={reset} type='button'>
+          <Button onClick={reset}>
             Reintentar
-          </button>
+          </Button>
         </main>
       </body>
     </html>

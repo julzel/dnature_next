@@ -13,9 +13,12 @@
   }
 
   .button {
-    @include button-styles(
-      $font-family: $regular,
-      $width: calc((100% / 3) - 16px),
-    );
+    margin-bottom: 16px;
+    width: 100%;
+
+    @include mdq(md) {
+      margin-bottom: 0;
+      width: calc((100% / 3) - 16px);
+    }
   }
 }

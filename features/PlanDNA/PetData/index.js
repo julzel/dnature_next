@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import styles from './PetData.module.scss';
+import Button from '../../../components/Button';
 
 // components
 import { stepsItems } from './questions';
@@ -84,14 +85,13 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
         <Box className={styles['step-item']}>{steps[currentStep].component}</Box>
       </div>
       <div className={styles['steps-navigation']}>
-        <Button onClick={onPrevStep} variant="outlined">
+        <Button onClick={onPrevStep} variant="secondary">
           Anterior
         </Button>
         <Button
           onClick={onNextStep}
           disabled={!isStepComplete()}
-          variant="contained"
-          disableElevation
+          variant="primary"
         >
           Siguiente
         </Button>

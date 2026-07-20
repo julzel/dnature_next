@@ -30,23 +30,8 @@
     }
 
     .actionButton {
-        cursor: pointer;
-        border-radius: 1000px;
-        border: 2px solid $accessibleOrange;
-        color: $accessibleOrange;
-        display: block;
-        font-size: 18px;
-        font-family: $bold2;
         margin: 0 auto 20px;
-        padding: 15px 20px;
-        width: 100%;
         max-width: 400px;
-        transition: all 200ms ease-out;
-
-        &:hover {
-            background-color: $accessibleOrange;
-            color: $white;
-        }
     }
 
     .backgroundFilter {
