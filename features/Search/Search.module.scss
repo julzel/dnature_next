@@ -1,0 +1,199 @@
+@use '../../styles/variables' as *;
+
+.searchShell {
+  position: relative;
+  width: 100%;
+}
+
+.searchField {
+  align-items: center;
+  background: $snow;
+  border: 1px solid rgba($accent-color-teal, 0.16);
+  border-radius: $br-full;
+  display: flex;
+  height: 44px;
+  min-width: 0;
+  padding: 0 6px 0 16px;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+
+  &:focus-within {
+    background: $white;
+    border-color: $accessibleBlue;
+    box-shadow: 0 0 0 4px rgba($lightBlue, 0.24);
+  }
+
+  input {
+    background: transparent;
+    border: 0;
+    color: $accent-color-teal;
+    flex: 1;
+    font-family: $regular;
+    font-size: 13px;
+    height: 100%;
+    min-width: 0;
+    outline: 0;
+    padding: 0 11px;
+
+    &::placeholder {
+      color: $gray;
+      opacity: 1;
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+}
+
+.searchIcon {
+  color: $accessibleBlue;
+  flex: 0 0 auto;
+  font-size: 14px;
+}
+
+.clearButton {
+  align-items: center;
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 34px;
+  justify-content: center;
+  transition: background-color 180ms ease;
+  width: 34px;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba($lightBlue, 0.24);
+  }
+}
+
+.resultsPanel {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.14);
+  border-radius: $br-xxxl;
+  box-shadow: 0 20px 48px rgba($accent-color-teal, 0.18);
+  left: 0;
+  margin-top: 8px;
+  max-height: min(420px, calc(100dvh - 176px));
+  overflow-y: auto;
+  position: absolute;
+  right: 0;
+  z-index: 40;
+}
+
+.resultsHeader {
+  align-items: center;
+  color: $gray;
+  display: flex;
+  font-family: $regular;
+  font-size: 10px;
+  justify-content: space-between;
+  letter-spacing: 0.08em;
+  padding: 14px 16px 8px;
+  text-transform: uppercase;
+}
+
+.resultsList {
+  padding: 0 6px 6px;
+}
+
+.resultItem {
+  border-radius: $br-xl;
+
+  &[aria-selected='true'] {
+    background: rgba($lightBlue, 0.14);
+  }
+}
+
+.resultLink {
+  align-items: center;
+  border-radius: inherit;
+  display: flex;
+  gap: 12px;
+  min-height: 64px;
+  padding: 8px 10px;
+  transition: background-color 160ms ease;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba($lightBlue, 0.14);
+  }
+}
+
+.thumbnail {
+  align-items: center;
+  background: $snow;
+  border-radius: $br-lg;
+  display: inline-flex;
+  flex: 0 0 48px;
+  height: 48px;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.thumbnailFallback {
+  color: $accessibleBlue;
+  font-family: $bold;
+  font-size: 18px;
+}
+
+.resultCopy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+
+  strong {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 13px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  small {
+    color: $gray;
+    font-family: $regular;
+    font-size: 10px;
+    margin-top: 2px;
+  }
+}
+
+.status {
+  align-items: center;
+  color: $davys-gray;
+  display: flex;
+  font-family: $regular;
+  font-size: 12px;
+  gap: 9px;
+  line-height: 1.5;
+  min-height: 68px;
+  padding: 16px 18px;
+}
+
+.spinner {
+  animation: spin 700ms linear infinite;
+  border: 2px solid rgba($accessibleBlue, 0.2);
+  border-radius: 50%;
+  border-top-color: $accessibleBlue;
+  height: 16px;
+  width: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

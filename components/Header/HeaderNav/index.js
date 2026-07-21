@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // styles
 import styles from './HeaderNav.module.scss';
 
-import HeaderSearch from '../HeaderSearch';
+import Search from '../../../features/Search';
 
 const HeaderNav = ({ mobileNavigation }) => {
   return (
@@ -33,7 +33,7 @@ const HeaderNav = ({ mobileNavigation }) => {
         <span>Productos</span>
       </Link>
       <div className={styles.desktopSearch}>
-        <HeaderSearch id='desktop-header-search' />
+        <Search id='desktop-header-search' />
       </div>
     </div>
   );
