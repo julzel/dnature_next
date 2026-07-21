@@ -1,17 +1,11 @@
 // Import statements
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Box } from '@mui/material';
 import {
   ShoppingCartItem,
   useCartContext,
 } from '../../Cart/state'; // Feature API
 import styles from './CatalogItem.module.scss'; // Styles
-import QuickAdd from '../QuickAdd'; // Components
-import PresentationSelector, {
-  getDefaultPresentation,
-} from '../PresentationSelector'; // Components
 import CurrencyText from '../../../components/Currency';
 import { getProductPath } from '../lib/product-url';
 
@@ -24,44 +18,30 @@ const CatalogItem = ({ product }) => {
     productName,
     urlSlug,
     medida,
+    category,
   } = product;
   const hasPriceByUnit = !!preciosPorUnidad;
-  const [selectedPresentation, setSelectedPresentation] = useState(() =>
-    getDefaultPresentation(preciosPorUnidad, productName)
-  );
-  const { addOneItem, removeOneItem, getItemsInCart } = useCartContext();
+  const { addOneItem, getItemsInCart } = useCartContext();
   const itemImage = images[0];
-
-  const handlePresentationSelect = (selected) => {
-    setSelectedPresentation(selected); // Now expects the whole selected object
-  };
+  const presentationPrices = Object.values(preciosPorUnidad || {})
+    .map(Number)
+    .filter(Number.isFinite);
+  const lowestPresentationPrice = presentationPrices.length
+    ? Math.min(...presentationPrices)
+    : null;
+  const displayPrice =
+    hasPriceByUnit && lowestPresentationPrice !== null
+      ? lowestPresentationPrice
+      : precio;
 
   const addItemToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
     const newItem = new ShoppingCartItem(id, 1, precio, productName, null);
-    if (hasPriceByUnit && selectedPresentation) {
-      newItem.price = parseFloat(selectedPresentation.price);
-      newItem.id = `${id}-${selectedPresentation.size}`;
-      newItem.productName = `${productName} ${selectedPresentation.size}`;
-    }
     addOneItem(newItem);
   };
 
-  const removeOneItemFromCart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (hasPriceByUnit && selectedPresentation) {
-      removeOneItem(`${id}-${selectedPresentation.size}`);
-    } else {
-      removeOneItem(id);
-    }
-  };
-
-  const itemsInCart =
-    hasPriceByUnit && selectedPresentation
-      ? getItemsInCart(`${id}-${selectedPresentation.size}`)
-      : getItemsInCart(id);
+  const itemsInCart = getItemsInCart(id);
 
   const productPath = getProductPath(urlSlug);
 
@@ -71,7 +51,7 @@ const CatalogItem = ({ product }) => {
 
   return (
     <article className={styles.catalogItem}>
-      <Link href={productPath} className={styles.productLink} aria-label={`Ver ${productName}`}>
+      <Link href={productPath} className={styles.imageLink} aria-label={`Ver ${productName}`}>
         {itemImage && (
           <span className={styles.catalogItemImages}>
             <Image
@@ -80,45 +60,38 @@ const CatalogItem = ({ product }) => {
               width={100}
               height={100}
               sizes='(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw'
-              style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </span>
         )}
-        <span className={styles.catalogItemDetails}>
-          <h3>{productName}</h3>
-          {hasPriceByUnit ? (
-            <p>
-              {selectedPresentation ? (
-                <CurrencyText value={selectedPresentation.price} />
-              ) : (
-                ''
-              )}{' '}
-              {selectedPresentation && (
-                <span> | {selectedPresentation.size}</span>
-              )}
-            </p>
-          ) : (
-            <p>
-              <CurrencyText value={precio} />{' '}
-              {medida && <span> | {medida}</span>}
-            </p>
-          )}
-        </span>
       </Link>
-      {hasPriceByUnit && (
-        <Box my={2} width='100%'>
-          <PresentationSelector
-            presentations={preciosPorUnidad}
-            selectedPresentation={selectedPresentation}
-            onPresentationSelect={handlePresentationSelect}
-          />
-        </Box>
-      )}
-      <QuickAdd
-        removeOneItemFromCart={removeOneItemFromCart}
-        addItemToCart={addItemToCart}
-        itemsInCart={itemsInCart}
-      />
+      <div className={styles.catalogItemDetails}>
+        <p className={styles.category}>{category}</p>
+        <Link href={productPath} className={styles.productName}>
+          {productName}
+        </Link>
+        <p className={styles.price}>
+          {hasPriceByUnit && lowestPresentationPrice !== null ? 'Desde ' : ''}
+          <CurrencyText value={displayPrice} />
+        </p>
+        <p className={styles.presentation}>
+          {hasPriceByUnit ? 'Elige una presentación' : medida || 'Presentación disponible'}
+        </p>
+        <div className={styles.cardFooter}>
+          {hasPriceByUnit ? (
+            <Link href={productPath} className={styles.optionsLink}>
+              Ver opciones
+            </Link>
+          ) : (
+            <button type='button' className={styles.addButton} onClick={addItemToCart}>
+              Agregar
+            </button>
+          )}
+          {itemsInCart > 0 && (
+            <span className={styles.inCart}>{itemsInCart} en carrito</span>
+          )}
+        </div>
+      </div>
     </article>
   );
 };

@@ -37,7 +37,10 @@ test('home → catalogue → product → cart → checkout', async ({ page }) =>
 test('category query filters the catalogue', async ({ page }) => {
   await page.goto('/productos?category=recetas');
 
-  await expect(page.getByRole('heading', { name: 'Recetas completas' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Nuestros productos' })).toBeVisible();
+  await expect(
+    page.getByRole('link', { name: 'Recetas completas', exact: true })
+  ).toHaveAttribute('aria-current', 'page');
   await expect(page.getByText('Receta de prueba')).toBeVisible();
   await expect(page.getByText('Snack de prueba')).toHaveCount(0);
 });

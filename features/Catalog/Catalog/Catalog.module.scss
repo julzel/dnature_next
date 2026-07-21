@@ -1,40 +1,53 @@
-@use "../../../styles/_variables" as *;
-@use "../../../styles/mixins" as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 .catalog {
-  width: 100%;
-  max-width: 600px;
   margin: 0 auto;
-  padding: 32px 16px;
-  position: relative;
+  max-width: 1280px;
+  padding: 32px 0 64px;
+  width: 100%;
 
   @include mdq(lg) {
-    display: flex;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 64px 32px;
+    padding-block: 56px 80px;
   }
+}
+
+.pageHeader {
+  padding: 0 16px 24px;
+
+  h1 {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: clamp(30px, 5vw, 48px);
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  @include mdq(md) {
+    padding-inline: 24px;
+  }
+}
+
+.eyebrow {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.resultCount {
+  color: $davys-gray;
+  font-family: $regular;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .catalogContent {
-  width: 100%;
+  padding: 24px 16px 0;
 
-  @include mdq(lg) {
-    border-left: 1px solid $border;
-    flex: 1;
-    margin-left: 40px;
-    padding: 7px 40px 40px;
-  }
-}
-
-.searchWrapper {
-  margin-bottom: 24px;
-}
-
-.category {
-  margin-bottom: 40px;
-
-  &:last-child {
-    margin-bottom: 0;
+  @include mdq(md) {
+    padding-inline: 24px;
   }
 }

@@ -88,6 +88,24 @@ The search icon communicates the field purpose. The trailing control appears
 only when text is present and clears the query; filtering controls should not be
 shown until real filter behavior exists.
 
+## Product catalogue
+
+The `/productos` page is for category discovery and comparison. Header search
+handles direct product lookup, so the catalogue does not repeat a search field.
+
+- The page has a concise title and immediately reports the current result count.
+- Categories are URL-backed single-select chips. The rail scrolls horizontally
+  on narrow screens and stays below the fixed header while the catalogue scrolls.
+- The product grid uses one column on very narrow screens, two columns from
+  400px, three from 768px, and four from 1024px. It is capped at 1280px with
+  16px mobile and 24px desktop gaps.
+- Cards use a 4:3 product image, a 16px rounded outline, no default shadow, and
+  a hover-only image zoom on pointer devices.
+- Card order is category, name, price, presentation, then action. Image and
+  name link to the detail page; the purchase action remains separate.
+- A simple product exposes `Agregar`; one with presentation-based pricing uses
+  `Ver opciones` so the customer chooses a size before adding it.
+
 ## Next additions
 
 - color and typography tokens;
