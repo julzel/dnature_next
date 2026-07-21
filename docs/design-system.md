@@ -67,11 +67,26 @@ the same visual weight:
 3. On desktop, low-frequency navigation moves into a quiet 46px row. On mobile,
    it moves into a drawer while search gets its own full-width row.
 
-The header remains approximately 158px tall in both modes, uses 44px minimum
-targets, keeps visible focus states, and avoids promotional imagery or runtime
-dependencies. Search, account, favorites, and enhanced menu behavior are visual
-placeholders until their feature slices are implemented. Account and favorites
-are intentionally hidden until those features exist.
+The fixed header is 158px tall on mobile/tablet and 142px on desktop, uses 44px
+minimum targets, keeps visible focus states, and avoids promotional imagery.
+Account and favorites are intentionally hidden until those features exist.
+
+### Site search
+
+Header search currently returns products and uses a typed result contract so
+FAQ and article providers can be added later. Search behavior follows these
+rules:
+
+- wait for at least two characters and debounce requests;
+- show at most six concise results with one lightweight thumbnail each;
+- support pointer use plus Arrow Up, Arrow Down, Enter, and Escape;
+- expose loading, empty, and recoverable error states without shifting layout;
+- clear stale requests when the query changes;
+- navigate directly to a result instead of adding an unnecessary results page.
+
+The search icon communicates the field purpose. The trailing control appears
+only when text is present and clears the query; filtering controls should not be
+shown until real filter behavior exists.
 
 ## Next additions
 

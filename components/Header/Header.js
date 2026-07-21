@@ -8,9 +8,9 @@ import styles from './Header.module.scss';
 
 // components
 import HeaderNav from './HeaderNav';
-import HeaderSearch from './HeaderSearch';
 import NavigationBar from './HeaderNav/NavigationBar';
 import SubHeader from './SubHeader';
+import Search from '../../features/Search';
 
 const Header = ({ navigationItems, mobileNavigation }) => (
   <header className={styles.header}>
@@ -36,7 +36,7 @@ const Header = ({ navigationItems, mobileNavigation }) => (
     </div>
 
     <div className={styles.mobileSearch}>
-      <HeaderSearch id='mobile-header-search' />
+      <Search id='mobile-header-search' />
     </div>
 
     <div className={styles.navigationBar}>
