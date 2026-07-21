@@ -14,6 +14,10 @@ const DropdownMenu = ({ items, onNavigate }) => {
       className={styles.dropdown}
       aria-label="Navegación móvil"
     >
+      <div className={styles.dropdownHeader}>
+        <p>Explora DNAture</p>
+        <h2>¿Qué estás buscando?</h2>
+      </div>
       <ul className={styles.dropdownMenu}>
         {items.map((link, i) => (
           <li key={i} className={styles.item}>
@@ -26,12 +30,18 @@ const DropdownMenu = ({ items, onNavigate }) => {
           </li>
         ))}
         <li className={styles.item}>
-          <span className={styles.itemLink}>
-            <span>Contáctanos</span>
-            <WhatsAppLink phone="71848868" iconOnly onClick={onNavigate} />
-          </span>
+          <WhatsAppLink
+            phone="50671848868"
+            display="Ayuda por WhatsApp"
+            withIcon
+            className={styles.supportLink}
+            onClick={onNavigate}
+          />
         </li>
       </ul>
+      <p className={styles.dropdownFooter}>
+        Comida real para una vida más natural.
+      </p>
     </nav>
   );
 };

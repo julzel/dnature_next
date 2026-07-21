@@ -1,19 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { faGrip } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // local imports
 
 // styles
 import styles from './HeaderNav.module.scss';
 
-import NavigationBar from './NavigationBar';
+import HeaderSearch from '../HeaderSearch';
 
-const HeaderNav = ({ navigationItems, mobileNavigation }) => {
+const HeaderNav = ({ mobileNavigation }) => {
   return (
     <div className={styles.headerNav}>
+      <div className={styles.mobileNavigation}>{mobileNavigation}</div>
       <div className={styles.logoContainer}>
-        <Link href={'/'}>
+        <Link href={'/'} aria-label='Ir al inicio'>
           <span className={styles.logo}>
             <Image
               src='/images/dnature-logo.svg'
@@ -25,9 +28,12 @@ const HeaderNav = ({ navigationItems, mobileNavigation }) => {
           </span>
         </Link>
       </div>
-      <div className={styles.mobileNavigation}>{mobileNavigation}</div>
-      <div className={styles.desktopNavigation}>
-        <NavigationBar items={navigationItems} />
+      <Link href='/productos' className={styles.catalogLink}>
+        <FontAwesomeIcon icon={faGrip} />
+        <span>Productos</span>
+      </Link>
+      <div className={styles.desktopSearch}>
+        <HeaderSearch id='desktop-header-search' />
       </div>
     </div>
   );

@@ -1,51 +1,98 @@
-@use "../../../styles/variables" as *;
-@use "../../../styles/mixins" as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 .headerNav {
-  background-color: $white;
-  box-shadow: -1px 1px 5px -1px rgba(21, 21, 21, 0.125);
-  height: $headerHeight;
-  transition: all 200ms linear;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 16px 0 4px;
-  position: relative;
-  z-index: 1;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+  position: static;
+}
 
-  .mobileNavigation {
-    display: inline-flex;
+.mobileNavigation {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.logoContainer {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  a,
+  .logo {
     align-items: center;
-    justify-content: center;
+    display: flex;
   }
 
-  .desktopNavigation {
+  .logo {
+    width: 58px;
+
+    img {
+      display: block;
+      height: auto;
+      object-fit: contain;
+      transform: none;
+      width: 100%;
+    }
+  }
+}
+
+.catalogLink,
+.desktopSearch {
+  display: none;
+}
+
+@include mdq(lg) {
+  .headerNav {
+    gap: clamp(12px, 2vw, 28px);
+    position: relative;
+  }
+
+  .mobileNavigation {
     display: none;
   }
 
-  @include mdq(md) {
-    .mobileNavigation {
-      display: none;
-    }
-
-    .desktopNavigation {
-      display: block;
-    }
-  }
-
   .logoContainer {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    flex: 0 0 70px;
+    left: auto;
     position: relative;
+    top: auto;
+    transform: none;
 
     .logo {
-      display: block;
-      width: 75px;
-      display: flex;
-      transform: translateY(5px);
+      width: 64px;
     }
   }
+
+  .catalogLink {
+    align-items: center;
+    border: 1px solid rgba($accent-color-teal, 0.2);
+    border-radius: $br-full;
+    color: $accent-color-teal;
+    display: inline-flex;
+    font-family: $bold;
+    font-size: 12px;
+    gap: 9px;
+    height: 44px;
+    padding: 0 16px;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease;
+
+    &:hover {
+      background: rgba($lightBlue, 0.14);
+      border-color: $accessibleBlue;
+    }
+  }
+
+  .desktopSearch {
+    display: flex;
+    flex: 1;
+    max-width: 650px;
+  }
+
 }

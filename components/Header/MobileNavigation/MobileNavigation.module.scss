@@ -1,7 +1,29 @@
+@use '../../../styles/variables' as *;
+
 .menuButton {
-  display: inline-flex;
   align-items: center;
+  border: 1px solid rgba($accent-color-teal, 0.16);
+  border-radius: 50%;
+  color: $accent-color-teal;
+  display: inline-flex;
+  font-size: 16px;
+  height: 44px;
   justify-content: center;
   min-width: 44px;
-  min-height: 44px;
+  position: relative;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+  z-index: 32;
+
+  &:hover,
+  &[aria-expanded='true'] {
+    background: rgba($lightBlue, 0.18);
+    border-color: $accessibleBlue;
+  }
+
+  &[aria-expanded='true'] {
+    transform: rotate(90deg);
+  }
 }

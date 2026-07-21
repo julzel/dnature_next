@@ -51,4 +51,5 @@ module.exports = {
     // Disable image optimization to avoid _ipx errors with external images
     unoptimized: true,
   },
+  allowedDevOrigins: ['192.168.100.13'],
 };

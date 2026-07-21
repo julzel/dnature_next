@@ -15,7 +15,7 @@ const Footer = () => {
             src='/images/dnature-logo.svg'
             alt='DNAture Logo'
             width={55}
-            height={43}
+            height={42}
             loading='eager'
           />
         </span>
