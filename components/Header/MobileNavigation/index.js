@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import DropdownMenu from '../DropdownMenu';
@@ -43,7 +43,7 @@ const MobileNavigation = ({ items }) => {
         aria-controls="mobile-navigation"
         aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
       >
-        <FontAwesomeIcon icon={faBars} size="lg" />
+        <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
       </button>
     </>
   );

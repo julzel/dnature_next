@@ -1,0 +1,67 @@
+@use '../../styles/variables' as *;
+
+.search {
+  align-items: center;
+  background: $snow;
+  border: 1px solid rgba($accent-color-teal, 0.16);
+  border-radius: $br-full;
+  display: flex;
+  height: 44px;
+  min-width: 0;
+  padding: 0 6px 0 16px;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+  width: 100%;
+
+  &:focus-within {
+    background: $white;
+    border-color: $accessibleBlue;
+    box-shadow: 0 0 0 4px rgba($lightBlue, 0.24);
+  }
+
+  .searchIcon {
+    color: $accessibleBlue;
+    flex: 0 0 auto;
+    font-size: 14px;
+  }
+
+  input {
+    background: transparent;
+    border: 0;
+    color: $accent-color-teal;
+    flex: 1;
+    font-family: $regular;
+    font-size: 13px;
+    height: 100%;
+    min-width: 0;
+    outline: 0;
+    padding: 0 11px;
+
+    &::placeholder {
+      color: $gray;
+      opacity: 1;
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+
+  button {
+    align-items: center;
+    border-radius: 50%;
+    color: $accessibleBlue;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 34px;
+    justify-content: center;
+    transition: background-color 180ms ease;
+    width: 34px;
+
+    &:hover {
+      background: rgba($lightBlue, 0.24);
+    }
+  }
+}

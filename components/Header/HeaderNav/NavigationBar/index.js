@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import WhatsAppLink from '../../../WhatsAppLink';
 
 // styles
 import styles from './NavigationBar.module.scss';
@@ -13,21 +12,21 @@ const NavigationBar = ({ items }) => {
   const activePathname = pathname || '';
 
   return (
-    <nav className={styles.navbar}>
+    <nav className={styles.navbar} aria-label='Navegación principal'>
       {items.map((link, i) => (
-        <Link href={link.href} key={i}>
-          <span
-            className={`${styles.navbarItem} ${styles.dark} ${
-              activePathname === link.href ? styles.active : ''
-            }`}
-          >
-            {link.label}
-          </span>
+        <Link
+          href={link.href}
+          key={i}
+          className={`${styles.navbarItem} ${
+            activePathname === link.href ||
+            (link.href !== '/' && activePathname.startsWith(`${link.href}/`))
+              ? styles.active
+              : ''
+          }`}
+        >
+          {link.label}
         </Link>
       ))}
-      <span className={`${styles.navbarItem} ${styles.dark}`}>
-        <WhatsAppLink phone='71848868' iconOnly />
-      </span>
     </nav>
   );
 };

@@ -54,6 +54,25 @@ They represent selection, navigation within a widget, or a compact utility
 control—not a call to action. They still need visible focus, a 44px target where
 practical, and an accessible name when their icon has no text.
 
+## Ecommerce header
+
+The header uses a restrained commerce hierarchy rather than giving every link
+the same visual weight:
+
+1. The 30px announcement bar carries one delivery promise, one trust signal,
+   and a support link.
+2. The main row prioritizes brand, product entry, search, and cart—in that
+   order. Search owns the flexible space and the cart uses the strongest
+   utility treatment. Account and favorites remain reserved for a future phase.
+3. On desktop, low-frequency navigation moves into a quiet 46px row. On mobile,
+   it moves into a drawer while search gets its own full-width row.
+
+The header remains approximately 158px tall in both modes, uses 44px minimum
+targets, keeps visible focus states, and avoids promotional imagery or runtime
+dependencies. Search, account, favorites, and enhanced menu behavior are visual
+placeholders until their feature slices are implemented. Account and favorites
+are intentionally hidden until those features exist.
+
 ## Next additions
 
 - color and typography tokens;
