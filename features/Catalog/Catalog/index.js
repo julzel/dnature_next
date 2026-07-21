@@ -1,19 +1,17 @@
 'use client';
 
-import { useMemo, useState } from "react";
+import { useMemo } from 'react';
 
 // local imports
 // components
 import Catalog from "./Catalog";
 
 const defaultCategory = {
-  label: "Todos los productos",
-  id: "all",
+  label: 'Todos los productos',
+  id: 'all',
 };
 
 const CatalogContainer = ({ queryCategory, products }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
   const categoriesList = useMemo(
     () => Object.values(products || {}).sort((a, b) => a.index - b.index),
     [products]
@@ -35,36 +33,25 @@ const CatalogContainer = ({ queryCategory, products }) => {
     return categoriesList.find((category) => category.id === queryCategory) || defaultCategory;
   }, [categoriesList, queryCategory]);
 
-  const allProducts = useMemo(() => {
-    return Object.values(products || {}).reduce((acc, category) => {
-      if (category?.products?.length) {
-        return acc.concat(category.products);
-      }
-      return acc;
-    }, []);
-  }, [products]);
+  const allProducts = useMemo(
+    () => categoriesList.flatMap((category) => category.products || []),
+    [categoriesList]
+  );
 
-  const suggestions = useMemo(() => {
-    const trimmedQuery = searchQuery.trim().toLowerCase();
-    if (!trimmedQuery) {
-      return [];
+  const visibleProducts = useMemo(() => {
+    if (selectedCategory.id === defaultCategory.id) {
+      return allProducts;
     }
 
-    return allProducts
-      .filter((product) =>
-        product.productName.toLowerCase().includes(trimmedQuery)
-      )
-      .slice(0, 8);
-  }, [allProducts, searchQuery]);
+    return selectedCategory.products || [];
+  }, [allProducts, selectedCategory]);
 
   return (
     <Catalog
       filterOptions={filterOptions}
       selectedCategory={selectedCategory}
-      categoriesList={categoriesList}
-      searchQuery={searchQuery}
-      onSearchChange={setSearchQuery}
-      suggestions={suggestions}
+      products={visibleProducts}
+      totalCount={visibleProducts.length}
     />
   );
 };

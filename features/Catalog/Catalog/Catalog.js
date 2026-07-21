@@ -1,60 +1,29 @@
 // local imports
 // components
-import Filter from "../Filter";
-import CatalogTitle from "../CatalogTitle";
-import CatalogList from "../CatalogList";
-import SearchBar from "../SearchBar";
+import Filter from '../Filter';
+import CatalogList from '../CatalogList';
 
 // styles
 import styles from "./Catalog.module.scss";
 
 const Catalog = ({
-  categoriesList,
   selectedCategory,
   filterOptions,
-  searchQuery,
-  onSearchChange,
-  suggestions,
+  products,
+  totalCount,
 }) => (
   <section className={styles.catalog}>
-    {selectedCategory && (
-      <>
-        <Filter options={filterOptions} selected={selectedCategory} />
-        <div className={styles.catalogContent}>
-          <div className={styles.searchWrapper}>
-            <SearchBar
-              query={searchQuery}
-              onChange={onSearchChange}
-              suggestions={suggestions}
-            />
-          </div>
-          {selectedCategory.id === "all" ? (
-            <div>
-              {categoriesList.map((category) => {
-                return (
-                  <div
-                    className={styles.category}
-                    key={category.id || category.label}
-                  >
-                    <CatalogTitle text={category.label} />
-                    {categoriesList && (
-                      <CatalogList products={category.products} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className={styles.category}>
-              <CatalogTitle text={selectedCategory.label} />
-              {selectedCategory.id && (
-                <CatalogList products={selectedCategory.products} />
-              )}
-            </div>
-          )}
-        </div>
-      </>
-    )}
+    <div className={styles.pageHeader}>
+      <p className={styles.eyebrow}>{selectedCategory.label}</p>
+      <h1>Nuestros productos</h1>
+      <p className={styles.resultCount} aria-live='polite'>
+        {totalCount} {totalCount === 1 ? 'producto' : 'productos'}
+      </p>
+    </div>
+    <Filter options={filterOptions} selected={selectedCategory} />
+    <div className={styles.catalogContent}>
+      <CatalogList products={products} />
+    </div>
   </section>
 );
 

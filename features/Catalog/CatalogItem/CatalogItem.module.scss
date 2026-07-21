@@ -1,62 +1,153 @@
-@use "../../../styles/_variables" as *;
-@use "../../../styles/_mixins" as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 .catalogItem {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.13);
+  border-radius: $br-xxxl;
   display: flex;
-  flex-flow: column;
-  padding-right: 16px;
-}
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 
-.productLink {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      border-color: rgba($accessibleBlue, 0.45);
+      box-shadow: 0 12px 28px rgba($accent-color-teal, 0.08);
 
-  @include mdq("md") {
-    flex-direction: column;
+      .catalogItemImages img {
+        transform: scale(1.035);
+      }
+    }
   }
 }
 
-.catalogItemImages {
-  width: 150px;
-  flex-shrink: 0;
+.imageLink {
+  background: $snow;
+  display: block;
+  overflow: hidden;
+}
 
-  @include mdq("md") {
+.catalogItemImages {
+  aspect-ratio: 4 / 3;
+  display: block;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 240ms ease;
     width: 100%;
-    padding: 8px 42px;
   }
 }
 
 .catalogItemDetails {
-  flex-grow: 1;
-  text-align: right;
-  padding-left: 16px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 14px 14px 16px;
 
-  @include mdq("md") {
-    text-align: center;
+  @include mdq(lg) {
+    padding: 16px;
   }
+}
 
-  h3 {
-    color: $black;
-    font-family: $bold2;
-    font-size: 12px;
-    letter-spacing: 1px;
-    padding-top: 4px;
-    text-transform: uppercase;
-    margin-bottom: 5px;
+.category {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.productName {
+  color: $accent-color-teal;
+  display: -webkit-box;
+  font-family: $bold;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  &:hover,
+  &:focus-visible {
+    color: $accessibleBlue;
   }
+}
 
-  p {
+.price {
+  color: $accent-color-teal;
+  font-family: $bold;
+  font-size: 15px;
+  margin-top: 12px;
+}
 
-    span {
-      font-family: $bold;
-    }
+.presentation {
+  color: $davys-gray;
+  font-family: $regular;
+  font-size: 11px;
+  margin-top: 3px;
+  min-height: 16px;
+}
 
-    span:last-child {
-      font-family: $regular;
-      font-size: 14px;
-    }
+.cardFooter {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.addButton,
+.optionsLink {
+  align-items: center;
+  border-radius: $br-full;
+  display: inline-flex;
+  font-family: $bold;
+  font-size: 12px;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 14px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+  width: 100%;
+}
+
+.addButton {
+  background: $accessibleBlue;
+  color: $white;
+
+  &:hover,
+  &:focus-visible {
+    background: $accent-color-teal;
   }
+}
+
+.optionsLink {
+  background: $white;
+  border: 1px solid rgba($accessibleBlue, 0.4);
+  color: $accessibleBlue;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba($lightBlue, 0.14);
+    border-color: $accessibleBlue;
+  }
+}
+
+.inCart {
+  color: $gray;
+  display: block;
+  font-family: $regular;
+  font-size: 10px;
+  margin-top: 8px;
+  text-align: center;
 }
