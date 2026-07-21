@@ -106,6 +106,25 @@ handles direct product lookup, so the catalogue does not repeat a search field.
 - A simple product exposes `Agregar`; one with presentation-based pricing uses
   `Ver opciones` so the customer chooses a size before adding it.
 
+## Product detail
+
+Product detail pages prioritize evaluation and a clear purchase decision:
+
+- Breadcrumbs lead back to the catalogue without adding a separate back-control.
+- The gallery uses a 4:3 neutral surface and takes 55% of the desktop layout;
+  product information uses the remaining 45%.
+- Product information follows category, name, price/presentation, quantity, and
+  purchase action. Quantity is chosen locally and only affects the cart after
+  the explicit add action.
+- Mobile keeps the purchase action in a safe-area-aware sticky bottom bar while
+  desktop keeps it beside the gallery.
+- Description and ingredients remain expanded, vertically stacked sections.
+  Benefit icons are capped at four and must represent real product attributes.
+- Missing imagery gets a branded placeholder. A product with
+  `availability: 'unavailable'` remains viewable and shows a clear unavailable
+  state instead of an active purchase control.
+- Loading uses a layout-matched skeleton rather than a full-page spinner.
+
 ## Next additions
 
 - color and typography tokens;

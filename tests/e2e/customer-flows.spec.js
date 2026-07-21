@@ -9,8 +9,8 @@ test('home → catalogue → product → cart → checkout', async ({ page }) =>
   await expect(page).toHaveURL(/\/productos\/receta-de-prueba\/?$/);
   await expect(page.getByRole('heading', { name: 'Receta de prueba' })).toBeVisible();
 
-  await page.getByRole('button', { name: 'Agregar una unidad' }).click();
-  await page.getByRole('link', { name: 'Ver Carrito (1)', exact: true }).click();
+  await page.getByRole('button', { name: 'Agregar al carrito' }).click();
+  await page.getByRole('link', { name: 'Abrir carrito: 1 producto' }).click();
   await expect(page.getByRole('heading', { name: /Tu Carrito/ })).toBeVisible();
 
   await page.getByRole('button', { name: 'Continuar' }).click();
@@ -43,6 +43,19 @@ test('category query filters the catalogue', async ({ page }) => {
   ).toHaveAttribute('aria-current', 'page');
   await expect(page.getByText('Receta de prueba')).toBeVisible();
   await expect(page.getByText('Snack de prueba')).toHaveCount(0);
+});
+
+test('mobile product purchase keeps quantity and add controls available', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/productos/receta-de-prueba');
+
+  await page.getByRole('button', { name: 'Aumentar cantidad' }).click();
+  await expect(page.getByText('2', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Agregar', exact: true }).click();
+
+  await expect(
+    page.getByRole('link', { name: 'Abrir carrito: 2 productos' })
+  ).toBeVisible();
 });
 
 test('calculator produces a supported adult result', async ({ page }) => {

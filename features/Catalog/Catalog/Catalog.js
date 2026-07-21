@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 // local imports
 // components
 import Filter from '../Filter';
@@ -22,7 +24,14 @@ const Catalog = ({
     </div>
     <Filter options={filterOptions} selected={selectedCategory} />
     <div className={styles.catalogContent}>
-      <CatalogList products={products} />
+      {products.length ? (
+        <CatalogList products={products} />
+      ) : (
+        <div className={styles.emptyState}>
+          <h2>No encontramos productos en esta categoría.</h2>
+          <Link href='/productos'>Ver todos los productos</Link>
+        </div>
+      )}
     </div>
   </section>
 );

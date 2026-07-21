@@ -1,14 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
 
-const GoBack = ({ className }) => {
+const GoBack = ({ className, productName }) => {
   return (
-    <Link className={className} href="/productos">
-      <FontAwesomeIcon icon={faCircleLeft} size="1x" />
-      &nbsp; Volver
-    </Link>
+    <nav className={className} aria-label='Migas de pan'>
+      <Link href='/productos'>Productos</Link>
+      <span aria-hidden='true'>/</span>
+      <span aria-current='page'>{productName}</span>
+    </nav>
   );
 };
 

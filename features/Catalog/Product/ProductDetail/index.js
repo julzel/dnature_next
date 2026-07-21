@@ -1,45 +1,44 @@
-import React from 'react';
 import Image from 'next/image';
 
-// local imports
-// styles
 import styles from './ProductDetail.module.scss';
 
-const ProductDetail = ({ productDetail }) => (
-  <div className={styles.productDetail}>
-    {productDetail.description && (
-      <div>
-        <h2>Información</h2>
-        <div className={styles.description} style={{ whiteSpace: 'pre-line' }}>
-          {productDetail.description}
-        </div>
-      </div>
-    )}
-    {productDetail.ingredientes && (
-      <div className={styles.productDetailIngredients}>
-        <h2>Ingredientes</h2>
-        <p className={styles.ingredients}>
-          {productDetail.ingredientes}
-        </p>
-        {productDetail.iconos && (
-          <div className={styles.icons}>
-            {productDetail.iconos.map((icono, j) => (
-              <div className={styles.icon} key={j}>
+const ProductDetail = ({ productDetail }) => {
+  const benefitIcons = (productDetail.iconos || []).slice(0, 4);
+
+  return (
+    <div className={styles.productDetail}>
+      {productDetail.description && (
+        <section className={styles.detailSection} aria-labelledby='description-title'>
+          <h2 id='description-title'>Descripción</h2>
+          <p className={styles.description}>{productDetail.description}</p>
+        </section>
+      )}
+      {productDetail.ingredientes && (
+        <section className={styles.detailSection} aria-labelledby='ingredients-title'>
+          <h2 id='ingredients-title'>Ingredientes</h2>
+          <p className={styles.ingredients}>{productDetail.ingredientes}</p>
+        </section>
+      )}
+      {benefitIcons.length > 0 && (
+        <section className={styles.benefits} aria-label='Beneficios del producto'>
+          {benefitIcons.map((icon, index) => (
+            <div className={styles.benefit} key={`${icon.url}-${index}`}>
+              <span className={styles.icon}>
                 <Image
-                  src={icono.url}
-                  alt={icono.title}
-                  width={48}
-                  height={48}
-                  sizes='48px'
-                  className={styles.iconImage}
+                  src={icon.url}
+                  alt=''
+                  width={40}
+                  height={40}
+                  sizes='40px'
                 />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    )}
-  </div>
-);
+              </span>
+              <span>{icon.title}</span>
+            </div>
+          ))}
+        </section>
+      )}
+    </div>
+  );
+};
 
 export default ProductDetail;

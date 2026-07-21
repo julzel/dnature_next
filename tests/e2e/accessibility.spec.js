@@ -82,8 +82,8 @@ test('@a11y checkout modal is named and restores focus on Escape', async ({
   page,
 }) => {
   await page.goto('/productos/receta-de-prueba');
-  await page.getByRole('button', { name: 'Agregar una unidad' }).click();
-  await page.getByRole('link', { name: 'Ver Carrito (1)', exact: true }).click();
+  await page.getByRole('button', { name: 'Agregar al carrito' }).click();
+  await page.getByRole('link', { name: 'Abrir carrito: 1 producto' }).click();
 
   const continueButton = page.getByRole('button', { name: 'Continuar' });
   await continueButton.focus();

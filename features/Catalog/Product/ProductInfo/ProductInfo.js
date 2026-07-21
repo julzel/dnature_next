@@ -1,20 +1,15 @@
-import Link from 'next/link';
-import { Box } from '@mui/material';
+import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Slider from 'react-slick';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// local imports
-// styles
 import styles from './ProductInfo.module.scss';
-import QuickAdd from '../../QuickAdd';
 import CurrencyText from '../../../../components/Currency';
-
-// components
-import PresentationSelector from '../../PresentationSelector'; // Components
+import PresentationSelector from '../../PresentationSelector';
 
 const ProductInfo = ({
   productDetail,
@@ -22,92 +17,128 @@ const ProductInfo = ({
   selectedPresentation,
   handlePresentationSelect,
   onAddToCart,
-  onRemoveOneItem,
   cartTotalItems,
   itemsInCart,
 }) => {
+  const [quantity, setQuantity] = useState(1);
+  const images = productDetail.images || [];
+  const isUnavailable = productDetail.availability === 'unavailable';
+  const displayedPrice = hasPriceByUnit
+    ? selectedPresentation?.price
+    : productDetail.precio;
+  const displayedMeasure = hasPriceByUnit
+    ? selectedPresentation?.size
+    : productDetail.medida;
   const sliderSettings = {
-    dots: productDetail.images.length > 1, // Shows dot indicators at the bottom
-    infinite: true, // Infinite looping
-    speed: 500, // Animation speed
-    slidesToShow: 1, // Number of slides to show at a time
-    slidesToScroll: 1, // Number of slides to scroll
-    initialSlide: 0, // Initial slide index
-    swipeToSlide: true, // Allows slides to be dragged
-    adaptiveHeight: true, // Adjusts height to the current slide
-    arrows: productDetail.images.length > 1, // Enables navigation arrows
+    adaptiveHeight: false,
+    arrows: images.length > 1,
+    dots: images.length > 1,
+    infinite: images.length > 1,
+    slidesToScroll: 1,
+    slidesToShow: 1,
+    speed: 320,
+    swipeToSlide: true,
   };
+
+  const addToCart = () => onAddToCart(quantity);
+
   return (
-  <>
     <div className={styles.productInfo}>
-      <div className={styles.images}>
-        <Slider {...sliderSettings}>
-          {productDetail.images?.map((img, i) => (
-            <div key={i}>
-              <Image
-                src={img.url}
-                alt={img.title}
-                width={100}
-                height={100}
-                loading={i === 0 ? 'eager' : 'lazy'}
-                sizes='(min-width: 900px) 50vw, 100vw'
-                style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
-              />
-            </div>
-          ))}
-        </Slider>
+      <div className={styles.gallery}>
+        {images.length ? (
+          <Slider {...sliderSettings}>
+            {images.map((image, index) => (
+              <div key={`${image.url}-${index}`} className={styles.slide}>
+                <Image
+                  src={image.url}
+                  alt={image.title || productDetail.productName}
+                  width={900}
+                  height={675}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  sizes='(min-width: 1024px) 52vw, 100vw'
+                />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className={styles.imageFallback} role='img' aria-label='Imagen no disponible'>
+            <span>DN</span>
+            <p>Imagen próximamente</p>
+          </div>
+        )}
       </div>
+
       <div className={styles.info}>
-        <div>
-          <h1>{productDetail.productName}</h1>
-          {hasPriceByUnit ? (
-            <p className={styles.price}>
-              {selectedPresentation ? <CurrencyText value={selectedPresentation.price} /> : ''}{' '}
-              {selectedPresentation && (
-                <span className={styles.small}>
-                  {' '}
-                  | {selectedPresentation.size}
-                </span>
-              )}
-            </p>
-          ) : (
-            <p className={styles.price}>
-              <CurrencyText value={productDetail.precio} />{' '}
-              <span className={styles.small}>| {productDetail.medida}</span>
-            </p>
+        <div className={styles.infoHeader}>
+          {productDetail.category && (
+            <p className={styles.category}>{productDetail.category}</p>
           )}
+          <h1>{productDetail.productName}</h1>
+          <p className={styles.price}>
+            <CurrencyText value={displayedPrice} />
+            {displayedMeasure && <span>/ {displayedMeasure}</span>}
+          </p>
         </div>
+
         {hasPriceByUnit && (
-          <Box my={4} width='100%'>
+          <div className={styles.presentation}>
             <PresentationSelector
               presentations={productDetail.preciosPorUnidad}
               selectedPresentation={selectedPresentation}
               onPresentationSelect={handlePresentationSelect}
             />
-          </Box>
+          </div>
         )}
-        <Box display='flex' flexDirection='column' alignItems={['center', 'flex-end']}>
-          <Box pt={2} mb={4} sx={{ transform: 'scale(1.25)' }}>
-            <QuickAdd
-              itemsInCart={itemsInCart}
-              removeOneItemFromCart={() =>
-                onRemoveOneItem(productDetail.sys.id)
-              }
-              addItemToCart={onAddToCart}
-            />
-          </Box>
 
-          {cartTotalItems > 0 && (
-            <Link href={'/cart'}>
-              Ver Carrito
-              <FontAwesomeIcon icon={faCartShopping} />
-              <span>({cartTotalItems})</span>
-            </Link>
-          )}
-        </Box>
+        <div className={styles.quantity}>
+          <span id='quantity-label'>Cantidad</span>
+          <div role='group' aria-labelledby='quantity-label'>
+            <button
+              type='button'
+              aria-label='Reducir cantidad'
+              disabled={quantity === 1}
+              onClick={() => setQuantity((current) => Math.max(1, current - 1))}
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
+            <output aria-live='polite'>{quantity}</output>
+            <button
+              type='button'
+              aria-label='Aumentar cantidad'
+              onClick={() => setQuantity((current) => current + 1)}
+            >
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          </div>
+        </div>
+
+        {isUnavailable ? (
+          <p className={styles.unavailable}>Temporalmente agotado</p>
+        ) : (
+          <>
+            <div className={styles.desktopPurchase}>
+              <button type='button' className={styles.addButton} onClick={addToCart}>
+                Agregar al carrito
+              </button>
+              {itemsInCart > 0 && <p>{itemsInCart} en tu carrito</p>}
+              {cartTotalItems > 0 && (
+                <Link href='/cart'>Ver carrito ({cartTotalItems})</Link>
+              )}
+            </div>
+            <div className={styles.mobilePurchase}>
+              <p>
+                <CurrencyText value={displayedPrice} />
+                {displayedMeasure && <span>/ {displayedMeasure}</span>}
+              </p>
+              <button type='button' onClick={addToCart}>
+                Agregar
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
-  </>
-)};
+  );
+};
 
 export default ProductInfo;

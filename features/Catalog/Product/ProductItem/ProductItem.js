@@ -9,7 +9,7 @@ import ProductDetail from '../ProductDetail';
 
 const ProductItem = ({ productDetail }) => (
   <section className={styles.product}>
-    <GoBack className={styles.backLink} />
+    <GoBack className={styles.backLink} productName={productDetail.productName} />
     <ProductInfoContainer productDetail={productDetail} />
     <ProductDetail productDetail={productDetail} />
   </section>
