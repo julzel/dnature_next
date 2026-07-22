@@ -1,0 +1,16 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.separator {
+  background: $accessibleBlue;
+  border-radius: $br-full;
+  height: 5px;
+  margin: 28px 0 30px;
+  width: 104px;
+
+  @include mdq(md) {
+    height: 6px;
+    margin-block: 34px;
+    width: 160px;
+  }
+}

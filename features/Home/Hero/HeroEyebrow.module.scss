@@ -1,0 +1,49 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.heroEyebrow {
+  align-items: center;
+  background: rgba($white, 0.35);
+  // border: 1px solid rgba($white, 0.72);
+  border-radius: $br-full;
+  box-shadow: 0 8px 24px rgba($accent-color-teal, 0.06);
+  color: $accessibleBlue;
+  display: inline-flex;
+  font-family: $light;
+  font-size: 10px;
+  font-weight: 700;
+  gap: 10px;
+  letter-spacing: 0.11em;
+  line-height: 1.35;
+  margin-bottom: 16px;
+  max-width: 100%;
+  padding: 10px 18px 10px 54px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  width: fit-content;
+
+  @include mdq(md) {
+    font-size: 13px;
+    margin-bottom: 28px;
+    padding: 14px 22px 14px 62px;
+    white-space: nowrap;
+  }
+}
+
+.iconContainer {
+  align-items: center;
+  background: $white;
+  border-radius: 50%;
+  display: inline-flex;
+  inset-block: 0;
+  inset-inline-start: 0;
+  justify-content: center;
+  position: absolute;
+  aspect-ratio: 1;
+}
+
+.icon {
+  height: 18px;
+  width: 18px;
+}

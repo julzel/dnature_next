@@ -2,17 +2,21 @@
 @use '../../styles/mixins' as *;
 
 .layout {
+  --site-header-height: 158px;
+
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   min-height: 100vh;
   background-color: $white;
   // Mobile header: announcement (30px) + commerce row (66px) + search row (62px).
-  padding-top: 158px;
+  padding-top: var(--site-header-height);
 
   @include mdq(lg) {
+    --site-header-height: 142px;
+
     // Desktop header: announcement (30px) + commerce row (66px) + navigation (46px).
-    padding-top: 142px;
+    padding-top: var(--site-header-height);
   }
 
   header {
