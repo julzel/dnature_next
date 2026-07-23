@@ -1,22 +1,22 @@
-import { FlaskConical, Heart, Leaf, Soup } from "lucide-react";
+import { FlaskConical, Heart, Leaf, Beef } from "lucide-react";
 
 import styles from "./HeroBenefits.module.scss";
 
 const benefits = [
   {
-    icon: Soup,
+    icon: Beef,
     title: "Ingredientes",
     description: "100% naturales",
   },
   {
     icon: Leaf,
-    title: "Sin granos",
-    description: "ni rellenos",
+    title: "Ni preservantes",
+    description: "ni colorantes",
   },
   {
     icon: FlaskConical,
-    title: "Sin colorantes",
-    description: "ni conservantes",
+    title: "Balanceadas",
+    description: "personalizadas",
   },
   {
     icon: Heart,

@@ -166,8 +166,8 @@ concrete product attributes rather than broad promotional claims.
 The proposed items are:
 
 - Ingredientes — 100% naturales;
-- Sin granos — ni rellenos;
-- Sin colorantes — ni conservantes;
+- Ni preservantes — ni colorantes;
+- Balanceadas — personalizadas;
 - Hecho con amor — para tu mascota.
 
 HeroBenefits provides the shared white surface, border radius, separators,
