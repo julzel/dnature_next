@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="600" height="600" viewBox="0 0 600 600"
+     role="img" aria-labelledby="badge-title badge-description">
+  <title id="badge-title">Nutrición Real — Para Su Bienestar</title>
+  <desc id="badge-description">White circular badge with teal curved lettering, two separator dots, and a centered two-leaf symbol.</desc>
+
+  <!-- White badge field; everything outside the circle remains transparent. -->
+  <circle cx="300" cy="300" r="290" fill="#ffffff"/>
+
+  <g fill="#087f7c">
+    <!-- Each glyph remains editable vector text and is positioned tangentially
+         for broad compatibility across browsers, design tools, and renderers. -->
+    <g aria-label="NUTRICIÓN REAL"
+       font-family="Montserrat, Avenir Next, Avenir, Futura, Arial, sans-serif"
+       font-size="36" font-weight="700" text-anchor="middle">
+      <text x="121.1" y="188.2" transform="rotate(-58 121.1 188.2)">N</text>
+      <text x="140.6" y="161.8" transform="rotate(-49.1 140.6 161.8)">U</text>
+      <text x="163.9" y="138.7" transform="rotate(-40.2 163.9 138.7)">T</text>
+      <text x="190.6" y="119.6" transform="rotate(-31.2 190.6 119.6)">R</text>
+      <text x="219.9" y="104.8" transform="rotate(-22.3 219.9 104.8)">I</text>
+      <text x="251.2" y="94.7" transform="rotate(-13.4 251.2 94.7)">C</text>
+      <text x="283.6" y="89.6" transform="rotate(-4.5 283.6 89.6)">I</text>
+      <text x="316.4" y="89.6" transform="rotate(4.5 316.4 89.6)">Ó</text>
+      <text x="348.8" y="94.7" transform="rotate(13.4 348.8 94.7)">N</text>
+      <text x="409.4" y="119.6" transform="rotate(31.2 409.4 119.6)">R</text>
+      <text x="436.1" y="138.7" transform="rotate(40.2 436.1 138.7)">E</text>
+      <text x="459.4" y="161.8" transform="rotate(49.1 459.4 161.8)">A</text>
+      <text x="478.9" y="188.2" transform="rotate(58 478.9 188.2)">L</text>
+    </g>
+
+    <g aria-label="PARA SU BIENESTAR"
+       font-family="Montserrat, Avenir Next, Avenir, Futura, Arial, sans-serif"
+       font-size="32" font-weight="700" text-anchor="middle">
+      <text x="117.3" y="405.5" transform="rotate(60 117.3 405.5)">P</text>
+      <text x="132.6" y="428.4" transform="rotate(52.5 132.6 428.4)">A</text>
+      <text x="150.8" y="449.2" transform="rotate(45 150.8 449.2)">R</text>
+      <text x="171.6" y="467.4" transform="rotate(37.5 171.6 467.4)">A</text>
+      <text x="219.3" y="494.9" transform="rotate(22.5 219.3 494.9)">S</text>
+      <text x="245.4" y="503.8" transform="rotate(15 245.4 503.8)">U</text>
+      <text x="300" y="511" transform="rotate(0 300 511)">B</text>
+      <text x="327.5" y="509.2" transform="rotate(-7.5 327.5 509.2)">I</text>
+      <text x="354.6" y="503.8" transform="rotate(-15 354.6 503.8)">E</text>
+      <text x="380.7" y="494.9" transform="rotate(-22.5 380.7 494.9)">N</text>
+      <text x="405.5" y="482.7" transform="rotate(-30 405.5 482.7)">E</text>
+      <text x="428.4" y="467.4" transform="rotate(-37.5 428.4 467.4)">S</text>
+      <text x="449.2" y="449.2" transform="rotate(-45 449.2 449.2)">T</text>
+      <text x="467.4" y="428.4" transform="rotate(-52.5 467.4 428.4)">A</text>
+      <text x="482.7" y="405.5" transform="rotate(-60 482.7 405.5)">R</text>
+    </g>
+
+    <!-- Side separators. -->
+    <circle cx="91" cy="311" r="6.5"/>
+    <circle cx="509" cy="311" r="6.5"/>
+
+    <!-- Two-leaf symbol. -->
+    <g transform="translate(300 307)">
+      <path d="M -7 25
+               C -43 22 -70 -1 -75 -40
+               C -37 -43 -8 -21 -7 25 Z"/>
+      <path d="M 7 25
+               C 43 22 70 -1 75 -40
+               C 37 -43 8 -21 7 25 Z"/>
+      <path d="M 0 49 C -1 22 -22 -5 -52 -25"
+            fill="none" stroke="#087f7c" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 0 49 C 1 22 22 -5 52 -25"
+            fill="none" stroke="#087f7c" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 0 49 L 0 66"
+            fill="none" stroke="#087f7c" stroke-width="10" stroke-linecap="round"/>
+      <!-- Fine white veins add definition while remaining pure vector paths. -->
+      <path d="M -6 21 C -22 2 -38 -11 -56 -25"
+            fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 6 21 C 22 2 38 -11 56 -25"
+            fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
