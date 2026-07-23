@@ -1,23 +1,36 @@
 
 import styles from "./Hero.module.scss";
-import HeroCta from './HeroCta';
-import HeroEyebrow from "./HeroEyebrow";
-import HeroTitle from "./HeroTitle";
-import HeroSeparator from "./HeroSeparator";
-import HeroParagraph from "./HeroParagraph";
+import HeroCta from './components/HeroCta';
+import HeroEyebrow from "./components/HeroEyebrow";
+import HeroTitle from "./components/HeroTitle";
+import HeroSeparator from "./components/HeroSeparator";
+import HeroParagraph from "./components/HeroParagraph";
+import HeroBadge from "./components/HeroBadge";
+import HeroImage from './components/HeroImage';
+import HeroBenefits from "./components/HeroBenefits";
 
 const Hero = () => {
   return (
-    <div className={styles.heroContainer}>
-      <div className={styles.heroSectionA}>
-        <HeroEyebrow />
-        <HeroTitle />
-        <HeroSeparator />
-        <HeroParagraph />
-        <HeroCta />
+    <section className={styles.hero}>
+      <div className={styles.heroContainer}>
+        <div className={styles.heroSectionA}>
+          <HeroEyebrow />
+          <HeroTitle />
+          <HeroSeparator />
+          <HeroParagraph />
+          <HeroCta />
+        </div>
+        <div className={styles.heroSectionB}>
+          <HeroImage />
+          <div className={styles.heroBadge}>
+            <HeroBadge />
+          </div>
+        </div>
       </div>
-      <div className={styles.heroSectionB}></div>
-    </div>
+      <div className={styles.heroBenefits}>
+        <HeroBenefits />
+      </div>
+    </section>
   );
 };
 

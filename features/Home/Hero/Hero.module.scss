@@ -1,12 +1,21 @@
 @use "../../../styles/_variables" as *;
 @use "../../../styles/mixins" as *;
 
-.heroContainer {
+.hero {
+  --hero-mobile-cta-overlap: 14.5px;
+
+  background-color: #FFFDF5;
   display: flex;
-  background-color: #F9F2EC;
-  flex-flow: column;
+  flex-direction: column;
   min-height: calc(100vh - var(--site-header-height, 158px));
   min-height: calc(100dvh - var(--site-header-height, 158px));
+}
+
+.heroContainer {
+  display: flex;
+  flex: 1;
+  flex-flow: column;
+  min-height: 0;
 
   @include mdq(md) {
     flex-flow: row;
@@ -16,11 +25,62 @@
 .heroSectionA {
   display: flex;
   flex-flow: column;
-  padding: 1rem;
+  padding: 1rem 1rem 0;
 
   @include mdq(md) {
     width: 50%;
     padding: 4rem;
     align-items: flex-start;
+  }
+}
+
+.heroSectionB {
+  aspect-ratio: 1;
+  background-color: #FFFDF5;
+  margin-top: calc(-1 * var(--hero-mobile-cta-overlap));
+  min-height: 320px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  @include mdq(md) {
+    aspect-ratio: auto;
+    margin-top: 0;
+    min-height: 100%;
+    width: 50%;
+  }
+}
+
+.heroBadge {
+  left: 32px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-75%);
+  width: clamp(96px, 25vw, 180px);
+  z-index: 1;
+
+  @include mdq(md) {
+    bottom: 20px;
+    left: auto;
+    right: 20px;
+    top: auto;
+    transform: none;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.heroBenefits {
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+
+  @include mdq(md) {
+    margin-top: -2rem;
+    padding: 0 clamp(2rem, 5vw, 5rem) 1.5rem;
   }
 }
