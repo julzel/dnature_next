@@ -37,3 +37,8 @@ Product JSON-LD is intentionally deferred. The current schema does not have
 approved availability, currency, SKU/GTIN, and return-policy fields needed for
 reliable merchant-rich-result data. Add those fields and an owner-approved data
 contract before enabling Product/Offer structured data.
+
+## Avify mapping
+
+Use the [Contentful–Avify SKU migration runbook](contentful-avify-sku-migration.md)
+for the staging-first schema migration and approved product data backfill.

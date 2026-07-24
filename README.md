@@ -102,6 +102,7 @@ The native `/sitemap.xml` route includes normalized catalogue product URLs, whil
 - [Operations runbook](docs/operations.md)
 - [Browser storage and privacy policy](docs/privacy.md)
 - [Contentful schema and slug governance](docs/contentful-governance.md)
+- [Contentful–Avify SKU migration](docs/contentful-avify-sku-migration.md)
 - [First continuous performance review](phase-7-performance-review.md)
 - [Optimization roadmap](project-optimization-roadmap.md)
 
