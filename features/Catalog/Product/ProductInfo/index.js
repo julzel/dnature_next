@@ -9,7 +9,7 @@ import {
 import { getDefaultPresentation } from '../../PresentationSelector';
 
 const ProductInfoContainer = ({ productDetail }) => {
-  const { cart, addOneItem, removeOneItem, getItemsInCart } = useCartContext();
+  const { cart, addItems, getItemsInCart } = useCartContext();
   const hasPriceByUnit = !!productDetail.preciosPorUnidad;
   const [selectedPresentation, setSelectedPresentation] = useState(() =>
     getDefaultPresentation(productDetail.preciosPorUnidad, productDetail.productName)
@@ -19,10 +19,10 @@ const ProductInfoContainer = ({ productDetail }) => {
     setSelectedPresentation(selected); // Now expects the whole selected object
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (quantity) => {
     const newItem = new ShoppingCartItem(
       productDetail.sys.id,
-      1,
+      quantity,
       productDetail.precio,
       productDetail.productName,
       null
@@ -32,16 +32,8 @@ const ProductInfoContainer = ({ productDetail }) => {
       newItem.id = `${productDetail.sys.id}-${selectedPresentation.size}`;
       newItem.productName = `${productDetail.productName} ${selectedPresentation.size}`;
     }
-    addOneItem(newItem);
+    addItems(newItem);
   };
-
-  const handleRemoveOneItem = () => {
-    if (hasPriceByUnit && selectedPresentation) {
-      removeOneItem(`${productDetail.sys.id}-${selectedPresentation.size}`);
-    } else {
-      removeOneItem(productDetail.sys.id);
-    }
-  }
 
   const itemsInCart =
     hasPriceByUnit && selectedPresentation
@@ -55,7 +47,6 @@ const ProductInfoContainer = ({ productDetail }) => {
       selectedPresentation={selectedPresentation}
       handlePresentationSelect={handlePresentationSelect}
       onAddToCart={handleAddToCart}
-      onRemoveOneItem={handleRemoveOneItem}
       cartTotalItems={cart.totalItems}
       itemsInCart={itemsInCart}
     />

@@ -1,0 +1,92 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+@mixin skeleton {
+  animation: pulse 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, $snow 25%, #f9f7f7 50%, $snow 75%);
+  background-size: 200% 100%;
+  border-radius: $br-lg;
+}
+
+.loading {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 24px 16px 80px;
+}
+
+.breadcrumb {
+  @include skeleton;
+  height: 16px;
+  margin-bottom: 24px;
+  width: 180px;
+}
+
+.productLayout {
+  display: grid;
+  gap: 24px;
+
+  @include mdq(lg) {
+    gap: clamp(32px, 4vw, 64px);
+    grid-template-columns: minmax(0, 55fr) minmax(320px, 45fr);
+  }
+}
+
+.image {
+  @include skeleton;
+  aspect-ratio: 4 / 3;
+  border-radius: $br-xxxl;
+}
+
+.info {
+  padding-top: 12px;
+}
+
+.category,
+.title,
+.price,
+.quantity,
+.button,
+.detail {
+  @include skeleton;
+}
+
+.category {
+  height: 12px;
+  width: 100px;
+}
+
+.title {
+  height: 42px;
+  margin-top: 14px;
+  width: 78%;
+}
+
+.price {
+  height: 26px;
+  margin-top: 20px;
+  width: 38%;
+}
+
+.quantity {
+  height: 46px;
+  margin-top: 32px;
+  width: 136px;
+}
+
+.button {
+  height: 52px;
+  margin-top: 28px;
+  width: 100%;
+}
+
+.detail {
+  height: 120px;
+  margin-top: 48px;
+  max-width: 760px;
+}
+
+@keyframes pulse {
+  to {
+    background-position: -200% 0;
+  }
+}

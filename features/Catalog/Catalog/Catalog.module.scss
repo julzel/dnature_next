@@ -51,3 +51,28 @@
     padding-inline: 24px;
   }
 }
+
+.emptyState {
+  background: $snow;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xxxl;
+  padding: 40px 24px;
+  text-align: center;
+
+  h2 {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: 20px;
+    letter-spacing: -0.03em;
+  }
+
+  a {
+    color: $accessibleBlue;
+    display: inline-flex;
+    font-family: $bold;
+    font-size: 13px;
+    margin-top: 16px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}

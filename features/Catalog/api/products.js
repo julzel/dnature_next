@@ -62,6 +62,7 @@ const productBySlugQuery = `
         urlSlug
         description
         category
+        categorySlug
         medida
         precio
         preciosPorUnidad
@@ -97,6 +98,14 @@ const formatProduct = (product) => {
   return {
     ...product,
     urlSlug: normalizedSlug,
+    categoryInfo: product.category
+      ? {
+          key: product.categorySlug || null,
+          label: product.category,
+        }
+      : null,
+    currency: 'CRC',
+    availability: product.availability || 'available',
     images: product.imageCollection?.items || [],
     iconos: product.iconosCollection?.items || [],
   };

@@ -1,74 +1,76 @@
-@use '../../../../styles/variables.scss' as *;
-@use '../../../../styles/mixins.scss' as *;
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
 
 .productDetail {
-  border-top: 1px solid $border;
-  padding: 20px 0;
+  margin-top: 36px;
+  max-width: 760px;
 
   @include mdq(lg) {
-    display: flex;
-    justify-content: space-between;
-
-    > div {
-      width: 45%;
-    }
-  }
-  h2 {
-    color: $black;
-    font-family: $cursiveTitle;
-    font-size: 20px;
-    line-height: 20px;
-    margin-bottom: 16px;
-  }
-
-  .description {
-    color: $black;
-    font-size: 16px;
-    margin-bottom: 16px;
-    > div {
-      padding-left: 20px;
-      margin-right: 64px;
-      position: relative;
-      margin-bottom: 32px;
-      span {
-        position: absolute;
-        display: inline-block;
-        right: 0;
-        font-size: 14px;
-      }
-    }
-    @include mdq(lg) {
-      font-size: 16px;
-    }
-  }
-
-  &Ingredients {
-    color: $black;
-  }
-
-  p {
-    margin-bottom: 20px;
+    margin-top: 64px;
   }
 }
 
-.icons {
+.detailSection {
+  border-top: 1px solid rgba($accent-color-teal, 0.13);
+  padding: 24px 0;
+
+  &:last-of-type {
+    border-bottom: 1px solid rgba($accent-color-teal, 0.13);
+  }
+
+  h2 {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: 21px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+}
+
+.description,
+.ingredients {
+  color: $davys-gray;
+  font-family: $regular;
+  font-size: 15px;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.benefits {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  padding-bottom: 10px;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.benefit {
+  align-items: center;
+  background: $snow;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-full;
+  color: $accent-color-teal;
+  display: inline-flex;
+  font-family: $regular;
+  font-size: 12px;
+  gap: 8px;
+  min-height: 48px;
+  padding: 4px 14px 4px 5px;
 }
 
 .icon {
-  flex: 0 0 48px;
-  height: 48px;
+  align-items: center;
+  background: $white;
   border-radius: 50%;
+  display: inline-flex;
+  flex: 0 0 38px;
+  height: 38px;
+  justify-content: center;
   overflow: hidden;
-}
 
-.iconImage {
-  display: block;
-  width: 48px;
-  height: 48px;
-  border-radius: inherit;
-  object-fit: contain;
+  img {
+    height: 30px;
+    object-fit: contain;
+    width: 30px;
+  }
 }
