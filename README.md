@@ -39,10 +39,22 @@ NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=
 NEXT_PUBLIC_GOOGLE_ANALYTICS=
 ```
 
-`CONTENTFUL_DELIVERY_API_KEY` and monitoring credentials are server-only: never
-give them a `NEXT_PUBLIC_` prefix. Analytics requires an external consent manager
+Optional server-only Avify integration:
+
+```text
+AVIFY_API_KEY=
+AVIFY_GRAPHQL_URL=https://api.avify.com/graphql
+```
+
+`AVIFY_API_KEY`, `CONTENTFUL_DELIVERY_API_KEY`, and monitoring credentials are
+server-only: never give them a `NEXT_PUBLIC_` prefix. The Avify URL defaults to
+the production GraphQL endpoint. Analytics requires an external consent manager
 to grant `dnature-analytics-consent`; setting a measurement ID alone does not
 load analytics.
+
+During local development, `/avify-test/` runs an uncached Avify GraphQL product
+query that verifies authentication and displays safe product summaries. The
+route returns a 404 in production.
 
 See [operations documentation](docs/operations.md) for deployment, Maps,
 monitoring, security-header, and dependency-maintenance requirements.

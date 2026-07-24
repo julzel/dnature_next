@@ -12,6 +12,7 @@
 
 # next.js
 /.next/
+/.next-audit/
 /.next-e2e/
 /.next-baseline/
 /performance-current.json

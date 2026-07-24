@@ -13,6 +13,8 @@ must update this runbook when integrations change.
 | --- | --- | --- |
 | `CONTENTFUL_SPACE_ID` | server only | Contentful space identifier |
 | `CONTENTFUL_DELIVERY_API_KEY` | server only | Contentful delivery token |
+| `AVIFY_API_KEY` | server only | Avify API credential used by the server-only integration service |
+| `AVIFY_GRAPHQL_URL` | server only | Optional Avify GraphQL endpoint override; defaults to `https://api.avify.com/graphql` |
 | `NEXT_PUBLIC_SITE_URL` | public | Canonical production origin; defaults to `https://dnaturefood.com` |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | public | Browser Maps key |
 | `NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID` | public | Maps style identifier |
@@ -20,7 +22,13 @@ must update this runbook when integrations change.
 | `MONITORING_INGEST_URL` | server only | Approved monitoring endpoint |
 | `MONITORING_INGEST_TOKEN` | server only | Optional bearer token for that endpoint |
 
-Do not use a `NEXT_PUBLIC_` prefix for Contentful or monitoring credentials.
+Do not use a `NEXT_PUBLIC_` prefix for Contentful, Avify, or monitoring
+credentials. Keep Avify endpoint overrides server-side.
+
+The `/avify-test/` diagnostic route is development-only. The root proxy returns
+an HTTP 404 before rendering in production, and the page repeats the production
+guard as defense in depth. It performs live, uncached requests and must not be
+used as an availability monitor.
 
 ## Pre-release checklist
 
