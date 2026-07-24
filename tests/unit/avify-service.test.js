@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
   authenticateAvify,
+  listAllAvifyProducts,
   listAvifyProducts,
 } from '../../services/avify';
 
@@ -158,12 +159,27 @@ describe('Avify server-only service', () => {
       {
         id: 42,
         sku: 'DOG-FOOD-01',
+        customSku: 'DOG-01',
         name: 'Alimento natural',
+        slug: 'alimento-natural',
+        type: 'configurable',
         price: 25,
         salePrice: 20,
         qty: 8,
         status: 'ENABLED',
-        children: [{ id: 43 }],
+        categories: [{ id: 5, label: 'Recetas' }],
+        children: [
+          {
+            id: 43,
+            sku: 'DOG-FOOD-01-500G',
+            customSku: 'DOG-01-500',
+            name: '500g',
+            status: 'active',
+            price: 12,
+            salePrice: 10,
+            qty: 4,
+          },
+        ],
         cost: 12,
         description: 'Vendor-only field',
       },
@@ -172,11 +188,26 @@ describe('Avify server-only service', () => {
       {
         id: 42,
         sku: 'DOG-FOOD-01',
+        customSku: 'DOG-01',
+        slug: 'alimento-natural',
+        type: 'configurable',
         name: 'Alimento natural',
         price: 20,
         quantity: 8,
         status: 'ENABLED',
+        categories: [{ id: 5, label: 'Recetas' }],
         variantCount: 1,
+        variants: [
+          {
+            id: 43,
+            sku: 'DOG-FOOD-01-500G',
+            customSku: 'DOG-01-500',
+            name: '500g',
+            status: 'active',
+            price: 10,
+            quantity: 4,
+          },
+        ],
       },
     ];
 
@@ -227,6 +258,73 @@ describe('Avify server-only service', () => {
       locationId: null,
       selectMode: 'S',
     });
+  });
+
+  it('loads every Avify product page for reconciliation', async () => {
+    const page = (id, totalCount) =>
+      jsonResponse({
+        data: {
+          products: {
+            products: [
+              {
+                id,
+                sku: `SKU-${id}`,
+                name: `Product ${id}`,
+                price: 10,
+                qty: 1,
+                status: 'inactive',
+                children: [],
+              },
+            ],
+            pageSize: 100,
+            totalCount,
+          },
+        },
+      });
+
+    global.fetch
+      .mockResolvedValueOnce(page(1, 2))
+      .mockResolvedValueOnce(page(2, 2));
+
+    const result = await listAllAvifyProducts();
+
+    expect(result).toMatchObject({
+      success: true,
+      code: 'AVIFY_CATALOG_LOADED',
+      totalCount: 2,
+      variantCount: 0,
+    });
+    expect(result.products).toHaveLength(2);
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+    expect(
+      JSON.parse(global.fetch.mock.calls[0][1].body).variables.pageNum
+    ).toBe(1);
+    expect(
+      JSON.parse(global.fetch.mock.calls[1][1].body).variables.pageNum
+    ).toBe(2);
+  });
+
+  it('retries a transient catalog-page connection failure once', async () => {
+    global.fetch
+      .mockRejectedValueOnce(new Error('temporary network failure'))
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: {
+            products: {
+              products: [],
+              pageSize: 100,
+              totalCount: 0,
+            },
+          },
+        })
+      );
+
+    await expect(listAllAvifyProducts()).resolves.toMatchObject({
+      success: true,
+      code: 'AVIFY_CATALOG_LOADED',
+      totalCount: 0,
+    });
+    expect(global.fetch).toHaveBeenCalledTimes(2);
   });
 
   it('normalizes product-list options before sending them to Avify', async () => {
