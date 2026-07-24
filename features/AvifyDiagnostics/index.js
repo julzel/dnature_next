@@ -1,4 +1,9 @@
+import Button from '../../components/Button';
 import { getCatalogReconciliation } from './server';
+import {
+  buildReviewCsvDataUrl,
+  getReviewSignal,
+} from './review-export';
 
 import styles from './AvifyDiagnostics.module.scss';
 
@@ -52,6 +57,8 @@ const AvifyDiagnostics = async () => {
   const linkedCount = report.summary.matched + report.summary.likely;
   const baseInactive = report.avifyHealth.baseStatuses.inactive || 0;
   const variantsActive = report.avifyHealth.variantStatuses.active || 0;
+  const reviewExportUrl = buildReviewCsvDataUrl(report.reviewItems);
+  const reportDate = report.generatedAt?.slice(0, 10) || 'actual';
 
   return (
     <main className={styles.main}>
@@ -174,9 +181,21 @@ const AvifyDiagnostics = async () => {
       </section>
 
       <section aria-labelledby="review-heading">
-        <h2 id="review-heading">
-          Productos que requieren revisión ({report.reviewItems.length})
-        </h2>
+        <div className={styles.sectionHeading}>
+          <h2 id="review-heading">
+            Productos que requieren revisión ({report.reviewItems.length})
+          </h2>
+          <Button
+            aria-label="Descargar productos por revisar en CSV"
+            as="a"
+            download={`productos-por-revisar-${reportDate}.csv`}
+            href={reviewExportUrl}
+            size="small"
+            variant="secondary"
+          >
+            Descargar CSV
+          </Button>
+        </div>
         <p>
           Estos productos no deben enlazarse automáticamente. La sugerencia solo
           sirve como punto de partida.
@@ -186,6 +205,7 @@ const AvifyDiagnostics = async () => {
             <thead>
               <tr>
                 <th scope="col">Contentful</th>
+                <th scope="col">Enlace Contentful</th>
                 <th scope="col">Mejor candidato en Avify</th>
                 <th scope="col">SKU</th>
                 <th scope="col">Señal</th>
@@ -195,17 +215,26 @@ const AvifyDiagnostics = async () => {
               {report.reviewItems.map((item) => (
                 <tr key={item.contentfulId}>
                   <td>{item.contentfulName}</td>
+                  <td>
+                    {item.contentfulUrl ? (
+                      <a
+                        aria-label={`Abrir ${item.contentfulName} en Contentful`}
+                        className={styles.contentfulLink}
+                        href={item.contentfulUrl}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Abrir
+                      </a>
+                    ) : (
+                      '—'
+                    )}
+                  </td>
                   <td>{item.candidateName || 'Sin candidato'}</td>
                   <td>
                     <code>{item.candidateSku || '—'}</code>
                   </td>
-                  <td>
-                    {item.ambiguous
-                      ? 'Ambiguo'
-                      : item.score < 0.45
-                        ? 'Sin coincidencia clara'
-                        : 'Revisar nombre'}
-                  </td>
+                  <td>{getReviewSignal(item)}</td>
                 </tr>
               ))}
             </tbody>

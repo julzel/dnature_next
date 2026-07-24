@@ -9,6 +9,7 @@ vi.mock('../../features/AvifyDiagnostics/server', () => ({
 }));
 
 const report = {
+  generatedAt: '2026-07-24T12:00:00.000Z',
   summary: {
     contentfulTotal: 93,
     avifyBaseTotal: 207,
@@ -52,6 +53,8 @@ const report = {
     {
       contentfulId: 'contentful-review',
       contentfulName: 'Sardinas',
+      contentfulUrl:
+        'https://app.contentful.com/spaces/test-space/environments/master/entries/contentful-review',
       candidateName: 'Sardinas deshidratadas',
       candidateSku: 'CP-10',
       score: 0.67,
@@ -93,6 +96,22 @@ describe('Avify catalog reconciliation diagnostics', () => {
     expect(screen.getByText('DNAture Trucha y Búfalo')).toBeInTheDocument();
     expect(screen.getByText('Sardinas')).toBeInTheDocument();
     expect(screen.getByText('Galleta wild')).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', {
+        name: 'Abrir Sardinas en Contentful',
+      })
+    ).toHaveAttribute(
+      'href',
+      'https://app.contentful.com/spaces/test-space/environments/master/entries/contentful-review'
+    );
+    expect(
+      screen.getByRole('link', {
+        name: 'Descargar productos por revisar en CSV',
+      })
+    ).toHaveAttribute(
+      'download',
+      'productos-por-revisar-2026-07-24.csv'
+    );
     expect(getCatalogReconciliation).toHaveBeenCalledOnce();
   });
 });

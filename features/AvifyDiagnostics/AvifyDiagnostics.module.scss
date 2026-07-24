@@ -70,6 +70,18 @@
   }
 }
 
+.sectionHeading {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  justify-content: space-between;
+
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
 .tableWrapper {
   border: 1px solid #e1e5df;
   border-radius: 10px;
@@ -103,6 +115,17 @@
 
   tr:last-child td {
     border-bottom: 0;
+  }
+}
+
+.contentfulLink {
+  color: #006e75;
+  font-weight: 700;
+  text-underline-offset: 3px;
+
+  &:focus-visible {
+    outline: 3px solid #07bbc7;
+    outline-offset: 3px;
   }
 }
 

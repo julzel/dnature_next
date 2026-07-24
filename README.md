@@ -52,9 +52,9 @@ the production GraphQL endpoint. Analytics requires an external consent manager
 to grant `dnature-analytics-consent`; setting a measurement ID alone does not
 load analytics.
 
-During local development, `/avify-test/` runs an uncached Avify GraphQL product
-query that verifies authentication and displays safe product summaries. The
-route returns a 404 in production.
+During local development, `/avify-test/` compares the uncached Contentful and
+Avify GraphQL catalogues, displays the products requiring reconciliation, and
+offers a CSV review export. The route returns a 404 in production.
 
 See [operations documentation](docs/operations.md) for deployment, Maps,
 monitoring, security-header, and dependency-maintenance requirements.

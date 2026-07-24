@@ -3,6 +3,7 @@ import 'server-only';
 import { listAllAvifyProducts } from '../../services/avify';
 import { fetchFromContentful } from '../../services/contentful';
 import { buildCatalogReconciliation } from './reconciliation';
+import { buildContentfulEntryUrl } from './review-export';
 
 const CONTENTFUL_PAGE_SIZE = 100;
 
@@ -96,14 +97,26 @@ const getCatalogReconciliation = async () => {
       return avifyResult;
     }
 
+    const report = buildCatalogReconciliation(
+      contentfulProducts,
+      avifyResult.products
+    );
+    const contentfulSpaceId = process.env.CONTENTFUL_SPACE_ID;
+
     return {
       success: true,
       code: 'CATALOG_RECONCILIATION_READY',
       message: 'La conciliación de catálogos se generó correctamente.',
-      report: buildCatalogReconciliation(
-        contentfulProducts,
-        avifyResult.products
-      ),
+      report: {
+        ...report,
+        reviewItems: report.reviewItems.map((item) => ({
+          ...item,
+          contentfulUrl: buildContentfulEntryUrl(
+            contentfulSpaceId,
+            item.contentfulId
+          ),
+        })),
+      },
     };
   } catch (error) {
     return {
