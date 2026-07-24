@@ -234,6 +234,8 @@ const countBy = (items, getKey) =>
     }, new Map()).entries()].sort((left, right) => right[1] - left[1])
   );
 
+const MINIMUM_REVIEW_CANDIDATE_SCORE = 0.45;
+
 const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
   const internalAvifyProducts = avifyProducts.filter(isInternalAvifyProduct);
   const catalogCandidates = avifyProducts.filter(
@@ -251,7 +253,9 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
   const reviewItems = matches
     .filter(({ status }) => status === 'review')
     .map(({ contentful, best, second, gap }) => {
-      const hasUsefulCandidate = Boolean(best && best.score >= 0.45);
+      const hasUsefulCandidate = Boolean(
+        best && best.score >= MINIMUM_REVIEW_CANDIDATE_SCORE
+      );
 
       return {
         contentfulId: contentful.id,
@@ -260,13 +264,24 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
         candidateSku: hasUsefulCandidate
           ? best.avify.customSku || best.avify.sku
           : null,
+        candidateGeneratedSku: hasUsefulCandidate ? best.avify.sku : null,
+        candidateCustomSku: hasUsefulCandidate
+          ? best.avify.customSku || null
+          : null,
+        candidateAlreadyPaired: Boolean(
+          hasUsefulCandidate &&
+            pairedAvifyIds.has(String(best.avify.id))
+        ),
         score: best?.score || 0,
         alternativeName:
-          hasUsefulCandidate && second?.score >= 0.45
+          hasUsefulCandidate &&
+          second?.score >= MINIMUM_REVIEW_CANDIDATE_SCORE
             ? second.avify.name
             : null,
         ambiguous: Boolean(
-          hasUsefulCandidate && second?.score >= 0.45 && gap < 0.12
+          hasUsefulCandidate &&
+            second?.score >= MINIMUM_REVIEW_CANDIDATE_SCORE &&
+            gap < 0.12
         ),
       };
     });
@@ -277,8 +292,53 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
       contentfulName: contentful.name,
       avifyName: best.avify.name,
       avifySku: best.avify.customSku || best.avify.sku,
+      avifyGeneratedSku: best.avify.sku,
+      avifyCustomSku: best.avify.customSku || null,
       score: best.score,
     }));
+  const mappingItems = matches.map(
+    ({ contentful, best, second, gap, status }) => {
+      const hasUsefulCandidate = Boolean(
+        best &&
+          (status !== 'review' ||
+            best.score >= MINIMUM_REVIEW_CANDIDATE_SCORE)
+      );
+
+      return {
+        contentfulEntryId: contentful.id,
+        contentfulName: contentful.name,
+        avifySku: hasUsefulCandidate ? best.avify.sku || null : null,
+        avifyCustomSku: hasUsefulCandidate
+          ? best.avify.customSku || null
+          : null,
+        avifyName: hasUsefulCandidate ? best.avify.name : null,
+        matchStatus:
+          status === 'matched'
+            ? 'exact'
+            : status === 'likely'
+              ? 'probable'
+              : 'review',
+        score: Number((best?.score || 0).toFixed(3)),
+        alternativeAvifyName:
+          hasUsefulCandidate &&
+          second?.score >= MINIMUM_REVIEW_CANDIDATE_SCORE
+            ? second.avify.name
+            : null,
+        ambiguous: Boolean(
+          status === 'review' &&
+            hasUsefulCandidate &&
+            second?.score >= MINIMUM_REVIEW_CANDIDATE_SCORE &&
+            gap < 0.12
+        ),
+        candidateAlreadyPaired: Boolean(
+          status === 'review' &&
+            hasUsefulCandidate &&
+            pairedAvifyIds.has(String(best.avify.id))
+        ),
+        approved: false,
+      };
+    }
+  );
   const unpairedAvify = catalogCandidates
     .filter(({ id }) => !pairedAvifyIds.has(String(id)))
     .map((product) => ({
@@ -297,6 +357,9 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
       matched: matches.filter(({ status }) => status === 'matched').length,
       likely: likelyItems.length,
       needsReview: reviewItems.length,
+      reviewCandidateConflicts: reviewItems.filter(
+        ({ candidateAlreadyPaired }) => candidateAlreadyPaired
+      ).length,
       avifyInternal: internalAvifyProducts.length,
       avifyUnpaired: unpairedAvify.length,
     },
@@ -340,6 +403,7 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
       ),
     },
     priceDifferences: findPriceDifferences(matches),
+    mappingItems,
     likelyItems,
     reviewItems,
     unpairedAvify,

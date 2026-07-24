@@ -159,7 +159,36 @@ describe('catalog reconciliation', () => {
         contentfulName: 'Callostrum',
         candidateName: null,
         candidateSku: null,
+        candidateGeneratedSku: null,
+        candidateAlreadyPaired: false,
         ambiguous: false,
+      })
+    );
+    expect(report.mappingItems).toHaveLength(contentful.length);
+    expect(report.mappingItems).toContainEqual(
+      expect.objectContaining({
+        contentfulEntryId: 'exact',
+        avifySku: 'generated-sku',
+        avifyCustomSku: 'CP-EXACT',
+        matchStatus: 'exact',
+        approved: false,
+      })
+    );
+    expect(report.mappingItems).toContainEqual(
+      expect.objectContaining({
+        contentfulEntryId: 'likely',
+        avifySku: 'generated-sku',
+        avifyCustomSku: 'CP-LIKELY',
+        matchStatus: 'probable',
+        approved: false,
+      })
+    );
+    expect(report.mappingItems).toContainEqual(
+      expect.objectContaining({
+        contentfulEntryId: 'no-candidate',
+        avifySku: null,
+        matchStatus: 'review',
+        approved: false,
       })
     );
     expect(report.priceDifferences).toEqual([

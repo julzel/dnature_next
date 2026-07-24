@@ -1,22 +1,33 @@
 const CONTENTFUL_APP_URL = 'https://app.contentful.com';
-const CONTENTFUL_ENVIRONMENT = 'master';
 
-const buildContentfulEntryUrl = (spaceId, entryId) => {
+const buildContentfulEntryUrl = (
+  spaceId,
+  entryId,
+  environmentId = 'master'
+) => {
   const safeSpaceId = typeof spaceId === 'string' ? spaceId.trim() : '';
   const safeEntryId = typeof entryId === 'string' ? entryId.trim() : '';
+  const safeEnvironmentId =
+    typeof environmentId === 'string' ? environmentId.trim() : '';
 
-  if (!safeSpaceId || !safeEntryId) {
+  if (!safeSpaceId || !safeEntryId || !safeEnvironmentId) {
     return null;
   }
 
   return `${CONTENTFUL_APP_URL}/spaces/${encodeURIComponent(
     safeSpaceId
-  )}/environments/${CONTENTFUL_ENVIRONMENT}/entries/${encodeURIComponent(
+  )}/environments/${encodeURIComponent(
+    safeEnvironmentId
+  )}/entries/${encodeURIComponent(
     safeEntryId
   )}`;
 };
 
 const getReviewSignal = (item) => {
+  if (item.candidateAlreadyPaired) {
+    return 'Candidato ya vinculado';
+  }
+
   if (item.ambiguous) {
     return 'Ambiguo';
   }
@@ -39,7 +50,8 @@ const buildReviewCsv = (reviewItems) => {
       'Producto Contentful',
       'Enlace Contentful',
       'Candidato Avify',
-      'SKU Avify',
+      'Custom SKU Avify',
+      'SKU generado del padre',
       'Señal',
       'Confianza',
       'Alternativa Avify',
@@ -48,7 +60,8 @@ const buildReviewCsv = (reviewItems) => {
       item.contentfulName,
       item.contentfulUrl,
       item.candidateName,
-      item.candidateSku,
+      item.candidateCustomSku,
+      item.candidateGeneratedSku,
       getReviewSignal(item),
       item.candidateName ? `${Math.round(item.score * 100)}%` : '',
       item.alternativeName,

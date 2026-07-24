@@ -20,6 +20,31 @@ environment before being applied to `master`.
   have succeeded in `staging`.
 - Never commit a Contentful Management API token.
 
+## Readiness snapshot — July 24, 2026
+
+| Prerequisite | Status | Evidence/action |
+| --- | --- | --- |
+| Supported Node.js | Ready | Local Node.js is `v24.15.0`; the project and CLI support Node 24. |
+| Repository CLI | Ready | `contentful-cli@4.0.5` is installed as a development dependency. |
+| Contentful space ID | Ready | `.env.local` contains the configured space ID. |
+| Delivery API access | Ready | Read-only GraphQL checks succeeded for both `master` and `staging`. |
+| Master catalog | Ready | The delivery API reports 93 published products. |
+| Staging catalog | Ready | The previous environment was backed up and staging was recreated from master; both environments report 93 published products. |
+| Management authentication | Ready | A fresh CLI login can list both `master` and `staging`. |
+| Staging aliases | Ready | Contentful reports no environment aliases. |
+| Staging webhooks | Ready | Contentful reports no webhook definitions in the space. |
+| Staging schema migration | Complete | `avifySku` is published on the staging `product` content type as optional, non-localized, unique short text. |
+| Master schema migration | Not started | `master` remains unchanged and has no `avifySku` field. |
+| Mapping proposal | Ready for review | A fresh 93-row proposal contains 56 exact, 11 probable, and 26 review rows. Six review suggestions conflict with stronger rows; all rows are deliberately unapproved. |
+| Product data backfill | Not started | No Contentful product entry has been assigned an Avify SKU. |
+
+All prerequisite checks are now resolved. The schema migration has succeeded in
+staging; no backfill migration has been run and `master` remains unchanged.
+
+The pre-refresh staging backup is stored locally at
+`backups/contentful/staging-before-avify-2026-07-24.json`. The backup directory
+is ignored by Git.
+
 Contentful recommends testing content-model changes in a separate environment.
 Reusing the existing unused `staging` environment is appropriate for the free
 tier, as long as it is not connected to an active application, webhook, or
@@ -42,6 +67,18 @@ Authenticate interactively:
 ```bash
 npx contentful login
 ```
+
+After a new login, verify access with:
+
+```bash
+npx contentful space environment list \
+  --space-id "$CONTENTFUL_SPACE_ID"
+
+npx contentful space environment-alias list \
+  --space-id "$CONTENTFUL_SPACE_ID"
+```
+
+Both commands must succeed before staging is refreshed.
 
 For non-interactive execution, create a Contentful Management API token with
 permission to edit the content model and product entries. Keep it in the local
@@ -176,8 +213,18 @@ package:
 ## 5. Prepare the approved mapping
 
 Generate one mapping covering all Contentful products, not only the products
-currently classified as “review”. Use this shape in
+currently classified as “review”. The repository generator reads the catalog
+research snapshot, applies the same conservative matching rules as
+`/avify-test`, and writes
 `contentful/mappings/product-avify-skus.json`:
+
+```bash
+npm run contentful:mapping:generate -- \
+  --input /tmp/dnature-catalog-analysis.json \
+  --environment-id staging
+```
+
+The generated proposal has this shape:
 
 ```json
 {
@@ -190,7 +237,7 @@ currently classified as “review”. Use this shape in
       "avifyCustomSku": "CP00",
       "avifyName": "Avify product",
       "matchStatus": "exact",
-      "approved": true
+      "approved": false
     }
   ]
 }
@@ -212,86 +259,21 @@ Names remain useful for review but are not stable join keys.
 
 ## 6. Validate the mapping before migration
 
-Create `scripts/validate-avify-sku-mapping.mjs`:
-
-```js
-import { readFile } from 'node:fs/promises';
-
-const mapping = JSON.parse(
-  await readFile(
-    new URL(
-      '../contentful/mappings/product-avify-skus.json',
-      import.meta.url
-    ),
-    'utf8'
-  )
-);
-
-const allowedStatuses = new Set([
-  'exact',
-  'probable',
-  'review',
-  'unmatched',
-]);
-const entryIds = new Set();
-const avifySkus = new Set();
-const errors = [];
-
-for (const [index, product] of mapping.products.entries()) {
-  const row = index + 1;
-  const entryId = product.contentfulEntryId?.trim();
-  const avifySku = product.avifySku?.trim();
-
-  if (!entryId) {
-    errors.push(`Row ${row}: missing contentfulEntryId`);
-  } else if (entryIds.has(entryId)) {
-    errors.push(`Row ${row}: duplicate Contentful entry ${entryId}`);
-  } else {
-    entryIds.add(entryId);
-  }
-
-  if (!allowedStatuses.has(product.matchStatus)) {
-    errors.push(`Row ${row}: invalid matchStatus ${product.matchStatus}`);
-  }
-
-  if (product.matchStatus === 'unmatched' && avifySku) {
-    errors.push(`Row ${row}: unmatched products cannot have avifySku`);
-  }
-
-  if (product.approved && product.matchStatus !== 'unmatched' && !avifySku) {
-    errors.push(`Row ${row}: approved mapping is missing avifySku`);
-  }
-
-  if (avifySku) {
-    if (avifySkus.has(avifySku)) {
-      errors.push(`Row ${row}: duplicate Avify SKU ${avifySku}`);
-    } else {
-      avifySkus.add(avifySku);
-    }
-  }
-}
-
-if (errors.length) {
-  console.error(errors.join('\n'));
-  process.exitCode = 1;
-} else {
-  const approved = mapping.products.filter(
-    (product) => product.approved && product.avifySku
-  ).length;
-
-  console.log(
-    `Mapping valid: ${mapping.products.length} rows, ${approved} approved links.`
-  );
-}
-```
-
 Run it before every backfill:
 
 ```bash
-node scripts/validate-avify-sku-mapping.mjs
+npm run contentful:mapping:validate
 ```
 
-This validation is local and makes no Contentful changes.
+This validation is local and makes no Contentful changes. It checks the row
+count and status totals, unique Contentful entry IDs, generated-vs-custom SKU
+separation, required SKUs for exact/probable rows, and duplicate proposed or
+approved links.
+
+The July 24 proposal currently validates with 93 rows and 91 suggested SKUs,
+but zero approved links. Six review suggestions reuse a parent SKU already
+proposed for an exact/probable row and are emitted as warnings. It is therefore
+safe to inspect but would write nothing if the backfill migration were run now.
 
 ## 7. Data backfill migration
 
@@ -397,26 +379,24 @@ Verify all of the following before touching `master`:
 9. Product names, slugs, images, descriptions, and other fields were not
    changed.
 
-### Current application limitation
+### Select the staging application environment
 
-The repository currently queries Contentful without an environment segment, so
-it reads `master`. Before using `/avify-test` to verify staging, add support for
-a server-only environment setting such as:
+The application supports an optional server-only environment setting. Before
+using `/avify-test` to verify staging, set:
 
 ```text
 CONTENTFUL_ENVIRONMENT_ID=staging
 ```
 
-The Contentful GraphQL URL should then use:
+The Contentful GraphQL client and Contentful entry links will then use:
 
 ```text
 https://graphql.contentful.com/content/v1/spaces/{spaceId}/environments/{environmentId}
 ```
 
-The Contentful links generated by `/avify-test` must use the same environment
-instead of always linking to `master`. Until this application change is made,
-verify the migration directly in the Contentful staging environment rather than
-assuming `/avify-test` is displaying staging data.
+If the variable is absent, the application safely defaults to `master`. Restart
+the development server after changing it and confirm that the Contentful links
+on `/avify-test` contain `/environments/staging/`.
 
 ## 9. Apply to master
 

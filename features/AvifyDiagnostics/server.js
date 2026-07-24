@@ -102,6 +102,8 @@ const getCatalogReconciliation = async () => {
       avifyResult.products
     );
     const contentfulSpaceId = process.env.CONTENTFUL_SPACE_ID;
+    const contentfulEnvironmentId =
+      process.env.CONTENTFUL_ENVIRONMENT_ID || 'master';
 
     return {
       success: true,
@@ -113,7 +115,8 @@ const getCatalogReconciliation = async () => {
           ...item,
           contentfulUrl: buildContentfulEntryUrl(
             contentfulSpaceId,
-            item.contentfulId
+            item.contentfulId,
+            contentfulEnvironmentId
           ),
         })),
       },

@@ -16,10 +16,13 @@ vi.mock('../../services/contentful', () => ({
 }));
 
 const originalContentfulSpaceId = process.env.CONTENTFUL_SPACE_ID;
+const originalContentfulEnvironmentId =
+  process.env.CONTENTFUL_ENVIRONMENT_ID;
 
 describe('Avify diagnostics server orchestration', () => {
   beforeEach(() => {
     process.env.CONTENTFUL_SPACE_ID = 'test-space';
+    process.env.CONTENTFUL_ENVIRONMENT_ID = 'staging';
     fetchFromContentful.mockResolvedValue({
       productCollection: {
         total: 0,
@@ -48,6 +51,13 @@ describe('Avify diagnostics server orchestration', () => {
     } else {
       process.env.CONTENTFUL_SPACE_ID = originalContentfulSpaceId;
     }
+
+    if (originalContentfulEnvironmentId === undefined) {
+      delete process.env.CONTENTFUL_ENVIRONMENT_ID;
+    } else {
+      process.env.CONTENTFUL_ENVIRONMENT_ID =
+        originalContentfulEnvironmentId;
+    }
   });
 
   it('adds a direct Contentful URL to each review item', async () => {
@@ -57,7 +67,7 @@ describe('Avify diagnostics server orchestration', () => {
     expect(result.report.reviewItems[0]).toMatchObject({
       contentfulId: 'entry-id',
       contentfulUrl:
-        'https://app.contentful.com/spaces/test-space/environments/master/entries/entry-id',
+        'https://app.contentful.com/spaces/test-space/environments/staging/entries/entry-id',
     });
   });
 });

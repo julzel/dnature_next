@@ -17,6 +17,7 @@ const report = {
     matched: 56,
     likely: 11,
     needsReview: 26,
+    reviewCandidateConflicts: 6,
     avifyInternal: 47,
     avifyUnpaired: 93,
   },
@@ -57,9 +58,12 @@ const report = {
         'https://app.contentful.com/spaces/test-space/environments/master/entries/contentful-review',
       candidateName: 'Sardinas deshidratadas',
       candidateSku: 'CP-10',
+      candidateCustomSku: 'CP-10',
+      candidateGeneratedSku: 'generated-review-parent-sku',
       score: 0.67,
       alternativeName: 'Sardinas crudas',
       ambiguous: true,
+      candidateAlreadyPaired: true,
     },
   ],
   likelyItems: [
@@ -68,6 +72,8 @@ const report = {
       contentfulName: 'Galleta wild',
       avifyName: 'Galleta wild deshidratada',
       avifySku: 'CP-20',
+      avifyCustomSku: 'CP-20',
+      avifyGeneratedSku: 'generated-likely-parent-sku',
       score: 0.8,
     },
   ],
@@ -96,6 +102,12 @@ describe('Avify catalog reconciliation diagnostics', () => {
     expect(screen.getByText('DNAture Trucha y Búfalo')).toBeInTheDocument();
     expect(screen.getByText('Sardinas')).toBeInTheDocument();
     expect(screen.getByText('Galleta wild')).toBeInTheDocument();
+    expect(
+      screen.getByText('generated-review-parent-sku')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('generated-likely-parent-sku')
+    ).toBeInTheDocument();
     expect(
       screen.getByRole('link', {
         name: 'Abrir Sardinas en Contentful',

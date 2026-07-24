@@ -198,7 +198,9 @@ const AvifyDiagnostics = async () => {
         </div>
         <p>
           Estos productos no deben enlazarse automáticamente. La sugerencia solo
-          sirve como punto de partida.
+          sirve como punto de partida.{' '}
+          {report.summary.reviewCandidateConflicts} sugerencias ya están
+          vinculadas a una coincidencia más fuerte.
         </p>
         <div className={styles.tableWrapper}>
           <table>
@@ -207,7 +209,8 @@ const AvifyDiagnostics = async () => {
                 <th scope="col">Contentful</th>
                 <th scope="col">Enlace Contentful</th>
                 <th scope="col">Mejor candidato en Avify</th>
-                <th scope="col">SKU</th>
+                <th scope="col">Custom SKU</th>
+                <th scope="col">SKU generado del padre</th>
                 <th scope="col">Señal</th>
               </tr>
             </thead>
@@ -232,7 +235,10 @@ const AvifyDiagnostics = async () => {
                   </td>
                   <td>{item.candidateName || 'Sin candidato'}</td>
                   <td>
-                    <code>{item.candidateSku || '—'}</code>
+                    <code>{item.candidateCustomSku || '—'}</code>
+                  </td>
+                  <td>
+                    <code>{item.candidateGeneratedSku || '—'}</code>
                   </td>
                   <td>{getReviewSignal(item)}</td>
                 </tr>
@@ -252,7 +258,8 @@ const AvifyDiagnostics = async () => {
               <tr>
                 <th scope="col">Contentful</th>
                 <th scope="col">Avify</th>
-                <th scope="col">SKU</th>
+                <th scope="col">Custom SKU</th>
+                <th scope="col">SKU generado del padre</th>
                 <th scope="col">Confianza</th>
               </tr>
             </thead>
@@ -262,7 +269,10 @@ const AvifyDiagnostics = async () => {
                   <td>{item.contentfulName}</td>
                   <td>{item.avifyName}</td>
                   <td>
-                    <code>{item.avifySku}</code>
+                    <code>{item.avifyCustomSku || '—'}</code>
+                  </td>
+                  <td>
+                    <code>{item.avifyGeneratedSku}</code>
                   </td>
                   <td>{Math.round(item.score * 100)}%</td>
                 </tr>

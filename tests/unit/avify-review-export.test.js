@@ -11,6 +11,9 @@ describe('Avify review export', () => {
     expect(buildContentfulEntryUrl('space/id', 'entry id')).toBe(
       'https://app.contentful.com/spaces/space%2Fid/environments/master/entries/entry%20id'
     );
+    expect(buildContentfulEntryUrl('space', 'entry', 'staging')).toBe(
+      'https://app.contentful.com/spaces/space/environments/staging/entries/entry'
+    );
     expect(buildContentfulEntryUrl('', 'entry')).toBeNull();
   });
 
@@ -21,9 +24,12 @@ describe('Avify review export', () => {
         contentfulUrl: 'https://example.com/entry',
         candidateName: 'Sardinas, deshidratadas',
         candidateSku: 'CP-10',
+        candidateCustomSku: 'CP-10',
+        candidateGeneratedSku: 'generated-parent-sku',
         score: 0.67,
         alternativeName: 'Sardinas "crudas"',
         ambiguous: true,
+        candidateAlreadyPaired: true,
       },
     ]);
 
@@ -31,7 +37,8 @@ describe('Avify review export', () => {
     expect(csv).toContain('"\'=Unsafe name"');
     expect(csv).toContain('"Sardinas, deshidratadas"');
     expect(csv).toContain('"Sardinas ""crudas"""');
-    expect(csv).toContain('"Ambiguo","67%"');
+    expect(csv).toContain('"CP-10","generated-parent-sku"');
+    expect(csv).toContain('"Candidato ya vinculado","67%"');
     expect(buildReviewCsvDataUrl([])).toMatch(
       /^data:text\/csv;charset=utf-8,/
     );
