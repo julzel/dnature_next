@@ -21,11 +21,16 @@ const isContentfulImageUrl = (src) => {
 };
 
 export default function contentfulLoader({ src, width, quality }) {
-  if (typeof src !== 'string' || !src.trim()) {
+  if (typeof src !== 'string') {
     return src;
   }
 
   const trimmedSource = src.trim();
+
+  if (!trimmedSource) {
+    return trimmedSource;
+  }
+
   const normalizedSource = trimmedSource.startsWith('//')
     ? `https:${trimmedSource}`
     : trimmedSource;
@@ -34,11 +39,11 @@ export default function contentfulLoader({ src, width, quality }) {
   try {
     url = new URL(normalizedSource);
   } catch {
-    return src;
+    return trimmedSource;
   }
 
   if (!CONTENTFUL_IMAGE_HOSTS.has(url.hostname)) {
-    return src;
+    return normalizedSource;
   }
 
   const configuredQuality = Number.parseInt(url.searchParams.get('q'), 10);
