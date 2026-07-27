@@ -13,13 +13,15 @@ const Catalog = ({
   totalCount,
 }) => (
   <section className={styles.catalog}>
-    <div className={styles.pageHeader}>
-      <p className={styles.eyebrow}>{selectedCategory.label}</p>
-      <h1>Nuestros productos</h1>
-      <p className={styles.resultCount} aria-live='polite'>
-        {totalCount} {totalCount === 1 ? 'producto' : 'productos'}
-      </p>
-    </div>
+    <header className={styles.pageHeader}>
+      <div className={styles.pageHeaderInner}>
+        <p className={styles.eyebrow}>{selectedCategory.label}</p>
+        <h1>Nuestros productos</h1>
+        <p className={styles.resultCount} aria-live='polite'>
+          {totalCount} {totalCount === 1 ? 'producto' : 'productos'}
+        </p>
+      </div>
+    </header>
     <Filter options={filterOptions} selected={selectedCategory} />
     <div className={styles.catalogContent}>
       <CatalogList products={products} />

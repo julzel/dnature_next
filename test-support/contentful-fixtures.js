@@ -25,6 +25,7 @@ const fixtureProducts = {
     products: [
       {
         productName: 'Receta de prueba',
+        avifySku: 'AVIFY-RECETA-TEST',
         category: 'Recetas completas',
         categorySlug: 'recetas',
         urlSlug: 'receta-de-prueba',
@@ -52,6 +53,7 @@ const fixtureProducts = {
     products: [
       {
         productName: 'Snack de prueba',
+        avifySku: 'AVIFY-SNACK-TEST',
         category: 'Snacks',
         categorySlug: 'snacks',
         urlSlug: 'snack-de-prueba',

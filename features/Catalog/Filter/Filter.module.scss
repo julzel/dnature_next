@@ -3,8 +3,8 @@
 
 .filter {
   backdrop-filter: blur(12px);
-  background: rgba($white, 0.94);
-  border-block: 1px solid rgba($accent-color-teal, 0.1);
+  background: rgba(#f8f7f5, 0.96);
+  border-bottom: 1px solid rgba($accent-color-teal, 0.1);
   position: sticky;
   top: 158px;
   z-index: 10;
@@ -21,7 +21,8 @@
   margin: 0 auto;
   max-width: 1280px;
   overflow-x: auto;
-  padding: 12px 16px;
+  padding: 10px 16px;
+  scroll-padding-inline: 16px;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
@@ -29,7 +30,8 @@
   }
 
   @include mdq(md) {
-    padding-inline: 24px;
+    padding: 12px 24px;
+    scroll-padding-inline: 24px;
   }
 }
 
@@ -43,8 +45,8 @@
   flex: 0 0 auto;
   font-family: $regular;
   font-size: 12px;
-  min-height: 40px;
-  padding: 0 15px;
+  min-height: 38px;
+  padding: 0 14px;
   transition:
     background-color 160ms ease,
     border-color 160ms ease,

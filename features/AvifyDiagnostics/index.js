@@ -1,117 +1,323 @@
-import { listAvifyProducts } from '../../services/avify';
+import Button from '../../components/Button';
+import { getCatalogReconciliation } from './server';
+import {
+  buildReviewCsvDataUrl,
+  getReviewSignal,
+} from './review-export';
 
 import styles from './AvifyDiagnostics.module.scss';
 
-const formatValue = (value) =>
-  value === null || value === undefined || value === '' ? '—' : String(value);
+const currencyFormatter = new Intl.NumberFormat('es-CR', {
+  currency: 'CRC',
+  maximumFractionDigits: 0,
+  style: 'currency',
+});
 
-const ResultCard = ({ id, title, result }) => (
-  <article className={styles.resultCard}>
-    <h3 id={id}>{title}</h3>
-    <div
-      aria-labelledby={id}
-      className={result.success ? styles.success : styles.error}
-      role="status"
-    >
-      <strong>
-        {result.success ? 'Conexión autenticada' : 'No se pudo autenticar'}
-      </strong>
-      <p>{result.message}</p>
-    </div>
+const formatCurrency = (value) =>
+  typeof value === 'number' ? currencyFormatter.format(value) : '—';
 
-    <details className={styles.details}>
-      <summary>Ver respuesta segura</summary>
-      <pre>{JSON.stringify(result, null, 2)}</pre>
-    </details>
+const SummaryCard = ({ label, value, detail }) => (
+  <article className={styles.summaryCard}>
+    <span>{label}</span>
+    <strong>{value}</strong>
+    <small>{detail}</small>
   </article>
 );
 
-const ProductTable = ({ products }) => (
-  <div className={styles.tableWrapper}>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">SKU</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Estado</th>
-          <th scope="col">Variantes</th>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((product, index) => (
-          <tr key={product.id ?? product.sku ?? index}>
-            <td>{formatValue(product.id)}</td>
-            <td>{formatValue(product.name)}</td>
-            <td>
-              <code>{formatValue(product.sku)}</code>
-            </td>
-            <td>{formatValue(product.price)}</td>
-            <td>{formatValue(product.quantity)}</td>
-            <td>{formatValue(product.status)}</td>
-            <td>{product.variantCount}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+const CategoryList = ({ categories }) => (
+  <ul className={styles.categoryList}>
+    {Object.entries(categories).map(([category, count]) => (
+      <li key={category}>
+        <span>{category}</span>
+        <strong>{count}</strong>
+      </li>
+    ))}
+  </ul>
 );
 
 const AvifyDiagnostics = async () => {
-  const productResult = await listAvifyProducts({ pageNum: 1, pageSize: 10 });
+  const result = await getCatalogReconciliation();
+
+  if (!result.success) {
+    return (
+      <main className={styles.main}>
+        <h1>Conciliación Contentful ↔ Avify</h1>
+        <div className={styles.error} role="alert">
+          <strong>No se pudo generar el reporte</strong>
+          <p>{result.message}</p>
+          {result.developmentDetails ? (
+            <code>{result.developmentDetails}</code>
+          ) : null}
+        </div>
+      </main>
+    );
+  }
+
+  const { report } = result;
+  const linkedCount = report.summary.matched + report.summary.likely;
+  const baseInactive = report.avifyHealth.baseStatuses.inactive || 0;
+  const variantsActive = report.avifyHealth.variantStatuses.active || 0;
+  const reviewExportUrl = buildReviewCsvDataUrl(report.reviewItems);
+  const reportDate = report.generatedAt?.slice(0, 10) || 'actual';
 
   return (
     <main className={styles.main}>
-      <h1>Pruebas de integración con Avify</h1>
-      <p>
-        Esta página solo está disponible durante el desarrollo. La API key nunca
-        se envía al navegador.
-      </p>
-
-      <section aria-labelledby="avify-authentication-heading">
-        <h2 id="avify-authentication-heading">Autenticación</h2>
+      <header className={styles.header}>
+        <p className={styles.eyebrow}>Reporte de desarrollo</p>
+        <h1>Conciliación Contentful ↔ Avify</h1>
         <p>
-          La consulta de productos verifica la conexión GraphQL y la API key.
+          Contentful aporta contenido editorial; Avify debe convertirse en la
+          fuente de precios, presentaciones e inventario.
         </p>
+      </header>
 
-        <ResultCard
-          id="avify-graphql-authentication"
-          result={productResult}
-          title="GraphQL"
-        />
+      <section aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Estado actual</h2>
+        <div className={styles.summaryGrid}>
+          <SummaryCard
+            detail="entradas editoriales"
+            label="Contentful"
+            value={report.summary.contentfulTotal}
+          />
+          <SummaryCard
+            detail={`${report.summary.avifyVariantTotal} variantes`}
+            label="Avify"
+            value={report.summary.avifyBaseTotal}
+          />
+          <SummaryCard
+            detail={`${report.summary.matched} exactas · ${report.summary.likely} probables`}
+            label="Vinculables"
+            value={linkedCount}
+          />
+          <SummaryCard
+            detail="requieren decisión humana"
+            label="Por revisar"
+            value={report.summary.needsReview}
+          />
+          <SummaryCard
+            detail="después de excluir Materia Prima"
+            label="Avify sin vínculo"
+            value={report.summary.avifyUnpaired}
+          />
+        </div>
       </section>
 
-      <section aria-labelledby="avify-products-heading">
-        <h2 id="avify-products-heading">Productos</h2>
-        <p>
-          Primera página de productos obtenida directamente desde Avify con un
-          máximo de 10 resultados.
-        </p>
+      <section aria-labelledby="findings-heading">
+        <h2 id="findings-heading">Hallazgos importantes</h2>
+        <div className={styles.findings}>
+          <article>
+            <strong>Falta una llave compartida</strong>
+            <p>
+              Contentful no guarda SKU ni ID de Avify. Además,{' '}
+              {report.avifyHealth.missingBaseCustomSku} productos base y{' '}
+              {report.avifyHealth.missingVariantCustomSku} variantes no tienen{' '}
+              <code>customSku</code>; la unión debe usar el SKU generado.
+            </p>
+          </article>
+          <article>
+            <strong>{report.summary.avifyInternal} productos internos</strong>
+            <p>
+              Están categorizados como Materia Prima y deben excluirse del
+              catálogo público. Otros {report.avifyHealth.uncategorized} no
+              tienen categoría.
+            </p>
+          </article>
+          <article>
+            <strong>El estado del producto padre no sirve para vender</strong>
+            <p>
+              {baseInactive} productos base aparecen inactivos, mientras{' '}
+              {variantsActive} variantes aparecen activas. La disponibilidad
+              debe calcularse por variante; {report.avifyHealth.zeroStockVariants}{' '}
+              variantes tienen existencia cero.
+            </p>
+          </article>
+          <article>
+            <strong>Contentful necesita limpieza editorial</strong>
+            <p>
+              {report.contentfulHealth.missingSlug.length} entrada sin slug,{' '}
+              {report.contentfulHealth.missingDescription} sin descripción y{' '}
+              {report.contentfulHealth.missingIngredients} sin ingredientes.
+              Solo {report.contentfulHealth.withPresentationPrices} guardan
+              precios por presentación.
+            </p>
+          </article>
+        </div>
+      </section>
 
-        {productResult.success ? (
-          <>
-            <div className={styles.success} role="status">
-              <strong>Consulta completada</strong>
-              <p>
-                Se recibieron {productResult.products.length} de{' '}
-                {productResult.totalCount} productos.
-              </p>
-            </div>
-
-            {productResult.products.length > 0 ? (
-              <ProductTable products={productResult.products} />
-            ) : (
-              <p>Avify no devolvió productos para esta página.</p>
-            )}
-          </>
-        ) : (
-          <div className={styles.error} role="alert">
-            <strong>No se pudieron cargar los productos</strong>
-            <p>{productResult.message}</p>
+      <section aria-labelledby="price-heading">
+        <h2 id="price-heading">
+          Diferencias de precio ({report.priceDifferences.length})
+        </h2>
+        {report.priceDifferences.length ? (
+          <div className={styles.tableWrapper}>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Presentación</th>
+                  <th scope="col">Contentful</th>
+                  <th scope="col">Avify</th>
+                  <th scope="col">Problema</th>
+                </tr>
+              </thead>
+              <tbody>
+                {report.priceDifferences.map((difference) => (
+                  <tr
+                    key={`${difference.product}-${difference.presentation}-${difference.type}`}
+                  >
+                    <td>{difference.product}</td>
+                    <td>{difference.presentation}</td>
+                    <td>{formatCurrency(difference.contentfulPrice)}</td>
+                    <td>{formatCurrency(difference.avifyPrice)}</td>
+                    <td>{difference.detail}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+        ) : (
+          <p>No se detectaron diferencias en las coincidencias exactas.</p>
         )}
+      </section>
+
+      <section aria-labelledby="review-heading">
+        <div className={styles.sectionHeading}>
+          <h2 id="review-heading">
+            Productos que requieren revisión ({report.reviewItems.length})
+          </h2>
+          <Button
+            aria-label="Descargar productos por revisar en CSV"
+            as="a"
+            download={`productos-por-revisar-${reportDate}.csv`}
+            href={reviewExportUrl}
+            size="small"
+            variant="secondary"
+          >
+            Descargar CSV
+          </Button>
+        </div>
+        <p>
+          Estos productos no deben enlazarse automáticamente. La sugerencia solo
+          sirve como punto de partida.{' '}
+          {report.summary.reviewCandidateConflicts} sugerencias ya están
+          vinculadas a una coincidencia más fuerte.
+        </p>
+        <div className={styles.tableWrapper}>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Contentful</th>
+                <th scope="col">Enlace Contentful</th>
+                <th scope="col">Mejor candidato en Avify</th>
+                <th scope="col">Custom SKU</th>
+                <th scope="col">SKU generado del padre</th>
+                <th scope="col">Señal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {report.reviewItems.map((item) => (
+                <tr key={item.contentfulId}>
+                  <td>{item.contentfulName}</td>
+                  <td>
+                    {item.contentfulUrl ? (
+                      <a
+                        aria-label={`Abrir ${item.contentfulName} en Contentful`}
+                        className={styles.contentfulLink}
+                        href={item.contentfulUrl}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Abrir
+                      </a>
+                    ) : (
+                      '—'
+                    )}
+                  </td>
+                  <td>{item.candidateName || 'Sin candidato'}</td>
+                  <td>
+                    <code>{item.candidateCustomSku || '—'}</code>
+                  </td>
+                  <td>
+                    <code>{item.candidateGeneratedSku || '—'}</code>
+                  </td>
+                  <td>{getReviewSignal(item)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="likely-heading">
+        <h2 id="likely-heading">
+          Coincidencias probables ({report.likelyItems.length})
+        </h2>
+        <div className={styles.tableWrapper}>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Contentful</th>
+                <th scope="col">Avify</th>
+                <th scope="col">Custom SKU</th>
+                <th scope="col">SKU generado del padre</th>
+                <th scope="col">Confianza</th>
+              </tr>
+            </thead>
+            <tbody>
+              {report.likelyItems.map((item) => (
+                <tr key={item.contentfulId}>
+                  <td>{item.contentfulName}</td>
+                  <td>{item.avifyName}</td>
+                  <td>
+                    <code>{item.avifyCustomSku || '—'}</code>
+                  </td>
+                  <td>
+                    <code>{item.avifyGeneratedSku}</code>
+                  </td>
+                  <td>{Math.round(item.score * 100)}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section aria-labelledby="categories-heading">
+        <h2 id="categories-heading">Categorías</h2>
+        <div className={styles.categoryColumns}>
+          <article>
+            <h3>Contentful</h3>
+            <CategoryList categories={report.categories.contentful} />
+          </article>
+          <article>
+            <h3>Avify</h3>
+            <CategoryList categories={report.categories.avify} />
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="next-step-heading">
+        <h2 id="next-step-heading">Siguiente paso recomendado</h2>
+        <ol className={styles.steps}>
+          <li>
+            Crear en Contentful un campo único <code>avifySku</code> para guardar
+            el SKU generado del producto padre en Avify.
+          </li>
+          <li>
+            Confirmar primero las {linkedCount} coincidencias exactas/probables y
+            resolver manualmente las {report.summary.needsReview} restantes.
+          </li>
+          <li>
+            Definir una lista explícita de categorías de Avify visibles en web;
+            no publicar automáticamente los {report.summary.avifyUnpaired}{' '}
+            productos todavía no vinculados.
+          </li>
+          <li>
+            Después del mapeo, leer precio, variante, estado y existencia desde
+            Avify; conservar nombre editorial, slug, imágenes, descripción e
+            ingredientes en Contentful.
+          </li>
+        </ol>
       </section>
     </main>
   );

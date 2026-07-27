@@ -23,7 +23,7 @@ module.exports = {
                 'https://www.googletagmanager.com https://maps.googleapis.com https://maps.gstatic.com',
               ].filter(Boolean).join(' '),
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https://images.ctfassets.net https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.ggpht.com",
+              "img-src 'self' data: blob: https://images.ctfassets.net https://images.eu.ctfassets.net https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.ggpht.com",
               "font-src 'self' data:",
               "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://maps.googleapis.com https://*.googleapis.com https://*.gstatic.com https://*.google.com",
               "frame-src https://www.google.com https://maps.google.com",
@@ -47,9 +47,16 @@ module.exports = {
         hostname: 'images.ctfassets.net',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.eu.ctfassets.net',
+        pathname: '/**',
+      },
     ],
-    // Disable image optimization to avoid _ipx errors with external images
-    unoptimized: true,
+    minimumCacheTTL: 2678400,
+    deviceSizes: [360, 640, 768, 1024, 1280, 1600],
+    imageSizes: [48, 64, 96, 128, 256, 384],
+    formats: ['image/webp'],
   },
   allowedDevOrigins: ['192.168.100.13'],
 };

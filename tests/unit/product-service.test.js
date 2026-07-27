@@ -6,6 +6,7 @@ import {
   findPersistedProductSlugs,
   productBySlugQuery,
   productSlugIndexQuery,
+  productsQuery,
 } from '../../features/Catalog/api/products';
 
 const product = (id, urlSlug) => ({
@@ -62,6 +63,7 @@ describe('Contentful product slug boundary', () => {
   });
 
   it('keeps Contentful collection limits bounded', () => {
+    expect(productsQuery()).toContain('imageCollection(limit: 1)');
     expect(productSlugIndexQuery).toContain('productCollection(limit: 100)');
     expect(productSlugIndexQuery).not.toMatch(/imageCollection|iconosCollection/);
     expect(productBySlugQuery).toContain('productCollection(where: { urlSlug: $slug }, limit: 1)');

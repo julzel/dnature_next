@@ -52,9 +52,9 @@ the production GraphQL endpoint. Analytics requires an external consent manager
 to grant `dnature-analytics-consent`; setting a measurement ID alone does not
 load analytics.
 
-During local development, `/avify-test/` runs an uncached Avify GraphQL product
-query that verifies authentication and displays safe product summaries. The
-route returns a 404 in production.
+During local development, `/avify-test/` compares the uncached Contentful and
+Avify GraphQL catalogues, displays the products requiring reconciliation, and
+offers a CSV review export. The route returns a 404 in production.
 
 See [operations documentation](docs/operations.md) for deployment, Maps,
 monitoring, security-header, and dependency-maintenance requirements.
@@ -102,6 +102,7 @@ The native `/sitemap.xml` route includes normalized catalogue product URLs, whil
 - [Operations runbook](docs/operations.md)
 - [Browser storage and privacy policy](docs/privacy.md)
 - [Contentful schema and slug governance](docs/contentful-governance.md)
+- [Contentful–Avify SKU migration](docs/contentful-avify-sku-migration.md)
 - [First continuous performance review](phase-7-performance-review.md)
 - [Optimization roadmap](project-optimization-roadmap.md)
 
