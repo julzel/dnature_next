@@ -11,7 +11,9 @@ import AnimationBox from "../../../components/AnimationBox";
 
 // components
 import ProductButton from "./ProductButton";
-import contentfulLoader from "../../../imageLoader";
+import contentfulLoader, {
+  isContentfulImageUrl,
+} from "../../../imageLoader";
 
 const Products = ({ categories = [] }) => {
   const availableCategories = Array.isArray(categories)
@@ -33,7 +35,9 @@ const Products = ({ categories = [] }) => {
                   <AnimationBox animation="fade-in-from-bottom">
                     <div className={styles.image}>
                       <Image
-                        loader={contentfulLoader}
+                        {...(isContentfulImageUrl(category.image.url)
+                          ? { loader: contentfulLoader }
+                          : {})}
                         src={category.image.url}
                         alt={category.image.title || category.label}
                         width={100}

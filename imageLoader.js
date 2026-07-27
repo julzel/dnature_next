@@ -3,6 +3,20 @@ const CONTENTFUL_IMAGE_HOSTS = new Set([
   'images.eu.ctfassets.net',
 ]);
 
+const isContentfulImageUrl = (src) => {
+  if (typeof src !== 'string' || !src.trim()) {
+    return false;
+  }
+
+  const normalizedSource = src.startsWith('//') ? `https:${src}` : src;
+
+  try {
+    return CONTENTFUL_IMAGE_HOSTS.has(new URL(normalizedSource).hostname);
+  } catch {
+    return false;
+  }
+};
+
 export default function contentfulLoader({ src, width, quality }) {
   if (typeof src !== 'string' || !src.trim()) {
     return src;
@@ -34,3 +48,5 @@ export default function contentfulLoader({ src, width, quality }) {
 
   return url.toString();
 }
+
+export { isContentfulImageUrl };
