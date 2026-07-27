@@ -1,4 +1,5 @@
 import { fetchFromContentful } from "./util";
+import { optimizeContentfulImage } from "./contentful-images";
 
 const fallbackCategories = [
   {
@@ -75,7 +76,16 @@ const normalizeCategories = (data) => {
       slug,
       image: {
         title: cleanText(category.image.title) || label,
-        url: imageUrl,
+        url: optimizeContentfulImage(
+          {
+            title: cleanText(category.image.title) || label,
+            url: imageUrl,
+          },
+          {
+            width: 1000,
+            quality: 75,
+          }
+        ).url,
       },
     });
   });

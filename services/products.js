@@ -1,4 +1,5 @@
 import { fetchFromContentful } from './util';
+import { optimizeContentfulImage } from './contentful-images';
 
 const categoriesPriority = [
   'snacks',
@@ -20,7 +21,7 @@ const productsQuery = () => `
             precio
             preciosPorUnidad
             rating
-            imageCollection {
+            imageCollection(limit: 1) {
                 items {
                     title
                     url
@@ -44,13 +45,13 @@ const productQuery = (productId) => `
                 precio
                 preciosPorUnidad
                 ingredientes
-                imageCollection {
+                imageCollection(limit: 10) {
                     items {
                         title
                         url
                     }
                 }
-                iconosCollection {
+                iconosCollection(limit: 20) {
                     items {
                         title
                         url
@@ -75,13 +76,13 @@ const productBySlugQuery = `
         precio
         preciosPorUnidad
         ingredientes
-        imageCollection {
+        imageCollection(limit: 10) {
           items {
             title
             url
           }
         }
-        iconosCollection {
+        iconosCollection(limit: 20) {
           items {
             title
             url
@@ -99,7 +100,12 @@ const formatProductsData = (productItems) => {
   const catalog = {};
   productItems.forEach((item) => {
     const { categorySlug, category, imageCollection } = item;
-    item.images = imageCollection.items;
+    item.images = (imageCollection?.items || []).map((image) =>
+      optimizeContentfulImage(image, {
+        width: 1000,
+        quality: 72,
+      })
+    );
     delete item.imageCollection;
 
     if (catalog.hasOwnProperty(categorySlug)) {
@@ -135,10 +141,20 @@ const getProducts = async () => {
 };
 
 const formatProductData = (product) => {
-  product.images = product.imageCollection.items;
+  product.images = (product.imageCollection?.items || []).map((image) =>
+    optimizeContentfulImage(image, {
+      width: 1600,
+      quality: 78,
+    })
+  );
   delete product.imageCollection;
 
-  product.iconos = product.iconosCollection.items;
+  product.iconos = (product.iconosCollection?.items || []).map((image) =>
+    optimizeContentfulImage(image, {
+      width: 96,
+      quality: 80,
+    })
+  );
   delete product.iconosCollection;
   return product;
 };
