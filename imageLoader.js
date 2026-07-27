@@ -4,11 +4,16 @@ const CONTENTFUL_IMAGE_HOSTS = new Set([
 ]);
 
 const isContentfulImageUrl = (src) => {
-  if (typeof src !== 'string' || !src.trim()) {
+  if (typeof src !== 'string') {
     return false;
   }
 
   const trimmedSource = src.trim();
+
+  if (!trimmedSource) {
+    return false;
+  }
+
   const normalizedSource = trimmedSource.startsWith('//')
     ? `https:${trimmedSource}`
     : trimmedSource;
