@@ -1,14 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Menu, X } from 'lucide-react';
 
 import DropdownMenu from '../DropdownMenu';
 import styles from './MobileNavigation.module.scss';
 
 const MobileNavigation = ({ items }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const controlRef = useRef(null);
   const triggerRef = useRef(null);
 
   useEffect(() => {
@@ -21,13 +21,22 @@ const MobileNavigation = ({ items }) => {
         triggerRef.current?.focus();
       }
     };
+    const handlePointerDown = (event) => {
+      if (!controlRef.current?.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
 
     document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
   }, [isOpen]);
 
   return (
-    <>
+    <div ref={controlRef} className={styles.control}>
       {isOpen && (
         <DropdownMenu
           items={items}
@@ -43,9 +52,13 @@ const MobileNavigation = ({ items }) => {
         aria-controls="mobile-navigation"
         aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
       >
-        <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
+        {isOpen ? (
+          <X aria-hidden='true' size={23} strokeWidth={1.8} />
+        ) : (
+          <Menu aria-hidden='true' size={23} strokeWidth={1.8} />
+        )}
       </button>
-    </>
+    </div>
   );
 };
 

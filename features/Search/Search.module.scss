@@ -85,9 +85,37 @@
   z-index: 40;
 }
 
+.headerPanel {
+  .searchField {
+    height: 48px;
+  }
+
+  .resultsPanel {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 12px;
+    max-height: min(430px, calc(100dvh - 190px));
+    position: static;
+  }
+
+  .resultsHeader {
+    padding: 10px 0 6px;
+  }
+
+  .resultsList {
+    padding: 0;
+  }
+
+  .resultLink {
+    border-radius: 0;
+    padding-inline: 0;
+  }
+}
+
 .resultsHeader {
   align-items: center;
-  color: $gray;
+  color: $davys-gray;
   display: flex;
   font-family: $regular;
   font-size: 10px;
@@ -103,10 +131,6 @@
 
 .resultItem {
   border-radius: $br-xl;
-
-  &[aria-selected='true'] {
-    background: rgba($lightBlue, 0.14);
-  }
 }
 
 .resultLink {
@@ -118,6 +142,7 @@
   padding: 8px 10px;
   transition: background-color 160ms ease;
 
+  &[aria-selected='true'],
   &:hover,
   &:focus-visible {
     background: rgba($lightBlue, 0.14);
@@ -164,7 +189,7 @@
   }
 
   small {
-    color: $gray;
+    color: $davys-gray;
     font-family: $regular;
     font-size: 10px;
     margin-top: 2px;
@@ -195,5 +220,16 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .searchField,
+  .clearButton {
+    transition: none;
+  }
+
+  .spinner {
+    animation-duration: 1400ms;
   }
 }

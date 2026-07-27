@@ -1,13 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { Search as SearchIcon, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
-import {
-  faMagnifyingGlass,
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ContentfulImage from '../../components/ContentfulImage';
 import styles from './Search.module.scss';
@@ -15,7 +11,12 @@ import styles from './Search.module.scss';
 const MIN_QUERY_LENGTH = 2;
 const SEARCH_DELAY_MS = 220;
 
-const Search = ({ id }) => {
+const Search = ({
+  id,
+  focusInput = false,
+  onNavigate,
+  variant = 'default',
+}) => {
   const router = useRouter();
   const resultsId = useId();
   const containerRef = useRef(null);
@@ -28,6 +29,12 @@ const Search = ({ id }) => {
   const normalizedQuery = query.trim();
   const canSearch = normalizedQuery.length >= MIN_QUERY_LENGTH;
   const showResults = isOpen && canSearch;
+
+  useEffect(() => {
+    if (focusInput) {
+      inputRef.current?.focus();
+    }
+  }, [focusInput]);
 
   useEffect(() => {
     if (!canSearch) {
@@ -99,6 +106,7 @@ const Search = ({ id }) => {
   const navigateToResult = (result) => {
     setIsOpen(false);
     setActiveIndex(-1);
+    onNavigate?.();
     router.push(result.href);
   };
 
@@ -134,12 +142,19 @@ const Search = ({ id }) => {
   };
 
   return (
-    <div ref={containerRef} className={styles.searchShell} role='search'>
+    <div
+      ref={containerRef}
+      className={`${styles.searchShell} ${
+        variant === 'headerPanel' ? styles.headerPanel : ''
+      }`}
+      role='search'
+    >
       <div className={styles.searchField}>
-        <FontAwesomeIcon
+        <SearchIcon
           className={styles.searchIcon}
-          icon={faMagnifyingGlass}
           aria-hidden='true'
+          size={16}
+          strokeWidth={2}
         />
         <label className='visually-hidden' htmlFor={id}>
           Buscar productos
@@ -171,7 +186,7 @@ const Search = ({ id }) => {
             aria-label='Limpiar búsqueda'
             onClick={handleClear}
           >
-            <FontAwesomeIcon icon={faXmark} />
+            <X aria-hidden='true' size={17} strokeWidth={2} />
           </button>
         )}
       </div>
@@ -203,22 +218,28 @@ const Search = ({ id }) => {
                 <span>Productos</span>
                 <span>{results.length} resultados</span>
               </div>
-              <ul className={styles.resultsList} role='listbox'>
+              <ul
+                className={styles.resultsList}
+                role='listbox'
+                aria-label='Resultados de búsqueda'
+              >
                 {results.map((result, index) => (
                   <li
-                    id={`${resultsId}-option-${index}`}
                     key={`${result.type}:${result.id}`}
                     className={styles.resultItem}
-                    role='option'
-                    aria-selected={activeIndex === index}
-                    onMouseEnter={() => setActiveIndex(index)}
+                    role='none'
                   >
                     <Link
+                      id={`${resultsId}-option-${index}`}
                       href={result.href}
                       className={styles.resultLink}
+                      role='option'
+                      aria-selected={activeIndex === index}
+                      onMouseEnter={() => setActiveIndex(index)}
                       onClick={() => {
                         setIsOpen(false);
                         setActiveIndex(-1);
+                        onNavigate?.();
                       }}
                     >
                       <span className={styles.thumbnail}>
