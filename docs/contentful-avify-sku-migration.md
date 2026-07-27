@@ -35,11 +35,11 @@ environment before being applied to `master`.
 | Staging webhooks | Ready | Contentful reports no webhook definitions in the space. |
 | Staging schema migration | Complete | `avifySku` is published on the staging `product` content type as optional, non-localized, unique short text. |
 | Master schema migration | Complete | `avifySku` is published on `master`; the unrelated experimental `categoryTest` link was made optional after it blocked publishing products that did not contain it. |
-| Mapping proposal | Partially approved | The 56 exact rows plus all 11 probable rows and 24 confirmed review rows are approved. Two review rows remain unapproved; one duplicated suggestion remains as a validation warning. |
-| Product data backfill | Complete | All 91 approved parent SKUs match the mapping and are published in both `staging` and `master`. |
+| Mapping proposal | Partially approved | The 56 exact rows plus all 11 probable rows and 25 confirmed review rows are approved. One review row remains unapproved. |
+| Product data backfill | Complete | All 92 approved parent SKUs match the mapping and are published in both `staging` and `master`. |
 
 The schema and data migrations succeeded in both environments. Post-migration
-exports confirmed 91 unique matching parent SKUs, zero mismatches, and zero
+exports confirmed 92 unique matching parent SKUs, zero mismatches, and zero
 unpublished target entries.
 
 The July 27 reconciliation batch added these six manually confirmed links:
@@ -74,6 +74,12 @@ The final July 27 reconciliation batch added this manually confirmed link:
 | Contentful product | Avify parent | Custom SKU | Generated parent SKU |
 | --- | --- | --- | --- |
 | Testículos de Toro | Testiculos | CP42 | `cda575a6-ae0f-4a56-9155-91c9cb1c3db8` |
+
+The subsequent reconciliation added this manually confirmed link:
+
+| Contentful product | Avify parent | Custom SKU | Generated parent SKU |
+| --- | --- | --- | --- |
+| Mixtos deshidratados (grande) | Deshidratados grandes | CP98 | `4c904817-eff8-4a04-b570-04b02c6b9c2c` |
 
 The pre-refresh staging backup is stored locally at
 `backups/contentful/staging-before-avify-2026-07-24.json`. The backup directory
@@ -305,9 +311,8 @@ count and status totals, unique Contentful entry IDs, generated-vs-custom SKU
 separation, required SKUs for exact/probable rows, and duplicate proposed or
 approved links.
 
-The July 27 mapping validates with 93 rows, 93 suggested SKUs, and 91 approved
-links: 56 exact links plus 35 links confirmed by a person. One duplicated
-unapproved suggestion is emitted as a warning.
+The July 27 mapping validates with 93 rows, 93 suggested SKUs, and 92 approved
+links: 56 exact links plus 36 links confirmed by a person.
 
 ## 7. Data backfill migration
 

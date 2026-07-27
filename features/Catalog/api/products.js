@@ -147,14 +147,14 @@ const formatProductsData = (productItems) => {
   return catalog;
 };
 
-const getProducts = async () => {
+const getProducts = async ({ fresh = false } = {}) => {
   if (useFixtures) {
     return fixtureProducts;
   }
 
   const data = await fetchFromContentful(productsQuery(), undefined, {
-    revalidate: 120,
-    tags: ['products'],
+    revalidate: fresh ? 0 : 120,
+    ...(fresh ? {} : { tags: ['products'] }),
   });
   return formatProductsData(data.productCollection.items);
 };
