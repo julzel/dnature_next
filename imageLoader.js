@@ -3,22 +3,52 @@ const CONTENTFUL_IMAGE_HOSTS = new Set([
   'images.eu.ctfassets.net',
 ]);
 
+const isContentfulImageUrl = (src) => {
+  if (typeof src !== 'string') {
+    return false;
+  }
+
+  const trimmedSource = src.trim();
+
+  if (!trimmedSource) {
+    return false;
+  }
+
+  const normalizedSource = trimmedSource.startsWith('//')
+    ? `https:${trimmedSource}`
+    : trimmedSource;
+
+  try {
+    return CONTENTFUL_IMAGE_HOSTS.has(new URL(normalizedSource).hostname);
+  } catch {
+    return false;
+  }
+};
+
 export default function contentfulLoader({ src, width, quality }) {
-  if (typeof src !== 'string' || !src.trim()) {
+  if (typeof src !== 'string') {
     return src;
   }
 
-  const normalizedSource = src.startsWith('//') ? `https:${src}` : src;
+  const trimmedSource = src.trim();
+
+  if (!trimmedSource) {
+    return trimmedSource;
+  }
+
+  const normalizedSource = trimmedSource.startsWith('//')
+    ? `https:${trimmedSource}`
+    : trimmedSource;
   let url;
 
   try {
     url = new URL(normalizedSource);
   } catch {
-    return src;
+    return trimmedSource;
   }
 
   if (!CONTENTFUL_IMAGE_HOSTS.has(url.hostname)) {
-    return src;
+    return normalizedSource;
   }
 
   const configuredQuality = Number.parseInt(url.searchParams.get('q'), 10);
@@ -34,3 +64,5 @@ export default function contentfulLoader({ src, width, quality }) {
 
   return url.toString();
 }
+
+export { isContentfulImageUrl };
