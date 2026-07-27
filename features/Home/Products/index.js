@@ -28,6 +28,11 @@ const Products = ({ categories = [] }) => {
       <h2 className={`title ${styles.title}`}>Nuestros productos</h2>
       <ul className={styles.productsCategories}>
         {availableCategories.map((category) => {
+          const imageUrl =
+            typeof category.image.url === "string"
+              ? category.image.url.trim()
+              : category.image.url;
+
           return (
             <li key={category.slug} className={styles.productsCategory}>
               <Link href={`/productos?category=${category.slug}`}>
@@ -35,10 +40,10 @@ const Products = ({ categories = [] }) => {
                   <AnimationBox animation="fade-in-from-bottom">
                     <div className={styles.image}>
                       <Image
-                        {...(isContentfulImageUrl(category.image.url)
+                        {...(isContentfulImageUrl(imageUrl)
                           ? { loader: contentfulLoader }
                           : {})}
-                        src={category.image.url}
+                        src={imageUrl}
                         alt={category.image.title || category.label}
                         width={100}
                         height={100}
