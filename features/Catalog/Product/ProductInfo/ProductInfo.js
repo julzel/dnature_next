@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Box } from '@mui/material';
-import Image from 'next/image';
 import Slider from 'react-slick';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +10,7 @@ import 'slick-carousel/slick/slick-theme.css';
 // styles
 import styles from './ProductInfo.module.scss';
 import QuickAdd from '../../QuickAdd';
+import ContentfulImage from '../../../../components/ContentfulImage';
 import CurrencyText from '../../../../components/Currency';
 
 // components
@@ -44,7 +44,7 @@ const ProductInfo = ({
         <Slider {...sliderSettings}>
           {productDetail.images?.map((img, i) => (
             <div key={i}>
-              <Image
+              <ContentfulImage
                 src={img.url}
                 alt={img.title}
                 width={100}

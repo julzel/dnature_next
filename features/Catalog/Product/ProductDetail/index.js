@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 
 // local imports
 // styles
 import styles from './ProductDetail.module.scss';
+import ContentfulImage from '../../../../components/ContentfulImage';
 
 const ProductDetail = ({ productDetail }) => (
   <div className={styles.productDetail}>
@@ -25,7 +25,7 @@ const ProductDetail = ({ productDetail }) => (
           <div className={styles.icons}>
             {productDetail.iconos.map((icono, j) => (
               <div className={styles.icon} key={j}>
-                <Image
+                <ContentfulImage
                   src={icono.url}
                   alt={icono.title}
                   width={48}

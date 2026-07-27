@@ -1,5 +1,4 @@
 // Import statements
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Minus, Plus, ShoppingBag } from 'lucide-react';
@@ -8,6 +7,7 @@ import {
   useCartContext,
 } from '../../Cart/state'; // Feature API
 import styles from './CatalogItem.module.scss'; // Styles
+import ContentfulImage from '../../../components/ContentfulImage';
 import CurrencyText from '../../../components/Currency';
 import { getProductPath } from '../lib/product-url';
 
@@ -77,7 +77,7 @@ const CatalogItem = ({ product }) => {
       >
         {itemImage && (
           <span className={styles.catalogItemImages}>
-            <Image
+            <ContentfulImage
               src={itemImage.url}
               alt={itemImage.title}
               width={100}

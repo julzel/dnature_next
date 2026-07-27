@@ -4,6 +4,7 @@ import {
   fixtureProducts,
   getFixtureProductBySlug,
 } from '../../../test-support/contentful-fixtures';
+import { optimizeContentfulImage } from '../../../services/contentful-images';
 
 const useFixtures = process.env.E2E_USE_FIXTURES === '1';
 
@@ -28,7 +29,7 @@ const productsQuery = () => `
             precio
             preciosPorUnidad
             rating
-            imageCollection(limit: 10) {
+            imageCollection(limit: 1) {
                 items {
                     title
                     url
@@ -87,7 +88,10 @@ const productBySlugQuery = `
   }
 `;
 
-const formatProduct = (product) => {
+const formatProduct = (
+  product,
+  { imageWidth = 1600, imageQuality = 78 } = {}
+) => {
   const normalizedSlug = normalizeProductSlug(product?.urlSlug);
 
   if (!normalizedSlug) {
@@ -98,14 +102,31 @@ const formatProduct = (product) => {
   return {
     ...product,
     urlSlug: normalizedSlug,
-    images: product.imageCollection?.items || [],
-    iconos: product.iconosCollection?.items || [],
+    images: (product.imageCollection?.items || []).map((image) =>
+      optimizeContentfulImage(image, {
+        width: imageWidth,
+        quality: imageQuality,
+      })
+    ),
+    iconos: (product.iconosCollection?.items || []).map((icon) =>
+      optimizeContentfulImage(icon, {
+        width: 96,
+        quality: 80,
+      })
+    ),
   };
 };
 
 const formatProductsData = (productItems) => {
   const catalog = {};
-  const formattedItems = productItems.map(formatProduct).filter(Boolean);
+  const formattedItems = productItems
+    .map((product) =>
+      formatProduct(product, {
+        imageWidth: 1000,
+        imageQuality: 72,
+      })
+    )
+    .filter(Boolean);
   const slugCounts = formattedItems.reduce((counts, item) => {
     counts.set(item.urlSlug, (counts.get(item.urlSlug) || 0) + 1);
     return counts;
@@ -159,7 +180,11 @@ const getProducts = async ({ fresh = false } = {}) => {
   return formatProductsData(data.productCollection.items);
 };
 
-const formatProductData = formatProduct;
+const formatProductData = (product) =>
+  formatProduct(product, {
+    imageWidth: 1600,
+    imageQuality: 78,
+  });
 
 const findPersistedProductSlugs = (products, normalizedSlug) =>
   (Array.isArray(products) ? products : [])
@@ -221,4 +246,5 @@ export {
   getProductBySlug,
   productBySlugQuery,
   productSlugIndexQuery,
+  productsQuery,
 };

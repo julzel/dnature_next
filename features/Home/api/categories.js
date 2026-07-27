@@ -1,4 +1,5 @@
 import { fetchFromContentful } from "../../../services/contentful";
+import { optimizeContentfulImage } from "../../../services/contentful-images";
 import { fixtureCategories } from "../../../test-support/contentful-fixtures";
 
 const useFixtures = process.env.E2E_USE_FIXTURES === "1";
@@ -76,10 +77,16 @@ const normalizeCategories = (data) => {
     categoriesBySlug.set(slug, {
       label,
       slug,
-      image: {
-        title: cleanText(category.image.title) || label,
-        url: imageUrl,
-      },
+      image: optimizeContentfulImage(
+        {
+          title: cleanText(category.image.title) || label,
+          url: imageUrl,
+        },
+        {
+          width: 1000,
+          quality: 75,
+        }
+      ),
     });
   });
 
