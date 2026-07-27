@@ -35,11 +35,11 @@ environment before being applied to `master`.
 | Staging webhooks | Ready | Contentful reports no webhook definitions in the space. |
 | Staging schema migration | Complete | `avifySku` is published on the staging `product` content type as optional, non-localized, unique short text. |
 | Master schema migration | Complete | `avifySku` is published on `master`; the unrelated experimental `categoryTest` link was made optional after it blocked publishing products that did not contain it. |
-| Mapping proposal | Partially approved | The 56 exact rows plus 10 confirmed probable rows and 13 confirmed review rows are approved. One probable and 13 review rows remain unapproved; four review suggestions conflict with stronger rows. |
-| Product data backfill | Complete | All 79 approved parent SKUs match the mapping and are published in both `staging` and `master`. |
+| Mapping proposal | Partially approved | The 56 exact rows plus all 11 probable rows and 24 confirmed review rows are approved. Two review rows remain unapproved; one duplicated suggestion remains as a validation warning. |
+| Product data backfill | Complete | All 91 approved parent SKUs match the mapping and are published in both `staging` and `master`. |
 
 The schema and data migrations succeeded in both environments. Post-migration
-exports confirmed 79 unique matching parent SKUs, zero mismatches, and zero
+exports confirmed 91 unique matching parent SKUs, zero mismatches, and zero
 unpublished target entries.
 
 The July 27 reconciliation batch added these six manually confirmed links:
@@ -52,6 +52,28 @@ The July 27 reconciliation batch added these six manually confirmed links:
 | Polen de abeja | Polen | CP70 | `77f56183-9d79-49db-84fa-12dd71312603` |
 | Hemp seeds (semillas de cáñamo) | Hemp seeds | CP79 | `cbf0ac07-9554-45f1-995c-0c1cbea67ff0` |
 | Callostrum | Callostro | CP62 | `112b1c8d-ab91-4c7c-9226-9fae8a0b2c1f` |
+
+The next July 27 reconciliation batch added these 11 manually confirmed links:
+
+| Contentful product | Avify parent | Custom SKU | Generated parent SKU |
+| --- | --- | --- | --- |
+| Dieta blanda de caballo sin verduras | Caballo cocinado sin verdura 500g | CP18 | `d9e90246-24ad-403a-b79d-243ea791126d` |
+| Dieta blanda de caballo con verduras | Caballo cocinado con verdura 500g | CP17 | `c9691b8e-0baa-4ff0-9c1a-9af858a158e1` |
+| Carne de Res y Caballo | Res-Caballo 500g | CP27 | `fee35c53-c49c-4826-80e2-1a2ba92d1252` |
+| Carne de res cruda triturada | Proteína de Res 500g | CP22 | `93754920-00cc-40ff-aa6f-866e9f9b1aa7` |
+| Sardinas | Sardinas crudas | CP54 | `97e7dfad-44a5-4450-b813-2d8269cd6de4` |
+| Patas de Pollo | Patas de pollo crudas | CP44 | `9239f3d9-e7f0-4d74-9e78-396753137a7f` |
+| Cabezas de trucha | Truchas crudas | CP55 | `d4d9cfed-e992-463b-b5f1-afdd8777f395` |
+| Pechuga de Pollo | Pechuga | CP47 | `76ddf42b-e80b-4f40-a291-a24919736b27` |
+| Carne de caballo cruda en trocitos | Treats de Caballo (Caballo crudo) 500g | CP16 | `f20156ef-a3d9-4e31-9f93-0c8b3e57f1e7` |
+| Carne de res cocinada | Res cocinada | CP25 | `31399b39-e2e1-485c-a4aa-bde9e87cc715` |
+| Codorniz entera | Codorniz cruda | CP57 | `8f3c172c-cec9-425d-99bd-956ede848473` |
+
+The final July 27 reconciliation batch added this manually confirmed link:
+
+| Contentful product | Avify parent | Custom SKU | Generated parent SKU |
+| --- | --- | --- | --- |
+| Testículos de Toro | Testiculos | CP42 | `cda575a6-ae0f-4a56-9155-91c9cb1c3db8` |
 
 The pre-refresh staging backup is stored locally at
 `backups/contentful/staging-before-avify-2026-07-24.json`. The backup directory
@@ -283,10 +305,9 @@ count and status totals, unique Contentful entry IDs, generated-vs-custom SKU
 separation, required SKUs for exact/probable rows, and duplicate proposed or
 approved links.
 
-The July 27 mapping validates with 93 rows, 92 suggested SKUs, and 79 approved
-links: 56 exact links plus 23 links confirmed by a person. Four unapproved
-review suggestions reuse a parent SKU already proposed for a stronger row and
-are emitted as warnings.
+The July 27 mapping validates with 93 rows, 93 suggested SKUs, and 91 approved
+links: 56 exact links plus 35 links confirmed by a person. One duplicated
+unapproved suggestion is emitted as a warning.
 
 ## 7. Data backfill migration
 

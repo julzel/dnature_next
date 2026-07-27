@@ -394,7 +394,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/47yUDMCiCTbOf1CKY6PTwK"
     },
     {
@@ -408,7 +408,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/156KhaqNHUV57j9jqqRWIo"
     },
     {
@@ -422,21 +422,21 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1AN23c98W33TT0apqQQ98p"
     },
     {
       "contentfulEntryId": "2r3m4dC0vdxGxqrGAfq18O",
       "contentfulName": "Carne de res cruda triturada",
-      "avifySku": "51456f6a-b411-4b22-8252-8c11b22afa97",
-      "avifyCustomSku": null,
-      "avifyName": "Carne de cordero triturada 1k",
+      "avifySku": "93754920-00cc-40ff-aa6f-866e9f9b1aa7",
+      "avifyCustomSku": "CP22",
+      "avifyName": "Proteína de Res 500g",
       "matchStatus": "review",
-      "score": 0.5,
-      "alternativeAvifyName": null,
+      "score": 0.25,
+      "alternativeAvifyName": "Carne de cordero triturada 1k",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2r3m4dC0vdxGxqrGAfq18O"
     },
     {
@@ -506,7 +506,7 @@
       "alternativeAvifyName": "Testiculos deshidratados",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/7AOZ3eL5iMUWsfsKThqgRS"
     },
     {
@@ -778,15 +778,15 @@
     {
       "contentfulEntryId": "ip2N0tvsHzqN9wkaAsguv",
       "contentfulName": "Sardinas",
-      "avifySku": "b979a9b3-e6c7-46e4-a16a-4d3928465970",
-      "avifyCustomSku": "CP97",
-      "avifyName": "Sardinas deshidratadas",
+      "avifySku": "97e7dfad-44a5-4450-b813-2d8269cd6de4",
+      "avifyCustomSku": "CP54",
+      "avifyName": "Sardinas crudas",
       "matchStatus": "review",
       "score": 0.667,
-      "alternativeAvifyName": "Topping Sardina",
-      "ambiguous": true,
-      "candidateAlreadyPaired": true,
-      "approved": false,
+      "alternativeAvifyName": "Sardinas deshidratadas",
+      "ambiguous": false,
+      "candidateAlreadyPaired": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/ip2N0tvsHzqN9wkaAsguv"
     },
     {
@@ -812,23 +812,23 @@
       "matchStatus": "review",
       "score": 0.8,
       "alternativeAvifyName": "Patas de pollo deshidratadas",
-      "ambiguous": true,
+      "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6RIm3qgV5Yjt4H37t8jSor"
     },
     {
       "contentfulEntryId": "7zLLNDIYHHozPGco2J1sdr",
       "contentfulName": "Cabezas de trucha",
-      "avifySku": "c850bb2a-025a-429b-a53c-56f6feb728dd",
-      "avifyCustomSku": null,
-      "avifyName": "DNAture Trucha Bufalo",
+      "avifySku": "d4d9cfed-e992-463b-b5f1-afdd8777f395",
+      "avifyCustomSku": "CP55",
+      "avifyName": "Truchas crudas",
       "matchStatus": "review",
       "score": 0.5,
-      "alternativeAvifyName": "Truchas crudas",
-      "ambiguous": true,
-      "candidateAlreadyPaired": true,
-      "approved": false,
+      "alternativeAvifyName": "DNAture Trucha Bufalo",
+      "ambiguous": false,
+      "candidateAlreadyPaired": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/7zLLNDIYHHozPGco2J1sdr"
     },
     {
@@ -946,15 +946,15 @@
     {
       "contentfulEntryId": "1TF3EPYdu0wKwH42naHEyD",
       "contentfulName": "Pechuga de Pollo",
-      "avifySku": "7179b3d5-9413-497b-bf70-ccbd7813e889",
-      "avifyCustomSku": "CP02",
-      "avifyName": "DNAture Pollo",
+      "avifySku": "76ddf42b-e80b-4f40-a291-a24919736b27",
+      "avifyCustomSku": "CP47",
+      "avifyName": "Pechuga",
       "matchStatus": "review",
       "score": 0.667,
-      "alternativeAvifyName": "Pechuga",
-      "ambiguous": true,
-      "candidateAlreadyPaired": true,
-      "approved": false,
+      "alternativeAvifyName": "DNAture Pollo",
+      "ambiguous": false,
+      "candidateAlreadyPaired": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1TF3EPYdu0wKwH42naHEyD"
     },
     {
@@ -1072,15 +1072,15 @@
     {
       "contentfulEntryId": "hrtYFhconHUBQnE0L5lAc",
       "contentfulName": "Carne de caballo cruda en trocitos",
-      "avifySku": null,
-      "avifyCustomSku": null,
-      "avifyName": null,
+      "avifySku": "f20156ef-a3d9-4e31-9f93-0c8b3e57f1e7",
+      "avifyCustomSku": "CP16",
+      "avifyName": "Treats de Caballo (Caballo crudo) 500g",
       "matchStatus": "review",
       "score": 0.286,
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/hrtYFhconHUBQnE0L5lAc"
     },
     {
@@ -1094,7 +1094,7 @@
       "alternativeAvifyName": "DNA Monoproteica de Res Cocinada",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/49w8ATVr06AJDvi9TnpP37"
     },
     {
@@ -1106,9 +1106,9 @@
       "matchStatus": "review",
       "score": 0.5,
       "alternativeAvifyName": "Codorniz Deshidratada",
-      "ambiguous": true,
+      "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6sSaAOYYgNRvyZgpxuDMMf"
     },
     {
