@@ -20,6 +20,7 @@ const productsQuery = () => `
     productCollection(limit: 100) {
         items {
             productName
+            avifySku
             category
             categorySlug
             urlSlug

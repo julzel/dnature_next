@@ -30,7 +30,7 @@
       "alternativeAvifyName": "Alas de Pollo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4UXU5Q6mhg09KbPHVb4xeP"
     },
     {
@@ -44,7 +44,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/5eEfu2xGibqbMTr4GFgvyM"
     },
     {
@@ -58,7 +58,7 @@
       "alternativeAvifyName": "Patas de pollo deshidratadas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6v5RHFZohGIQbupL7G9MzC"
     },
     {
@@ -72,7 +72,7 @@
       "alternativeAvifyName": "Patas de pollo crudas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2bVbd1uukQmucsUUldBKCR"
     },
     {
@@ -86,7 +86,7 @@
       "alternativeAvifyName": "DNAture Pollo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/S4x8vUUx9adkAwb2vO3ZB"
     },
     {
@@ -100,7 +100,7 @@
       "alternativeAvifyName": "DNAture Pollo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/8aG3gV46jYbn8UAQsMMLD"
     },
     {
@@ -114,7 +114,7 @@
       "alternativeAvifyName": "Cuerno de bufalo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/5yCSF4xltgU6a8Z0qiJemI"
     },
     {
@@ -128,7 +128,7 @@
       "alternativeAvifyName": "Corazon deshidratado",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6Pg660Yl86e3ObS5WGA76m"
     },
     {
@@ -142,21 +142,21 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2gDDAIjmR0h01FvHVgtxtv"
     },
     {
       "contentfulEntryId": "64sY7bEGjIdEaMypSPfwcH",
       "contentfulName": "Oreja de Res con pelo deshidratadas",
-      "avifySku": "ee8c6a1a-497e-4f1f-ab58-ca1488ec5887",
-      "avifyCustomSku": null,
-      "avifyName": "Oreja de res sin pelo deshidratada",
+      "avifySku": "88df998f-fd6c-4944-8cd0-199910b2db8b",
+      "avifyCustomSku": "CP122",
+      "avifyName": "Orejas de res deshidratada",
       "matchStatus": "review",
       "score": 0.8,
-      "alternativeAvifyName": "Orejas de res deshidratada",
-      "ambiguous": true,
-      "candidateAlreadyPaired": true,
-      "approved": false,
+      "alternativeAvifyName": null,
+      "ambiguous": false,
+      "candidateAlreadyPaired": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/64sY7bEGjIdEaMypSPfwcH"
     },
     {
@@ -170,7 +170,7 @@
       "alternativeAvifyName": "Orejas de res deshidratada",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6r1b0fr4t9slvFnivZEnoS"
     },
     {
@@ -184,7 +184,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4K7HhIGHk2kp4ahGW7kVQE"
     },
     {
@@ -198,7 +198,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3v2uwiQ5YthpdOAhjIoxGa"
     },
     {
@@ -212,7 +212,7 @@
       "alternativeAvifyName": "Trucha Caballo cocinado 1k",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/64IXvv6fLPcTRZrUd4OsbY"
     },
     {
@@ -226,7 +226,7 @@
       "alternativeAvifyName": "Trucha Res cocinado 1k",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/31sR5oP9aTL7EA0ZqavlcL"
     },
     {
@@ -240,7 +240,7 @@
       "alternativeAvifyName": "DNAture Pollo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1p0fNXcYYaQB7uNBElBcxD"
     },
     {
@@ -254,7 +254,7 @@
       "alternativeAvifyName": "Corazon deshidratado",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1Payb62zIuhfa9kicM3HEq"
     },
     {
@@ -268,7 +268,7 @@
       "alternativeAvifyName": "Corazon de res",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/UTHZtWdbhhpuDKFIzjWb0"
     },
     {
@@ -282,7 +282,7 @@
       "alternativeAvifyName": "Topping de riñon",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2z6ymaydqZA9KQ1LU5XbqY"
     },
     {
@@ -296,21 +296,21 @@
       "alternativeAvifyName": "Bully sticks deshidratados",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4mZWB8DZipTIRrYUkokcS4"
     },
     {
       "contentfulEntryId": "3DPryCqFgo0uH84XDQQwTj",
       "contentfulName": "Bully Sticks",
-      "avifySku": "2acb43c6-06f8-4448-b320-5bcc84b2dc06",
-      "avifyCustomSku": "CP128",
-      "avifyName": "Trenza Bully Sticks",
+      "avifySku": "559b6d9a-71ac-434b-a0bc-681b4ca1b420",
+      "avifyCustomSku": "CP104",
+      "avifyName": "Bully sticks deshidratados",
       "matchStatus": "review",
       "score": 0.8,
-      "alternativeAvifyName": "Bully sticks deshidratados",
-      "ambiguous": true,
-      "candidateAlreadyPaired": true,
-      "approved": false,
+      "alternativeAvifyName": null,
+      "ambiguous": false,
+      "candidateAlreadyPaired": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3DPryCqFgo0uH84XDQQwTj"
     },
     {
@@ -324,7 +324,7 @@
       "alternativeAvifyName": "DNAture Pollo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2a8bONcXucYJ0xz2MoOFLM"
     },
     {
@@ -338,7 +338,7 @@
       "alternativeAvifyName": "DNAture Pollo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4eB4rCnRHLQEURjWMX9rwy"
     },
     {
@@ -352,7 +352,7 @@
       "alternativeAvifyName": "Huesos",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3d15fTQ5yOXHvb3LiBOqzt"
     },
     {
@@ -366,7 +366,7 @@
       "alternativeAvifyName": "Corazon cordero",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/vxaopi7nrvKCQxu4cfbOp"
     },
     {
@@ -380,7 +380,7 @@
       "alternativeAvifyName": "Bazo deshidratado",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1HFStwijTwT7aGbMQxY853"
     },
     {
@@ -464,7 +464,7 @@
       "alternativeAvifyName": "Corazón de caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/191hPM6NITJjHvGAyGMH6q"
     },
     {
@@ -478,7 +478,7 @@
       "alternativeAvifyName": "Higado de Caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/41CEEjDXkoVgB82d6sFs8b"
     },
     {
@@ -492,7 +492,7 @@
       "alternativeAvifyName": "Corazón de caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2Dv5zBKMM8ETu6M2xOg3zf"
     },
     {
@@ -520,7 +520,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2VumIxGcOWDe87is9tCwLx"
     },
     {
@@ -534,7 +534,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4phgl8L6WnfRRsGW4gyrFf"
     },
     {
@@ -548,7 +548,7 @@
       "alternativeAvifyName": "Testiculos",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6Xp8wqgXr3Em7Q4eV0xKzY"
     },
     {
@@ -562,7 +562,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/5hQvGNC4EFezLicKGHWLDk"
     },
     {
@@ -576,7 +576,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4BfOplf92gqxOk2TPtYTmm"
     },
     {
@@ -590,7 +590,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/t2ZcWBsZa4GZlRnfcjDjV"
     },
     {
@@ -604,7 +604,7 @@
       "alternativeAvifyName": "Pollo Res cocinado",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3hioMMxwKKyIQ3QsVGSh2m"
     },
     {
@@ -618,7 +618,7 @@
       "alternativeAvifyName": "Uña de gato",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/15netge8yoJ4uMepl3NNv2"
     },
     {
@@ -632,7 +632,7 @@
       "alternativeAvifyName": "Higado de Caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/7xgeopA8ZlJeYjll55ldtI"
     },
     {
@@ -646,7 +646,7 @@
       "alternativeAvifyName": "Higado de Caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/48Bb50SdZY2HR3m9mbzJy7"
     },
     {
@@ -660,7 +660,7 @@
       "alternativeAvifyName": "Corazon cordero",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/7zHB1qUvcLO0QOeduVYuqS"
     },
     {
@@ -674,7 +674,7 @@
       "alternativeAvifyName": "Higado de Caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/64tOfMTNhLjVQB2Tevznim"
     },
     {
@@ -688,7 +688,7 @@
       "alternativeAvifyName": "Topping de riñon",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6NFmXoApoRXNSigQlrRvP1"
     },
     {
@@ -702,7 +702,7 @@
       "alternativeAvifyName": "Corazón de caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1OkLixFUEdB1IWLLelSeCV"
     },
     {
@@ -716,7 +716,7 @@
       "alternativeAvifyName": "Corazón de caballo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1BdBuqoM9x9cTjIi0PiuqQ"
     },
     {
@@ -730,7 +730,7 @@
       "alternativeAvifyName": "Topping de riñon",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/300GDNRYkpy8OYCub0uWej"
     },
     {
@@ -744,7 +744,7 @@
       "alternativeAvifyName": "Mejillon",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2NVyiWe5Mo8wdzYml8voOA"
     },
     {
@@ -758,7 +758,7 @@
       "alternativeAvifyName": "Traqueas de Res deshidratadas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/5CU19BzSPxt4YKdAwEVdP1"
     },
     {
@@ -772,7 +772,7 @@
       "alternativeAvifyName": "Cuellos de Pollo crudos",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6IV0XvJJXetWXwhjI4bNty"
     },
     {
@@ -800,7 +800,7 @@
       "alternativeAvifyName": "Rosehip powder tarro",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/rGhQZ2Tjxr5trnXjawoaf"
     },
     {
@@ -842,7 +842,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3LhnDimm6TszeMaL6U5l83"
     },
     {
@@ -856,7 +856,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/5FwmBHOdbTgbQeVcYPV17e"
     },
     {
@@ -870,7 +870,7 @@
       "alternativeAvifyName": "Traqueas de Cordero deshidratadas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2ClGDuBURMLemybfKvfokD"
     },
     {
@@ -898,7 +898,7 @@
       "alternativeAvifyName": "Patas de pollo crudas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/7GSDymqcP4MAfciDZlyZhZ"
     },
     {
@@ -912,7 +912,7 @@
       "alternativeAvifyName": "Sardinas deshidratadas Pequeñas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6w3lOIydKdP7pE5rohKAxl"
     },
     {
@@ -926,7 +926,7 @@
       "alternativeAvifyName": "Vitamina E NOW gotas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/KpjAuqMrqS5DDmHz4RP6o"
     },
     {
@@ -940,7 +940,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6iwCnu9wyxdZjvZOtNayg5"
     },
     {
@@ -960,15 +960,15 @@
     {
       "contentfulEntryId": "7uAv1l0gNaAbASoO3gVgEv",
       "contentfulName": "Orejas de cordero deshidratadas",
-      "avifySku": "2cb1f4be-f3e3-4941-b3fa-aff64303f1f2",
-      "avifyCustomSku": "CP49",
-      "avifyName": "Orejas de Cordero crudas",
+      "avifySku": "a1edfbbb-0c58-4397-819b-bfc49f15840b",
+      "avifyCustomSku": "CP111",
+      "avifyName": "Orejas de cordeo deshidratadas",
       "matchStatus": "review",
       "score": 0.667,
-      "alternativeAvifyName": "Orejas de cordeo deshidratadas",
-      "ambiguous": true,
+      "alternativeAvifyName": null,
+      "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/7uAv1l0gNaAbASoO3gVgEv"
     },
     {
@@ -982,7 +982,7 @@
       "alternativeAvifyName": "DNAture Pollo",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2hBGuVJdVTuLJIlQBCDOkK"
     },
     {
@@ -996,7 +996,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4EwbwDLNAFFHoRHDuFyJ4a"
     },
     {
@@ -1010,7 +1010,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3ZF8rt1jZ2iKERs55BsDGS"
     },
     {
@@ -1024,21 +1024,21 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/35QCkysRRHlGpJXz3l5le6"
     },
     {
       "contentfulEntryId": "1kfzxc9nKfeWXvBZRdVj4h",
       "contentfulName": "Mejillón de labio verde ",
-      "avifySku": "4dc2fedf-0871-422c-a83a-aa3cdf3656c5",
-      "avifyCustomSku": null,
-      "avifyName": "Mejillon de Labio Verde en polvo",
+      "avifySku": "4d0ba99e-f34b-48a9-9b25-07d92995122d",
+      "avifyCustomSku": "CP81",
+      "avifyName": "Mejillon",
       "matchStatus": "review",
-      "score": 0.75,
-      "alternativeAvifyName": "Mejillón de Labio Verde (cápsula-tarro)",
-      "ambiguous": true,
+      "score": 0.25,
+      "alternativeAvifyName": "Mejillon de Labio Verde en polvo",
+      "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1kfzxc9nKfeWXvBZRdVj4h"
     },
     {
@@ -1052,7 +1052,7 @@
       "alternativeAvifyName": "Truchas deshidratadas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6CTRjBTyTdb3MIRdCADJDk"
     },
     {
@@ -1066,7 +1066,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6ib0iWdYUWEuHakFszmbWG"
     },
     {
@@ -1122,7 +1122,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/1nUscxPn6gkADl6rOZS4JI"
     },
     {
@@ -1136,7 +1136,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/11z65XpPlxQ5kBqPKDrwGU"
     },
     {
@@ -1150,21 +1150,21 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6rIWA7g1O0NslCLeOwh7HC"
     },
     {
       "contentfulEntryId": "3ASivUYsYoYAAPEmCBt5AC",
       "contentfulName": "Callostrum",
-      "avifySku": null,
-      "avifyCustomSku": null,
-      "avifyName": null,
+      "avifySku": "112b1c8d-ab91-4c7c-9226-9fae8a0b2c1f",
+      "avifyCustomSku": "CP62",
+      "avifyName": "Callostro",
       "matchStatus": "review",
       "score": 0,
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3ASivUYsYoYAAPEmCBt5AC"
     },
     {
@@ -1178,7 +1178,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3IdcywO8h5j7ByobksPvKZ"
     },
     {
@@ -1192,7 +1192,7 @@
       "alternativeAvifyName": "DNAture Gato",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/6BVhjQpklCGQIMJUjqgSXk"
     },
     {
@@ -1206,7 +1206,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/7EvIYgX0f0QbuctCPsIwXV"
     },
     {
@@ -1220,7 +1220,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/3O0oOHfDYbvx2PdBPtqCOf"
     },
     {
@@ -1234,7 +1234,7 @@
       "alternativeAvifyName": "Levadura de cerveza",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/5RfLRwWBazGHZIeG32c0a1"
     },
     {
@@ -1248,7 +1248,7 @@
       "alternativeAvifyName": "Levadura nutricional",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/4IYnmhOVhS6bMiNsBcIuDm"
     },
     {
@@ -1262,7 +1262,7 @@
       "alternativeAvifyName": "Patas de Conejo deshidratadas",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/OvveS5p8GqIRX0yMH2FSH"
     },
     {
@@ -1276,7 +1276,7 @@
       "alternativeAvifyName": "Polvo de Hueso",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/5AmW7CuxHxP7jKaqdIXro1"
     },
     {
@@ -1290,7 +1290,7 @@
       "alternativeAvifyName": null,
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/2bbM5RzzoJfhsRFGFAQqT"
     },
     {
@@ -1304,7 +1304,7 @@
       "alternativeAvifyName": "Corazon cordero",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/omDMvwbYxw4c8j5VXEdv5"
     },
     {
@@ -1318,7 +1318,7 @@
       "alternativeAvifyName": "Codorniz cruda",
       "ambiguous": false,
       "candidateAlreadyPaired": false,
-      "approved": false,
+      "approved": true,
       "contentfulUrl": "https://app.contentful.com/spaces/vyl67gce90hn/environments/staging/entries/wwOGHrvKDx3HQr8kLAqcY"
     }
   ]

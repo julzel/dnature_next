@@ -2,29 +2,39 @@
 @use '../../../styles/mixins' as *;
 
 .catalog {
-  margin: 0 auto;
-  max-width: 1280px;
-  padding: 32px 0 64px;
+  background: #f8f7f5;
+  min-width: 0;
+  padding-bottom: 48px;
   width: 100%;
 
   @include mdq(lg) {
-    padding-block: 56px 80px;
+    padding-bottom: 72px;
   }
 }
 
 .pageHeader {
-  padding: 0 16px 24px;
+  border-bottom: 1px solid rgba($accent-color-teal, 0.08);
+}
+
+.pageHeaderInner {
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 28px 16px 24px;
 
   h1 {
     color: $accent-color-teal;
     font-family: $bold2;
-    font-size: clamp(30px, 5vw, 48px);
+    font-size: clamp(30px, 6.8vw, 46px);
     letter-spacing: -0.045em;
-    line-height: 1;
+    line-height: 1.05;
   }
 
   @include mdq(md) {
-    padding-inline: 24px;
+    padding: 36px 24px 28px;
+  }
+
+  @include mdq(lg) {
+    padding-block: 42px 32px;
   }
 }
 
@@ -45,9 +55,15 @@
 }
 
 .catalogContent {
-  padding: 24px 16px 0;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 20px 16px 0;
 
   @include mdq(md) {
-    padding-inline: 24px;
+    padding: 28px 24px 0;
+  }
+
+  @include mdq(lg) {
+    padding-top: 32px;
   }
 }

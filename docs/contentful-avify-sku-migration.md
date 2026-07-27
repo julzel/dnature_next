@@ -20,7 +20,7 @@ environment before being applied to `master`.
   have succeeded in `staging`.
 - Never commit a Contentful Management API token.
 
-## Readiness snapshot — July 24, 2026
+## Readiness snapshot — July 27, 2026
 
 | Prerequisite | Status | Evidence/action |
 | --- | --- | --- |
@@ -34,12 +34,24 @@ environment before being applied to `master`.
 | Staging aliases | Ready | Contentful reports no environment aliases. |
 | Staging webhooks | Ready | Contentful reports no webhook definitions in the space. |
 | Staging schema migration | Complete | `avifySku` is published on the staging `product` content type as optional, non-localized, unique short text. |
-| Master schema migration | Not started | `master` remains unchanged and has no `avifySku` field. |
-| Mapping proposal | Ready for review | A fresh 93-row proposal contains 56 exact, 11 probable, and 26 review rows. Six review suggestions conflict with stronger rows; all rows are deliberately unapproved. |
-| Product data backfill | Not started | No Contentful product entry has been assigned an Avify SKU. |
+| Master schema migration | Complete | `avifySku` is published on `master`; the unrelated experimental `categoryTest` link was made optional after it blocked publishing products that did not contain it. |
+| Mapping proposal | Partially approved | The 56 exact rows plus 10 confirmed probable rows and 13 confirmed review rows are approved. One probable and 13 review rows remain unapproved; four review suggestions conflict with stronger rows. |
+| Product data backfill | Complete | All 79 approved parent SKUs match the mapping and are published in both `staging` and `master`. |
 
-All prerequisite checks are now resolved. The schema migration has succeeded in
-staging; no backfill migration has been run and `master` remains unchanged.
+The schema and data migrations succeeded in both environments. Post-migration
+exports confirmed 79 unique matching parent SKUs, zero mismatches, and zero
+unpublished target entries.
+
+The July 27 reconciliation batch added these six manually confirmed links:
+
+| Contentful product | Avify parent | Custom SKU | Generated parent SKU |
+| --- | --- | --- | --- |
+| Mejillón de labio verde | Mejillon | CP81 | `4d0ba99e-f34b-48a9-9b25-07d92995122d` |
+| Tripa Verde | Tripa | CP45 | `eccc67df-e4eb-4812-be3f-502eb4fa7449` |
+| Suplemento Senior DNA | Senior active | CP58 | `19be5682-2d11-43ed-a5d8-5fa310589d7b` |
+| Polen de abeja | Polen | CP70 | `77f56183-9d79-49db-84fa-12dd71312603` |
+| Hemp seeds (semillas de cáñamo) | Hemp seeds | CP79 | `cbf0ac07-9554-45f1-995c-0c1cbea67ff0` |
+| Callostrum | Callostro | CP62 | `112b1c8d-ab91-4c7c-9226-9fae8a0b2c1f` |
 
 The pre-refresh staging backup is stored locally at
 `backups/contentful/staging-before-avify-2026-07-24.json`. The backup directory
@@ -150,7 +162,8 @@ contentful/
 │   └── product-avify-skus.json
 └── migrations/
     ├── 001-add-avify-sku.js
-    └── 002-backfill-avify-skus.js
+    ├── 002-backfill-avify-skus.js
+    └── 003-make-category-test-optional.js
 scripts/
 └── validate-avify-sku-mapping.mjs
 ```
@@ -270,10 +283,10 @@ count and status totals, unique Contentful entry IDs, generated-vs-custom SKU
 separation, required SKUs for exact/probable rows, and duplicate proposed or
 approved links.
 
-The July 24 proposal currently validates with 93 rows and 91 suggested SKUs,
-but zero approved links. Six review suggestions reuse a parent SKU already
-proposed for an exact/probable row and are emitted as warnings. It is therefore
-safe to inspect but would write nothing if the backfill migration were run now.
+The July 27 mapping validates with 93 rows, 92 suggested SKUs, and 79 approved
+links: 56 exact links plus 23 links confirmed by a person. Four unapproved
+review suggestions reuse a parent SKU already proposed for a stronger row and
+are emitted as warnings.
 
 ## 7. Data backfill migration
 
@@ -309,7 +322,7 @@ module.exports = async function backfillAvifySkus(
     contentType: 'product',
     from: ['productName', 'avifySku'],
     to: ['avifySku'],
-    shouldPublish: 'preserve',
+    shouldPublish: true,
     transformEntryForLocale(fromFields, currentLocale, { id }) {
       if (currentLocale !== defaultLocale) {
         return undefined;
@@ -329,10 +342,6 @@ module.exports = async function backfillAvifySkus(
         );
       }
 
-      if (existingSku === approvedSku) {
-        return undefined;
-      }
-
       return { avifySku: approvedSku };
     },
   });
@@ -344,8 +353,8 @@ Important behavior:
 - The entry ID passed to `transformEntryForLocale` selects the mapping.
 - Unapproved and unmatched entries are left untouched.
 - Existing conflicting values stop the migration instead of being overwritten.
-- `shouldPublish: 'preserve'` keeps published entries published and draft
-  entries in draft state.
+- `shouldPublish: true` explicitly republishes approved products and makes a
+  retry recoverable after an unrelated validation failure.
 - Because `avifySku` is not localized, the migration writes only to the
   environment’s default locale.
 
@@ -357,6 +366,11 @@ Run the validator and backfill against `staging`:
 
 ```bash
 node scripts/validate-avify-sku-mapping.mjs
+
+npx contentful space migration \
+  --space-id "$CONTENTFUL_SPACE_ID" \
+  --environment-id staging \
+  contentful/migrations/003-make-category-test-optional.js
 
 npx contentful space migration \
   --space-id "$CONTENTFUL_SPACE_ID" \
@@ -420,6 +434,11 @@ npx contentful space migration \
   --space-id "$CONTENTFUL_SPACE_ID" \
   --environment-id master \
   contentful/migrations/001-add-avify-sku.js
+
+npx contentful space migration \
+  --space-id "$CONTENTFUL_SPACE_ID" \
+  --environment-id master \
+  contentful/migrations/003-make-category-test-optional.js
 
 npx contentful space migration \
   --space-id "$CONTENTFUL_SPACE_ID" \

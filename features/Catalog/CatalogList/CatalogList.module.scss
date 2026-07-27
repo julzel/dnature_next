@@ -5,17 +5,21 @@
   gap: 16px;
   grid-template-columns: minmax(0, 1fr);
 
-  @media screen and (min-width: 400px) {
+  @media screen and (min-width: 540px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @include mdq(md) {
+    gap: 18px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   @include mdq(lg) {
-    gap: 24px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @include mdq(xl) {
+    gap: 22px;
   }
 }
 
