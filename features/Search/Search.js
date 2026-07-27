@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
@@ -10,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import ContentfulImage from '../../components/ContentfulImage';
 import styles from './Search.module.scss';
 
 const MIN_QUERY_LENGTH = 2;
@@ -223,7 +223,7 @@ const Search = ({ id }) => {
                     >
                       <span className={styles.thumbnail}>
                         {result.image ? (
-                          <Image
+                          <ContentfulImage
                             src={result.image.url}
                             alt={result.image.alt}
                             width={48}

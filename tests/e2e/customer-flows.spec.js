@@ -42,7 +42,79 @@ test('category query filters the catalogue', async ({ page }) => {
     page.getByRole('link', { name: 'Recetas completas', exact: true })
   ).toHaveAttribute('aria-current', 'page');
   await expect(page.getByText('Receta de prueba')).toBeVisible();
+  await expect(page.getByText('SKU: AVIFY-RECETA-TEST')).toBeVisible();
   await expect(page.getByText('Snack de prueba')).toHaveCount(0);
+
+  const decreaseQuantity = page.getByRole('button', {
+    name: 'Disminuir cantidad de Receta de prueba',
+  });
+  const increaseQuantity = page.getByRole('button', {
+    name: 'Aumentar cantidad de Receta de prueba',
+  });
+  const quantity = page.getByRole('status', {
+    name: 'Cantidad de Receta de prueba',
+  });
+
+  await expect(decreaseQuantity).toBeDisabled();
+  await expect(quantity).toHaveText('1');
+  await increaseQuantity.click();
+  await expect(quantity).toHaveText('2');
+  await decreaseQuantity.click();
+  await expect(quantity).toHaveText('1');
+  await increaseQuantity.click();
+  await increaseQuantity.click();
+
+  await page
+    .getByRole('button', {
+      name: 'Agregar 3 unidades de Receta de prueba al carrito',
+    })
+    .click();
+
+  await expect(page.getByText('3 en carrito')).toBeVisible();
+  await expect(quantity).toHaveText('1');
+  await expect(decreaseQuantity).toBeDisabled();
+});
+
+test('catalogue layout is full-width and mobile-first', async ({ page }) => {
+  const viewportCases = [
+    { width: 390, height: 844, columns: 1 },
+    { width: 600, height: 900, columns: 2 },
+    { width: 800, height: 1000, columns: 3 },
+    { width: 1200, height: 900, columns: 4 },
+  ];
+
+  for (const viewport of viewportCases) {
+    await page.setViewportSize(viewport);
+    await page.goto('/productos');
+
+    const heading = page.getByRole('heading', { name: 'Nuestros productos' });
+    const catalogSection = page.locator('section').filter({ has: heading }).first();
+    const catalogList = page.locator('ul').filter({ has: page.locator('article') }).first();
+
+    const layout = await catalogSection.evaluate((section) => {
+      const styles = window.getComputedStyle(section);
+      const list = section.querySelector('ul:has(article)');
+
+      return {
+        backgroundColor: styles.backgroundColor,
+        backgroundImage: styles.backgroundImage,
+        columns: window
+          .getComputedStyle(list)
+          .gridTemplateColumns.split(' ')
+          .filter(Boolean).length,
+        documentWidth: document.documentElement.scrollWidth,
+        viewportWidth: document.documentElement.clientWidth,
+        sectionWidth: Math.round(section.getBoundingClientRect().width),
+      };
+    });
+
+    await expect(catalogList).toBeVisible();
+    expect(layout.backgroundColor).toBe('rgb(248, 247, 245)');
+    expect(layout.backgroundImage).toBe('none');
+    expect(layout.columns).toBe(viewport.columns);
+    expect(layout.sectionWidth).toBe(layout.viewportWidth);
+    expect(layout.documentWidth).toBe(layout.viewportWidth);
+  }
 });
 
 test('calculator produces a supported adult result', async ({ page }) => {

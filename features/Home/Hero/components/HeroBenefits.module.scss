@@ -1,0 +1,104 @@
+@use "../../../../styles/mixins" as *;
+@use "../../../../styles/variables"  as *;
+
+.benefits {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(41, 67, 78, 0.08);
+  border-radius: 2rem;
+  box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(41, 67, 78, 0.08);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0.5rem;
+  width: 100%;
+
+  @include mdq(lg) {
+    max-width: 50%;
+    padding: 0.75rem 1rem;
+  }
+}
+
+.benefit {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.75rem 0.25rem;
+  text-align: center;
+
+  & + & {
+    border-left: 1px solid rgba(41, 67, 78, 0.12);
+  }
+
+  @include mdq(sm) {
+    gap: 0.6rem;
+    padding: 0.9rem 0.5rem;
+  }
+
+  @include mdq(lg) {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+  }
+}
+
+.icon {
+  color: #087f83;
+  flex: 0 0 auto;
+  height: 1rem;
+  width: 1rem;
+
+  @include mdq(sm) {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  @include mdq(lg) {
+    height: clamp(2rem, 2.4vw, 2.6rem);
+    width: clamp(2rem, 2.4vw, 2.6rem);
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.title,
+.description {
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+
+  @include mdq(lg) {
+    letter-spacing: normal;
+  }
+}
+
+.title {
+  color: #20373e;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(0.45rem, 1.96vw, 0.5rem);
+
+  @include mdq(lg) {
+    font-family: $bold;
+    font-size: clamp(0.68rem, 0.88vw, 0.8rem);
+  }
+}
+
+.description {
+  color: #49656b;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(0.432rem, 1.88vw, 0.48rem);
+
+  @include mdq(lg) {
+    font-size: clamp(0.64rem, 0.8vw, 0.736rem);
+  }
+}

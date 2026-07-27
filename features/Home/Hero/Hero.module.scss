@@ -1,104 +1,86 @@
 @use "../../../styles/_variables" as *;
 @use "../../../styles/mixins" as *;
 
+.hero {
+  --hero-mobile-cta-overlap: 14.5px;
+
+  background-color: #FFFDF5;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--site-header-height, 158px));
+  min-height: calc(100dvh - var(--site-header-height, 158px));
+}
+
 .heroContainer {
   display: flex;
-  background-color: #29434e;
+  flex: 1;
   flex-flow: column;
+  min-height: 0;
 
   @include mdq(md) {
     flex-flow: row;
   }
 }
 
-.hero {
-  overflow: hidden;
-  transform: rotateY(180deg);
-  min-height: 402px;
-  position: relative;
-
-  @include mdq(md) {
-    width: 50%;
-  }
-
-}
-
-.heroImage {
-  object-fit: cover;
-}
-
-.heroAction {
-  padding: 96px 32px;
+.heroSectionA {
   display: flex;
   flex-flow: column;
-  align-items: center;
-  justify-content: center;
+  padding: 1rem 1rem 0;
 
   @include mdq(md) {
-    padding: 128px 32px;
+    width: 50%;
+    padding: 4rem;
+    align-items: flex-start;
+  }
+}
+
+.heroSectionB {
+  aspect-ratio: 1;
+  background-color: #FFFDF5;
+  margin-top: calc(-1 * var(--hero-mobile-cta-overlap));
+  min-height: 320px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  @include mdq(md) {
+    aspect-ratio: auto;
+    margin-top: 0;
+    min-height: 100%;
     width: 50%;
   }
+}
 
-  @include mdq(lg) {
-    padding: 128px 64px;
-    width: 50%;
-    min-height: 66.6vh;
+.heroBadge {
+  left: 32px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-75%);
+  width: clamp(96px, 25vw, 180px);
+  z-index: 1;
+
+  @include mdq(md) {
+    bottom: 20px;
+    left: auto;
+    right: 20px;
+    top: auto;
+    transform: none;
   }
 
-  &Title {
-    color: $blue;
-    font-family: $bold;
-    font-size: 32px;
-    line-height: 40px;
-    margin-bottom: 32px;
-    max-width: 590px;
-    opacity: 1;
-    text-transform: uppercase;
-    text-align: center;
-
-    @include mdq(md) {
-      font-size: 40px;
-      line-height: 48px;
-    }
-
-    span {
-      color: $orange;
-      display: inline-block;
-      font-family: $cursiveTitle;
-      font-size: 48px;
-      letter-spacing: 3px;
-      // line-height: 48px;
-      padding: 0 8px;
-      text-transform: none;
-
-      @include mdq(md) {
-        font-size: 56px;
-        transform: scale(1.1);
-        padding: 0 16px;
-        margin-bottom: 8px;
-      }
-    }
-  }
-
-  &Paragraph {
-    color: $platinum;
-    font-family: $light;
-    font-size: 20px;
-    line-height: 24px;
-    margin-bottom: 48px;
-    text-align: center;
-
-    @include mdq(md) {
-      font-size: 18px;
-      line-height: 28px;
-      text-align: left;
-    }
-  }
-
-  &Buttons {
+  img {
+    display: block;
+    height: auto;
     width: 100%;
-    display: flex;
-    justify-content: center;
+  }
+}
 
+.heroBenefits {
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+
+  @include mdq(md) {
+    margin-top: -2rem;
+    padding: 0 clamp(2rem, 5vw, 5rem) 1.5rem;
   }
 }

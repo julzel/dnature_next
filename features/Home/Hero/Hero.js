@@ -1,39 +1,36 @@
-import Image from "next/image";
-import heroImage from "../../../public/images/hero3_wide.jpg";
+
 import styles from "./Hero.module.scss";
-import Button from '../../../components/Button';
+import HeroCta from './components/HeroCta';
+import HeroEyebrow from "./components/HeroEyebrow";
+import HeroTitle from "./components/HeroTitle";
+import HeroSeparator from "./components/HeroSeparator";
+import HeroParagraph from "./components/HeroParagraph";
+import HeroBadge from "./components/HeroBadge";
+import HeroImage from './components/HeroImage';
+import HeroBenefits from "./components/HeroBenefits";
 
 const Hero = () => {
   return (
-    <div className={styles.heroContainer}>
-      <div className={styles.heroAction}>
-        <h1 className={styles.heroActionTitle}>
-          La forma <span>natural</span> de <span>alimentar</span> a tu mascota
-        </h1>
-
-        <p className={styles.heroActionParagraph}>
-          Nuestra gama de recetas, snacks y suplementos, ha sido seleccionada
-          con el objetivo de brindar la nutrición ideal para tu mascota, de
-          acuerdo a su fisiología y su genética.
-        </p>
-
-        <div className={styles.heroActionButtons}>
-          <Button href="/productos" variant="primary" size="large">
-            Comprar
-          </Button>
+    <section className={styles.hero}>
+      <div className={styles.heroContainer}>
+        <div className={styles.heroSectionA}>
+          <HeroEyebrow />
+          <HeroTitle />
+          <HeroSeparator />
+          <HeroParagraph />
+          <HeroCta />
+        </div>
+        <div className={styles.heroSectionB}>
+          <HeroImage />
+          <div className={styles.heroBadge}>
+            <HeroBadge />
+          </div>
         </div>
       </div>
-      <div className={styles.hero}>
-        <Image
-          src={heroImage}
-          alt=""
-          fill
-          priority
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className={styles.heroImage}
-        />
+      <div className={styles.heroBenefits}>
+        <HeroBenefits />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,10 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 // local imports
 //styles
 import styles from "./Products.module.scss";
+import ContentfulImage from "../../../components/ContentfulImage";
 
 // data
 import AnimationBox from "../AnimationBox";
@@ -31,7 +31,7 @@ const Products = ({ categories = [] }) => {
                 <div>
                   <AnimationBox animation="fade-in-from-bottom">
                     <div className={styles.image}>
-                      <Image
+                      <ContentfulImage
                         src={category.image.url}
                         alt={category.image.title || category.label}
                         width={100}
