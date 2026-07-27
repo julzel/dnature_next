@@ -23,7 +23,7 @@ const ContentfulImage = ({ src, alt, ...props }) => {
       {...props}
       {...loaderProps}
       src={normalizedSource}
-      alt={alt}
+      alt={typeof alt === 'string' ? alt : ''}
     />
   );
 };
