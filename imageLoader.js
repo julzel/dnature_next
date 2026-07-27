@@ -8,7 +8,10 @@ const isContentfulImageUrl = (src) => {
     return false;
   }
 
-  const normalizedSource = src.startsWith('//') ? `https:${src}` : src;
+  const trimmedSource = src.trim();
+  const normalizedSource = trimmedSource.startsWith('//')
+    ? `https:${trimmedSource}`
+    : trimmedSource;
 
   try {
     return CONTENTFUL_IMAGE_HOSTS.has(new URL(normalizedSource).hostname);
@@ -22,7 +25,10 @@ export default function contentfulLoader({ src, width, quality }) {
     return src;
   }
 
-  const normalizedSource = src.startsWith('//') ? `https:${src}` : src;
+  const trimmedSource = src.trim();
+  const normalizedSource = trimmedSource.startsWith('//')
+    ? `https:${trimmedSource}`
+    : trimmedSource;
   let url;
 
   try {
