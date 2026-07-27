@@ -30,6 +30,15 @@ const HeaderActions = () => {
     const handlePointerDown = (event) => {
       if (!searchControlRef.current?.contains(event.target)) {
         closeSearch();
+        requestAnimationFrame(() => {
+          const activeElement = document.activeElement;
+          if (
+            activeElement === document.body ||
+            searchControlRef.current?.contains(activeElement)
+          ) {
+            searchTriggerRef.current?.focus();
+          }
+        });
       }
     };
     const handleKeyDown = (event) => {
