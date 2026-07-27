@@ -130,6 +130,7 @@ const CatalogItem = ({ product }) => {
                   <Minus aria-hidden='true' size={18} strokeWidth={2.2} />
                 </button>
                 <output
+                  role='status'
                   aria-label={`Cantidad de ${productName}`}
                   aria-live='polite'
                 >
