@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import contentfulLoader from "../../../imageLoader";
 
 // styles
 import styles from "./SearchBar.module.scss";
@@ -59,6 +60,7 @@ const SearchBar = ({ query, onChange, suggestions, onSuggestionSelect }) => {
                       <span className={styles.thumbnail}>
                         {thumbnail ? (
                           <Image
+                            loader={contentfulLoader}
                             src={thumbnail.url}
                             alt={thumbnail.title || product.productName}
                             width={48}

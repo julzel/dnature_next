@@ -20,30 +20,36 @@ const optimizeBlogPostImages = (post) => {
       width: 1600,
       quality: 78,
     }),
-    imagesCollection: {
-      ...post.imagesCollection,
-      items: (post.imagesCollection?.items || []).map((image) =>
-        optimizeContentfulImage(image, {
-          width: 1400,
-          quality: 78,
-        })
-      ),
-    },
-    productsCollection: {
-      ...post.productsCollection,
-      items: (post.productsCollection?.items || []).map((product) => ({
-        ...product,
-        imageCollection: {
-          ...product.imageCollection,
-          items: (product.imageCollection?.items || []).map((image) =>
+    imagesCollection: post.imagesCollection
+      ? {
+          ...post.imagesCollection,
+          items: (post.imagesCollection.items || []).map((image) =>
             optimizeContentfulImage(image, {
-              width: 160,
-              quality: 75,
+              width: 1400,
+              quality: 78,
             })
           ),
-        },
-      })),
-    },
+        }
+      : post.imagesCollection,
+    productsCollection: post.productsCollection
+      ? {
+          ...post.productsCollection,
+          items: (post.productsCollection.items || []).map((product) => ({
+            ...product,
+            imageCollection: product.imageCollection
+              ? {
+                  ...product.imageCollection,
+                  items: (product.imageCollection.items || []).map((image) =>
+                    optimizeContentfulImage(image, {
+                      width: 160,
+                      quality: 75,
+                    })
+                  ),
+                }
+              : product.imageCollection,
+          })),
+        }
+      : post.productsCollection,
     author: post.author
       ? {
           ...post.author,

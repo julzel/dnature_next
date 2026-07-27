@@ -11,6 +11,7 @@ import {
 // local imports
 import { formatToLocaleDate } from '../../../util/dates';
 import BlogBreadcrumbs from '../BlogBreadcrumbs';
+import contentfulLoader from '../../../imageLoader';
 
 const PostHeader = ({ title, media, date, author }) => {
   const localDateString = formatToLocaleDate(date);
@@ -55,6 +56,7 @@ const PostHeader = ({ title, media, date, author }) => {
         <Card elevation={0}>
           <CardMedia>
             <Image
+              loader={contentfulLoader}
               src={media.url}
               alt={title}
               width={300}

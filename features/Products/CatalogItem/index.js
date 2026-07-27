@@ -11,6 +11,7 @@ import PresentationSelector, {
   convertObjectToArray,
 } from '../../../components/PresentationSelector'; // Components
 import CurrencyText from '../../../components/Currency';
+import contentfulLoader from '../../../imageLoader';
 
 const DEFAULT_SIZE = '1kg';
 
@@ -76,6 +77,7 @@ const CatalogItem = ({ product }) => {
         {itemImage && (
           <span className={styles.catalogItemImages}>
             <Image
+              loader={contentfulLoader}
               src={itemImage.url}
               alt={itemImage.title}
               width={100}

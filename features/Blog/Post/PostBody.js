@@ -7,6 +7,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 // local imports
 import styles from './Post.module.scss';
+import contentfulLoader from '../../../imageLoader';
 
 const PostBody = ({ body, images }) => {
   return (
@@ -30,6 +31,7 @@ const PostBody = ({ body, images }) => {
           {images.map((img, i) => (
             <Card elevation={0} key={`img-${i}`}>
               <Image
+                loader={contentfulLoader}
                 src={img.url}
                 alt={'tbd'}
                 width={300}
