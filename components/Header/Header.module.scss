@@ -72,8 +72,13 @@
 }
 
 .commerceBar {
-  border-bottom: 1px solid rgba($accent-color-teal, 0.1);
+  border-bottom: 1px solid rgba($accent-color-teal, 0.08);
   height: 66px;
+  position: relative;
+
+  @include mdq(lg) {
+    height: 76px;
+  }
 }
 
 .commerceInner {
@@ -83,33 +88,8 @@
   margin: 0 auto;
   max-width: 1440px;
   padding: 0 12px;
-  position: relative;
 
   @include mdq(lg) {
     padding-inline: clamp(24px, 4vw, 64px);
-  }
-}
-
-.mobileSearch {
-  align-items: center;
-  background: $white;
-  display: flex;
-  height: 62px;
-  padding: 9px 16px;
-
-  @include mdq(lg) {
-    display: none;
-  }
-}
-
-.navigationBar {
-  display: none;
-
-  @include mdq(lg) {
-    align-items: center;
-    border-top: 1px solid rgba($accent-color-teal, 0.08);
-    display: flex;
-    height: 46px;
-    justify-content: center;
   }
 }

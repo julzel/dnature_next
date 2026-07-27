@@ -1,12 +1,14 @@
 @use '../../../styles/variables' as *;
 
+.control {
+  display: contents;
+}
+
 .menuButton {
   align-items: center;
-  border: 1px solid rgba($accent-color-teal, 0.16);
   border-radius: 50%;
-  color: $accent-color-teal;
+  color: $davys-gray;
   display: inline-flex;
-  font-size: 16px;
   height: 44px;
   justify-content: center;
   min-width: 44px;
@@ -19,11 +21,11 @@
 
   &:hover,
   &[aria-expanded='true'] {
-    background: rgba($lightBlue, 0.18);
-    border-color: $accessibleBlue;
+    background: rgba($lightBlue, 0.16);
+    color: $accessibleBlue;
   }
 
-  &[aria-expanded='true'] {
-    transform: rotate(90deg);
+  &:active {
+    transform: scale(0.96);
   }
 }

@@ -46,7 +46,7 @@ describe('site search', () => {
     );
 
     expect(
-      await screen.findByRole('link', { name: /Receta de pollo/ })
+      await screen.findByRole('option', { name: /Receta de pollo/ })
     ).toHaveAttribute('href', '/productos/receta-de-pollo');
 
     await user.keyboard('{ArrowDown}{Enter}');
