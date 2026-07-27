@@ -24,6 +24,15 @@ const MobileNavigation = ({ items }) => {
     const handlePointerDown = (event) => {
       if (!controlRef.current?.contains(event.target)) {
         setIsOpen(false);
+        requestAnimationFrame(() => {
+          const activeElement = document.activeElement;
+          if (
+            activeElement === document.body ||
+            controlRef.current?.contains(activeElement)
+          ) {
+            triggerRef.current?.focus();
+          }
+        });
       }
     };
 
