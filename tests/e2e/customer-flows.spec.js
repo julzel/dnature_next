@@ -42,8 +42,13 @@ test('category query filters the catalogue', async ({ page }) => {
     page.getByRole('link', { name: 'Recetas completas', exact: true })
   ).toHaveAttribute('aria-current', 'page');
   await expect(page.getByText('Receta de prueba')).toBeVisible();
-  await expect(page.getByText('SKU: AVIFY-RECETA-TEST')).toBeVisible();
   await expect(page.getByText('Snack de prueba')).toHaveCount(0);
+
+  const addToCart = page.getByRole('button', {
+    name: 'Agregar Receta de prueba al carrito',
+  });
+  await expect(addToCart).toBeVisible();
+  await addToCart.click();
 
   const decreaseQuantity = page.getByRole('button', {
     name: 'Disminuir cantidad de Receta de prueba',
@@ -52,27 +57,30 @@ test('category query filters the catalogue', async ({ page }) => {
     name: 'Aumentar cantidad de Receta de prueba',
   });
   const quantity = page.getByRole('status', {
-    name: 'Cantidad de Receta de prueba',
+    name: 'Cantidad de Receta de prueba en el carrito',
   });
 
-  await expect(decreaseQuantity).toBeDisabled();
   await expect(quantity).toHaveText('1');
+  await expect(
+    page.getByRole('link', { name: 'Abrir carrito: 1 producto' })
+  ).toBeVisible();
   await increaseQuantity.click();
   await expect(quantity).toHaveText('2');
+  await increaseQuantity.click();
+  await expect(quantity).toHaveText('3');
+  await expect(
+    page.getByRole('link', { name: 'Abrir carrito: 3 productos' })
+  ).toBeVisible();
+
   await decreaseQuantity.click();
-  await expect(quantity).toHaveText('1');
-  await increaseQuantity.click();
-  await increaseQuantity.click();
+  await decreaseQuantity.click();
+  await decreaseQuantity.click();
+  await expect(addToCart).toBeVisible();
+  await expect(quantity).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Abrir carrito' })).toBeVisible();
 
-  await page
-    .getByRole('button', {
-      name: 'Agregar 3 unidades de Receta de prueba al carrito',
-    })
-    .click();
-
-  await expect(page.getByText('3 en carrito')).toBeVisible();
+  await addToCart.click();
   await expect(quantity).toHaveText('1');
-  await expect(decreaseQuantity).toBeDisabled();
 });
 
 test('catalogue layout is full-width and mobile-first', async ({ page }) => {

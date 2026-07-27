@@ -1,7 +1,6 @@
 // Import statements
 import Link from 'next/link';
-import { useState } from 'react';
-import { Minus, Plus, ShoppingBag } from 'lucide-react';
+import { Minus, Plus } from 'lucide-react';
 import {
   ShoppingCartItem,
   useCartContext,
@@ -18,15 +17,13 @@ const CatalogItem = ({ product }) => {
     preciosPorUnidad,
     precio,
     productName,
-    avifySku,
     urlSlug,
     medida,
     category,
     developmentPriceComparison,
   } = product;
   const hasPriceByUnit = !!preciosPorUnidad;
-  const [quantity, setQuantity] = useState(1);
-  const { addItems, getItemsInCart } = useCartContext();
+  const { addOneItem, getItemsInCart, removeOneItem } = useCartContext();
   const itemImage = images[0];
   const presentationPrices = Object.values(preciosPorUnidad || {})
     .map(Number)
@@ -39,25 +36,12 @@ const CatalogItem = ({ product }) => {
       ? lowestPresentationPrice
       : precio;
 
-  const addItemToCart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const newItem = new ShoppingCartItem(
-      id,
-      quantity,
-      precio,
-      productName
-    );
-    addItems(newItem);
-    setQuantity(1);
+  const addItemToCart = () => {
+    addOneItem(new ShoppingCartItem(id, 1, precio, productName));
   };
 
-  const decreaseQuantity = () => {
-    setQuantity((currentQuantity) => Math.max(1, currentQuantity - 1));
-  };
-
-  const increaseQuantity = () => {
-    setQuantity((currentQuantity) => currentQuantity + 1);
+  const removeItemFromCart = () => {
+    removeOneItem(id);
   };
 
   const itemsInCart = getItemsInCart(id);
@@ -93,7 +77,6 @@ const CatalogItem = ({ product }) => {
         <Link href={productPath} className={styles.productName}>
           {productName}
         </Link>
-        {avifySku && <p className={styles.sku}>SKU: {avifySku}</p>}
         {developmentPriceComparison ? (
           <p className={styles.price} aria-label={`Precio de ${productName}`}>
             {Number.isFinite(developmentPriceComparison.avifyPrice) ? (
@@ -118,47 +101,40 @@ const CatalogItem = ({ product }) => {
             <Link href={productPath} className={styles.optionsLink}>
               Ver opciones
             </Link>
-          ) : (
-            <>
-              <div className={styles.quantityControl}>
-                <button
-                  type='button'
-                  aria-label={`Disminuir cantidad de ${productName}`}
-                  disabled={quantity === 1}
-                  onClick={decreaseQuantity}
-                >
-                  <Minus aria-hidden='true' size={18} strokeWidth={2.2} />
-                </button>
-                <output
-                  role='status'
-                  aria-label={`Cantidad de ${productName}`}
-                  aria-live='polite'
-                >
-                  {quantity}
-                </output>
-                <button
-                  type='button'
-                  aria-label={`Aumentar cantidad de ${productName}`}
-                  onClick={increaseQuantity}
-                >
-                  <Plus aria-hidden='true' size={19} strokeWidth={2.2} />
-                </button>
-              </div>
+          ) : itemsInCart > 0 ? (
+            <div className={styles.quantityControl}>
               <button
                 type='button'
-                className={styles.addButton}
-                aria-label={`Agregar ${quantity} ${
-                  quantity === 1 ? 'unidad' : 'unidades'
-                } de ${productName} al carrito`}
+                aria-label={`Disminuir cantidad de ${productName}`}
+                onClick={removeItemFromCart}
+              >
+                <Minus aria-hidden='true' size={20} strokeWidth={2.2} />
+              </button>
+              <output
+                role='status'
+                aria-label={`Cantidad de ${productName} en el carrito`}
+                aria-live='polite'
+              >
+                {itemsInCart}
+              </output>
+              <button
+                type='button'
+                aria-label={`Aumentar cantidad de ${productName}`}
                 onClick={addItemToCart}
               >
-                <ShoppingBag aria-hidden='true' size={19} strokeWidth={2} />
-                <span>Agregar al carrito</span>
+                <Plus aria-hidden='true' size={20} strokeWidth={2.2} />
               </button>
-            </>
-          )}
-          {itemsInCart > 0 && (
-            <span className={styles.inCart}>{itemsInCart} en carrito</span>
+            </div>
+          ) : (
+            <button
+              type='button'
+              className={styles.addButton}
+              aria-label={`Agregar ${productName} al carrito`}
+              onClick={addItemToCart}
+            >
+              <Plus aria-hidden='true' size={20} strokeWidth={2.2} />
+              <span>Agregar al carrito</span>
+            </button>
           )}
         </div>
       </div>

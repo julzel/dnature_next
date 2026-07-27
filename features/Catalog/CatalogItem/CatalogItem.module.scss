@@ -89,16 +89,6 @@
   }
 }
 
-.sku {
-  color: $davys-gray;
-  font-family: $regular;
-  font-size: 9px;
-  letter-spacing: 0.01em;
-  line-height: 1.45;
-  margin-top: 7px;
-  overflow-wrap: anywhere;
-}
-
 .price {
   border-top: 1px solid rgba($accent-color-teal, 0.1);
   color: $accent-color-teal;
@@ -132,18 +122,19 @@
 
 .quantityControl {
   align-items: center;
-  border: 1px solid rgba($accent-color-teal, 0.18);
+  background: linear-gradient(135deg, $accessibleBlue, #078c8f);
+  border: 1px solid $accessibleBlue;
   border-radius: $br-full;
+  box-shadow: 0 7px 18px rgba($accessibleBlue, 0.16);
   display: grid;
-  grid-template-columns: 42px minmax(34px, 1fr) 42px;
-  margin-bottom: 12px;
-  min-height: 44px;
+  grid-template-columns: 48px minmax(34px, 1fr) 48px;
+  min-height: 46px;
   overflow: hidden;
-  width: 142px;
+  width: 100%;
 
   button {
     align-items: center;
-    color: $accent-color-teal;
+    color: $white;
     display: inline-flex;
     height: 100%;
     justify-content: center;
@@ -152,20 +143,14 @@
       color 160ms ease,
       opacity 160ms ease;
 
-    &:hover:not(:disabled),
+    &:hover,
     &:focus-visible {
-      background: rgba($lightBlue, 0.14);
-      color: $accessibleBlue;
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.28;
+      background: rgba($white, 0.14);
     }
   }
 
   output {
-    color: $accent-color-teal;
+    color: $white;
     font-family: $bold;
     font-size: 14px;
     text-align: center;
@@ -191,13 +176,15 @@
 }
 
 .addButton {
-  background: linear-gradient(135deg, $accessibleBlue, #078c8f);
-  color: $white;
-  box-shadow: 0 7px 18px rgba($accessibleBlue, 0.16);
+  background: $white;
+  border: 1px solid $accessibleBlue;
+  color: $accessibleBlue;
 
   &:hover,
   &:focus-visible {
-    background: linear-gradient(135deg, $accent-color-teal, $accessibleBlue);
+    background: rgba($lightBlue, 0.14);
+    border-color: $accent-color-teal;
+    color: $accent-color-teal;
   }
 }
 
@@ -211,13 +198,4 @@
     background: rgba($lightBlue, 0.14);
     border-color: $accessibleBlue;
   }
-}
-
-.inCart {
-  color: $accessibleBlue;
-  display: block;
-  font-family: $bold;
-  font-size: 10px;
-  margin-top: 8px;
-  text-align: center;
 }
