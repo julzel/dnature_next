@@ -30,11 +30,13 @@ const countStatuses = () =>
     ])
   );
 
+const trimString = (value) => (typeof value === 'string' ? value.trim() : '');
+
 for (const [index, product] of mapping.products.entries()) {
   const row = index + 1;
-  const entryId = product.contentfulEntryId?.trim();
-  const avifySku = product.avifySku?.trim();
-  const customSku = product.avifyCustomSku?.trim();
+  const entryId = trimString(product.contentfulEntryId);
+  const avifySku = trimString(product.avifySku);
+  const customSku = trimString(product.avifyCustomSku);
 
   if (!entryId) {
     errors.push(`Row ${row}: missing contentfulEntryId`);
