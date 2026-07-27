@@ -12,6 +12,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from './ProductInfo.module.scss';
 import QuickAdd from '../../../components/QuickAdd';
 import CurrencyText from '../../../components/Currency';
+import contentfulLoader from '../../../imageLoader';
 
 // components
 import PresentationSelector from '../../../components/PresentationSelector'; // Components
@@ -45,6 +46,7 @@ const ProductInfo = ({
           {productDetail.images?.map((img, i) => (
             <div key={i}>
               <Image
+                loader={contentfulLoader}
                 src={img.url}
                 alt={img.title}
                 width={100}

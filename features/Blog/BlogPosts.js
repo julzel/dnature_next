@@ -10,11 +10,13 @@ import styles from './Blog.module.scss';
 import { useWindow } from '../../hooks';
 import { formatToLocaleDate } from '../../util/dates';
 import postCategories from './post-categories';
+import contentfulLoader from '../../imageLoader';
 
 const BlogPostItem = ({ post }) => (
   <Card elevation={1} sx={{ mb: 1 }}>
     <Box position={'relative'}>
       <Image
+        loader={contentfulLoader}
         src={post.media.url}
         alt={post.title}
         width={300}

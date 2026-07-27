@@ -1,4 +1,66 @@
 import { fetchFromContentful } from './util';
+import { optimizeContentfulImage } from './contentful-images';
+
+const optimizePostPreview = (post) => ({
+  ...post,
+  media: optimizeContentfulImage(post?.media, {
+    width: 1000,
+    quality: 75,
+  }),
+});
+
+const optimizeBlogPostImages = (post) => {
+  if (!post) {
+    return post;
+  }
+
+  return {
+    ...post,
+    media: optimizeContentfulImage(post.media, {
+      width: 1600,
+      quality: 78,
+    }),
+    imagesCollection: post.imagesCollection
+      ? {
+          ...post.imagesCollection,
+          items: (post.imagesCollection.items || []).map((image) =>
+            optimizeContentfulImage(image, {
+              width: 1400,
+              quality: 78,
+            })
+          ),
+        }
+      : post.imagesCollection,
+    productsCollection: post.productsCollection
+      ? {
+          ...post.productsCollection,
+          items: (post.productsCollection.items || []).map((product) => ({
+            ...product,
+            imageCollection: product.imageCollection
+              ? {
+                  ...product.imageCollection,
+                  items: (product.imageCollection.items || []).map((image) =>
+                    optimizeContentfulImage(image, {
+                      width: 160,
+                      quality: 75,
+                    })
+                  ),
+                }
+              : product.imageCollection,
+          })),
+        }
+      : post.productsCollection,
+    author: post.author
+      ? {
+          ...post.author,
+          avatar: optimizeContentfulImage(post.author.avatar, {
+            width: 128,
+            quality: 75,
+          }),
+        }
+      : post.author,
+  };
+};
 
 const BLOG_PREVIEW_QUERY = `
   {
@@ -27,7 +89,7 @@ export const getPosts = async () => {
       undefined,
       { revalidate: 120, tags: ['posts'] }
     );
-    return blogPostCollection.items;
+    return blogPostCollection.items.map(optimizePostPreview);
   } catch (error) {
     console.error('Error fetching blog posts from Contentful:', error);
     throw error;
@@ -93,7 +155,7 @@ export const getPostBySlug = async (slug) => {
       revalidate: 120,
       tags: ['posts', `post:${slug}`],
     });
-    return data.blogPostCollection.items[0];
+    return optimizeBlogPostImages(data.blogPostCollection.items[0]);
   } catch (error) {
     const partialPost = error?.response?.data?.blogPostCollection?.items?.[0];
 
@@ -106,7 +168,7 @@ export const getPostBySlug = async (slug) => {
         'Contentful returned partial blog post data:',
         contentfulError || 'An optional linked entry could not be resolved.'
       );
-      return partialPost;
+      return optimizeBlogPostImages(partialPost);
     }
 
     console.error('Error fetching blog post from Contentful:', error);
@@ -159,7 +221,7 @@ export const getPostsByField = async (field, value) => {
       revalidate: 120,
       tags: ['posts'],
     });
-    return data.blogPostCollection.items;
+    return data.blogPostCollection.items.map(optimizePostPreview);
   } catch (error) {
     console.error('Error fetching blog posts from Contentful:', error);
     throw error;

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, Grid, Typography, CardHeader, CardContent } from '@mui/material';
 import { grey, teal } from '@mui/material/colors';
+import contentfulLoader from '../../../imageLoader';
 
 const ProductItem = ({ product }) => (
   <Grid item key={product.sys.id} xs={12} sm={6} md={3} sx={{ padding: 1 }}>
@@ -28,6 +29,7 @@ const ProductItem = ({ product }) => (
           {/* Thumbnail */}
           <Grid item xs={4} md={4} p={1}>
             <Image
+              loader={contentfulLoader}
               src={product.imageCollection.items[0].url}
               alt={product.imageCollection.items[0].title}
               width={75}
