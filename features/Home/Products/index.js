@@ -33,6 +33,9 @@ const Products = ({ categories = [] }) => {
               ? category.image.url.trim()
               : category.image.url;
 
+          if (!imageUrl) {
+            return null;
+          }
           return (
             <li key={category.slug} className={styles.productsCategory}>
               <Link href={`/productos?category=${category.slug}`}>
