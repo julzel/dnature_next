@@ -57,6 +57,31 @@ test('@a11y mobile navigation supports keyboard dismissal and focus restoration'
   await expect(page.getByRole('button', { name: 'Abrir menú' })).toBeFocused();
 });
 
+test('@a11y header search opens, contains results, and restores focus', async ({
+  page,
+}) => {
+  await page.goto('/');
+
+  const trigger = page.getByRole('button', { name: 'Abrir búsqueda' });
+  await trigger.focus();
+  await trigger.press('Enter');
+
+  const panel = page.getByRole('region', { name: 'Búsqueda de productos' });
+  const input = panel.getByRole('combobox', { name: 'Buscar productos' });
+
+  await expect(panel).toBeVisible();
+  await expect(input).toBeFocused();
+  await input.fill('receta');
+  await expect(
+    panel.getByRole('option', { name: /Receta de prueba/ })
+  ).toBeVisible();
+  expect(await getBlockingViolations(page)).toEqual([]);
+
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+  await expect(trigger).toBeFocused();
+});
+
 test('@a11y calculator dialog traps and restores keyboard focus', async ({
   page,
 }) => {

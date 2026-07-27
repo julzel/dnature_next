@@ -6,23 +6,20 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
-  margin-left: 4px;
 
   a {
-    border-radius: $br-full;
+    border-radius: 50%;
   }
 }
 
 .link {
   align-items: center;
-  background: $accent-color-teal;
-  border-radius: $br-full;
-  color: $white;
+  border-radius: 50%;
+  color: $davys-gray;
   display: inline-flex;
   height: 46px;
   justify-content: center;
   min-width: 46px;
-  padding: 0 6px;
   position: relative;
   transition:
     background-color 180ms ease,
@@ -30,27 +27,14 @@
     transform 180ms ease;
 
   &:hover {
-    background: $accessibleBlue;
-    box-shadow: 0 7px 18px rgba($accessibleBlue, 0.2);
-    transform: translateY(-1px);
+    background: rgba($lightBlue, 0.16);
+    color: $accessibleBlue;
   }
-}
-
-.icon {
-  align-items: center;
-  display: inline-flex;
-  font-size: 16px;
-  justify-content: center;
-  width: 32px;
-}
-
-.label {
-  display: none;
 }
 
 .badge {
   align-items: center;
-  background: $orange;
+  background: $accessibleOrange;
   border: 2px solid $white;
   border-radius: 50%;
   color: $white;
@@ -64,36 +48,4 @@
   position: absolute;
   right: -4px;
   top: -5px;
-}
-
-@include mdq(lg) {
-  .subheader {
-    margin-left: clamp(8px, 1.5vw, 20px);
-  }
-
-  .link {
-    gap: 4px;
-    min-width: 116px;
-    padding: 0 14px 0 9px;
-  }
-
-  .label {
-    display: flex;
-    flex-direction: column;
-    font-family: $regular;
-    line-height: 1.1;
-    text-align: left;
-
-    small {
-      color: rgba($white, 0.66);
-      font-size: 9px;
-      letter-spacing: 0.04em;
-    }
-
-    strong {
-      font-family: $bold;
-      font-size: 12px;
-      font-weight: normal;
-    }
-  }
 }

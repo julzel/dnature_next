@@ -13,10 +13,10 @@ const NavigationBar = ({ items }) => {
 
   return (
     <nav className={styles.navbar} aria-label='Navegación principal'>
-      {items.map((link, i) => (
+      {items.map((link) => (
         <Link
           href={link.href}
-          key={i}
+          key={link.href}
           className={`${styles.navbarItem} ${
             activePathname === link.href ||
             (link.href !== '/' && activePathname.startsWith(`${link.href}/`))

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ChevronRight } from 'lucide-react';
 import WhatsAppLink from "../../WhatsAppLink";
 
 // local imports
@@ -24,7 +23,7 @@ const DropdownMenu = ({ items, onNavigate }) => {
             <Link href={link.href} onClick={onNavigate}>
               <span className={styles.itemLink}>
                 <span>{link.label}</span>
-                <FontAwesomeIcon icon={faChevronRight} />
+                <ChevronRight aria-hidden='true' size={17} strokeWidth={1.8} />
               </span>
             </Link>
           </li>

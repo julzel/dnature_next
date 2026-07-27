@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import { ShoppingBag } from 'lucide-react';
 
 // local imports
 // styles
@@ -21,12 +20,7 @@ const SubHeader = ({ totalCartItems }) => {
         }
       >
         <span className={styles.link}>
-          <span className={styles.icon}>
-            <FontAwesomeIcon icon={faBagShopping} />
-          </span>
-          <span className={styles.label}>
-            <strong>Carrito</strong>
-          </span>
+          <ShoppingBag aria-hidden='true' size={27} strokeWidth={1.8} />
           {totalCartItems > 0 && (
             <span className={styles.badge}>{totalCartItems}</span>
           )}

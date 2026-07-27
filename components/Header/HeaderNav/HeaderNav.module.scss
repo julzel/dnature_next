@@ -7,7 +7,6 @@
   flex: 1;
   height: 100%;
   min-width: 0;
-  position: static;
 }
 
 .mobileNavigation {
@@ -41,17 +40,11 @@
   }
 }
 
-.catalogLink,
-.desktopSearch {
+.desktopNavigation {
   display: none;
 }
 
 @include mdq(lg) {
-  .headerNav {
-    gap: clamp(12px, 2vw, 28px);
-    position: relative;
-  }
-
   .mobileNavigation {
     display: none;
   }
@@ -68,31 +61,8 @@
     }
   }
 
-  .catalogLink {
-    align-items: center;
-    border: 1px solid rgba($accent-color-teal, 0.2);
-    border-radius: $br-full;
-    color: $accent-color-teal;
-    display: inline-flex;
-    font-family: $bold;
-    font-size: 12px;
-    gap: 9px;
-    height: 44px;
-    padding: 0 16px;
-    transition:
-      background-color 180ms ease,
-      border-color 180ms ease;
-
-    &:hover {
-      background: rgba($lightBlue, 0.14);
-      border-color: $accessibleBlue;
-    }
-  }
-
-  .desktopSearch {
+  .desktopNavigation {
     display: flex;
     flex: 1;
-    max-width: 650px;
   }
-
 }

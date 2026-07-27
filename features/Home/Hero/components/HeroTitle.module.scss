@@ -1,4 +1,5 @@
 @use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
 
 .title {
   color: $accent-color-teal;
@@ -7,6 +8,12 @@
   letter-spacing: -0.025em;
   line-height: 1;
   margin: 0;
+  position: relative;
+  z-index: 1;
+
+  @include mdq(md) {
+    font-size: clamp(2.5rem, 5vw, 4.75rem);
+  }
 }
 
 .line {
