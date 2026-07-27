@@ -108,39 +108,6 @@
   padding-top: 14px;
 }
 
-.priceComparison {
-  border-top: 1px solid rgba($accent-color-teal, 0.1);
-  display: grid;
-  gap: 5px;
-  margin-top: 16px;
-  padding-top: 12px;
-}
-
-.priceRow {
-  align-items: baseline;
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
-  min-width: 0;
-}
-
-.priceSource {
-  color: $gray;
-  flex: 0 0 auto;
-  font-family: $bold;
-  font-size: 9px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.priceValue {
-  color: $accent-color-teal;
-  font-family: $bold2;
-  font-size: 16px;
-  letter-spacing: -0.025em;
-  text-align: right;
-}
-
 .priceUnavailable {
   color: $gray;
   font-family: $regular;

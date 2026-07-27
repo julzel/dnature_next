@@ -95,32 +95,13 @@ const CatalogItem = ({ product }) => {
         </Link>
         {avifySku && <p className={styles.sku}>SKU: {avifySku}</p>}
         {developmentPriceComparison ? (
-          <div
-            className={styles.priceComparison}
-            aria-label={`Comparación temporal de precios de ${productName}`}
-          >
-            <p className={styles.priceRow}>
-              <span className={styles.priceSource}>Contentful</span>
-              <span className={styles.priceValue}>
-                {hasPriceByUnit && lowestPresentationPrice !== null
-                  ? 'Desde '
-                  : ''}
-                <CurrencyText value={displayPrice} />
-              </span>
-            </p>
-            <p className={styles.priceRow}>
-              <span className={styles.priceSource}>Avify</span>
-              <span className={styles.priceValue}>
-                {Number.isFinite(developmentPriceComparison.avifyPrice) ? (
-                  <CurrencyText
-                    value={developmentPriceComparison.avifyPrice}
-                  />
-                ) : (
-                  <span className={styles.priceUnavailable}>No disponible</span>
-                )}
-              </span>
-            </p>
-          </div>
+          <p className={styles.price} aria-label={`Precio de ${productName}`}>
+            {Number.isFinite(developmentPriceComparison.avifyPrice) ? (
+              <CurrencyText value={developmentPriceComparison.avifyPrice} />
+            ) : (
+              <span className={styles.priceUnavailable}>No disponible</span>
+            )}
+          </p>
         ) : (
           <p className={styles.price}>
             {hasPriceByUnit && lowestPresentationPrice !== null ? 'Desde ' : ''}
