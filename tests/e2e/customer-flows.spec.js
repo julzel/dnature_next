@@ -9,8 +9,10 @@ test('home → catalogue → product → cart → checkout', async ({ page }) =>
   await expect(page).toHaveURL(/\/productos\/receta-de-prueba\/?$/);
   await expect(page.getByRole('heading', { name: 'Receta de prueba' })).toBeVisible();
 
-  await page.getByRole('button', { name: 'Agregar una unidad' }).click();
-  await page.getByRole('link', { name: 'Ver Carrito (1)', exact: true }).click();
+  await page
+    .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
+    .click();
+  await page.getByRole('link', { name: 'Ver carrito (1)', exact: true }).click();
   await expect(page.getByRole('heading', { name: /Tu Carrito/ })).toBeVisible();
 
   await page.getByRole('button', { name: 'Continuar' }).click();

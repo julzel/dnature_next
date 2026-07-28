@@ -40,6 +40,10 @@ const fixtureProducts = {
             title: 'Receta completa DNAture',
             url: '/images/category-diet.jpg',
           },
+          {
+            title: 'Detalle de ingredientes de la receta',
+            url: '/images/category-snack.jpg',
+          },
         ],
         iconos: [],
         sys: { id: 'fixture-recipe' },

@@ -62,6 +62,9 @@ const productBySlugQuery = `
       items {
         productName
         urlSlug
+        avifySku
+        category
+        categorySlug
         description
         category
         medida

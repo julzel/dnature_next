@@ -1,25 +1,60 @@
-@use "../../../../styles/_variables" as *;
-@use "../../../../styles/mixins" as *;
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
 
 .product {
-  width: 100%;
-  max-width: 600px;
   margin: 0 auto;
-  padding: 32px;
+  max-width: 1280px;
+  padding: 20px 16px 56px;
+  width: 100%;
 
-  @include mdq(lg) {
-    width: 100%;
-    max-width: 768px;
+  @include mdq(md) {
+    padding: 28px 32px 72px;
   }
 
-  .backLink {
-    color: $davys-gray;
-    font-family: $light;
-    font-size: 14px;
-    margin-bottom: 16px;
+  @include mdq(lg) {
+    padding: 34px clamp(40px, 5vw, 72px) 88px;
+  }
 
-    span {
-      display: inline-block;
+  .breadcrumb {
+    color: $davys-gray;
+    font-family: $regular;
+    font-size: 12px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding: 8px 0;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    ol {
+      align-items: center;
+      display: flex;
+      gap: 7px;
+      min-width: max-content;
+    }
+
+    li {
+      align-items: center;
+      display: inline-flex;
+    }
+
+    a {
+      border-radius: $br-md;
+      color: $davys-gray;
+      padding: 6px 3px;
+      transition: color 160ms ease;
+
+      &:hover,
+      &:focus-visible {
+        color: $accessibleBlue;
+      }
+    }
+
+    [aria-current='page'] {
+      color: $accent-color-teal;
+      font-family: $bold;
     }
   }
 }
