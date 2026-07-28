@@ -17,6 +17,8 @@ const CART_STORAGE_VERSION = 2;
 const MAX_SAVED_CARTS = 5;
 const CART_RETENTION_DAYS = 30;
 const CART_RETENTION_MS = CART_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+const IVA_RATE = 0.13;
+const DELIVERY_FEE = 3000;
 
 const ShoppingCartContext = createContext();
 
@@ -44,32 +46,47 @@ const normalizeItem = (item) => {
     return null;
   }
 
-  return {
+  const normalizedItem = {
     id: String(item.id),
     quantity,
     price,
     productName: item.productName || '',
   };
+
+  if (typeof item.image === 'string' && item.image.trim()) {
+    normalizedItem.image = item.image;
+  }
+
+  if (typeof item.presentation === 'string' && item.presentation.trim()) {
+    normalizedItem.presentation = item.presentation;
+  }
+
+  return normalizedItem;
 };
 
-const totalsFor = (items) => {
+const totalsFor = (items, wantsDelivery = false) => {
   const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+  const tax = Math.round(subtotal * IVA_RATE);
+  const deliveryFee = wantsDelivery && items.length > 0 ? DELIVERY_FEE : 0;
 
   return {
     totalItems: items.reduce((total, item) => total + item.quantity, 0),
     subtotal,
-    tax: 0,
-    total: subtotal,
+    tax,
+    deliveryFee,
+    total: subtotal + tax + deliveryFee,
   };
 };
 
 const withItems = (cart, items, resetPurchase = false) => {
   const normalizedItems = items.map(normalizeItem).filter(Boolean);
+  const wantsDelivery = normalizedItems.length > 0 && Boolean(cart.wantsDelivery);
 
   return {
     ...cart,
+    wantsDelivery,
     items: normalizedItems,
-    ...totalsFor(normalizedItems),
+    ...totalsFor(normalizedItems, wantsDelivery),
     ...(resetPurchase
       ? {
           date: null,
@@ -94,6 +111,7 @@ const normalizeCart = (cart) => {
       purchaseOrderDate:
         typeof cart.purchaseOrderDate === 'string' ? cart.purchaseOrderDate : null,
       discount: Number.isFinite(Number(cart.discount)) ? Number(cart.discount) : 0,
+      wantsDelivery: Boolean(cart.wantsDelivery),
       client: normalizeClient(cart.client),
     },
     Array.isArray(cart.items) ? cart.items : []
@@ -226,6 +244,16 @@ const cartReducer = (cart, action) => {
         purchaseOrderDate: null,
       };
 
+    case 'SET_DELIVERY':
+      return withItems(
+        {
+          ...cart,
+          wantsDelivery: Boolean(action.wantsDelivery),
+        },
+        cart.items,
+        true
+      );
+
     case 'SELECT_CART':
       return normalizeCart(action.cart);
 
@@ -305,6 +333,10 @@ const ShoppingCartContextProvider = ({ children }) => {
     dispatch({ type: 'SET_CLIENT', client });
   }, []);
 
+  const updateDelivery = useCallback((wantsDelivery) => {
+    dispatch({ type: 'SET_DELIVERY', wantsDelivery });
+  }, []);
+
   const updateCurrentCart = useCallback((savedCart) => {
     dispatch({ type: 'SELECT_CART', cart: savedCart });
   }, []);
@@ -361,6 +393,7 @@ const ShoppingCartContextProvider = ({ children }) => {
       removeAllItems,
       removeAllItemsOfAKind,
       updateCartClient,
+      updateDelivery,
       updateCurrentCart,
       finalizePurchase,
       storeCartInLocalStorage,
@@ -378,6 +411,7 @@ const ShoppingCartContextProvider = ({ children }) => {
       removeOneItem,
       storeCartInLocalStorage,
       updateCartClient,
+      updateDelivery,
       updateCurrentCart,
     ]
   );
@@ -390,6 +424,8 @@ export const useCartContext = () => useContext(ShoppingCartContext);
 export {
   CART_STORAGE_VERSION,
   CART_RETENTION_DAYS,
+  DELIVERY_FEE,
+  IVA_RATE,
   cartReducer,
   createEmptyCart,
   normalizeCart,

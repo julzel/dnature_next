@@ -36,7 +36,7 @@ const DesignDemoPage = () => (
         <Button href='/productos' variant='primary' iconEnd={<FontAwesomeIcon icon={faArrowRight} />}>
           Ver productos
         </Button>
-        <Button href='/cart' variant='secondary'>
+        <Button href='/checkout' variant='secondary'>
           Ver carrito
         </Button>
       </div>

@@ -30,9 +30,39 @@ describe('cart reducer', () => {
     expect(afterThreeAdds).toMatchObject({
       totalItems: 3,
       subtotal: 7500,
-      total: 7500,
+      tax: 975,
+      deliveryFee: 0,
+      total: 8475,
     });
     expect(afterThreeAdds.items).toEqual([{ ...item, quantity: 3 }]);
+  });
+
+  it('adds the optional delivery fee without taxing it twice', () => {
+    const cart = cartReducer(createEmptyCart(), {
+      type: 'ADD_ITEM',
+      item: { ...item, quantity: 3 },
+    });
+    const withDelivery = cartReducer(cart, {
+      type: 'SET_DELIVERY',
+      wantsDelivery: true,
+    });
+    const withoutDelivery = cartReducer(withDelivery, {
+      type: 'SET_DELIVERY',
+      wantsDelivery: false,
+    });
+
+    expect(withDelivery).toMatchObject({
+      subtotal: 7500,
+      tax: 975,
+      wantsDelivery: true,
+      deliveryFee: 3000,
+      total: 11475,
+    });
+    expect(withoutDelivery).toMatchObject({
+      wantsDelivery: false,
+      deliveryFee: 0,
+      total: 8475,
+    });
   });
 
   it('decrements, removes one kind, and empties the cart', () => {
@@ -91,7 +121,12 @@ describe('cart storage schema', () => {
     );
 
     expect(parsed).toHaveLength(1);
-    expect(parsed[0].total).toBe(2500);
+    expect(parsed[0]).toMatchObject({
+      subtotal: 2500,
+      tax: 325,
+      deliveryFee: 0,
+      total: 2825,
+    });
     expect(parsed[0].client.address).toEqual({
       direccion: '',
       provincia: 'San José',

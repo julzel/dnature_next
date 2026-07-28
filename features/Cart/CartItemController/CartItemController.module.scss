@@ -1,36 +1,59 @@
-@use "sass:color";
-@use "../../../styles/variables" as *;
-@use "../../../styles/mixins" as *;
+@use '../../../styles/variables' as *;
 
 .cartItemController {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: 16px;
+  display: flex;
+  gap: 9px;
+  grid-column: 2 / -1;
+}
 
-  .badge {
-    display: flex;
+.badge {
+  align-items: center;
+  border: 1px solid #dfe6e7;
+  border-radius: $br-full;
+  display: grid;
+  grid-template-columns: 34px 28px 34px;
+  min-height: 36px;
+
+  button {
     align-items: center;
+    color: $accessibleBlue;
+    display: flex;
+    height: 100%;
     justify-content: center;
-    border-radius: $br-full;
-    border: 1px solid color.adjust($snow, $lightness: -5%);
-    background-color: $snow;
-    font-size: 18px;
-    padding: 4px 8px;
-    min-width: 60px;
-    margin-right: 16px;
 
-    button {
-      cursor: pointer;
-      display: inline-block;
-      font-size: 24px;
-      margin: 0 24px;
+    &:hover {
+      background: rgba($lightBlue, 0.15);
+    }
+
+    &:first-child {
+      border-radius: $br-full 0 0 $br-full;
+    }
+
+    &:last-child {
+      border-radius: 0 $br-full $br-full 0;
     }
   }
 
-  .delete {
-    color: $important;
-    cursor: pointer;
-    font-size: 20px;
+  output {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+.delete {
+  align-items: center;
+  background: #fff3f0;
+  border-radius: 50%;
+  color: #d95640;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+
+  &:hover {
+    background: #ffe4de;
   }
 }

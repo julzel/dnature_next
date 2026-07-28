@@ -209,7 +209,7 @@ const ProductInfo = ({
           )}
 
           {cartTotalItems > 0 && (
-            <Link className={styles.cartLink} href='/cart'>
+            <Link className={styles.cartLink} href='/checkout'>
               <ShoppingBag aria-hidden='true' size={19} strokeWidth={1.9} />
               <span>Ver carrito ({cartTotalItems})</span>
               <ArrowRight aria-hidden='true' size={18} strokeWidth={1.9} />

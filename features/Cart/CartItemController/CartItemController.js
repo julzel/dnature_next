@@ -1,38 +1,44 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { Minus, Plus, Trash2 } from 'lucide-react';
 
-// local imports
-// styles
-import styles from "./CartItemController.module.scss";
+import styles from './CartItemController.module.scss';
 
 const CartItemController = ({
   addOneItem,
   removeOneItem,
   removeAllItemsOfAKind,
   item,
-}) => {
-  return (
-    <div className={styles.cartItemController}>
-      <div className={styles.badge}>
-        <button type="button" aria-label={`Restar una unidad de ${item.productName}`} onClick={() => removeOneItem(item.id)}>
-          -
-        </button>
-        {item.quantity}
-        <button type="button" aria-label={`Agregar una unidad de ${item.productName}`} onClick={() => addOneItem(item)}>
-          +
-        </button>
-      </div>
+}) => (
+  <div className={styles.cartItemController}>
+    <div
+      className={styles.badge}
+      aria-label={`Cantidad de ${item.productName}: ${item.quantity}`}
+    >
       <button
-        type="button"
-        aria-label={`Eliminar ${item.productName} del carrito`}
-        onClick={() => removeAllItemsOfAKind(item.id)}
-        className={styles.delete}
+        type='button'
+        aria-label={`Restar una unidad de ${item.productName}`}
+        onClick={() => removeOneItem(item.id)}
       >
-        <FontAwesomeIcon icon={faTrashCan} size="sm" />
+        <Minus aria-hidden='true' size={16} strokeWidth={2.2} />
+      </button>
+      <output aria-live='polite'>{item.quantity}</output>
+      <button
+        type='button'
+        aria-label={`Agregar una unidad de ${item.productName}`}
+        onClick={() => addOneItem(item)}
+      >
+        <Plus aria-hidden='true' size={16} strokeWidth={2.2} />
       </button>
     </div>
-  );
-};
+    <button
+      type='button'
+      aria-label={`Eliminar ${item.productName} del carrito`}
+      onClick={() => removeAllItemsOfAKind(item.id)}
+      className={styles.delete}
+    >
+      <Trash2 aria-hidden='true' size={17} strokeWidth={1.9} />
+    </button>
+  </div>
+);
 
 export default CartItemController;

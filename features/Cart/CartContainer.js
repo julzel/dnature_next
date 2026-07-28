@@ -38,6 +38,7 @@ const CartContainer = () => {
     cart,
     finalizePurchase,
     storeCartInLocalStorage,
+    updateDelivery,
   } = useCartContext();
   
   // State management
@@ -95,6 +96,7 @@ const CartContainer = () => {
   return (
     <Cart
       cart={cart}
+      updateDelivery={updateDelivery}
       proceedToPurchase={proceedToPurchase}
       showPurchaseOrder={showPurchaseOrder}
       canvasElem={canvasElem}

@@ -50,8 +50,16 @@ test('publishes canonical metadata, headers, and dynamic product discovery', asy
     request.get('/robots.txt'),
     request.get('/sitemap.xml'),
   ]);
-  expect(await robotsResponse.text()).toContain('Disallow: /cart/');
+  const robotsText = await robotsResponse.text();
+  expect(robotsText).toContain('Disallow: /cart/');
+  expect(robotsText).toContain('Disallow: /checkout/');
   expect(await sitemapResponse.text()).toContain('/productos/receta-de-prueba/');
+});
+
+test('redirects the legacy cart route to checkout', async ({ page }) => {
+  await page.goto('/cart');
+  await expect(page).toHaveURL(/\/checkout\/?$/);
+  await expect(page.getByRole('heading', { name: 'Checkout' })).toBeVisible();
 });
 
 test('redirects an encoded-whitespace product URL to its canonical URL', async ({
