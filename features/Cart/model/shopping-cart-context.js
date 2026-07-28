@@ -44,12 +44,22 @@ const normalizeItem = (item) => {
     return null;
   }
 
-  return {
+  const normalizedItem = {
     id: String(item.id),
     quantity,
     price,
     productName: item.productName || '',
   };
+
+  if (typeof item.image === 'string' && item.image.trim()) {
+    normalizedItem.image = item.image;
+  }
+
+  if (typeof item.presentation === 'string' && item.presentation.trim()) {
+    normalizedItem.presentation = item.presentation;
+  }
+
+  return normalizedItem;
 };
 
 const totalsFor = (items) => {

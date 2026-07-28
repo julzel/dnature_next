@@ -37,7 +37,16 @@ const CatalogItem = ({ product }) => {
       : precio;
 
   const addItemToCart = () => {
-    addOneItem(new ShoppingCartItem(id, 1, precio, productName));
+    addOneItem(
+      new ShoppingCartItem(
+        id,
+        1,
+        precio,
+        productName,
+        itemImage?.url,
+        medida
+      )
+    );
   };
 
   const removeItemFromCart = () => {

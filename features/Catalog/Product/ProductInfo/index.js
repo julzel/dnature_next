@@ -25,12 +25,14 @@ const ProductInfoContainer = ({ productDetail }) => {
       1,
       productDetail.precio,
       productDetail.productName,
-      null
+      productDetail.images?.[0]?.url,
+      productDetail.medida
     );
     if (hasPriceByUnit && selectedPresentation) {
       newItem.price = parseFloat(selectedPresentation.price);
       newItem.id = `${productDetail.sys.id}-${selectedPresentation.size}`;
       newItem.productName = `${productDetail.productName} ${selectedPresentation.size}`;
+      newItem.presentation = selectedPresentation.size;
     }
     addOneItem(newItem);
   };
