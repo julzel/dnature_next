@@ -25,6 +25,8 @@ class ShoppingCart {
     this.total = 0;
     this.subtotal = 0;
     this.tax = 0;
+    this.wantsDelivery = false;
+    this.deliveryFee = 0;
     this.discount = 0;
     this.client = {
       firstName: "",

@@ -13,7 +13,21 @@ test('home → catalogue → product → cart → checkout', async ({ page }) =>
     .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
     .click();
   await page.getByRole('link', { name: 'Ver carrito (1)', exact: true }).click();
-  await expect(page.getByRole('heading', { name: /Tu Carrito/ })).toBeVisible();
+  await expect(page).toHaveURL(/\/checkout\/?$/);
+  await expect(page.getByRole('heading', { name: 'Checkout' })).toBeVisible();
+
+  const summary = page.getByRole('complementary', {
+    name: 'Resumen de compra',
+  });
+  await expect(summary).toContainText('₡650');
+  await expect(summary).toContainText('₡5,650');
+
+  const delivery = summary.getByRole('checkbox', {
+    name: /Quiero entrega a domicilio/,
+  });
+  await delivery.check();
+  await expect(summary).toContainText('₡3,000');
+  await expect(summary).toContainText('₡8,650');
 
   await page.getByRole('button', { name: 'Continuar' }).click();
   await expect(page.getByRole('heading', { name: /Detalles de entrega/ })).toBeVisible();

@@ -280,7 +280,7 @@ const CartDrawer = ({ isOpen, onClose, returnFocusRef }) => {
             </div>
             <Link
               className={styles.checkoutButton}
-              href='/cart'
+              href='/checkout'
               onClick={closeDrawer}
             >
               <ShoppingBag aria-hidden='true' size={19} strokeWidth={1.9} />

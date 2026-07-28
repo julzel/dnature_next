@@ -26,7 +26,7 @@ const SubHeader = ({ onOpen, totalCartItems, triggerRef }) => {
     <nav className={styles.subheader} aria-label='Carrito'>
       <Link
         ref={triggerRef}
-        href='/cart'
+        href='/checkout'
         onClick={handleCartClick}
         aria-label={
           totalCartItems > 0

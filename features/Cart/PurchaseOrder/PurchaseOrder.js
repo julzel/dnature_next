@@ -84,29 +84,31 @@ const PurchaseOrder = ({ cart }) => {
             </td>
           </tr>
           <tr>
-            <td colSpan='3'>Descuento</td>
+            <td colSpan='3'>IVA (13%)</td>
             <td>
-              <CurrencyText value={0.0} />
+              <CurrencyText value={cart.tax} />
             </td>
           </tr>
           <tr>
-            <td colSpan='3'>Envío*</td>
+            <td colSpan='3'>Envío</td>
             <td>
-              <CurrencyText value={3000.0} />
+              <CurrencyText value={cart.deliveryFee} />
             </td>
           </tr>
           <tr>
             <td colSpan='3'>Total</td>
             <td>
-              <CurrencyText value={cart.total + 3000.0} />
+              <CurrencyText value={cart.total} />
             </td>
           </tr>
         </tfoot>
       </table>
       <div className={styles.footNote}>
-        <p>
-          <span>*</span> Precio aplica para la Gran Área Metropolitana.
-        </p>
+        {cart.wantsDelivery && (
+          <p>
+            <span>Envío:</span> Tarifa de entrega dentro de la Gran Área Metropolitana.
+          </p>
+        )}
         <p>
           <span>Atención</span>: Fecha de entrega por coordinar.
         </p>

@@ -9,7 +9,7 @@ const routes = [
   '/calculadora',
   '/plan-dnature',
   '/preguntas-frecuentes',
-  '/cart',
+  '/checkout',
 ];
 
 const getBlockingViolations = async (page) => {
@@ -142,7 +142,7 @@ test('@a11y checkout modal is named and restores focus on Escape', async ({
   await continueButton.focus();
   await continueButton.press('Enter');
 
-  const dialog = page.getByRole('dialog', { name: 'Detalles de entrega' });
+  const dialog = page.getByRole('dialog', { name: 'Datos del pedido' });
   await expect(dialog).toBeVisible();
   await expect(
     dialog.getByRole('button', { name: 'Cerrar diálogo' })

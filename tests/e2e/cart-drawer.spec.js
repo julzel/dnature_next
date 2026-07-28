@@ -74,3 +74,52 @@ for (const viewport of viewportCases) {
     ).toBeFocused();
   });
 }
+
+test('checkout stacks on mobile and uses a two-column desktop layout', async ({
+  page,
+}) => {
+  for (const viewport of [
+    { width: 390, height: 844, layout: 'stacked' },
+    { width: 1200, height: 900, layout: 'columns' },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/productos/receta-de-prueba');
+    await page
+      .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
+      .click();
+    await page.getByRole('link', { name: 'Ver carrito (1)', exact: true }).click();
+
+    const order = page.getByRole('region', { name: 'Tu carrito' });
+    const summary = page.getByRole('complementary', {
+      name: 'Resumen de compra',
+    });
+    const [orderBounds, summaryBounds] = await Promise.all([
+      order.boundingBox(),
+      summary.boundingBox(),
+    ]);
+
+    if (viewport.layout === 'stacked') {
+      expect(summaryBounds.y).toBeGreaterThan(
+        orderBounds.y + orderBounds.height
+      );
+      expect(Math.round(orderBounds.width)).toBe(
+        Math.round(summaryBounds.width)
+      );
+    } else {
+      expect(summaryBounds.x).toBeGreaterThan(
+        orderBounds.x + orderBounds.width
+      );
+      expect(Math.round(summaryBounds.y)).toBe(Math.round(orderBounds.y));
+    }
+
+    expect(
+      await page.evaluate(() => ({
+        documentWidth: document.documentElement.scrollWidth,
+        viewportWidth: document.documentElement.clientWidth,
+      }))
+    ).toEqual({
+      documentWidth: viewport.width,
+      viewportWidth: viewport.width,
+    });
+  }
+});
