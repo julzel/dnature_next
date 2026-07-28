@@ -1,15 +1,35 @@
-import React from 'react';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { ChevronRight } from 'lucide-react';
 
-const GoBack = ({ className }) => {
-  return (
-    <Link className={className} href="/productos">
-      <FontAwesomeIcon icon={faCircleLeft} size="1x" />
-      &nbsp; Volver
-    </Link>
-  );
-};
+const GoBack = ({ className, productDetail }) => (
+  <nav className={className} aria-label='Migas de pan'>
+    <ol>
+      <li>
+        <Link href='/'>Inicio</Link>
+      </li>
+      <li aria-hidden='true'>
+        <ChevronRight size={16} strokeWidth={1.8} />
+      </li>
+      <li>
+        <Link
+          href={
+            productDetail.categorySlug
+              ? {
+                  pathname: '/productos',
+                  query: { category: productDetail.categorySlug },
+                }
+              : '/productos'
+          }
+        >
+          {productDetail.category || 'Productos'}
+        </Link>
+      </li>
+      <li aria-hidden='true'>
+        <ChevronRight size={16} strokeWidth={1.8} />
+      </li>
+      <li aria-current='page'>{productDetail.productName}</li>
+    </ol>
+  </nav>
+);
 
 export default GoBack;

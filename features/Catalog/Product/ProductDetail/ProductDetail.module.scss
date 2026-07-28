@@ -1,74 +1,121 @@
-@use '../../../../styles/variables.scss' as *;
-@use '../../../../styles/mixins.scss' as *;
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
 
 .productDetail {
-  border-top: 1px solid $border;
-  padding: 20px 0;
+  border-top: 1px solid rgba($accent-color-teal, 0.12);
+}
 
-  @include mdq(lg) {
-    display: flex;
-    justify-content: space-between;
+.tabRail {
+  margin-inline: -16px;
+  overflow-x: auto;
+  padding-inline: 16px;
+  scrollbar-width: none;
 
-    > div {
-      width: 45%;
-    }
-  }
-  h2 {
-    color: $black;
-    font-family: $cursiveTitle;
-    font-size: 20px;
-    line-height: 20px;
-    margin-bottom: 16px;
+  &::-webkit-scrollbar {
+    display: none;
   }
 
-  .description {
-    color: $black;
-    font-size: 16px;
-    margin-bottom: 16px;
-    > div {
-      padding-left: 20px;
-      margin-right: 64px;
-      position: relative;
-      margin-bottom: 32px;
-      span {
-        position: absolute;
-        display: inline-block;
-        right: 0;
-        font-size: 14px;
-      }
-    }
-    @include mdq(lg) {
-      font-size: 16px;
-    }
+  @include mdq(md) {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.tabList {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(126px, 1fr));
+  min-width: max-content;
+
+  @include mdq(md) {
+    min-width: 0;
+  }
+}
+
+.tab {
+  border-bottom: 3px solid transparent;
+  color: $davys-gray;
+  font-family: $regular;
+  font-size: 12px;
+  min-height: 58px;
+  padding: 0 16px;
+  position: relative;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease;
+
+  &[aria-selected='true'] {
+    border-bottom-color: $accessibleBlue;
+    color: $accessibleBlue;
+    font-family: $bold;
   }
 
-  &Ingredients {
-    color: $black;
+  &:hover,
+  &:focus-visible {
+    color: $accessibleBlue;
   }
 
-  p {
-    margin-bottom: 20px;
+  @include mdq(md) {
+    font-size: 13px;
   }
+}
+
+.tabPanel {
+  color: $davys-gray;
+  font-family: $regular;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 940px;
+  min-height: 160px;
+  padding: 28px 0 12px;
+
+  &:focus-visible {
+    border-radius: $br-lg;
+    outline: 2px solid $accessibleBlue;
+    outline-offset: 6px;
+  }
+
+  @include mdq(md) {
+    font-size: 15px;
+    padding-top: 34px;
+  }
+}
+
+.copy {
+  white-space: pre-line;
+}
+
+.emptyTab {
+  color: $gray;
+  font-style: italic;
 }
 
 .icons {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  padding-bottom: 10px;
+  gap: 10px;
+  margin-top: 24px;
 }
 
 .icon {
-  flex: 0 0 48px;
-  height: 48px;
-  border-radius: 50%;
+  background: #f8f7f5;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xl;
+  height: 64px;
   overflow: hidden;
+  padding: 4px;
+  width: 64px;
 }
 
 .iconImage {
+  border-radius: calc($br-xl - 4px);
   display: block;
-  width: 48px;
-  height: 48px;
-  border-radius: inherit;
+  height: 100%;
   object-fit: contain;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab {
+    transition: none;
+  }
 }
