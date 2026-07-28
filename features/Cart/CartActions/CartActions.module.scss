@@ -1,24 +1,28 @@
-@use "../../../styles/variables" as *;
-@use "../../../styles/mixins" as *;
+@use '../../../styles/variables' as *;
 
 .cartActions {
-  display: flex;
+  display: grid;
+  gap: 10px;
+}
+
+.continueButton {
+  border-radius: 14px;
+}
+
+.secondaryActions {
   align-items: center;
-  justify-content: center;
-  flex-direction: column-reverse;
+  display: flex;
+  justify-content: space-between;
 
-  @include mdq(md) {
-    flex-flow: row;
-    justify-content: space-between;
+  button {
+    font-size: 11px;
   }
+}
 
-  .button {
-    margin-bottom: 16px;
-    width: 100%;
+.emptyButton {
+  color: $important;
 
-    @include mdq(md) {
-      margin-bottom: 0;
-      width: calc((100% / 3) - 16px);
-    }
+  &:hover {
+    background: rgba($important, 0.08) !important;
   }
 }

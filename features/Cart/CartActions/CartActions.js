@@ -1,13 +1,9 @@
-import React from "react";
+import React from 'react';
 
-// local imports
-// styles
-import styles from "./CartActions.module.scss";
-
-// components
-import Button from "../../../components/Button";
-import Modal from "../../../components/Modal";
-import MessageBoxContainer from "../../../components/MessageBox";
+import styles from './CartActions.module.scss';
+import Button from '../../../components/Button';
+import Modal from '../../../components/Modal';
+import MessageBoxContainer from '../../../components/MessageBox';
 
 const CartActions = ({
   onBack,
@@ -16,48 +12,52 @@ const CartActions = ({
   handleRemoveAllItems,
   displayRemoveAllModal,
   toggleRemoveAllModal,
-}) => {
-  return (
-    <div className={styles.cartActions}>
-      {totalItems > 0 && (
-        <Button
-          className={styles.button}
-          variant="danger"
-          onClick={toggleRemoveAllModal}
-        >
-          Vaciar Carrito
-        </Button>
-      )}
+}) => (
+  <div className={styles.cartActions}>
+    {totalItems > 0 && (
       <Button
-        className={styles.button}
-        variant="tertiary"
-        onClick={onBack}
+        className={styles.continueButton}
+        variant='primary'
+        size='large'
+        fullWidth
+        onClick={proceedToPurchase}
       >
+        Continuar
+      </Button>
+    )}
+
+    <div className={styles.secondaryActions}>
+      <Button variant='tertiary' onClick={onBack}>
         Regresar
       </Button>
       {totalItems > 0 && (
-        <Button className={styles.button} variant="primary" onClick={() => proceedToPurchase()}>
-          Continuar
+        <Button
+          className={styles.emptyButton}
+          variant='tertiary'
+          onClick={toggleRemoveAllModal}
+        >
+          Vaciar carrito
         </Button>
       )}
-      {displayRemoveAllModal && (
-        <Modal
-          ariaLabel="Confirmar vaciado del carrito"
-          closeModal={toggleRemoveAllModal}
-        >
-          <MessageBoxContainer
-            type={"warning"}
-            onClose={handleRemoveAllItems}
-            onCancel={toggleRemoveAllModal}
-          >
-            <h3>¡Atención!</h3>
-            <p>Esta opción eliminará todos los items que has seleccionado.</p>
-            <p>¿Estás seguro de querer vaciar el carrito?</p>
-          </MessageBoxContainer>
-        </Modal>
-      )}
     </div>
-  );
-};
+
+    {displayRemoveAllModal && (
+      <Modal
+        ariaLabel='Confirmar vaciado del carrito'
+        closeModal={toggleRemoveAllModal}
+      >
+        <MessageBoxContainer
+          type='warning'
+          onClose={handleRemoveAllItems}
+          onCancel={toggleRemoveAllModal}
+        >
+          <h3>¡Atención!</h3>
+          <p>Esta opción eliminará todos los productos que seleccionaste.</p>
+          <p>¿Estás seguro de querer vaciar el carrito?</p>
+        </MessageBoxContainer>
+      </Modal>
+    )}
+  </div>
+);
 
 export default CartActions;

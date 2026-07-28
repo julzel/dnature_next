@@ -2,12 +2,20 @@
 @use "../../../styles/mixins" as *;
 
 .cartHistory {
-  padding: 32px;
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba($accent-color-teal, 0.05);
+  color: $dim-gray;
+  font-size: 12px;
+  margin-top: 24px;
+  padding: 20px;
 
-  @include mdq(md) {
-    // border: 1px solid $border;
-    padding-top: 0;
-    padding-right: 0;
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: 17px;
+    margin-bottom: 12px;
   }
 
   strong {
@@ -15,10 +23,10 @@
   }
 
   &Item {
-    margin-bottom: 16px;
     border-bottom: 1px solid $border;
-    padding: 8px;
-    font-size: 14px;
+    font-size: 11px;
+    margin-bottom: 10px;
+    padding: 10px 0;
 
     &:hover {
       background-color: #fafafa;
@@ -34,13 +42,20 @@
     }
 
     button {
-      background-color: $green;
-      border-radius: 5px;
+      background: rgba($lightBlue, 0.18);
+      border-radius: $br-full;
+      color: $accessibleBlue;
       font-family: $bold;
-      font-size: 10px;
+      font-size: 9px;
       margin-left: 16px;
-      padding: 2px 8px;
-      text-transform: uppercase;
+      padding: 5px 9px;
     }
+  }
+
+  > button {
+    color: $important;
+    font-family: $bold;
+    font-size: 10px;
+    margin-bottom: 8px;
   }
 }

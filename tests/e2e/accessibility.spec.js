@@ -9,7 +9,7 @@ const routes = [
   '/calculadora',
   '/plan-dnature',
   '/preguntas-frecuentes',
-  '/cart',
+  '/checkout',
 ];
 
 const getBlockingViolations = async (page) => {
@@ -23,6 +23,7 @@ const getBlockingViolations = async (page) => {
       id,
       impact,
       nodeCount: nodes.length,
+      targets: nodes.map(({ target }) => target),
     }));
 };
 
@@ -82,6 +83,31 @@ test('@a11y header search opens, contains results, and restores focus', async ({
   await expect(trigger).toBeFocused();
 });
 
+test('@a11y cart drawer is named, trapped, and restores focus', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/productos');
+  await page
+    .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
+    .click();
+
+  const trigger = page.getByRole('link', {
+    name: 'Abrir carrito: 1 producto',
+  });
+  await trigger.focus();
+  await trigger.press('Enter');
+
+  const dialog = page.getByRole('dialog', { name: /Carrito/ });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toBeFocused();
+  expect(await getBlockingViolations(page)).toEqual([]);
+
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+});
+
 test('@a11y calculator dialog traps and restores keyboard focus', async ({
   page,
 }) => {
@@ -116,7 +142,7 @@ test('@a11y checkout modal is named and restores focus on Escape', async ({
   await continueButton.focus();
   await continueButton.press('Enter');
 
-  const dialog = page.getByRole('dialog', { name: 'Detalles de entrega' });
+  const dialog = page.getByRole('dialog', { name: 'Datos del pedido' });
   await expect(dialog).toBeVisible();
   await expect(
     dialog.getByRole('button', { name: 'Cerrar diálogo' })

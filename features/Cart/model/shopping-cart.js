@@ -1,9 +1,17 @@
 class ShoppingCartItem {
-  constructor(id, quantity, price, productName) {
+  constructor(id, quantity, price, productName, image, presentation) {
     this.id = id;
     this.quantity = quantity;
     this.price = price;
     this.productName = productName;
+
+    if (image) {
+      this.image = image;
+    }
+
+    if (presentation) {
+      this.presentation = presentation;
+    }
   }
 }
 
@@ -17,6 +25,8 @@ class ShoppingCart {
     this.total = 0;
     this.subtotal = 0;
     this.tax = 0;
+    this.wantsDelivery = false;
+    this.deliveryFee = 0;
     this.discount = 0;
     this.client = {
       firstName: "",

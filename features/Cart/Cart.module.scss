@@ -1,80 +1,419 @@
-@use "../../styles/variables" as *;
-@use "../../styles/mixins" as *;
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
 
-.cart {
+.checkout {
+  background:
+    radial-gradient(circle at 6% 4%, rgba($lightBlue, 0.12), transparent 28%),
+    #f8f7f5;
+  color: $accent-color-teal;
   flex: 1;
-  background-color: $white;
+  padding: 24px 16px 56px;
+}
+
+.checkoutShell {
+  margin: 0 auto;
+  max-width: 1220px;
+  width: 100%;
+}
+
+.backLink {
+  align-items: center;
+  color: $accessibleBlue;
+  display: inline-flex;
+  font-family: $bold;
+  font-size: 12px;
+  gap: 7px;
+  margin-bottom: 24px;
+}
+
+.pageHeader {
+  margin-bottom: 28px;
+
+  > p {
+    color: $accessibleOrange;
+    font-family: $bold;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: clamp(36px, 9vw, 54px);
+    letter-spacing: -0.045em;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  > span {
+    color: $dim-gray;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+.checkoutGrid {
+  display: grid;
+  gap: 20px;
+}
+
+.orderCard,
+.summary {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.08);
+  border-radius: 22px;
+  box-shadow: 0 16px 46px rgba($accent-color-teal, 0.07);
+}
+
+.orderCard {
+  min-width: 0;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.orderHeading {
+  align-items: flex-end;
+  border-bottom: 1px solid $border;
   display: flex;
-  flex-flow: column;
+  justify-content: space-between;
+  padding-bottom: 18px;
 
-  @include mdq(md) {
-    justify-content: center;
-    flex-flow: row;
-    padding: 32px;
+  p,
+  .summaryHeading p {
+    color: $accessibleOrange;
+    font-family: $bold;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    margin-bottom: 3px;
+    text-transform: uppercase;
   }
 
-  @include mdq(lg) {
-    padding: 64px;
+  h2 {
+    font-family: $bold2;
+    font-size: 24px;
+    letter-spacing: -0.025em;
+  }
+}
+
+.itemCount {
+  background: rgba($lightBlue, 0.16);
+  border-radius: $br-full;
+  color: $accessibleBlue;
+  font-family: $bold;
+  font-size: 10px;
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+
+.summary {
+  align-self: start;
+  padding: 22px 20px;
+}
+
+.summaryHeading {
+  border-bottom: 1px solid $border;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+
+  p {
+    color: $accessibleOrange;
+    font-family: $bold;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    margin-bottom: 3px;
+    text-transform: uppercase;
   }
 
-  .cartContent {
-    background-color: $white;
-    border: 1px solid $border;
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    padding: 32px;
-    max-width: 768px;
-    width: 100%;
+  h2 {
+    font-family: $bold2;
+    font-size: 23px;
+    letter-spacing: -0.025em;
+  }
+}
 
-    .header {
-      font-family: $bold2;
-      font-size: 12px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-    }
+.deliveryOption {
+  align-items: center;
+  background: #f5fbfb;
+  border: 1px solid rgba($accessibleBlue, 0.16);
+  border-radius: 14px;
+  cursor: pointer;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 20px 36px minmax(0, 1fr) auto;
+  margin-bottom: 20px;
+  padding: 13px;
+  position: relative;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 
-    .total {
-      border: 1px solid $border;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-family: $bold;
-      margin-bottom: 32px;
-      padding: 16px;
-      text-align: right;
-    }
+  &:hover {
+    border-color: rgba($accessibleBlue, 0.35);
   }
 
-  .cartClientForm {
-    height: 100%;
-    display: flex;
-    flex-flow: column;
-    padding-top: 16px;
-
-    form {
-      @include mdq(md) {
-        border: 1px solid $border;
-        padding: 32px;
-      }
-    }
+  &:has(input:checked) {
+    background: rgba($lightBlue, 0.15);
+    border-color: $accessibleBlue;
+    box-shadow: 0 0 0 2px rgba($lightBlue, 0.18);
   }
 
-  .canvas {
-    visibility: hidden;
-    margin: 0 auto;
-    padding: 24px 16px;
+  input {
+    height: 1px;
+    opacity: 0;
     position: absolute;
-    width: 100%;
-    max-width: 320px;
-    z-index: -1;
+    width: 1px;
+  }
 
-    &.visible {
-      visibility: visible;
+  input:focus-visible + .checkmark {
+    outline: 3px solid $lightBlue;
+    outline-offset: 3px;
+  }
+
+  input:checked + .checkmark {
+    background: $accessibleBlue;
+    border-color: $accessibleBlue;
+
+    &::after {
+      border: solid $white;
+      border-width: 0 2px 2px 0;
+      content: '';
+      height: 8px;
+      left: 6px;
+      position: absolute;
+      top: 3px;
+      transform: rotate(45deg);
+      width: 4px;
     }
+  }
+}
+
+.checkmark {
+  background: $white;
+  border: 1.5px solid $accessibleBlue;
+  border-radius: 5px;
+  height: 20px;
+  position: relative;
+  width: 20px;
+}
+
+.deliveryIcon {
+  align-items: center;
+  background: $white;
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
+.deliveryCopy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  strong {
+    font-family: $bold;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  small {
+    color: $dim-gray;
+    font-size: 9px;
+    margin-top: 2px;
+  }
+}
+
+.deliveryPrice {
+  font-family: $bold;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.breakdown {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 22px;
+
+  > div {
+    align-items: baseline;
+    display: flex;
+    font-size: 13px;
+    justify-content: space-between;
+  }
+
+  dt {
+    color: $dim-gray;
+
+    span {
+      font-size: 10px;
+    }
+  }
+
+  dd {
+    color: $accent-color-teal;
+    font-family: $bold;
+    margin: 0;
+  }
+}
+
+.noDeliveryFee {
+  color: $accessibleBlue !important;
+  font-size: 11px;
+}
+
+.grandTotal {
+  border-top: 1px solid $border;
+  margin-top: 4px;
+  padding-top: 16px;
+
+  dt {
+    color: $accent-color-teal;
+    font-family: $bold2;
+    font-size: 17px;
+  }
+
+  dd {
+    font-family: $bold2;
+    font-size: 24px;
+    letter-spacing: -0.025em;
+  }
+}
+
+.trustNote {
+  align-items: center;
+  border-top: 1px solid $border;
+  color: $accessibleBlue;
+  display: grid;
+  font-size: 9px;
+  gap: 9px;
+  grid-template-columns: 20px 1fr 16px;
+  line-height: 1.4;
+  margin-top: 18px;
+  padding-top: 16px;
+
+  span {
+    color: $dim-gray;
+    display: flex;
+    flex-direction: column;
+  }
+
+  strong {
+    color: $accent-color-teal;
+    font-family: $bold;
+  }
+}
+
+.emptyCart {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 330px;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+
+  > span {
+    align-items: center;
+    background: rgba($lightBlue, 0.18);
+    border-radius: 50%;
+    color: $accessibleBlue;
+    display: flex;
+    height: 68px;
+    justify-content: center;
+    width: 68px;
+  }
+
+  h3 {
+    font-family: $bold2;
+    font-size: 21px;
+    margin: 16px 0 6px;
+  }
+
+  p {
+    color: $dim-gray;
+    font-size: 12px;
+    line-height: 1.5;
   }
 
   a {
-    color: $accessibleBlue;
+    background: $accessibleBlue;
+    border-radius: $br-full;
+    color: $white;
+    font-family: $bold;
+    font-size: 12px;
+    margin-top: 20px;
+    padding: 11px 18px;
+  }
+}
+
+.cartClientForm {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  padding-top: 16px;
+
+  form {
+    @include mdq(md) {
+      border: 1px solid $border;
+      padding: 32px;
+    }
+  }
+}
+
+.canvas {
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 24px 16px;
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
+  z-index: -1;
+
+  &.visible {
+    visibility: visible;
+  }
+}
+
+@include mdq(md) {
+  .checkout {
+    padding: 36px 32px 72px;
+  }
+
+  .orderCard {
+    padding: 28px;
+  }
+
+  .summary {
+    padding: 28px;
+  }
+}
+
+@include mdq(lg) {
+  .checkout {
+    padding: 48px clamp(36px, 5vw, 76px) 88px;
+  }
+
+  .backLink {
+    margin-bottom: 32px;
+  }
+
+  .pageHeader {
+    margin-bottom: 36px;
+  }
+
+  .checkoutGrid {
+    align-items: start;
+    gap: 28px;
+    grid-template-columns: minmax(0, 1.55fr) minmax(340px, 0.75fr);
+  }
+
+  .summary {
+    position: sticky;
+    top: 130px;
   }
 }

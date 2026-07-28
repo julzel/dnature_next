@@ -1,16 +1,5 @@
-import Cart from '../../features/Cart';
-import { createPageMetadata } from '../../constants/seo';
+import { redirect } from 'next/navigation';
 
-export const metadata = createPageMetadata({
-  title: 'Carrito de compras',
-  description: 'Revisa los productos seleccionados antes de generar tu orden.',
-  path: '/cart',
-  robots: {
-    index: false,
-    follow: false,
-  },
-});
+const LegacyCartPage = () => redirect('/checkout');
 
-const CartPage = () => <Cart />;
-
-export default CartPage;
+export default LegacyCartPage;
