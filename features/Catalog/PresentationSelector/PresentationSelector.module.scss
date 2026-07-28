@@ -1,43 +1,41 @@
 @use '../../../styles/variables.scss' as *;
 
 .field {
-  position: relative;
   width: 100%;
 }
 
 .label {
-  background: $white;
-  color: $davys-gray;
-  font-family: $regular;
+  color: $accent-color-teal;
+  display: block;
+  font-family: $bold;
   font-size: 12px;
-  left: 12px;
-  line-height: 1;
-  padding: 0 4px;
-  position: absolute;
-  top: -6px;
-  z-index: 1;
+  line-height: 1.4;
+  margin-bottom: 8px;
 }
 
 .select {
   appearance: none;
   background-color: $white;
-  background-image: linear-gradient(45deg, transparent 50%, $gray 50%),
-    linear-gradient(135deg, $gray 50%, transparent 50%);
+  background-image: linear-gradient(45deg, transparent 50%, $accessibleBlue 50%),
+    linear-gradient(135deg, $accessibleBlue 50%, transparent 50%);
   background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
   background-repeat: no-repeat;
   background-size: 6px 6px, 6px 6px;
-  border: 1px solid $lightGray;
-  border-radius: $br-base;
-  color: $darkGray;
-  font: inherit;
+  border: 1px solid rgba($accent-color-teal, 0.22);
+  border-radius: $br-xl;
+  color: $accent-color-teal;
+  font-family: $regular;
+  font-size: 15px;
   height: 56px;
-  padding: 0 44px 0 14px;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  padding: 0 44px 0 16px;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
   width: 100%;
 
   &:focus-visible {
-    border: 2px solid $accessibleBlue;
-    box-shadow: 0 0 0 1px rgba($accessibleBlue, 0.2);
-    padding-left: 13px;
+    border-color: $accessibleBlue;
+    box-shadow: 0 0 0 3px rgba($lightBlue, 0.2);
+    outline: none;
   }
 }

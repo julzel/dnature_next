@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 import Button from '../../components/Button';
 import OptionsMenu from '../../components/OptionsMenu';
 import Slider from '../../components/Slider';
+import ProductDetail from '../../features/Catalog/Product/ProductDetail';
 
 describe('keyboard-accessible controls', () => {
   it('forwards native props through Button', () => {
@@ -108,5 +109,36 @@ describe('keyboard-accessible controls', () => {
     expect(tabs[1]).toHaveFocus();
     expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
     expect(panels[1]).toHaveAttribute('aria-hidden', 'false');
+  });
+
+  it('connects product tabs, supports arrow keys, and exposes future content states', async () => {
+    const user = userEvent.setup();
+    render(
+      <ProductDetail
+        productDetail={{
+          description: 'Descripción de prueba',
+          ingredientes: 'Ingredientes de prueba',
+          iconos: [],
+        }}
+      />
+    );
+
+    const descriptionTab = screen.getByRole('tab', { name: 'Descripción' });
+    const ingredientsTab = screen.getByRole('tab', { name: 'Ingredientes' });
+    const benefitsTab = screen.getByRole('tab', { name: 'Beneficios' });
+    const panels = screen.getAllByRole('tabpanel', { hidden: true });
+
+    expect(descriptionTab).toHaveAttribute('aria-controls', panels[0].id);
+    descriptionTab.focus();
+    await user.keyboard('{ArrowRight}');
+
+    expect(ingredientsTab).toHaveFocus();
+    expect(ingredientsTab).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByText('Ingredientes de prueba')).toBeVisible();
+
+    await user.click(benefitsTab);
+    expect(screen.getByRole('tabpanel')).toHaveTextContent(
+      /Este contenido estará disponible/
+    );
   });
 });
