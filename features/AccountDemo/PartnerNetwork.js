@@ -12,6 +12,7 @@ import {
   MapPin,
   Search,
   ShieldAlert,
+  SlidersHorizontal,
   Sparkles,
   Stethoscope,
   Store,
@@ -66,6 +67,7 @@ const PartnerNetwork = () => {
   const [service, setService] = useState('all');
   const [onlyBenefits, setOnlyBenefits] = useState(false);
   const [onlyFavorites, setOnlyFavorites] = useState(false);
+  const [areMobileFiltersOpen, setAreMobileFiltersOpen] = useState(false);
   const [expandedPartnerId, setExpandedPartnerId] = useState(null);
   const [requestPartnerId, setRequestPartnerId] = useState(null);
   const [request, setRequest] = useState(() => emptyRequest(selectedPet?.id));
@@ -105,6 +107,7 @@ const PartnerNetwork = () => {
     setService('all');
     setOnlyBenefits(false);
     setOnlyFavorites(false);
+    setAreMobileFiltersOpen(false);
   };
 
   const toggleDetails = (partnerId) => {
@@ -141,6 +144,12 @@ const PartnerNetwork = () => {
   };
 
   const benefitCount = demoPartners.filter((partner) => partner.benefit).length;
+  const advancedFilterCount = [
+    province !== 'all',
+    service !== 'all',
+    onlyBenefits,
+    onlyFavorites,
+  ].filter(Boolean).length;
 
   return (
     <AccountShell
@@ -189,10 +198,10 @@ const PartnerNetwork = () => {
         </aside>
 
         <section className={styles.networkFilters} aria-labelledby='network-search-title'>
-          <div className={styles.cardHeader}>
+          <div className={styles.networkFilterHeading}>
             <div>
               <h2 id='network-search-title'>Encontrá un aliado</h2>
-              <p>Buscá por nombre, ubicación, servicio o tipo de establecimiento.</p>
+              <p>Buscá por nombre, ubicación o servicio.</p>
             </div>
             {favoritePartnerIds.length ? (
               <span className={styles.selectedBadge}>
@@ -215,6 +224,41 @@ const PartnerNetwork = () => {
             />
           </div>
 
+          <div className={styles.mobileFilterBar}>
+            <div className={styles.mobileTypeSelect}>
+              <label htmlFor='mobile-partner-type'>Tipo de aliado</label>
+              <select
+                id='mobile-partner-type'
+                value={partnerType}
+                onChange={(event) => setPartnerType(event.target.value)}
+              >
+                {partnerTypes.map((type) => (
+                  <option key={type.value} value={type.value}>{type.label}</option>
+                ))}
+              </select>
+            </div>
+            <button
+              type='button'
+              className={styles.mobileFiltersButton}
+              aria-expanded={areMobileFiltersOpen}
+              aria-controls='advanced-partner-filters'
+              onClick={() => setAreMobileFiltersOpen((open) => !open)}
+            >
+              <SlidersHorizontal aria-hidden='true' size={17} />
+              <span>Más filtros</span>
+              {advancedFilterCount ? (
+                <strong aria-label={`${advancedFilterCount} filtros activos`}>
+                  {advancedFilterCount}
+                </strong>
+              ) : null}
+              {areMobileFiltersOpen ? (
+                <ChevronUp aria-hidden='true' size={16} />
+              ) : (
+                <ChevronDown aria-hidden='true' size={16} />
+              )}
+            </button>
+          </div>
+
           <div className={styles.partnerTypeFilters} aria-label='Tipo de aliado'>
             {partnerTypes.map((type) => (
               <button
@@ -229,53 +273,60 @@ const PartnerNetwork = () => {
             ))}
           </div>
 
-          <div className={styles.networkFilterGrid}>
-            <div className={styles.field}>
-              <label htmlFor='partner-province'>Provincia</label>
-              <select
-                id='partner-province'
-                value={province}
-                onChange={(event) => setProvince(event.target.value)}
-              >
-                <option value='all'>Todas las provincias</option>
-                {partnerProvinces.map((item) => (
-                  <option key={item} value={item}>{item}</option>
-                ))}
-              </select>
+          <div
+            id='advanced-partner-filters'
+            className={`${styles.advancedFilters} ${
+              areMobileFiltersOpen ? styles.advancedFiltersOpen : ''
+            }`}
+          >
+            <div className={styles.networkFilterGrid}>
+              <div className={styles.field}>
+                <label htmlFor='partner-province'>Provincia</label>
+                <select
+                  id='partner-province'
+                  value={province}
+                  onChange={(event) => setProvince(event.target.value)}
+                >
+                  <option value='all'>Todas las provincias</option>
+                  {partnerProvinces.map((item) => (
+                    <option key={item} value={item}>{item}</option>
+                  ))}
+                </select>
+              </div>
+              <div className={styles.field}>
+                <label htmlFor='partner-service'>Servicio</label>
+                <select
+                  id='partner-service'
+                  value={service}
+                  onChange={(event) => setService(event.target.value)}
+                >
+                  <option value='all'>Todos los servicios</option>
+                  {partnerServices.map((item) => (
+                    <option key={item} value={item}>{item}</option>
+                  ))}
+                </select>
+              </div>
             </div>
-            <div className={styles.field}>
-              <label htmlFor='partner-service'>Servicio</label>
-              <select
-                id='partner-service'
-                value={service}
-                onChange={(event) => setService(event.target.value)}
-              >
-                <option value='all'>Todos los servicios</option>
-                {partnerServices.map((item) => (
-                  <option key={item} value={item}>{item}</option>
-                ))}
-              </select>
-            </div>
-          </div>
 
-          <div className={styles.filterChecks}>
-            <label>
-              <input
-                type='checkbox'
-                checked={onlyBenefits}
-                onChange={(event) => setOnlyBenefits(event.target.checked)}
-              />
-              Solo con beneficios
-            </label>
-            <label>
-              <input
-                type='checkbox'
-                checked={onlyFavorites}
-                onChange={(event) => setOnlyFavorites(event.target.checked)}
-              />
-              Solo mis favoritos
-            </label>
-            <button type='button' onClick={clearFilters}>Limpiar filtros</button>
+            <div className={styles.filterChecks}>
+              <label>
+                <input
+                  type='checkbox'
+                  checked={onlyBenefits}
+                  onChange={(event) => setOnlyBenefits(event.target.checked)}
+                />
+                Solo con beneficios
+              </label>
+              <label>
+                <input
+                  type='checkbox'
+                  checked={onlyFavorites}
+                  onChange={(event) => setOnlyFavorites(event.target.checked)}
+                />
+                Solo mis favoritos
+              </label>
+              <button type='button' onClick={clearFilters}>Limpiar filtros</button>
+            </div>
           </div>
         </section>
 
@@ -489,7 +540,7 @@ const PartnerNetwork = () => {
                                 </small>
                               </span>
                             </label>
-                            <div className={styles.buttonRow}>
+                            <div className={styles.requestActions}>
                               <Button type='submit' size='small'>Preparar solicitud demo</Button>
                               <Button
                                 size='small'

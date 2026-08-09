@@ -44,6 +44,7 @@ All customer-facing interface copy is in Costa Rican Spanish (`es-CR`).
 - Eight clearly fictional partner profiles across four Costa Rican provinces.
 - Search by partner name, location, service, and specialty.
 - Filters for partner type, province, service, available member benefits, and favorites.
+- Mobile-first filter disclosure: search and partner type stay immediately available, while secondary filters remain collapsed until requested.
 - Detailed partner information including address, hours, highlighted services, specialties, and illustrative availability.
 - Persistent favorite partners stored with the local demo account.
 - Optional promotional-benefit proposals with example codes and terms.
@@ -126,6 +127,7 @@ No production feature should rely on this local state as an authorization or sec
 
 - Unit coverage for the versioned state, storage migration, sample data, pet lifecycle, sign-in merging, cart limits, partner favorites, and invalid stored data.
 - Browser tests for the full stakeholder sample, email-code flow, pet creation, saved-cart restoration, partner search, favorites, and contact-request flow.
+- Narrow-phone coverage verifies the directory, expanded filters, partner details, and contact form at 320 px without horizontal page overflow.
 - Automated accessibility checks for the sign-in page, populated dashboard, and populated Red Veterinaria.
 - Production compilation was validated. The final static-generation stage still requires network access to the project's existing Contentful endpoint.
 

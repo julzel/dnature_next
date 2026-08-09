@@ -172,6 +172,7 @@ test('@a11y account sample dashboard has no serious or critical violations', asy
 test('@a11y populated partner network has no serious or critical violations', async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 360, height: 800 });
   await page.addInitScript(() => {
     window.localStorage.removeItem('dnature-account-demo-v1');
   });
@@ -179,8 +180,11 @@ test('@a11y populated partner network has no serious or critical violations', as
   await page
     .getByRole('button', { name: 'Explorar cuenta con datos de ejemplo' })
     .click();
+  await page.getByRole('button', { name: 'Menú de mi cuenta' }).click();
   await page.getByRole('link', { name: 'Red Veterinaria', exact: true }).click();
   await expect(page.getByRole('heading', { name: '8 aliados disponibles' })).toBeVisible();
+  await page.getByRole('button', { name: /Más filtros/ }).click();
+  await expect(page.getByLabel('Provincia')).toBeVisible();
   await page
     .getByRole('article')
     .filter({ hasText: 'Clínica Veterinaria La Arboleda' })

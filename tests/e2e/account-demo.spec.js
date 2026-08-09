@@ -87,3 +87,40 @@ test('explores the partner network, saves an ally, and prepares a contact reques
   await partner.getByRole('button', { name: 'Preparar solicitud demo' }).click();
   await expect(partner.getByRole('status')).toContainText('No se envió información');
 });
+
+test('keeps the partner search and expanded details within a narrow mobile viewport', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 780 });
+  await page.goto('/cuenta/iniciar-sesion');
+  await page
+    .getByRole('button', { name: 'Explorar cuenta con datos de ejemplo' })
+    .click();
+  await page.getByRole('button', { name: 'Menú de mi cuenta' }).click();
+  await page.getByRole('link', { name: 'Red Veterinaria', exact: true }).click();
+
+  const hasHorizontalOverflow = () =>
+    page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth
+    );
+
+  await expect(
+    page.getByRole('combobox', { name: 'Tipo de aliado' })
+  ).toBeVisible();
+  await expect(page.getByLabel('Provincia')).toBeHidden();
+  expect(await hasHorizontalOverflow()).toBe(false);
+
+  const moreFilters = page.getByRole('button', { name: /Más filtros/ });
+  await moreFilters.click();
+  await expect(page.getByLabel('Provincia')).toBeVisible();
+  await page.getByLabel('Provincia').selectOption('San José');
+  await expect(moreFilters).toContainText('1');
+  expect(await hasHorizontalOverflow()).toBe(false);
+
+  const partner = page
+    .getByRole('article')
+    .filter({ hasText: 'Clínica Veterinaria La Arboleda' });
+  await partner.getByRole('button', { name: 'Solicitar información' }).click();
+  await expect(partner.getByRole('heading', { name: 'Preparar solicitud' })).toBeVisible();
+  expect(await hasHorizontalOverflow()).toBe(false);
+});
