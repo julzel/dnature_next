@@ -8,6 +8,7 @@ import {
   PawPrint,
   ShoppingBasket,
   Sparkles,
+  Stethoscope,
   UserRound,
 } from 'lucide-react';
 import Image from 'next/image';
@@ -18,7 +19,10 @@ import Button from '../../components/Button';
 import { useCartContext } from '../Cart/state';
 import AccountShell from './components/AccountShell';
 import { useAccountDemo } from './model/account-demo-context';
-import styles from './AccountDemo.module.scss';
+import accountStyles from './AccountDemo.module.scss';
+import networkStyles from './PartnerNetwork.module.scss';
+
+const styles = { ...accountStyles, ...networkStyles };
 
 const planDays = [7, 14, 30];
 
@@ -56,6 +60,7 @@ const Dashboard = () => {
     pets,
     profile,
     savedCarts,
+    favoritePartnerIds,
     selectedPet,
     selectPet,
   } = useAccountDemo();
@@ -67,6 +72,7 @@ const Dashboard = () => {
 
   const shortcuts = [
     { href: '/cuenta/mascotas', label: 'Administrar mascotas', icon: PawPrint },
+    { href: '/cuenta/red-veterinaria', label: 'Explorar Red Veterinaria', icon: Stethoscope },
     { href: '/cuenta/carritos', label: 'Ver mis carritos', icon: ShoppingBasket },
     { href: '/cuenta/perfil', label: 'Completar mi perfil', icon: UserRound },
   ];
@@ -106,6 +112,31 @@ const Dashboard = () => {
               <strong>{savedCarts.length}</strong>
               <span>carritos guardados</span>
             </div>
+          </div>
+        </section>
+
+        <section className={styles.networkTeaser} aria-labelledby='network-teaser-title'>
+          <span className={styles.networkTeaserIcon} aria-hidden='true'>
+            <Stethoscope size={30} />
+          </span>
+          <div>
+            <div className={styles.networkTeaserTitle}>
+              <p className={styles.eyebrow}>Nuevo en tu cuenta</p>
+              <span className={styles.proposalBadge}>Propuesta demo</span>
+            </div>
+            <h2 id='network-teaser-title'>Conocé la Red Veterinaria DNAture</h2>
+            <p>
+              Encontrá veterinarias y pet shops asociados, guardá tus favoritos y
+              descubrí beneficios para miembros.
+            </p>
+          </div>
+          <div className={styles.networkTeaserAction}>
+            {favoritePartnerIds.length ? (
+              <span>{favoritePartnerIds.length} guardados</span>
+            ) : null}
+            <Button href='/cuenta/red-veterinaria' iconEnd={<ArrowRight aria-hidden='true' size={17} />}>
+              Explorar la red
+            </Button>
           </div>
         </section>
 

@@ -18,6 +18,7 @@ describe('account demo state', () => {
     expect(state.pets).toHaveLength(2);
     expect(state.pets.every((pet) => pet.portionSize > 0)).toBe(true);
     expect(state.selectedPetId).toBe(state.pets[0].id);
+    expect(state.favoritePartnerIds).toHaveLength(2);
     expect(savedCartTotal(state.savedCarts[0])).toBe(25800);
   });
 
@@ -111,5 +112,37 @@ describe('account demo state', () => {
 
     expect(normalized.pets).toEqual([]);
     expect(normalized.savedCarts).toEqual([]);
+  });
+
+  it('migrates legacy demo storage and preserves safe partner favorites', () => {
+    const normalized = normalizeAccountDemoState({
+      ...createInitialAccountDemoState(),
+      version: 1,
+      favoritePartnerIds: [
+        'demo-clinica-arboleda',
+        'demo-clinica-arboleda',
+        '',
+      ],
+    });
+
+    expect(normalized.version).toBe(2);
+    expect(normalized.favoritePartnerIds).toEqual(['demo-clinica-arboleda']);
+  });
+
+  it('adds and removes favorite partners without changing other account data', () => {
+    const initial = createInitialAccountDemoState();
+    const added = accountDemoReducer(initial, {
+      type: 'TOGGLE_FAVORITE_PARTNER',
+      partnerId: 'demo-vet-bosque',
+    });
+    const removed = accountDemoReducer(added, {
+      type: 'TOGGLE_FAVORITE_PARTNER',
+      partnerId: 'demo-vet-bosque',
+    });
+
+    expect(initial.favoritePartnerIds).toEqual([]);
+    expect(added.favoritePartnerIds).toEqual(['demo-vet-bosque']);
+    expect(removed.favoritePartnerIds).toEqual([]);
+    expect(removed.profile).toBe(initial.profile);
   });
 });

@@ -115,6 +115,10 @@ const AccountDemoProvider = ({ children }) => {
     dispatch({ type: 'DELETE_SAVED_CART', cartId });
   }, []);
 
+  const toggleFavoritePartner = useCallback((partnerId) => {
+    dispatch({ type: 'TOGGLE_FAVORITE_PARTNER', partnerId });
+  }, []);
+
   const resetDemo = useCallback(() => {
     dispatch({ type: 'RESET' });
   }, []);
@@ -139,6 +143,7 @@ const AccountDemoProvider = ({ children }) => {
       selectPet,
       saveCart,
       deleteSavedCart,
+      toggleFavoritePartner,
       resetDemo,
     }),
     [
@@ -154,6 +159,7 @@ const AccountDemoProvider = ({ children }) => {
       signIn,
       signOut,
       state,
+      toggleFavoritePartner,
       updatePreferences,
       updateProfile,
     ]

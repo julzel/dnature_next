@@ -168,3 +168,24 @@ test('@a11y account sample dashboard has no serious or critical violations', asy
   await expect(page.getByRole('heading', { name: '¡Hola, Sofía!' })).toBeVisible();
   expect(await getBlockingViolations(page)).toEqual([]);
 });
+
+test('@a11y populated partner network has no serious or critical violations', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.localStorage.removeItem('dnature-account-demo-v1');
+  });
+  await page.goto('/cuenta/iniciar-sesion');
+  await page
+    .getByRole('button', { name: 'Explorar cuenta con datos de ejemplo' })
+    .click();
+  await page.getByRole('link', { name: 'Red Veterinaria', exact: true }).click();
+  await expect(page.getByRole('heading', { name: '8 aliados disponibles' })).toBeVisible();
+  await page
+    .getByRole('article')
+    .filter({ hasText: 'Clínica Veterinaria La Arboleda' })
+    .getByRole('button', { name: 'Solicitar información' })
+    .click();
+  await expect(page.getByRole('heading', { name: 'Preparar solicitud' })).toBeVisible();
+  expect(await getBlockingViolations(page)).toEqual([]);
+});

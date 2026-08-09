@@ -3,13 +3,13 @@
 import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  BellRing,
   Check,
   HeartHandshake,
   LockKeyhole,
   Mail,
   PawPrint,
   ShoppingBasket,
+  Stethoscope,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -24,7 +24,7 @@ const DEMO_CODE = '123456';
 const benefits = [
   'Porciones y planes de compra para cada mascota',
   'Carritos frecuentes listos para volver a usar',
-  'Recomendaciones basadas en sus perfiles',
+  'Acceso a una red de veterinarias y pet shops aliados',
 ];
 
 const valueCards = [
@@ -39,9 +39,9 @@ const valueCards = [
     description: 'Una referencia de cuánto alimento necesitás para 7, 14 o 30 días.',
   },
   {
-    icon: BellRing,
-    title: 'Seguimiento oportuno',
-    description: 'Una base para recordatorios útiles dentro de la cuenta.',
+    icon: Stethoscope,
+    title: 'Una red de apoyo',
+    description: 'Aliados, servicios y beneficios para cuidarles más fácilmente.',
   },
 ];
 

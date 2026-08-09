@@ -1,7 +1,8 @@
 import { calculatePortionSizeInGrams } from '../../../util/portion-size';
 
 const ACCOUNT_DEMO_STORAGE_KEY = 'dnature-account-demo-v1';
-const ACCOUNT_DEMO_STORAGE_VERSION = 1;
+const ACCOUNT_DEMO_STORAGE_VERSION = 2;
+const LEGACY_ACCOUNT_DEMO_STORAGE_VERSIONS = [1];
 const MAX_DEMO_PETS = 10;
 const MAX_DEMO_SAVED_CARTS = 5;
 
@@ -29,6 +30,7 @@ const createInitialAccountDemoState = () => ({
   pets: [],
   selectedPetId: null,
   savedCarts: [],
+  favoritePartnerIds: [],
   preferences: { ...defaultPreferences },
 });
 
@@ -117,6 +119,7 @@ const createSampleAccountDemoState = () => ({
   pets: samplePets,
   selectedPetId: samplePets[0].id,
   savedCarts: sampleSavedCarts,
+  favoritePartnerIds: ['demo-clinica-arboleda', 'demo-petshop-colitas'],
   preferences: { ...defaultPreferences },
 });
 
@@ -197,7 +200,13 @@ const normalizeSavedCart = (cart) => ({
 });
 
 const normalizeAccountDemoState = (state) => {
-  if (!state || state.version !== ACCOUNT_DEMO_STORAGE_VERSION) {
+  if (
+    !state ||
+    ![
+      ACCOUNT_DEMO_STORAGE_VERSION,
+      ...LEGACY_ACCOUNT_DEMO_STORAGE_VERSIONS,
+    ].includes(state.version)
+  ) {
     return createInitialAccountDemoState();
   }
 
@@ -220,6 +229,16 @@ const normalizeAccountDemoState = (state) => {
       .map(normalizeSavedCart)
       .filter((cart) => cart.id && cart.items.length > 0)
       .slice(0, MAX_DEMO_SAVED_CARTS),
+    favoritePartnerIds: [
+      ...new Set(
+        (Array.isArray(state.favoritePartnerIds)
+          ? state.favoritePartnerIds
+          : []
+        )
+          .map((partnerId) => normalizeString(partnerId).slice(0, 100))
+          .filter(Boolean)
+      ),
+    ].slice(0, 50),
     preferences: {
       personalization: state.preferences?.personalization !== false,
       inAccountReminders: state.preferences?.inAccountReminders !== false,
@@ -304,6 +323,17 @@ const accountDemoReducer = (state, action) => {
         ...state,
         savedCarts: state.savedCarts.filter((cart) => cart.id !== action.cartId),
       };
+    case 'TOGGLE_FAVORITE_PARTNER': {
+      const partnerId = normalizeString(action.partnerId).slice(0, 100);
+      if (!partnerId) return state;
+
+      return {
+        ...state,
+        favoritePartnerIds: state.favoritePartnerIds.includes(partnerId)
+          ? state.favoritePartnerIds.filter((id) => id !== partnerId)
+          : [...state.favoritePartnerIds, partnerId].slice(-50),
+      };
+    }
     case 'RESET':
       return createInitialAccountDemoState();
     default:

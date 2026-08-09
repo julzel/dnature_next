@@ -8,6 +8,7 @@ import {
   PawPrint,
   ShieldCheck,
   ShoppingBasket,
+  Stethoscope,
   UserRound,
   X,
 } from 'lucide-react';
@@ -23,6 +24,7 @@ import styles from '../AccountDemo.module.scss';
 const navigationItems = [
   { href: '/cuenta', label: 'Inicio', icon: House },
   { href: '/cuenta/mascotas', label: 'Mis mascotas', icon: PawPrint },
+  { href: '/cuenta/red-veterinaria', label: 'Red Veterinaria', icon: Stethoscope },
   { href: '/cuenta/carritos', label: 'Mis carritos', icon: ShoppingBasket },
   { href: '/cuenta/perfil', label: 'Mi perfil', icon: UserRound },
 ];
@@ -62,7 +64,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
             <h1>Iniciá sesión para ver esta sección</h1>
             <p>
               En esta demostración podés explorar perfiles de mascotas, planes
-              de compra y carritos guardados.
+              de compra, aliados veterinarios y carritos guardados.
             </p>
             <div className={styles.buttonRowCentered}>
               <Button href='/cuenta/iniciar-sesion'>Iniciar sesión</Button>
