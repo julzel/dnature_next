@@ -4,7 +4,7 @@ const robots = () => ({
   rules: {
     userAgent: '*',
     allow: '/',
-    disallow: ['/avify-test/', '/cart/', '/checkout/'],
+    disallow: ['/avify-test/', '/cart/', '/checkout/', '/cuenta/'],
   },
   sitemap: absoluteUrl('/sitemap.xml'),
   host: siteUrl,

@@ -1,0 +1,1051 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.accountPage,
+.signInPage {
+  background:
+    radial-gradient(circle at 5% 0%, rgba($lightBlue, 0.14), transparent 34rem),
+    linear-gradient(180deg, #fbfaf7 0%, $snow 100%);
+  color: $text-color;
+  min-height: 70vh;
+  padding: 28px 16px 72px;
+}
+
+.accountContainer,
+.signInContainer,
+.signedOutWrap {
+  margin: 0 auto;
+  max-width: 1240px;
+}
+
+.demoNotice {
+  align-items: flex-start;
+  background: #fff8e8;
+  border: 1px solid rgba($accessibleOrange, 0.22);
+  border-radius: $br-xl;
+  color: #70400e;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+
+  svg {
+    flex: 0 0 auto;
+    margin-top: 2px;
+  }
+
+  div {
+    display: grid;
+    gap: 2px;
+  }
+
+  strong {
+    font-family: $bold;
+    font-size: 14px;
+  }
+
+  span {
+    font-family: $regular2;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+}
+
+.demoNoticeCompact {
+  margin-bottom: 18px;
+  padding-block: 11px;
+}
+
+.accountGrid {
+  display: grid;
+  gap: 20px;
+}
+
+.sidebar,
+.card,
+.heroCard,
+.formCard,
+.signedOutCard,
+.loadingCard,
+.signInPanel,
+.signInHero {
+  background: rgba($white, 0.96);
+  border: 1px solid rgba($accent-color-teal, 0.08);
+  border-radius: $br-xxxl;
+  box-shadow: 0 18px 45px rgba($accent-color-teal, 0.08);
+}
+
+.sidebar {
+  align-self: start;
+  overflow: hidden;
+}
+
+.sidebarIdentity {
+  align-items: center;
+  background: linear-gradient(135deg, $accessibleBlue, $accent-color-teal);
+  color: $white;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: auto 1fr auto;
+  padding: 18px;
+
+  div {
+    display: grid;
+  }
+
+  span:not(.avatar) {
+    font-family: $regular2;
+    font-size: 12px;
+    opacity: 0.82;
+  }
+
+  strong {
+    font-family: $bold;
+    font-size: 17px;
+  }
+}
+
+.avatar {
+  align-items: center;
+  background: $white;
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: inline-flex;
+  font-family: $bold;
+  font-size: 20px;
+  height: 46px;
+  justify-content: center;
+  width: 46px;
+}
+
+.mobileMenuButton,
+.navLink,
+.navLinkActive,
+.signOutLink {
+  align-items: center;
+  border-radius: $br-lg;
+  color: $davys-gray;
+  display: flex;
+  font-family: $regular;
+  font-size: 14px;
+  gap: 11px;
+  min-height: 46px;
+  padding: 11px 14px;
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease;
+
+  &:focus-visible {
+    outline: 3px solid $lightBlue;
+    outline-offset: 2px;
+  }
+}
+
+.mobileMenuButton {
+  border-radius: 0;
+  justify-content: center;
+  width: 100%;
+}
+
+.accountNavigation {
+  display: none;
+  padding: 8px;
+}
+
+.accountNavigationOpen {
+  display: grid;
+}
+
+.navLink:hover,
+.signOutLink:hover {
+  background: rgba($lightBlue, 0.12);
+  color: $accessibleBlue;
+}
+
+.navLinkActive {
+  background: rgba($lightBlue, 0.18);
+  color: $accessibleBlue;
+  font-family: $bold;
+}
+
+.signOutLink {
+  border-top: 1px solid rgba($accent-color-teal, 0.08);
+  color: $dim-gray;
+  margin-top: 6px;
+  width: 100%;
+}
+
+.accountContent {
+  min-width: 0;
+}
+
+.pageHeading {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: space-between;
+  margin: 4px 0 24px;
+
+  h1 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.1;
+    margin: 4px 0 8px;
+  }
+
+  p:not(.eyebrow) {
+    color: $dim-gray;
+    font-family: $regular2;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 700px;
+  }
+}
+
+.headingAction {
+  flex: 0 0 auto;
+}
+
+.eyebrow {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 12px;
+  letter-spacing: 0.11em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.contentStack {
+  display: grid;
+  gap: 20px;
+}
+
+.card,
+.heroCard,
+.formCard {
+  padding: clamp(20px, 4vw, 30px);
+}
+
+.cardHeader {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+
+  h2,
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    line-height: 1.25;
+    margin: 0 0 5px;
+  }
+
+  p {
+    color: $dim-gray;
+    font-family: $regular2;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.cardTitleGroup {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+}
+
+.smallIcon,
+.roundIcon {
+  align-items: center;
+  background: rgba($lightBlue, 0.18);
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.roundIcon {
+  height: 62px;
+  width: 62px;
+}
+
+.heroCard {
+  background:
+    linear-gradient(125deg, rgba($accessibleBlue, 0.96), rgba($accent-color-teal, 0.97)),
+    $accessibleBlue;
+  color: $white;
+  display: grid;
+  gap: 22px;
+
+  h2 {
+    font-family: $bold;
+    font-size: clamp(25px, 4vw, 36px);
+    line-height: 1.15;
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-family: $regular2;
+    line-height: 1.55;
+    margin: 0;
+    max-width: 620px;
+    opacity: 0.9;
+  }
+}
+
+.heroStats {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.heroStat {
+  background: rgba($white, 0.1);
+  border: 1px solid rgba($white, 0.18);
+  border-radius: $br-xl;
+  padding: 14px;
+
+  strong,
+  span {
+    display: block;
+  }
+
+  strong {
+    font-family: $bold;
+    font-size: 20px;
+  }
+
+  span {
+    font-family: $regular2;
+    font-size: 12px;
+    margin-top: 2px;
+    opacity: 0.8;
+  }
+}
+
+.twoColumnGrid,
+.threeColumnGrid,
+.shortcutGrid,
+.recommendationGrid,
+.petGrid,
+.cartGrid,
+.benefitGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.metricRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.metric {
+  background: $snow;
+  border-radius: $br-xl;
+  flex: 1 1 130px;
+  padding: 14px;
+
+  strong,
+  span {
+    display: block;
+  }
+
+  strong {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 22px;
+  }
+
+  span {
+    color: $dim-gray;
+    font-family: $regular2;
+    font-size: 12px;
+  }
+}
+
+.segmentedControl {
+  background: $snow;
+  border-radius: $br-full;
+  display: inline-flex;
+  gap: 3px;
+  padding: 4px;
+
+  button {
+    border-radius: $br-full;
+    color: $dim-gray;
+    font-family: $bold;
+    font-size: 12px;
+    min-height: 36px;
+    padding: 7px 13px;
+  }
+
+  .segmentActive {
+    background: $accessibleBlue;
+    color: $white;
+  }
+}
+
+.shortcut {
+  align-items: center;
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xl;
+  color: $accent-color-teal;
+  display: flex;
+  gap: 12px;
+  min-height: 76px;
+  padding: 16px;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+
+  &:hover {
+    border-color: rgba($accessibleBlue, 0.45);
+    box-shadow: 0 10px 24px rgba($accent-color-teal, 0.08);
+    transform: translateY(-2px);
+  }
+
+  svg:first-child {
+    color: $accessibleBlue;
+  }
+
+  span {
+    flex: 1;
+    font-family: $bold;
+    font-size: 14px;
+  }
+}
+
+.recommendationCard {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.09);
+  border-radius: $br-xl;
+  overflow: hidden;
+
+  img {
+    height: 145px;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.recommendationBody {
+  padding: 15px;
+
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 16px;
+    margin: 0 0 5px;
+  }
+
+  p {
+    color: $dim-gray;
+    font-family: $regular2;
+    font-size: 13px;
+    line-height: 1.45;
+    margin: 0 0 12px;
+  }
+}
+
+.proposalBadge,
+.statusBadge,
+.selectedBadge {
+  background: #fff3df;
+  border-radius: $br-full;
+  color: $accessibleOrange;
+  display: inline-flex;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 5px 9px;
+  text-transform: uppercase;
+}
+
+.selectedBadge {
+  background: rgba($lightBlue, 0.18);
+  color: $accessibleBlue;
+}
+
+.statusBadge {
+  background: rgba($darkGreen, 0.2);
+  color: #586018;
+}
+
+.emptyState {
+  align-items: center;
+  background: $snow;
+  border: 1px dashed rgba($accent-color-teal, 0.22);
+  border-radius: $br-xl;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 20px;
+  text-align: center;
+
+  svg {
+    color: $accessibleBlue;
+    margin-bottom: 12px;
+  }
+
+  h2,
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    margin: 0 0 6px;
+  }
+
+  p {
+    color: $dim-gray;
+    font-family: $regular2;
+    line-height: 1.5;
+    margin: 0 0 18px;
+    max-width: 520px;
+  }
+}
+
+.fieldGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.field,
+.fullField {
+  display: grid;
+  gap: 7px;
+
+  label,
+  > span:first-child {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 13px;
+  }
+
+  input,
+  select,
+  textarea {
+    background: $white;
+    border: 1px solid rgba($accent-color-teal, 0.22);
+    border-radius: $br-lg;
+    color: $text-color;
+    font-family: $regular2;
+    font-size: 16px;
+    min-height: 48px;
+    padding: 11px 13px;
+    width: 100%;
+
+    &:focus {
+      border-color: $accessibleBlue;
+      box-shadow: 0 0 0 3px rgba($lightBlue, 0.22);
+      outline: none;
+    }
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+}
+
+.fullField {
+  grid-column: 1 / -1;
+}
+
+.fieldHelp,
+.disclaimer,
+.formMessage {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.formMessage {
+  color: $accessibleBlue;
+  font-family: $bold;
+}
+
+.formError {
+  color: $important;
+  font-family: $bold2;
+  font-size: 13px;
+  margin: 0;
+}
+
+.buttonRow,
+.buttonRowCentered,
+.cardActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.buttonRowCentered {
+  justify-content: center;
+}
+
+.petCard,
+.savedCartCard,
+.benefitCard,
+.preferenceRow {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xl;
+  padding: 18px;
+}
+
+.petCardSelected {
+  border-color: $accessibleBlue;
+  box-shadow: 0 0 0 2px rgba($lightBlue, 0.18);
+}
+
+.petCardHeader,
+.savedCartHeader {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 19px;
+    margin: 0 0 4px;
+  }
+
+  p {
+    color: $dim-gray;
+    font-family: $regular2;
+    font-size: 12px;
+    margin: 0;
+  }
+}
+
+.petFacts,
+.cartItems {
+  display: grid;
+  gap: 7px;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.petFact,
+.cartItem {
+  align-items: center;
+  color: $dim-gray;
+  display: flex;
+  font-family: $regular2;
+  font-size: 13px;
+  gap: 8px;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.portionCallout {
+  background: rgba($lightBlue, 0.12);
+  border-radius: $br-lg;
+  color: $accessibleBlue;
+  font-family: $regular2;
+  margin-top: 14px;
+  padding: 12px;
+
+  strong {
+    font-family: $bold;
+  }
+}
+
+.inlineConfirm {
+  background: #fff2f3;
+  border-radius: $br-lg;
+  color: #8e2931;
+  font-family: $regular2;
+  font-size: 13px;
+  margin-top: 14px;
+  padding: 12px;
+
+  p {
+    margin: 0 0 10px;
+  }
+}
+
+.preferenceList {
+  display: grid;
+  gap: 12px;
+}
+
+.preferenceRow {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 15px;
+    margin: 0 0 3px;
+  }
+
+  p {
+    color: $dim-gray;
+    font-family: $regular2;
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+.toggle {
+  background: $lightGray;
+  border-radius: $br-full;
+  flex: 0 0 auto;
+  height: 30px;
+  padding: 3px;
+  transition: background-color 160ms ease;
+  width: 52px;
+
+  span {
+    background: $white;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba($black, 0.22);
+    display: block;
+    height: 24px;
+    transition: transform 160ms ease;
+    width: 24px;
+  }
+
+  &[aria-checked='true'] {
+    background: $accessibleBlue;
+
+    span {
+      transform: translateX(22px);
+    }
+  }
+}
+
+.signedOutWrap {
+  max-width: 780px;
+}
+
+.signedOutCard {
+  padding: clamp(28px, 7vw, 58px);
+  text-align: center;
+
+  .roundIcon {
+    margin: 0 auto 18px;
+  }
+
+  h1 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: clamp(28px, 5vw, 42px);
+    margin: 7px 0 10px;
+  }
+
+  > p:not(.eyebrow) {
+    color: $dim-gray;
+    font-family: $regular2;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 560px;
+  }
+}
+
+.loadingCard {
+  align-items: center;
+  display: flex;
+  font-family: $regular2;
+  gap: 12px;
+  margin: 60px auto;
+  max-width: 360px;
+  padding: 24px;
+}
+
+.loadingMark {
+  animation: pulse 900ms ease-in-out infinite alternate;
+  background: $accessibleBlue;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+}
+
+.signInContainer {
+  max-width: 1120px;
+}
+
+.signInGrid {
+  display: grid;
+  gap: 20px;
+}
+
+.signInHero,
+.signInPanel {
+  padding: clamp(24px, 5vw, 48px);
+}
+
+.signInHero {
+  background: linear-gradient(145deg, $accent-color-teal, $accessibleBlue);
+  color: $white;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    border: 32px solid rgba($white, 0.07);
+    border-radius: 50%;
+    bottom: -95px;
+    content: '';
+    height: 240px;
+    position: absolute;
+    right: -80px;
+    width: 240px;
+  }
+
+  h1 {
+    font-family: $bold;
+    font-size: clamp(32px, 6vw, 54px);
+    line-height: 1.05;
+    margin: 8px 0 16px;
+    max-width: 600px;
+    position: relative;
+    z-index: 1;
+  }
+
+  > p:not(.eyebrow) {
+    font-family: $regular2;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 610px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.heroBenefits {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+
+  li {
+    align-items: center;
+    display: flex;
+    font-family: $regular2;
+    gap: 10px;
+    list-style: none;
+  }
+}
+
+.signInPanel {
+  h2 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 26px;
+    margin: 0 0 6px;
+  }
+
+  > p {
+    color: $dim-gray;
+    font-family: $regular2;
+    line-height: 1.5;
+    margin: 0 0 22px;
+  }
+}
+
+.providerStack {
+  display: grid;
+  gap: 10px;
+}
+
+.providerButton {
+  align-items: center;
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.2);
+  border-radius: $br-full;
+  color: $accent-color-teal;
+  display: flex;
+  font-family: $bold;
+  font-size: 14px;
+  gap: 12px;
+  justify-content: center;
+  min-height: 50px;
+  padding: 11px 18px;
+  width: 100%;
+
+  &:hover {
+    background: $snow;
+    border-color: $accessibleBlue;
+  }
+}
+
+.divider {
+  align-items: center;
+  color: $gray;
+  display: flex;
+  font-family: $regular2;
+  font-size: 12px;
+  gap: 12px;
+  margin: 20px 0;
+
+  &::before,
+  &::after {
+    background: rgba($accent-color-teal, 0.12);
+    content: '';
+    flex: 1;
+    height: 1px;
+  }
+}
+
+.demoCode {
+  background: rgba($lightBlue, 0.13);
+  border-radius: $br-lg;
+  color: $accessibleBlue;
+  font-family: $regular2;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 14px 0;
+  padding: 12px;
+
+  strong {
+    font-family: $bold;
+  }
+}
+
+.sampleCta {
+  background: #fff8e8;
+  border: 1px solid rgba($accessibleOrange, 0.18);
+  border-radius: $br-xl;
+  margin-top: 22px;
+  padding: 16px;
+
+  h3 {
+    color: #70400e;
+    font-family: $bold;
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+
+  p {
+    color: #76542f;
+    font-family: $regular2;
+    font-size: 13px;
+    line-height: 1.45;
+    margin: 0 0 12px;
+  }
+}
+
+.benefitGrid {
+  margin-top: 20px;
+}
+
+.benefitCard {
+  display: grid;
+  gap: 8px;
+
+  svg {
+    color: $accessibleBlue;
+  }
+
+  h3 {
+    color: $accent-color-teal;
+    font-family: $bold;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  p {
+    color: $dim-gray;
+    font-family: $regular2;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+.dangerZone {
+  border-color: rgba($important, 0.2);
+}
+
+@keyframes pulse {
+  to {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+
+@include mdq(md) {
+  .accountPage,
+  .signInPage {
+    padding: 38px 24px 88px;
+  }
+
+  .fieldGrid,
+  .twoColumnGrid,
+  .petGrid,
+  .cartGrid,
+  .benefitGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .threeColumnGrid,
+  .shortcutGrid,
+  .recommendationGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .heroCard {
+    align-items: center;
+    grid-template-columns: 1.5fr 0.8fr;
+  }
+}
+
+@include mdq(lg) {
+  .accountGrid {
+    grid-template-columns: 236px minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 132px;
+  }
+
+  .mobileMenuButton {
+    display: none;
+  }
+
+  .accountNavigation {
+    display: grid;
+  }
+
+  .signInGrid {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1.2fr) minmax(370px, 0.8fr);
+  }
+
+  .signInHero,
+  .signInPanel {
+    min-height: 590px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingMark,
+  .shortcut,
+  .toggle span {
+    animation: none;
+    transition: none;
+  }
+}

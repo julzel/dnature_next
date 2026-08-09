@@ -10,6 +10,7 @@ const routes = [
   '/plan-dnature',
   '/preguntas-frecuentes',
   '/checkout',
+  '/cuenta/iniciar-sesion',
 ];
 
 const getBlockingViolations = async (page) => {
@@ -152,4 +153,18 @@ test('@a11y checkout modal is named and restores focus on Escape', async ({
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
   await expect(continueButton).toBeFocused();
+});
+
+test('@a11y account sample dashboard has no serious or critical violations', async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.localStorage.removeItem('dnature-account-demo-v1');
+  });
+  await page.goto('/cuenta/iniciar-sesion');
+  await page
+    .getByRole('button', { name: 'Explorar cuenta con datos de ejemplo' })
+    .click();
+  await expect(page.getByRole('heading', { name: '¡Hola, Sofía!' })).toBeVisible();
+  expect(await getBlockingViolations(page)).toEqual([]);
 });

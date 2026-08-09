@@ -1,0 +1,46 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.accountLink {
+  align-items: center;
+  border-radius: $br-full;
+  color: $davys-gray;
+  display: inline-flex;
+  height: 44px;
+  justify-content: center;
+  min-width: 44px;
+  padding: 0 10px;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+
+  &:hover {
+    background: rgba($lightBlue, 0.16);
+    color: $accessibleBlue;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $lightBlue;
+    outline-offset: 2px;
+  }
+
+  span {
+    display: none;
+  }
+}
+
+@include mdq(lg) {
+  .accountLink {
+    gap: 7px;
+    padding-inline: 12px;
+
+    span {
+      display: inline;
+      font-family: $bold;
+      font-size: 12px;
+      max-width: 105px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
