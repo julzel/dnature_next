@@ -4,7 +4,7 @@
 
 This document contains the decisions and source material that DNAture must provide before implementing **Red Veterinaria** for production. It covers the partner directory, discovery, favorites, contact flows, optional pet-information sharing, partner administration, and the operating model behind those capabilities.
 
-Promotions, discounts, coupons, benefit codes, and redemption are intentionally excluded. They belong to [Stage 3](./customer-accounts-stage-3-promotions-requirements.md) and cannot block this stage.
+Promotions, discounts, coupons, benefit codes, and redemption are intentionally excluded. They belong to [Stage 3](./stage-3-promotions.md) and cannot block this stage.
 
 ## Stage boundary
 

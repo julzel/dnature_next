@@ -32,7 +32,7 @@ credentials. Keep Avify endpoint overrides server-side.
 
 Customer-account deployment, Supabase migration, Resend SMTP, Google OAuth,
 pilot restrictions, and rollback are documented in
-[`customer-accounts-stage-1-implementation.md`](./customer-accounts-stage-1-implementation.md).
+[`accounts/stage-1-implementation.md`](./accounts/stage-1-implementation.md).
 
 The `/avify-test/` diagnostic route is development-only. The root proxy returns
 an HTTP 404 before rendering in production, and the page repeats the production
@@ -47,6 +47,19 @@ used as an availability monitor.
 4. Inspect response headers for every public route. The configured CSP permits only the current Contentful image host, Google Maps, Google Analytics, and same-origin resources. Update and preview-test it whenever an integration changes.
 5. Configure HSTS at the hosting/CDN layer after HTTPS is confirmed; it is intentionally not set by application code because the host controls HTTPS termination.
 6. Set `MONITORING_INGEST_URL` to the approved provider and test a deliberately triggered preview error. Monitoring events contain only a redacted name, message, route, source, and timestamp.
+7. Run `npm run audit:public-assets` and review every reported candidate manually; a static reference scan alone is not evidence that an asset can be deleted.
+8. Run `npm run review:performance` and investigate warnings with three comparable preview captures before changing a performance baseline.
+
+Complete manual smoke tests on mobile Safari/Chrome and desktop
+Chrome/Safari/Firefox. Verify cart persistence, quantities, checkout image and
+WhatsApp flow, copied product URLs in an incognito window, Contentful publishing
+visibility, analytics page views, and hosting 404/500 rates.
+
+Asset deletion requires production access-log evidence for the candidate paths,
+a preview deployment, and a before/after verification with `lint`, unit tests,
+the production build, browser tests, and `verify:production`. Keep the audit
+report outside the repository unless it is intentionally approved as release
+evidence.
 
 ## Google integrations
 

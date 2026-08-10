@@ -40,5 +40,5 @@ contract before enabling Product/Offer structured data.
 
 ## Avify mapping
 
-Use the [Contentful–Avify SKU migration runbook](contentful-avify-sku-migration.md)
+Use the [Contentful–Avify SKU contract and migration runbook](contentful-avify-sku.md)
 for the staging-first schema migration and approved product data backfill.

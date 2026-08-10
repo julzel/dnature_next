@@ -1,4 +1,4 @@
-# Avify API documentation map
+# Avify API reference
 
 Reviewed on 2026-07-23. This map treats the current `avify.com/docs` developer navigation as the primary documentation and calls out the still-public `cms.avify.com` material only where it conflicts with the current pages. The current navigation divides the site into **Introducción**, **Uso de Avify**, **Recursos**, and **Desarrolladores**; the developer section contains only **Introducción API**, **Autenticación**, **Webhooks**, and **Órdenes V1**. [Source](https://avify.com/docs/introduccion-api)
 

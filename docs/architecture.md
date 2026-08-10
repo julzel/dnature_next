@@ -17,6 +17,8 @@ features/
   Faq/               FAQ experience
   Home/              Home page sections and category loading
   PlanDNA/           Saved-pet feeding-plan flow
+  Account/           Authentication, customer profiles, pets, and saved carts
+  AccountDemo/       Disabled future-stage modules kept outside Stage 1 navigation
 components/          Reusable UI primitives and application shell
 services/            Server-only external integrations
 util/                Shared pure utilities used by multiple slices/platform code

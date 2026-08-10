@@ -1,4 +1,4 @@
-# Customer accounts production — staged product-owner requirements
+# Customer accounts — staged product-owner requirements
 
 **Current implementation stage:** Stage 1 — Core customer accounts  
 **Primary market:** Costa Rica  
@@ -8,9 +8,9 @@
 
 | Stage | Scope | Requirement file | Current status |
 | --- | --- | --- | --- |
-| 1 | Authentication, customer profile, pet profiles, portion planning, saved carts, personalization, reminders, privacy, operations, and launch | [Stage 1 — Core accounts](./customer-accounts-stage-1-core-requirements.md) | Active |
-| 2 | Red Veterinaria directory, partner profiles, discovery, favorites, contact requests, partner data sharing, moderation, and partner operations | [Stage 2 — Red Veterinaria](./customer-accounts-stage-2-red-veterinaria-requirements.md) | Deferred |
-| 3 | Promotions, discounts, eligibility, funding, redemption, fraud controls, reconciliation, and promotional terms | [Stage 3 — Promotions and discounts](./customer-accounts-stage-3-promotions-requirements.md) | Deferred |
+| 1 | Authentication, customer profile, pet profiles, portion planning, saved carts, personalization, reminders, privacy, operations, and launch | [Stage 1 — Core accounts](./stage-1-requirements.md) | Active |
+| 2 | Red Veterinaria directory, partner profiles, discovery, favorites, contact requests, partner data sharing, moderation, and partner operations | [Stage 2 — Red Veterinaria](./stage-2-red-veterinaria.md) | Deferred |
+| 3 | Promotions, discounts, eligibility, funding, redemption, fraud controls, reconciliation, and promotional terms | [Stage 3 — Promotions and discounts](./stage-3-promotions.md) | Deferred |
 
 ## Scope boundary
 
@@ -62,4 +62,3 @@ Allowed statuses: `Open`, `In review`, `Approved`, `Rejected`, `Deferred with ap
 | Decision ID | Status | Decision owner | Approver | Approved decision | Evidence/link | Target date |
 | --- | --- | --- | --- | --- | --- | --- |
 | Example: S1-AUTH01 | Open | Name | Name | Pending | Pending | YYYY-MM-DD |
-
