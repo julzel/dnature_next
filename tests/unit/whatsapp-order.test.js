@@ -71,7 +71,7 @@ describe('WhatsApp order handoff', () => {
       paymentMethod: 'unknown',
     });
 
-    expect(message).toContain('Modalidad: Retiro coordinado');
+    expect(message).toContain('Modalidad: Pasar a retirar');
     expect(message).toContain('Preferencia de pago: Por coordinar');
   });
 });

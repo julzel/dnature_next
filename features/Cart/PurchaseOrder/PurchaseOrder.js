@@ -45,7 +45,7 @@ const PurchaseOrder = ({ cart }) => {
           </div>
         <div>
           <span>Modalidad:</span>
-          {cart.wantsDelivery ? 'Entrega a domicilio' : 'Retiro coordinado'}
+          {cart.wantsDelivery ? 'Entrega a domicilio' : 'Pasar a retirar'}
         </div>
         <div>
           <span>Pago preferido:</span>

@@ -256,6 +256,27 @@
   }
 }
 
+.pickupOption {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.locationLink {
+  color: $accessibleBlue;
+  font-family: $bold;
+  font-size: 10px;
+  margin-left: 54px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.locationLink:focus-visible {
+  border-radius: $br-base;
+  outline: 3px solid $lightBlue;
+  outline-offset: 3px;
+}
+
 .choiceIcon {
   align-items: center;
   background: $white;

@@ -12,7 +12,7 @@ reserva inventario ni cobra en línea.
 Los principales cambios son:
 
 - lenguaje de “solicitud” y estados que no implican una compra confirmada;
-- selección explícita entre retiro coordinado y entrega a domicilio;
+- selección explícita entre pasar a retirar y entrega a domicilio;
 - preferencia de SINPE Móvil o pago por coordinar, sin efectuar cobros;
 - indicaciones del pedido persistidas en el estado del carrito;
 - dirección requerida únicamente para entrega;

@@ -30,8 +30,9 @@ El carrito no reserva inventario ni constituye un pedido confirmado.
 
 En **Prepará tu solicitud**, seleccioná una modalidad:
 
-- **Retiro coordinado:** DNAture confirmará el lugar y el horario por
-  WhatsApp.
+- **Pasar a retirar:** consultá la [ubicación de DNAture en Google
+  Maps](https://www.google.com/maps/search/?api=1&query=9.955621,-84.085547) y
+  coordiná el horario por WhatsApp.
 - **Entrega a domicilio:** se agrega una tarifa estimada de **₡3.500**. DNAture
   confirmará por WhatsApp que la dirección esté dentro de la cobertura.
 

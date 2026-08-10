@@ -22,6 +22,7 @@ import ModalContainer from '../../components/Modal';
 import PurchaseOrderContainer from './PurchaseOrder';
 import ClientFormContainer from './ClientForm/ClientFormContainer';
 import { PAYMENT_METHODS } from './model/checkout';
+import { STORE_GOOGLE_MAPS_URL } from '../../constants/store';
 
 const Cart = ({
   cart,
@@ -111,23 +112,33 @@ const Cart = ({
               <>
                 <fieldset className={styles.optionGroup}>
                   <legend>¿Cómo querés recibirlo?</legend>
-                  <label className={styles.choiceCard}>
-                    <input
-                      type='radio'
-                      name='fulfillment'
-                      value='pickup'
-                      checked={!cart.wantsDelivery}
-                      onChange={() => updateDelivery(false)}
-                    />
-                    <span className={styles.choiceIcon}>
-                      <Store aria-hidden='true' size={21} />
-                    </span>
-                    <span>
-                      <strong>Retiro coordinado</strong>
-                      <small>Confirmaremos el lugar y horario por WhatsApp.</small>
-                    </span>
-                    <strong>Sin costo</strong>
-                  </label>
+                  <div className={styles.pickupOption}>
+                    <label className={styles.choiceCard}>
+                      <input
+                        type='radio'
+                        name='fulfillment'
+                        value='pickup'
+                        checked={!cart.wantsDelivery}
+                        onChange={() => updateDelivery(false)}
+                      />
+                      <span className={styles.choiceIcon}>
+                        <Store aria-hidden='true' size={21} />
+                      </span>
+                      <span>
+                        <strong>Pasar a retirar</strong>
+                        <small>Coordinamos el horario por WhatsApp.</small>
+                      </span>
+                      <strong>Sin costo</strong>
+                    </label>
+                    <a
+                      className={styles.locationLink}
+                      href={STORE_GOOGLE_MAPS_URL}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      Ver ubicación en Google Maps
+                    </a>
+                  </div>
                   <label className={styles.choiceCard}>
                     <input
                       type='radio'
@@ -206,7 +217,7 @@ const Cart = ({
                       {cart.wantsDelivery ? (
                         <CurrencyText value={cart.deliveryFee} />
                       ) : (
-                        'Retiro coordinado'
+                        'Pasar a retirar'
                       )}
                     </dd>
                   </div>

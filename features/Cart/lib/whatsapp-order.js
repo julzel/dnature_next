@@ -14,7 +14,7 @@ const buildWhatsAppOrderMessage = (cart) => {
   const reference = cart?.purchaseOrderId || 'sin referencia';
   const fulfillment = cart?.wantsDelivery
     ? 'Entrega a domicilio'
-    : 'Retiro coordinado';
+    : 'Pasar a retirar';
   const payment = PAYMENT_METHOD_LABELS[cart?.paymentMethod] || 'Por coordinar';
   const items = Array.isArray(cart?.items) ? cart.items : [];
   const productLines = items
