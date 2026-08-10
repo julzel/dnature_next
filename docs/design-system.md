@@ -179,6 +179,19 @@ the API is unavailable, and an independent Google Maps link must always work.
 Use the shared values in `constants/contact.js` and `constants/store.js` rather
 than duplicating phone, schedule, response target, or coordinates.
 
+## Customer stories
+
+Testimonials use an editorial card with one real customer photograph, the full
+quote, attribution, and an optional verified social profile. The section is
+introduced by a clear heading so the carousel is not encountered without
+context. Photographs lead on mobile and sit beside the quote on larger screens.
+
+Testimonials do not advance automatically: customers must be able to finish a
+long quote without the interface moving beneath them. Carousel tabs retain
+keyboard navigation and visible focus, while decorative quotation marks remain
+hidden from assistive technology. Never shorten, rewrite, or make new health
+claims inside an attributed customer quote.
+
 ## Footer
 
 The footer is a compact navigation and trust surface, not a duplicate of every

@@ -1,94 +1,192 @@
-@use "../../../styles/variables" as *;
-@use "../../../styles/mixins" as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
-$social-media: #008088;
+.ourCustomers {
+  background:
+    radial-gradient(circle at 100% 0, rgba($lightBlue, 0.18), transparent 32%),
+    $background-color;
+  overflow: hidden;
+  padding: 72px 16px 84px;
+}
 
-.OurCostumers {
-  background-color: $background-color;
-  padding: 64px 32px;
+.heading,
+.sliderFrame {
+  margin-inline: auto;
+  max-width: 1160px;
+}
 
-  @include mdq(md) {
-    padding: 128px 32px;
+.heading {
+  margin-bottom: 32px;
+  max-width: 680px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  color: $accent-color-teal;
+  font-family: $bold;
+  font-size: clamp(28px, 7vw, 44px);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  margin-bottom: 14px;
+}
+
+.introduction {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.sliderFrame {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xxxl;
+  box-shadow: 0 18px 50px rgba($accent-color-teal, 0.08);
+  padding: 16px 16px 54px;
+}
+
+.testimonial {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+  padding: 4px;
+  width: 100%;
+}
+
+.imageFrame {
+  aspect-ratio: 4 / 3;
+  border-radius: $br-xxl;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.imageAccent {
+  background: linear-gradient(180deg, transparent 56%, rgba($accent-color-teal, 0.28));
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.testimonialContent {
+  align-self: center;
+  min-width: 0;
+  padding: 0 4px 4px;
+}
+
+.quoteMark {
+  color: $orange;
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 64px;
+  height: 42px;
+  line-height: 1;
+}
+
+.quote {
+  color: $text-color;
+  font-family: $quote;
+  font-size: clamp(16px, 4.4vw, 20px);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.quote p {
+  margin: 0;
+}
+
+.customer {
+  border-top: 1px solid rgba($accent-color-teal, 0.12);
+  margin-top: 24px;
+  padding-top: 18px;
+}
+
+.customerName {
+  color: $accent-color-teal;
+  font-family: $bold;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.socialMedia {
+  color: $accessibleBlue;
+  display: inline-block;
+  font-family: $bold2;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: rgba($accessibleBlue, 0.35);
+  text-underline-offset: 4px;
+}
+
+.socialMedia:hover {
+  text-decoration-color: currentColor;
+}
+
+.socialMedia:focus-visible {
+  border-radius: $br-base;
+  outline: 3px solid rgba($orange, 0.42);
+  outline-offset: 4px;
+}
+
+@include mdq(sm) {
+  .ourCustomers {
+    padding-inline: 24px;
   }
 
-  .costumer {
-    display: flex;
-    flex-flow: column;
-    width: 100%;
-    padding: 20px;
-    max-width: 600px;
+  .sliderFrame {
+    padding: 24px 24px 58px;
+  }
+}
 
-    &Content {
-      display: flex;
-      flex-flow: column;
-      align-items: flex-end;
-      margin-bottom: 32px;
+@include mdq(md) {
+  .ourCustomers {
+    padding-block: 96px 104px;
+  }
 
-      &Quote {
-        font-family: $quoteItalic;
-        font-size: 20px;
-        letter-spacing: 1.025px;
-        line-height: 30px;
-        margin-bottom: 40px;
-        position: relative;
-        background-color: rgba(255, 111, 0, 0.125);
-        padding: 8px 16px;
+  .heading {
+    margin-bottom: 44px;
+  }
 
-        &::before {
-          content: "“";
-          position: absolute;
-          color: $blue;
-          font-size: 100px;
-          left: -20px;
-          top: 90px;
-          opacity: 0.75;
-          transform: scale(3);
-        }
+  .testimonial {
+    align-items: center;
+    grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+    gap: 44px;
+  }
 
-        &::after {
-          content: "”";
-          position: absolute;
-          color: $blue;
-          font-size: 100px;
-          right: 20px;
-          bottom: -70px;
-          opacity: 0.75;
-          transform: scale(3);
-        }
+  .imageFrame {
+    aspect-ratio: 1 / 1;
+  }
 
-        span {
-          position: relative;
-          z-index: 1;
-        }
-      }
+  .testimonialContent {
+    padding-right: 16px;
+  }
+}
 
-      &Name {
-        text-align: right;
-        font-family: $bold2;
-      }
+@include mdq(lg) {
+  .sliderFrame {
+    padding: 36px 42px 66px;
+  }
 
-      &SocialMedia {
-        background-color: $social-media;
-        color: $white;
-        display: inline-block;
-        font-family: $bold2;
-        font-size: 12px;
-        padding: 2px 5px;
-        text-align: right;
-        width: auto;
-        border-radius: 50px;
-      }
-    }
+  .testimonial {
+    gap: 64px;
+  }
 
-    &Thumbnail {
-      margin: 0 auto;
-      width: 250px;
-      height: 250px;
-      > span {
-        border-radius: 50%;
-        width: 100% !important;
-        height: 100% !important;
-      }
-    }
+  .quote {
+    font-size: 20px;
   }
 }
