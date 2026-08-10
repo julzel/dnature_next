@@ -17,9 +17,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Button from '../../../components/Button';
+import { accountStyles as styles } from '../../Account';
 import { useAccountDemo } from '../model/account-demo-context';
 import DemoNotice from './DemoNotice';
-import styles from '../AccountDemo.module.scss';
 
 const navigationItems = [
   { href: '/cuenta', label: 'Inicio', icon: House },
@@ -29,7 +29,7 @@ const navigationItems = [
   { href: '/cuenta/perfil', label: 'Mi perfil', icon: UserRound },
 ];
 
-const AccountShell = ({ children, eyebrow, title, description, action }) => {
+const DemoAccountShell = ({ children, eyebrow, title, description, action }) => {
   const pathname = usePathname();
   const router = useRouter();
   const { isAuthenticated, isReady, profile, signOut } = useAccountDemo();
@@ -60,17 +60,10 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
             <span className={styles.roundIcon} aria-hidden='true'>
               <ShieldCheck size={32} />
             </span>
-            <p className={styles.eyebrow}>Espacio personal</p>
-            <h1>Iniciá sesión para ver esta sección</h1>
-            <p>
-              En esta demostración podés explorar perfiles de mascotas, planes
-              de compra, aliados veterinarios y carritos guardados.
-            </p>
+            <p className={styles.eyebrow}>Espacio de demostración</p>
+            <h1>Iniciá la demostración para continuar</h1>
             <div className={styles.buttonRowCentered}>
-              <Button href='/cuenta/iniciar-sesion'>Iniciar sesión</Button>
-              <Button href='/' variant='secondary'>
-                Volver al inicio
-              </Button>
+              <Button href='/cuenta/iniciar-sesion'>Ir al acceso</Button>
             </div>
           </section>
         </div>
@@ -82,7 +75,6 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
     <div className={styles.accountPage}>
       <div className={styles.accountContainer}>
         <DemoNotice compact />
-
         <div className={styles.accountGrid}>
           <aside className={styles.sidebar}>
             <div className={styles.sidebarIdentity}>
@@ -100,19 +92,19 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
               type='button'
               className={styles.mobileMenuButton}
               aria-expanded={isMenuOpen}
-              aria-controls='account-navigation'
+              aria-controls='demo-account-navigation'
               onClick={() => setIsMenuOpen((open) => !open)}
             >
               {isMenuOpen ? <X aria-hidden='true' /> : <Menu aria-hidden='true' />}
-              {isMenuOpen ? 'Cerrar menú' : 'Menú de mi cuenta'}
+              {isMenuOpen ? 'Cerrar menú' : 'Menú del demo'}
             </button>
 
             <nav
-              id='account-navigation'
+              id='demo-account-navigation'
               className={`${styles.accountNavigation} ${
                 isMenuOpen ? styles.accountNavigationOpen : ''
               }`}
-              aria-label='Mi cuenta'
+              aria-label='Cuenta de demostración'
             >
               {navigationItems.map(({ href, label, icon: Icon }) => {
                 const isActive =
@@ -133,7 +125,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
               })}
               <button type='button' className={styles.signOutLink} onClick={handleSignOut}>
                 <LogOut aria-hidden='true' size={20} />
-                Cerrar sesión
+                Cerrar demo
               </button>
             </nav>
           </aside>
@@ -155,4 +147,4 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
   );
 };
 
-export default AccountShell;
+export default DemoAccountShell;

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -92,5 +92,19 @@ describe('checkout form validation', () => {
   it('minimizes remembered customer data before saving it', () => {
     expect(clientFieldsForStorage({ ...validClient, pets: [{ name: 'Luna' }], extra: 'discard' }))
       .toEqual(validClient);
+  });
+
+  it('does not duplicate authenticated profile data in browser storage by default', async () => {
+    storage.setItem('client', validClient, { expiresInDays: 30 });
+    render(
+      <ClientFormContainer initialClient={validClient} onSubmit={vi.fn()} />
+    );
+
+    expect(
+      screen.getByRole('checkbox', {
+        name: 'Guardar también estos datos en este dispositivo durante 30 días',
+      })
+    ).not.toBeChecked();
+    await waitFor(() => expect(storage.getItem('client')).toBeNull());
   });
 });

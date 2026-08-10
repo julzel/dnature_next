@@ -21,6 +21,7 @@ const CatalogItem = ({ product }) => {
     medida,
     category,
     developmentPriceComparison,
+    avifySku,
   } = product;
   const hasPriceByUnit = !!preciosPorUnidad;
   const { addOneItem, getItemsInCart, removeOneItem } = useCartContext();
@@ -44,7 +45,9 @@ const CatalogItem = ({ product }) => {
         precio,
         productName,
         itemImage?.url,
-        medida
+        medida,
+        avifySku,
+        id
       )
     );
   };

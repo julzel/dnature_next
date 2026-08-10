@@ -13,6 +13,11 @@
   text-decoration: none;
   transition: background-color 180ms ease, color 180ms ease;
 
+  svg {
+    height: 23px;
+    width: 23px;
+  }
+
   &:hover {
     background: rgba($lightBlue, 0.16);
     color: $accessibleBlue;
@@ -23,24 +28,10 @@
     outline-offset: 2px;
   }
 
-  span {
-    display: none;
-  }
-}
-
-@include mdq(lg) {
-  .accountLink {
-    gap: 7px;
-    padding-inline: 12px;
-
-    span {
-      display: inline;
-      font-family: $bold;
-      font-size: 12px;
-      max-width: 105px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+  @include mdq(lg) {
+    svg {
+      height: 24px;
+      width: 24px;
     }
   }
 }

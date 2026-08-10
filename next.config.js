@@ -25,7 +25,7 @@ module.exports = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https://images.ctfassets.net https://images.eu.ctfassets.net https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.ggpht.com",
               "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://maps.googleapis.com https://*.googleapis.com https://*.gstatic.com https://*.google.com",
+              "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://maps.googleapis.com https://*.googleapis.com https://*.gstatic.com https://*.google.com",
               "frame-src https://www.google.com https://maps.google.com",
               "worker-src 'self' blob:",
             ].join('; '),

@@ -1,5 +1,5 @@
-import { createPageMetadata } from '../../constants/seo';
-import Dashboard from '../../features/AccountDemo/Dashboard';
+import { createPageMetadata } from '../../../constants/seo';
+import { Dashboard } from '../../../features/Account';
 
 export const metadata = createPageMetadata({
   title: 'Mi cuenta',
@@ -11,3 +11,4 @@ export const metadata = createPageMetadata({
 const AccountPage = () => <Dashboard />;
 
 export default AccountPage;
+

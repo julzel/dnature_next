@@ -1,5 +1,5 @@
-import { createPageMetadata } from '../../../constants/seo';
-import PetsManager from '../../../features/AccountDemo/PetsManager';
+import { createPageMetadata } from '../../../../constants/seo';
+import { PetsManager } from '../../../../features/Account';
 
 export const metadata = createPageMetadata({
   title: 'Mis mascotas',
@@ -11,3 +11,4 @@ export const metadata = createPageMetadata({
 const PetsPage = () => <PetsManager />;
 
 export default PetsPage;
+

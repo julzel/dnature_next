@@ -89,9 +89,11 @@ const clientFieldsForStorage = (client) => ({
   contactPhoneNumber: client.contactPhoneNumber,
 });
 
-const ClientFormContainer = ({ onSubmit, className }) => {
-  const [rememberClient, setRememberClient] = useState(true);
-  const [client, setClient] = useState(() => createClient(storage.getItem('client')));
+const ClientFormContainer = ({ onSubmit, className, initialClient = null }) => {
+  const [rememberClient, setRememberClient] = useState(!initialClient);
+  const [client, setClient] = useState(() =>
+    createClient(initialClient || storage.getItem('client'))
+  );
   const [interactedFields, setInteractedFields] = useState({});
 
   const handleRememberToggle = () => {
@@ -158,6 +160,11 @@ const ClientFormContainer = ({ onSubmit, className }) => {
       interactedFields={interactedFields}
       inputFields={inputFields}
       rememberClient={rememberClient}
+      rememberLabel={
+        initialClient
+          ? 'Guardar también estos datos en este dispositivo durante 30 días'
+          : 'Recordar mis datos durante 30 días'
+      }
     />
   );
 };

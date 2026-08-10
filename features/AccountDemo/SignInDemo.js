@@ -15,9 +15,9 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Button from '../../components/Button';
+import { accountStyles as styles } from '../Account';
 import { useAccountDemo } from './model/account-demo-context';
 import DemoNotice from './components/DemoNotice';
-import styles from './AccountDemo.module.scss';
 
 const DEMO_CODE = '123456';
 

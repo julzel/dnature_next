@@ -1,5 +1,14 @@
 class ShoppingCartItem {
-  constructor(id, quantity, price, productName, image, presentation) {
+  constructor(
+    id,
+    quantity,
+    price,
+    productName,
+    image,
+    presentation,
+    sku,
+    catalogProductId
+  ) {
     this.id = id;
     this.quantity = quantity;
     this.price = price;
@@ -11,6 +20,14 @@ class ShoppingCartItem {
 
     if (presentation) {
       this.presentation = presentation;
+    }
+
+    if (sku) {
+      this.sku = sku;
+    }
+
+    if (catalogProductId) {
+      this.catalogProductId = catalogProductId;
     }
   }
 }

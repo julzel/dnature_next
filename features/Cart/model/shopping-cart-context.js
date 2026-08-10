@@ -4,8 +4,10 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
+  useRef,
   useSyncExternalStore,
 } from 'react';
 import { ShoppingCart } from './shopping-cart';
@@ -14,6 +16,9 @@ import { generatePurchaseOrderId } from '../lib/id-generator';
 const CART_STORAGE_KEY = 'carts';
 const CART_STORAGE_EVENT = 'dnature-cart-history';
 const CART_STORAGE_VERSION = 2;
+const ACTIVE_CART_STORAGE_KEY = 'dnature-active-cart-v1';
+const ACTIVE_CART_STORAGE_VERSION = 1;
+const ACTIVE_CART_RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
 const MAX_SAVED_CARTS = 5;
 const CART_RETENTION_DAYS = 30;
 const CART_RETENTION_MS = CART_RETENTION_DAYS * 24 * 60 * 60 * 1000;
@@ -59,6 +64,17 @@ const normalizeItem = (item) => {
 
   if (typeof item.presentation === 'string' && item.presentation.trim()) {
     normalizedItem.presentation = item.presentation;
+  }
+
+  if (typeof item.sku === 'string' && item.sku.trim()) {
+    normalizedItem.sku = item.sku;
+  }
+
+  if (
+    typeof item.catalogProductId === 'string' &&
+    item.catalogProductId.trim()
+  ) {
+    normalizedItem.catalogProductId = item.catalogProductId;
   }
 
   return normalizedItem;
@@ -183,8 +199,52 @@ const writeStoredCartRecords = (carts) => {
   }
 };
 
+const parseActiveCart = (rawValue) => {
+  try {
+    const parsed = JSON.parse(rawValue || 'null');
+    const storedAt = Date.parse(parsed?.storedAt);
+
+    if (
+      parsed?.version !== ACTIVE_CART_STORAGE_VERSION ||
+      !Number.isFinite(storedAt) ||
+      storedAt <= Date.now() - ACTIVE_CART_RETENTION_MS
+    ) {
+      return createEmptyCart();
+    }
+
+    return normalizeCart({ items: parsed.cart?.items });
+  } catch (error) {
+    console.warn('Unable to read the active cart from browser storage.', error);
+    return createEmptyCart();
+  }
+};
+
+const readActiveCart = () => {
+  if (typeof window === 'undefined') return createEmptyCart();
+  return parseActiveCart(window.localStorage.getItem(ACTIVE_CART_STORAGE_KEY));
+};
+
+const writeActiveCart = (cart) => {
+  if (typeof window === 'undefined') return;
+
+  try {
+    window.localStorage.setItem(
+      ACTIVE_CART_STORAGE_KEY,
+      JSON.stringify({
+        version: ACTIVE_CART_STORAGE_VERSION,
+        storedAt: new Date().toISOString(),
+        cart: { items: cart.items },
+      })
+    );
+  } catch (error) {
+    console.warn('Unable to preserve the active cart in browser storage.', error);
+  }
+};
+
 const cartReducer = (cart, action) => {
   switch (action.type) {
+    case 'HYDRATE_ACTIVE_CART':
+      return normalizeCart(action.cart);
     case 'ADD_ITEM': {
       const incomingItem = normalizeItem(action.item);
 
@@ -278,6 +338,20 @@ const cartReducer = (cart, action) => {
 
 const ShoppingCartContextProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, undefined, createEmptyCart);
+  const activeCartReady = useRef(false);
+
+  useEffect(() => {
+    dispatch({ type: 'HYDRATE_ACTIVE_CART', cart: readActiveCart() });
+    const readyTimer = window.setTimeout(() => {
+      activeCartReady.current = true;
+    }, 0);
+
+    return () => window.clearTimeout(readyTimer);
+  }, []);
+
+  useEffect(() => {
+    if (activeCartReady.current) writeActiveCart(cart);
+  }, [cart]);
   const subscribeToSavedCarts = useCallback((callback) => {
     const onStorageChange = (event) => {
       if (event.type === CART_STORAGE_EVENT || event.key === CART_STORAGE_KEY) {
@@ -423,12 +497,14 @@ export default ShoppingCartContextProvider;
 export const useCartContext = () => useContext(ShoppingCartContext);
 export {
   CART_STORAGE_VERSION,
+  ACTIVE_CART_STORAGE_VERSION,
   CART_RETENTION_DAYS,
   DELIVERY_FEE,
   IVA_RATE,
   cartReducer,
   createEmptyCart,
   normalizeCart,
+  parseActiveCart,
   parseStoredCartRecords,
   parseStoredCarts,
 };

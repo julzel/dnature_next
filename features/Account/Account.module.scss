@@ -1,6 +1,8 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
+// Shared visual language for the production Mi DNAture account experience.
+
 .accountPage,
 .signInPage {
   background:
@@ -145,6 +147,14 @@
   border-radius: 0;
   justify-content: center;
   width: 100%;
+}
+
+.navigationError {
+  color: $important;
+  font-family: $bold2;
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 2px 14px 10px;
 }
 
 .accountNavigation {
@@ -376,7 +386,9 @@
   background: $snow;
   border-radius: $br-full;
   display: inline-flex;
+  flex-wrap: wrap;
   gap: 3px;
+  max-width: 100%;
   padding: 4px;
 
   button {
@@ -385,6 +397,8 @@
     font-family: $bold;
     font-size: 12px;
     min-height: 36px;
+    min-width: 0;
+    overflow-wrap: anywhere;
     padding: 7px 13px;
   }
 
@@ -604,11 +618,6 @@
   padding: 18px;
 }
 
-.petCardSelected {
-  border-color: $accessibleBlue;
-  box-shadow: 0 0 0 2px rgba($lightBlue, 0.18);
-}
-
 .petCardHeader,
 .savedCartHeader {
   align-items: flex-start;
@@ -621,6 +630,7 @@
     font-family: $bold;
     font-size: 19px;
     margin: 0 0 4px;
+    overflow-wrap: anywhere;
   }
 
   p {
@@ -649,6 +659,15 @@
   gap: 8px;
   justify-content: space-between;
   list-style: none;
+
+  span:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  span:last-child:not(:first-child) {
+    flex: 0 0 auto;
+  }
 }
 
 .portionCallout {
@@ -788,6 +807,14 @@
   gap: 20px;
 }
 
+.signInPanel {
+  grid-row: 1;
+}
+
+.signInHero {
+  grid-row: 2;
+}
+
 .signInHero,
 .signInPanel {
   padding: clamp(24px, 5vw, 48px);
@@ -887,6 +914,86 @@
   &:hover {
     background: $snow;
     border-color: $accessibleBlue;
+  }
+
+  &:disabled {
+    cursor: wait;
+    opacity: 0.6;
+  }
+}
+
+.authModeTabs {
+  background: $snow;
+  border-radius: $br-full;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 24px;
+  padding: 4px;
+
+  button {
+    border-radius: $br-full;
+    color: $dim-gray;
+    font-family: $bold;
+    font-size: 13px;
+    min-height: 42px;
+    padding: 8px 12px;
+
+    &[aria-pressed='true'] {
+      background: $white;
+      box-shadow: 0 3px 12px rgba($accent-color-teal, 0.1);
+      color: $accessibleBlue;
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba($lightBlue, 0.45);
+      outline-offset: 1px;
+    }
+  }
+}
+
+.pilotBadge {
+  background: rgba($lightBlue, 0.14);
+  border-radius: $br-full;
+  color: $accessibleBlue !important;
+  display: inline-flex;
+  font-family: $bold !important;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin: 0 0 20px !important;
+  padding: 7px 11px;
+  text-transform: uppercase;
+}
+
+.ageConfirmation {
+  align-items: flex-start;
+  background: rgba($lightBlue, 0.1);
+  border-radius: $br-lg;
+  color: $accent-color-teal;
+  display: flex;
+  font-family: $regular2;
+  font-size: 13px;
+  gap: 10px;
+  line-height: 1.45;
+  margin: 0 0 18px;
+  padding: 12px;
+
+  input {
+    accent-color: $accessibleBlue;
+    flex: 0 0 auto;
+    height: 18px;
+    margin: 1px 0 0;
+    width: 18px;
+  }
+}
+
+.configurationState {
+  display: grid;
+  gap: 14px;
+
+  h2,
+  p {
+    margin: 0;
   }
 }
 
@@ -1038,13 +1145,23 @@
     grid-template-columns: minmax(0, 1.2fr) minmax(370px, 0.8fr);
   }
 
+  .signInHero {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .signInPanel {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
   .signInHero,
   .signInPanel {
     min-height: 590px;
   }
 
   .shortcutGrid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

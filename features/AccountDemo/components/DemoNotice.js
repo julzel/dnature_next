@@ -1,6 +1,6 @@
 import { FlaskConical } from 'lucide-react';
 
-import styles from '../AccountDemo.module.scss';
+import { accountStyles as styles } from '../../Account';
 
 const DemoNotice = ({ compact = false }) => (
   <aside

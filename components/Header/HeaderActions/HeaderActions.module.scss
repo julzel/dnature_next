@@ -30,6 +30,11 @@
     transform 180ms ease;
   width: 44px;
 
+  svg {
+    height: 23px;
+    width: 23px;
+  }
+
   &:hover,
   &[aria-expanded='true'] {
     background: rgba($lightBlue, 0.16);
@@ -38,6 +43,13 @@
 
   &:active {
     transform: scale(0.96);
+  }
+
+  @include mdq(lg) {
+    svg {
+      height: 27px;
+      width: 27px;
+    }
   }
 }
 

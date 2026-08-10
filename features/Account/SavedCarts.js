@@ -6,10 +6,9 @@ import { useState } from 'react';
 
 import Button from '../../components/Button';
 import { useCartContext } from '../Cart/state';
+import { useAccount } from './state';
 import AccountShell from './components/AccountShell';
-import { useAccountDemo } from './model/account-demo-context';
-import { MAX_DEMO_SAVED_CARTS, savedCartTotal } from './model/account-demo-state';
-import styles from './AccountDemo.module.scss';
+import styles from './Account.module.scss';
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat('es-CR', {
@@ -25,35 +24,64 @@ const formatDate = (value) =>
     year: 'numeric',
   }).format(new Date(value));
 
+const savedCartTotal = (cart) =>
+  cart.items.reduce((total, item) => total + item.price * item.quantity, 0);
+
 const SavedCarts = () => {
   const router = useRouter();
   const { cart, updateCurrentCart } = useCartContext();
-  const { deleteSavedCart, saveCart, savedCarts } = useAccountDemo();
+  const {
+    deleteSavedCart,
+    maxSavedCarts,
+    restoreSavedCart,
+    saveCart,
+    savedCarts,
+  } = useAccount();
   const [label, setLabel] = useState('Mi compra frecuente');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(null);
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
+  const [pendingRestoreId, setPendingRestoreId] = useState(null);
+  const [busyAction, setBusyAction] = useState('');
 
-  const handleSave = (event) => {
+  const handleSave = async (event) => {
     event.preventDefault();
+    setBusyAction('save');
+    setMessage(null);
+    const result = await saveCart(cart, label.trim() || 'Mi compra frecuente');
+    setBusyAction('');
+    setMessage({ error: !result.ok, text: result.message });
+  };
 
-    if (!cart.items.length) {
-      setMessage('Agregá al menos un producto antes de guardar el carrito.');
+  const reopenCart = async (savedCart) => {
+    setBusyAction(`restore-${savedCart.id}`);
+    setMessage(null);
+    const result = await restoreSavedCart(savedCart.id);
+    setBusyAction('');
+    setPendingRestoreId(null);
+    setMessage({ error: !result.ok, text: result.message });
+
+    if (result.ok) {
+      updateCurrentCart(result.cart);
+      router.push('/checkout');
+    }
+  };
+
+  const requestRestore = (savedCart) => {
+    if (cart.items.length) {
+      setPendingRestoreId(savedCart.id);
+      setPendingDeleteId(null);
       return;
     }
-
-    saveCart(cart, label.trim() || 'Mi compra frecuente');
-    setMessage('Tu carrito se guardó en esta cuenta de demostración.');
+    reopenCart(savedCart);
   };
 
-  const reopenCart = (savedCart) => {
-    updateCurrentCart(savedCart);
-    router.push('/checkout');
-  };
-
-  const confirmDelete = (cartId) => {
-    deleteSavedCart(cartId);
-    setPendingDeleteId(null);
-    setMessage('El carrito guardado se eliminó.');
+  const confirmDelete = async (cartId) => {
+    setBusyAction(`delete-${cartId}`);
+    setMessage(null);
+    const result = await deleteSavedCart(cartId);
+    setBusyAction('');
+    if (result.ok) setPendingDeleteId(null);
+    setMessage({ error: !result.ok, text: result.message });
   };
 
   return (
@@ -78,7 +106,6 @@ const SavedCarts = () => {
                 </p>
               </div>
             </div>
-            <span className={styles.proposalBadge}>Integrado al carrito</span>
           </div>
 
           {cart.items.length ? (
@@ -93,7 +120,9 @@ const SavedCarts = () => {
                 />
               </div>
               <div className={styles.buttonRow}>
-                <Button type='submit'>Guardar selección</Button>
+                <Button type='submit' disabled={busyAction === 'save'}>
+                  {busyAction === 'save' ? 'Guardando…' : 'Guardar selección'}
+                </Button>
                 <Button href='/checkout' variant='secondary'>
                   Revisar carrito
                 </Button>
@@ -105,11 +134,15 @@ const SavedCarts = () => {
             </div>
           )}
           <p className={styles.disclaimer}>
-            La demo conserva los {MAX_DEMO_SAVED_CARTS} carritos más recientes en este dispositivo.
+            Podés guardar hasta {maxSavedCarts} carritos. Al recuperarlos,
+            comprobaremos que los productos sigan en el catálogo y sus precios actuales.
           </p>
           {message ? (
-            <p className={styles.formMessage} role='status'>
-              {message}
+            <p
+              className={message.error ? styles.formError : styles.formMessage}
+              role={message.error ? 'alert' : 'status'}
+            >
+              {message.text}
             </p>
           ) : null}
         </section>
@@ -125,6 +158,10 @@ const SavedCarts = () => {
             <div className={styles.cartGrid}>
               {savedCarts.map((savedCart) => {
                 const pendingDelete = pendingDeleteId === savedCart.id;
+                const pendingRestore = pendingRestoreId === savedCart.id;
+                const isRestoring = busyAction === `restore-${savedCart.id}`;
+                const isDeleting = busyAction === `delete-${savedCart.id}`;
+
                 return (
                   <article className={styles.savedCartCard} key={savedCart.id}>
                     <div className={styles.savedCartHeader}>
@@ -133,13 +170,19 @@ const SavedCarts = () => {
                         <p>Guardado el {formatDate(savedCart.savedAt)}</p>
                       </div>
                       <span className={styles.selectedBadge}>
-                        {savedCart.items.reduce((total, item) => total + item.quantity, 0)} artículos
+                        {savedCart.items.reduce(
+                          (total, item) => total + item.quantity,
+                          0
+                        )}{' '}
+                        artículos
                       </span>
                     </div>
                     <ul className={styles.cartItems}>
                       {savedCart.items.slice(0, 4).map((item) => (
-                        <li className={styles.cartItem} key={item.id}>
-                          <span>{item.quantity} × {item.productName}</span>
+                        <li className={styles.cartItem} key={item.databaseId || item.id}>
+                          <span>
+                            {item.quantity} × {item.productName}
+                          </span>
                           <span>{formatCurrency(item.price * item.quantity)}</span>
                         </li>
                       ))}
@@ -150,33 +193,71 @@ const SavedCarts = () => {
                       ) : null}
                     </ul>
                     <div className={styles.portionCallout}>
-                      Total de referencia: <strong>{formatCurrency(savedCartTotal(savedCart))}</strong>
+                      Total guardado de referencia:{' '}
+                      <strong>{formatCurrency(savedCartTotal(savedCart))}</strong>
                     </div>
                     <div className={styles.cardActions}>
                       <Button
                         size='small'
+                        disabled={isRestoring}
                         iconStart={<RotateCcw aria-hidden='true' size={16} />}
-                        onClick={() => reopenCart(savedCart)}
+                        onClick={() => requestRestore(savedCart)}
                       >
-                        Usar este carrito
+                        {isRestoring ? 'Comprobando…' : 'Usar este carrito'}
                       </Button>
                       <Button
                         size='small'
                         variant='tertiary'
                         iconStart={<Trash2 aria-hidden='true' size={15} />}
-                        onClick={() => setPendingDeleteId(savedCart.id)}
+                        onClick={() => {
+                          setPendingDeleteId(savedCart.id);
+                          setPendingRestoreId(null);
+                        }}
                       >
                         Eliminar
                       </Button>
                     </div>
+                    {pendingRestore ? (
+                      <div className={styles.inlineConfirm} role='alert'>
+                        <p>
+                          Esto reemplazará los productos del carrito actual.
+                          Comprobaremos el catálogo y los precios antes de continuar.
+                        </p>
+                        <div className={styles.cardActions}>
+                          <Button
+                            size='small'
+                            onClick={() => reopenCart(savedCart)}
+                            disabled={isRestoring}
+                          >
+                            {isRestoring ? 'Comprobando…' : 'Sí, reemplazar'}
+                          </Button>
+                          <Button
+                            size='small'
+                            variant='secondary'
+                            onClick={() => setPendingRestoreId(null)}
+                          >
+                            Cancelar
+                          </Button>
+                        </div>
+                      </div>
+                    ) : null}
                     {pendingDelete ? (
                       <div className={styles.inlineConfirm} role='alert'>
                         <p>¿Eliminar “{savedCart.label}”?</p>
                         <div className={styles.cardActions}>
-                          <Button size='small' variant='danger' onClick={() => confirmDelete(savedCart.id)}>
-                            Sí, eliminar
+                          <Button
+                            size='small'
+                            variant='danger'
+                            disabled={isDeleting}
+                            onClick={() => confirmDelete(savedCart.id)}
+                          >
+                            {isDeleting ? 'Eliminando…' : 'Sí, eliminar'}
                           </Button>
-                          <Button size='small' variant='secondary' onClick={() => setPendingDeleteId(null)}>
+                          <Button
+                            size='small'
+                            variant='secondary'
+                            onClick={() => setPendingDeleteId(null)}
+                          >
                             Cancelar
                           </Button>
                         </div>
@@ -192,7 +273,8 @@ const SavedCarts = () => {
             <ShoppingBasket aria-hidden='true' size={38} />
             <h2>Todavía no guardaste carritos</h2>
             <p>
-              Armá una selección en el catálogo y volvé aquí para guardarla con el nombre que prefirás.
+              Armá una selección en el catálogo y volvé aquí para guardarla
+              con el nombre que prefirás.
             </p>
             <Button href='/productos'>Ir al catálogo</Button>
           </section>

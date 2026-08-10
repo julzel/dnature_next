@@ -1,5 +1,5 @@
-import { createPageMetadata } from '../../../constants/seo';
-import SavedCarts from '../../../features/AccountDemo/SavedCarts';
+import { createPageMetadata } from '../../../../constants/seo';
+import { SavedCarts } from '../../../../features/Account';
 
 export const metadata = createPageMetadata({
   title: 'Mis carritos',
@@ -11,3 +11,4 @@ export const metadata = createPageMetadata({
 const SavedCartsPage = () => <SavedCarts />;
 
 export default SavedCartsPage;
+

@@ -155,41 +155,10 @@ test('@a11y checkout modal is named and restores focus on Escape', async ({
   await expect(continueButton).toBeFocused();
 });
 
-test('@a11y account sample dashboard has no serious or critical violations', async ({
+test('@a11y customer-account entry works at a narrow mobile viewport', async ({
   page,
 }) => {
-  await page.addInitScript(() => {
-    window.localStorage.removeItem('dnature-account-demo-v1');
-  });
+  await page.setViewportSize({ width: 320, height: 780 });
   await page.goto('/cuenta/iniciar-sesion');
-  await page
-    .getByRole('button', { name: 'Explorar cuenta con datos de ejemplo' })
-    .click();
-  await expect(page.getByRole('heading', { name: '¡Hola, Sofía!' })).toBeVisible();
-  expect(await getBlockingViolations(page)).toEqual([]);
-});
-
-test('@a11y populated partner network has no serious or critical violations', async ({
-  page,
-}) => {
-  await page.setViewportSize({ width: 360, height: 800 });
-  await page.addInitScript(() => {
-    window.localStorage.removeItem('dnature-account-demo-v1');
-  });
-  await page.goto('/cuenta/iniciar-sesion');
-  await page
-    .getByRole('button', { name: 'Explorar cuenta con datos de ejemplo' })
-    .click();
-  await page.getByRole('button', { name: 'Menú de mi cuenta' }).click();
-  await page.getByRole('link', { name: 'Red Veterinaria', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '8 aliados disponibles' })).toBeVisible();
-  await page.getByRole('button', { name: /Más filtros/ }).click();
-  await expect(page.getByLabel('Provincia')).toBeVisible();
-  await page
-    .getByRole('article')
-    .filter({ hasText: 'Clínica Veterinaria La Arboleda' })
-    .getByRole('button', { name: 'Solicitar información' })
-    .click();
-  await expect(page.getByRole('heading', { name: 'Preparar solicitud' })).toBeVisible();
   expect(await getBlockingViolations(page)).toEqual([]);
 });

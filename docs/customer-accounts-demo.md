@@ -1,5 +1,7 @@
 # DNAture client accounts — frontend demo handoff
 
+> **Referencia archivada del demo aprobado.** La implementación activa de la Etapa 1 ya usa autenticación y persistencia reales. Consultá [customer-accounts-stage-1-implementation.md](./customer-accounts-stage-1-implementation.md). Los módulos de Red Veterinaria y promociones descritos aquí siguen excluidos de Etapa 1.
+
 ## Purpose
 
 This implementation is an interactive proposal for a client account experience. It is designed for stakeholder review and usability discussion, not for real customer data.

@@ -37,6 +37,13 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Supabase CLI local state
+/supabase/.temp/
+/supabase/.branches/
+/supabase/.env
+/supabase/.env.*
+!/supabase/.env.example
+
 # local Contentful exports
 /backups/contentful/
 

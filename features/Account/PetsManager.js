@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Pencil, Plus, Trash2 } from 'lucide-react';
+import { Pencil, Plus, Trash2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 import Button from '../../components/Button';
@@ -11,9 +11,8 @@ import {
   valueKeys,
 } from '../../util/portion-size';
 import AccountShell from './components/AccountShell';
-import { useAccountDemo } from './model/account-demo-context';
-import { MAX_DEMO_PETS } from './model/account-demo-state';
-import styles from './AccountDemo.module.scss';
+import { useAccount } from './state';
+import styles from './Account.module.scss';
 
 const emptyPet = {
   id: '',
@@ -42,21 +41,19 @@ const petFacts = (pet) =>
       ];
 
 const PetsManager = () => {
-  const {
-    deletePet,
-    pets,
-    savePet,
-    selectedPetId,
-    selectPet,
-  } = useAccountDemo();
+  const { deletePet, featureFlags, maxPets, pets, savePet } = useAccount();
   const [formPet, setFormPet] = useState(emptyPet);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [pendingDeleteId, setPendingDeleteId] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
 
   const portionPreview = useMemo(
-    () => calculatePortionSizeInGrams(formPet),
-    [formPet]
+    () =>
+      featureFlags.portionPlanning
+        ? calculatePortionSizeInGrams(formPet)
+        : null,
+    [featureFlags.portionPlanning, formPet]
   );
 
   const setField = (field) => (event) => {
@@ -74,20 +71,20 @@ const PetsManager = () => {
 
       return next;
     });
-    setMessage('');
+    setMessage(null);
   };
 
   const startNew = () => {
     setFormPet(emptyPet);
     setIsFormOpen(true);
-    setMessage('');
+    setMessage(null);
     setPendingDeleteId(null);
   };
 
   const startEdit = (pet) => {
     setFormPet({ ...pet, weight: String(pet.weight) });
     setIsFormOpen(true);
-    setMessage('');
+    setMessage(null);
     setPendingDeleteId(null);
     window.scrollTo({ top: 120, behavior: 'smooth' });
   };
@@ -95,43 +92,62 @@ const PetsManager = () => {
   const closeForm = () => {
     setFormPet(emptyPet);
     setIsFormOpen(false);
-    setMessage('');
+    setMessage(null);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const cleanName = formPet.name.trim();
 
     if (!cleanName) {
-      setMessage('Escribí el nombre de tu mascota.');
+      setMessage({ error: true, text: 'Escribí el nombre de tu mascota.' });
       return;
     }
 
-    if (!portionPreview) {
-      setMessage(`Ingresá un peso entre ${MIN_PET_WEIGHT_KG} kg y ${MAX_PET_WEIGHT_KG} kg.`);
+    const weight = Number(formPet.weight);
+    if (
+      !Number.isFinite(weight) ||
+      weight < MIN_PET_WEIGHT_KG ||
+      weight > MAX_PET_WEIGHT_KG
+    ) {
+      setMessage({
+        error: true,
+        text: `Ingresá un peso entre ${MIN_PET_WEIGHT_KG} kg y ${MAX_PET_WEIGHT_KG} kg.`,
+      });
       return;
     }
 
-    const wasEditing = Boolean(formPet.id);
-    savePet({ ...formPet, name: cleanName, weight: Number(formPet.weight) });
-    setMessage(wasEditing ? 'Los cambios se guardaron.' : `${cleanName} se agregó a tu cuenta.`);
-    setFormPet(emptyPet);
-    setIsFormOpen(false);
+    setIsSaving(true);
+    const result = await savePet({
+      ...formPet,
+      name: cleanName,
+      weight,
+    });
+    setIsSaving(false);
+    setMessage({ error: !result.ok, text: result.message });
+    if (result.ok) {
+      setFormPet(emptyPet);
+      setIsFormOpen(false);
+    }
   };
 
-  const confirmDelete = (petId) => {
-    deletePet(petId);
-    setPendingDeleteId(null);
-    setMessage('El perfil se eliminó de esta demostración.');
+  const confirmDelete = async (petId) => {
+    const result = await deletePet(petId);
+    if (result.ok) setPendingDeleteId(null);
+    setMessage({ error: !result.ok, text: result.message });
   };
 
   return (
     <AccountShell
       eyebrow='Perfiles personalizados'
       title='Mis mascotas'
-      description='Guardá sus datos esenciales y consultá una porción diaria de referencia.'
+      description={
+        featureFlags.portionPlanning
+          ? 'Guardá sus datos esenciales y consultá una porción diaria de referencia.'
+          : 'Guardá los datos esenciales de tus mascotas en un solo lugar.'
+      }
       action={
-        pets.length > 0 && pets.length < MAX_DEMO_PETS && !isFormOpen ? (
+        pets.length > 0 && pets.length < maxPets && !isFormOpen ? (
           <Button iconStart={<Plus aria-hidden='true' size={18} />} onClick={startNew}>
             Agregar mascota
           </Button>
@@ -146,10 +162,10 @@ const PetsManager = () => {
                 <h2 id='pet-form-title'>
                   {formPet.id ? `Editar a ${formPet.name}` : 'Nueva mascota'}
                 </h2>
-                <p>Usamos estos datos únicamente dentro de esta propuesta local.</p>
+                <p>Completá los datos esenciales para mantener su perfil al día.</p>
               </div>
               {portionPreview ? (
-                <span className={styles.statusBadge}>Perfil listo</span>
+                <span className={styles.statusBadge}>Datos listos</span>
               ) : null}
             </div>
 
@@ -254,24 +270,28 @@ const PetsManager = () => {
                 </div>
               </div>
 
-              {portionPreview ? (
+              {featureFlags.portionPlanning && portionPreview ? (
                 <div className={styles.portionCallout} aria-live='polite'>
                   Porción diaria estimada: <strong>{Math.round(portionPreview)} g</strong>
                 </div>
               ) : null}
               {message ? (
                 <p
-                  className={message.includes('Ingresá') || message.includes('Escribí') ? styles.formError : styles.formMessage}
-                  role='status'
+                  className={message.error ? styles.formError : styles.formMessage}
+                  role={message.error ? 'alert' : 'status'}
                 >
-                  {message}
+                  {message.text}
                 </p>
               ) : null}
-              <p className={styles.disclaimer}>
-                Esta estimación orientativa no reemplaza la valoración de un profesional veterinario.
-              </p>
+              {featureFlags.portionPlanning ? (
+                <p className={styles.disclaimer}>
+                  Esta estimación orientativa no reemplaza la valoración de un profesional veterinario.
+                </p>
+              ) : null}
               <div className={styles.buttonRow}>
-                <Button type='submit'>Guardar perfil</Button>
+                <Button type='submit' disabled={isSaving}>
+                  {isSaving ? 'Guardando…' : 'Guardar perfil'}
+                </Button>
                 {pets.length ? (
                   <Button variant='secondary' onClick={closeForm}>
                     Cancelar
@@ -283,8 +303,11 @@ const PetsManager = () => {
         ) : null}
 
         {message && !isFormOpen ? (
-          <p className={styles.formMessage} role='status'>
-            {message}
+          <p
+            className={message.error ? styles.formError : styles.formMessage}
+            role={message.error ? 'alert' : 'status'}
+          >
+            {message.text}
           </p>
         ) : null}
 
@@ -292,22 +315,18 @@ const PetsManager = () => {
           <section aria-label='Perfiles de mascotas'>
             <div className={styles.petGrid}>
               {pets.map((pet) => {
-                const isSelected = pet.id === selectedPetId;
                 const pendingDelete = pet.id === pendingDeleteId;
 
                 return (
                   <article
                     key={pet.id}
-                    className={`${styles.petCard} ${isSelected ? styles.petCardSelected : ''}`}
+                    className={styles.petCard}
                   >
                     <div className={styles.petCardHeader}>
                       <div>
                         <h3>{pet.name}</h3>
                         <p>Perfil de alimentación</p>
                       </div>
-                      {isSelected ? (
-                        <span className={styles.selectedBadge}>Principal</span>
-                      ) : null}
                     </div>
                     <dl className={styles.petFacts}>
                       {petFacts(pet).map(([label, value]) => (
@@ -317,20 +336,13 @@ const PetsManager = () => {
                         </div>
                       ))}
                     </dl>
-                    <div className={styles.portionCallout}>
-                      Porción orientativa: <strong>{Math.round(pet.portionSize)} g al día</strong>
-                    </div>
+                    {featureFlags.portionPlanning && pet.portionSize ? (
+                      <div className={styles.portionCallout}>
+                        Porción orientativa:{' '}
+                        <strong>{Math.round(pet.portionSize)} g al día</strong>
+                      </div>
+                    ) : null}
                     <div className={styles.cardActions}>
-                      {!isSelected ? (
-                        <Button
-                          size='small'
-                          variant='secondary'
-                          iconStart={<Check aria-hidden='true' size={16} />}
-                          onClick={() => selectPet(pet.id)}
-                        >
-                          Usar como principal
-                        </Button>
-                      ) : null}
                       <Button
                         size='small'
                         variant='tertiary'
@@ -371,15 +383,17 @@ const PetsManager = () => {
             <Plus aria-hidden='true' size={38} />
             <h2>Creá el primer perfil</h2>
             <p>
-              Agregá los datos esenciales de tu mascota para ver su porción orientativa y planificar compras.
+              {featureFlags.portionPlanning
+                ? 'Agregá sus datos esenciales para ver una porción orientativa y planificar compras.'
+                : 'Agregá sus datos esenciales para tener su información organizada en un solo lugar.'}
             </p>
             <Button onClick={startNew}>Agregar mascota</Button>
           </section>
         ) : null}
 
-        {pets.length >= MAX_DEMO_PETS ? (
+        {pets.length >= maxPets ? (
           <p className={styles.disclaimer}>
-            La demostración admite hasta {MAX_DEMO_PETS} perfiles de mascotas.
+            Podés guardar hasta {maxPets} perfiles de mascotas.
           </p>
         ) : null}
       </div>

@@ -19,11 +19,20 @@ must update this runbook when integrations change.
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | public | Browser Maps key |
 | `NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID` | public | Maps style identifier |
 | `NEXT_PUBLIC_GOOGLE_ANALYTICS` | public | GA measurement ID; no script loads without consent |
+| `NEXT_PUBLIC_SUPABASE_URL` | public | Hosted Supabase project URL for customer accounts |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | public | Publishable Supabase browser key; RLS remains the authorization boundary |
+| `ACCOUNT_REGISTRATION_MODE` | server only | `invitation` for the pilot; `public` only after the public-launch gates |
+| `ACCOUNT_PORTION_PLANNING_ENABLED` | server only | Keeps clinical portion guidance disabled until written approval |
+| `ACCOUNT_STAGE_2_ENABLED` | server only | Keeps Red Veterinaria disabled during Stage 1 |
 | `MONITORING_INGEST_URL` | server only | Approved monitoring endpoint |
 | `MONITORING_INGEST_TOKEN` | server only | Optional bearer token for that endpoint |
 
 Do not use a `NEXT_PUBLIC_` prefix for Contentful, Avify, or monitoring
 credentials. Keep Avify endpoint overrides server-side.
+
+Customer-account deployment, Supabase migration, Resend SMTP, Google OAuth,
+pilot restrictions, and rollback are documented in
+[`customer-accounts-stage-1-implementation.md`](./customer-accounts-stage-1-implementation.md).
 
 The `/avify-test/` diagnostic route is development-only. The root proxy returns
 an HTTP 404 before rendering in production, and the page repeats the production

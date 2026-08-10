@@ -19,6 +19,7 @@ const ClientForm = ({
   interactedFields,
   inputFields,
   rememberClient,
+  rememberLabel,
 }) => {
   return (
     <div className={`${styles.clientForm} ${className ? className : null}`}>
@@ -70,7 +71,7 @@ const ClientForm = ({
               checked={rememberClient}
             />
             <span className={styles.checkmark}></span>
-            Recordar mis datos durante 30 días
+            {rememberLabel}
           </label>
         </div>
         <Button type="submit" variant="primary" fullWidth disabled={!isFormValid()}>

@@ -1,4 +1,5 @@
 import Cart from '../../features/Cart';
+import { loadOptionalCheckoutCustomer } from '../../features/Account/server';
 import { createPageMetadata } from '../../constants/seo';
 
 export const metadata = createPageMetadata({
@@ -11,6 +12,11 @@ export const metadata = createPageMetadata({
   },
 });
 
-const CheckoutPage = () => <Cart />;
+export const dynamic = 'force-dynamic';
+
+const CheckoutPage = async () => {
+  const accountCustomer = await loadOptionalCheckoutCustomer();
+  return <Cart initialClient={accountCustomer} />;
+};
 
 export default CheckoutPage;

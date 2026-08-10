@@ -1,11 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import {
+  ACTIVE_CART_STORAGE_VERSION,
   CART_RETENTION_DAYS,
   CART_STORAGE_VERSION,
   cartReducer,
   createEmptyCart,
   normalizeCart,
+  parseActiveCart,
   parseStoredCarts,
 } from '../../features/Cart/model/shopping-cart-context';
 
@@ -109,6 +111,34 @@ describe('cart reducer', () => {
 });
 
 describe('cart storage schema', () => {
+  it('preserves guest items across authentication without persisting customer details', () => {
+    const parsed = parseActiveCart(
+      JSON.stringify({
+        version: ACTIVE_CART_STORAGE_VERSION,
+        storedAt: new Date().toISOString(),
+        cart: {
+          items: [
+            {
+              ...item,
+              sku: 'SKU-1',
+              catalogProductId: 'contentful-product-1',
+            },
+          ],
+          client: {
+            firstName: 'No debe restaurarse',
+            email: 'private@example.com',
+          },
+        },
+      })
+    );
+
+    expect(parsed.items[0]).toMatchObject({
+      sku: 'SKU-1',
+      catalogProductId: 'contentful-product-1',
+    });
+    expect(parsed.client).toEqual(createEmptyCart().client);
+  });
+
   it('migrates the legacy array and recalculates trusted totals', () => {
     const parsed = parseStoredCarts(
       JSON.stringify([

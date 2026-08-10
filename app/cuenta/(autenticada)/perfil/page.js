@@ -1,9 +1,9 @@
-import { createPageMetadata } from '../../../constants/seo';
-import ProfileSettings from '../../../features/AccountDemo/ProfileSettings';
+import { createPageMetadata } from '../../../../constants/seo';
+import { ProfileSettings } from '../../../../features/Account';
 
 export const metadata = createPageMetadata({
   title: 'Mi perfil',
-  description: 'Datos y preferencias de la cuenta de cliente DNAture.',
+  description: 'Datos de la cuenta de cliente DNAture.',
   path: '/cuenta/perfil',
   robots: { index: false, follow: false },
 });
@@ -11,3 +11,4 @@ export const metadata = createPageMetadata({
 const ProfilePage = () => <ProfileSettings />;
 
 export default ProfilePage;
+

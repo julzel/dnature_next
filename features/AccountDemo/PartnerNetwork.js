@@ -20,14 +20,14 @@ import {
 import { useMemo, useState } from 'react';
 
 import Button from '../../components/Button';
-import AccountShell from './components/AccountShell';
+import { accountStyles } from '../Account';
+import AccountShell from './components/DemoAccountShell';
 import { useAccountDemo } from './model/account-demo-context';
 import {
   demoPartners,
   partnerProvinces,
   partnerServices,
 } from './model/demo-partners';
-import accountStyles from './AccountDemo.module.scss';
 import networkStyles from './PartnerNetwork.module.scss';
 
 const styles = { ...accountStyles, ...networkStyles };

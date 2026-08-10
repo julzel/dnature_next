@@ -34,6 +34,7 @@ const Cart = ({
   onCloseInfoModal,
   purchaseError,
   isCapturingPurchase,
+  initialClient,
   updateDelivery,
 }) => {
   return (
@@ -170,6 +171,7 @@ const Cart = ({
           <ClientFormContainer
             onSubmit={onClientInfoSubmit}
             className={styles.cartClientForm}
+            initialClient={initialClient}
           />
         </ModalContainer>
       )}

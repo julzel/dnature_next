@@ -10,6 +10,11 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:a11y": "playwright test --grep @a11y",
+    "supabase:start": "SUPABASE_TELEMETRY_DISABLED=1 supabase start",
+    "supabase:stop": "SUPABASE_TELEMETRY_DISABLED=1 supabase stop",
+    "supabase:reset": "SUPABASE_TELEMETRY_DISABLED=1 supabase db reset",
+    "supabase:lint": "SUPABASE_TELEMETRY_DISABLED=1 supabase db lint --level warning",
+    "supabase:test": "SUPABASE_TELEMETRY_DISABLED=1 supabase test db",
     "audit:public-assets": "node scripts/audit-public-assets.mjs",
     "check:architecture": "node scripts/check-architecture.mjs",
     "check:licenses": "node scripts/check-dependency-licenses.mjs",
@@ -39,9 +44,11 @@
     "@mui/icons-material": "^5.14.0",
     "@mui/material": "^5.14.0",
     "@mui/material-nextjs": "9.1.1",
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.112.2",
     "html2canvas": "^1.4.1",
     "lucide-react": "^1.25.0",
-    "next": "16.2.10",
+    "next": "16.3.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-slick": "^0.30.2",
@@ -50,6 +57,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
+    "@next/env": "16.3.0",
     "@playwright/test": "^1.55.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
@@ -61,6 +69,7 @@
     "eslint": "9.39.5",
     "eslint-config-next": "16.2.10",
     "jsdom": "^26.1.0",
+    "supabase": "^2.113.0",
     "vitest": "^3.2.4"
   }
 }

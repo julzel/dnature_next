@@ -32,7 +32,7 @@ const completePurchaseCapture = async ({
   }
 };
 
-const CartContainer = () => {
+const CartContainer = ({ initialClient = null }) => {
   // Shopping cart context
   const {
     cart,
@@ -109,6 +109,7 @@ const CartContainer = () => {
       onCloseInfoModal={handleCloseInfoModal}
       purchaseError={purchaseError}
       isCapturingPurchase={isCapturingPurchase}
+      initialClient={initialClient}
     />
   );
 };
