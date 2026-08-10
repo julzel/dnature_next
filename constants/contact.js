@@ -1,6 +1,7 @@
 const DNATURE_WHATSAPP_PHONE = '50671848868';
 const DNATURE_WHATSAPP_DISPLAY = '+506 7184-8868';
-const DNATURE_SUPPORT_HOURS = 'Lunes a viernes, de 8:00 a. m. a 5:00 p. m.';
+const DNATURE_SUPPORT_HOURS =
+  'Lun - Vie, de 8:00 a. m. a 5:00 p. m. Sáb, de 8:00 a. m. a 4:30 p. m.';
 const DNATURE_SUPPORT_RESPONSE = 'Respondemos dentro de 2 horas hábiles.';
 
 export {

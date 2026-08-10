@@ -165,6 +165,20 @@ All customer copy uses Costa Rican voseo and remains usable at 320 px without
 horizontal overflow. Validation explains how to correct a field; it does not
 only say that the field is invalid.
 
+## Contact and location
+
+The home contact section closes the commercial journey with one clear heading,
+three distinct communication channels, current service expectations, and a
+store-location card. Channel cards are full-width touch targets on mobile and
+must expose the destination in visible text rather than relying on an icon.
+
+WhatsApp is the featured channel, while Instagram and email retain equal
+semantic link behavior with lower visual emphasis. The embedded map is an
+enhancement: the store name and locality remain visible while it loads or when
+the API is unavailable, and an independent Google Maps link must always work.
+Use the shared values in `constants/contact.js` and `constants/store.js` rather
+than duplicating phone, schedule, response target, or coordinates.
+
 ## Next additions
 
 - color and typography tokens;
