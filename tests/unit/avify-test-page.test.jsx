@@ -13,6 +13,11 @@ vi.mock('next/navigation', () => ({
   notFound: notFoundMock,
 }));
 
+const createProxyRequest = () => ({
+  headers: new Headers(),
+  nextUrl: new URL('http://localhost/avify-test'),
+});
+
 describe('Avify test route', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -36,16 +41,17 @@ describe('Avify test route', () => {
     expect(notFoundMock).not.toHaveBeenCalled();
   });
 
-  it('returns HTTP 404 from the proxy in production', () => {
+  it('returns HTTP 404 from the proxy in production', async () => {
     vi.stubEnv('NODE_ENV', 'production');
 
-    expect(proxy().status).toBe(404);
+    const response = await proxy(createProxyRequest());
+    expect(response.status).toBe(404);
   });
 
-  it('allows the diagnostic request through outside production', () => {
+  it('allows the diagnostic request through outside production', async () => {
     vi.stubEnv('NODE_ENV', 'development');
 
-    const response = proxy();
+    const response = await proxy(createProxyRequest());
 
     expect(response.status).toBe(200);
     expect(response.headers.get('x-middleware-next')).toBe('1');

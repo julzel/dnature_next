@@ -7,12 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./Modal.module.scss";
 
 const Modal = ({
+  ariaDescribedBy,
   ariaLabel = 'Diálogo',
+  ariaLabelledBy,
   children,
+  closeOnBackdrop = true,
   closeModal,
   padding,
   responsiveFullScreen,
+  returnFocusRef,
   rootRef,
+  size = 'medium',
 }) => {
   const dialogRef = useRef(null);
   const previousActiveElement = useRef(null);
@@ -24,6 +29,7 @@ const Modal = ({
 
   useEffect(() => {
     previousActiveElement.current = document.activeElement;
+    const explicitReturnTarget = returnFocusRef?.current;
     const dialog = dialogRef.current;
     const focusableSelector =
       'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -61,32 +67,48 @@ const Modal = ({
     dialog.addEventListener('keydown', onKeyDown);
     return () => {
       dialog.removeEventListener('keydown', onKeyDown);
-      if (previousActiveElement.current?.isConnected) {
-        previousActiveElement.current.focus();
+      const returnTarget = explicitReturnTarget || previousActiveElement.current;
+      if (returnTarget?.isConnected) {
+        returnTarget.focus();
       }
     };
-  }, []);
+  }, [returnFocusRef]);
 
   return (
-    <div ref={rootRef} data-dnature-modal-root className={styles.modalContainer} onMouseDown={(event) => {
-      if (event.target === event.currentTarget) closeModal?.();
-    }}>
+    <div
+      ref={rootRef}
+      data-dnature-modal-root
+      className={styles.modalContainer}
+      onClick={(event) => {
+        if (
+          closeOnBackdrop &&
+          event.target === event.currentTarget
+        ) {
+          closeModal?.();
+        }
+      }}
+    >
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
-        aria-label={ariaLabel}
+        aria-label={ariaLabelledBy ? undefined : ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        aria-describedby={ariaDescribedBy}
         tabIndex={-1}
-        className={`${styles.modal} ${padding ? styles.padding : ""} ${
-          responsiveFullScreen ? styles.responsiveFullScreen : ""
-        }`}
+        className={[
+          styles.modal,
+          styles[size],
+          padding ? styles.padding : '',
+          responsiveFullScreen ? styles.responsiveFullScreen : '',
+        ].filter(Boolean).join(' ')}
       >
         {closeModal && (
           <button className={styles.close} onClick={closeModal} type="button" aria-label="Cerrar diálogo">
             <FontAwesomeIcon icon={faXmark} />
           </button>
         )}
-        <div>{children}</div>
+        <div className={styles.content}>{children}</div>
       </div>
     </div>
   );

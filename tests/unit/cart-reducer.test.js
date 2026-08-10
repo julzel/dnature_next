@@ -1,11 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import {
+  ACTIVE_CART_STORAGE_VERSION,
   CART_RETENTION_DAYS,
   CART_STORAGE_VERSION,
   cartReducer,
   createEmptyCart,
   normalizeCart,
+  parseActiveCart,
   parseStoredCarts,
 } from '../../features/Cart/model/shopping-cart-context';
 
@@ -55,8 +57,8 @@ describe('cart reducer', () => {
       subtotal: 7500,
       tax: 975,
       wantsDelivery: true,
-      deliveryFee: 3000,
-      total: 11475,
+      deliveryFee: 3500,
+      total: 11975,
     });
     expect(withoutDelivery).toMatchObject({
       wantsDelivery: false,
@@ -109,13 +111,45 @@ describe('cart reducer', () => {
 });
 
 describe('cart storage schema', () => {
+  it('preserves guest items across authentication without persisting customer details', () => {
+    const parsed = parseActiveCart(
+      JSON.stringify({
+        version: ACTIVE_CART_STORAGE_VERSION,
+        storedAt: new Date().toISOString(),
+        cart: {
+          items: [
+            {
+              ...item,
+              sku: 'SKU-1',
+              catalogProductId: 'contentful-product-1',
+            },
+          ],
+          client: {
+            firstName: 'No debe restaurarse',
+            email: 'private@example.com',
+          },
+        },
+      })
+    );
+
+    expect(parsed.items[0]).toMatchObject({
+      sku: 'SKU-1',
+      catalogProductId: 'contentful-product-1',
+    });
+    expect(parsed.client).toEqual(createEmptyCart().client);
+  });
+
   it('migrates the legacy array and recalculates trusted totals', () => {
     const parsed = parseStoredCarts(
       JSON.stringify([
         {
           items: [item],
           total: 999999,
-          client: { address: { provincia: 'San José' } },
+          wantsDelivery: true,
+          client: {
+            firstName: 'Dato anterior',
+            address: { provincia: 'San José' },
+          },
         },
       ])
     );
@@ -124,14 +158,10 @@ describe('cart storage schema', () => {
     expect(parsed[0]).toMatchObject({
       subtotal: 2500,
       tax: 325,
-      deliveryFee: 0,
-      total: 2825,
+      deliveryFee: 3500,
+      total: 6325,
     });
-    expect(parsed[0].client.address).toEqual({
-      direccion: '',
-      provincia: 'San José',
-      canton: '',
-    });
+    expect(parsed[0].client).toEqual(createEmptyCart().client);
   });
 
   it('accepts non-expired current records and rejects unknown or malformed schemas', () => {

@@ -11,6 +11,9 @@ must remain unavailable until a domain owner supplies the rule in Phase 1.
 The browser catalogue fixtures are enabled only with
 `E2E_USE_FIXTURES=1`. They avoid coupling CI to Contentful credentials or
 editorial changes and are never used by the normal production runtime.
+The same flag prevents browser tests from contacting the configured hosted
+Supabase project; account-aware checkout therefore follows the guest path
+unless a dedicated local-auth fixture is added.
 
 `axe-baseline.js` records three pre-existing serious color-contrast findings.
 The accessibility suite fails if their route, rule, severity, or node count

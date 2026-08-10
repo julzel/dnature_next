@@ -26,9 +26,21 @@
     box-shadow 180ms ease,
     transform 180ms ease;
 
+  svg {
+    height: 23px;
+    width: 23px;
+  }
+
   &:hover {
     background: rgba($lightBlue, 0.16);
     color: $accessibleBlue;
+  }
+
+  @include mdq(lg) {
+    svg {
+      height: 27px;
+      width: 27px;
+    }
   }
 }
 

@@ -12,6 +12,7 @@ const CartActions = ({
   handleRemoveAllItems,
   displayRemoveAllModal,
   toggleRemoveAllModal,
+  isCheckingCart,
 }) => (
   <div className={styles.cartActions}>
     {totalItems > 0 && (
@@ -21,8 +22,10 @@ const CartActions = ({
         size='large'
         fullWidth
         onClick={proceedToPurchase}
+        disabled={isCheckingCart}
+        loading={isCheckingCart}
       >
-        Continuar
+        {isCheckingCart ? 'Comprobando…' : 'Continuar con mis datos'}
       </Button>
     )}
 
@@ -53,7 +56,7 @@ const CartActions = ({
         >
           <h3>¡Atención!</h3>
           <p>Esta opción eliminará todos los productos que seleccionaste.</p>
-          <p>¿Estás seguro de querer vaciar el carrito?</p>
+          <p>¿Querés vaciar el carrito?</p>
         </MessageBoxContainer>
       </Modal>
     )}

@@ -10,8 +10,7 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 // - children: optional custom children; if provided they override display text
 // - targetBlank: boolean (default true) whether to open in new tab
 //
-// Usage: <WhatsAppLink phone="71848868" className={styles.contactItem} />
-// Will link to https://wa.me/71848868
+// Use the shared DNAture E.164 number from constants/contact for official links.
 const WhatsAppLink = ({
   phone,
   className,

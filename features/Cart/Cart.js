@@ -3,8 +3,10 @@
 import Link from 'next/link';
 import {
   ArrowLeft,
+  BadgeDollarSign,
   LockKeyhole,
-  ShieldCheck,
+  MessageCircleMore,
+  Store,
   ShoppingBag,
   Truck,
 } from 'lucide-react';
@@ -19,6 +21,8 @@ import CartHistory from './CartHistory';
 import ModalContainer from '../../components/Modal';
 import PurchaseOrderContainer from './PurchaseOrder';
 import ClientFormContainer from './ClientForm/ClientFormContainer';
+import { PAYMENT_METHODS } from './model/checkout';
+import { STORE_GOOGLE_MAPS_URL } from '../../constants/store';
 
 const Cart = ({
   cart,
@@ -34,7 +38,20 @@ const Cart = ({
   onCloseInfoModal,
   purchaseError,
   isCapturingPurchase,
+  canCreateAccount,
+  initialClient,
   updateDelivery,
+  updatePaymentMethod,
+  updateOrderNotes,
+  isCheckingCart,
+  checkoutMessage,
+  onPurchaseEdit,
+  whatsappUrl,
+  onDownloadAgain,
+  onStartAnotherOrder,
+  handoffWarning,
+  hasPurchaseArtifact,
+  checkoutReturnFocusRef,
 }) => {
   return (
     <div className={styles.checkout}>
@@ -46,9 +63,17 @@ const Cart = ({
 
         <header className={styles.pageHeader}>
           <p>Tu pedido DNAture</p>
-          <h1>Checkout</h1>
-          <span>Revisa tus productos y elige cómo recibirlos.</span>
+          <h1>Prepará tu solicitud</h1>
+          <span>
+            Revisá los productos y prepará el resumen que enviarás por WhatsApp.
+          </span>
         </header>
+
+        <ol className={styles.progress} aria-label='Progreso de la solicitud'>
+          <li aria-current='step'><span>1</span> Carrito</li>
+          <li><span>2</span> Tus datos</li>
+          <li><span>3</span> Revisión</li>
+        </ol>
 
         <div className={styles.checkoutGrid}>
           <section className={styles.orderCard} aria-labelledby='order-title'>
@@ -71,7 +96,7 @@ const Cart = ({
                   <ShoppingBag aria-hidden='true' size={30} strokeWidth={1.6} />
                 </span>
                 <h3>Tu carrito está vacío</h3>
-                <p>Agrega productos naturales para comenzar tu pedido.</p>
+                <p>Agregá productos naturales para comenzar tu solicitud.</p>
                 <Link href='/productos'>Ver productos</Link>
               </div>
             )}
@@ -79,28 +104,93 @@ const Cart = ({
 
           <aside className={styles.summary} aria-labelledby='summary-title'>
             <div className={styles.summaryHeading}>
-              <p>Pago y entrega</p>
-              <h2 id='summary-title'>Resumen de compra</h2>
+              <p>Coordinación</p>
+              <h2 id='summary-title'>Resumen de la solicitud</h2>
             </div>
 
             {cart.totalItems > 0 && (
               <>
-                <label className={styles.deliveryOption}>
-                  <input
-                    type='checkbox'
-                    checked={cart.wantsDelivery}
-                    onChange={(event) => updateDelivery(event.target.checked)}
+                <fieldset className={styles.optionGroup}>
+                  <legend>¿Cómo querés recibirlo?</legend>
+                  <div className={styles.pickupOption}>
+                    <label className={styles.choiceCard}>
+                      <input
+                        type='radio'
+                        name='fulfillment'
+                        value='pickup'
+                        checked={!cart.wantsDelivery}
+                        onChange={() => updateDelivery(false)}
+                      />
+                      <span className={styles.choiceIcon}>
+                        <Store aria-hidden='true' size={21} />
+                      </span>
+                      <span>
+                        <strong>Pasar a retirar</strong>
+                        <small>Coordinamos el horario por WhatsApp.</small>
+                      </span>
+                      <strong>Sin costo</strong>
+                    </label>
+                    <a
+                      className={styles.locationLink}
+                      href={STORE_GOOGLE_MAPS_URL}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      Ver ubicación en Google Maps
+                    </a>
+                  </div>
+                  <label className={styles.choiceCard}>
+                    <input
+                      type='radio'
+                      name='fulfillment'
+                      value='delivery'
+                      checked={cart.wantsDelivery}
+                      onChange={() => updateDelivery(true)}
+                    />
+                    <span className={styles.choiceIcon}>
+                      <Truck aria-hidden='true' size={21} />
+                    </span>
+                    <span>
+                      <strong>Entrega a domicilio</strong>
+                      <small>Cobertura sujeta a confirmación dentro del GAM.</small>
+                    </span>
+                    <strong>₡3,500</strong>
+                  </label>
+                </fieldset>
+
+                <fieldset className={styles.optionGroup}>
+                  <legend>Preferencia de pago</legend>
+                  {PAYMENT_METHODS.map((method) => (
+                    <label className={styles.choiceCard} key={method.id}>
+                      <input
+                        type='radio'
+                        name='payment-method'
+                        value={method.id}
+                        checked={cart.paymentMethod === method.id}
+                        onChange={() => updatePaymentMethod(method.id)}
+                      />
+                      <span className={styles.choiceIcon}>
+                        <BadgeDollarSign aria-hidden='true' size={21} />
+                      </span>
+                      <span>
+                        <strong>{method.label}</strong>
+                        <small>{method.description}</small>
+                      </span>
+                    </label>
+                  ))}
+                </fieldset>
+
+                <div className={styles.notesField}>
+                  <label htmlFor='checkout-notes'>Indicaciones para el pedido</label>
+                  <textarea
+                    id='checkout-notes'
+                    value={cart.orderNotes}
+                    maxLength='300'
+                    rows='3'
+                    placeholder='Ej. Llamar al llegar (opcional)'
+                    onChange={(event) => updateOrderNotes(event.target.value)}
                   />
-                  <span className={styles.checkmark} aria-hidden='true' />
-                  <span className={styles.deliveryIcon}>
-                    <Truck aria-hidden='true' size={22} strokeWidth={1.8} />
-                  </span>
-                  <span className={styles.deliveryCopy}>
-                    <strong>Quiero entrega a domicilio</strong>
-                    <small>Disponible dentro del GAM</small>
-                  </span>
-                  <strong className={styles.deliveryPrice}>₡3,000</strong>
-                </label>
+                </div>
 
                 <dl className={styles.breakdown}>
                   <div>
@@ -118,7 +208,7 @@ const Cart = ({
                     </dd>
                   </div>
                   <div>
-                    <dt>Entrega</dt>
+                    <dt>{cart.wantsDelivery ? 'Entrega estimada' : 'Modalidad'}</dt>
                     <dd
                       className={
                         cart.wantsDelivery ? '' : styles.noDeliveryFee
@@ -127,28 +217,44 @@ const Cart = ({
                       {cart.wantsDelivery ? (
                         <CurrencyText value={cart.deliveryFee} />
                       ) : (
-                        'Sin costo'
+                        'Pasar a retirar'
                       )}
                     </dd>
                   </div>
                   <div className={styles.grandTotal}>
-                    <dt>Total</dt>
+                    <dt>Total estimado</dt>
                     <dd>
                       <CurrencyText value={cart.total} />
                     </dd>
                   </div>
                 </dl>
+                <p className={styles.estimateNotice}>
+                  DNAture confirmará disponibilidad, monto final, pago y entrega
+                  antes de procesar la solicitud.
+                </p>
               </>
             )}
 
-            <CartActionsContainer proceedToPurchase={proceedToPurchase} />
+            {checkoutMessage ? (
+              <p
+                className={checkoutMessage.error ? styles.checkoutError : styles.checkoutNotice}
+                role={checkoutMessage.error ? 'alert' : 'status'}
+              >
+                {checkoutMessage.text}
+              </p>
+            ) : null}
+
+            <CartActionsContainer
+              proceedToPurchase={proceedToPurchase}
+              isCheckingCart={isCheckingCart}
+            />
 
             {cart.totalItems > 0 && (
               <div className={styles.trustNote}>
-                <ShieldCheck aria-hidden='true' size={19} strokeWidth={1.8} />
+                <MessageCircleMore aria-hidden='true' size={19} strokeWidth={1.8} />
                 <span>
-                  <strong>Compra segura</strong>
-                  Confirmaremos tu pedido y forma de pago.
+                  <strong>Compra asistida</strong>
+                  Nada se cobra ni se envía hasta que continués por WhatsApp.
                 </span>
                 <LockKeyhole aria-hidden='true' size={16} strokeWidth={1.8} />
               </div>
@@ -161,28 +267,39 @@ const Cart = ({
 
       {requestClientInfo && (
         <ModalContainer
+          ariaDescribedBy='checkout-client-description'
           ariaLabel={
             cart.wantsDelivery ? 'Detalles de entrega' : 'Datos del pedido'
           }
           closeModal={closeClientInfoModal}
+          closeOnBackdrop={false}
           responsiveFullScreen
+          returnFocusRef={checkoutReturnFocusRef}
+          size='large'
         >
           <ClientFormContainer
+            canCreateAccount={canCreateAccount}
             onSubmit={onClientInfoSubmit}
             className={styles.cartClientForm}
+            initialClient={cart.client.firstName ? cart.client : initialClient}
+            requiresAddress={cart.wantsDelivery}
           />
         </ModalContainer>
       )}
 
       {showPurchaseOrder && !displayInfoModal && (
         <ModalContainer
-          ariaLabel='Orden de compra'
+          ariaLabel='Revisión de la solicitud'
           closeModal={onPurchaseCancel}
+          closeOnBackdrop={false}
           responsiveFullScreen
+          returnFocusRef={checkoutReturnFocusRef}
+          size='large'
         >
           <CartPurchaseOrderContainer
             onPurchaseCancel={onPurchaseCancel}
             onPurchaseConfirm={onPurchaseConfirm}
+            onPurchaseEdit={onPurchaseEdit}
             purchaseError={purchaseError}
             isCapturingPurchase={isCapturingPurchase}
           />
@@ -190,7 +307,16 @@ const Cart = ({
       )}
 
       {displayInfoModal && (
-        <CartNotification onCloseInfoModal={onCloseInfoModal} />
+        <CartNotification
+          cart={cart}
+          whatsappUrl={whatsappUrl}
+          onCloseInfoModal={onCloseInfoModal}
+          onDownloadAgain={onDownloadAgain}
+          onStartAnotherOrder={onStartAnotherOrder}
+          handoffWarning={handoffWarning}
+          hasPurchaseArtifact={hasPurchaseArtifact}
+          returnFocusRef={checkoutReturnFocusRef}
+        />
       )}
 
       <div

@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 // local imports
 import styles from './Map.module.scss';
-
-const STORE_LOCATION = { lat: 9.955621, lng: -84.085547 };
+import { STORE_LOCATION } from '../../../../constants/store';
 const MAP_ID = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID';
 
 let loaderConfigured = false;

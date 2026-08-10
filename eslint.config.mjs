@@ -19,6 +19,8 @@ export default defineConfig([
     'test-results/**',
     'out/**',
     'build/**',
+    'supabase/.temp/**',
+    'supabase/.branches/**',
     'next-env.d.ts',
   ]),
 ]);

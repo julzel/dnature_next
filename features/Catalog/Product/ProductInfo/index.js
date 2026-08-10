@@ -26,7 +26,9 @@ const ProductInfoContainer = ({ productDetail }) => {
       productDetail.precio,
       productDetail.productName,
       productDetail.images?.[0]?.url,
-      productDetail.medida
+      productDetail.medida,
+      productDetail.avifySku,
+      productDetail.sys.id
     );
     if (hasPriceByUnit && selectedPresentation) {
       newItem.price = parseFloat(selectedPresentation.price);

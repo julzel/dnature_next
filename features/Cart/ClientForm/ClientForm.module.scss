@@ -2,104 +2,346 @@
 @use "../../../styles/variables" as *;
 
 .clientForm {
+  color: $accent-color-teal;
+  margin: 0 auto;
+  max-width: 860px;
+  padding: 28px 20px 24px;
+  width: 100%;
+}
+
+.header {
+  border-bottom: 1px solid rgba($accent-color-teal, 0.09);
+  margin-bottom: 20px;
+  padding: 0 48px 20px 0;
+}
+
+.eyebrow,
+.optionalLabel {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  margin-bottom: 5px;
+}
+
+.header h2 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: clamp(25px, 7vw, 32px);
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  margin-bottom: 7px;
+}
+
+.intro {
+  color: $dim-gray;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.accountPrompt {
+  align-items: flex-start;
+  background:
+    linear-gradient(135deg, rgba($lightBlue, 0.16), rgba($white, 0.95) 62%),
+    $white;
+  border: 1px solid rgba($accessibleBlue, 0.14);
+  border-radius: $br-xxl;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
   padding: 16px;
-  overflow: scroll;
-  h2 {
-    font-size: 24px;
-    font-family: $bold;
-    margin-bottom: 16px;
+}
+
+.accountIcon {
+  align-items: center;
+  background: $accessibleBlue;
+  border-radius: 50%;
+  color: $white;
+  display: flex;
+  flex: 0 0 40px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.accountContent {
+  min-width: 0;
+}
+
+.optionalLabel {
+  margin-bottom: 3px;
+}
+
+.accountContent h3 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.accountContent > p:not(.optionalLabel) {
+  color: $dim-gray;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.accountContent ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.accountContent li {
+  align-items: center;
+  color: $accessibleBlue;
+  display: flex;
+  font-family: $bold;
+  font-size: 10px;
+  gap: 4px;
+}
+
+.accountActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 13px;
+}
+
+.accountActions > a:not([class]) {
+  color: $accessibleBlue;
+  font-family: $bold;
+  font-size: 11px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.accountActions > a:not([class]):focus-visible {
+  border-radius: $br-base;
+  outline: 3px solid $lightBlue;
+  outline-offset: 3px;
+}
+
+.guestNote {
+  color: $dim-gray;
+  display: block;
+  font-size: 10px;
+  line-height: 1.45;
+  margin-top: 9px;
+}
+
+.fields {
+  display: grid;
+  gap: 17px;
+}
+
+.field {
+  min-width: 0;
+}
+
+.field label {
+  align-items: baseline;
+  color: $davys-gray;
+  display: flex;
+  font-family: $bold2;
+  font-size: 11px;
+  gap: 7px;
+  letter-spacing: 0.025em;
+  margin-bottom: 7px;
+}
+
+.field label span {
+  color: $gray;
+  font-family: $regular2;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field select {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.16);
+  border-radius: $br-xl;
+  color: $text-color;
+  display: block;
+  font-family: $regular;
+  font-size: 16px;
+  min-height: 50px;
+  padding: 11px 13px;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+  width: 100%;
+}
+
+.field input:hover,
+.field select:hover {
+  border-color: rgba($accessibleBlue, 0.38);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: $accessibleBlue;
+  box-shadow: 0 0 0 4px rgba($lightBlue, 0.22);
+  outline: none;
+}
+
+.field input.errorInput,
+.field select.errorInput {
+  border-color: $important;
+  box-shadow: 0 0 0 3px rgba($important, 0.1);
+}
+
+.errorMessage {
+  color: $important;
+  font-family: $bold2;
+  font-size: 11px;
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.formFooter {
+  border-top: 1px solid rgba($accent-color-teal, 0.09);
+  margin-top: 24px;
+  padding-top: 20px;
+}
+
+.checkbox {
+  align-items: flex-start;
+  color: $davys-gray;
+  cursor: pointer;
+  display: flex;
+  font-size: 12px;
+  gap: 10px;
+  line-height: 1.45;
+}
+
+.checkbox input {
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.checkmark {
+  background: $white;
+  border: 2px solid rgba($accent-color-teal, 0.22);
+  border-radius: $br-base;
+  display: inline-block;
+  flex: 0 0 21px;
+  height: 21px;
+  margin-top: 1px;
+  position: relative;
+  transition: background-color 160ms ease, border-color 160ms ease;
+  width: 21px;
+}
+
+.checkbox:hover .checkmark {
+  border-color: $accessibleBlue;
+}
+
+.checkbox input:checked + .checkmark {
+  background: $accessibleBlue;
+  border-color: $accessibleBlue;
+}
+
+.checkbox input:checked + .checkmark::after {
+  border: solid $white;
+  border-width: 0 2px 2px 0;
+  content: '';
+  height: 10px;
+  left: 6px;
+  position: absolute;
+  top: 2px;
+  transform: rotate(45deg);
+  width: 5px;
+}
+
+.checkbox input:focus-visible + .checkmark {
+  outline: 3px solid $lightBlue;
+  outline-offset: 3px;
+}
+
+.deviceNote {
+  color: $gray;
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 5px 0 18px 31px;
+}
+
+.formFooter button {
+  margin: 0 auto;
+}
+
+@include mdq(md) {
+  .clientForm {
+    padding: 34px 38px 32px;
   }
 
-  form {
-    > div {
-      margin-bottom: 24px;
-
-      &:last-of-type {
-        margin-bottom: 32px;
-      }
-    }
+  .header {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
   }
 
-  label,
-  input {
-    display: block;
-    width: 100%;
-    max-width: 640px;
-  }
-
-  label {
-    font-size: 12px;
-    font-family: $bold2;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-
-  input {
-    margin-top: 8px;
-    padding: 8px;
-    @include input-styles();
-  }
-
-  button {
-    display: block;
-    margin: 0 auto;
-  }
-
-  .error {
-    color: $important;
-    font-size: 12px;
-    font-family: $bold2;
-  }
-
-  .checkbox {
-    display: flex;
+  .accountPrompt {
     align-items: center;
-    font-family: $regular;
-    font-size: 14px;
-    text-transform: none;
+    padding: 17px 18px;
+  }
 
-    &:hover input + .checkmark {
-      cursor: pointer;
-      border-color: $accessibleBlue;
-    }
+  .fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-    input {
-      position: absolute;
-      left: -1000px;
-      top: -1000px;
-      width: 0;
-      height: 0;
-      opacity: 0;
+  .wideField {
+    grid-column: 1 / -1;
+  }
 
-      &:checked + .checkmark {
-        border-color: $accessibleBlue;
+  .formFooter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 250px;
+  }
 
-        &:after {
-          background-color: $accessibleBlue;
-        }
-      }
-    }
+  .checkbox,
+  .deviceNote {
+    grid-column: 1;
+  }
 
-    .checkmark {
-      border-radius: $br-full;
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 2px solid $border;
-      margin-right: 10px;
-      position: relative;
+  .formFooter button {
+    align-self: center;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
 
-      &:after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 11px;
-        height: 11px;
-        border-radius: $br-full;
-        background-color: transparent;
-        transform: translate(-50%, -50%);
-      }
-    }
+@media (max-width: 359px) {
+  .clientForm {
+    padding-inline: 16px;
+  }
+
+  .accountPrompt {
+    display: block;
+  }
+
+  .accountIcon {
+    margin-bottom: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field input,
+  .field select,
+  .checkmark {
+    transition: none;
   }
 }

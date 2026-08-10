@@ -1,6 +1,7 @@
 import { expect, test } from './runtime-test';
 
-test('home → catalogue → product → cart → checkout', async ({ page }) => {
+test('home → catalogue → prepared request → WhatsApp handoff', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await page.getByRole('link', { name: 'Comprar' }).click();
   await expect(page).toHaveURL(/\/productos/);
@@ -14,40 +15,91 @@ test('home → catalogue → product → cart → checkout', async ({ page }) =>
     .click();
   await page.getByRole('link', { name: 'Ver carrito (1)', exact: true }).click();
   await expect(page).toHaveURL(/\/checkout\/?$/);
-  await expect(page.getByRole('heading', { name: 'Checkout' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Prepará tu solicitud' })
+  ).toBeVisible();
 
   const summary = page.getByRole('complementary', {
-    name: 'Resumen de compra',
+    name: 'Resumen de la solicitud',
   });
   await expect(summary).toContainText('₡650');
   await expect(summary).toContainText('₡5,650');
 
-  const delivery = summary.getByRole('checkbox', {
-    name: /Quiero entrega a domicilio/,
+  const delivery = summary.getByRole('radio', {
+    name: /Entrega a domicilio/,
   });
   await delivery.check();
-  await expect(summary).toContainText('₡3,000');
-  await expect(summary).toContainText('₡8,650');
+  await expect(summary).toContainText('₡3,500');
+  await expect(summary).toContainText('₡9,150');
+  await summary.getByRole('radio', { name: /SINPE Móvil/ }).check();
+  await summary
+    .getByRole('textbox', { name: 'Indicaciones para el pedido' })
+    .fill('Llamar antes de preparar');
 
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: /Detalles de entrega/ })).toBeVisible();
+  await page
+    .getByRole('button', { name: 'Continuar con mis datos' })
+    .click();
 
-  const deliveryDialog = page.getByRole('dialog');
+  const deliveryDialog = page.getByRole('dialog', { name: 'Detalles de entrega' });
+  await expect(
+    deliveryDialog.getByRole('heading', { name: 'Datos para la entrega' })
+  ).toBeVisible();
   await deliveryDialog.getByRole('textbox', { name: 'Nombre' }).fill('Ada');
   await deliveryDialog.getByRole('textbox', { name: 'Apellidos' }).fill('Lovelace');
   await deliveryDialog.getByRole('textbox', { name: 'Correo electrónico' }).fill('ada@example.com');
-  await deliveryDialog.getByRole('textbox', { name: 'Provincia' }).fill('San José');
+  await deliveryDialog.getByRole('combobox', { name: /Provincia/ }).selectOption('San José');
   await deliveryDialog.getByRole('textbox', { name: 'Cantón' }).fill('Central');
-  await deliveryDialog.getByRole('textbox', { name: 'Dirección exacta' }).fill('Calle de prueba');
+  await deliveryDialog.getByRole('textbox', { name: 'Distrito' }).fill('Carmen');
+  await deliveryDialog.getByRole('textbox', { name: 'Señas de la dirección' }).fill('Calle de prueba');
+  await deliveryDialog.getByRole('textbox', { name: 'Indicaciones adicionales' }).fill('Portón azul');
   await deliveryDialog.getByRole('textbox', { name: 'Teléfono de contacto' }).fill('88888888');
-  const submitDelivery = deliveryDialog.getByRole('button', { name: 'Ok' });
+  const submitDelivery = deliveryDialog.getByRole('button', {
+    name: 'Revisar solicitud',
+  });
   await expect(submitDelivery).toBeEnabled();
   await submitDelivery.click();
 
+  const review = page.getByRole('dialog', { name: 'Revisión de la solicitud' });
   await expect(
-    page.getByRole('heading', { name: /Orden de compra: DN-/ }).first()
+    review.getByRole('heading', { name: 'Revisá la solicitud' })
   ).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Confirmar' })).toBeEnabled();
+  await expect(review.getByText(/Solicitud DNAture: DN-/).first()).toBeVisible();
+  await expect(review).toContainText('Llamar antes de preparar');
+  await expect(review).toContainText('Portón azul');
+  await expect(review).toContainText('SINPE Móvil');
+
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    review.getByRole('button', { name: 'Preparar para WhatsApp' }).click(),
+  ]);
+  expect(download.suggestedFilename()).toMatch(/^solicitud-DN-.*\.png$/);
+
+  const ready = page.getByRole('dialog', { name: 'Solicitud lista para enviar' });
+  await expect(
+    ready.getByRole('heading', { name: 'Tu solicitud está lista para enviar' })
+  ).toBeVisible();
+  await expect(ready).toContainText('Todavía no se ha enviado ni confirmado');
+  await expect(ready).toContainText('Respondemos dentro de 2 horas hábiles');
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth === document.documentElement.clientWidth
+    )
+  ).toBe(true);
+
+  const whatsappHref = await ready
+    .getByRole('link', { name: 'Continuar por WhatsApp' })
+    .getAttribute('href');
+  const whatsappUrl = new URL(whatsappHref);
+  const message = whatsappUrl.searchParams.get('text');
+
+  expect(whatsappUrl.pathname).toBe('/50671848868');
+  expect(message).toContain('Referencia: DN-');
+  expect(message).toContain('Monto estimado:');
+  expect(message).toContain('Entrega a domicilio');
+  expect(message).toContain('SINPE Móvil');
+  expect(message).not.toContain('ada@example.com');
+  expect(message).not.toContain('88888888');
+  expect(message).not.toContain('Calle de prueba');
 });
 
 test('category query filters the catalogue', async ({ page }) => {

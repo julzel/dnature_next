@@ -11,7 +11,7 @@ import {
   Plus,
   ShoppingBag,
   Trash2,
-  Truck,
+  MessageCircleMore,
   X,
 } from 'lucide-react';
 
@@ -40,8 +40,13 @@ const productPresentation = (item) => {
 };
 
 const CartDrawer = ({ isOpen, onClose, returnFocusRef }) => {
-  const { cart, addOneItem, removeOneItem, removeAllItemsOfAKind } =
-    useCartContext();
+  const {
+    cart,
+    addOneItem,
+    removeOneItem,
+    removeAllItemsOfAKind,
+    updateOrderNotes,
+  } = useCartContext();
   const [showInstructions, setShowInstructions] = useState(false);
   const dialogRef = useRef(null);
   const closeDrawer = useCallback(() => {
@@ -147,9 +152,10 @@ const CartDrawer = ({ isOpen, onClose, returnFocusRef }) => {
 
         {cart.totalItems > 0 && (
           <div className={styles.delivery}>
-            <Truck aria-hidden='true' size={20} strokeWidth={1.9} />
+            <MessageCircleMore aria-hidden='true' size={20} strokeWidth={1.9} />
             <span>
-              <strong>Entrega estimada:</strong> Mañana
+              <strong>Coordinación personal:</strong> Confirmamos disponibilidad,
+              pago y entrega por WhatsApp.
             </span>
           </div>
         )}
@@ -247,7 +253,10 @@ const CartDrawer = ({ isOpen, onClose, returnFocusRef }) => {
                     <textarea
                       id='cart-instructions'
                       rows='3'
-                      placeholder='Ej. Llamar al llegar'
+                      maxLength='300'
+                      value={cart.orderNotes}
+                      onChange={(event) => updateOrderNotes(event.target.value)}
+                      placeholder='Ej. Llamar al llegar (opcional)'
                     />
                   </div>
                 )}
@@ -284,7 +293,7 @@ const CartDrawer = ({ isOpen, onClose, returnFocusRef }) => {
               onClick={closeDrawer}
             >
               <ShoppingBag aria-hidden='true' size={19} strokeWidth={1.9} />
-              <span>Ir al checkout</span>
+              <span>Revisar solicitud</span>
             </Link>
           </footer>
         )}

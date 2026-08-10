@@ -8,6 +8,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import Map from './Map';
 import AnimationBox from '../AnimationBox';
 import WhatsAppLink from '../../../components/WhatsAppLink';
+import { DNATURE_WHATSAPP_PHONE } from '../../../constants/contact';
 
 // styles
 import styles from './Contact.module.scss';
@@ -19,7 +20,7 @@ const Contact = () => {
       <ul className={styles.contactList}>
         <li>
           <AnimationBox animation='fade-in-from-left'>
-            <WhatsAppLink phone='71848868' className={styles.contactItem} withIcon />
+            <WhatsAppLink phone={DNATURE_WHATSAPP_PHONE} className={styles.contactItem} withIcon />
           </AnimationBox>
         </li>
 

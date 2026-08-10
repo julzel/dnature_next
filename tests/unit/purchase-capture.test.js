@@ -1,9 +1,23 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { completePurchaseCapture } from '../../features/Cart/CartContainer';
+import {
+  cartItemsSignature,
+  completePurchaseCapture,
+} from '../../features/Cart/CartContainer';
 import { dataURLToBlob } from '../../features/Cart/lib/purchase-image';
 
 describe('purchase screenshot completion', () => {
+  it('detects cart changes while catalogue validation is pending', () => {
+    const items = [{ id: 'one', quantity: 1, price: 2500 }];
+
+    expect(cartItemsSignature(items)).toBe(
+      cartItemsSignature([{ ...items[0] }])
+    );
+    expect(cartItemsSignature(items)).not.toBe(
+      cartItemsSignature([{ ...items[0], quantity: 2 }])
+    );
+  });
+
   it('does not download or store when capture fails', async () => {
     const download = vi.fn();
     const store = vi.fn();
@@ -36,20 +50,43 @@ describe('purchase screenshot completion', () => {
     expect(store).not.toHaveBeenCalled();
   });
 
-  it('stores only after a successful capture and download', async () => {
+  it('returns the reusable artifact after capture, download, and storage', async () => {
     const calls = [];
+    const dataUrl = 'data:image/png;base64,AA==';
+    const filename = 'solicitud-DN-123.png';
 
-    await completePurchaseCapture({
+    const artifact = await completePurchaseCapture({
       element: document.createElement('div'),
-      capture: vi.fn().mockResolvedValue('data:image/png;base64,AA=='),
-      download: vi.fn(() => calls.push('download')),
+      capture: vi.fn().mockResolvedValue(dataUrl),
+      download: vi.fn((receivedDataUrl, receivedFilename) =>
+        calls.push(['download', receivedDataUrl, receivedFilename])
+      ),
       store: vi.fn(() => {
-        calls.push('store');
+        calls.push(['store']);
         return true;
       }),
+      filename,
     });
 
-    expect(calls).toEqual(['download', 'store']);
+    expect(calls).toEqual([
+      ['download', dataUrl, filename],
+      ['store'],
+    ]);
+    expect(artifact).toEqual({ dataUrl, filename });
+  });
+
+  it('keeps local-storage failure non-blocking after downloading the image', async () => {
+    const download = vi.fn();
+
+    const artifact = await completePurchaseCapture({
+      element: document.createElement('div'),
+      capture: vi.fn().mockResolvedValue('data:image/png;base64,AA=='),
+      download,
+      store: vi.fn(() => false),
+    });
+
+    expect(download).toHaveBeenCalledOnce();
+    expect(artifact.storageWarning).toContain('referencia local');
   });
 
   it('rejects malformed screenshot data', () => {

@@ -2,8 +2,11 @@
 
 DNAture is a Spanish-language catalogue and ordering assistant for natural pet
 food. It uses Next.js 16 App Router, React 18, and Contentful’s GraphQL delivery
-API. The application does not process payment or submit orders to a DNAture
-backend; checkout creates a customer-side order image.
+API. Checkout reconciles products against the currently published catalogue,
+attempts to create a customer-side request image, and hands the conversation
+off to WhatsApp with a product-summary fallback. It does not verify or reserve
+inventory, submit an order to a DNAture
+backend, process payment, or track fulfillment.
 
 ## Requirements
 
@@ -93,6 +96,11 @@ and browser tests.
 See the [vertical-slice architecture guide](docs/architecture.md) for ownership,
 public entry-point, dependency, and automated enforcement rules.
 
+The complete documentation index is in [`docs/README.md`](docs/README.md).
+Customer instructions are in the [Spanish shopping guide](docs/user-guide.md),
+and the technical boundary is documented in the
+[assisted-shopping implementation](docs/shopping-flow-implementation.md).
+
 Product slugs are normalized to lowercase kebab case at the service boundary.
 The native `/sitemap.xml` route includes normalized catalogue product URLs, while
 `/cart/` is intentionally excluded from indexing.
@@ -100,11 +108,8 @@ The native `/sitemap.xml` route includes normalized catalogue product URLs, whil
 ## Operational policies
 
 - [Operations runbook](docs/operations.md)
-- [Browser storage and privacy policy](docs/privacy.md)
-- [Contentful schema and slug governance](docs/contentful-governance.md)
-- [Contentful–Avify SKU migration](docs/contentful-avify-sku-migration.md)
-- [First continuous performance review](phase-7-performance-review.md)
-- [Optimization roadmap](project-optimization-roadmap.md)
-
-Historical migration proposals are retained for context only and are not the
-current implementation specification.
+- [Engineering data and privacy inventory](docs/privacy.md)
+- [Contentful schema and slug governance](docs/integrations/contentful-governance.md)
+- [Contentful–Avify SKU contract](docs/integrations/contentful-avify-sku.md)
+- [Customer accounts implementation](docs/accounts/stage-1-implementation.md)
+- [Assisted-shopping implementation](docs/shopping-flow-implementation.md)

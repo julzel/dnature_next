@@ -9,20 +9,26 @@ const CartHistory = () => {
   const { clearSavedCarts, updateCurrentCart, localCarts } = useCartContext();
 
   if (localCarts.length === 0) {
-    return <div className={styles.cartHistory}>No hay órdenes de compras anteriores</div>;
+    return null;
   }
 
   return (
     <div className={styles.cartHistory}>
-      <h3>Órdenes anteriores:</h3>
+      <h3>Solicitudes preparadas en este dispositivo</h3>
+      <p>
+        Son referencias locales para volver a armar un carrito; no representan
+        pedidos enviados o confirmados.
+      </p>
       <button type='button' onClick={clearSavedCarts}>
-        Eliminar historial guardado
+        Eliminar referencias guardadas
       </button>
-      {localCarts.map((cart, ind) => (
-        <div className={styles.cartHistoryItem} key={ind}>
+      {localCarts.map((cart) => (
+        <div className={styles.cartHistoryItem} key={cart.purchaseOrderId || cart.date}>
           <div>
-            <strong>Fecha: </strong><span>{formatToLocaleDate(cart.date)}</span>
-            <button type="button" onClick={() => updateCurrentCart(cart)}>Seleccionar</button>
+            <strong>Preparada: </strong><span>{formatToLocaleDate(cart.date)}</span>
+            <button type="button" onClick={() => updateCurrentCart(cart)}>
+              Usar como carrito nuevo
+            </button>
           </div>
           <div>
             <span>
