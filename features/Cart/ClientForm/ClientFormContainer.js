@@ -174,6 +174,7 @@ const clientFieldsForStorage = (client) => ({
 });
 
 const ClientFormContainer = ({
+  canCreateAccount = false,
   onSubmit,
   className,
   initialClient = null,
@@ -270,6 +271,7 @@ const ClientFormContainer = ({
       className={className}
       interactedFields={interactedFields}
       inputFields={checkoutFields}
+      canCreateAccount={canCreateAccount}
       requiresAddress={requiresAddress}
       rememberClient={rememberClient}
       rememberLabel={

@@ -37,6 +37,7 @@ const Cart = ({
   onCloseInfoModal,
   purchaseError,
   isCapturingPurchase,
+  canCreateAccount,
   initialClient,
   updateDelivery,
   updatePaymentMethod,
@@ -255,14 +256,18 @@ const Cart = ({
 
       {requestClientInfo && (
         <ModalContainer
+          ariaDescribedBy='checkout-client-description'
           ariaLabel={
             cart.wantsDelivery ? 'Detalles de entrega' : 'Datos del pedido'
           }
           closeModal={closeClientInfoModal}
+          closeOnBackdrop={false}
           responsiveFullScreen
           returnFocusRef={checkoutReturnFocusRef}
+          size='large'
         >
           <ClientFormContainer
+            canCreateAccount={canCreateAccount}
             onSubmit={onClientInfoSubmit}
             className={styles.cartClientForm}
             initialClient={cart.client.firstName ? cart.client : initialClient}
@@ -275,8 +280,10 @@ const Cart = ({
         <ModalContainer
           ariaLabel='Revisión de la solicitud'
           closeModal={onPurchaseCancel}
+          closeOnBackdrop={false}
           responsiveFullScreen
           returnFocusRef={checkoutReturnFocusRef}
+          size='large'
         >
           <CartPurchaseOrderContainer
             onPurchaseCancel={onPurchaseCancel}

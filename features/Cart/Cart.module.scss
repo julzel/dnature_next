@@ -433,17 +433,7 @@
 }
 
 .cartClientForm {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-  padding-top: 16px;
-
-  form {
-    @include mdq(md) {
-      border: 1px solid $border;
-      padding: 32px;
-    }
-  }
+  min-height: 100%;
 }
 
 .canvas {

@@ -17,7 +17,15 @@ export const dynamic = 'force-dynamic';
 
 const CheckoutPage = async () => {
   const accountCustomer = await loadOptionalCheckoutCustomer();
-  return <Cart initialClient={accountCustomer} />;
+  const canCreateAccount =
+    process.env.ACCOUNT_REGISTRATION_MODE === 'public';
+
+  return (
+    <Cart
+      initialClient={accountCustomer}
+      canCreateAccount={canCreateAccount}
+    />
+  );
 };
 
 export default CheckoutPage;

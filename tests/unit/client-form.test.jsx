@@ -97,6 +97,39 @@ describe('checkout form validation', () => {
     );
   });
 
+  it('offers public account creation as an optional convenience', () => {
+    render(
+      <ClientFormContainer
+        canCreateAccount
+        onSubmit={vi.fn()}
+      />
+    );
+
+    expect(
+      screen.getByRole('heading', { name: 'Tu próxima compra, en menos pasos' })
+    ).toBeVisible();
+    expect(screen.getByText(/podés terminar esta solicitud como invitado/i))
+      .toBeVisible();
+    expect(screen.getByRole('link', { name: 'Crear mi cuenta' }))
+      .toHaveAttribute(
+        'href',
+        '/cuenta/iniciar-sesion?siguiente=/checkout&modo=registro'
+      );
+    expect(screen.getByRole('link', { name: 'Ya tengo cuenta' }))
+      .toHaveAttribute(
+        'href',
+        '/cuenta/iniciar-sesion?siguiente=/checkout&modo=ingresar'
+      );
+  });
+
+  it('does not promote account access to an authenticated customer', () => {
+    render(
+      <ClientFormContainer initialClient={validClient} onSubmit={vi.fn()} />
+    );
+
+    expect(screen.queryByText('Mi DNAture · Opcional')).not.toBeInTheDocument();
+  });
+
   it('requires a Costa Rican delivery address when delivery is selected', async () => {
     const user = userEvent.setup();
     const onSubmit = vi.fn();

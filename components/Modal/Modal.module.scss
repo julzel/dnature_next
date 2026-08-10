@@ -2,11 +2,13 @@
 @use "../../styles/mixins" as *;
 
 .modalContainer {
-  background-color: rgba(51, 51, 51, 0.85);
+  background-color: rgba($accent-color-teal, 0.74);
+  backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100dvh;
+  padding: 16px;
   width: 100%;
   position: fixed;
   left: 0;
@@ -15,33 +17,57 @@
 
   .modal {
     background-color: $white;
-    width: 90%;
+    border: 1px solid rgba($white, 0.5);
+    border-radius: $br-xxxl;
+    box-shadow: 0 28px 90px rgba($accent-color-teal, 0.3);
+    max-height: calc(100dvh - 32px);
     position: relative;
-    overflow: auto;
+    overflow: hidden;
+    width: min(100%, 640px);
 
-    @include mdq(md) {
-      width: 80%;
+    &.small {
+      width: min(100%, 460px);
     }
 
-    @include mdq(lg) {
-      width: auto;
+    &.large {
+      width: min(100%, 860px);
     }
 
-    // @include mdq(xl) {
-    //   width: 60%;
-    // }
+    .content {
+      max-height: calc(100dvh - 32px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+    }
 
     .close {
+      align-items: center;
+      background: rgba($snow, 0.92);
+      border: 1px solid rgba($accent-color-teal, 0.08);
+      border-radius: 50%;
       color: $davys-gray;
-      font-size: 24px;
-      padding: 4px 8px;
+      display: flex;
+      font-size: 18px;
+      height: 42px;
+      justify-content: center;
+      padding: 0;
       position: absolute;
-      right: 8px;
-      top: 8px;
+      right: 14px;
+      top: 14px;
       cursor: pointer;
+      transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+      width: 42px;
+      z-index: 2;
 
       &:hover {
-        background-color: $border;
+        background-color: rgba($lightBlue, 0.22);
+        color: $accessibleBlue;
+        transform: rotate(3deg);
+      }
+
+      &:focus-visible {
+        outline: 3px solid $lightBlue;
+        outline-offset: 2px;
       }
     }
   }
@@ -55,19 +81,35 @@
   }
 
   .responsiveFullScreen {
-    width: 100%;
-    height: 100%;
+    border-radius: 0;
+    height: 100dvh;
     max-height: 100dvh;
-    overflow-y: auto;
+    width: 100%;
+
+    .content {
+      max-height: 100dvh;
+    }
 
     @include mdq(md) {
-      width: 80%;
       height: auto;
       max-height: calc(100dvh - 32px);
-    }
+      border-radius: $br-xxxl;
 
-    @include mdq(lg) {
-      width: auto;
+      .content {
+        max-height: calc(100dvh - 32px);
+      }
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .modalContainer {
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modalContainer .modal .close {
+    transition: none;
   }
 }

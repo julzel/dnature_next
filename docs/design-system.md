@@ -133,6 +133,17 @@ Pickup/delivery and payment preference are radio-card groups with a visible
 legend, native inputs, keyboard focus, and one selected value per group. Address
 fields appear only for delivery. Guest checkout remains the default complete
 path; sign-in is an optional convenience for prefill and saved selections.
+When public registration is enabled, the data step may offer a compact account
+invitation with concrete benefits and separate create/sign-in links. It must
+label the account as optional and keep the guest form and primary checkout
+action immediately available. During invitation-only pilots, do not advertise
+public account creation.
+
+Checkout dialogs use one visual surface, a constrained desktop width, and a
+full-height mobile layout. Their content scrolls independently, the page behind
+them is inert, focus remains trapped and returns to the triggering control, and
+Escape remains available. Dialogs containing entered customer data do not close
+from an accidental backdrop click; they always expose a labelled close button.
 
 Catalogue prices are net. Checkout adds 13% IVA and an estimated ₡3,500
 delivery fee when applicable. Totals still use `estimado` because inventory,
@@ -159,4 +170,4 @@ only say that the field is invalid.
 - color and typography tokens;
 - form-field and validation states;
 - cards, surfaces, and spacing;
-- navigation, product, and modal patterns.
+- navigation and product patterns.

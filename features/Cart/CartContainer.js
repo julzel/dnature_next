@@ -52,7 +52,7 @@ const cartItemsSignature = (items) =>
     ])
   );
 
-const CartContainer = ({ initialClient = null }) => {
+const CartContainer = ({ canCreateAccount = false, initialClient = null }) => {
   // Shopping cart context
   const {
     cart,
@@ -219,6 +219,7 @@ const CartContainer = ({ initialClient = null }) => {
       purchaseError={purchaseError}
       isCapturingPurchase={isCapturingPurchase}
       initialClient={initialClient}
+      canCreateAccount={canCreateAccount}
       whatsappUrl={buildWhatsAppOrderUrl(cart)}
       onDownloadAgain={handleDownloadAgain}
       onStartAnotherOrder={handleStartAnotherOrder}

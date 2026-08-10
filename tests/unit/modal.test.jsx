@@ -27,6 +27,20 @@ const ModalHarness = () => {
   );
 };
 
+const ProtectedBackdropModalHarness = () => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  return isOpen ? (
+    <Modal
+      ariaLabel='Formulario protegido'
+      closeModal={() => setIsOpen(false)}
+      closeOnBackdrop={false}
+    >
+      <p>Datos sin enviar</p>
+    </Modal>
+  ) : null;
+};
+
 describe('Modal', () => {
   it('names the dialog, traps focus, closes with Escape, and restores focus', async () => {
     const user = userEvent.setup();
@@ -51,5 +65,19 @@ describe('Modal', () => {
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(openButton).toHaveFocus();
+  });
+
+  it('can prevent accidental backdrop dismissal without disabling explicit close', async () => {
+    const user = userEvent.setup();
+    render(<ProtectedBackdropModalHarness />);
+
+    const dialog = screen.getByRole('dialog', { name: 'Formulario protegido' });
+    const backdrop = dialog.closest('[data-dnature-modal-root]');
+
+    await user.click(backdrop);
+    expect(dialog).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Cerrar diálogo' }));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

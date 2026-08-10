@@ -45,12 +45,19 @@ const valueCards = [
 const SignIn = ({
   configured,
   initialError = '',
+  initialMode,
   nextPath = '/cuenta',
   registrationMode = 'invitation',
 }) => {
   const router = useRouter();
   const publicRegistration = registrationMode === 'public';
-  const [mode, setMode] = useState(publicRegistration ? 'signup' : 'signin');
+  const [mode, setMode] = useState(
+    publicRegistration && initialMode === 'signin'
+      ? 'signin'
+      : publicRegistration
+        ? 'signup'
+        : 'signin'
+  );
   const [step, setStep] = useState('email');
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');

@@ -21,6 +21,12 @@ export const revalidate = 0;
 const SignInPage = async ({ searchParams }) => {
   const params = await searchParams;
   const nextPath = safeNextPath(params?.siguiente);
+  const requestedMode =
+    params?.modo === 'registro'
+      ? 'signup'
+      : params?.modo === 'ingresar'
+        ? 'signin'
+        : undefined;
   const context = await getAccountContext();
 
   if (context.identity) {
@@ -31,6 +37,7 @@ const SignInPage = async ({ searchParams }) => {
     <SignIn
       configured={context.configured}
       initialError={params?.error || ''}
+      initialMode={requestedMode}
       nextPath={nextPath}
       registrationMode={
         process.env.ACCOUNT_REGISTRATION_MODE === 'public'
