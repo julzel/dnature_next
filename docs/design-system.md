@@ -179,6 +179,20 @@ the API is unavailable, and an independent Google Maps link must always work.
 Use the shared values in `constants/contact.js` and `constants/store.js` rather
 than duplicating phone, schedule, response target, or coordinates.
 
+## Footer
+
+The footer is a compact navigation and trust surface, not a duplicate of every
+site route. It includes the brand promise, direct contact channels, current
+support hours, store location, and links to the public catalogue, calculator,
+plan, FAQ, and customer-account entry. Do not expose development, checkout, or
+authenticated routes as discovery links.
+
+Search-engine discovery is handled by `/sitemap.xml` and `robots.txt`; a visible
+technical sitemap link is unnecessary. The short HTML navigation remains useful
+for customers, keyboard users, and internal linking. On mobile it uses one
+column, expands to two columns on tablet, and reaches three columns only when
+the content has enough room.
+
 ## Next additions
 
 - color and typography tokens;
