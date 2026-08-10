@@ -3,11 +3,42 @@
 
 .clientForm {
   padding: 16px;
-  overflow: scroll;
+  overflow: auto;
+
+  .eyebrow {
+    color: $accessibleOrange;
+    font-family: $bold;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
   h2 {
     font-size: 24px;
     font-family: $bold;
     margin-bottom: 16px;
+  }
+
+  .intro,
+  .accountPrompt {
+    color: $dim-gray;
+    font-size: 13px;
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+
+  .accountPrompt {
+    background: rgba($lightBlue, 0.12);
+    border-radius: 12px;
+    padding: 12px;
+
+    a {
+      color: $accessibleBlue;
+      font-family: $bold;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
   }
 
   form {
@@ -21,7 +52,8 @@
   }
 
   label,
-  input {
+  input,
+  select {
     display: block;
     width: 100%;
     max-width: 640px;
@@ -34,7 +66,8 @@
     margin-bottom: 4px;
   }
 
-  input {
+  input,
+  select {
     margin-top: 8px;
     padding: 8px;
     @include input-styles();
@@ -77,6 +110,11 @@
         &:after {
           background-color: $accessibleBlue;
         }
+      }
+
+      &:focus-visible + .checkmark {
+        outline: 3px solid rgba($lightBlue, 0.7);
+        outline-offset: 3px;
       }
     }
 

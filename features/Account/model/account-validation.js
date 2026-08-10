@@ -2,19 +2,11 @@ import {
   MAX_PET_WEIGHT_KG,
   MIN_PET_WEIGHT_KG,
 } from '../../../util/portion-size';
+import { COSTA_RICA_PROVINCES } from '../../../constants/costa-rica';
 
 const MAX_PETS = 10;
 const MAX_SAVED_CARTS = 5;
 const MAX_CART_ITEMS = 50;
-const COSTA_RICA_PROVINCES = [
-  'San José',
-  'Alajuela',
-  'Cartago',
-  'Heredia',
-  'Guanacaste',
-  'Puntarenas',
-  'Limón',
-];
 
 const cleanString = (value, maxLength) =>
   typeof value === 'string' ? value.trim().slice(0, maxLength) : '';

@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { ChevronRight } from 'lucide-react';
 import WhatsAppLink from "../../WhatsAppLink";
+import { DNATURE_WHATSAPP_PHONE } from '../../../constants/contact';
 
 // local imports
 import styles from "./DropdownMenu.module.scss";
@@ -14,7 +15,7 @@ const DropdownMenu = ({ items, onNavigate }) => {
       aria-label="Navegación móvil"
     >
       <div className={styles.dropdownHeader}>
-        <p>Explora DNAture</p>
+        <p>Explorá DNAture</p>
         <h2>¿Qué estás buscando?</h2>
       </div>
       <ul className={styles.dropdownMenu}>
@@ -30,7 +31,7 @@ const DropdownMenu = ({ items, onNavigate }) => {
         ))}
         <li className={styles.item}>
           <WhatsAppLink
-            phone="50671848868"
+            phone={DNATURE_WHATSAPP_PHONE}
             display="Ayuda por WhatsApp"
             withIcon
             className={styles.supportLink}

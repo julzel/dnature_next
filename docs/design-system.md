@@ -59,17 +59,19 @@ practical, and an accessible name when their icon has no text.
 The header uses a restrained commerce hierarchy rather than giving every link
 the same visual weight:
 
-1. The 30px announcement bar carries one delivery promise, one trust signal,
+1. The 30px announcement bar carries one delivery message, one trust signal,
    and a support link.
-2. The main row prioritizes brand, product entry, search, and cart—in that
-   order. Search owns the flexible space and the cart uses the strongest
-   utility treatment. Account and favorites remain reserved for a future phase.
+2. The main row prioritizes brand, product entry, search, account, and cart—in
+   that order. Search owns the flexible space; account and cart use compact,
+   icon-only controls with accessible names. Favorites remain reserved for a
+   future phase.
 3. On desktop, low-frequency navigation moves into a quiet 46px row. On mobile,
    it moves into a drawer while search gets its own full-width row.
 
 The fixed header is 158px tall on mobile/tablet and 142px on desktop, uses 44px
 minimum targets, keeps visible focus states, and avoids promotional imagery.
-Account and favorites are intentionally hidden until those features exist.
+Account is available on mobile and desktop; no visible “Mi cuenta” label is
+added to the main row. Favorites remain hidden until that feature exists.
 
 ### Site search
 
@@ -106,9 +108,53 @@ handles direct product lookup, so the catalogue does not repeat a search field.
 - A simple product exposes `Agregar`; one with presentation-based pricing uses
   `Ver opciones` so the customer chooses a size before adding it.
 
+## Assisted checkout
+
+The checkout is a request-building flow, not an online transaction. Its content
+must preserve these status distinctions:
+
+1. **Carrito:** editable selection; nothing is reserved.
+2. **Datos:** contact and conditional delivery fields; no account is required.
+3. **Revisión:** a local summary that has not been sent.
+4. **Resumen preparado:** PNG downloaded when the browser permits it; still not
+   sent or confirmed.
+5. **WhatsApp:** the customer sends the prepared product summary and manually
+   attaches the PNG when available.
+6. **Confirmed order:** only DNAture staff can establish this state outside the
+   current application.
+
+Use truthful action labels such as `Revisar solicitud`, `Continuar con mis
+datos`, `Revisar solicitud`, `Preparar para WhatsApp`, and `Continuar por
+WhatsApp`. Do not use `Pagar`, `Pedido enviado`, `Compra completada`, `Compra
+segura`, or another label that implies inventory, transmission, payment, or
+acceptance the application cannot prove.
+
+Pickup/delivery and payment preference are radio-card groups with a visible
+legend, native inputs, keyboard focus, and one selected value per group. Address
+fields appear only for delivery. Guest checkout remains the default complete
+path; sign-in is an optional convenience for prefill and saved selections.
+
+Totals use `estimado` wherever IVA or fulfillment can change during manual
+confirmation. A Contentful reconciliation may remove unavailable catalogue
+entries or update published prices, but it must never be presented as an
+inventory check. If values change, show the explanation and return control to
+the customer for another review.
+
+The final review and WhatsApp confirmation are separate surfaces. The latter
+must state that:
+
+- the image was downloaded rather than sent, or that its download failed;
+- the customer must attach it manually when available;
+- payment must wait for DNAture's response; and
+- closing preserves the cart while starting another request empties it.
+
+All customer copy uses Costa Rican voseo and remains usable at 320 px without
+horizontal overflow. Validation explains how to correct a field; it does not
+only say that the field is invalid.
+
 ## Next additions
 
 - color and typography tokens;
 - form-field and validation states;
 - cards, surfaces, and spacing;
-- navigation, product, cart, and modal patterns.
+- navigation, product, and modal patterns.

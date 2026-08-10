@@ -133,13 +133,17 @@ test('@a11y calculator dialog traps and restores keyboard focus', async ({
 test('@a11y checkout modal is named and restores focus on Escape', async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 320, height: 780 });
   await page.goto('/productos/receta-de-prueba');
   await page
     .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
     .click();
   await page.getByRole('link', { name: 'Ver carrito (1)', exact: true }).click();
 
-  const continueButton = page.getByRole('button', { name: 'Continuar' });
+  await page.getByRole('radio', { name: /SINPE Móvil/ }).check();
+  const continueButton = page.getByRole('button', {
+    name: 'Continuar con mis datos',
+  });
   await continueButton.focus();
   await continueButton.press('Enter');
 
@@ -148,6 +152,26 @@ test('@a11y checkout modal is named and restores focus on Escape', async ({
   await expect(
     dialog.getByRole('button', { name: 'Cerrar diálogo' })
   ).toBeFocused();
+  const mobileLayout = await page.evaluate(() => ({
+    documentWidth: document.documentElement.scrollWidth,
+    viewportWidth: document.documentElement.clientWidth,
+    overflowing: [...document.querySelectorAll('body *')]
+      .filter((element) => {
+        const bounds = element.getBoundingClientRect();
+        return bounds.right > document.documentElement.clientWidth + 0.5;
+      })
+      .slice(0, 8)
+      .map((element) => ({
+        className: element.className?.toString() || '',
+        tagName: element.tagName,
+        text: element.textContent?.trim().slice(0, 60) || '',
+      })),
+  }));
+  expect(mobileLayout).toEqual({
+    documentWidth: 320,
+    viewportWidth: 320,
+    overflowing: [],
+  });
   expect(await getBlockingViolations(page)).toEqual([]);
 
   await page.keyboard.press('Escape');

@@ -105,7 +105,7 @@ const CatalogItem = ({ product }) => {
         )}
         <p className={styles.presentation}>
           {hasPriceByUnit
-            ? 'Elige una presentación'
+            ? 'Elegí una presentación'
             : medida || 'Presentación disponible'}
         </p>
         <div className={styles.cardFooter}>

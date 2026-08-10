@@ -25,7 +25,7 @@ for (const viewport of viewportCases) {
     await expect(dialog).toBeVisible();
     await expect(dialog.getByText('Receta de prueba', { exact: true })).toBeVisible();
     await expect(dialog.getByText('1 kg', { exact: true })).toBeVisible();
-    await expect(dialog.getByRole('link', { name: 'Ir al checkout' })).toBeVisible();
+    await expect(dialog.getByRole('link', { name: 'Revisar solicitud' })).toBeVisible();
 
     await expect
       .poll(async () => {
@@ -83,6 +83,9 @@ test('checkout stacks on mobile and uses a two-column desktop layout', async ({
     { width: 1200, height: 900, layout: 'columns' },
   ]) {
     await page.setViewportSize(viewport);
+    await page.goto('/');
+    await page.evaluate(() => window.localStorage.clear());
+    await page.reload();
     await page.goto('/productos/receta-de-prueba');
     await page
       .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
@@ -91,7 +94,7 @@ test('checkout stacks on mobile and uses a two-column desktop layout', async ({
 
     const order = page.getByRole('region', { name: 'Tu carrito' });
     const summary = page.getByRole('complementary', {
-      name: 'Resumen de compra',
+      name: 'Resumen de la solicitud',
     });
     const [orderBounds, summaryBounds] = await Promise.all([
       order.boundingBox(),

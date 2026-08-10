@@ -9,6 +9,31 @@
   flex-flow: column;
   justify-content: space-between;
 
+  .heading {
+    margin-bottom: 20px;
+
+    p {
+      color: $accessibleOrange;
+      font-family: $bold;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      color: $accent-color-teal;
+      font-family: $bold2;
+      font-size: 28px;
+      margin: 4px 0 6px;
+    }
+
+    span {
+      color: $dim-gray;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+  }
+
   @include mdq(lg) {
     padding: 48px 32px 32px 32px;
     width: calc(100vw / 3);
@@ -33,5 +58,10 @@
         width: calc((100% / 2) - 16px);
       }
     }
+  }
+
+  .backButton {
+    align-self: center;
+    margin-top: 10px;
   }
 }

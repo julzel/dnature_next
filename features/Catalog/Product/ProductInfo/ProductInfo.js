@@ -157,7 +157,7 @@ const ProductInfo = ({
           </li>
           <li>
             <ShieldCheck aria-hidden='true' size={24} strokeWidth={1.8} />
-            <span>Compra segura</span>
+            <span>Compra acompañada</span>
           </li>
         </ul>
 

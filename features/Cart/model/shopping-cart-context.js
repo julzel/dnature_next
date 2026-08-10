@@ -12,10 +12,11 @@ import {
 } from 'react';
 import { ShoppingCart } from './shopping-cart';
 import { generatePurchaseOrderId } from '../lib/id-generator';
+import { isPaymentMethod } from './checkout';
 
 const CART_STORAGE_KEY = 'carts';
 const CART_STORAGE_EVENT = 'dnature-cart-history';
-const CART_STORAGE_VERSION = 2;
+const CART_STORAGE_VERSION = 3;
 const ACTIVE_CART_STORAGE_KEY = 'dnature-active-cart-v1';
 const ACTIVE_CART_STORAGE_VERSION = 1;
 const ACTIVE_CART_RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
@@ -24,6 +25,8 @@ const CART_RETENTION_DAYS = 30;
 const CART_RETENTION_MS = CART_RETENTION_DAYS * 24 * 60 * 60 * 1000;
 const IVA_RATE = 0.13;
 const DELIVERY_FEE = 3000;
+const MAX_ITEM_QUANTITY = 99;
+const MAX_ORDER_NOTES_LENGTH = 300;
 
 const ShoppingCartContext = createContext();
 
@@ -47,7 +50,14 @@ const normalizeItem = (item) => {
   const quantity = Number(item?.quantity);
   const price = Number(item?.price);
 
-  if (!item?.id || !Number.isFinite(quantity) || quantity <= 0 || !Number.isFinite(price)) {
+  if (
+    !item?.id ||
+    !Number.isInteger(quantity) ||
+    quantity <= 0 ||
+    quantity > MAX_ITEM_QUANTITY ||
+    !Number.isFinite(price) ||
+    price < 0
+  ) {
     return null;
   }
 
@@ -128,11 +138,27 @@ const normalizeCart = (cart) => {
         typeof cart.purchaseOrderDate === 'string' ? cart.purchaseOrderDate : null,
       discount: Number.isFinite(Number(cart.discount)) ? Number(cart.discount) : 0,
       wantsDelivery: Boolean(cart.wantsDelivery),
+      paymentMethod: isPaymentMethod(cart.paymentMethod)
+        ? cart.paymentMethod
+        : '',
+      orderNotes:
+        typeof cart.orderNotes === 'string'
+          ? cart.orderNotes.trim().slice(0, MAX_ORDER_NOTES_LENGTH)
+          : '',
       client: normalizeClient(cart.client),
     },
     Array.isArray(cart.items) ? cart.items : []
   );
 };
+
+const normalizePreparedCart = (cart) =>
+  normalizeCart({
+    items: cart?.items,
+    date: cart?.date,
+    purchaseOrderId: cart?.purchaseOrderId,
+    purchaseOrderDate: cart?.purchaseOrderDate,
+    wantsDelivery: Boolean(cart?.wantsDelivery),
+  });
 
 const isRetainedCartRecord = (record) => {
   const storedAt = Date.parse(record?.storedAt);
@@ -152,13 +178,18 @@ const parseStoredCartRecords = (rawValue) => {
       ? parsed.map((cart) => ({ storedAt: migratedStoredAt, cart }))
       : parsed?.version === 1 && Array.isArray(parsed.carts)
         ? parsed.carts.map((cart) => ({ storedAt: migratedStoredAt, cart }))
+        : parsed?.version === 2 && Array.isArray(parsed.carts)
+          ? parsed.carts
         : parsed?.version === CART_STORAGE_VERSION && Array.isArray(parsed.carts)
           ? parsed.carts
           : [];
 
     return records
       .filter(isRetainedCartRecord)
-      .map(({ storedAt, cart }) => ({ storedAt, cart: normalizeCart(cart) }));
+      .map(({ storedAt, cart }) => ({
+        storedAt,
+        cart: normalizePreparedCart(cart),
+      }));
   } catch (error) {
     console.warn('Unable to read saved carts from local storage.', error);
     return [];
@@ -196,6 +227,28 @@ const writeStoredCartRecords = (carts) => {
   } catch (error) {
     console.warn('Unable to save cart history to local storage.', error);
     return false;
+  }
+};
+
+const migrateStoredCartHistory = () => {
+  if (typeof window === 'undefined') return;
+
+  try {
+    const rawValue = window.localStorage.getItem(CART_STORAGE_KEY);
+    if (!rawValue) return;
+
+    const records = parseStoredCartRecords(rawValue);
+    const sanitizedValue = JSON.stringify({
+      version: CART_STORAGE_VERSION,
+      carts: records,
+    });
+
+    if (rawValue !== sanitizedValue) {
+      window.localStorage.setItem(CART_STORAGE_KEY, sanitizedValue);
+      window.dispatchEvent(new CustomEvent(CART_STORAGE_EVENT));
+    }
+  } catch (error) {
+    console.warn('Unable to migrate saved cart references.', error);
   }
 };
 
@@ -260,7 +313,10 @@ const cartReducer = (cart, action) => {
       } else {
         items[itemIndex] = {
           ...items[itemIndex],
-          quantity: items[itemIndex].quantity + incomingItem.quantity,
+          quantity: Math.min(
+            MAX_ITEM_QUANTITY,
+            items[itemIndex].quantity + incomingItem.quantity
+          ),
         };
       }
 
@@ -314,12 +370,40 @@ const cartReducer = (cart, action) => {
         true
       );
 
+    case 'SET_PAYMENT_METHOD':
+      return {
+        ...cart,
+        paymentMethod: isPaymentMethod(action.paymentMethod)
+          ? action.paymentMethod
+          : '',
+        date: null,
+        purchaseOrderId: null,
+        purchaseOrderDate: null,
+      };
+
+    case 'SET_ORDER_NOTES':
+      return {
+        ...cart,
+        orderNotes:
+          typeof action.orderNotes === 'string'
+            ? action.orderNotes.slice(0, MAX_ORDER_NOTES_LENGTH)
+            : '',
+        date: null,
+        purchaseOrderId: null,
+        purchaseOrderDate: null,
+      };
+
+    case 'REPLACE_ITEMS':
+      return withItems(cart, action.items, true);
+
     case 'SELECT_CART':
-      return normalizeCart(action.cart);
+      return withItems(createEmptyCart(), action.cart?.items || [], true);
 
     case 'FINALIZE_PURCHASE': {
       if (cart.purchaseOrderId && cart.purchaseOrderDate) {
-        return cart;
+        return action.client
+          ? { ...cart, client: normalizeClient(action.client) }
+          : cart;
       }
 
       return {
@@ -342,6 +426,7 @@ const ShoppingCartContextProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: 'HYDRATE_ACTIVE_CART', cart: readActiveCart() });
+    migrateStoredCartHistory();
     const readyTimer = window.setTimeout(() => {
       activeCartReady.current = true;
     }, 0);
@@ -411,6 +496,18 @@ const ShoppingCartContextProvider = ({ children }) => {
     dispatch({ type: 'SET_DELIVERY', wantsDelivery });
   }, []);
 
+  const updatePaymentMethod = useCallback((paymentMethod) => {
+    dispatch({ type: 'SET_PAYMENT_METHOD', paymentMethod });
+  }, []);
+
+  const updateOrderNotes = useCallback((orderNotes) => {
+    dispatch({ type: 'SET_ORDER_NOTES', orderNotes });
+  }, []);
+
+  const replaceCartItems = useCallback((items) => {
+    dispatch({ type: 'REPLACE_ITEMS', items });
+  }, []);
+
   const updateCurrentCart = useCallback((savedCart) => {
     dispatch({ type: 'SELECT_CART', cart: savedCart });
   }, []);
@@ -425,9 +522,21 @@ const ShoppingCartContextProvider = ({ children }) => {
   }, []);
 
   const storeCartInLocalStorage = useCallback(() => {
+    const storedAt = new Date().toISOString();
+    const preparedCart = normalizePreparedCart({
+      items: cart.items,
+      date: cart.date,
+      purchaseOrderId: cart.purchaseOrderId,
+      purchaseOrderDate: cart.purchaseOrderDate,
+      wantsDelivery: cart.wantsDelivery,
+    });
     const nextCarts = [
-      ...readStoredCartRecords(),
-      { storedAt: new Date().toISOString(), cart: normalizeCart(cart) },
+      ...readStoredCartRecords().filter(
+        ({ cart: savedCart }) =>
+          !cart.purchaseOrderId ||
+          savedCart.purchaseOrderId !== cart.purchaseOrderId
+      ),
+      { storedAt, cart: preparedCart },
     ].slice(-MAX_SAVED_CARTS);
 
     if (!writeStoredCartRecords(nextCarts)) {
@@ -468,6 +577,9 @@ const ShoppingCartContextProvider = ({ children }) => {
       removeAllItemsOfAKind,
       updateCartClient,
       updateDelivery,
+      updatePaymentMethod,
+      updateOrderNotes,
+      replaceCartItems,
       updateCurrentCart,
       finalizePurchase,
       storeCartInLocalStorage,
@@ -486,6 +598,9 @@ const ShoppingCartContextProvider = ({ children }) => {
       storeCartInLocalStorage,
       updateCartClient,
       updateDelivery,
+      updatePaymentMethod,
+      updateOrderNotes,
+      replaceCartItems,
       updateCurrentCart,
     ]
   );
@@ -501,9 +616,12 @@ export {
   CART_RETENTION_DAYS,
   DELIVERY_FEE,
   IVA_RATE,
+  MAX_ITEM_QUANTITY,
+  MAX_ORDER_NOTES_LENGTH,
   cartReducer,
   createEmptyCart,
   normalizeCart,
+  normalizePreparedCart,
   parseActiveCart,
   parseStoredCartRecords,
   parseStoredCarts,

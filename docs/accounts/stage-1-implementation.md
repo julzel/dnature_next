@@ -1,7 +1,7 @@
 # Mi DNAture — implementación de cuentas de clientes, Etapa 1
 
 **Estado:** implementación completa; migración base alojada y ajuste sin mascota principal validado localmente, pendiente de aplicar al proyecto alojado
-**Fecha de corte:** 9 de agosto de 2026  
+**Fecha de corte:** 10 de agosto de 2026
 **Mercado e idioma:** Costa Rica, interfaz `es-CR`  
 **Responsable de producto:** Julio Zeledon
 
@@ -15,14 +15,21 @@ La Etapa 1 incluye:
 - Acceso con Google mediante OAuth y PKCE.
 - Renovación de sesión en el proxy de Next.js y comprobación de identidad nuevamente junto a cada lectura o mutación.
 - Panel personal, perfil, teléfono y una dirección frecuente de Costa Rica.
-- Creación, edición, selección y eliminación de hasta diez perfiles de perros.
+- Creación, edición y eliminación de hasta diez perfiles de perros, sin una
+  mascota principal; el selector del resumen solo cambia la vista actual.
 - Hasta cinco carritos guardados, recuperación con confirmación y reconciliación contra el catálogo y los precios publicados actuales.
 - Persistencia del carrito activo de invitado en el navegador, sin datos personales, para conservarlo durante el acceso.
-- Prellenado opcional del formulario de checkout con el perfil autenticado; la persona todavía revisa y envía los datos mediante el flujo existente.
+- Prellenado opcional del formulario de solicitud con el perfil y la dirección
+  autenticados; la persona revisa los datos, genera una imagen local y la envía
+  manualmente por WhatsApp.
 - Estados vacíos, errores recuperables, carga y acceso no configurado en español.
 - Diseño móvil primero: acceso antes del contenido promocional, controles que ajustan línea y protección contra desbordamiento horizontal.
 
-No se incluyeron pagos, pedidos, facturas, suscripciones, Red Veterinaria, aliados, promociones, descuentos, recomendaciones ni recordatorios.
+No se incluyeron pago en línea, reserva de inventario, un backend o historial de
+pedidos, facturas, suscripciones, Red Veterinaria, aliados, promociones,
+descuentos, recomendaciones ni recordatorios. La referencia y la imagen del
+checkout representan una solicitud preparada, no un pedido recibido o
+confirmado.
 
 ## Compuertas funcionales
 
@@ -41,12 +48,20 @@ Para una demostración local del alta puede usarse `ACCOUNT_REGISTRATION_MODE=pu
 | `app/cuenta/(autenticada)` | Límite de rutas privadas y carga inicial de la cuenta. |
 | `app/cuenta/iniciar-sesion` | Entrada por correo o Google, con modo de invitación o registro público. |
 | `app/auth/callback` | Intercambio del código PKCE por sesión y redirección interna validada. |
+| `app/checkout` | Compone el checkout público y obtiene, cuando existe una sesión, datos opcionales mediante la entrada pública de Account. |
 | `features/Account` | Validación, acciones de servidor, mapeo de datos y estado autenticado. |
+| `features/Cart` | Carrito público, reconciliación de catálogo, datos condicionales, revisión, imagen local y traspaso manual a WhatsApp. |
 | `services/supabase` | Clientes de navegador/servidor y renovación de cookies. |
 | `proxy.js` | Renovación optimista y redirección de rutas privadas; no sustituye RLS. |
 | `supabase/migrations` | Esquema, índices, triggers, RPC y políticas versionadas. |
 
 El proxy solo se ejecuta en `/cuenta`, `/auth`, `/checkout` y la ruta diagnóstica existente. De esta forma, navegar el catálogo público no agrega una consulta de autenticación. Las rutas que usan una sesión son dinámicas y no se almacenan en caché compartida.
+
+La cuenta es una mejora opcional del checkout, no una barrera. Un invitado puede
+completar toda la solicitud; una sesión activa permite precargar nombre, correo,
+teléfono y dirección. Editar esos valores en checkout no modifica el perfil de
+Supabase. El carrito activo conserva artículos durante el acceso, pero no
+persiste datos personales.
 
 La aplicación usa `@supabase/ssr` y una llave publicable. No necesita ni admite una llave `service_role` o `sb_secret` en el navegador. La orientación oficial para SSR está en [Supabase Auth con Next.js](https://supabase.com/docs/guides/auth/server-side/creating-a-client).
 
@@ -78,6 +93,11 @@ Las reglas que no deben depender del navegador también existen en PostgreSQL:
 - RPC disponibles solo para el rol `authenticated` y ejecutados como la persona que llama, por lo que continúan sujetos a RLS.
 
 La llave publicable es intencionalmente visible; [RLS es la barrera de autorización](https://supabase.com/docs/guides/database/postgres/row-level-security). Nunca se debe agregar una llave que omita RLS a este flujo.
+
+Los carritos guardados en la cuenta son selecciones reutilizables, no pedidos.
+Al recuperarlos se comprueban producto e importe contra el catálogo publicado;
+esto no consulta ni reserva inventario. El flujo operativo completo y sus
+límites están documentados en [la implementación de compra asistida](../shopping-flow-implementation.md).
 
 ## Variables necesarias
 
@@ -208,6 +228,10 @@ La implementación puede probarse con datos sintéticos. Antes de invitar client
 - CAPTCHA, límites alojados, alertas de autenticación y umbrales de pausa.
 - Duración, participantes, dispositivos, criterios de éxito y rollback del piloto.
 - Pruebas de restauración/backups, revisión de dependencias y prueba de carga/abuso.
+- Confirmación del tratamiento de IVA de los precios de Contentful, la fórmula
+  del 13 %, la tarifa estimada de ₡3.000 y la cobertura de entrega mostrada.
+- Responsable y procedimiento operativo para recibir, confirmar y dar
+  seguimiento a las solicitudes que llegan por WhatsApp.
 
 La planificación de porciones permanece apagada hasta la aprobación escrita de Sofía Aguilar. Red Veterinaria y promociones conservan sus propios documentos de Etapa 2 y Etapa 3 y no bloquean esta base.
 

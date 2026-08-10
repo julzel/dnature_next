@@ -39,6 +39,42 @@ an HTTP 404 before rendering in production, and the page repeats the production
 guard as defense in depth. It performs live, uncached requests and must not be
 used as an availability monitor.
 
+## Assisted-shopping operations
+
+Checkout prepares a request for manual coordination; it is not a payment or
+order-processing system. The application:
+
+1. reconciles product identity and price against the published Contentful
+   catalogue;
+2. collects only the fields required by the selected fulfillment option;
+3. attempts to generate a PNG in the customer's browser; and
+4. opens a prefilled WhatsApp conversation after the customer explicitly asks
+   to continue.
+
+The catalogue check does not query Avify inventory or reserve stock. When
+available, the PNG is not uploaded, attached, or sent by the application; the
+WhatsApp text retains a limited product-summary fallback. DNAture staff must confirm
+availability, final amount, payment, location, and timing in WhatsApp before the
+request is treated as an order.
+
+The official WhatsApp number is centralized as E.164 digits in
+`constants/contact.js`. Changing it requires checking the header, contact
+section, mobile navigation, checkout message, customer guide, and the receiving
+WhatsApp Business account. The product owner must name the operational owner,
+support hours, response expectations, and fallback process before launch.
+
+The following commercial values are implemented but remain pending explicit
+product-owner confirmation:
+
+- whether Contentful prices include IVA or are net prices;
+- whether checkout should add IVA at 13%; and
+- whether the estimated ₡3,000 delivery fee and GAM coverage rule apply to
+  every request shown that way.
+
+Until those decisions are recorded, all checkout totals and delivery fees must
+remain labelled as estimates and confirmed manually. Do not change the formula
+or publish stronger customer promises without that approval.
+
 ## Pre-release checklist
 
 1. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin, without a path.
@@ -49,11 +85,38 @@ used as an availability monitor.
 6. Set `MONITORING_INGEST_URL` to the approved provider and test a deliberately triggered preview error. Monitoring events contain only a redacted name, message, route, source, and timestamp.
 7. Run `npm run audit:public-assets` and review every reported candidate manually; a static reference scan alone is not evidence that an asset can be deleted.
 8. Run `npm run review:performance` and investigate warnings with three comparable preview captures before changing a performance baseline.
+9. Record approval for the catalogue price/IVA basis, 13% calculation, ₡3,000 estimated delivery fee, and GAM coverage wording.
+10. Confirm that the official WhatsApp Business account is reachable by the trained operator and that the fallback process is available.
 
 Complete manual smoke tests on mobile Safari/Chrome and desktop
-Chrome/Safari/Firefox. Verify cart persistence, quantities, checkout image and
-WhatsApp flow, copied product URLs in an incognito window, Contentful publishing
-visibility, analytics page views, and hosting 404/500 rates.
+Chrome/Safari/Firefox. The assisted-shopping test must cover:
+
+- add, increment, decrement, remove, empty, and restore-cart behavior;
+- optional instructions entered in the drawer and edited at checkout;
+- explicit pickup and delivery selections, including conditional address
+  fields and all seven Costa Rican provinces;
+- required payment preference and validation errors in Spanish;
+- guest checkout and authenticated profile/address prefill without forcing a
+  sign-in;
+- catalogue reconciliation with an unchanged item, changed price, removed
+  product, Contentful failure, and a second review after a change;
+- displayed subtotal, IVA, fulfillment amount, and estimated total;
+- edit-data and return-to-cart paths from the final review;
+- unique PNG download, correct visible request data, repeat download, and
+  failure recovery;
+- prefilled WhatsApp destination and encoded product summary, with no name,
+  email, phone, address, or notes in the URL;
+- the explicit instruction that the customer must attach the PNG when
+  available and send the message manually;
+- closing while preserving the cart and starting another request; and
+- 320 px layout, keyboard/focus behavior, slow connections, and blocked
+  downloads or external-app navigation.
+
+Also verify copied product URLs in an incognito window, Contentful publishing
+visibility, analytics page views, CSP behavior for `wa.me`, and hosting 404/500
+rates. A successful image download or WhatsApp click is not evidence of a
+received order; operational verification requires a test message and human
+acknowledgement in the approved test conversation.
 
 Asset deletion requires production access-log evidence for the candidate paths,
 a preview deployment, and a before/after verification with `lint`, unit tests,

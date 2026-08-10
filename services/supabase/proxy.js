@@ -6,7 +6,10 @@ import { isSupabaseConfigured, requireSupabaseConfig } from './config';
 const refreshSupabaseSession = async (request) => {
   let response = NextResponse.next({ request });
 
-  if (!isSupabaseConfigured()) {
+  if (
+    process.env.E2E_USE_FIXTURES === '1' ||
+    !isSupabaseConfigured()
+  ) {
     return { claims: null, response };
   }
 

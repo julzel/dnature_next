@@ -11,6 +11,13 @@ implementación; estos documentos explican contratos, decisiones y operación.
 - [Operaciones](./operations.md): variables, despliegue, verificación y mantenimiento.
 - [Datos y privacidad](./privacy.md): inventario técnico de datos y controles requeridos.
 
+## Experiencia de compra
+
+- [Guía para clientes](./user-guide.md): cómo preparar y enviar una solicitud por WhatsApp.
+- [Flujo estándar de ecommerce](./diagrams/standard-ecommerce-flow.md): referencia convencional y controles esperados.
+- [Flujo de compra asistida](./diagrams/shop-flow.md): recorrido y límites del sistema.
+- [Implementación del flujo](./shopping-flow-implementation.md): arquitectura, persistencia y decisiones pendientes.
+
 ## Integraciones de catálogo
 
 - [Gobierno de Contentful](./integrations/contentful-governance.md): propiedad del esquema, slugs y publicación.

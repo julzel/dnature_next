@@ -5,35 +5,92 @@ import React, { useEffect, useState } from "react";
 import ClientForm from "./ClientForm";
 
 import storage from "../lib/browser-storage";
+import { COSTA_RICA_PROVINCES } from '../../../constants/costa-rica';
 
-const inputFields = [
-  { name: "firstName", label: "Nombre", isRequired: true, type: "text" },
-  { name: "lastName", label: "Apellidos", isRequired: true, type: "text" },
+const contactFields = [
+  {
+    name: 'firstName',
+    label: 'Nombre',
+    isRequired: true,
+    type: 'text',
+    autoComplete: 'given-name',
+    maxLength: 80,
+  },
+  {
+    name: 'lastName',
+    label: 'Apellidos',
+    isRequired: true,
+    type: 'text',
+    autoComplete: 'family-name',
+    maxLength: 120,
+  },
   {
     name: "email",
     label: "Correo electrónico",
     isRequired: true,
     type: "email",
-  },
-  { name: "provincia", label: "Provincia", isRequired: true, type: "text" },
-  { name: "canton", label: "Cantón", isRequired: true, type: "text" },
-  {
-    name: "direccion",
-    label: "Dirección exacta",
-    isRequired: true,
-    type: "text",
+    autoComplete: 'email',
+    maxLength: 254,
   },
   {
-    name: "contactPhoneNumber",
-    label: "Teléfono de contacto",
+    name: 'contactPhoneNumber',
+    label: 'Teléfono de contacto',
     isRequired: true,
-    type: "text",
-    pattern: "^(?:\\d{4}-\\d{4}|\\d{8})$", // 8 digits or 4 digits + dash + 4 digits
+    type: 'tel',
+    inputMode: 'numeric',
+    autoComplete: 'tel-national',
+    pattern: '^(?:\\d{4}-\\d{4}|\\d{8})$',
     maxLength: 9,
   },
 ];
 
-const addressFieldNames = new Set(['direccion', 'provincia', 'canton']);
+const deliveryFields = [
+  {
+    name: 'provincia',
+    label: 'Provincia',
+    isRequired: true,
+    type: 'select',
+    autoComplete: 'address-level1',
+    options: COSTA_RICA_PROVINCES,
+  },
+  {
+    name: 'canton',
+    label: 'Cantón',
+    isRequired: true,
+    type: 'text',
+    autoComplete: 'address-level2',
+    maxLength: 100,
+  },
+  {
+    name: 'distrito',
+    label: 'Distrito',
+    isRequired: false,
+    type: 'text',
+    autoComplete: 'address-level3',
+    maxLength: 100,
+  },
+  {
+    name: "direccion",
+    label: "Señas de la dirección",
+    isRequired: true,
+    type: "text",
+    autoComplete: 'street-address',
+    maxLength: 500,
+  },
+  {
+    name: 'notasEntrega',
+    label: 'Indicaciones adicionales',
+    isRequired: false,
+    type: "text",
+    maxLength: 300,
+    autoComplete: 'off',
+  },
+];
+
+const inputFields = [...contactFields, ...deliveryFields];
+const addressFieldNames = new Set(
+  deliveryFields.map(({ name }) => name)
+);
 const REMEMBERED_CLIENT_RETENTION_DAYS = 30;
 
 const getClientFieldValue = (client, fieldName) =>
@@ -52,11 +109,34 @@ const isInputValid = (value, field) => {
     return true;
   }
 
+  if (field.maxLength && normalizedValue.length > field.maxLength) {
+    return false;
+  }
+
+  if (field.type === 'select') {
+    return field.options.includes(normalizedValue);
+  }
+
   if (field.type === 'email') {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedValue);
   }
 
   return field.pattern ? new RegExp(field.pattern).test(normalizedValue) : true;
+};
+
+const validationMessage = (value, field) => {
+  const normalizedValue = typeof value === 'string' ? value.trim() : '';
+
+  if (field.isRequired && !normalizedValue) {
+    return `Ingresá ${field.label.toLowerCase()}.`;
+  }
+  if (field.type === 'email') {
+    return 'Ingresá un correo electrónico válido.';
+  }
+  if (field.name === 'contactPhoneNumber') {
+    return 'Ingresá un teléfono de Costa Rica de 8 dígitos.';
+  }
+  return `Revisá ${field.label.toLowerCase()}.`;
 };
 
 const createClient = (savedClient) => {
@@ -70,6 +150,8 @@ const createClient = (savedClient) => {
       direccion: "",
       provincia: "",
       canton: "",
+      distrito: '',
+      notasEntrega: '',
       ...client.address,
     },
     contactPhoneNumber: client.contactPhoneNumber || "",
@@ -85,16 +167,31 @@ const clientFieldsForStorage = (client) => ({
     direccion: client.address?.direccion,
     provincia: client.address?.provincia,
     canton: client.address?.canton,
+    distrito: client.address?.distrito,
+    notasEntrega: client.address?.notasEntrega,
   },
   contactPhoneNumber: client.contactPhoneNumber,
 });
 
-const ClientFormContainer = ({ onSubmit, className, initialClient = null }) => {
-  const [rememberClient, setRememberClient] = useState(!initialClient);
+const ClientFormContainer = ({
+  onSubmit,
+  className,
+  initialClient = null,
+  requiresAddress = false,
+}) => {
+  const [rememberedClient] = useState(() =>
+    initialClient ? null : storage.getItem('client')
+  );
+  const [rememberClient, setRememberClient] = useState(
+    Boolean(rememberedClient)
+  );
   const [client, setClient] = useState(() =>
-    createClient(initialClient || storage.getItem('client'))
+    createClient(initialClient || rememberedClient)
   );
   const [interactedFields, setInteractedFields] = useState({});
+  const checkoutFields = requiresAddress
+    ? [...contactFields, ...deliveryFields]
+    : contactFields;
 
   const handleRememberToggle = () => {
     setRememberClient((prevRememberClient) => !prevRememberClient);
@@ -119,7 +216,7 @@ const ClientFormContainer = ({ onSubmit, className, initialClient = null }) => {
   };
 
   const isFormValid = () => {
-    return inputFields.every((field) =>
+    return checkoutFields.every((field) =>
       isInputValid(getClientFieldValue(client, field.name), field)
     );
   };
@@ -128,17 +225,31 @@ const ClientFormContainer = ({ onSubmit, className, initialClient = null }) => {
     e.preventDefault();
     if (!isFormValid()) {
       setInteractedFields(
-        inputFields.reduce((fields, field) => ({ ...fields, [field.name]: true }), {})
+        checkoutFields.reduce((fields, field) => ({ ...fields, [field.name]: true }), {})
       );
       return;
     }
 
+    const normalizedClient = {
+      ...client,
+      firstName: client.firstName.trim(),
+      lastName: client.lastName.trim(),
+      email: client.email.trim(),
+      contactPhoneNumber: client.contactPhoneNumber.trim(),
+      address: Object.fromEntries(
+        Object.entries(client.address || {}).map(([key, value]) => [
+          key,
+          typeof value === 'string' ? value.trim() : value,
+        ])
+      ),
+    };
+
     if (rememberClient) {
-      storage.setItem('client', clientFieldsForStorage(client), {
+      storage.setItem('client', clientFieldsForStorage(normalizedClient), {
         expiresInDays: REMEMBERED_CLIENT_RETENTION_DAYS,
       });
     }
-    onSubmit(client);
+    onSubmit(normalizedClient);
   };
 
   useEffect(() => {
@@ -158,13 +269,16 @@ const ClientFormContainer = ({ onSubmit, className, initialClient = null }) => {
       isFormValid={isFormValid}
       className={className}
       interactedFields={interactedFields}
-      inputFields={inputFields}
+      inputFields={checkoutFields}
+      requiresAddress={requiresAddress}
       rememberClient={rememberClient}
       rememberLabel={
         initialClient
           ? 'Guardar también estos datos en este dispositivo durante 30 días'
           : 'Recordar mis datos durante 30 días'
       }
+      showAccountPrompt={!initialClient}
+      validationMessage={validationMessage}
     />
   );
 };
@@ -174,6 +288,7 @@ export {
   getClientFieldValue,
   inputFields,
   isInputValid,
+  validationMessage,
   REMEMBERED_CLIENT_RETENTION_DAYS,
 };
 

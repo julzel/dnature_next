@@ -45,6 +45,8 @@ class ShoppingCart {
     this.wantsDelivery = false;
     this.deliveryFee = 0;
     this.discount = 0;
+    this.paymentMethod = "";
+    this.orderNotes = "";
     this.client = {
       firstName: "",
       lastName: "",
@@ -52,6 +54,8 @@ class ShoppingCart {
         direccion: "",
         provincia: "",
         canton: "",
+        distrito: "",
+        notasEntrega: "",
       },
       contactPhoneNumber: "",
       pets: []

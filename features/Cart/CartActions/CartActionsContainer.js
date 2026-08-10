@@ -8,7 +8,7 @@ import CartActions from "./CartActions";
 // contexts
 import { useCartContext } from "../model/shopping-cart-context";
 
-const CartActionsContainer = ({ proceedToPurchase }) => {
+const CartActionsContainer = ({ proceedToPurchase, isCheckingCart = false }) => {
   const [displayRemoveAllModal, setDisplayRemoveAllModal] = useState(false);
   const { removeAllItems, cart } = useCartContext();
   const router = useRouter();
@@ -28,6 +28,7 @@ const CartActionsContainer = ({ proceedToPurchase }) => {
       toggleRemoveAllModal={() =>
         setDisplayRemoveAllModal(!displayRemoveAllModal)
       }
+      isCheckingCart={isCheckingCart}
     />
   );
 };

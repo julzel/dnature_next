@@ -59,7 +59,9 @@ test('publishes canonical metadata, headers, and dynamic product discovery', asy
 test('redirects the legacy cart route to checkout', async ({ page }) => {
   await page.goto('/cart');
   await expect(page).toHaveURL(/\/checkout\/?$/);
-  await expect(page.getByRole('heading', { name: 'Checkout' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: 'Prepará tu solicitud' })
+  ).toBeVisible();
 });
 
 test('redirects an encoded-whitespace product URL to its canonical URL', async ({

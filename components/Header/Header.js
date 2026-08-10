@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShieldCheck, Snowflake } from 'lucide-react';
+import { MessageCircleMore, Snowflake } from 'lucide-react';
+import { DNATURE_WHATSAPP_PHONE } from '../../constants/contact';
 
 // local imports
 // styles
@@ -14,13 +15,13 @@ const Header = ({ navigationItems, mobileNavigation }) => (
     <div className={styles.announcement}>
       <span>
         <Snowflake aria-hidden='true' size={13} strokeWidth={2} />
-        Envíos refrigerados en el GAM
+        Coordinamos envíos refrigerados en el GAM
       </span>
       <span className={styles.desktopTrustSignal}>
-        <ShieldCheck aria-hidden='true' size={13} strokeWidth={2} />
-        Compra segura · Asesoría personalizada
+        <MessageCircleMore aria-hidden='true' size={13} strokeWidth={2} />
+        Compra asistida · Atención personalizada
       </span>
-      <a href='https://wa.me/50671848868' target='_blank' rel='noopener noreferrer'>
+      <a href={`https://wa.me/${DNATURE_WHATSAPP_PHONE}`} target='_blank' rel='noopener noreferrer'>
         ¿Necesitas ayuda?
       </a>
     </div>

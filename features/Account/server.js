@@ -36,6 +36,14 @@ const identityFromClaims = (claims) => ({
 });
 
 const getAccountContext = async () => {
+  if (process.env.E2E_USE_FIXTURES === '1') {
+    return {
+      configured: isSupabaseConfigured(),
+      identity: null,
+      supabase: null,
+    };
+  }
+
   if (!isSupabaseConfigured()) {
     return { configured: false, identity: null, supabase: null };
   }
@@ -211,7 +219,7 @@ const loadOptionalCheckoutCustomer = async () => {
       .maybeSingle(),
     context.supabase
       .from('customer_addresses')
-      .select('province,canton,directions,is_default,created_at')
+      .select('province,canton,district,directions,delivery_notes,is_default,created_at')
       .eq('user_id', context.identity.id)
       .order('is_default', { ascending: false })
       .order('created_at', { ascending: true })
@@ -234,7 +242,9 @@ const loadOptionalCheckoutCustomer = async () => {
     address: {
       provincia: address?.province || '',
       canton: address?.canton || '',
+      distrito: address?.district || '',
       direccion: address?.directions || '',
+      notasEntrega: address?.delivery_notes || '',
     },
     pets: [],
   };

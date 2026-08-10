@@ -13,6 +13,7 @@ const ModalContainer = ({
   closeModal,
   padding,
   responsiveFullScreen,
+  returnFocusRef,
 }) => {
   const modalRootRef = useRef(null);
 
@@ -46,6 +47,7 @@ const ModalContainer = ({
       closeModal={closeModal}
       padding={padding}
       responsiveFullScreen={responsiveFullScreen}
+      returnFocusRef={returnFocusRef}
       rootRef={modalRootRef}
     >
       {children}

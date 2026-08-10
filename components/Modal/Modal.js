@@ -12,6 +12,7 @@ const Modal = ({
   closeModal,
   padding,
   responsiveFullScreen,
+  returnFocusRef,
   rootRef,
 }) => {
   const dialogRef = useRef(null);
@@ -24,6 +25,7 @@ const Modal = ({
 
   useEffect(() => {
     previousActiveElement.current = document.activeElement;
+    const explicitReturnTarget = returnFocusRef?.current;
     const dialog = dialogRef.current;
     const focusableSelector =
       'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -61,11 +63,12 @@ const Modal = ({
     dialog.addEventListener('keydown', onKeyDown);
     return () => {
       dialog.removeEventListener('keydown', onKeyDown);
-      if (previousActiveElement.current?.isConnected) {
-        previousActiveElement.current.focus();
+      const returnTarget = explicitReturnTarget || previousActiveElement.current;
+      if (returnTarget?.isConnected) {
+        returnTarget.focus();
       }
     };
-  }, []);
+  }, [returnFocusRef]);
 
   return (
     <div ref={rootRef} data-dnature-modal-root className={styles.modalContainer} onMouseDown={(event) => {

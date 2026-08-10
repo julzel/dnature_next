@@ -145,7 +145,11 @@ describe('cart storage schema', () => {
         {
           items: [item],
           total: 999999,
-          client: { address: { provincia: 'San José' } },
+          wantsDelivery: true,
+          client: {
+            firstName: 'Dato anterior',
+            address: { provincia: 'San José' },
+          },
         },
       ])
     );
@@ -154,14 +158,10 @@ describe('cart storage schema', () => {
     expect(parsed[0]).toMatchObject({
       subtotal: 2500,
       tax: 325,
-      deliveryFee: 0,
-      total: 2825,
+      deliveryFee: 3000,
+      total: 5825,
     });
-    expect(parsed[0].client.address).toEqual({
-      direccion: '',
-      provincia: 'San José',
-      canton: '',
-    });
+    expect(parsed[0].client).toEqual(createEmptyCart().client);
   });
 
   it('accepts non-expired current records and rejects unknown or malformed schemas', () => {

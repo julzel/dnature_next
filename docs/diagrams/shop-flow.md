@@ -1,57 +1,57 @@
+# Flujo de compra asistida de DNAture
+
+Este diagrama describe el comportamiento implementado. DNAture conserva los
+patrones habituales de exploración, carrito, checkout y revisión, pero sustituye
+el pago y la creación automática del pedido por una coordinación manual en
+WhatsApp.
+
 ```mermaid
 flowchart TD
     A[Cliente llega a la tienda] --> B[Explora categorías o busca productos]
-    B --> C[Consulta el detalle del producto]
-    C --> D{¿Producto adecuado y disponible?}
+    B --> C[Revisa producto y presentación]
+    C --> D[Agrega productos al carrito]
+    D --> E{¿Desea seguir comprando?}
+    E -- Sí --> B
+    E -- No --> F[Revisa cantidades e indicaciones]
+    F --> G[Inicia la solicitud]
 
-    D -- No --> B
-    D -- Sí --> E[Selecciona presentación y cantidad]
-    E --> F[Agrega producto al carrito]
-    F --> G{¿Desea seguir comprando?}
+    G --> H[Elige retiro o entrega]
+    H --> I[Indica una preferencia de pago]
+    I --> J[El servidor comprueba productos y precios en Contentful]
+    J --> K{¿Cambió el catálogo?}
+    K -- Sí --> L[Actualiza el carrito y solicita otra revisión]
+    L --> F
+    K -- No --> M{¿Hay una sesión activa?}
 
-    G -- Sí --> B
-    G -- No --> H[Revisa el carrito]
-
-    H --> I{¿Carrito correcto?}
-    I -- No --> J[Modifica cantidades o elimina productos]
-    J --> H
-    I -- Sí --> K[Inicia checkout]
-
-    K --> L{¿Tiene una cuenta?}
-    L -- Sí --> M[Inicia sesión]
-    L -- No --> N{¿Cómo desea continuar?}
-    N -- Compra como invitado --> O[Continúa sin crear cuenta]
-    N -- Crear cuenta --> P[Se registra o usa Google]
-    M --> Q[Recupera datos guardados]
-    P --> Q
-    O --> R[Ingresa sus datos]
-    Q --> R
-
-    R --> S[Ingresa o confirma dirección de entrega]
-    S --> T[Selecciona método de entrega]
-    T --> U[Revisa costos, tiempos y condiciones]
-    U --> V{¿La tienda cobra en línea?}
-
-    V -- Sí --> W[Selecciona método de pago]
-    W --> X[Autoriza el pago]
-    X --> Y{¿Pago aprobado?}
-    Y -- No --> Z[Corrige o cambia el método de pago]
-    Z --> W
-    Y -- Sí --> AA[La tienda crea el pedido]
-
-    V -- No --> AB[Selecciona pago o coordinación posterior]
-    AB --> AA
-
-    AA --> AC[Reserva o descuenta inventario]
-    AC --> AD[Envía confirmación y número de pedido]
-    AD --> AE[Prepara el pedido]
-    AE --> AF[Entrega o retiro]
-    AF --> AG{¿Entrega exitosa?}
-
-    AG -- No --> AH[Soporte resuelve la incidencia]
-    AH --> AF
-    AG -- Sí --> AI[Pedido completado]
-
-    AI --> AJ[Solicita reseña o recompra]
-    AJ --> AK[Recomendaciones y experiencia personalizada]
+    M -- Sí --> N[Precarga perfil y dirección guardados]
+    M -- No --> O[Continúa como invitado]
+    N --> P[Revisa o completa sus datos]
+    O --> P
+    P --> Q[Revisa el resumen y total estimado]
+    Q --> R{¿Necesita corregir algo?}
+    R -- Sí --> F
+    R -- No --> S[Intenta generar y descargar la imagen]
+    S --> SI{¿La imagen está disponible?}
+    SI -- Sí --> T[Abre el mensaje preparado en WhatsApp]
+    SI -- No --> T
+    T --> U[Cliente adjunta la imagen si está disponible y envía]
+    U --> V[DNAture confirma inventario, monto, pago y modalidad]
+    V --> W{¿Cliente acepta?}
+    W -- No --> X[Ajusta o cancela por WhatsApp]
+    W -- Sí --> Y[Realiza el pago acordado]
+    Y --> Z[DNAture prepara la solicitud confirmada]
+    Z --> AA[Retiro o entrega coordinados]
 ```
+
+## Límites del sistema
+
+- El carrito no reserva inventario.
+- La comprobación de Contentful valida que un producto siga publicado y que el
+  precio coincida; no consulta existencias.
+- La referencia `DN-…` y la imagen se generan en el navegador; no son un número
+  de pedido proveniente de un backend.
+- El mensaje de WhatsApp incluye un resumen limitado de productos como
+  contingencia si falla la imagen.
+- Abrir WhatsApp no adjunta la imagen ni envía el mensaje automáticamente.
+- Solo la respuesta de DNAture confirma disponibilidad, monto, pago y entrega.
+- El sitio no procesa pagos ni mantiene estados de pedido.

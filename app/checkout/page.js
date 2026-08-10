@@ -4,7 +4,8 @@ import { createPageMetadata } from '../../constants/seo';
 
 export const metadata = createPageMetadata({
   title: 'Checkout',
-  description: 'Revisa tu pedido, elige la entrega y completa tu compra.',
+  description:
+    'Revisá tu carrito y prepará una solicitud para coordinarla con DNAture por WhatsApp.',
   path: '/checkout',
   robots: {
     index: false,

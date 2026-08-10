@@ -12,7 +12,7 @@ folders.
 app/                 Next.js route adapters and application composition
 features/
   Calculator/        Portion calculator flow
-  Cart/              Cart, checkout, persistence, and purchase capture
+  Cart/              Cart, assisted checkout, catalogue checks, and WhatsApp handoff
   Catalog/           Product catalogue and product detail
   Faq/               FAQ experience
   Home/              Home page sections and category loading
@@ -44,9 +44,26 @@ Private folders such as `api/`, `lib/`, `model/`, and component folders are
 implementation details. `app/` and other slices must use the slice's root entry
 points rather than importing those private files.
 
-The Cart slice is the only current cross-slice dependency: Catalog and the
-application header use `features/Cart/state.js` to add products and display cart
-state. They do not import Cart internals.
+Cart exposes shared commerce state through `features/Cart/state.js`. Catalog
+uses it to add products, the application header uses it to display cart state,
+and Account uses it to show, save, and restore customer selections. These
+consumers do not import Cart internals.
+
+The checkout route composes two public server boundaries: it renders the Cart
+entry point and obtains optional prefill data from `features/Account/server.js`.
+Cart does not query private account tables directly, and an absent session never
+blocks guest checkout.
+
+The Cart server action uses the public `features/Catalog/server.js` entry point
+to reconcile item identity and prices against the currently published
+Contentful catalogue before personal data is collected. This validates
+catalogue presence and price only. It does not query or reserve inventory, and
+it must not be described as an order backend.
+
+The assisted checkout owns fulfillment preference, payment preference, client
+validation, review, local request-image generation, browser references, and the
+WhatsApp handoff. A `DN-…` identifier is a client-generated request reference;
+it is not evidence that DNAture received or accepted an order.
 
 ## Shared-code rule
 
