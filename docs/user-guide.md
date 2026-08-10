@@ -32,15 +32,17 @@ En **Prepará tu solicitud**, seleccioná una modalidad:
 
 - **Retiro coordinado:** DNAture confirmará el lugar y el horario por
   WhatsApp.
-- **Entrega a domicilio:** la cobertura dentro del GAM y la tarifa se
-  confirmarán por WhatsApp.
+- **Entrega a domicilio:** se agrega una tarifa estimada de **₡3.500**. DNAture
+  confirmará por WhatsApp que la dirección esté dentro de la cobertura.
 
 También podés indicar **SINPE Móvil** como preferencia o elegir **Coordinar el
 pago**. Esta elección no realiza ningún cobro. No pagués hasta recibir la
 confirmación de DNAture.
 
-Los importes del sitio son estimados. DNAture debe confirmar la disponibilidad,
-el monto final y las condiciones de entrega antes de procesar la solicitud.
+Los precios del catálogo no incluyen IVA. En el resumen se agrega el **13 % de
+IVA** al subtotal y, si elegís entrega, la tarifa de **₡3.500**. El total se
+muestra como estimado porque DNAture todavía debe confirmar disponibilidad,
+cobertura y aceptación de la solicitud.
 
 ### 4. Continuá con tus datos
 
@@ -84,6 +86,10 @@ En la confirmación:
 El mensaje preparado incluye un resumen de productos, la referencia, el monto
 estimado, la modalidad y la preferencia de pago. La imagen no se adjunta
 automáticamente.
+
+Podés escribirnos por WhatsApp las 24 horas. El horario de atención es de
+lunes a viernes, de 8:00 a. m. a 5:00 p. m., y respondemos dentro de dos horas
+hábiles.
 
 ### 8. Coordiná la compra
 

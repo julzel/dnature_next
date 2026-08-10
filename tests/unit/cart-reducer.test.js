@@ -57,8 +57,8 @@ describe('cart reducer', () => {
       subtotal: 7500,
       tax: 975,
       wantsDelivery: true,
-      deliveryFee: 3000,
-      total: 11475,
+      deliveryFee: 3500,
+      total: 11975,
     });
     expect(withoutDelivery).toMatchObject({
       wantsDelivery: false,
@@ -158,8 +158,8 @@ describe('cart storage schema', () => {
     expect(parsed[0]).toMatchObject({
       subtotal: 2500,
       tax: 325,
-      deliveryFee: 3000,
-      total: 5825,
+      deliveryFee: 3500,
+      total: 6325,
     });
     expect(parsed[0].client).toEqual(createEmptyCart().client);
   });

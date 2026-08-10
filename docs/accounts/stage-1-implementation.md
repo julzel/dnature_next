@@ -219,6 +219,11 @@ La evidencia pendiente requiere activar Auth en el proyecto alojado: recibir un 
 
 La implementación puede probarse con datos sintéticos. Antes de invitar clientes reales todavía se requiere:
 
+El contrato comercial del checkout ya fue confirmado: los precios de
+Contentful son netos, se agrega un 13 % de IVA y la entrega agrega una tarifa
+estimada de ₡3.500. El WhatsApp recibe mensajes 24/7; la atención es de lunes a
+viernes, de 8:00 a. m. a 5:00 p. m., con respuesta dentro de dos horas hábiles.
+
 - Entidad legal operadora, contacto de privacidad, asesoría y textos aprobados.
 - Inventario de datos, propósitos, retención, exportación, corrección y eliminación.
 - Flujos de cambio de correo, eliminación de cuenta y recuperación operativa.
@@ -228,8 +233,6 @@ La implementación puede probarse con datos sintéticos. Antes de invitar client
 - CAPTCHA, límites alojados, alertas de autenticación y umbrales de pausa.
 - Duración, participantes, dispositivos, criterios de éxito y rollback del piloto.
 - Pruebas de restauración/backups, revisión de dependencias y prueba de carga/abuso.
-- Confirmación del tratamiento de IVA de los precios de Contentful, la fórmula
-  del 13 %, la tarifa estimada de ₡3.000 y la cobertura de entrega mostrada.
 - Responsable y procedimiento operativo para recibir, confirmar y dar
   seguimiento a las solicitudes que llegan por WhatsApp.
 

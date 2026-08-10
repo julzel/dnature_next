@@ -29,8 +29,8 @@ test('home → catalogue → prepared request → WhatsApp handoff', async ({ pa
     name: /Entrega a domicilio/,
   });
   await delivery.check();
-  await expect(summary).toContainText('₡3,000');
-  await expect(summary).toContainText('₡8,650');
+  await expect(summary).toContainText('₡3,500');
+  await expect(summary).toContainText('₡9,150');
   await summary.getByRole('radio', { name: /SINPE Móvil/ }).check();
   await summary
     .getByRole('textbox', { name: 'Indicaciones para el pedido' })
@@ -79,6 +79,7 @@ test('home → catalogue → prepared request → WhatsApp handoff', async ({ pa
     ready.getByRole('heading', { name: 'Tu solicitud está lista para enviar' })
   ).toBeVisible();
   await expect(ready).toContainText('Todavía no se ha enviado ni confirmado');
+  await expect(ready).toContainText('Respondemos dentro de 2 horas hábiles');
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth === document.documentElement.clientWidth

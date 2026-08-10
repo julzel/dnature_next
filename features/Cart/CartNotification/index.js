@@ -2,6 +2,10 @@ import { CheckCircle2, Download, MessageCircleMore } from 'lucide-react';
 
 import Button from '../../../components/Button';
 import ModalContainer from '../../../components/Modal';
+import {
+  DNATURE_SUPPORT_HOURS,
+  DNATURE_SUPPORT_RESPONSE,
+} from '../../../constants/contact';
 import styles from './CartNotification.module.scss';
 
 const CartNotification = ({
@@ -53,6 +57,10 @@ const CartNotification = ({
       <p className={styles.notice}>
         No realicés ningún pago hasta que confirmemos disponibilidad, monto final,
         modalidad y fecha.
+      </p>
+      <p className={styles.supportHours}>
+        Podés escribirnos 24/7. {DNATURE_SUPPORT_HOURS}{' '}
+        {DNATURE_SUPPORT_RESPONSE}
       </p>
 
       <div className={styles.actions}>

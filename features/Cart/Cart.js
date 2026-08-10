@@ -142,7 +142,7 @@ const Cart = ({
                       <strong>Entrega a domicilio</strong>
                       <small>Cobertura sujeta a confirmación dentro del GAM.</small>
                     </span>
-                    <strong>₡3,000</strong>
+                    <strong>₡3,500</strong>
                   </label>
                 </fieldset>
 

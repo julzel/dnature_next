@@ -60,20 +60,21 @@ request is treated as an order.
 The official WhatsApp number is centralized as E.164 digits in
 `constants/contact.js`. Changing it requires checking the header, contact
 section, mobile navigation, checkout message, customer guide, and the receiving
-WhatsApp Business account. The product owner must name the operational owner,
-support hours, response expectations, and fallback process before launch.
+WhatsApp Business account. Customers may write 24/7; staffed support is Monday
+through Friday, 8:00 a.m.–5:00 p.m. Costa Rica time, with replies within two
+business hours. The product owner must still name the operational owner and
+fallback process before launch.
 
-The following commercial values are implemented but remain pending explicit
-product-owner confirmation:
+The approved commercial contract is:
 
-- whether Contentful prices include IVA or are net prices;
-- whether checkout should add IVA at 13%; and
-- whether the estimated ₡3,000 delivery fee and GAM coverage rule apply to
-  every request shown that way.
+- Contentful catalogue prices are net and exclude IVA;
+- checkout adds 13% IVA to the subtotal; and
+- delivery adds an estimated ₡3,500 fee. Staff confirms GAM coverage before
+  accepting the request.
 
-Until those decisions are recorded, all checkout totals and delivery fees must
-remain labelled as estimates and confirmed manually. Do not change the formula
-or publish stronger customer promises without that approval.
+Totals remain labelled as estimates because inventory, coverage, and merchant
+acceptance are confirmed manually. Do not change this formula or publish
+stronger fulfillment promises without product-owner approval.
 
 ## Pre-release checklist
 
@@ -85,8 +86,8 @@ or publish stronger customer promises without that approval.
 6. Set `MONITORING_INGEST_URL` to the approved provider and test a deliberately triggered preview error. Monitoring events contain only a redacted name, message, route, source, and timestamp.
 7. Run `npm run audit:public-assets` and review every reported candidate manually; a static reference scan alone is not evidence that an asset can be deleted.
 8. Run `npm run review:performance` and investigate warnings with three comparable preview captures before changing a performance baseline.
-9. Record approval for the catalogue price/IVA basis, 13% calculation, ₡3,000 estimated delivery fee, and GAM coverage wording.
-10. Confirm that the official WhatsApp Business account is reachable by the trained operator and that the fallback process is available.
+9. Verify the approved net-price basis, 13% IVA calculation, ₡3,500 estimated delivery fee, and GAM coverage wording in the deployed checkout.
+10. Confirm that the official WhatsApp Business account is reachable by the trained operator during the approved schedule, that the two-business-hour response target is monitored, and that a fallback process is available.
 
 Complete manual smoke tests on mobile Safari/Chrome and desktop
 Chrome/Safari/Firefox. The assisted-shopping test must cover:

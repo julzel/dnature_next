@@ -1,7 +1,7 @@
 # Implementación del flujo de compra asistida
 
 **Estado:** implementado en frontend y acciones de servidor; requiere
-validación operativa y decisiones comerciales antes de producción.
+validación operativa antes de producción.
 
 ## Resultado
 
@@ -35,9 +35,10 @@ artículo por identificador de Contentful o SKU:
 - conserva cantidades enteras entre 1 y 99; y
 - obliga a revisar nuevamente cuando hubo cambios.
 
-Contentful es la fuente provisional de descripción y precio para el sitio. Esta
-operación no consulta inventario en Avify ni garantiza disponibilidad. El monto
-final continúa sujeto a la confirmación manual de DNAture.
+Contentful es la fuente de descripción y precio neto para el sitio. El checkout
+calcula un 13 % de IVA sobre el subtotal. Esta operación no consulta inventario
+en Avify ni garantiza disponibilidad. El monto final continúa sujeto a la
+confirmación manual de DNAture.
 
 ## Datos y persistencia
 
@@ -67,19 +68,18 @@ manualmente. Si la captura o la descarga falla, el resumen de productos permite
 continuar por WhatsApp; un fallo al guardar la referencia local tampoco bloquea
 el traspaso.
 
-## Decisiones pendientes del product owner
+## Contrato comercial confirmado
 
-Antes de producción se deben confirmar y documentar:
+- Los precios publicados en Contentful son netos y no incluyen IVA.
+- El checkout agrega un 13 % de IVA al subtotal.
+- Cada solicitud con entrega agrega una tarifa estimada de ₡3.500; DNAture
+  confirma manualmente la cobertura antes de aceptar el pedido.
+- El cliente puede escribir por WhatsApp las 24 horas. La atención se realiza
+  de lunes a viernes, de 8:00 a. m. a 5:00 p. m., con respuesta dentro de dos
+  horas hábiles.
 
-1. Si los precios publicados en Contentful incluyen IVA o son precios netos.
-2. Si corresponde sumar el IVA del 13 % con la fórmula implementada.
-3. Si la tarifa estimada de entrega de ₡3.000 y la cobertura dentro del GAM son
-   correctas para todos los casos mostrados.
-4. Quién atiende el WhatsApp, horarios de atención, proceso de confirmación y
-   contingencia cuando el canal no está disponible.
-
-Hasta cerrar los primeros tres puntos, IVA, entrega y total deben tratarse como
-estimaciones y no como compromisos comerciales.
+Antes del lanzamiento debe documentarse el responsable operativo y la
+contingencia cuando el canal no esté disponible.
 
 ## Fuera de alcance
 

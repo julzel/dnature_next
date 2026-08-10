@@ -134,11 +134,13 @@ legend, native inputs, keyboard focus, and one selected value per group. Address
 fields appear only for delivery. Guest checkout remains the default complete
 path; sign-in is an optional convenience for prefill and saved selections.
 
-Totals use `estimado` wherever IVA or fulfillment can change during manual
-confirmation. A Contentful reconciliation may remove unavailable catalogue
-entries or update published prices, but it must never be presented as an
-inventory check. If values change, show the explanation and return control to
-the customer for another review.
+Catalogue prices are net. Checkout adds 13% IVA and an estimated ₡3,500
+delivery fee when applicable. Totals still use `estimado` because inventory,
+delivery coverage, and merchant acceptance require manual confirmation. A
+Contentful reconciliation may remove unavailable catalogue entries or update
+published prices, but it must never be presented as an inventory check. If
+values change, show the explanation and return control to the customer for
+another review.
 
 The final review and WhatsApp confirmation are separate surfaces. The latter
 must state that:
