@@ -1,50 +1,39 @@
-import React from 'react';
 import Image from 'next/image';
 
-// local imports
-// components
-import AnimationBox from '../AnimationBox';
-
-// styles
 import styles from './Welcome.module.scss';
-
-// data
 import items from './items';
 
 const Welcome = () => {
   return (
-    <div className={styles.welcome}>
-      <h2 className='seo-hidden'>Alimentación DNAture</h2>
-
-      <div className={styles.welcomeItems}>
-        <ul>
-          {items.map((item, i) => {
-            const animation =
-              i % 2 === 0 ? 'fade-in-from-left' : 'fade-in-from-right';
-            return (
-              <li key={i} className={styles.welcomeItemsItem}>
-                <AnimationBox animation={animation}>
-                  <div
-                    className={styles.welcomeItemsImage}
-                    style={item.smallIcon ? { width: '65px' } : undefined}
-                  >
-                    <Image
-                      src={item.icon}
-                      alt={item.title}
-                      width={item.width}
-                      height={item.height}
-                      style={{ width: '100%', height: 'auto' }}
-                    />
-                  </div>
-                  <h4 className={styles.welcomeItemsTitle}>{item.title}</h4>
-                  <p className={styles.welcomeItemsText}>{item.text}</p>
-                </AnimationBox>
-              </li>
-            );
-          })}
-        </ul>
+    <section className={styles.welcome} aria-labelledby='welcome-title'>
+      <div className={styles.heading}>
+        <p className={styles.eyebrow}>Alimentación DNAture</p>
+        <h2 id='welcome-title'>Comida real, preparada con intención</h2>
+        <p>
+          Una propuesta de alimentación natural que prioriza ingredientes
+          reconocibles, equilibrio y acompañamiento para cada mascota.
+        </p>
       </div>
-    </div>
+
+      <ul className={styles.items}>
+        {items.map((item) => (
+          <li key={item.title} className={styles.item}>
+            <div className={styles.iconFrame}>
+              <Image
+                src={item.icon}
+                alt=''
+                aria-hidden='true'
+                width={item.width}
+                height={item.height}
+                className={item.smallIcon ? styles.smallIcon : styles.icon}
+              />
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 

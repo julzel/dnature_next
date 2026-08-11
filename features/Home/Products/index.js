@@ -1,16 +1,9 @@
-import React from "react";
-import Link from "next/link";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
-// local imports
-//styles
-import styles from "./Products.module.scss";
-import ContentfulImage from "../../../components/ContentfulImage";
-
-// data
-import AnimationBox from "../AnimationBox";
-
-// components
-import ProductButton from "./ProductButton";
+import Button from '../../../components/Button';
+import ContentfulImage from '../../../components/ContentfulImage';
+import styles from './Products.module.scss';
 
 const Products = ({ categories = [] }) => {
   const availableCategories = Array.isArray(categories)
@@ -21,44 +14,62 @@ const Products = ({ categories = [] }) => {
     : [];
 
   return (
-    <div className={styles.products}>
-      <h2 className={`title ${styles.title}`}>Nuestros productos</h2>
-      <ul className={styles.productsCategories}>
-        {availableCategories.map((category) => {
-          return (
-            <li key={category.slug} className={styles.productsCategory}>
-              <Link href={`/productos?category=${category.slug}`}>
-                <div>
-                  <AnimationBox animation="fade-in-from-bottom">
-                    <div className={styles.image}>
-                      <ContentfulImage
-                        src={category.image.url}
-                        alt={category.image.title || category.label}
-                        width={100}
-                        height={100}
-                        sizes="(min-width: 1024px) 25vw, 100vw"
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          objectFit: "contain",
-                        }}
-                      />
-                    </div>
-                  </AnimationBox>
-                  <div className={styles.productsCategoryContent}>
-                    <AnimationBox animation="fade-in-from-bottom">
-                      <div className="flex-center-column">
-                        <ProductButton text={category.label} />
-                      </div>
-                    </AnimationBox>
-                  </div>
+    <section className={styles.products} aria-labelledby='home-products-title'>
+      <div className={styles.heading}>
+        <div>
+          <p className={styles.eyebrow}>Elegí lo que necesita</p>
+          <h2 id='home-products-title'>Nuestros productos</h2>
+          <p className={styles.introduction}>
+            Recetas, proteínas, snacks y suplementos elaborados para sumar
+            variedad a su alimentación.
+          </p>
+        </div>
+        <Button
+          href='/productos'
+          variant='secondary'
+          iconEnd={<ArrowRight size={18} aria-hidden='true' />}
+          className={styles.viewAll}
+        >
+          Ver todo el catálogo
+        </Button>
+      </div>
+
+      {availableCategories.length ? (
+        <ul className={styles.categories}>
+          {availableCategories.map((category) => (
+            <li key={category.slug} className={styles.category}>
+              <Link
+                href={`/productos?category=${category.slug}`}
+                className={styles.categoryLink}
+              >
+                <div className={styles.imageFrame}>
+                  <ContentfulImage
+                    src={category.image.url}
+                    alt={category.image.title || category.label}
+                    width={640}
+                    height={480}
+                    sizes='(min-width: 1024px) 25vw, (min-width: 576px) 50vw, 100vw'
+                    className={styles.image}
+                  />
+                </div>
+                <div className={styles.categoryContent}>
+                  <h3>{category.label}</h3>
+                  <span>
+                    Explorar
+                    <ArrowRight size={17} aria-hidden='true' />
+                  </span>
                 </div>
               </Link>
             </li>
-          );
-        })}
-      </ul>
-    </div>
+          ))}
+        </ul>
+      ) : (
+        <p className={styles.emptyState}>
+          Estamos preparando nuestras categorías. Podés consultar el catálogo
+          completo mientras tanto.
+        </p>
+      )}
+    </section>
   );
 };
 

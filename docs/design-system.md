@@ -108,6 +108,28 @@ handles direct product lookup, so the catalogue does not repeat a search field.
 - A simple product exposes `Agregar`; one with presentation-based pricing uses
   `Ver opciones` so the customer chooses a size before adding it.
 
+### Home product discovery
+
+The home page presents available product categories as complete linked cards,
+not buttons layered over imagery. Each card contains a 4:3 image, category name,
+and the quiet action `Explorar`; a separate `Ver todo el catálogo` action serves
+customers who do not want to choose a category first. Use one column at 320 px,
+two from the small breakpoint, and four only on desktop.
+
+## Welcome and product principles
+
+The welcome section introduces DNAture through three concise principles:
+natural ingredients, purposeful formulation, and responsibly incorporated raw
+food. Icons are decorative; the heading and supporting text carry the meaning.
+Principle cards use one column on mobile, a balanced two-plus-one layout on
+tablet, and three equal columns on desktop. Avoid entrance animations that make
+basic product information depend on scrolling or motion.
+
+Copy must describe product characteristics without declaring DNAture the
+healthiest option, guaranteeing nutritional absorption, or implying that every
+recipe meets every animal's needs. More specific nutritional claims require the
+approved product formulation and clinical wording.
+
 ## Assisted checkout
 
 The checkout is a request-building flow, not an online transaction. Its content
@@ -191,6 +213,19 @@ long quote without the interface moving beneath them. Carousel tabs retain
 keyboard navigation and visible focus, while decorative quotation marks remain
 hidden from assistive technology. Never shorten, rewrite, or make new health
 claims inside an attributed customer quote.
+
+## DNAture system
+
+The home-page system section explains the product approach before presenting
+potential wellbeing outcomes. It pairs one ingredient photograph with a short
+description, three concrete product characteristics, and direct paths to the
+portion calculator and the full DNAture plan.
+
+Potential benefits use cautious, non-guaranteed language. Do not present food as
+a cure, promise clinical outcomes, or replace veterinary advice. Cards remain
+one column on mobile, two on tablet, and may use a balanced five-card layout on
+desktop. Avoid full-viewport promotional panels and fixed background images;
+they reduce readability and perform poorly on mobile devices.
 
 ## Footer
 
