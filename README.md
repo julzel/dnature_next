@@ -4,14 +4,16 @@ DNAture is a Spanish-language catalogue and ordering assistant for natural pet
 food. It uses Next.js 16 App Router, React 18, and Contentful’s GraphQL delivery
 API. Checkout reconciles products against the currently published catalogue,
 attempts to create a customer-side request image, and hands the conversation
-off to WhatsApp with a product-summary fallback. It does not verify or reserve
-inventory, submit an order to a DNAture
-backend, process payment, or track fulfillment.
+off to WhatsApp with a product-summary fallback. Avify supplies current prices
+and reported availability for linked products, but the site does not reserve
+inventory, submit an order to a DNAture backend, process payment, or track
+fulfillment.
 
 ## Requirements
 
 - Node.js `>=20.9 <25`
 - Contentful delivery credentials for non-fixture development
+- An Avify server token and location ID for current prices and availability
 
 ## Setup
 
@@ -42,11 +44,12 @@ NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=
 NEXT_PUBLIC_GOOGLE_ANALYTICS=
 ```
 
-Optional server-only Avify integration:
+Server-only Avify commerce reads:
 
 ```text
 AVIFY_API_KEY=
 AVIFY_GRAPHQL_URL=https://api.avify.com/graphql
+AVIFY_LOCATION_ID=1815
 ```
 
 `AVIFY_API_KEY`, `CONTENTFUL_DELIVERY_API_KEY`, and monitoring credentials are
@@ -55,9 +58,11 @@ the production GraphQL endpoint. Analytics requires an external consent manager
 to grant `dnature-analytics-consent`; setting a measurement ID alone does not
 load analytics.
 
-During local development, `/avify-test/` compares the uncached Contentful and
-Avify GraphQL catalogues, displays the products requiring reconciliation, and
-offers a CSV review export. The route returns a 404 in production.
+When Avify is unavailable, public content can still render with provisional
+Contentful values, but checkout stops instead of accepting a potentially stale
+price. During local development, `/avify-test/` compares the uncached Contentful
+and Avify GraphQL catalogues, displays the products requiring reconciliation,
+and offers a CSV review export. The route returns a 404 in production.
 
 See [operations documentation](docs/operations.md) for deployment, Maps,
 monitoring, security-header, and dependency-maintenance requirements.
@@ -111,5 +116,7 @@ The native `/sitemap.xml` route includes normalized catalogue product URLs, whil
 - [Engineering data and privacy inventory](docs/privacy.md)
 - [Contentful schema and slug governance](docs/integrations/contentful-governance.md)
 - [Contentful–Avify SKU contract](docs/integrations/contentful-avify-sku.md)
+- [Human guide to Avify](docs/integrations/avify-guide.md)
+- [Avify storefront implementation](docs/integrations/avify-storefront.md)
 - [Customer accounts implementation](docs/accounts/stage-1-implementation.md)
 - [Assisted-shopping implementation](docs/shopping-flow-implementation.md)

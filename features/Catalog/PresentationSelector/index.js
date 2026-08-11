@@ -9,21 +9,41 @@ export function convertObjectToArray(obj) {
   }));
 }
 
-export function getDefaultPresentation(presentations, productName = '') {
+export function getDefaultPresentation(
+  presentations,
+  productName = '',
+  presentationCommerce = {}
+) {
   const presentationArray = convertObjectToArray(presentations);
 
   if (!presentationArray.length) {
     return null;
   }
 
-  if (productName.toLowerCase() === 'dnature para gato') {
-    return presentationArray[1] || presentationArray[0];
+  const preferred =
+    productName.toLowerCase() === 'dnature para gato'
+      ? presentationArray[1] || presentationArray[0]
+      : presentationArray.find(({ size }) => size === '1kg') ||
+        presentationArray[0];
+
+  if (presentationCommerce?.[preferred.size]?.availability !== 'unavailable') {
+    return preferred;
   }
 
-  return presentationArray.find((presentation) => presentation.size === '1kg') || presentationArray[0];
+  return (
+    presentationArray.find(
+      ({ size }) =>
+        presentationCommerce?.[size]?.availability !== 'unavailable'
+    ) || preferred
+  );
 }
 
-const PresentationSelector = ({ presentations, selectedPresentation, onPresentationSelect }) => {
+const PresentationSelector = ({
+  presentations,
+  selectedPresentation,
+  onPresentationSelect,
+  presentationCommerce = {},
+}) => {
   const presentationArray = convertObjectToArray(presentations);
   const selectId = useId();
   const selectedValue = selectedPresentation || presentationArray[0] || null;
@@ -48,6 +68,9 @@ const PresentationSelector = ({ presentations, selectedPresentation, onPresentat
         {presentationArray.map(({ size }) => (
           <option value={size} key={size}>
             {size}
+            {presentationCommerce?.[size]?.availability === 'unavailable'
+              ? ' — sin existencias'
+              : ''}
           </option>
         ))}
       </select>

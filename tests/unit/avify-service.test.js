@@ -4,10 +4,12 @@ import {
   authenticateAvify,
   listAllAvifyProducts,
   listAvifyProducts,
+  listAvifyProductsBySkus,
 } from '../../services/avify';
 
 const originalApiKey = process.env.AVIFY_API_KEY;
 const originalGraphqlUrl = process.env.AVIFY_GRAPHQL_URL;
+const originalLocationId = process.env.AVIFY_LOCATION_ID;
 
 const jsonResponse = (payload, { ok = true, status = 200 } = {}) => ({
   ok,
@@ -19,6 +21,7 @@ describe('Avify server-only service', () => {
   beforeEach(() => {
     process.env.AVIFY_API_KEY = 'server-secret';
     delete process.env.AVIFY_GRAPHQL_URL;
+    delete process.env.AVIFY_LOCATION_ID;
     global.fetch = vi.fn();
   });
 
@@ -36,6 +39,12 @@ describe('Avify server-only service', () => {
       delete process.env.AVIFY_GRAPHQL_URL;
     } else {
       process.env.AVIFY_GRAPHQL_URL = originalGraphqlUrl;
+    }
+
+    if (originalLocationId === undefined) {
+      delete process.env.AVIFY_LOCATION_ID;
+    } else {
+      process.env.AVIFY_LOCATION_ID = originalLocationId;
     }
 
   });
@@ -165,7 +174,11 @@ describe('Avify server-only service', () => {
         type: 'configurable',
         price: 25,
         salePrice: 20,
+        taxPrice: 22.6,
+        taxPercentage: 13,
         qty: 8,
+        reserved: 2,
+        onDemand: false,
         status: 'ENABLED',
         categories: [{ id: 5, label: 'Recetas' }],
         children: [
@@ -178,6 +191,24 @@ describe('Avify server-only service', () => {
             price: 12,
             salePrice: 10,
             qty: 4,
+            reserved: 1,
+            onDemand: false,
+            attributes: [{ code: 'size', value: '500g' }],
+          },
+        ],
+        variantOptions: [
+          {
+            id: 44,
+            attributeCode: 'size',
+            name: 'Presentación',
+            type: 'select',
+            values: [
+              {
+                id: 45,
+                label: '500g',
+                productsSku: 'DOG-FOOD-01-500G',
+              },
+            ],
           },
         ],
         cost: 12,
@@ -193,7 +224,11 @@ describe('Avify server-only service', () => {
         type: 'configurable',
         name: 'Alimento natural',
         price: 20,
+        taxPrice: 22.6,
+        taxPercentage: 13,
         quantity: 8,
+        reserved: 2,
+        onDemand: false,
         status: 'ENABLED',
         categories: [{ id: 5, label: 'Recetas' }],
         variantCount: 1,
@@ -206,6 +241,24 @@ describe('Avify server-only service', () => {
             status: 'active',
             price: 10,
             quantity: 4,
+            reserved: 1,
+            onDemand: false,
+            attributes: [{ code: 'size', value: '500g' }],
+          },
+        ],
+        variantOptions: [
+          {
+            id: 44,
+            attributeCode: 'size',
+            name: 'Presentación',
+            type: 'select',
+            values: [
+              {
+                id: 45,
+                label: '500g',
+                productsSku: 'DOG-FOOD-01-500G',
+              },
+            ],
           },
         ],
       },
@@ -250,6 +303,9 @@ describe('Avify server-only service', () => {
     expect(body.query).toContain('query Products');
     expect(body.query).not.toContain('cost');
     expect(body.query).not.toContain('description');
+    expect(body.query).toContain('taxPercentage');
+    expect(body.query).toContain('reserved');
+    expect(body.query).toContain('variantOptions');
     expect(body.variables).toEqual({
       pageNum: 1,
       pageSize: 10,
@@ -325,6 +381,89 @@ describe('Avify server-only service', () => {
       totalCount: 0,
     });
     expect(global.fetch).toHaveBeenCalledTimes(2);
+  });
+
+  it('rejects a catalog whose later page hides the original total', async () => {
+    global.fetch
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: {
+            products: {
+              products: [
+                {
+                  id: 1,
+                  sku: 'SKU-1',
+                  name: 'Product 1',
+                  price: 10,
+                  qty: 1,
+                  children: [],
+                },
+              ],
+              pageSize: 100,
+              totalCount: 2,
+            },
+          },
+        })
+      )
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: {
+            products: {
+              products: [],
+              pageSize: 100,
+              totalCount: 0,
+            },
+          },
+        })
+      );
+
+    await expect(listAllAvifyProducts()).resolves.toMatchObject({
+      success: false,
+      code: 'AVIFY_CATALOG_INCOMPLETE',
+      developmentDetails: {
+        expectedTotal: 2,
+        receivedTotal: 1,
+      },
+    });
+  });
+
+  it('loads mapped SKUs in batches and reports missing mappings', async () => {
+    process.env.AVIFY_LOCATION_ID = '1815';
+    global.fetch.mockResolvedValue(
+      jsonResponse({
+        data: {
+          products: {
+            products: [
+              {
+                id: 1,
+                sku: 'SKU-1',
+                name: 'Product 1',
+                price: 10,
+                qty: 1,
+                children: [],
+              },
+            ],
+            pageSize: 2,
+            totalCount: 1,
+          },
+        },
+      })
+    );
+
+    await expect(
+      listAvifyProductsBySkus([' SKU-1 ', 'SKU-2', 'SKU-1'])
+    ).resolves.toMatchObject({
+      success: true,
+      products: [expect.objectContaining({ sku: 'SKU-1' })],
+      totalCount: 1,
+      missingSkus: ['SKU-2'],
+    });
+
+    const variables = JSON.parse(global.fetch.mock.calls[0][1].body).variables;
+    expect(variables).toMatchObject({
+      skus: ['SKU-1', 'SKU-2'],
+      locationId: 1815,
+    });
   });
 
   it('normalizes product-list options before sending them to Avify', async () => {

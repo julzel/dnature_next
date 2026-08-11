@@ -11,7 +11,7 @@ import {
   normalizeProductSlug,
 } from '../../../features/Catalog/server';
 
-export const revalidate = 120;
+export const revalidate = 60;
 
 const getProduct = unstable_cache(
   async (slug) => {
@@ -26,7 +26,7 @@ const getProduct = unstable_cache(
       description: formatProductDescription(product.description),
     };
   },
-  ['product-page'],
+  ['product-page-commerce-v1'],
   {
     revalidate,
     tags: ['products'],

@@ -75,6 +75,35 @@ const scoreCandidate = (contentful, avify) => {
 };
 
 const classifyContentfulProduct = (contentful, avifyProducts) => {
+  const persistedSku = contentful.avifySku?.trim();
+  const persistedProduct = persistedSku
+    ? avifyProducts.find(({ sku }) => sku === persistedSku)
+    : null;
+
+  if (persistedProduct) {
+    return {
+      contentful,
+      best: { avify: persistedProduct, exact: true, score: 1 },
+      second: null,
+      gap: 1,
+      status: 'matched',
+      persisted: true,
+      persistedMissing: false,
+    };
+  }
+
+  if (persistedSku) {
+    return {
+      contentful,
+      best: null,
+      second: null,
+      gap: 0,
+      status: 'review',
+      persisted: true,
+      persistedMissing: true,
+    };
+  }
+
   const candidates = avifyProducts
     .map((avify) => scoreCandidate(contentful, avify))
     .sort((left, right) => right.score - left.score);
@@ -95,6 +124,8 @@ const classifyContentfulProduct = (contentful, avifyProducts) => {
     second,
     gap,
     status,
+    persisted: false,
+    persistedMissing: false,
   };
 };
 
@@ -252,7 +283,7 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
   const variants = avifyProducts.flatMap((product) => product.variants || []);
   const reviewItems = matches
     .filter(({ status }) => status === 'review')
-    .map(({ contentful, best, second, gap }) => {
+    .map(({ contentful, best, second, gap, persistedMissing }) => {
       const hasUsefulCandidate = Boolean(
         best && best.score >= MINIMUM_REVIEW_CANDIDATE_SCORE
       );
@@ -283,6 +314,9 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
             second?.score >= MINIMUM_REVIEW_CANDIDATE_SCORE &&
             gap < 0.12
         ),
+        persistedSkuMissing: persistedMissing
+          ? contentful.avifySku
+          : null,
       };
     });
   const likelyItems = matches
@@ -297,7 +331,7 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
       score: best.score,
     }));
   const mappingItems = matches.map(
-    ({ contentful, best, second, gap, status }) => {
+    ({ contentful, best, second, gap, status, persisted, persistedMissing }) => {
       const hasUsefulCandidate = Boolean(
         best &&
           (status !== 'review' ||
@@ -335,7 +369,7 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
             hasUsefulCandidate &&
             pairedAvifyIds.has(String(best.avify.id))
         ),
-        approved: false,
+        approved: Boolean(persisted && !persistedMissing),
       };
     }
   );
@@ -357,6 +391,12 @@ const buildCatalogReconciliation = (contentfulProducts, avifyProducts) => {
       matched: matches.filter(({ status }) => status === 'matched').length,
       likely: likelyItems.length,
       needsReview: reviewItems.length,
+      persistedMappings: matches.filter(
+        ({ persisted, persistedMissing }) => persisted && !persistedMissing
+      ).length,
+      brokenPersistedMappings: matches.filter(
+        ({ persistedMissing }) => persistedMissing
+      ).length,
       reviewCandidateConflicts: reviewItems.filter(
         ({ candidateAlreadyPaired }) => candidateAlreadyPaired
       ).length,

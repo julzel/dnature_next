@@ -26,11 +26,19 @@ const ProductInfo = ({
   onRemoveOneItem,
   cartTotalItems,
   itemsInCart,
+  availability,
+  canAddToCart,
 }) => {
   const images = productDetail.images || [];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const selectedImage = images[selectedImageIndex] || images[0] || null;
   const hasMultipleImages = images.length > 1;
+  const availabilityCopy =
+    availability === 'available'
+      ? 'Disponible para solicitar'
+      : availability === 'unavailable'
+        ? 'Sin existencias registradas'
+        : 'Confirmamos disponibilidad al preparar tu solicitud';
 
   const selectPreviousImage = () => {
     setSelectedImageIndex((currentIndex) =>
@@ -167,8 +175,19 @@ const ProductInfo = ({
               presentations={productDetail.preciosPorUnidad}
               selectedPresentation={selectedPresentation}
               onPresentationSelect={handlePresentationSelect}
+              presentationCommerce={productDetail.commerce?.presentations}
             />
           </div>
+        )}
+
+        {productDetail.commerce && (
+          <p
+            className={`${styles.availability} ${styles[availability]}`}
+            role={availability === 'unavailable' ? 'status' : undefined}
+          >
+            <span aria-hidden='true' />
+            {availabilityCopy}
+          </p>
         )}
 
         <div className={styles.purchase}>
@@ -190,8 +209,13 @@ const ProductInfo = ({
               </output>
               <button
                 type='button'
-                aria-label={`Aumentar cantidad de ${productDetail.productName}`}
+                aria-label={
+                  canAddToCart
+                    ? `Aumentar cantidad de ${productDetail.productName}`
+                    : `Existencia máxima agregada de ${productDetail.productName}`
+                }
                 onClick={onAddToCart}
+                disabled={!canAddToCart}
               >
                 <Plus aria-hidden='true' size={22} strokeWidth={2.2} />
               </button>
@@ -200,11 +224,20 @@ const ProductInfo = ({
             <button
               type='button'
               className={styles.addButton}
-              aria-label={`Agregar ${productDetail.productName} al carrito`}
+              aria-label={
+                canAddToCart
+                  ? `Agregar ${productDetail.productName} al carrito`
+                  : `Sin existencias de ${productDetail.productName}`
+              }
               onClick={onAddToCart}
+              disabled={!canAddToCart}
             >
-              <ShoppingBag aria-hidden='true' size={20} strokeWidth={1.9} />
-              <span>Agregar al carrito</span>
+              {canAddToCart && (
+                <ShoppingBag aria-hidden='true' size={20} strokeWidth={1.9} />
+              )}
+              <span>
+                {canAddToCart ? 'Agregar al carrito' : 'Sin existencias'}
+              </span>
             </button>
           )}
 

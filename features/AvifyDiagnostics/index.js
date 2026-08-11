@@ -106,12 +106,13 @@ const AvifyDiagnostics = async () => {
         <h2 id="findings-heading">Hallazgos importantes</h2>
         <div className={styles.findings}>
           <article>
-            <strong>Falta una llave compartida</strong>
+            <strong>Llave compartida disponible</strong>
             <p>
-              Contentful no guarda SKU ni ID de Avify. Además,{' '}
-              {report.avifyHealth.missingBaseCustomSku} productos base y{' '}
-              {report.avifyHealth.missingVariantCustomSku} variantes no tienen{' '}
-              <code>customSku</code>; la unión debe usar el SKU generado.
+              {report.summary.persistedMappings} productos usan el campo{' '}
+              <code>avifySku</code> de Contentful. Hay{' '}
+              {report.summary.brokenPersistedMappings} vínculos guardados que
+              Avify no devolvió; la unión usa siempre el SKU generado del
+              producto padre, no el <code>customSku</code>.
             </p>
           </article>
           <article>

@@ -1,5 +1,5 @@
 import Products from '../../features/Catalog';
-import { getProductsWithDevelopmentPrices } from '../../features/Catalog/server';
+import { getProductsWithCommerceData } from '../../features/Catalog/server';
 import { createPageMetadata } from '../../constants/seo';
 
 export const revalidate = 120;
@@ -12,7 +12,7 @@ export const metadata = createPageMetadata({
 });
 
 const ProductsPage = async ({ searchParams }) => {
-  const products = await getProductsWithDevelopmentPrices();
+  const products = await getProductsWithCommerceData();
   const { category } = await searchParams;
 
   return <Products products={products} queryCategory={category} />;

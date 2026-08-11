@@ -37,7 +37,11 @@ const AVIFY_PRODUCTS_QUERY = `
         type
         price
         salePrice
+        taxPrice
+        taxPercentage
         qty
+        reserved
+        onDemand
         categories {
           id
           label
@@ -51,6 +55,23 @@ const AVIFY_PRODUCTS_QUERY = `
           price
           salePrice
           qty
+          reserved
+          onDemand
+          attributes {
+            code
+            value
+          }
+        }
+        variantOptions {
+          id
+          attributeCode
+          name
+          type
+          values {
+            id
+            label
+            productsSku
+          }
         }
       }
       pageSize
@@ -97,6 +118,11 @@ const getGraphqlUrl = () =>
     DEFAULT_AVIFY_GRAPHQL_URL,
     'AVIFY_GRAPHQL_URL'
   );
+
+const getAvifyLocationId = () => {
+  const value = Number(process.env.AVIFY_LOCATION_ID);
+  return Number.isInteger(value) && value > 0 ? value : null;
+};
 
 const getProductListOptions = (options) => {
   const safeOptions =
@@ -160,7 +186,16 @@ const toProductSummary = (product) => {
         : typeof safeProduct.price === 'number'
           ? safeProduct.price
           : null,
+    taxPrice:
+      typeof safeProduct.taxPrice === 'number' ? safeProduct.taxPrice : null,
+    taxPercentage:
+      typeof safeProduct.taxPercentage === 'number'
+        ? safeProduct.taxPercentage
+        : null,
     quantity: typeof safeProduct.qty === 'number' ? safeProduct.qty : null,
+    reserved:
+      typeof safeProduct.reserved === 'number' ? safeProduct.reserved : null,
+    onDemand: safeProduct.onDemand === true,
     status: typeof safeProduct.status === 'string' ? safeProduct.status : null,
     categories: Array.isArray(safeProduct.categories)
       ? safeProduct.categories.map((category) => ({
@@ -194,6 +229,43 @@ const toProductSummary = (product) => {
                 ? variant.price
                 : null,
           quantity: typeof variant?.qty === 'number' ? variant.qty : null,
+          reserved:
+            typeof variant?.reserved === 'number' ? variant.reserved : null,
+          onDemand: variant?.onDemand === true,
+          attributes: Array.isArray(variant?.attributes)
+            ? variant.attributes
+                .filter(
+                  (attribute) =>
+                    typeof attribute?.code === 'string' &&
+                    (typeof attribute?.value === 'string' ||
+                      typeof attribute?.value === 'number')
+                )
+                .map((attribute) => ({
+                  code: attribute.code,
+                  value: String(attribute.value),
+                }))
+            : [],
+        }))
+      : [],
+    variantOptions: Array.isArray(safeProduct.variantOptions)
+      ? safeProduct.variantOptions.map((option) => ({
+          id: option?.id ?? null,
+          attributeCode:
+            typeof option?.attributeCode === 'string'
+              ? option.attributeCode
+              : null,
+          name: typeof option?.name === 'string' ? option.name : null,
+          type: typeof option?.type === 'string' ? option.type : null,
+          values: Array.isArray(option?.values)
+            ? option.values.map((value) => ({
+                id: value?.id ?? null,
+                label: typeof value?.label === 'string' ? value.label : null,
+                productsSku:
+                  typeof value?.productsSku === 'string'
+                    ? value.productsSku
+                    : null,
+              }))
+            : [],
         }))
       : [],
   };
@@ -396,11 +468,12 @@ const listAvifyProducts = async (options) => {
 
 const listAllAvifyProducts = async () => {
   const products = [];
+  const seenSkus = new Set();
   let pageNum = 1;
-  let totalCount = 1;
+  let expectedTotal = null;
 
   while (
-    products.length < totalCount &&
+    (expectedTotal === null || products.length < expectedTotal) &&
     pageNum <= AVIFY_CATALOG_MAX_PAGES
   ) {
     let result = await listAvifyProducts({ pageNum, pageSize: 100 });
@@ -419,8 +492,18 @@ const listAllAvifyProducts = async () => {
       return result;
     }
 
-    totalCount = result.totalCount;
-    products.push(...result.products);
+    if (expectedTotal === null) {
+      expectedTotal = result.totalCount;
+    } else if (result.totalCount > expectedTotal) {
+      expectedTotal = result.totalCount;
+    }
+
+    for (const product of result.products) {
+      const sku = product.sku?.trim();
+      if (!sku || seenSkus.has(sku)) continue;
+      seenSkus.add(sku);
+      products.push(product);
+    }
 
     if (!result.products.length) {
       break;
@@ -429,10 +512,12 @@ const listAllAvifyProducts = async () => {
     pageNum += 1;
   }
 
-  if (products.length < totalCount) {
+  if (expectedTotal !== null && products.length < expectedTotal) {
     return failure(
       'AVIFY_CATALOG_INCOMPLETE',
-      'Avify devolvió un catálogo incompleto.'
+      'Avify devolvió un catálogo incompleto.',
+      null,
+      { expectedTotal, receivedTotal: products.length }
     );
   }
 
@@ -442,7 +527,7 @@ const listAllAvifyProducts = async () => {
     message: 'El catálogo completo de Avify se cargó correctamente.',
     status: 200,
     products,
-    totalCount,
+    totalCount: expectedTotal ?? products.length,
     variantCount: products.reduce(
       (total, product) => total + product.variantCount,
       0
@@ -450,4 +535,67 @@ const listAllAvifyProducts = async () => {
   };
 };
 
-export { authenticateAvify, listAllAvifyProducts, listAvifyProducts };
+const listAvifyProductsBySkus = async (skus, { locationId } = {}) => {
+  const uniqueSkus = [
+    ...new Set(
+      (Array.isArray(skus) ? skus : [])
+        .filter((sku) => typeof sku === 'string')
+        .map((sku) => sku.trim())
+        .filter(Boolean)
+    ),
+  ];
+
+  if (!uniqueSkus.length) {
+    return {
+      success: true,
+      code: 'AVIFY_PRODUCTS_LOADED',
+      message: 'No había productos de Avify por consultar.',
+      status: 200,
+      products: [],
+      totalCount: 0,
+      missingSkus: [],
+    };
+  }
+
+  const products = [];
+
+  for (let index = 0; index < uniqueSkus.length; index += 100) {
+    const batch = uniqueSkus.slice(index, index + 100);
+    const result = await listAvifyProducts({
+      pageNum: 1,
+      pageSize: batch.length,
+      skus: batch,
+      locationId:
+        Number.isInteger(locationId) && locationId > 0
+          ? locationId
+          : getAvifyLocationId(),
+    });
+
+    if (!result.success) return result;
+    products.push(...result.products);
+  }
+
+  const productsBySku = new Map(
+    products
+      .filter(({ sku }) => typeof sku === 'string' && sku.trim())
+      .map((product) => [product.sku.trim(), product])
+  );
+
+  return {
+    success: true,
+    code: 'AVIFY_PRODUCTS_LOADED',
+    message: 'Los productos de Avify se cargaron correctamente.',
+    status: 200,
+    products: [...productsBySku.values()],
+    totalCount: productsBySku.size,
+    missingSkus: uniqueSkus.filter((sku) => !productsBySku.has(sku)),
+  };
+};
+
+export {
+  authenticateAvify,
+  getAvifyLocationId,
+  listAllAvifyProducts,
+  listAvifyProducts,
+  listAvifyProductsBySkus,
+};

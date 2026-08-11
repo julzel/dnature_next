@@ -23,6 +23,8 @@ implementación; estos documentos explican contratos, decisiones y operación.
 - [Gobierno de Contentful](./integrations/contentful-governance.md): propiedad del esquema, slugs y publicación.
 - [Contentful–Avify](./integrations/contentful-avify-sku.md): contrato de SKU, verificación y recuperación.
 - [Referencia de la API de Avify](./integrations/avify-api-reference.md): términos, límites y vacíos conocidos.
+- [Avify explicado para el equipo](./integrations/avify-guide.md): propósito, recorrido y operación en lenguaje no técnico.
+- [Implementación de lectura de Avify](./integrations/avify-storefront.md): contrato técnico de precios, inventario y fallos.
 
 ## Cuentas de clientes
 

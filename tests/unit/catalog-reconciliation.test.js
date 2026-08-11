@@ -201,4 +201,62 @@ describe('catalog reconciliation', () => {
       }),
     ]);
   });
+
+  it('uses the persisted parent SKU before attempting name matching', () => {
+    const report = buildCatalogReconciliation(
+      [
+        contentfulProduct({
+          id: 'persisted',
+          name: 'Nombre editorial distinto',
+          slug: 'nombre-editorial-distinto',
+          avifySku: 'RIGHT-PARENT-SKU',
+        }),
+      ],
+      [
+        avifyProduct({
+          id: 'right',
+          sku: 'RIGHT-PARENT-SKU',
+          name: 'Nombre operativo de Avify',
+        }),
+        avifyProduct({
+          id: 'wrong',
+          sku: 'WRONG-PARENT-SKU',
+          name: 'Nombre editorial distinto',
+        }),
+      ]
+    );
+
+    expect(report.summary).toMatchObject({
+      matched: 1,
+      persistedMappings: 1,
+      brokenPersistedMappings: 0,
+    });
+    expect(report.mappingItems[0]).toMatchObject({
+      avifySku: 'RIGHT-PARENT-SKU',
+      approved: true,
+    });
+  });
+
+  it('flags a persisted SKU that Avify no longer returns', () => {
+    const report = buildCatalogReconciliation(
+      [
+        contentfulProduct({
+          id: 'missing-link',
+          avifySku: 'MISSING-PARENT-SKU',
+        }),
+      ],
+      [avifyProduct({ sku: 'OTHER-SKU' })]
+    );
+
+    expect(report.summary).toMatchObject({
+      needsReview: 1,
+      persistedMappings: 0,
+      brokenPersistedMappings: 1,
+    });
+    expect(report.reviewItems[0]).toMatchObject({
+      contentfulId: 'missing-link',
+      candidateName: null,
+      persistedSkuMissing: 'MISSING-PARENT-SKU',
+    });
+  });
 });

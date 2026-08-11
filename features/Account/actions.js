@@ -2,7 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 
-import { getProducts } from '../Catalog/server';
+import { getProductsWithCommerceData } from '../Catalog/server';
+import { reconcileCartItems } from '../Cart/server';
 import { getAccountContext } from './server';
 import {
   mapAddress,
@@ -248,61 +249,39 @@ const restoreSavedCartAction = async (cartId) => {
   if (error) return databaseError('Error reading cart for restoration', error);
 
   try {
-    const catalog = await getProducts();
-    const products = Object.values(catalog || {}).flatMap(
-      (category) => category.products || []
-    );
-    const byId = new Map(
-      products.map((product) => [String(product.sys?.id || ''), product])
-    );
-    const bySku = new Map(
-      products
-        .filter((product) => product.avifySku)
-        .map((product) => [String(product.avifySku).trim(), product])
-    );
+    const catalog = await getProductsWithCommerceData({ freshAvify: true });
     const sortedItems = (data.customer_saved_cart_items || [])
       .slice()
       .sort((left, right) => left.sort_order - right.sort_order);
-    let removedCount = 0;
-    let updatedPriceCount = 0;
+    const result = reconcileCartItems(
+      sortedItems.map((item) => ({
+        id: item.cart_item_key,
+        catalogProductId: item.product_id,
+        sku: item.sku || undefined,
+        productName: item.product_name_snapshot,
+        presentation: item.presentation_snapshot || '',
+        quantity: item.quantity,
+        price: item.unit_price_snapshot,
+        ...(item.image_url ? { image: item.image_url } : {}),
+      })),
+      catalog
+    );
 
-    const items = sortedItems.flatMap((item) => {
-      const product = byId.get(item.product_id) || bySku.get(item.sku);
-      if (!product) {
-        removedCount += 1;
-        return [];
-      }
+    if (result.avifyUnavailable) {
+      return {
+        ok: false,
+        code: 'AVIFY_UNAVAILABLE',
+        message:
+          'No pudimos consultar precios y disponibilidad en este momento. Intentá nuevamente.',
+      };
+    }
 
-      const presentation = item.presentation_snapshot || '';
-      const presentationPrices = product.preciosPorUnidad || null;
-      const currentPrice = presentationPrices
-        ? Number(presentationPrices[presentation])
-        : Number(product.precio);
-
-      if (!Number.isFinite(currentPrice) || currentPrice < 0) {
-        removedCount += 1;
-        return [];
-      }
-
-      if (currentPrice !== item.unit_price_snapshot) updatedPriceCount += 1;
-
-      return [
-        {
-          id: item.cart_item_key,
-          catalogProductId: product.sys.id,
-          sku: product.avifySku || item.sku || undefined,
-          productName: presentationPrices
-            ? `${product.productName} ${presentation}`.trim()
-            : product.productName,
-          presentation: presentation || product.medida || '',
-          quantity: item.quantity,
-          price: currentPrice,
-          ...(product.images?.[0]?.url
-            ? { image: product.images[0].url }
-            : {}),
-        },
-      ];
-    });
+    const {
+      items,
+      removedCount,
+      updatedPriceCount,
+      updatedQuantityCount,
+    } = result;
 
     if (!items.length) {
       return {
@@ -318,6 +297,9 @@ const restoreSavedCartAction = async (cartId) => {
         : '',
       updatedPriceCount
         ? `${updatedPriceCount} ${updatedPriceCount === 1 ? 'precio fue actualizado' : 'precios fueron actualizados'}`
+        : '',
+      updatedQuantityCount
+        ? `${updatedQuantityCount} ${updatedQuantityCount === 1 ? 'cantidad fue ajustada a la existencia disponible' : 'cantidades fueron ajustadas a la existencia disponible'}`
         : '',
     ].filter(Boolean);
 

@@ -19,6 +19,7 @@ const contentfulReconciliationQuery = `
         medida
         precio
         preciosPorUnidad
+        avifySku
         description
         ingredientes
         imageCollection(limit: 1) {
@@ -43,6 +44,10 @@ const toContentfulSummary = (product) => ({
     typeof product?.categorySlug === 'string' ? product.categorySlug : null,
   measure: typeof product?.medida === 'string' ? product.medida : null,
   price: typeof product?.precio === 'number' ? product.precio : null,
+  avifySku:
+    typeof product?.avifySku === 'string' && product.avifySku.trim()
+      ? product.avifySku.trim()
+      : null,
   unitPrices:
     product?.preciosPorUnidad &&
     typeof product.preciosPorUnidad === 'object' &&

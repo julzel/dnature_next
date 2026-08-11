@@ -186,7 +186,10 @@ const normalizeCartInput = (cart, label) => {
     const productId = cleanString(item?.id, 180);
     const productName = cleanString(item?.productName, 180);
     const presentation = cleanString(item?.presentation, 120);
-    const sku = cleanString(item?.sku || item?.avifySku, 120);
+    const sku = cleanString(
+      item?.parentSku || item?.sku || item?.avifySku,
+      120
+    );
     const imageUrl = cleanString(item?.image, 1000);
     const quantity = Number(item?.quantity);
     const unitPrice = Number(item?.price);

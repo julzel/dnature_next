@@ -15,6 +15,7 @@ must update this runbook when integrations change.
 | `CONTENTFUL_DELIVERY_API_KEY` | server only | Contentful delivery token |
 | `AVIFY_API_KEY` | server only | Avify API credential used by the server-only integration service |
 | `AVIFY_GRAPHQL_URL` | server only | Optional Avify GraphQL endpoint override; defaults to `https://api.avify.com/graphql` |
+| `AVIFY_LOCATION_ID` | server only | Positive Avify location ID used for location-specific inventory; production currently uses `1815` |
 | `NEXT_PUBLIC_SITE_URL` | public | Canonical production origin; defaults to `https://dnaturefood.com` |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | public | Browser Maps key |
 | `NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID` | public | Maps style identifier |
@@ -44,18 +45,19 @@ used as an availability monitor.
 Checkout prepares a request for manual coordination; it is not a payment or
 order-processing system. The application:
 
-1. reconciles product identity and price against the published Contentful
-   catalogue;
-2. collects only the fields required by the selected fulfillment option;
-3. attempts to generate a PNG in the customer's browser; and
-4. opens a prefilled WhatsApp conversation after the customer explicitly asks
+1. joins published Contentful content to Avify by approved parent SKU;
+2. reconciles current Avify price, exact variant and reported availability;
+3. collects only the fields required by the selected fulfillment option;
+4. attempts to generate a PNG in the customer's browser; and
+5. opens a prefilled WhatsApp conversation after the customer explicitly asks
    to continue.
 
-The catalogue check does not query Avify inventory or reserve stock. When
-available, the PNG is not uploaded, attached, or sent by the application; the
-WhatsApp text retains a limited product-summary fallback. DNAture staff must confirm
-availability, final amount, payment, location, and timing in WhatsApp before the
-request is treated as an order.
+The catalogue checks Avify inventory for location 1815 but does not reserve or
+modify stock. A positive signal can change before staff accepts the request.
+When available, the PNG is not uploaded, attached, or sent by the application;
+the WhatsApp text retains a limited product-summary fallback. DNAture staff must
+confirm availability, final amount, payment, location, and timing in WhatsApp
+before the request is treated as an order.
 
 The official WhatsApp number is centralized as E.164 digits in
 `constants/contact.js`. Changing it requires checking the header, contact
@@ -108,7 +110,8 @@ Chrome/Safari/Firefox. The assisted-shopping test must cover:
 - guest checkout and authenticated profile/address prefill without forcing a
   sign-in;
 - catalogue reconciliation with an unchanged item, changed price, removed
-  product, Contentful failure, and a second review after a change;
+  product, Avify failure, broken SKU mapping, exhausted variant, and a second
+  review after a change;
 - displayed subtotal, IVA, fulfillment amount, and estimated total;
 - edit-data and return-to-cart paths from the final review;
 - unique PNG download, correct visible request data, repeat download, and

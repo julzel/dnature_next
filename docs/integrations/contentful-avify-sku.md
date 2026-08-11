@@ -26,9 +26,14 @@ is the source of truth for entry IDs, approval state and SKU values.
 - `avifySku` stores the generated SKU of an Avify parent product.
 - It must never store `customSku` or a presentation/variant SKU.
 - Contentful owns editorial copy, slugs, images and merchandising content.
-- Avify owns current price, presentations, inventory and availability.
+- Avify owns current price, variants, inventory and availability. A Contentful
+  presentation uses Avify only when it resolves uniquely to one child variant;
+  otherwise the storefront keeps an explicitly provisional Contentful fallback.
 - A product without an approved mapping remains valid and uses the supported
   Contentful-only fallback.
+- The storefront reads only the mapped parent SKUs and uses the exact child SKU
+  when it can resolve a presentation. It must never guess a variant from a
+  similar product name.
 - Entry IDs are the stable join key during migration; names and slugs are not.
 
 ## Safety rules for future changes

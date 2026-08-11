@@ -157,4 +157,183 @@ describe('checkout catalog reconciliation', () => {
       requestedCount: MAX_CHECKOUT_ITEMS + 5,
     });
   });
+
+  it('uses the current Avify variant identity, price, and availability', () => {
+    const avifyCatalog = {
+      recipes: {
+        products: [
+          {
+            ...catalog.recipes.products[0],
+            preciosPorUnidad: { '500 g': 3750, '1 kg': 6900 },
+            commerce: {
+              integrationAvailable: true,
+              mapped: true,
+              parentSku: 'REC-1',
+              productId: 100,
+              presentations: {
+                '500 g': {
+                  availability: 'available',
+                  variantId: 101,
+                  variantSku: 'REC-1-500G',
+                  attributes: [{ code: 'size', value: '500g' }],
+                },
+                '1 kg': {
+                  availability: 'unavailable',
+                  variantId: 102,
+                  variantSku: 'REC-1-1KG',
+                  attributes: [{ code: 'size', value: '1kg' }],
+                },
+              },
+            },
+          },
+        ],
+      },
+    };
+
+    const result = reconcileCartItems(
+      [
+        {
+          catalogProductId: 'recipe-1',
+          presentation: '500 g',
+          quantity: 1,
+          price: 3500,
+        },
+        {
+          catalogProductId: 'recipe-1',
+          presentation: '1 kg',
+          quantity: 1,
+          price: 6500,
+        },
+      ],
+      avifyCatalog
+    );
+
+    expect(result).toEqual({
+      items: [
+        expect.objectContaining({
+          sku: 'REC-1-500G',
+          parentSku: 'REC-1',
+          avifyProductId: 100,
+          avifyVariantId: 101,
+          avifyAttributes: [{ code: 'size', value: '500g' }],
+          price: 3750,
+        }),
+      ],
+      removedCount: 1,
+      updatedPriceCount: 1,
+    });
+  });
+
+  it('does not let checkout continue with stale prices when Avify is down', () => {
+    const unavailableCatalog = {
+      snacks: {
+        products: [
+          {
+            ...catalog.snacks.products[0],
+            commerce: {
+              integrationAvailable: false,
+              mapped: false,
+              availability: 'unknown',
+            },
+          },
+        ],
+      },
+    };
+
+    expect(
+      reconcileCartItems(
+        [
+          {
+            catalogProductId: 'snack-1',
+            quantity: 1,
+            price: 2500,
+          },
+        ],
+        unavailableCatalog
+      )
+    ).toEqual({
+      items: [],
+      removedCount: 0,
+      updatedPriceCount: 0,
+      avifyUnavailable: true,
+    });
+  });
+
+  it('removes a product whose persisted Avify mapping no longer resolves', () => {
+    const brokenMappingCatalog = {
+      snacks: {
+        products: [
+          {
+            ...catalog.snacks.products[0],
+            commerce: {
+              integrationAvailable: true,
+              mapped: false,
+              mappingMissing: true,
+              availability: 'unknown',
+            },
+          },
+        ],
+      },
+    };
+
+    expect(
+      reconcileCartItems(
+        [
+          {
+            catalogProductId: 'snack-1',
+            quantity: 1,
+            price: 2500,
+          },
+        ],
+        brokenMappingCatalog
+      )
+    ).toEqual({
+      items: [],
+      removedCount: 1,
+      updatedPriceCount: 0,
+    });
+  });
+
+  it('reduces a stale cart quantity to the current sellable stock', () => {
+    const constrainedCatalog = {
+      snacks: {
+        products: [
+          {
+            ...catalog.snacks.products[0],
+            commerce: {
+              integrationAvailable: true,
+              mapped: true,
+              parentSku: 'SNACK-1',
+              productId: 500,
+              availability: 'available',
+              availableQuantity: 2,
+            },
+          },
+        ],
+      },
+    };
+
+    expect(
+      reconcileCartItems(
+        [
+          {
+            catalogProductId: 'snack-1',
+            quantity: 5,
+            price: 2500,
+          },
+        ],
+        constrainedCatalog
+      )
+    ).toEqual({
+      items: [
+        expect.objectContaining({
+          catalogProductId: 'snack-1',
+          quantity: 2,
+        }),
+      ],
+      removedCount: 0,
+      updatedPriceCount: 0,
+      updatedQuantityCount: 1,
+    });
+  });
 });

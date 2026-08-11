@@ -1,6 +1,6 @@
 'use server';
 
-import { getProducts } from '../Catalog/server';
+import { getProductsWithCommerceData } from '../Catalog/server';
 import {
   MAX_CHECKOUT_ITEMS,
   reconcileCartItems,
@@ -8,8 +8,17 @@ import {
 
 const reconcileCheckoutCartAction = async (items) => {
   try {
-    const catalog = await getProducts();
+    const catalog = await getProductsWithCommerceData({ freshAvify: true });
     const result = reconcileCartItems(items, catalog);
+
+    if (result.avifyUnavailable) {
+      return {
+        ok: false,
+        code: 'AVIFY_UNAVAILABLE',
+        message:
+          'No pudimos consultar precios y disponibilidad en este momento. Intentá nuevamente.',
+      };
+    }
 
     if (result.exceedsLimit) {
       return {
@@ -35,6 +44,9 @@ const reconcileCheckoutCartAction = async (items) => {
         : '',
       result.updatedPriceCount
         ? `${result.updatedPriceCount} ${result.updatedPriceCount === 1 ? 'precio cambió' : 'precios cambiaron'}`
+        : '',
+      result.updatedQuantityCount
+        ? `${result.updatedQuantityCount} ${result.updatedQuantityCount === 1 ? 'cantidad se ajustó a la existencia disponible' : 'cantidades se ajustaron a la existencia disponible'}`
         : '',
     ].filter(Boolean);
 

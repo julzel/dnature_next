@@ -5,10 +5,14 @@ test('home → catalogue → prepared request → WhatsApp handoff', async ({ pa
   await page.goto('/');
   await page.getByRole('link', { name: 'Explorar productos' }).click();
   await expect(page).toHaveURL(/\/productos/);
+  await expect(
+    page.getByText('Disponible para solicitar').first()
+  ).toBeVisible();
 
   await page.getByRole('link', { name: 'Ver Receta de prueba' }).click();
   await expect(page).toHaveURL(/\/productos\/receta-de-prueba\/?$/);
   await expect(page.getByRole('heading', { name: 'Receta de prueba' })).toBeVisible();
+  await expect(page.getByText('Disponible para solicitar')).toBeVisible();
 
   await page
     .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })

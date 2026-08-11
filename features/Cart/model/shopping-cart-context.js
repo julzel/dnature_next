@@ -80,6 +80,34 @@ const normalizeItem = (item) => {
     normalizedItem.sku = item.sku;
   }
 
+  if (typeof item.parentSku === 'string' && item.parentSku.trim()) {
+    normalizedItem.parentSku = item.parentSku;
+  }
+
+  if (
+    typeof item.avifyProductId === 'string' ||
+    typeof item.avifyProductId === 'number'
+  ) {
+    normalizedItem.avifyProductId = item.avifyProductId;
+  }
+
+  if (
+    typeof item.avifyVariantId === 'string' ||
+    typeof item.avifyVariantId === 'number'
+  ) {
+    normalizedItem.avifyVariantId = item.avifyVariantId;
+  }
+
+  if (Array.isArray(item.avifyAttributes)) {
+    normalizedItem.avifyAttributes = item.avifyAttributes
+      .filter(
+        (attribute) =>
+          typeof attribute?.code === 'string' &&
+          typeof attribute?.value === 'string'
+      )
+      .map(({ code, value }) => ({ code, value }));
+  }
+
   if (
     typeof item.catalogProductId === 'string' &&
     item.catalogProductId.trim()

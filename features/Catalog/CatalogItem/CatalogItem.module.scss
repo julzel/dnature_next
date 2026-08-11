@@ -99,13 +99,6 @@
   padding-top: 14px;
 }
 
-.priceUnavailable {
-  color: $davys-gray;
-  font-family: $regular;
-  font-size: 10px;
-  letter-spacing: 0;
-}
-
 .presentation {
   color: $davys-gray;
   font-family: $regular;
@@ -113,6 +106,36 @@
   line-height: 1.4;
   margin-top: 4px;
   min-height: 17px;
+}
+
+.availability {
+  align-items: center;
+  display: flex;
+  font-family: $regular;
+  font-size: 11px;
+  gap: 7px;
+  line-height: 1.4;
+  margin-top: 9px;
+
+  span {
+    background: currentColor;
+    border-radius: 50%;
+    flex: 0 0 7px;
+    height: 7px;
+    width: 7px;
+  }
+}
+
+.available {
+  color: #28774d;
+}
+
+.unavailable {
+  color: #9d3e2f;
+}
+
+.unknown {
+  color: $davys-gray;
 }
 
 .cardFooter {
@@ -146,6 +169,11 @@
     &:hover,
     &:focus-visible {
       background: rgba($white, 0.14);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.48;
     }
   }
 
@@ -185,6 +213,14 @@
     background: rgba($lightBlue, 0.14);
     border-color: $accent-color-teal;
     color: $accent-color-teal;
+  }
+
+  &:disabled {
+    background: #f4f1ed;
+    border-color: rgba($davys-gray, 0.3);
+    box-shadow: none;
+    color: $davys-gray;
+    cursor: not-allowed;
   }
 }
 

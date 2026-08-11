@@ -20,8 +20,8 @@ const CatalogItem = ({ product }) => {
     urlSlug,
     medida,
     category,
-    developmentPriceComparison,
     avifySku,
+    commerce,
   } = product;
   const hasPriceByUnit = !!preciosPorUnidad;
   const { addOneItem, getItemsInCart, removeOneItem } = useCartContext();
@@ -36,20 +36,35 @@ const CatalogItem = ({ product }) => {
     hasPriceByUnit && lowestPresentationPrice !== null
       ? lowestPresentationPrice
       : precio;
+  const availability = commerce?.availability || 'unknown';
+  const canAddToCart = availability !== 'unavailable';
+  const availabilityCopy =
+    availability === 'available'
+      ? 'Disponible para solicitar'
+      : availability === 'unavailable'
+        ? 'Sin existencias registradas'
+        : 'Confirmamos disponibilidad';
 
   const addItemToCart = () => {
-    addOneItem(
-      new ShoppingCartItem(
-        id,
-        1,
-        precio,
-        productName,
-        itemImage?.url,
-        medida,
-        avifySku,
-        id
-      )
+    if (!canAddToCart) return;
+
+    const item = new ShoppingCartItem(
+      id,
+      1,
+      precio,
+      productName,
+      itemImage?.url,
+      medida,
+      avifySku,
+      id
     );
+
+    if (commerce?.mapped) {
+      item.parentSku = commerce.parentSku;
+      item.avifyProductId = commerce.productId;
+    }
+
+    addOneItem(item);
   };
 
   const removeItemFromCart = () => {
@@ -57,6 +72,10 @@ const CatalogItem = ({ product }) => {
   };
 
   const itemsInCart = getItemsInCart(id);
+  const canIncreaseQuantity =
+    canAddToCart &&
+    (!Number.isFinite(commerce?.availableQuantity) ||
+      itemsInCart < commerce.availableQuantity);
 
   const productPath = getProductPath(urlSlug);
 
@@ -89,25 +108,24 @@ const CatalogItem = ({ product }) => {
         <Link href={productPath} className={styles.productName}>
           {productName}
         </Link>
-        {developmentPriceComparison ? (
-          <p className={styles.price} aria-label={`Precio de ${productName}`}>
-            {Number.isFinite(developmentPriceComparison.avifyPrice) ? (
-              <CurrencyText value={developmentPriceComparison.avifyPrice} />
-            ) : (
-              <span className={styles.priceUnavailable}>No disponible</span>
-            )}
-          </p>
-        ) : (
-          <p className={styles.price}>
-            {hasPriceByUnit && lowestPresentationPrice !== null ? 'Desde ' : ''}
-            <CurrencyText value={displayPrice} />
-          </p>
-        )}
+        <p className={styles.price}>
+          {hasPriceByUnit && lowestPresentationPrice !== null ? 'Desde ' : ''}
+          <CurrencyText value={displayPrice} />
+        </p>
         <p className={styles.presentation}>
           {hasPriceByUnit
             ? 'Elegí una presentación'
             : medida || 'Presentación disponible'}
         </p>
+        {commerce && (
+          <p
+            className={`${styles.availability} ${styles[availability]}`}
+            role={availability === 'unavailable' ? 'status' : undefined}
+          >
+            <span aria-hidden='true' />
+            {availabilityCopy}
+          </p>
+        )}
         <div className={styles.cardFooter}>
           {hasPriceByUnit ? (
             <Link href={productPath} className={styles.optionsLink}>
@@ -131,8 +149,13 @@ const CatalogItem = ({ product }) => {
               </output>
               <button
                 type='button'
-                aria-label={`Aumentar cantidad de ${productName}`}
+                aria-label={
+                  canIncreaseQuantity
+                    ? `Aumentar cantidad de ${productName}`
+                    : `Existencia máxima agregada de ${productName}`
+                }
                 onClick={addItemToCart}
+                disabled={!canIncreaseQuantity}
               >
                 <Plus aria-hidden='true' size={20} strokeWidth={2.2} />
               </button>
@@ -141,11 +164,20 @@ const CatalogItem = ({ product }) => {
             <button
               type='button'
               className={styles.addButton}
-              aria-label={`Agregar ${productName} al carrito`}
+              aria-label={
+                canAddToCart
+                  ? `Agregar ${productName} al carrito`
+                  : `Sin existencias de ${productName}`
+              }
               onClick={addItemToCart}
+              disabled={!canAddToCart}
             >
-              <Plus aria-hidden='true' size={20} strokeWidth={2.2} />
-              <span>Agregar al carrito</span>
+              {canAddToCart && (
+                <Plus aria-hidden='true' size={20} strokeWidth={2.2} />
+              )}
+              <span>
+                {canAddToCart ? 'Agregar al carrito' : 'Sin existencias'}
+              </span>
             </button>
           )}
         </div>

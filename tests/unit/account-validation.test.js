@@ -123,7 +123,8 @@ describe('customer account input boundaries', () => {
           {
             id: 'contentful-id-1kg',
             catalogProductId: 'contentful-id',
-            sku: 'SKU-1',
+            sku: 'SKU-1-VARIANT',
+            parentSku: 'SKU-1',
             productName: 'Receta 1kg',
             presentation: '1kg',
             quantity: 2,
