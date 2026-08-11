@@ -1,22 +1,18 @@
-import { ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 import Button from '../../../../components/Button';
 import styles from './HeroCta.module.scss';
 
 const HeroCta = () => (
-  <div className={styles.ctaPositioner}>
+  <div className={styles.actions}>
     <Button
-      className={styles.cta}
+      className={styles.primaryAction}
       href="/productos"
-      iconEnd={
-        <span className={styles.arrowBadge}>
-          <ChevronRight aria-hidden="true" strokeWidth={3} />
-        </span>
-      }
+      iconEnd={<ArrowRight aria-hidden='true' size={18} strokeWidth={2.5} />}
       size="large"
       variant="primary"
     >
-      Comprar ahora
+      Explorar productos
     </Button>
   </div>
 );

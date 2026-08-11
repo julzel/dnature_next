@@ -1,26 +1,23 @@
-// TODO
-// incluir detalle para pop up window
-
 const benefits = [
   {
-    title: "Digestión Óptima y Defensas Fuertes",
-    text: "Mejora la digestión y absorción de nutrientes. Además fortalece el sistema inmunológico."
+    title: 'Digestión y nutrición',
+    text: 'Una dieta completa y adecuada puede apoyar la digestión y el aprovechamiento de nutrientes.',
   },
   {
-    title: "Sonrisa Radiante y Belleza Natural",
-    text: "Fomenta la salud dental con menos placa, sarro y aliento fresco. También promueve una piel y pelaje saludables, fuertes y brillantes."
+    title: 'Piel y pelaje',
+    text: 'Ingredientes de calidad aportan nutrientes importantes para mantener una piel y un pelaje saludables.',
   },
   {
-    title: "Energía, Alegría y Peso Ideal",
-    text: "Ayuda al control de peso ideal, y aumenta la energía y vitalidad para un estilo de vida activo y feliz."
+    title: 'Condición corporal',
+    text: 'Una porción ajustada ayuda a acompañar una condición corporal adecuada y un estilo de vida activo.',
   },
   {
-    title: "Menos Alergias",
-    text: "Reduce alergias y sensibilidades para una vida más tranquila y plena."
+    title: 'Ingredientes identificables',
+    text: 'Conocer los ingredientes facilita elegir alternativas junto con un profesional cuando existen sensibilidades.',
   },
   {
-    title: "Higiene y Bienestar",
-    text: "Mejora la calidad y consistencia de las heces, favoreciendo la higiene y el bienestar general."
+    title: 'Rutina y acompañamiento',
+    text: 'Una transición ordenada y el seguimiento de cambios ayudan a construir una rutina de alimentación responsable.',
   },
 ];
 

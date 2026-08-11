@@ -1,93 +1,231 @@
-@use '../../../styles/_variables' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 .hero {
-    height: 50vh;
-    position: relative;
-    overflow: hidden;
-
-    &Filter {
-        background-color: rgba(0, 0, 0, 0);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        animation: filter-animation 300ms ease-out 1200ms 1 normal forwards;
-    }
-
-    &Background {
-        background: url('../../../public/faq/faq.jpg') no-repeat;
-        background-position: 50%;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0.1;
-        transform: scale();
-        animation: background-animation 1300ms ease-out 250ms 1 normal forwards;
-    }
-
-    &Title {
-        color: $white;
-        font-family: $bold;
-        font-size: 28px;
-        line-height: 34px;
-        z-index: 1;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(2.5);
-        text-align: center;
-        text-shadow: 1px 1px rgba(33,33,33,.25);
-        position: relative;
-        opacity: 0;
-        animation: title-animation 750ms ease-out 1200ms 1 normal forwards;
-
-        span {
-            position: relative;
-            color: $green;
-            display: inline-block;
-            font-family: $cursiveTitle;
-            font-size: 40px;
-            letter-spacing: 3px;
-            line-height: 50px;
-            margin-bottom: 5px;
-            position: relative;
-            text-decoration: underline;
-        }
-    }
+  background:
+    radial-gradient(circle at 8% 10%, rgba($lightBlue, 0.2), transparent 30%),
+    radial-gradient(circle at 94% 92%, rgba($lightOrange, 0.16), transparent 28%),
+    #f8f8f3;
+  overflow: hidden;
+  padding: 40px 16px 52px;
 }
 
-@keyframes background-animation {
-    0% {
-        opacity: 0.1;
-        transform: scale(0);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1.2);
-    }
+.shell {
+  display: grid;
+  gap: 34px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
-@keyframes filter-animation {
-    from {
-        background-color: rgba(0, 0, 0, 0);
-    }
-    to {
-        background-color: rgba(0, 0, 0, 0.6);
-    }
+.copy {
+  align-self: center;
 }
 
-@keyframes title-animation {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(2.5);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
+.breadcrumbs {
+  margin-bottom: 22px;
+}
+
+.breadcrumbs ol {
+  align-items: center;
+  color: $dim-gray;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $regular2;
+  font-size: 11px;
+  gap: 8px;
+}
+
+.breadcrumbs li + li::before {
+  color: $lightGray;
+  content: '/';
+  margin-right: 8px;
+}
+
+.breadcrumbs a {
+  color: $accessibleBlue;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+
+.breadcrumbs a:hover {
+  text-decoration-color: currentColor;
+}
+
+.eyebrow {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.copy h1 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: clamp(36px, 11vw, 64px);
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+  max-width: 680px;
+  text-wrap: balance;
+}
+
+.intro {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 15px;
+  line-height: 1.72;
+  margin-top: 18px;
+  max-width: 650px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.primaryAction,
+.secondaryAction {
+  align-items: center;
+  border-radius: $br-full;
+  display: inline-flex;
+  font-family: $bold2;
+  font-size: 14px;
+  gap: 9px;
+  justify-content: center;
+  min-height: 48px;
+  padding: 11px 20px;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.primaryAction {
+  background: $accessibleBlue;
+  color: $white;
+}
+
+.secondaryAction {
+  background: rgba($white, 0.74);
+  border: 1px solid rgba($accent-color-teal, 0.18);
+  color: $accent-color-teal;
+}
+
+.primaryAction:hover,
+.secondaryAction:hover {
+  transform: translateY(-2px);
+}
+
+.primaryAction:hover {
+  background: $primary-hover;
+}
+
+.secondaryAction:hover {
+  border-color: $accessibleBlue;
+  color: $accessibleBlue;
+}
+
+.scopeNote {
+  border-left: 3px solid $green;
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 12px;
+  line-height: 1.55;
+  margin-top: 22px;
+  max-width: 620px;
+  padding-left: 12px;
+}
+
+.visual {
+  aspect-ratio: 5 / 4;
+  border-radius: $br-xxxl;
+  box-shadow: 0 24px 60px rgba($accent-color-teal, 0.17);
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.visual::after {
+  background: linear-gradient(180deg, transparent 48%, rgba($accent-color-teal, 0.86));
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center 44%;
+}
+
+.visual figcaption {
+  bottom: 0;
+  color: rgba($white, 0.82);
+  font-family: $regular2;
+  font-size: 12px;
+  left: 0;
+  line-height: 1.5;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.visual figcaption span {
+  color: $white;
+  display: block;
+  font-family: $bold2;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+@include mdq(sm) {
+  .hero {
+    padding-inline: 24px;
+  }
+
+  .actions {
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+@include mdq(md) {
+  .hero {
+    padding-block: 64px 72px;
+  }
+
+  .shell {
+    align-items: center;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+    gap: clamp(42px, 6vw, 88px);
+  }
+
+  .visual {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@include mdq(lg) {
+  .hero {
+    padding-block: 78px 88px;
+  }
+
+  .intro {
+    font-size: 17px;
+  }
+
+  .visual figcaption {
+    font-size: 13px;
+    padding: 28px;
+  }
+
+  .visual figcaption span {
+    font-size: 18px;
+  }
 }

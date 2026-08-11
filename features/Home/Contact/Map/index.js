@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { MapPin } from 'lucide-react';
 
 // local imports
 import styles from './Map.module.scss';
 import { STORE_LOCATION } from '../../../../constants/store';
 const MAP_ID = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID';
+const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
 let loaderConfigured = false;
 
@@ -13,11 +15,15 @@ const Map = () => {
   const container = useRef(null);
   const googlemap = useRef(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [status, setStatus] = useState(
+    GOOGLE_MAPS_API_KEY ? 'idle' : 'unavailable'
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          if (GOOGLE_MAPS_API_KEY) setStatus('loading');
           setShouldLoad(true);
           observer.disconnect();
         }
@@ -30,7 +36,7 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
-    if (!shouldLoad) return undefined;
+    if (!shouldLoad || !GOOGLE_MAPS_API_KEY) return undefined;
 
     let cancelled = false;
     let marker;
@@ -40,7 +46,7 @@ const Map = () => {
 
       if (!loaderConfigured) {
         setOptions({
-          key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+          key: GOOGLE_MAPS_API_KEY,
           v: 'weekly',
           mapIds: [MAP_ID],
         });
@@ -69,10 +75,13 @@ const Map = () => {
         map,
         title: 'DNAture. #1 en alimentación natural para mascotas',
       });
+
+      setStatus('ready');
     };
 
     initializeMap().catch((error) => {
       console.error('Failed to load Google Map:', error);
+      if (!cancelled) setStatus('error');
     });
 
     return () => {
@@ -83,9 +92,37 @@ const Map = () => {
     };
   }, [shouldLoad]);
 
+  const isReady = status === 'ready';
+  const statusMessage =
+    status === 'loading'
+      ? 'Cargando ubicación…'
+      : 'Ubicación de DNAture';
+
   return (
-    <div id="store-map" ref={container} className={styles.storeMap}>
-      <div id="map" ref={googlemap} className={styles.map} />
+    <div
+      id='store-map'
+      ref={container}
+      className={styles.storeMap}
+      role='region'
+      aria-label='Mapa de la ubicación de DNAture'
+    >
+      <div
+        id='map'
+        ref={googlemap}
+        className={`${styles.map} ${isReady ? styles.mapReady : ''}`}
+      />
+      {!isReady ? (
+        <div
+          className={styles.mapFallback}
+          role={status === 'error' || status === 'unavailable' ? 'status' : undefined}
+        >
+          <span aria-hidden='true'>
+            <MapPin size={28} strokeWidth={1.8} />
+          </span>
+          <strong>{statusMessage}</strong>
+          <small>Colima de Tibás, San José</small>
+        </div>
+      ) : null}
     </div>
   );
 };

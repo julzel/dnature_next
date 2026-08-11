@@ -1,7 +1,7 @@
 import styles from "./HeroTitle.module.scss";
 
 const HeroTitle = () => (
-  <h1 className={styles.title}>
+  <h1 id='home-hero-title' className={styles.title}>
     <span className={styles.line}>
       La forma <span className={styles.natural}>natural</span>
     </span>

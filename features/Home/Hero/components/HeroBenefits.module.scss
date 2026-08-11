@@ -1,68 +1,40 @@
-@use "../../../../styles/mixins" as *;
-@use "../../../../styles/variables"  as *;
+@use '../../../../styles/mixins' as *;
+@use '../../../../styles/variables' as *;
 
 .benefits {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(41, 67, 78, 0.08);
-  border-radius: 2rem;
-  box-sizing: border-box;
-  box-shadow: 0 10px 30px rgba(41, 67, 78, 0.08);
+  background: rgba($white, 0.98);
+  border: 1px solid rgba($accent-color-teal, 0.09);
+  border-radius: $br-xxxl;
+  box-shadow: 0 18px 42px rgba($accent-color-teal, 0.11);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   list-style: none;
   margin: 0;
   overflow: hidden;
-  padding: 0.5rem;
-  width: 100%;
-
-  @include mdq(lg) {
-    max-width: 50%;
-    padding: 0.75rem 1rem;
-  }
+  padding: 8px;
 }
 
 .benefit {
   align-items: center;
   display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
+  gap: 9px;
   min-width: 0;
-  padding: 0.75rem 0.25rem;
-  text-align: center;
+  padding: 12px 8px;
+}
 
-  & + & {
-    border-left: 1px solid rgba(41, 67, 78, 0.12);
-  }
+.benefit:nth-child(even) {
+  border-left: 1px solid rgba($accent-color-teal, 0.1);
+}
 
-  @include mdq(sm) {
-    gap: 0.6rem;
-    padding: 0.9rem 0.5rem;
-  }
-
-  @include mdq(lg) {
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: 2rem minmax(0, 1fr);
-    padding: 0.75rem 0.5rem;
-    text-align: left;
-  }
+.benefit:nth-child(n + 3) {
+  border-top: 1px solid rgba($accent-color-teal, 0.1);
 }
 
 .icon {
-  color: #087f83;
+  color: $accessibleBlue;
   flex: 0 0 auto;
-  height: 1rem;
-  width: 1rem;
-
-  @include mdq(sm) {
-    height: 2rem;
-    width: 2rem;
-  }
-
-  @include mdq(lg) {
-    height: clamp(2rem, 2.4vw, 2.6rem);
-    width: clamp(2rem, 2.4vw, 2.6rem);
-  }
+  height: 22px;
+  width: 22px;
 }
 
 .copy {
@@ -74,31 +46,56 @@
 
 .title,
 .description {
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-
-  @include mdq(lg) {
-    letter-spacing: normal;
-  }
+  overflow-wrap: anywhere;
 }
 
 .title {
-  color: #20373e;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(0.45rem, 1.96vw, 0.5rem);
-
-  @include mdq(lg) {
-    font-family: $bold;
-    font-size: clamp(0.68rem, 0.88vw, 0.8rem);
-  }
+  color: $accent-color-teal;
+  font-family: $bold;
+  font-size: 10px;
 }
 
 .description {
-  color: #49656b;
-  font-family: "Poppins", sans-serif;
-  font-size: clamp(0.432rem, 1.88vw, 0.48rem);
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 9px;
+}
 
-  @include mdq(lg) {
-    font-size: clamp(0.64rem, 0.8vw, 0.736rem);
+@include mdq(sm) {
+  .benefit {
+    gap: 12px;
+    padding: 15px 14px;
+  }
+
+  .icon {
+    height: 28px;
+    width: 28px;
+  }
+
+  .title {
+    font-size: 12px;
+  }
+
+  .description {
+    font-size: 11px;
+  }
+}
+
+@include mdq(md) {
+  .benefits {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 10px 14px;
+  }
+
+  .benefit {
+    padding: 16px;
+  }
+
+  .benefit:nth-child(n + 3) {
+    border-top: 0;
+  }
+
+  .benefit + .benefit {
+    border-left: 1px solid rgba($accent-color-teal, 0.1);
   }
 }

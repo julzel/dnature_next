@@ -1,10 +1,10 @@
 @use '../../../../styles/variables' as *;
 
 .paragraph {
-  color: $darkGray;
-  font-family: $regular;
+  color: $dim-gray;
+  font-family: $regular2;
   font-size: 16px;
   line-height: 1.7;
   margin: 0;
-  max-width: 38rem;
+  max-width: 34rem;
 }

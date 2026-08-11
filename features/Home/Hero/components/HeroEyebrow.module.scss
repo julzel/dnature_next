@@ -3,30 +3,30 @@
 
 .heroEyebrow {
   align-items: center;
-  background: rgba($white, 0.35);
-  // border: 1px solid rgba($white, 0.72);
+  background: rgba($white, 0.78);
+  border: 1px solid rgba($accent-color-teal, 0.08);
   border-radius: $br-full;
   box-shadow: 0 8px 24px rgba($accent-color-teal, 0.06);
   color: $accessibleBlue;
   display: inline-flex;
   font-family: $light;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   gap: 10px;
   letter-spacing: 0.11em;
   line-height: 1.35;
-  margin-bottom: 16px;
+  margin-bottom: 22px;
   max-width: 100%;
-  padding: 10px 18px 10px 54px;
+  padding: 10px 14px 10px 48px;
   position: relative;
   text-align: center;
   text-transform: uppercase;
   width: fit-content;
 
   @include mdq(md) {
-    font-size: 13px;
+    font-size: 11px;
     margin-bottom: 28px;
-    padding: 14px 22px 14px 62px;
+    padding: 12px 18px 12px 54px;
     white-space: nowrap;
   }
 }
@@ -44,6 +44,6 @@
 }
 
 .icon {
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 16px;
 }

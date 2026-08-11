@@ -1,79 +1,544 @@
-@use '../../../styles/_variables' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
 .faq {
-    padding: 40px 20px;
+  background: $background-color;
+  padding: 64px 16px 80px;
+  scroll-margin-top: 170px;
+}
 
-    &List {
-        margin: 0 auto;
-        max-width: 600px;
-    }
+.heading,
+.searchWrap,
+.mobileFilters,
+.layout {
+  margin-inline: auto;
+  max-width: 1200px;
+}
 
-    &QuestionBlock {
-        border-bottom: 1px solid #f8f8f8;
-        transition: background-color 200ms linear;
-        h3 {
-            margin: 0;
+.heading {
+  margin-bottom: 24px;
+  text-align: center;
+}
 
-            button {
-            background: transparent;
-            border-left: 2px solid transparent;
-            font-family: $bold2;
-            font-size: 17px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 86px;
-            padding: 15px;
-            -webkit-transition: -webkit-transform 200ms linear; 
-            transition: border-color 200ms linear;
-            width: 100%;
-            text-align: left;
+.eyebrow {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
 
-            span {
-                display: inline-block;
-                flex-shrink: 0;
-                margin-left: 20px;
-                transition: transform 200ms linear;
+.heading h2 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: clamp(30px, 9vw, 46px);
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  margin-bottom: 10px;
+}
 
-                &.active {
-                    transform: rotate(90deg);
-                }
-            }
-            }
-        }
+.heading > p:last-child {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 14px;
+  line-height: 1.65;
+  margin-inline: auto;
+  max-width: 620px;
+}
 
-        .answer {
-            font-family: $light;
-            overflow: hidden;
-            padding: 20px;
-            transition: all 200ms linear;
+.searchWrap {
+  margin-bottom: 18px;
+  max-width: 720px;
+  position: relative;
+}
 
-            &[hidden] {
-                display: none;
-            }
+.searchWrap input {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.17);
+  border-radius: $br-full;
+  color: $accent-color-teal;
+  font-family: $regular2;
+  font-size: 16px;
+  min-height: 54px;
+  padding: 12px 52px 12px 48px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+  width: 100%;
+}
 
-            p {
-                text-align: justify;
-                margin-bottom: 10px;
-            }
+.searchWrap input::placeholder {
+  color: $gray;
+  opacity: 1;
+}
 
-            ol, ul {
-                padding: 10px 0 10px 20px;
+.searchWrap input::-webkit-search-cancel-button {
+  appearance: none;
+}
 
-                li {
-                    line-height: 1.4;
-                    margin-bottom: 5px;
-                    text-align: justify;
+.searchWrap input:focus {
+  border-color: $accessibleBlue;
+  box-shadow: 0 0 0 4px rgba($blue, 0.12);
+  outline: none;
+}
 
-                    span {
-                        margin-right: 15px;
-                    }
-                }
-            }
+.searchIcon,
+.clearSearch {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
 
-            ul {
-                list-style:disc;
-            }
-        }
-    }
+.searchIcon {
+  color: $accessibleBlue;
+  left: 17px;
+  pointer-events: none;
+}
+
+.clearSearch {
+  align-items: center;
+  border-radius: 50%;
+  color: $dim-gray;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  right: 8px;
+  width: 40px;
+}
+
+.clearSearch:hover {
+  background: rgba($accent-color-teal, 0.07);
+  color: $accent-color-teal;
+}
+
+.mobileFilters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  padding: 2px 0 8px;
+  scrollbar-width: thin;
+}
+
+.mobileFilters button {
+  align-items: center;
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.12);
+  border-radius: $br-full;
+  color: $accent-color-teal;
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-family: $bold2;
+  font-size: 12px;
+  gap: 7px;
+  min-height: 42px;
+  padding: 8px 13px;
+}
+
+.mobileFilters button span {
+  align-items: center;
+  background: rgba($accent-color-teal, 0.07);
+  border-radius: $br-full;
+  display: inline-flex;
+  font-family: $regular2;
+  font-size: 10px;
+  justify-content: center;
+  min-width: 22px;
+  padding: 2px 6px;
+}
+
+.mobileFilters button[aria-pressed='true'] {
+  background: $accessibleBlue;
+  border-color: $accessibleBlue;
+  color: $white;
+}
+
+.mobileFilters button[aria-pressed='true'] span {
+  background: rgba($white, 0.16);
+}
+
+.layout {
+  display: grid;
+}
+
+.sidebar {
+  display: none;
+}
+
+.results {
+  min-width: 0;
+}
+
+.resultCount {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.category + .category {
+  margin-top: 42px;
+}
+
+.categoryHeading {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.categoryHeading > span {
+  align-items: center;
+  background: rgba($lightBlue, 0.16);
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: flex;
+  flex: 0 0 42px;
+  height: 42px;
+  justify-content: center;
+}
+
+.categoryHeading h3 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 1px 0 3px;
+}
+
+.categoryHeading p {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.questionList {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xxl;
+  overflow: hidden;
+}
+
+.question + .question {
+  border-top: 1px solid rgba($accent-color-teal, 0.09);
+}
+
+.question {
+  scroll-margin-top: 170px;
+}
+
+.question h4 {
+  margin: 0;
+}
+
+.question h4 button {
+  align-items: center;
+  color: $accent-color-teal;
+  display: flex;
+  font-family: $bold2;
+  font-size: 14px;
+  gap: 14px;
+  justify-content: space-between;
+  line-height: 1.45;
+  min-height: 64px;
+  padding: 16px;
+  text-align: left;
+  width: 100%;
+}
+
+.question h4 button:hover,
+.question h4 button[aria-expanded='true'] {
+  background: rgba($lightBlue, 0.07);
+}
+
+.question h4 button svg {
+  color: $accessibleBlue;
+  flex: 0 0 auto;
+  transition: transform 180ms ease;
+}
+
+.question h4 button .chevronOpen {
+  transform: rotate(180deg);
+}
+
+.answer {
+  color: $davys-gray;
+  font-family: $regular2;
+  font-size: 13px;
+  line-height: 1.72;
+  padding: 0 16px 20px;
+}
+
+.answer[hidden] {
+  display: none;
+}
+
+.answer p + p,
+.answer p + ul,
+.answer ul + p,
+.answer ol + p {
+  margin-top: 12px;
+}
+
+.answer ul,
+.answer ol {
+  padding-left: 20px;
+}
+
+.answer ul {
+  list-style: disc;
+}
+
+.answer ol {
+  list-style: decimal;
+}
+
+.answer li + li {
+  margin-top: 5px;
+}
+
+.answer a {
+  color: $accessibleBlue;
+  font-family: $bold2;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.note {
+  background: #f7f7ec;
+  border-left: 3px solid $darkGreen;
+  border-radius: 0 $br-lg $br-lg 0;
+  color: $accent-color-teal;
+  padding: 12px;
+}
+
+.emptyState {
+  align-items: center;
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xxl;
+  color: $dim-gray;
+  display: flex;
+  flex-direction: column;
+  padding: 42px 20px;
+  text-align: center;
+}
+
+.emptyState > svg {
+  color: $accessibleBlue;
+  margin-bottom: 14px;
+}
+
+.emptyState h3 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: 20px;
+}
+
+.emptyState p {
+  font-family: $regular2;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 7px 0 20px;
+}
+
+.emptyState button,
+.emptyState a {
+  border-radius: $br-full;
+  font-family: $bold2;
+  font-size: 13px;
+  min-height: 44px;
+  padding: 11px 18px;
+}
+
+.emptyState button {
+  background: $accessibleBlue;
+  color: $white;
+}
+
+.emptyState a {
+  color: $accessibleBlue;
+  margin-top: 3px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@include mdq(sm) {
+  .faq {
+    padding-inline: 24px;
+  }
+
+  .question h4 button {
+    font-size: 15px;
+    padding: 18px 20px;
+  }
+
+  .answer {
+    font-size: 14px;
+    padding: 0 20px 24px;
+  }
+}
+
+@include mdq(md) {
+  .faq {
+    padding-block: 84px 104px;
+  }
+
+  .heading {
+    margin-bottom: 30px;
+  }
+
+  .heading > p:last-child {
+    font-size: 15px;
+  }
+
+  .mobileFilters {
+    justify-content: center;
+  }
+
+  .categoryHeading h3 {
+    font-size: 23px;
+  }
+}
+
+@include mdq(lg) {
+  .mobileFilters {
+    display: none;
+  }
+
+  .searchWrap {
+    margin-bottom: 46px;
+  }
+
+  .layout {
+    align-items: start;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 46px;
+  }
+
+  .sidebar {
+    display: block;
+    position: sticky;
+    top: 164px;
+  }
+
+  .sidebar > p {
+    color: $dim-gray;
+    font-family: $bold2;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-bottom: 9px;
+    padding-left: 12px;
+    text-transform: uppercase;
+  }
+
+  .sidebar nav {
+    display: grid;
+    gap: 3px;
+  }
+
+  .sidebar nav button {
+    align-items: center;
+    border-radius: $br-xl;
+    color: $accent-color-teal;
+    display: grid;
+    font-family: $regular2;
+    font-size: 13px;
+    gap: 10px;
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    min-height: 48px;
+    padding: 7px 10px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .sidebar nav button:hover {
+    background: rgba($lightBlue, 0.08);
+  }
+
+  .sidebar nav button[aria-current='true'] {
+    background: $white;
+    box-shadow: 0 7px 20px rgba($accent-color-teal, 0.07);
+    font-family: $bold2;
+  }
+
+  .navIcon {
+    align-items: center;
+    background: rgba($lightBlue, 0.13);
+    border-radius: 50%;
+    color: $accessibleBlue;
+    display: flex;
+    height: 34px;
+    justify-content: center;
+    width: 34px;
+  }
+
+  .sidebar nav button[aria-current='true'] .navIcon {
+    background: $accessibleBlue;
+    color: $white;
+  }
+
+  .sidebar nav small {
+    color: $dim-gray;
+    font-size: 11px;
+  }
+
+  .helpCard {
+    background: $accent-color-teal;
+    border-radius: $br-xxl;
+    color: $white;
+    margin-top: 26px;
+    padding: 20px;
+  }
+
+  .helpCard > svg {
+    color: $lightBlue;
+    margin-bottom: 11px;
+  }
+
+  .helpCard strong {
+    display: block;
+    font-family: $bold2;
+    font-size: 14px;
+    margin-bottom: 7px;
+  }
+
+  .helpCard p {
+    color: rgba($white, 0.72);
+    font-family: $regular2;
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .helpCard a {
+    color: $lightBlue;
+    display: inline-block;
+    font-family: $bold2;
+    font-size: 12px;
+    margin-top: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .resultCount {
+    text-align: right;
+  }
+
+  .category + .category {
+    margin-top: 52px;
+  }
+
+  .question h4 button {
+    min-height: 70px;
+    padding-inline: 24px;
+  }
+
+  .answer {
+    padding: 0 64px 26px 24px;
+  }
 }

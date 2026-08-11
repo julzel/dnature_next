@@ -61,9 +61,9 @@ The official WhatsApp number is centralized as E.164 digits in
 `constants/contact.js`. Changing it requires checking the header, contact
 section, mobile navigation, checkout message, customer guide, and the receiving
 WhatsApp Business account. Customers may write 24/7; staffed support is Monday
-through Friday, 8:00 a.m.–5:00 p.m. Costa Rica time, with replies within two
-business hours. The product owner must still name the operational owner and
-fallback process before launch.
+through Friday, 8:00 a.m.–5:00 p.m., and Saturday, 8:00 a.m.–4:30 p.m. Costa
+Rica time, with replies within two business hours. The product owner must still
+name the operational owner and fallback process before launch.
 
 The approved commercial contract is:
 
@@ -80,14 +80,22 @@ stronger fulfillment promises without product-owner approval.
 
 1. Set `NEXT_PUBLIC_SITE_URL` to the final HTTPS origin, without a path.
 2. Deploy preview, then run `npm run verify:production -- --base-url <preview-url> --product-url <normalized-product-url>`.
-3. Confirm `/robots.txt` references `/sitemap.xml`, and confirm normalized product URLs occur in the sitemap.
-4. Inspect response headers for every public route. The configured CSP permits only the current Contentful image host, Google Maps, Google Analytics, and same-origin resources. Update and preview-test it whenever an integration changes.
-5. Configure HSTS at the hosting/CDN layer after HTTPS is confirmed; it is intentionally not set by application code because the host controls HTTPS termination.
-6. Set `MONITORING_INGEST_URL` to the approved provider and test a deliberately triggered preview error. Monitoring events contain only a redacted name, message, route, source, and timestamp.
-7. Run `npm run audit:public-assets` and review every reported candidate manually; a static reference scan alone is not evidence that an asset can be deleted.
-8. Run `npm run review:performance` and investigate warnings with three comparable preview captures before changing a performance baseline.
-9. Verify the approved net-price basis, 13% IVA calculation, ₡3,500 estimated delivery fee, and GAM coverage wording in the deployed checkout.
-10. Confirm that the official WhatsApp Business account is reachable by the trained operator during the approved schedule, that the two-business-hour response target is monitored, and that a fallback process is available.
+3. Confirm `/robots.txt` references `/sitemap.xml`, permits `OAI-SearchBot` on
+   public content, and continues to exclude account, checkout, cart, and
+   development routes. Confirm normalized product URLs and the updated FAQ occur
+   in the sitemap.
+4. Validate `/preguntas-frecuentes/` with Google's Rich Results Test and the
+   Schema Markup Validator, then inspect the rendered HTML in Search Console.
+   Confirm its 65 visible questions match the `FAQPage` graph and that the
+   `BreadcrumbList`, canonical URL, update date, and unrestricted snippet
+   controls are present. Eligibility does not guarantee a rich result.
+5. Inspect response headers for every public route. The configured CSP permits only the current Contentful image host, Google Maps, Google Analytics, and same-origin resources. Update and preview-test it whenever an integration changes.
+6. Configure HSTS at the hosting/CDN layer after HTTPS is confirmed; it is intentionally not set by application code because the host controls HTTPS termination.
+7. Set `MONITORING_INGEST_URL` to the approved provider and test a deliberately triggered preview error. Monitoring events contain only a redacted name, message, route, source, and timestamp.
+8. Run `npm run audit:public-assets` and review every reported candidate manually; a static reference scan alone is not evidence that an asset can be deleted.
+9. Run `npm run review:performance` and investigate warnings with three comparable preview captures before changing a performance baseline.
+10. Verify the approved net-price basis, 13% IVA calculation, ₡3,500 estimated delivery fee, and GAM coverage wording in the deployed checkout.
+11. Confirm that the official WhatsApp Business account is reachable by the trained operator during the approved schedule, that the two-business-hour response target is monitored, and that a fallback process is available.
 
 Complete manual smoke tests on mobile Safari/Chrome and desktop
 Chrome/Safari/Firefox. The assisted-shopping test must cover:

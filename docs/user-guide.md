@@ -89,8 +89,8 @@ estimado, la modalidad y la preferencia de pago. La imagen no se adjunta
 automáticamente.
 
 Podés escribirnos por WhatsApp las 24 horas. El horario de atención es de
-lunes a viernes, de 8:00 a. m. a 5:00 p. m., y respondemos dentro de dos horas
-hábiles.
+lunes a viernes, de 8:00 a. m. a 5:00 p. m., y sábados, de 8:00 a. m. a
+4:30 p. m. Respondemos dentro de dos horas hábiles.
 
 ### 8. Coordiná la compra
 

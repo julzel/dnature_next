@@ -3,7 +3,7 @@ import { expect, test } from './runtime-test';
 test('home → catalogue → prepared request → WhatsApp handoff', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  await page.getByRole('link', { name: 'Comprar' }).click();
+  await page.getByRole('link', { name: 'Explorar productos' }).click();
   await expect(page).toHaveURL(/\/productos/);
 
   await page.getByRole('link', { name: 'Ver Receta de prueba' }).click();
@@ -273,11 +273,15 @@ test('plan flow saves a calculated pet', async ({ page }) => {
 
 test('FAQ questions expand and collapse', async ({ page }) => {
   await page.goto('/preguntas-frecuentes');
-  const question = page.locator('section article h3 button').first();
+  const questionName = '¿Qué es la alimentación natural para perros y gatos?';
+  const question = page.getByRole('button', { name: questionName });
 
   await expect(question).toHaveAttribute('aria-expanded', 'false');
   await question.click();
   await expect(question).toHaveAttribute('aria-expanded', 'true');
-  const answerId = await question.getAttribute('aria-controls');
-  await expect(page.locator(`#${answerId}`)).toBeVisible();
+  await expect(page.getByRole('region', { name: questionName })).toBeVisible();
+
+  await question.click();
+  await expect(question).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('region', { name: questionName })).toBeHidden();
 });
