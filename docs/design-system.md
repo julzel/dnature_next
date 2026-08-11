@@ -133,6 +133,20 @@ healthiest option, guaranteeing nutritional absorption, or implying that every
 recipe meets every animal's needs. More specific nutritional claims require the
 approved product formulation and clinical wording.
 
+## Home hero
+
+The Hero presents one proposition, two next steps, and four compact trust
+signals. The primary action opens product discovery; the secondary action opens
+the portion calculator. The dog-and-bowl photograph remains content-bearing and
+must retain useful alternative text rather than becoming a CSS background.
+
+On mobile the composition is copy, actions, image, then a readable two-by-two
+benefit card. From tablet it becomes two columns and the benefit card becomes a
+single row. The benefit surface overlaps the beginning of Welcome to create a
+clear visual transition after the promotional Banner was removed. Avoid
+negative overlaps between the CTA and photograph, forced full-viewport heights,
+or four tiny benefit columns at 320 px.
+
 ## Assisted checkout
 
 The checkout is a request-building flow, not an online transaction. Its content

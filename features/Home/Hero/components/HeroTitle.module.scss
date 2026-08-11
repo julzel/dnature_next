@@ -4,9 +4,9 @@
 .title {
   color: $accent-color-teal;
   font-family: $bold;
-  font-size: clamp(2.25rem, 8vw, 4.75rem);
-  letter-spacing: -0.025em;
-  line-height: 1;
+  font-size: clamp(2.35rem, 11vw, 4.75rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
   margin: 0;
   position: relative;
   z-index: 1;
@@ -18,25 +18,24 @@
 
 .line {
   display: block;
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 1.02;
 }
 
 .natural {
   color: $accessibleOrange;
   display: inline-block;
   font-family: 'Corinthia', cursive;
-  font-size: 1em;
+  font-size: 1.04em;
   font-weight: 700;
   letter-spacing: 0;
   margin-inline-start: 0.14em;
-  transform: scale(1.75);
-  transform-origin: left 75%;
+  transform: scale(1.55);
+  transform-origin: left 70%;
 }
 
 .pet {
   color: $accessibleBlue;
   font-family: $regular;
   display: inline-block;
-  margin-top: 3px;
+  margin-top: 6px;
 }

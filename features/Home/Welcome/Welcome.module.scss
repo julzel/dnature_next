@@ -6,7 +6,9 @@
     radial-gradient(circle at 0 100%, rgba($lightOrange, 0.1), transparent 30%),
     $background-color;
   overflow: hidden;
-  padding: 72px 16px 80px;
+  padding: 116px 16px 80px;
+  position: relative;
+  z-index: 0;
 }
 
 .heading,
@@ -170,7 +172,7 @@
 
 @include mdq(lg) {
   .welcome {
-    padding-block: 104px 112px;
+    padding-block: 144px 112px;
   }
 
   .heading {

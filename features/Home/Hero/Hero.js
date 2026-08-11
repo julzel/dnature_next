@@ -11,16 +11,16 @@ import HeroBenefits from "./components/HeroBenefits";
 
 const Hero = () => {
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} aria-labelledby='home-hero-title'>
       <div className={styles.heroContainer}>
-        <div className={styles.heroSectionA}>
+        <div className={styles.heroContent}>
           <HeroEyebrow />
           <HeroTitle />
           <HeroSeparator />
           <HeroParagraph />
           <HeroCta />
         </div>
-        <div className={styles.heroSectionB}>
+        <div className={styles.heroVisual}>
           <HeroImage />
           <div className={styles.heroBadge}>
             <HeroBadge />
