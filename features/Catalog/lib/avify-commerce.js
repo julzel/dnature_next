@@ -53,6 +53,55 @@ const inventorySignal = ({ onDemand = false, quantity, reserved = 0 } = {}) => {
   };
 };
 
+const LOW_STOCK_THRESHOLD = 5;
+
+const getAvailabilityUi = ({
+  availability = 'unknown',
+  availableQuantity = null,
+  onDemand = false,
+} = {}) => {
+  const quantity = Number.isFinite(availableQuantity)
+    ? Math.max(0, Math.floor(availableQuantity))
+    : null;
+
+  if (availability === 'unavailable' || quantity === 0) {
+    return {
+      availability: 'unavailable',
+      canPurchase: false,
+      copy: null,
+      disabledActionCopy: 'Agotado por ahora',
+    };
+  }
+
+  if (availability !== 'available') {
+    return {
+      availability: 'unknown',
+      canPurchase: false,
+      copy: 'Disponibilidad por confirmar',
+      disabledActionCopy: 'No disponible por ahora',
+    };
+  }
+
+  if (onDemand || quantity === null || quantity > LOW_STOCK_THRESHOLD) {
+    return {
+      availability: 'available',
+      canPurchase: true,
+      copy: null,
+      disabledActionCopy: null,
+    };
+  }
+
+  return {
+    availability: 'available',
+    canPurchase: true,
+    copy:
+      quantity === 1
+        ? 'Última unidad disponible'
+        : `Solo quedan ${quantity} unidades`,
+    disabledActionCopy: null,
+  };
+};
+
 const indexVariantsByPresentation = (avifyProduct) => {
   const variants = avifyProduct?.variants || [];
   const variantsBySku = new Map(
@@ -263,6 +312,7 @@ export {
   enrichCatalogWithAvify,
   enrichProductWithAvify,
   getCatalogAvifySkus,
+  getAvailabilityUi,
   getPresentationCommerce,
   inventorySignal,
   indexVariantsByPresentation,

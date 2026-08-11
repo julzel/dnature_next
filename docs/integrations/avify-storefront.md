@@ -28,11 +28,23 @@ El navegador nunca llama Avify. `AVIFY_API_KEY`, el endpoint y la ubicación son
 valores de servidor. La única operación implementada es la consulta GraphQL
 `products`.
 
+Aunque la API documenta un filtro `skus`, el 2026-08-11 se comprobó contra
+producción que esa consulta podía devolver productos distintos a los
+solicitados sin emitir un error GraphQL. Para no declarar artículos disponibles
+o agotados con datos ajenos, la integración pagina el catálogo completo,
+selecciona localmente los SKU aprobados y exige que cada SKU solicitado esté
+presente. Esta observación debe confirmarse con soporte de Avify.
+
+La misma verificación mostró otra inconsistencia: Avify declaró 202 productos,
+pero las páginas devolvieron 100, 100 y 1 (201 SKU únicos) antes de una página
+vacía. Ese desfase no bloquea un SKU aprobado que sí fue recuperado; cualquier
+SKU aprobado ausente sigue considerándose no confirmado y no se puede comprar.
+
 ## Archivos principales
 
 | Archivo | Función |
 | --- | --- |
-| `services/avify.js` | Cliente HTTP seguro, validación de respuestas, lotes por SKU, paginación y modelo mínimo. |
+| `services/avify.js` | Cliente HTTP seguro, validación de respuestas, paginación completa, selección local por SKU y modelo mínimo. |
 | `features/Catalog/lib/avify-commerce.js` | Unión Contentful–Avify, normalización de presentaciones y cálculo de disponibilidad. |
 | `features/Catalog/server.js` | Orquestación y caché del storefront; lectura fresca para checkout. |
 | `features/Cart/lib/catalog-reconciliation.js` | Revalida identidad, precio, cantidad y disponibilidad antes de continuar. |
@@ -68,13 +80,14 @@ No se usa todavía `status` para decidir venta: en la cuenta actual los producto
 padre pueden aparecer inactivos mientras sus variantes están activas. Avify debe
 confirmar esa semántica antes de convertirla en una regla.
 
-No se expone `availableQuantity` al cliente. Se conserva dentro del modelo de
-comercio para diagnóstico y decisiones futuras.
+`availableQuantity` se expone como mensaje de escasez únicamente entre una y
+cinco unidades. Por encima de ese umbral solo se comunica disponibilidad.
 
 ## Fallos y consistencia
 
 - Catálogo/PDP: si Avify falla, el sitio puede renderizar contenido y precio de
-  respaldo con disponibilidad por confirmar.
+  respaldo con disponibilidad por confirmar, pero la acción de compra queda
+  deshabilitada.
 - Checkout y restauración de carrito: si Avify falla para un producto vinculado,
   la operación se detiene; no se acepta un precio potencialmente antiguo.
 - SKU persistido que Avify ya no devuelve: el producto se retira durante la
@@ -115,7 +128,8 @@ de ubicaciones de ese ambiente.
 
 El 2026-08-11 se ejecutaron consultas de solo lectura contra producción:
 
-- los 92 SKU padre aprobados fueron solicitados y los 92 regresaron;
+- Avify reportó 202 productos y devolvió 201 SKU padre únicos al paginar;
+- 92 SKU padre aprobados se resolvieron mediante selección local exacta;
 - 82 se reportaron como simples y 10 como configurables en esa lectura;
 - `salePrice` fue nulo y nunca `0` en los padres y variantes recibidos;
 - 35 padres y una variante reportaron existencia utilizable cero;
@@ -134,7 +148,7 @@ npm test -- --run tests/unit/cart-catalog-reconciliation.test.js
 npm run check:architecture
 ```
 
-Las pruebas cubren respuesta segura, paginación incompleta, lotes y ubicación,
+Las pruebas cubren respuesta segura, paginación incompleta, selección y ubicación,
 precio simple, variantes, reservas, `onDemand`, etiquetas ambiguas, API caída,
 vínculos rotos y reconciliación del carrito.
 

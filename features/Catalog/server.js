@@ -4,7 +4,8 @@ import { unstable_cache } from 'next/cache';
 
 import {
   getAvifyLocationId,
-  listAvifyProductsBySkus,
+  listAllAvifyProducts,
+  selectAvifyProductsBySkus,
 } from '../../services/avify';
 import {
   getProductBySlug as getContentfulProductBySlug,
@@ -20,10 +21,9 @@ const shouldLoadAvifyCommerce = () =>
   process.env.E2E_USE_FIXTURES !== '1' &&
   Boolean(process.env.AVIFY_API_KEY?.trim());
 
-const getCachedAvifyProductsBySkus = unstable_cache(
-  async (skus, locationId) =>
-    listAvifyProductsBySkus(skus, { locationId }),
-  ['avify-storefront-products'],
+const getCachedAvifyCatalog = unstable_cache(
+  async (locationId) => listAllAvifyProducts({ locationId }),
+  ['avify-storefront-catalog-v1'],
   {
     revalidate: 60,
     tags: ['avify-products'],
@@ -40,9 +40,11 @@ const loadAvifyProducts = async (skus, { fresh = false } = {}) => {
   }
 
   const locationId = getAvifyLocationId();
-  return fresh
-    ? listAvifyProductsBySkus(skus, { locationId })
-    : getCachedAvifyProductsBySkus(skus, locationId);
+  const catalogResult = fresh
+    ? await listAllAvifyProducts({ locationId })
+    : await getCachedAvifyCatalog(locationId);
+
+  return selectAvifyProductsBySkus(catalogResult, skus);
 };
 
 const enrichCatalog = async (products, { freshAvify = false } = {}) => {

@@ -70,7 +70,7 @@ const reconcileCartItems = (requestedItems, catalog) => {
       ? presentationCommerce?.availableQuantity
       : product.commerce?.availableQuantity;
 
-    if (availability === 'unavailable') {
+    if (product.commerce && availability !== 'available') {
       removedCount += 1;
       return [];
     }

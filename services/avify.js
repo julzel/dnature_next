@@ -466,17 +466,25 @@ const listAvifyProducts = async (options) => {
   }
 };
 
-const listAllAvifyProducts = async () => {
+const listAllAvifyProducts = async ({ locationId } = {}) => {
   const products = [];
   const seenSkus = new Set();
   let pageNum = 1;
   let expectedTotal = null;
+  const effectiveLocationId =
+    Number.isInteger(locationId) && locationId > 0
+      ? locationId
+      : getAvifyLocationId();
 
   while (
     (expectedTotal === null || products.length < expectedTotal) &&
     pageNum <= AVIFY_CATALOG_MAX_PAGES
   ) {
-    let result = await listAvifyProducts({ pageNum, pageSize: 100 });
+    let result = await listAvifyProducts({
+      pageNum,
+      pageSize: 100,
+      locationId: effectiveLocationId,
+    });
 
     for (
       let retry = 0;
@@ -485,7 +493,11 @@ const listAllAvifyProducts = async () => {
       retry < AVIFY_CATALOG_PAGE_RETRIES;
       retry += 1
     ) {
-      result = await listAvifyProducts({ pageNum, pageSize: 100 });
+      result = await listAvifyProducts({
+        pageNum,
+        pageSize: 100,
+        locationId: effectiveLocationId,
+      });
     }
 
     if (!result.success) {
@@ -513,12 +525,17 @@ const listAllAvifyProducts = async () => {
   }
 
   if (expectedTotal !== null && products.length < expectedTotal) {
-    return failure(
-      'AVIFY_CATALOG_INCOMPLETE',
-      'Avify devolvió un catálogo incompleto.',
-      null,
-      { expectedTotal, receivedTotal: products.length }
-    );
+    return {
+      ...failure(
+        'AVIFY_CATALOG_INCOMPLETE',
+        'Avify devolvió un catálogo incompleto.',
+        null,
+        { expectedTotal, receivedTotal: products.length }
+      ),
+      products,
+      totalCount: products.length,
+      reportedTotal: expectedTotal,
+    };
   }
 
   return {
@@ -535,7 +552,7 @@ const listAllAvifyProducts = async () => {
   };
 };
 
-const listAvifyProductsBySkus = async (skus, { locationId } = {}) => {
+const selectAvifyProductsBySkus = (catalogResult, skus) => {
   const uniqueSkus = [
     ...new Set(
       (Array.isArray(skus) ? skus : [])
@@ -557,39 +574,50 @@ const listAvifyProductsBySkus = async (skus, { locationId } = {}) => {
     };
   }
 
-  const products = [];
-
-  for (let index = 0; index < uniqueSkus.length; index += 100) {
-    const batch = uniqueSkus.slice(index, index + 100);
-    const result = await listAvifyProducts({
-      pageNum: 1,
-      pageSize: batch.length,
-      skus: batch,
-      locationId:
-        Number.isInteger(locationId) && locationId > 0
-          ? locationId
-          : getAvifyLocationId(),
-    });
-
-    if (!result.success) return result;
-    products.push(...result.products);
-  }
-
   const productsBySku = new Map(
-    products
+    (catalogResult.products || [])
       .filter(({ sku }) => typeof sku === 'string' && sku.trim())
       .map((product) => [product.sku.trim(), product])
   );
+  const selectedProducts = uniqueSkus
+    .map((sku) => productsBySku.get(sku))
+    .filter(Boolean);
+  const missingSkus = uniqueSkus.filter((sku) => !productsBySku.has(sku));
+
+  if (
+    !catalogResult?.success &&
+    (catalogResult?.code !== 'AVIFY_CATALOG_INCOMPLETE' || missingSkus.length)
+  ) {
+    return {
+      ...catalogResult,
+      missingSkus,
+    };
+  }
 
   return {
     success: true,
     code: 'AVIFY_PRODUCTS_LOADED',
     message: 'Los productos de Avify se cargaron correctamente.',
     status: 200,
-    products: [...productsBySku.values()],
-    totalCount: productsBySku.size,
-    missingSkus: uniqueSkus.filter((sku) => !productsBySku.has(sku)),
+    products: selectedProducts,
+    totalCount: selectedProducts.length,
+    missingSkus,
+    ...(catalogResult?.code === 'AVIFY_CATALOG_INCOMPLETE'
+      ? { catalogWarning: catalogResult.code }
+      : {}),
   };
+};
+
+const listAvifyProductsBySkus = async (skus, { locationId } = {}) => {
+  const hasRequestedSku = (Array.isArray(skus) ? skus : []).some(
+    (sku) => typeof sku === 'string' && sku.trim()
+  );
+  if (!hasRequestedSku) {
+    return selectAvifyProductsBySkus({ success: true, products: [] }, skus);
+  }
+
+  const catalogResult = await listAllAvifyProducts({ locationId });
+  return selectAvifyProductsBySkus(catalogResult, skus);
 };
 
 export {
@@ -598,4 +626,5 @@ export {
   listAllAvifyProducts,
   listAvifyProducts,
   listAvifyProductsBySkus,
+  selectAvifyProductsBySkus,
 };

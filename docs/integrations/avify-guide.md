@@ -28,17 +28,20 @@ pueden cambiar o parecerse entre sí.
 - El precio viene de Avify cuando el vínculo es exacto.
 - Una presentación usa el precio de su variante de Avify solamente cuando el
   sitio puede identificarla sin ambigüedad.
-- “Disponible para solicitar” significa que Avify reporta existencia utilizable
-  o que el producto se trabaja bajo pedido.
-- “Sin existencias registradas” significa que Avify reporta cero unidades
-  disponibles para esa selección.
-- “Confirmamos disponibilidad” significa que falta un vínculo exacto de
-  presentación; no es una promesa de inventario.
+- “Última unidad disponible” aparece cuando Avify reporta una unidad vendible.
+- “Solo quedan X unidades” aparece entre dos y cinco unidades vendibles.
+- Cuando hay más de cinco unidades, Avify no expone una cantidad finita o el
+  producto se trabaja bajo pedido, no se muestra un mensaje adicional.
+- Si Avify reporta cero unidades disponibles, el botón se deshabilita y dice
+  “Agotado por ahora”.
+- “Disponibilidad por confirmar” significa que falta un vínculo exacto. El
+  producto permanece visible, pero comprarlo queda deshabilitado hasta resolver
+  esa relación.
 - Los precios del catálogo no incluyen IVA. El sitio agrega el 13 % en el
   resumen de compra, de acuerdo con la decisión de DNAture.
 
-El sitio no muestra cantidades internas de inventario. Solo muestra una señal
-útil para comprar; las reservas y movimientos operativos permanecen en Avify.
+El sitio muestra el número únicamente cuando quedan cinco unidades o menos. Las
+reservas y los movimientos operativos completos permanecen en Avify.
 
 ## Recorrido de la información
 
@@ -109,7 +112,7 @@ reintentos, métodos de pago, canal de venta y webhooks.
 
 ## Cómo saber si algo necesita atención
 
-- Si muchos productos dicen “Confirmamos disponibilidad”, revise los vínculos de
+- Si muchos productos dicen “Disponibilidad por confirmar”, revise los vínculos de
   presentaciones y la configuración de Avify.
 - Si el checkout indica que no puede comprobar precios, revise la disponibilidad
   de la API, el token y el ID de ubicación.

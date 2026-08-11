@@ -8,6 +8,7 @@ import {
 import styles from './CatalogItem.module.scss'; // Styles
 import ContentfulImage from '../../../components/ContentfulImage';
 import CurrencyText from '../../../components/Currency';
+import { getAvailabilityUi } from '../lib/avify-commerce';
 import { getProductPath } from '../lib/product-url';
 
 const CatalogItem = ({ product }) => {
@@ -37,13 +38,12 @@ const CatalogItem = ({ product }) => {
       ? lowestPresentationPrice
       : precio;
   const availability = commerce?.availability || 'unknown';
-  const canAddToCart = availability !== 'unavailable';
-  const availabilityCopy =
-    availability === 'available'
-      ? 'Disponible para solicitar'
-      : availability === 'unavailable'
-        ? 'Sin existencias registradas'
-        : 'Confirmamos disponibilidad';
+  const availabilityUi = getAvailabilityUi({
+    availability,
+    availableQuantity: commerce?.availableQuantity,
+    onDemand: commerce?.onDemand,
+  });
+  const canAddToCart = !commerce || availabilityUi.canPurchase;
 
   const addItemToCart = () => {
     if (!canAddToCart) return;
@@ -117,13 +117,13 @@ const CatalogItem = ({ product }) => {
             ? 'Elegí una presentación'
             : medida || 'Presentación disponible'}
         </p>
-        {commerce && (
+        {commerce && availabilityUi.copy && (
           <p
-            className={`${styles.availability} ${styles[availability]}`}
-            role={availability === 'unavailable' ? 'status' : undefined}
+            className={`${styles.availability} ${styles[availabilityUi.availability]}`}
+            role={!availabilityUi.canPurchase ? 'status' : undefined}
           >
             <span aria-hidden='true' />
-            {availabilityCopy}
+            {availabilityUi.copy}
           </p>
         )}
         <div className={styles.cardFooter}>
@@ -167,7 +167,7 @@ const CatalogItem = ({ product }) => {
               aria-label={
                 canAddToCart
                   ? `Agregar ${productName} al carrito`
-                  : `Sin existencias de ${productName}`
+                  : `${availabilityUi.disabledActionCopy}: ${productName}`
               }
               onClick={addItemToCart}
               disabled={!canAddToCart}
@@ -176,7 +176,9 @@ const CatalogItem = ({ product }) => {
                 <Plus aria-hidden='true' size={20} strokeWidth={2.2} />
               )}
               <span>
-                {canAddToCart ? 'Agregar al carrito' : 'Sin existencias'}
+                {canAddToCart
+                  ? 'Agregar al carrito'
+                  : availabilityUi.disabledActionCopy}
               </span>
             </button>
           )}

@@ -336,4 +336,41 @@ describe('checkout catalog reconciliation', () => {
       updatedQuantityCount: 1,
     });
   });
+
+  it('removes mapped items whose exact availability cannot be confirmed', () => {
+    const unknownCatalog = {
+      snacks: {
+        products: [
+          {
+            ...catalog.snacks.products[0],
+            commerce: {
+              integrationAvailable: true,
+              mapped: true,
+              parentSku: 'SNACK-1',
+              productId: 500,
+              availability: 'unknown',
+              availableQuantity: null,
+            },
+          },
+        ],
+      },
+    };
+
+    expect(
+      reconcileCartItems(
+        [
+          {
+            catalogProductId: 'snack-1',
+            quantity: 1,
+            price: 2500,
+          },
+        ],
+        unknownCatalog
+      )
+    ).toEqual({
+      items: [],
+      removedCount: 1,
+      updatedPriceCount: 0,
+    });
+  });
 });

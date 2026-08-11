@@ -7,7 +7,10 @@ import {
   useCartContext,
 } from '../../../Cart/state';
 import { getDefaultPresentation } from '../../PresentationSelector';
-import { getPresentationCommerce } from '../../lib/avify-commerce';
+import {
+  getAvailabilityUi,
+  getPresentationCommerce,
+} from '../../lib/avify-commerce';
 
 const ProductInfoContainer = ({ productDetail }) => {
   const { cart, addOneItem, removeOneItem, getItemsInCart } = useCartContext();
@@ -25,8 +28,26 @@ const ProductInfoContainer = ({ productDetail }) => {
   const availability = hasPriceByUnit
     ? selectedCommerce?.availability || 'unknown'
     : productDetail.commerce?.availability || 'unknown';
+  const availableQuantity = hasPriceByUnit
+    ? selectedCommerce?.availableQuantity
+    : productDetail.commerce?.availableQuantity;
+  const onDemand = hasPriceByUnit
+    ? selectedCommerce?.onDemand
+    : productDetail.commerce?.onDemand;
+  const availabilityUi = getAvailabilityUi({
+    availability,
+    availableQuantity,
+    onDemand,
+  });
   const isAvailableToAdd =
-    !productDetail.commerce || availability !== 'unavailable';
+    !productDetail.commerce || availabilityUi.canPurchase;
+  const itemsInCart =
+    hasPriceByUnit && selectedPresentation
+      ? getItemsInCart(`${productDetail.sys.id}-${selectedPresentation.size}`)
+      : getItemsInCart(productDetail.sys.id);
+  const canAddToCart =
+    isAvailableToAdd &&
+    (!Number.isFinite(availableQuantity) || itemsInCart < availableQuantity);
 
   const handlePresentationSelect = (selected) => {
     setSelectedPresentation(selected);
@@ -75,17 +96,6 @@ const ProductInfoContainer = ({ productDetail }) => {
     }
   };
 
-  const itemsInCart =
-    hasPriceByUnit && selectedPresentation
-      ? getItemsInCart(`${productDetail.sys.id}-${selectedPresentation.size}`)
-      : getItemsInCart(productDetail.sys.id);
-  const availableQuantity = hasPriceByUnit
-    ? selectedCommerce?.availableQuantity
-    : productDetail.commerce?.availableQuantity;
-  const canAddToCart =
-    isAvailableToAdd &&
-    (!Number.isFinite(availableQuantity) || itemsInCart < availableQuantity);
-
   return (
     <ProductInfo
       productDetail={productDetail}
@@ -96,7 +106,7 @@ const ProductInfoContainer = ({ productDetail }) => {
       onRemoveOneItem={handleRemoveOneItem}
       cartTotalItems={cart.totalItems}
       itemsInCart={itemsInCart}
-      availability={availability}
+      availabilityUi={availabilityUi}
       canAddToCart={canAddToCart}
     />
   );

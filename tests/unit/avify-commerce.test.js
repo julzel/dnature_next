@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   enrichProductWithAvify,
+  getAvailabilityUi,
   getCatalogAvifySkus,
   indexVariantsByPresentation,
   inventorySignal,
@@ -34,6 +35,51 @@ const avifyProduct = (overrides = {}) => ({
 });
 
 describe('Avify storefront commerce projection', () => {
+  it('turns exact low stock into clear customer-facing availability', () => {
+    expect(
+      getAvailabilityUi({
+        availability: 'available',
+        availableQuantity: 1,
+      })
+    ).toMatchObject({
+      canPurchase: true,
+      copy: 'Última unidad disponible',
+    });
+    expect(
+      getAvailabilityUi({
+        availability: 'available',
+        availableQuantity: 4,
+      })
+    ).toMatchObject({
+      canPurchase: true,
+      copy: 'Solo quedan 4 unidades',
+    });
+    expect(
+      getAvailabilityUi({
+        availability: 'available',
+        availableQuantity: 8,
+      })
+    ).toMatchObject({
+      canPurchase: true,
+      copy: null,
+    });
+  });
+
+  it('disables purchase when stock is exhausted or cannot be confirmed', () => {
+    expect(getAvailabilityUi({ availability: 'unavailable' })).toEqual({
+      availability: 'unavailable',
+      canPurchase: false,
+      copy: null,
+      disabledActionCopy: 'Agotado por ahora',
+    });
+    expect(getAvailabilityUi({ availability: 'unknown' })).toEqual({
+      availability: 'unknown',
+      canPurchase: false,
+      copy: 'Disponibilidad por confirmar',
+      disabledActionCopy: 'No disponible por ahora',
+    });
+  });
+
   it('collects unique linked parent SKUs without empty values', () => {
     expect(
       getCatalogAvifySkus({

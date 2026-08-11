@@ -34,7 +34,7 @@ describe('PresentationSelector', () => {
     expect(onFirstSelect).toHaveBeenCalledWith({ size: '1kg', price: 5000 });
   });
 
-  it('labels unavailable options and defaults to an available presentation', () => {
+  it('defaults to an available presentation without adding redundant stock copy', () => {
     const presentations = { '500g': 3000, '1kg': 5000 };
     const presentationCommerce = {
       '500g': { availability: 'available' },
@@ -58,8 +58,19 @@ describe('PresentationSelector', () => {
       />
     );
 
+    expect(screen.getByRole('option', { name: '1kg' })).toBeInTheDocument();
+  });
+
+  it('prefers a confirmed option over the normal default when availability is unknown', () => {
     expect(
-      screen.getByRole('option', { name: '1kg — sin existencias' })
-    ).toBeInTheDocument();
+      getDefaultPresentation(
+        { '500g': 3000, '1kg': 5000 },
+        'Producto natural',
+        {
+          '500g': { availability: 'available' },
+          '1kg': { availability: 'unknown' },
+        }
+      )
+    ).toEqual({ size: '500g', price: 3000 });
   });
 });

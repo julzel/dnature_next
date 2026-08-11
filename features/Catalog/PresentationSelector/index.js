@@ -26,14 +26,27 @@ export function getDefaultPresentation(
       : presentationArray.find(({ size }) => size === '1kg') ||
         presentationArray[0];
 
+  if (!Object.keys(presentationCommerce || {}).length) {
+    return preferred;
+  }
+
+  if (presentationCommerce?.[preferred.size]?.availability === 'available') {
+    return preferred;
+  }
+
+  const available = presentationArray.find(
+    ({ size }) => presentationCommerce?.[size]?.availability === 'available'
+  );
+
+  if (available) return available;
+
   if (presentationCommerce?.[preferred.size]?.availability !== 'unavailable') {
     return preferred;
   }
 
   return (
     presentationArray.find(
-      ({ size }) =>
-        presentationCommerce?.[size]?.availability !== 'unavailable'
+      ({ size }) => presentationCommerce?.[size]?.availability === 'unknown'
     ) || preferred
   );
 }
@@ -68,9 +81,9 @@ const PresentationSelector = ({
         {presentationArray.map(({ size }) => (
           <option value={size} key={size}>
             {size}
-            {presentationCommerce?.[size]?.availability === 'unavailable'
-              ? ' — sin existencias'
-              : ''}
+            {presentationCommerce?.[size]?.availability === 'unknown'
+                ? ' — disponibilidad por confirmar'
+                : ''}
           </option>
         ))}
       </select>

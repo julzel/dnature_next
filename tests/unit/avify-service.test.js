@@ -427,7 +427,49 @@ describe('Avify server-only service', () => {
     });
   });
 
-  it('loads mapped SKUs in batches and reports missing mappings', async () => {
+  it('can safely select a requested SKU present in a count-mismatched catalog', async () => {
+    global.fetch
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: {
+            products: {
+              products: [
+                {
+                  id: 1,
+                  sku: 'SKU-1',
+                  name: 'Product 1',
+                  price: 10,
+                  qty: 1,
+                  children: [],
+                },
+              ],
+              pageSize: 100,
+              totalCount: 2,
+            },
+          },
+        })
+      )
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: {
+            products: {
+              products: [],
+              pageSize: 0,
+              totalCount: 0,
+            },
+          },
+        })
+      );
+
+    await expect(listAvifyProductsBySkus(['SKU-1'])).resolves.toMatchObject({
+      success: true,
+      products: [expect.objectContaining({ sku: 'SKU-1' })],
+      missingSkus: [],
+      catalogWarning: 'AVIFY_CATALOG_INCOMPLETE',
+    });
+  });
+
+  it('loads the complete location catalog and selects mapped SKUs locally', async () => {
     process.env.AVIFY_LOCATION_ID = '1815';
     global.fetch.mockResolvedValue(
       jsonResponse({
@@ -461,9 +503,100 @@ describe('Avify server-only service', () => {
 
     const variables = JSON.parse(global.fetch.mock.calls[0][1].body).variables;
     expect(variables).toMatchObject({
-      skus: ['SKU-1', 'SKU-2'],
+      skus: null,
       locationId: 1815,
+      pageSize: 100,
     });
+  });
+
+  it('filters requested SKUs after all catalog pages have loaded', async () => {
+    global.fetch
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: {
+            products: {
+              products: [
+                {
+                  id: 1,
+                  sku: 'SKU-1',
+                  name: 'Product 1',
+                  price: 10,
+                  qty: 1,
+                  children: [],
+                },
+              ],
+              pageSize: 100,
+              totalCount: 2,
+            },
+          },
+        })
+      )
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: {
+            products: {
+              products: [
+                {
+                  id: 2,
+                  sku: 'SKU-2',
+                  name: 'Product 2',
+                  price: 10,
+                  qty: 1,
+                  children: [],
+                },
+              ],
+              pageSize: 100,
+              totalCount: 2,
+            },
+          },
+        })
+      );
+
+    const result = await listAvifyProductsBySkus(['SKU-2', 'MISSING']);
+
+    expect(result).toMatchObject({
+      success: true,
+      totalCount: 1,
+      products: [expect.objectContaining({ sku: 'SKU-2' })],
+      missingSkus: ['MISSING'],
+    });
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+    for (const [, options] of global.fetch.mock.calls) {
+      expect(JSON.parse(options.body).variables.skus).toBeNull();
+    }
+  });
+
+  it('does not call Avify when there are no usable requested SKUs', async () => {
+    await expect(
+      listAvifyProductsBySkus([' ', null])
+    ).resolves.toMatchObject({
+      success: true,
+      products: [],
+      missingSkus: [],
+    });
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
+
+  it('passes an explicit location through every catalog page', async () => {
+    global.fetch.mockResolvedValue(
+      jsonResponse({
+        data: {
+          products: {
+            products: [],
+            pageSize: 100,
+            totalCount: 0,
+          },
+        },
+      })
+    );
+
+    await expect(listAllAvifyProducts({ locationId: 1815 })).resolves.toMatchObject({
+      success: true,
+      totalCount: 0,
+    });
+    expect(
+      JSON.parse(global.fetch.mock.calls[0][1].body).variables.locationId
+    ).toBe(1815);
   });
 
   it('normalizes product-list options before sending them to Avify', async () => {

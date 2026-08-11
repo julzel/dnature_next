@@ -26,19 +26,13 @@ const ProductInfo = ({
   onRemoveOneItem,
   cartTotalItems,
   itemsInCart,
-  availability,
+  availabilityUi,
   canAddToCart,
 }) => {
   const images = productDetail.images || [];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const selectedImage = images[selectedImageIndex] || images[0] || null;
   const hasMultipleImages = images.length > 1;
-  const availabilityCopy =
-    availability === 'available'
-      ? 'Disponible para solicitar'
-      : availability === 'unavailable'
-        ? 'Sin existencias registradas'
-        : 'Confirmamos disponibilidad al preparar tu solicitud';
 
   const selectPreviousImage = () => {
     setSelectedImageIndex((currentIndex) =>
@@ -180,13 +174,13 @@ const ProductInfo = ({
           </div>
         )}
 
-        {productDetail.commerce && (
+        {productDetail.commerce && availabilityUi.copy && (
           <p
-            className={`${styles.availability} ${styles[availability]}`}
-            role={availability === 'unavailable' ? 'status' : undefined}
+            className={`${styles.availability} ${styles[availabilityUi.availability]}`}
+            role={!availabilityUi.canPurchase ? 'status' : undefined}
           >
             <span aria-hidden='true' />
-            {availabilityCopy}
+            {availabilityUi.copy}
           </p>
         )}
 
@@ -227,7 +221,7 @@ const ProductInfo = ({
               aria-label={
                 canAddToCart
                   ? `Agregar ${productDetail.productName} al carrito`
-                  : `Sin existencias de ${productDetail.productName}`
+                  : `${availabilityUi.disabledActionCopy}: ${productDetail.productName}`
               }
               onClick={onAddToCart}
               disabled={!canAddToCart}
@@ -236,7 +230,9 @@ const ProductInfo = ({
                 <ShoppingBag aria-hidden='true' size={20} strokeWidth={1.9} />
               )}
               <span>
-                {canAddToCart ? 'Agregar al carrito' : 'Sin existencias'}
+                {canAddToCart
+                  ? 'Agregar al carrito'
+                  : availabilityUi.disabledActionCopy}
               </span>
             </button>
           )}

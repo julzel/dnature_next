@@ -6,13 +6,12 @@ test('home → catalogue → prepared request → WhatsApp handoff', async ({ pa
   await page.getByRole('link', { name: 'Explorar productos' }).click();
   await expect(page).toHaveURL(/\/productos/);
   await expect(
-    page.getByText('Disponible para solicitar').first()
+    page.getByRole('link', { name: 'Ver Receta de prueba' })
   ).toBeVisible();
 
   await page.getByRole('link', { name: 'Ver Receta de prueba' }).click();
   await expect(page).toHaveURL(/\/productos\/receta-de-prueba\/?$/);
   await expect(page.getByRole('heading', { name: 'Receta de prueba' })).toBeVisible();
-  await expect(page.getByText('Disponible para solicitar')).toBeVisible();
 
   await page
     .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
@@ -153,6 +152,20 @@ test('category query filters the catalogue', async ({ page }) => {
 
   await addToCart.click();
   await expect(quantity).toHaveText('1');
+});
+
+test('unconfirmed inventory stays visible but cannot be purchased', async ({
+  page,
+}) => {
+  await page.goto('/productos?category=snacks');
+
+  await expect(page.getByText('Snack de prueba')).toBeVisible();
+  await expect(page.getByText('Disponibilidad por confirmar')).toBeVisible();
+  await expect(
+    page.getByRole('button', {
+      name: 'No disponible por ahora: Snack de prueba',
+    })
+  ).toBeDisabled();
 });
 
 test('catalogue layout is full-width and mobile-first', async ({ page }) => {
