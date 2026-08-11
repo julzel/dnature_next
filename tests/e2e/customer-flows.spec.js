@@ -273,11 +273,15 @@ test('plan flow saves a calculated pet', async ({ page }) => {
 
 test('FAQ questions expand and collapse', async ({ page }) => {
   await page.goto('/preguntas-frecuentes');
-  const question = page.locator('section article h3 button').first();
+  const questionName = '¿Qué es la alimentación natural para perros y gatos?';
+  const question = page.getByRole('button', { name: questionName });
 
   await expect(question).toHaveAttribute('aria-expanded', 'false');
   await question.click();
   await expect(question).toHaveAttribute('aria-expanded', 'true');
-  const answerId = await question.getAttribute('aria-controls');
-  await expect(page.locator(`#${answerId}`)).toBeVisible();
+  await expect(page.getByRole('region', { name: questionName })).toBeVisible();
+
+  await question.click();
+  await expect(question).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByRole('region', { name: questionName })).toBeHidden();
 });

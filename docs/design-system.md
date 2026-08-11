@@ -135,10 +135,11 @@ approved product formulation and clinical wording.
 
 ## Home hero
 
-The Hero presents one proposition, two next steps, and four compact trust
-signals. The primary action opens product discovery; the secondary action opens
-the portion calculator. The dog-and-bowl photograph remains content-bearing and
-must retain useful alternative text rather than becoming a CSS background.
+The Hero presents one proposition, one clear next step, and four compact trust
+signals. The primary action opens product discovery; portion calculation remains
+available through site navigation rather than competing in the Hero. The
+dog-and-bowl photograph remains content-bearing and must retain useful
+alternative text rather than becoming a CSS background.
 
 On mobile the composition is copy, actions, image, then a readable two-by-two
 benefit card. From tablet it becomes two columns and the benefit card becomes a
@@ -217,6 +218,44 @@ enhancement: the store name and locality remain visible while it loads or when
 the API is unavailable, and an independent Google Maps link must always work.
 Use the shared values in `constants/contact.js` and `constants/store.js` rather
 than duplicating phone, schedule, response target, or coordinates.
+
+## Frequently asked questions
+
+The FAQ is an information-retrieval surface, not a long static document. Keep
+questions in `features/Faq/FaqList/data.js`, grouped by a stable category and
+question ID so search, filters, structured data, and accordion relationships
+all share one source.
+
+- Mobile uses a horizontally scrollable topic rail; desktop adds a sticky topic
+  index. Both controls expose their selected state to assistive technology.
+- Search ignores capitalization and Spanish accent marks and searches both the
+  question and answer. Always report the number of matches through a polite live
+  region and offer a reset plus WhatsApp fallback when none match.
+- Accordion triggers are native buttons with `aria-expanded` and
+  `aria-controls`; answer regions are named by their corresponding question.
+- General education, product claims, and clinical guidance must remain visibly
+  distinct. A highlighted note is reserved for safety, escalation, or another
+  condition the customer should not miss.
+- Medical conditions, therapeutic diets, and supplements require veterinary
+  framing. FAQ copy must not diagnose, prescribe, promise a health outcome, or
+  imply that “natural” automatically means nutritionally complete.
+- Operational answers state current capabilities without inventing fixed
+  delivery days, availability, promotions, advisory prices, or clinical
+  customization. Link to the catalogue, calculator, plan, or WhatsApp when that
+  is the honest next step.
+- Search metadata is generated internally by `features/Faq/seo.js` from that
+  same visible content and exposed to the App Router through the slice's public
+  `features/Faq/server.js` boundary. It publishes an absolute-URL `FAQPage` and
+  `BreadcrumbList`, Spanish language metadata, stable question anchors, update
+  date, publisher, and only citations that customers can also open in the
+  answer.
+- Google AI features do not require a separate AI schema or `llms.txt`. Keep the
+  page indexable, permit full snippets, server-render every answer, include the
+  route in the sitemap, and ensure structured data continues to match the page.
+- `OAI-SearchBot` may crawl public routes for ChatGPT search; account, checkout,
+  cart, and development routes remain excluded. This explicit search rule does
+  not alter the existing wildcard policy that applies to other crawlers;
+  training-crawler policy must be reviewed as a separate business decision.
 
 ## Customer stories
 
