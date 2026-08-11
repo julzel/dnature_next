@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import styles from './Welcome.module.scss';
 import items from './items';
+import wildPlateImage from '../../../public/images/wild-plate.jpg';
 
 const Welcome = () => {
   return (
@@ -14,6 +15,20 @@ const Welcome = () => {
           reconocibles, equilibrio y acompañamiento para cada mascota.
         </p>
       </div>
+
+      <figure className={styles.featureImage}>
+        <Image
+          src={wildPlateImage}
+          alt='Plato de alimentación natural con distintas proteínas e ingredientes frescos'
+          fill
+          sizes='(min-width: 1200px) 1160px, calc(100vw - 32px)'
+          className={styles.featureImagePhoto}
+        />
+        <figcaption>
+          <span>Ingredientes que podés reconocer</span>
+          Una selección variada para construir una alimentación con propósito.
+        </figcaption>
+      </figure>
 
       <ul className={styles.items}>
         {items.map((item) => (

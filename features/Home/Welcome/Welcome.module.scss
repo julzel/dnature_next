@@ -10,6 +10,7 @@
 }
 
 .heading,
+.featureImage,
 .items {
   margin-inline: auto;
   max-width: 1160px;
@@ -44,6 +45,52 @@
   font-family: $regular2;
   font-size: 16px;
   line-height: 1.7;
+}
+
+.featureImage {
+  aspect-ratio: 4 / 3;
+  border-radius: $br-xxxl;
+  box-shadow: 0 18px 42px rgba($accent-color-teal, 0.12);
+  margin-bottom: 18px;
+  overflow: hidden;
+  position: relative;
+}
+
+.featureImage::after {
+  background: linear-gradient(180deg, transparent 48%, rgba($accent-color-teal, 0.82));
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.featureImagePhoto {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.featureImage figcaption {
+  bottom: 0;
+  color: rgba($white, 0.9);
+  font-family: $regular2;
+  font-size: 13px;
+  left: 0;
+  line-height: 1.45;
+  padding: 22px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.featureImage figcaption span {
+  color: $white;
+  display: block;
+  font-family: $bold;
+  font-size: 17px;
+  line-height: 1.3;
+  margin-bottom: 4px;
 }
 
 .items {
@@ -106,6 +153,16 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .featureImage {
+    aspect-ratio: 16 / 8;
+    margin-bottom: 22px;
+  }
+
+  .featureImage figcaption {
+    max-width: 560px;
+    padding: 28px;
+  }
+
   .item:last-child {
     grid-column: 1 / -1;
   }
@@ -118,6 +175,19 @@
 
   .heading {
     margin-bottom: 46px;
+  }
+
+  .featureImage {
+    aspect-ratio: 16 / 7;
+  }
+
+  .featureImage figcaption {
+    font-size: 14px;
+    padding: 34px;
+  }
+
+  .featureImage figcaption span {
+    font-size: 20px;
   }
 
   .items {

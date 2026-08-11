@@ -121,6 +121,9 @@ two from the small breakpoint, and four only on desktop.
 The welcome section introduces DNAture through three concise principles:
 natural ingredients, purposeful formulation, and responsibly incorporated raw
 food. Icons are decorative; the heading and supporting text carry the meaning.
+The `wild-plate.jpg` ingredient photograph sits between the introduction and
+the principles as visual evidence of the product approach; it is content, not a
+decorative background, and therefore keeps a descriptive alternative text.
 Principle cards use one column on mobile, a balanced two-plus-one layout on
 tablet, and three equal columns on desktop. Avoid entrance animations that make
 basic product information depend on scrolling or motion.

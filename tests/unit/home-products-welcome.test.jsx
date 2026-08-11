@@ -41,6 +41,12 @@ describe('Home welcome section', () => {
     expect(within(section).getByRole('heading', { name: 'Natural' })).toBeVisible();
     expect(within(section).getByRole('heading', { name: 'Balanceada' })).toBeVisible();
     expect(within(section).getByRole('heading', { name: 'Cruda' })).toBeVisible();
+    expect(
+      within(section).getByAltText(
+        'Plato de alimentación natural con distintas proteínas e ingredientes frescos'
+      )
+    ).toBeVisible();
+    expect(section).toHaveTextContent('Ingredientes que podés reconocer');
     expect(section).not.toHaveTextContent('la opción más saludable');
     expect(section).not.toHaveTextContent('te aseguras');
   });

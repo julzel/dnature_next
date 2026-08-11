@@ -4,7 +4,6 @@ import styles from "./Home.module.scss";
 
 // components
 import Hero from "./Hero";
-import Banner from "./Banner";
 import Welcome from "./Welcome";
 import Products from "./Products";
 import Contact from "./Contact";
@@ -15,7 +14,6 @@ const Home = ({ categories = [] }) => {
   return (
     <div className={styles.home}>
       <Hero />
-      <Banner />
       <Welcome />
       <Products categories={categories} />
       <DNAtureSystem />
