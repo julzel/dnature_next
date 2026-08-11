@@ -205,6 +205,35 @@ All customer copy uses Costa Rican voseo and remains usable at 320 px without
 horizontal overflow. Validation explains how to correct a field; it does not
 only say that the field is invalid.
 
+## Portion calculator
+
+The `/calculadora` page provides an estimate for DNAture's complete recipes for
+dogs. It is a guided, inline flow rather than a modal so customers keep their
+context, can review previous answers, and can use it comfortably on a small
+screen.
+
+- State the current species and product-line scope before the customer starts.
+- Use one question per step, native radio controls, an explicit `Siguiente`
+  action, visible progress, and an `Anterior` action after the first step.
+- Never advance immediately after an option is touched. This prevents accidental
+  answers and gives customers time to read the selected value.
+- Ask adults for life stage, size, sterilization, body condition, activity, and
+  current weight. The puppy branch asks only for growth stage and current weight.
+- Move keyboard focus to each new question and to the result. Errors must identify
+  the acceptable weight range and be associated with the field.
+- Present the result as an initial daily reference, repeat the inputs used, and
+  direct customers to the applicable product line. Do not describe it as a
+  prescription, personalized clinical advice, or a guarantee.
+- The current calculator does not persist pet data, require an account, or collect
+  contact information.
+
+`features/Calculator/model.js` exposes a normalized `petDraft` in the result so a
+future budget-aware tool can reuse the answers. That later flow must ask for
+explicit permission before creating an account or saving a pet, allow every
+prefilled value to be reviewed, and keep the calculation usable without signup.
+Budget quotation, customer-account invitations, and pet persistence are not part
+of the current calculator.
+
 ## Contact and location
 
 The home contact section closes the commercial journey with one clear heading,

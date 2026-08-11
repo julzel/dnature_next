@@ -1,45 +1,354 @@
-@use '../../styles/_variables' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
 
 .calculator {
-    padding: 60px 25px 40px;
-    max-width: 600px;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
+  background: $background-color;
+  overflow: hidden;
+}
 
-    &Intro {
-        padding-top: 40px;
-        h1 {
-            font-size: 24px;
-            font-family: $bold2;
-            text-align: center;
-            line-height: 32px;
-            max-width: 375px;
-            padding: 0 10px;
-            margin: 0 auto 20px;
-        }
+.hero {
+  background:
+    radial-gradient(circle at 5% 12%, rgba($lightBlue, 0.2), transparent 30%),
+    radial-gradient(circle at 92% 90%, rgba($lightOrange, 0.15), transparent 28%),
+    #f8f8f3;
+  padding: 40px 16px 58px;
+}
 
-        p {
-            margin-bottom: 20px;
-            text-align: justify;
+.heroShell {
+  display: grid;
+  gap: 34px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
 
-            &:last-of-type {
-                margin-bottom: 40px;
-            }
-        }
-    }
+.heroCopy {
+  align-self: center;
+}
 
-    .actionButton {
-        margin: 0 auto 20px;
-        max-width: 400px;
-    }
+.breadcrumbs {
+  margin-bottom: 22px;
+}
 
-    .backgroundFilter {
-        background-color: rgba(0, 0, 0, 0.25);
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-    }
+.breadcrumbs ol {
+  align-items: center;
+  color: $dim-gray;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $regular2;
+  font-size: 11px;
+  gap: 8px;
+}
+
+.breadcrumbs li + li::before {
+  color: $lightGray;
+  content: '/';
+  margin-right: 8px;
+}
+
+.breadcrumbs a {
+  color: $accessibleBlue;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+
+.breadcrumbs a:hover {
+  text-decoration-color: currentColor;
+}
+
+.eyebrow {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  margin-bottom: 9px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: clamp(36px, 11vw, 64px);
+  letter-spacing: -0.052em;
+  line-height: 1.02;
+  max-width: 690px;
+  text-wrap: balance;
+}
+
+.heroIntro {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 18px;
+  max-width: 620px;
+}
+
+.quickFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 22px;
+}
+
+.quickFacts li {
+  align-items: center;
+  color: $accent-color-teal;
+  display: inline-flex;
+  font-family: $bold2;
+  font-size: 11px;
+  gap: 7px;
+}
+
+.quickFacts svg {
+  color: $accessibleBlue;
+}
+
+.startButton {
+  margin-top: 26px;
+  width: 100%;
+}
+
+.dogOnly {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 10px;
+  margin-top: 9px;
+  text-align: center;
+}
+
+.heroVisual {
+  aspect-ratio: 4 / 3;
+  border-radius: $br-xxxl;
+  box-shadow: 0 24px 60px rgba($accent-color-teal, 0.16);
+  overflow: hidden;
+  position: relative;
+}
+
+.heroVisual::after {
+  background: linear-gradient(180deg, transparent 52%, rgba($accent-color-teal, 0.83));
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroVisual figcaption {
+  bottom: 0;
+  color: rgba($white, 0.82);
+  font-family: $regular2;
+  font-size: 11px;
+  left: 0;
+  line-height: 1.5;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+
+.heroVisual figcaption span {
+  color: $white;
+  display: block;
+  font-family: $bold2;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.toolSection {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 64px 16px 38px;
+  scroll-margin-top: 160px;
+}
+
+.preparation {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.09);
+  border-radius: $br-xxxl;
+  box-shadow: 0 24px 64px rgba($accent-color-teal, 0.08);
+  margin: 0 auto;
+  max-width: 920px;
+  padding: 30px 18px;
+  text-align: center;
+}
+
+.preparationHeading {
+  margin: 0 auto 27px;
+  max-width: 620px;
+}
+
+.preparationHeading h2 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: clamp(27px, 8vw, 40px);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.preparationHeading > p:last-child {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.preparationList {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.preparationList li {
+  align-items: center;
+  background: #f7f8f4;
+  border: 1px solid rgba($accent-color-teal, 0.07);
+  border-radius: $br-xl;
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+}
+
+.preparationList li > span {
+  align-items: center;
+  background: rgba($lightBlue, 0.16);
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: flex;
+  flex: 0 0 42px;
+  height: 42px;
+  justify-content: center;
+}
+
+.preparationList h3 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.preparationList p {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.guidance {
+  align-items: flex-start;
+  background: $accent-color-teal;
+  border-radius: $br-xxxl;
+  color: $white;
+  display: flex;
+  gap: 13px;
+  margin: 0 16px 76px;
+  padding: 22px 18px;
+}
+
+.guidance > span {
+  align-items: center;
+  background: rgba($lightBlue, 0.16);
+  border-radius: 50%;
+  color: $lightBlue;
+  display: flex;
+  flex: 0 0 42px;
+  height: 42px;
+  justify-content: center;
+}
+
+.guidance h2 {
+  font-family: $bold2;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.guidance p {
+  color: rgba($white, 0.73);
+  font-family: $regular2;
+  font-size: 11px;
+  line-height: 1.58;
+}
+
+@include mdq(sm) {
+  .hero,
+  .toolSection {
+    padding-inline: 24px;
+  }
+
+  .startButton {
+    width: auto;
+  }
+
+  .dogOnly {
+    padding-left: 10px;
+    text-align: left;
+  }
+
+  .preparation {
+    padding: 42px 34px;
+  }
+
+  .preparationList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .preparationList li {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .guidance {
+    margin-inline: 24px;
+    padding: 26px;
+  }
+}
+
+@include mdq(md) {
+  .hero {
+    padding-block: 62px 72px;
+  }
+
+  .heroShell {
+    align-items: center;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: clamp(42px, 6vw, 86px);
+  }
+
+  .heroVisual {
+    aspect-ratio: 4 / 5;
+  }
+
+  .toolSection {
+    padding-block: 82px 46px;
+  }
+
+  .guidance {
+    margin: 0 auto 96px;
+    max-width: 920px;
+  }
+}
+
+@include mdq(lg) {
+  .hero {
+    padding-block: 76px 88px;
+  }
+
+  .heroIntro {
+    font-size: 17px;
+  }
+
+  .heroVisual figcaption {
+    font-size: 13px;
+    padding: 28px;
+  }
+
+  .heroVisual figcaption span {
+    font-size: 18px;
+  }
 }

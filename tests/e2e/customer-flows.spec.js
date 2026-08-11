@@ -195,31 +195,39 @@ test('catalogue layout is full-width and mobile-first', async ({ page }) => {
 
 test('calculator produces a supported adult result', async ({ page }) => {
   await page.goto('/calculadora');
-  await page.getByRole('button', { name: 'Empezar' }).click();
-  await page.getByRole('button', { name: 'Adulto' }).click();
-  await page.getByRole('button', { name: /Mini/ }).click();
-  await page.getByRole('button', { name: 'Sin castrar' }).click();
-  await page.getByRole('button', { name: 'Ideal' }).click();
-  await page.getByRole('button', { name: 'Activo' }).click();
-  await page.getByRole('spinbutton').fill('10');
-  await page.getByRole('button', { name: 'Calcular' }).click();
+  await page.getByRole('button', { name: 'Calcular porción' }).click();
 
-  await expect(page.getByRole('heading', { name: /400g/ })).toBeVisible();
+  for (const option of [
+    /Adulto/,
+    /Pequeño o mediano/,
+    'No está esterilizado/a',
+    /Condición ideal/,
+    /Regular/,
+  ]) {
+    await page.getByRole('radio', { name: option }).check();
+    await page.getByRole('button', { name: 'Siguiente' }).click();
+  }
+
+  await page.getByRole('textbox', { name: 'Peso actual' }).fill('10');
+  await page.getByRole('button', { name: 'Ver mi porción' }).click();
+
+  await expect(page.getByRole('heading', { name: '350 g al día' })).toBeVisible();
 });
 
 test('calculator does not offer the unapproved overweight/very-active profile', async ({
   page,
 }) => {
   await page.goto('/calculadora');
-  await page.getByRole('button', { name: 'Empezar' }).click();
-  await page.getByRole('button', { name: 'Adulto' }).click();
-  await page.getByRole('button', { name: /Mini/ }).click();
-  await page.getByRole('button', { name: 'Castrado', exact: true }).click();
-  await page.getByRole('button', { name: 'Sobrepeso' }).click();
+  await page.getByRole('button', { name: 'Calcular porción' }).click();
 
-  await expect(page.getByRole('button', { name: 'Sedentario' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Activo' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Deportista' })).toHaveCount(0);
+  for (const option of [/Adulto/, /Mini/, 'Sí, está esterilizado/a', /Sobrepeso/]) {
+    await page.getByRole('radio', { name: option }).check();
+    await page.getByRole('button', { name: 'Siguiente' }).click();
+  }
+
+  await expect(page.getByRole('radio', { name: /Tranquila/ })).toBeVisible();
+  await expect(page.getByRole('radio', { name: /Regular/ })).toBeVisible();
+  await expect(page.getByRole('radio', { name: /Alta/ })).toHaveCount(0);
 });
 
 test('plan flow saves a calculated pet', async ({ page }) => {
