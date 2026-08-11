@@ -1,118 +1,440 @@
-@use '../../../styles/_variables' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
 
-.calculatorSteps {
+.calculatorSteps,
+.result {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.1);
+  border-radius: $br-xxxl;
+  box-shadow: 0 24px 64px rgba($accent-color-teal, 0.1);
   margin: 0 auto;
-  max-width: 576px;
+  max-width: 820px;
+  overflow: hidden;
+}
+
+.progressHeader {
+  background: #f5f7f2;
+  border-bottom: 1px solid rgba($accent-color-teal, 0.08);
+  padding: 18px 18px 16px;
+}
+
+.progressHeader > div:first-child {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.progressHeader span,
+.progressHeader strong {
+  font-family: $bold2;
+  font-size: 11px;
+}
+
+.progressHeader span {
+  color: $accessibleBlue;
+}
+
+.progressHeader strong {
+  color: $dim-gray;
+  font-weight: normal;
+}
+
+.progressTrack {
+  background: rgba($accessibleBlue, 0.12);
+  border-radius: $br-full;
+  height: 6px;
+  overflow: hidden;
+}
+
+.progressTrack > span {
+  background: linear-gradient(90deg, $accessibleBlue, $blue);
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+  transition: width 220ms ease;
+}
+
+.step {
+  min-height: 390px;
+  padding: 32px 18px 24px;
+}
+
+.step h2 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: clamp(25px, 7vw, 36px);
+  letter-spacing: -0.04em;
+  line-height: 1.13;
+  margin: 0 auto 10px;
+  max-width: 620px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.step h2:focus {
+  outline: none;
+}
+
+.stepDescription {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 13px;
+  line-height: 1.58;
+  margin: 0 auto 28px;
+  max-width: 590px;
+  text-align: center;
+}
+
+.optionGroup {
+  border: 0;
+  display: grid;
+  gap: 10px;
+  margin: 0 auto;
+  max-width: 610px;
+  padding: 0;
+}
+
+.option,
+.optionSelected {
+  align-items: center;
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.15);
+  border-radius: $br-xl;
+  color: $accent-color-teal;
+  cursor: pointer;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) 26px;
+  min-height: 68px;
+  padding: 13px 14px;
+  position: relative;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.option:hover,
+.optionSelected:hover {
+  border-color: $accessibleBlue;
+  transform: translateY(-1px);
+}
+
+.optionSelected {
+  background: rgba($lightBlue, 0.09);
+  border-color: $accessibleBlue;
+  box-shadow: 0 0 0 2px rgba($blue, 0.09);
+}
+
+.option input,
+.optionSelected input {
+  height: 1px;
+  left: 12px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  width: 1px;
+}
+
+.option:has(input:focus-visible),
+.optionSelected:has(input:focus-visible) {
+  outline: 3px solid $lightBlue;
+  outline-offset: 3px;
+}
+
+.optionCopy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.optionCopy strong {
+  font-family: $bold2;
+  font-size: 14px;
+  line-height: 1.32;
+}
+
+.optionCopy small {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 10px;
+  line-height: 1.45;
+  margin-top: 3px;
+}
+
+.optionCheck {
+  align-items: center;
+  border: 2px solid rgba($accessibleBlue, 0.28);
+  border-radius: 50%;
+  color: $white;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.optionSelected .optionCheck {
+  background: $accessibleBlue;
+  border-color: $accessibleBlue;
+}
+
+.weightField {
+  margin: 12px auto 0;
+  max-width: 360px;
+}
+
+.weightField > label {
+  color: $accent-color-teal;
+  display: block;
+  font-family: $bold2;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.weightField > div {
+  position: relative;
+}
+
+.weightField input {
+  background: $white;
+  border: 1px solid rgba($accent-color-teal, 0.22);
+  border-radius: $br-xl;
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: 25px;
+  min-height: 62px;
+  padding: 13px 60px 13px 16px;
+  width: 100%;
+}
+
+.weightField input:focus {
+  border-color: $accessibleBlue;
+  box-shadow: 0 0 0 4px rgba($blue, 0.1);
+  outline: none;
+}
+
+.weightField input[aria-invalid='true'] {
+  border-color: $important;
+}
+
+.weightField > div > span {
+  color: $dim-gray;
+  font-family: $bold2;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.weightField > p {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 10px;
+  margin-top: 7px;
+}
+
+.warning {
+  color: $important;
+  font-family: $bold2;
+  font-size: 12px;
+  margin: 12px auto 0;
+  max-width: 610px;
+  text-align: center;
+}
+
+.calculatorControls {
+  align-items: center;
+  border-top: 1px solid rgba($accent-color-teal, 0.08);
+  display: flex;
+  justify-content: space-between;
+  min-height: 84px;
+  padding: 14px 18px;
+}
+
+.calculatorControls > :last-child {
+  min-width: 136px;
+}
+
+.result {
+  padding: 34px 18px 24px;
+}
+
+.resultHeading {
+  margin: 0 auto 30px;
+  max-width: 650px;
+  text-align: center;
+}
+
+.resultHeading > p:first-child {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.resultHeading h2 {
+  color: $accessibleBlue;
+  font-family: $bold2;
+  font-size: clamp(42px, 13vw, 68px);
+  letter-spacing: -0.055em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.resultHeading h2:focus {
+  outline: none;
+}
+
+.resultHeading h2 span {
+  color: $accent-color-teal;
+  display: block;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  margin-top: 7px;
+}
+
+.resultHeading > p:last-child {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.resultGrid {
+  display: grid;
+  gap: 14px;
+}
+
+.resultGrid > div,
+.resultNote {
+  background: #f7f8f4;
+  border: 1px solid rgba($accent-color-teal, 0.08);
+  border-radius: $br-xxl;
+  padding: 18px;
+}
+
+.resultGrid h3 {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  font-size: 14px;
+  margin-bottom: 13px;
+}
+
+.summary {
+  display: grid;
+  gap: 8px;
+}
+
+.summary > div {
+  align-items: start;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.summary dt,
+.summary dd {
+  font-family: $regular2;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.summary dt {
+  color: $dim-gray;
+}
+
+.summary dd {
+  color: $accent-color-teal;
+  font-family: $bold2;
+  text-align: right;
+}
+
+.resultNote {
+  align-items: flex-start;
+  background: rgba($lightBlue, 0.08);
+  color: $accessibleBlue;
+  display: flex;
+  gap: 11px;
+}
+
+.resultNote svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.resultNote strong {
+  color: $accent-color-teal;
+  display: block;
+  font-family: $bold2;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.resultNote p {
+  color: $dim-gray;
+  font-family: $regular2;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.resultActions {
+  display: grid;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+@include mdq(sm) {
+  .progressHeader {
+    padding-inline: 28px;
+  }
 
   .step {
-    margin-bottom: 40px;
-
-    h2 {
-      font-size: 24px;
-      font-family: $bold2;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    button[aria-pressed] {
-      cursor: pointer;
-      border-radius: 1000px;
-      border: 2px solid $accessibleBlue;
-      color: $accessibleBlue;
-      display: flex;
-      flex-flow: column;
-      align-items: center;
-      justify-content: center;
-      font-family: $bold;
-      font-size: 18px;
-      line-height: 24px;
-      margin-bottom: 15px;
-      padding: 15px 20px;
-      transition: all 200ms ease-out;
-
-      span {
-        letter-spacing: 1.2px;
-        font-size: 12px;
-      }
-
-      &.selected,
-      &:hover {
-        background-color: $accessibleBlue;
-        color: $white;
-      }
-    }
-
-    input {
-      background-color: $white;
-      border: 1px solid $lightGray;
-      display: block;
-      font-family: $bold;
-      font-size: 20px;
-      padding: 15px 20px;
-      text-align: center;
-      width: 100%;
-      transition: border, 200ms ease-out;
-
-      &:focus {
-        border: 1px solid $darkGray;
-      }
-    }
+    min-height: 420px;
+    padding: 42px 30px 30px;
   }
 
-  .profile {
-    margin: 0 auto;
-    max-width: 576px;
-
-    &Details {
-      margin-bottom: 40px;
-
-      div {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      span {
-        &:first-child {
-          font-family: $bold;
-        }
-      }
-    }
-
-    &Results {
-      flex-grow: 1;
-      margin-bottom: 20px;
-      width: 80%;
-
-      h3 {
-        font-family: $bold2;
-        font-size: 42px;
-
-        span {
-          font-size: 32px;
-        }
-      }
-
-      p {
-        text-align: center;
-      }
-    }
+  .optionGroup {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .resultImage {
-    margin: 0 auto;
-    margin-bottom: 40px;
-    width: 80%;
-    max-width: 375px;
+  .optionGroup > :only-child,
+  .optionGroup > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .option,
+  .optionSelected {
+    min-height: 84px;
+    padding: 15px 17px;
   }
 
   .calculatorControls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
+    padding-inline: 28px;
+  }
 
-    :global(.Button_fullWidth) {
-      max-width: 400px;
-    }
+  .result {
+    padding: 46px 32px 30px;
+  }
+
+  .resultActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@include mdq(md) {
+  .optionCopy strong {
+    font-size: 15px;
+  }
+
+  .optionCopy small {
+    font-size: 11px;
+  }
+
+  .resultGrid {
+    grid-template-columns: 1.08fr 0.92fr;
   }
 }
