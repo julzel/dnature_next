@@ -3,7 +3,7 @@ import {
   getProducts,
 } from '../features/Catalog/server';
 import { absoluteUrl } from '../constants/seo';
-import { FAQ_LAST_MODIFIED } from '../features/Faq/seo';
+import { FAQ_LAST_MODIFIED } from '../features/Faq/server';
 
 export const revalidate = 3600;
 

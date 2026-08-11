@@ -7,7 +7,7 @@ import {
   FAQ_TITLE,
   createFaqStructuredData,
   serializeStructuredData,
-} from '../../features/Faq/seo';
+} from '../../features/Faq/server';
 
 describe('FAQ search metadata', () => {
   const structuredData = createFaqStructuredData();

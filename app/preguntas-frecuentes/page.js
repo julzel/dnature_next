@@ -5,7 +5,7 @@ import {
   FAQ_TITLE,
   createFaqStructuredData,
   serializeStructuredData,
-} from '../../features/Faq/seo';
+} from '../../features/Faq/server';
 import { createPageMetadata } from '../../constants/seo';
 
 export const metadata = createPageMetadata({
