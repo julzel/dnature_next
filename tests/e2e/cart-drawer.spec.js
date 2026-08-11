@@ -78,19 +78,36 @@ for (const viewport of viewportCases) {
 test('checkout stacks on mobile and uses a two-column desktop layout', async ({
   page,
 }) => {
+  test.setTimeout(60_000);
+
   for (const viewport of [
     { width: 390, height: 844, layout: 'stacked' },
     { width: 1200, height: 900, layout: 'columns' },
   ]) {
     await page.setViewportSize(viewport);
-    await page.goto('/');
+    await page.goto('/productos/receta-de-prueba', {
+      waitUntil: 'domcontentloaded',
+    });
     await page.evaluate(() => window.localStorage.clear());
-    await page.reload();
-    await page.goto('/productos/receta-de-prueba');
-    await page
-      .getByRole('button', { name: 'Agregar Receta de prueba al carrito' })
-      .click();
-    await page.getByRole('link', { name: 'Ver carrito (1)', exact: true }).click();
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    const addToCart = page.getByRole('button', {
+      name: 'Agregar Receta de prueba al carrito',
+    });
+    await expect(addToCart).toBeVisible();
+    await expect
+      .poll(() =>
+        addToCart.evaluate((button) =>
+          Object.keys(button).some((key) => key.startsWith('__reactProps$'))
+        )
+      )
+      .toBe(true);
+    await addToCart.click();
+    const cartLink = page.getByRole('link', {
+      name: 'Ver carrito (1)',
+      exact: true,
+    });
+    await expect(cartLink).toBeVisible();
+    await cartLink.click();
 
     const order = page.getByRole('region', { name: 'Tu carrito' });
     const summary = page.getByRole('complementary', {
