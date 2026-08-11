@@ -252,7 +252,11 @@ const FaqList = () => {
                       const triggerId = `${idPrefix}-${item.id}-trigger`;
                       const answerId = `${idPrefix}-${item.id}-answer`;
                       return (
-                        <article className={styles.question} key={item.id}>
+                        <article
+                          className={styles.question}
+                          id={`faq-${item.id}`}
+                          key={item.id}
+                        >
                           <h4>
                             <button
                               id={triggerId}

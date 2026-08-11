@@ -21,6 +21,37 @@
   align-self: center;
 }
 
+.breadcrumbs {
+  margin-bottom: 22px;
+}
+
+.breadcrumbs ol {
+  align-items: center;
+  color: $dim-gray;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: $regular2;
+  font-size: 11px;
+  gap: 8px;
+}
+
+.breadcrumbs li + li::before {
+  color: $lightGray;
+  content: '/';
+  margin-right: 8px;
+}
+
+.breadcrumbs a {
+  color: $accessibleBlue;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+
+.breadcrumbs a:hover {
+  text-decoration-color: currentColor;
+}
+
 .eyebrow {
   color: $accessibleOrange;
   font-family: $bold;

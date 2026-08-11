@@ -1,38 +1,36 @@
 import Faq from '../../features/Faq';
-import { faqCategories } from '../../features/Faq/FaqList/data';
+import {
+  FAQ_DESCRIPTION,
+  FAQ_PATH,
+  FAQ_TITLE,
+  createFaqStructuredData,
+  serializeStructuredData,
+} from '../../features/Faq/seo';
 import { createPageMetadata } from '../../constants/seo';
 
 export const metadata = createPageMetadata({
-  title: 'Preguntas frecuentes',
-  description:
-    'Encontrá respuestas sobre alimentación natural, dietas DNAture, conservación, pedidos, entregas y cuidados para perros y gatos.',
-  path: '/preguntas-frecuentes',
+  title: FAQ_TITLE,
+  description: FAQ_DESCRIPTION,
+  path: FAQ_PATH,
+  image: '/faq/faq.jpg',
+  imageAlt: 'Perro sosteniendo un hueso carnoso al aire libre',
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-image-preview': 'large',
+    'max-video-preview': -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
 });
 
-const blockText = (block) => {
-  if (block.items) return block.items.join(' ');
-  if (block.content) {
-    return block.content
-      .map((part) => (typeof part === 'string' ? part : part.text))
-      .join('');
-  }
-  return block.text || '';
-};
-
-const faqStructuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqCategories.flatMap((category) =>
-    category.items.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.blocks.map(blockText).join(' '),
-      },
-    })),
-  ),
-};
+const faqStructuredData = createFaqStructuredData();
 
 const FaqPage = () => (
   <>
@@ -40,7 +38,7 @@ const FaqPage = () => (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(faqStructuredData).replace(/</g, '\\u003c'),
+        __html: serializeStructuredData(faqStructuredData),
       }}
     />
   </>

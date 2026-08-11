@@ -3,6 +3,7 @@ import {
   getProducts,
 } from '../features/Catalog/server';
 import { absoluteUrl } from '../constants/seo';
+import { FAQ_LAST_MODIFIED } from '../features/Faq/seo';
 
 export const revalidate = 3600;
 
@@ -11,7 +12,12 @@ const staticRoutes = [
   { path: '/productos', priority: 0.9, changeFrequency: 'daily' },
   { path: '/calculadora', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/plan-dnature', priority: 0.6, changeFrequency: 'monthly' },
-  { path: '/preguntas-frecuentes', priority: 0.5, changeFrequency: 'monthly' },
+  {
+    path: '/preguntas-frecuentes',
+    priority: 0.7,
+    changeFrequency: 'monthly',
+    lastModified: FAQ_LAST_MODIFIED,
+  },
 ];
 
 const sitemap = async () => {

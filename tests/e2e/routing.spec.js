@@ -56,6 +56,45 @@ test('publishes canonical metadata, headers, and dynamic product discovery', asy
   expect(await sitemapResponse.text()).toContain('/productos/receta-de-prueba/');
 });
 
+test('publishes crawlable FAQ content for Google and AI search', async ({
+  page,
+  request,
+}) => {
+  const faqResponse = await request.get('/preguntas-frecuentes');
+  expect(faqResponse.ok()).toBe(true);
+  const faqHtml = await faqResponse.text();
+
+  expect(faqHtml).toContain('FAQPage');
+  expect(faqHtml).toContain('BreadcrumbList');
+  expect(faqHtml).toContain('¿La alimentación natural es lo mismo que BARF?');
+  expect(faqHtml).toContain('No necesariamente. BARF es un modelo');
+
+  await page.goto('/preguntas-frecuentes');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    /\/preguntas-frecuentes\/$/,
+  );
+  const robotsMeta = await page
+    .locator('meta[name="robots"]')
+    .getAttribute('content');
+  const googleBotMeta = await page
+    .locator('meta[name="googlebot"]')
+    .getAttribute('content');
+  for (const content of [robotsMeta, googleBotMeta]) {
+    expect(content).toContain('index');
+    expect(content).toContain('follow');
+    expect(content).toContain('max-snippet:-1');
+    expect(content).toContain('max-image-preview:large');
+  }
+
+  const robotsText = await (await request.get('/robots.txt')).text();
+  expect(robotsText).toContain('User-Agent: OAI-SearchBot');
+  expect(robotsText).toMatch(/User-Agent: OAI-SearchBot[\s\S]*Allow: \//);
+  expect(robotsText).toMatch(
+    /User-Agent: OAI-SearchBot[\s\S]*Disallow: \/cuenta\//,
+  );
+});
+
 test('redirects the legacy cart route to checkout', async ({ page }) => {
   await page.goto('/cart');
   await expect(page).toHaveURL(/\/checkout\/?$/);

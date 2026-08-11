@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowDown, MessageCircleMore } from 'lucide-react';
 
 import { WHATSAPP_URL } from '../../../constants/contact';
@@ -8,6 +9,12 @@ const Hero = () => (
   <section className={styles.hero} aria-labelledby="faq-title">
     <div className={styles.shell}>
       <div className={styles.copy}>
+        <nav className={styles.breadcrumbs} aria-label="Migas de pan">
+          <ol>
+            <li><Link href="/">Inicio</Link></li>
+            <li aria-current="page">Preguntas frecuentes</li>
+          </ol>
+        </nav>
         <p className={styles.eyebrow}>Centro de ayuda</p>
         <h1 id="faq-title">Respuestas para cuidarles mejor</h1>
         <p className={styles.intro}>
