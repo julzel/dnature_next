@@ -8,7 +8,7 @@ const HeroEyebrow = () => {
       <span className={styles.iconContainer}>
         <Leaf aria-hidden="true" className={styles.icon} strokeWidth={2} />
       </span>
-      <span>100% INGREDIENTES NATURALES</span>
+      <span>Alimentación natural hecha en Costa Rica</span>
     </div>
   );
 };

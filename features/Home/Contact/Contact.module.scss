@@ -2,83 +2,382 @@
 @use '../../../styles/mixins' as *;
 
 .contact {
-  padding: 64px 32px;
-  background-color: $text-color;
-  position: relative;
+  background:
+    radial-gradient(circle at 8% 8%, rgba($lightBlue, 0.16), transparent 28%),
+    radial-gradient(circle at 92% 88%, rgba($orange, 0.11), transparent 27%),
+    $accent-color-teal;
+  color: $white;
   overflow: hidden;
+  padding: 64px 16px;
+  position: relative;
+}
 
-  @include mdq(md) {
-    padding: 128px 32px;
+.shell {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 32px;
+  max-width: 760px;
+}
+
+.eyebrow {
+  color: $lightBlue;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  color: $white;
+  font-family: $bold2;
+  font-size: clamp(34px, 10vw, 56px);
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+
+.intro {
+  color: rgba($white, 0.76);
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 620px;
+}
+
+.serviceDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  list-style: none;
+  margin-top: 20px;
+}
+
+.serviceDetails li {
+  align-items: center;
+  background: rgba($white, 0.08);
+  border: 1px solid rgba($white, 0.13);
+  border-radius: $br-full;
+  color: rgba($white, 0.88);
+  display: inline-flex;
+  font-size: 10px;
+  gap: 6px;
+  line-height: 1.35;
+  padding: 7px 10px;
+}
+
+.contentGrid,
+.channels,
+.channelList {
+  display: grid;
+  gap: 14px;
+}
+
+.channelCard {
+  align-items: center;
+  background: $white;
+  border: 1px solid rgba($white, 0.58);
+  border-radius: $br-xxl;
+  color: $accent-color-teal;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 44px minmax(0, 1fr) 20px;
+  min-height: 92px;
+  padding: 14px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.channelCard.featured {
+  background:
+    linear-gradient(135deg, rgba($lightBlue, 0.28), rgba($white, 0.98) 66%),
+    $white;
+  border-color: rgba($lightBlue, 0.58);
+}
+
+.channelCard:hover {
+  border-color: $lightBlue;
+  box-shadow: 0 14px 30px rgba(#071d24, 0.2);
+  transform: translateY(-2px);
+}
+
+.channelCard:focus-visible,
+.mapLink:focus-visible {
+  outline: 3px solid $lightBlue;
+  outline-offset: 3px;
+}
+
+.channelIcon {
+  align-items: center;
+  background: rgba($lightBlue, 0.16);
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: flex;
+  font-size: 21px;
+  height: 44px;
+  justify-content: center;
+  width: 44px;
+}
+
+.featured .channelIcon {
+  background: $accessibleBlue;
+  color: $white;
+}
+
+.channelCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.channelCopy small {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.channelCopy strong {
+  font-family: $bold2;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.channelCopy span {
+  color: $dim-gray;
+  font-size: 11px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.channelArrow {
+  color: $accessibleBlue;
+  transition: transform 180ms ease;
+}
+
+.channelCard:hover .channelArrow {
+  transform: translate(2px, -2px);
+}
+
+.assistanceNote {
+  align-items: flex-start;
+  background: rgba($white, 0.07);
+  border: 1px solid rgba($white, 0.12);
+  border-radius: $br-xxl;
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+}
+
+.assistanceNote > span {
+  align-items: center;
+  background: $accessibleOrange;
+  border-radius: 50%;
+  color: $white;
+  display: flex;
+  flex: 0 0 42px;
+  font-family: $bold;
+  font-size: 10px;
+  height: 42px;
+  justify-content: center;
+}
+
+.assistanceNote strong {
+  display: block;
+  font-family: $bold2;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+.assistanceNote p {
+  color: rgba($white, 0.7);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.locationCard {
+  background: $white;
+  border: 1px solid rgba($white, 0.5);
+  border-radius: $br-xxxl;
+  box-shadow: 0 24px 64px rgba(#071d24, 0.24);
+  color: $accent-color-teal;
+  overflow: hidden;
+}
+
+.mapFrame {
+  aspect-ratio: 4 / 3;
+  background: $snow;
+  min-height: 260px;
+  position: relative;
+}
+
+.locationDetails {
+  display: grid;
+  gap: 11px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  padding: 18px;
+}
+
+.locationIcon {
+  align-items: center;
+  background: rgba($lightBlue, 0.18);
+  border-radius: 50%;
+  color: $accessibleBlue;
+  display: flex;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.locationCopy {
+  min-width: 0;
+}
+
+.locationCopy p {
+  color: $accessibleOrange;
+  font-family: $bold;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.locationCopy h3 {
+  font-family: $bold2;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.locationCopy > span {
+  color: $dim-gray;
+  display: block;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.mapLink {
+  align-items: center;
+  border: 1px solid $accessibleBlue;
+  border-radius: $br-full;
+  color: $accessibleBlue;
+  display: inline-flex;
+  font-family: $bold;
+  font-size: 11px;
+  gap: 7px;
+  grid-column: 1 / -1;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.mapLink:hover {
+  background: $accessibleBlue;
+  color: $white;
+}
+
+@include mdq(md) {
+  .contact {
+    padding: 88px 32px;
   }
 
-  .title {
-    color: $green;
-    font-family: $cursiveTitle;
-    font-size: 32px;
-    margin: 0 auto;
-    margin-bottom: 40px;
+  .header {
+    margin-bottom: 42px;
   }
 
-  &List {
-    max-width: 600px;
-    margin: 0 auto;
-    margin-bottom: 40px;
-    padding-left: 20px;
-    width: 100%;
-
-    li {
-      color: $green;
-      display: flex;
-      align-items: center;
-      margin: 0 auto;
-      margin-bottom: 20px;
-      max-width: 240px;
-
-      div {
-        width: 100%;
-        display: flex;
-        align-items: center;
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      @include mdq(sm) {
-        flex-flow: column;
-        margin: 0;
-        width: calc(100% / 3);
-
-        div {
-          flex-flow: column;
-          justify-content: space-between;
-          height: 100%;
-        }
-      }
-    }
-
-    @include mdq(sm) {
-      display: flex;
-      padding-left: 0;
-    }
+  .channelList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  &Item {
-    margin-left: 15px;
-
-    @include mdq(sm) {
-      margin-left: 0;
-    }
+  .channelCard {
+    align-content: start;
+    grid-template-columns: 44px minmax(0, 1fr) 18px;
+    min-height: 114px;
   }
 
-  &Icon {
+  .mapFrame {
+    aspect-ratio: 16 / 9;
+    min-height: 330px;
+  }
+
+  .locationDetails {
+    align-items: center;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    padding: 22px;
+  }
+
+  .mapLink {
+    grid-column: auto;
+    min-width: 164px;
+  }
+}
+
+@include mdq(lg) {
+  .contact {
+    padding: 112px 40px;
+  }
+
+  .contentGrid {
+    align-items: stretch;
+    gap: 24px;
+    grid-template-columns: minmax(320px, 0.84fr) minmax(0, 1.16fr);
+  }
+
+  .channelList {
+    grid-template-columns: 1fr;
+  }
+
+  .channelCard {
+    min-height: 92px;
+  }
+
+  .locationCard {
     display: flex;
-    justify-content: center;
-    font-size: 16px;
-    opacity: 0.8;
+    flex-direction: column;
+  }
 
-    @include mdq(sm) {
-      margin-bottom: 5px;
-    }
+  .mapFrame {
+    aspect-ratio: auto;
+    flex: 1;
+    min-height: 330px;
+  }
+}
+
+@media (max-width: 359px) {
+  .contact {
+    padding-inline: 12px;
+  }
+
+  .serviceDetails {
+    display: grid;
+  }
+
+  .channelCard {
+    gap: 9px;
+    grid-template-columns: 40px minmax(0, 1fr) 18px;
+    padding-inline: 11px;
+  }
+
+  .channelIcon {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .channelCard,
+  .channelArrow,
+  .mapLink {
+    transition: none;
   }
 }

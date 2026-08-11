@@ -1,60 +1,36 @@
 @use '../../../../styles/variables' as *;
-@use "../../../../styles/mixins"  as *;
+@use '../../../../styles/mixins' as *;
 
-.ctaPositioner {
-  align-self: flex-start;
-  margin-top: 30px;
-  position: relative;
-  width: fit-content;
-  z-index: 2;
+.actions {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+  width: 100%;
+}
 
-  @include mdq(md) {
-    margin-top: 36px;
+.primaryAction,
+.secondaryAction {
+  width: 100%;
+}
+
+@include mdq(sm) {
+  .actions {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: auto;
   }
 }
 
-.cta {
-  font-size: 14px;
-  gap: 12px;
-  min-height: 48px;
-  padding: 8px 10px 8px 18px;
-  width: auto;
-
-  @include mdq(md) {
-    font-size: 16px;
-    gap: 16px;
-    min-height: 58px;
-    padding: 10px 12px 10px 24px;
-  }
-
-  &:hover .arrowBadge {
-    transform: translateX(2px);
-  }
-}
-
-.arrowBadge {
-  align-items: center;
-  background: $white;
-  border-radius: 50%;
-  color: $accessibleBlue;
-  display: inline-flex;
-  height: 30px;
-  justify-content: center;
-  transition: transform 180ms ease;
-  width: 30px;
-
-  @include mdq(md) {
-    height: 36px;
-    width: 36px;
-  }
-
-  svg {
-    height: 16px;
-    width: 16px;
-
-    @include mdq(md) {
-      height: 19px;
-      width: 19px;
-    }
+@include mdq(md) {
+  .actions {
+    margin-top: 34px;
   }
 }

@@ -3,7 +3,7 @@ import { expect, test } from './runtime-test';
 test('home → catalogue → prepared request → WhatsApp handoff', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  await page.getByRole('link', { name: 'Comprar' }).click();
+  await page.getByRole('link', { name: 'Explorar productos' }).click();
   await expect(page).toHaveURL(/\/productos/);
 
   await page.getByRole('link', { name: 'Ver Receta de prueba' }).click();

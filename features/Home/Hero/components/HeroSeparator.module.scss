@@ -4,13 +4,12 @@
 .separator {
   background: $accessibleBlue;
   border-radius: $br-full;
-  height: 5px;
-  margin: 28px 0 30px;
-  width: 104px;
+  height: 4px;
+  margin: 24px 0 22px;
+  width: 64px;
 
   @include mdq(md) {
-    height: 6px;
-    margin-block: 34px;
-    width: 160px;
+    margin-block: 28px 26px;
+    width: 80px;
   }
 }

@@ -61,9 +61,9 @@ The official WhatsApp number is centralized as E.164 digits in
 `constants/contact.js`. Changing it requires checking the header, contact
 section, mobile navigation, checkout message, customer guide, and the receiving
 WhatsApp Business account. Customers may write 24/7; staffed support is Monday
-through Friday, 8:00 a.m.–5:00 p.m. Costa Rica time, with replies within two
-business hours. The product owner must still name the operational owner and
-fallback process before launch.
+through Friday, 8:00 a.m.–5:00 p.m., and Saturday, 8:00 a.m.–4:30 p.m. Costa
+Rica time, with replies within two business hours. The product owner must still
+name the operational owner and fallback process before launch.
 
 The approved commercial contract is:
 

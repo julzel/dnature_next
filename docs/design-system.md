@@ -108,6 +108,45 @@ handles direct product lookup, so the catalogue does not repeat a search field.
 - A simple product exposes `Agregar`; one with presentation-based pricing uses
   `Ver opciones` so the customer chooses a size before adding it.
 
+### Home product discovery
+
+The home page presents available product categories as complete linked cards,
+not buttons layered over imagery. Each card contains a 4:3 image, category name,
+and the quiet action `Explorar`; a separate `Ver todo el catálogo` action serves
+customers who do not want to choose a category first. Use one column at 320 px,
+two from the small breakpoint, and four only on desktop.
+
+## Welcome and product principles
+
+The welcome section introduces DNAture through three concise principles:
+natural ingredients, purposeful formulation, and responsibly incorporated raw
+food. Icons are decorative; the heading and supporting text carry the meaning.
+The `wild-plate.jpg` ingredient photograph sits between the introduction and
+the principles as visual evidence of the product approach; it is content, not a
+decorative background, and therefore keeps a descriptive alternative text.
+Principle cards use one column on mobile, a balanced two-plus-one layout on
+tablet, and three equal columns on desktop. Avoid entrance animations that make
+basic product information depend on scrolling or motion.
+
+Copy must describe product characteristics without declaring DNAture the
+healthiest option, guaranteeing nutritional absorption, or implying that every
+recipe meets every animal's needs. More specific nutritional claims require the
+approved product formulation and clinical wording.
+
+## Home hero
+
+The Hero presents one proposition, two next steps, and four compact trust
+signals. The primary action opens product discovery; the secondary action opens
+the portion calculator. The dog-and-bowl photograph remains content-bearing and
+must retain useful alternative text rather than becoming a CSS background.
+
+On mobile the composition is copy, actions, image, then a readable two-by-two
+benefit card. From tablet it becomes two columns and the benefit card becomes a
+single row. The benefit surface overlaps the beginning of Welcome to create a
+clear visual transition after the promotional Banner was removed. Avoid
+negative overlaps between the CTA and photograph, forced full-viewport heights,
+or four tiny benefit columns at 320 px.
+
 ## Assisted checkout
 
 The checkout is a request-building flow, not an online transaction. Its content
@@ -164,6 +203,60 @@ must state that:
 All customer copy uses Costa Rican voseo and remains usable at 320 px without
 horizontal overflow. Validation explains how to correct a field; it does not
 only say that the field is invalid.
+
+## Contact and location
+
+The home contact section closes the commercial journey with one clear heading,
+three distinct communication channels, current service expectations, and a
+store-location card. Channel cards are full-width touch targets on mobile and
+must expose the destination in visible text rather than relying on an icon.
+
+WhatsApp is the featured channel, while Instagram and email retain equal
+semantic link behavior with lower visual emphasis. The embedded map is an
+enhancement: the store name and locality remain visible while it loads or when
+the API is unavailable, and an independent Google Maps link must always work.
+Use the shared values in `constants/contact.js` and `constants/store.js` rather
+than duplicating phone, schedule, response target, or coordinates.
+
+## Customer stories
+
+Testimonials use an editorial card with one real customer photograph, the full
+quote, attribution, and an optional verified social profile. The section is
+introduced by a clear heading so the carousel is not encountered without
+context. Photographs lead on mobile and sit beside the quote on larger screens.
+
+Testimonials do not advance automatically: customers must be able to finish a
+long quote without the interface moving beneath them. Carousel tabs retain
+keyboard navigation and visible focus, while decorative quotation marks remain
+hidden from assistive technology. Never shorten, rewrite, or make new health
+claims inside an attributed customer quote.
+
+## DNAture system
+
+The home-page system section explains the product approach before presenting
+potential wellbeing outcomes. It pairs one ingredient photograph with a short
+description, three concrete product characteristics, and direct paths to the
+portion calculator and the full DNAture plan.
+
+Potential benefits use cautious, non-guaranteed language. Do not present food as
+a cure, promise clinical outcomes, or replace veterinary advice. Cards remain
+one column on mobile, two on tablet, and may use a balanced five-card layout on
+desktop. Avoid full-viewport promotional panels and fixed background images;
+they reduce readability and perform poorly on mobile devices.
+
+## Footer
+
+The footer is a compact navigation and trust surface, not a duplicate of every
+site route. It includes the brand promise, direct contact channels, current
+support hours, store location, and links to the public catalogue, calculator,
+plan, FAQ, and customer-account entry. Do not expose development, checkout, or
+authenticated routes as discovery links.
+
+Search-engine discovery is handled by `/sitemap.xml` and `robots.txt`; a visible
+technical sitemap link is unnecessary. The short HTML navigation remains useful
+for customers, keyboard users, and internal linking. On mobile it uses one
+column, expands to two columns on tablet, and reaches three columns only when
+the content has enough room.
 
 ## Next additions
 

@@ -4,7 +4,7 @@
   position: absolute;
 
   &::after {
-    background: rgba(255, 210, 170, 0.1);
+    background: linear-gradient(180deg, transparent 64%, rgba(41, 67, 78, 0.08));
     content: '';
     inset: 0;
     mix-blend-mode: soft-light;
@@ -21,6 +21,12 @@
     sepia(8%)
     hue-rotate(-5deg);
   object-fit: cover;
-  object-position: center;
-  transform: scaleX(-1);
+  object-position: 50% center;
+}
+
+@media screen and (min-width: 768px) {
+  .image {
+    object-position: 48% center;
+    transform: scaleX(-1);
+  }
 }

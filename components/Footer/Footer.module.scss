@@ -1,20 +1,224 @@
 @use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
 
 .footer {
-  color: $platinum;
-  background-color: #101010;
-  border-top: 2px solid $orange;
-  font-family: $light2;
-  font-size: 14px;
-  padding: 32px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba($lightBlue, 0.08), transparent 25%),
+    #172d36;
+  color: $white;
+  padding: 48px 16px 22px;
+}
 
-  p {
-    text-align: center;
-    span {
-      margin: 0 auto;
-      display: flex;
-      width: 55px;
-      height: 55px;
-    }
+.shell {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.main {
+  display: grid;
+  gap: 36px;
+}
+
+.brand {
+  max-width: 320px;
+}
+
+.logo {
+  display: inline-flex;
+  margin-bottom: 16px;
+}
+
+.logo img {
+  display: block;
+  height: auto;
+  width: 55px;
+}
+
+.brand > p {
+  color: rgba($white, 0.72);
+  font-size: 12px;
+  line-height: 1.65;
+  max-width: 280px;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.socialLinks a {
+  align-items: center;
+  border: 1px solid rgba($white, 0.18);
+  border-radius: 50%;
+  color: $white;
+  display: flex;
+  height: 42px;
+  justify-content: center;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+  width: 42px;
+}
+
+.socialLinks a:hover {
+  background: $white;
+  border-color: $white;
+  color: $accessibleBlue;
+  transform: translateY(-2px);
+}
+
+.navigation h2,
+.contact h2 {
+  color: $lightBlue;
+  font-family: $bold;
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  margin-bottom: 13px;
+  text-transform: uppercase;
+}
+
+.navigation ul {
+  display: grid;
+  gap: 1px;
+  list-style: none;
+}
+
+.navigation a {
+  align-items: center;
+  color: rgba($white, 0.8);
+  display: inline-flex;
+  font-size: 12px;
+  min-height: 38px;
+  padding: 7px 0;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.navigation a:hover {
+  color: $white;
+  transform: translateX(3px);
+}
+
+.contact {
+  max-width: 340px;
+}
+
+.contactLink {
+  align-items: center;
+  color: $white;
+  display: inline-flex;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.contactLink > span {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.contactLink strong {
+  font-family: $bold;
+  font-size: 12px;
+}
+
+.schedule {
+  color: rgba($white, 0.66);
+  font-size: 10px;
+  line-height: 1.55;
+  margin: 7px 0 12px 28px;
+  max-width: 290px;
+}
+
+.locationLink {
+  align-items: center;
+  color: rgba($white, 0.8);
+  display: inline-flex;
+  font-family: $bold;
+  font-size: 10px;
+  gap: 8px;
+  min-height: 40px;
+  text-decoration: underline;
+  text-decoration-color: rgba($lightBlue, 0.55);
+  text-underline-offset: 3px;
+}
+
+.contactLink:hover,
+.locationLink:hover {
+  color: $lightBlue;
+}
+
+.logo:focus-visible,
+.socialLinks a:focus-visible,
+.navigation a:focus-visible,
+.contactLink:focus-visible,
+.locationLink:focus-visible {
+  border-radius: $br-base;
+  outline: 3px solid $lightBlue;
+  outline-offset: 3px;
+}
+
+.bottom {
+  border-top: 1px solid rgba($white, 0.11);
+  color: rgba($white, 0.55);
+  display: flex;
+  flex-direction: column;
+  font-size: 9px;
+  gap: 5px;
+  line-height: 1.5;
+  margin-top: 36px;
+  padding-top: 18px;
+}
+
+@include mdq(sm) {
+  .main {
+    grid-template-columns: minmax(0, 1.2fr) minmax(160px, 0.8fr);
+  }
+
+  .contact {
+    grid-column: 1 / -1;
+  }
+
+  .bottom {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@include mdq(lg) {
+  .footer {
+    padding: 64px 40px 24px;
+  }
+
+  .main {
+    align-items: start;
+    gap: clamp(48px, 7vw, 96px);
+    grid-template-columns: minmax(280px, 1.2fr) minmax(180px, 0.7fr) minmax(260px, 1fr);
+  }
+
+  .contact {
+    grid-column: auto;
+  }
+
+  .bottom {
+    margin-top: 48px;
+  }
+}
+
+@media (max-width: 359px) {
+  .footer {
+    padding-inline: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socialLinks a,
+  .navigation a {
+    transition: none;
   }
 }

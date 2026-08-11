@@ -1,27 +1,27 @@
-import { FlaskConical, Heart, Leaf, Beef } from "lucide-react";
+import { Beef, FlaskConical, Heart, Leaf } from 'lucide-react';
 
 import styles from "./HeroBenefits.module.scss";
 
 const benefits = [
   {
     icon: Beef,
-    title: "Ingredientes",
-    description: "100% naturales",
+    title: 'Ingredientes',
+    description: 'naturales',
   },
   {
     icon: Leaf,
-    title: "Ni preservantes",
-    description: "ni colorantes",
+    title: 'Sin preservantes',
+    description: 'ni colorantes',
   },
   {
     icon: FlaskConical,
-    title: "Balanceadas",
-    description: "personalizadas",
+    title: 'Recetas',
+    description: 'formuladas',
   },
   {
     icon: Heart,
-    title: "Hecho con amor",
-    description: "para tu mascota",
+    title: 'Hecho con cariño',
+    description: 'en Costa Rica',
   },
 ];
 

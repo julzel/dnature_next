@@ -1,43 +1,97 @@
-import React from 'react';
+import Image from 'next/image';
+import { ArrowRight, Check } from 'lucide-react';
 
-// local imports
-// styles
+import Button from '../../../components/Button';
 import styles from './DNAtureSystem.module.scss';
-
-// data
 import benefits from './benefits';
+import planImage from '../../../public/images/plandna-mobile.jpg';
 
-const PlanSteps = () => {
+const systemFeatures = [
+  'Ingredientes naturales y proteína de calidad',
+  'Porciones adaptadas a las necesidades de tu mascota',
+  'Acompañamiento para incorporar su alimentación',
+];
+
+const DNAtureSystem = () => {
   return (
-    <>
-      <section className={styles.dnatureSystem}>
-        <div className={styles.dnaturePlate}>
-          <div className={styles.content}>
-            <h3>¡Transforma la vida de tu mascota!</h3>
-            <ul>
-              <li>Proteína cruda de alta calidad</li>
-              <li>Nutrientes esenciales para una vida sana</li>
-              <li>Menús personalizados para cada peludo amigo</li>
-              <li>Servicio a domicilio: ¡comodidad y frescura garantizada!</li>
+    <section
+      className={styles.dnatureSystem}
+      aria-labelledby='dnature-system-title'
+    >
+      <div className={styles.container}>
+        <div className={styles.introduction}>
+          <div className={styles.imageFrame}>
+            <Image
+              src={planImage}
+              alt='Selección de ingredientes naturales utilizados por DNAture'
+              fill
+              sizes='(min-width: 1024px) 46vw, calc(100vw - 32px)'
+              className={styles.image}
+            />
+            <span className={styles.imageLabel}>Nutrición real</span>
+          </div>
+
+          <div className={styles.introductionContent}>
+            <p className={styles.eyebrow}>El sistema DNAture</p>
+            <h2 id='dnature-system-title'>Una alimentación pensada para su bienestar</h2>
+            <p className={styles.lead}>
+              Te ayudamos a incorporar alimentación natural de una forma
+              sencilla, con productos frescos y una porción adecuada para tu
+              mascota.
+            </p>
+
+            <ul className={styles.features}>
+              {systemFeatures.map((feature) => (
+                <li key={feature}>
+                  <span className={styles.check} aria-hidden='true'>
+                    <Check size={16} strokeWidth={3} />
+                  </span>
+                  {feature}
+                </li>
+              ))}
             </ul>
 
-            <h4>¡Regala salud y felicidad a tu mejor amigo!</h4>
+            <div className={styles.actions}>
+              <Button
+                href='/calculadora'
+                size='large'
+                iconEnd={<ArrowRight size={18} aria-hidden='true' />}
+              >
+                Calculá su porción
+              </Button>
+              <Button href='/plan-dnature' variant='tertiary' size='large'>
+                Conocé el plan DNAture
+              </Button>
+            </div>
           </div>
         </div>
 
-        <div className={styles.benefits}>
-          {benefits.map((benefit, i) => (
-            <div key={i} className={styles.benefit}>
-              <h3>
-                <span>{benefit.title}</span>
-              </h3>
-              <p>{benefit.text}</p>
-            </div>
-          ))}
+        <div className={styles.benefitsHeading}>
+          <p className={styles.eyebrow}>Bienestar integral</p>
+          <h3 id='dnature-benefits-title'>Beneficios que buscamos acompañar</h3>
+          <p>
+            Cada mascota es diferente. Su alimentación debe considerar su
+            etapa de vida, condición corporal y necesidades particulares.
+          </p>
         </div>
-      </section>
-    </>
+
+        <ol
+          className={styles.benefits}
+          aria-labelledby='dnature-benefits-title'
+        >
+          {benefits.map((benefit, index) => (
+            <li key={benefit.title} className={styles.benefit}>
+              <span className={styles.benefitNumber} aria-hidden='true'>
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h4>{benefit.title}</h4>
+              <p>{benefit.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 };
 
-export default PlanSteps;
+export default DNAtureSystem;

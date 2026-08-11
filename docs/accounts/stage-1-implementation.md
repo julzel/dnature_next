@@ -222,7 +222,8 @@ La implementación puede probarse con datos sintéticos. Antes de invitar client
 El contrato comercial del checkout ya fue confirmado: los precios de
 Contentful son netos, se agrega un 13 % de IVA y la entrega agrega una tarifa
 estimada de ₡3.500. El WhatsApp recibe mensajes 24/7; la atención es de lunes a
-viernes, de 8:00 a. m. a 5:00 p. m., con respuesta dentro de dos horas hábiles.
+viernes, de 8:00 a. m. a 5:00 p. m., y sábados, de 8:00 a. m. a 4:30 p. m.,
+con respuesta dentro de dos horas hábiles.
 
 - Entidad legal operadora, contacto de privacidad, asesoría y textos aprobados.
 - Inventario de datos, propósitos, retención, exportación, corrección y eliminación.

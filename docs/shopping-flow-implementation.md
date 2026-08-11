@@ -75,8 +75,8 @@ el traspaso.
 - Cada solicitud con entrega agrega una tarifa estimada de ₡3.500; DNAture
   confirma manualmente la cobertura antes de aceptar el pedido.
 - El cliente puede escribir por WhatsApp las 24 horas. La atención se realiza
-  de lunes a viernes, de 8:00 a. m. a 5:00 p. m., con respuesta dentro de dos
-  horas hábiles.
+  de lunes a viernes, de 8:00 a. m. a 5:00 p. m., y sábados, de 8:00 a. m. a
+  4:30 p. m., con respuesta dentro de dos horas hábiles.
 
 Antes del lanzamiento debe documentarse el responsable operativo y la
 contingencia cuando el canal no esté disponible.
