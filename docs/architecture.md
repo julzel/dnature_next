@@ -65,6 +65,13 @@ validation, review, local request-image generation, browser references, and the
 WhatsApp handoff. A `DN-…` identifier is a client-generated request reference;
 it is not evidence that DNAture received or accepted an order.
 
+Calculator owns the guided portion flow, its question model, and the normalized
+result contract. The current slice performs a transient client-side calculation
+and does not depend on Account or persist pet data. Its `petDraft` result is an
+adapter for a future, explicitly consented account-prefill flow; introducing that
+integration must use public slice boundaries rather than importing Account
+internals.
+
 ## Shared-code rule
 
 Move code to `components/` or `util/` only when it is capability-neutral and has

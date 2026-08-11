@@ -109,25 +109,24 @@ test('@a11y cart drawer is named, trapped, and restores focus', async ({
   await expect(trigger).toBeFocused();
 });
 
-test('@a11y calculator dialog traps and restores keyboard focus', async ({
+test('@a11y calculator starts inline and moves focus to the active question', async ({
   page,
 }) => {
   await page.goto('/calculadora');
 
-  const openButton = page.getByRole('button', { name: 'Empezar' });
+  const openButton = page.getByRole('button', { name: 'Calcular porción' });
   await openButton.focus();
   await openButton.press('Enter');
 
-  const dialog = page.getByRole('dialog', {
-    name: 'Calculadora de porciones',
+  const firstQuestion = page.getByRole('heading', {
+    name: '¿En qué etapa de vida está?',
   });
-  await expect(dialog).toBeVisible();
-  await expect(dialog).toBeFocused();
+  await expect(firstQuestion).toBeVisible();
+  await expect(firstQuestion).toBeFocused();
+  await expect(
+    page.getByRole('progressbar', { name: 'Progreso de la calculadora' }),
+  ).toHaveAttribute('aria-valuenow', '1');
   expect(await getBlockingViolations(page)).toEqual([]);
-
-  await page.keyboard.press('Escape');
-  await expect(dialog).toHaveCount(0);
-  await expect(openButton).toBeFocused();
 });
 
 test('@a11y checkout modal is named and restores focus on Escape', async ({
