@@ -36,10 +36,25 @@ const inputFields = [
   },
 ];
 
+const normalizeClient = (client) => {
+  const savedClient = client ?? {};
+
+  return new Client(
+    savedClient.firstName ?? "",
+    savedClient.lastName ?? "",
+    savedClient.email ?? "",
+    savedClient.address ?? {},
+    savedClient.contactPhoneNumber ?? "",
+    savedClient.pets ?? []
+  );
+};
+
+const addressFields = new Set(["direccion", "provincia", "canton"]);
+
 const ClientFormContainer = ({ onSubmit, className }) => {
   const [rememberClient, setRememberClient] = useState(true);
-  const [client, setClient] = useState(
-    storage.getItem("client") || new Client()
+  const [client, setClient] = useState(() =>
+    normalizeClient(storage.getItem("client"))
   );
   const [interactedFields, setInteractedFields] = useState({});
 
@@ -50,7 +65,7 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (["direccion", "provincia", "canton"].includes(name)) {
+    if (addressFields.has(name)) {
       setClient((prevClient) => ({
         ...prevClient,
         address: { ...prevClient.address, [name]: value },
@@ -66,13 +81,16 @@ const ClientFormContainer = ({ onSubmit, className }) => {
   };
 
   const isInputValid = (value, isRequired) =>
-    isRequired ? value?.trim() !== "" : true;
+    isRequired ? typeof value === "string" && value.trim() !== "" : true;
 
   const isFormValid = () => {
     // Check if all required fields have values
-    return inputFields.every((field) =>
-      isInputValid(client[field.name], field.isRequired)
-    );
+    return inputFields.every((field) => {
+      const value = addressFields.has(field.name)
+        ? client.address?.[field.name]
+        : client[field.name];
+      return isInputValid(value, field.isRequired);
+    });
   };
 
   const handleSubmit = (e) => {

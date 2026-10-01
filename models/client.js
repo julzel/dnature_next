@@ -10,7 +10,12 @@ class Client {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.address = address;
+    this.address = {
+      direccion: "",
+      provincia: "",
+      canton: "",
+      ...address,
+    };
     this.contactPhoneNumber = contactPhoneNumber;
     this.pets = pets;
   }

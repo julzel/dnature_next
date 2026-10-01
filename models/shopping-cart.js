@@ -19,6 +19,7 @@ class ShoppingCart {
     this.client = {
       firstName: "",
       lastName: "",
+      email: "",
       address: {
         direccion: "",
         provincia: "",
