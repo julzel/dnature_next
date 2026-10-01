@@ -12,6 +12,7 @@ const CartNotification = ({ onCloseInfoModal}) => {
             Pronto habilitaremos el pago en línea con tarjeta de crédito o
             débito.{' '}
             <Typography
+              component="span"
               sx={{
                 fontWeight: 700,
                 fontSize: '20px',
