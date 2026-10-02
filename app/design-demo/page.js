@@ -2,7 +2,7 @@ import { arrowRightSymbol, bagShoppingSymbol, minusSymbol, plusSymbol, trashCanS
 import { TextIcon } from '../../components/Icon';
 
 import Button from '../../components/Button';
-import { Eyebrow, Fingerprint, Notice, SectionHeading, Wordmark } from '../../components/DesignSystem';
+import { Eyebrow, Fingerprint, Logo, Notice, SectionHeading } from '../../components/DesignSystem';
 
 export const metadata = {
   title: 'Sistema de diseño',
@@ -53,7 +53,7 @@ const DesignDemoPage = () => (
         ))}
       </dl>
       <div className='brand-primitives' aria-label='Elementos de identidad'>
-        <Wordmark />
+        <Logo />
         <Fingerprint />
         <Eyebrow number='01'>Conocer, nutrir, acompañar</Eyebrow>
       </div>

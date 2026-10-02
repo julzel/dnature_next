@@ -1,4 +1,4 @@
-import { Wordmark } from '../DesignSystem';
+import { Logo } from '../DesignSystem';
 import Link from 'next/link';
 import { TextIcon } from '../Icon';
 import { instagramSymbol } from '../Icon';
@@ -32,7 +32,7 @@ const Footer = () => {
         <div>
           <div>
             <Link href='/' aria-label='DNAture, ir al inicio'>
-              <Wordmark />
+              <Logo />
             </Link>
             <p>Alimentación natural para cuidarles mejor, todos los días.</p>
             <div aria-label='Redes y contacto'>

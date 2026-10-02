@@ -89,9 +89,8 @@
   .section-heading { max-width: 850px; }
   .section-heading .eyebrow { margin-bottom: var(--space-4); }
   .section-heading > p:last-child:not(.eyebrow) { color: var(--muted); max-width: 55ch; margin-top: var(--space-4); }
-  .wordmark { display: inline-block; white-space: nowrap; font-size: 34px; line-height: 1; letter-spacing: -2px; }
-  .wordmark strong { font-weight: 700; }
-  .wordmark-dot { color: var(--orange); }
+  .brand-logo { display: inline-block; width: 104px; max-width: 100%; vertical-align: middle; }
+  .brand-logo img { width: 100%; height: auto; }
   .fingerprint { width: 160px; height: 160px; stroke: currentColor; stroke-width: 3; }
   .skip-link { position: fixed; top: 12px; left: var(--gutter); z-index: 100; transform: translateY(-180%); padding: var(--space-2) 20px; background: var(--ink); color: var(--paper); }
   .skip-link:focus { transform: none; }
@@ -181,7 +180,7 @@
 }
 
 @layer views {
-  /* Shared navigation: compact utilities, understated wordmark, native disclosure. */
+  /* Shared navigation: compact utilities, official logo, native disclosure. */
   .site-header { position: sticky; top: 0; z-index: 30; background: rgb(246 245 240 / .97); border-bottom: 1px solid var(--line); }
   .service-bar { padding: var(--space-1) var(--gutter); background: var(--olive); color: var(--paper); display: flex; align-items: center; justify-content: space-between; font-size: 11px; line-height: 1.4; gap: var(--space-3); }
   .service-bar > span { display: flex; align-items: center; gap: var(--space-1); }
@@ -189,8 +188,8 @@
   .header-shell { padding-inline: var(--gutter); }
   .header-row { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
   .header-navigation, .header-actions { display: flex; align-items: center; gap: var(--space-1); }
-  .header-navigation > div:has(.wordmark) { order: -1; }
-  .header-navigation .wordmark { font-size: 27px; letter-spacing: -1.5px; }
+  .header-navigation > div:has(.brand-logo) { order: -1; }
+  .header-navigation .brand-logo { width: 50px; }
   .header-actions > a, .header-actions > nav a, .header-actions > div > button, .mobile-navigation-control > button { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 50%; padding: 10px; }
   .header-actions a:hover { background: var(--stage); }
   .header-actions > nav a > span { display: inline-flex; position: relative; }
@@ -687,7 +686,6 @@
     .home-products li h3 { font-size: 23px; }
   }
   @media (min-width: 600px) {
-    .header-navigation .wordmark { font-size: 34px; }
     .header-navigation { gap: var(--space-3); }
     .service-bar > a { display: block; }
     .hero-badge { width: 120px; right: 24px; bottom: 24px; }
@@ -775,7 +773,6 @@
   @media (max-width: 359px) {
     .header-row { gap: 4px; }
     .header-navigation { gap: 0; }
-    .header-navigation .wordmark { font-size: 23px; }
     .header-actions { gap: 0; }
     .header-actions > a, .header-actions > nav a, .header-actions > div > button, .mobile-navigation-control > button { padding: 10px; }
     .cart-dialog .dialog-content { padding-inline: var(--space-3); }

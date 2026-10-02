@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Wordmark } from '../../DesignSystem';
+import { Logo } from '../../DesignSystem';
 
 // local imports
 
@@ -12,7 +12,7 @@ const HeaderNav = ({ mobileNavigation, navigationItems }) => {
       <div className='mobile-menu-control'>{mobileNavigation}</div>
       <div>
         <Link href={'/'} aria-label='Ir al inicio'>
-          <Wordmark />
+          <Logo loading='eager' />
         </Link>
       </div>
       <div className='desktop-navigation'>

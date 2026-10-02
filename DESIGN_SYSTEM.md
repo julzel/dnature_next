@@ -6,7 +6,7 @@ This guide describes the **current Next.js site**. The earlier unstyled frontend
 
 The brand starts with the individual companion: **conocer, nutrir, acompañar**. Express that through calm editorial layouts, honest ingredient information, warm materials, and a connection to the visitor's actual companion. Browsing and checkout remain available without a profile.
 
-The system uses plain CSS, native HTML controls and dialogs, local SVG icons, and system fonts. Do not introduce Material UI, Emotion, Tailwind, icon packages, or remote fonts to reproduce these patterns. Product images, names, formulations, availability and prices come from the site's existing source data. The typeset wordmark is a digital expression, not a replacement packaging asset.
+The system uses plain CSS, native HTML controls and dialogs, local SVG icons, and system fonts. Do not introduce Material UI, Emotion, Tailwind, icon packages, or remote fonts to reproduce these patterns. Product images, names, formulations, availability and prices come from the site's existing source data. Use the existing DNAture logo at `public/images/dnature-logo.svg` for the shared brand mark; preserve its artwork, colors and aspect ratio.
 
 The live visual reference is `/design-demo`. It is excluded from indexing and clearly identifies its illustrative content.
 
@@ -69,7 +69,7 @@ Most of a page should remain neutral. A dark band marks a change to philosophy o
 | Functional labels | 14 px; controls at least 44 px tall. Inputs stay 16 px on phones. |
 | Short metadata | 10–12 px monospace with restrained uppercase tracking. |
 
-Headings wrap and balance; variable identifiers use `overflow-wrap: anywhere`. Paragraphs usually measure 35–60 characters. Use large type for hierarchy, not heavy weights. The wordmark's bold DNA segment is a specific identity treatment.
+Headings wrap and balance; variable identifiers use `overflow-wrap: anywhere`. Paragraphs usually measure 35–60 characters. Use large type for hierarchy, not heavy weights. The official logo retains its original lettering rather than using typeset text.
 
 ### Spacing and layout
 
@@ -91,7 +91,7 @@ Use `.section-shell` for horizontal gutters and editorial spacing; `.store-shell
 
 [components/DesignSystem/index.js](components/DesignSystem/index.js) supplies:
 
-- `Wordmark`: a typeset mark; its containing link carries the accessible name.
+- `Logo`: the existing DNAture SVG with its original colors and proportions, used in the header, footer and component reference. Its containing navigation link carries the accessible name.
 - `Eyebrow`: a short context label with an optional decorative sequence number.
 - `SectionHeading`: eyebrow, `h2`, and optional supporting paragraph. Pass an `id` when the enclosing section uses `aria-labelledby`.
 - `Fingerprint`: decorative vertical-bar motif; use sparingly for identity.

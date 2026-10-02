@@ -1,6 +1,10 @@
 /** Shared brand primitives. No browser state or styling dependencies. */
-export const Wordmark = () => (
-  <span className='wordmark' aria-hidden='true'><strong>DNA</strong>ture<span className='wordmark-dot'>.</span></span>
+import Image from '../Image';
+
+export const Logo = ({ loading = 'lazy' }) => (
+  <span className='brand-logo'>
+    <Image src='/images/dnature-logo.svg' alt='DNAture' width={104} height={80} loading={loading} unoptimized />
+  </span>
 );
 
 export const Eyebrow = ({ children, number, className = '' }) => (
