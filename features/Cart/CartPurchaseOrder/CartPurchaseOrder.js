@@ -14,7 +14,7 @@ const CartPurchaseOrder = ({
   isCapturingPurchase,
 }) => {
   return (
-    <div>
+    <div className='order-review'>
       <div>
         <p>Paso 3 de 3</p>
         <h2>Revisá la solicitud</h2>

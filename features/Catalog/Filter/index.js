@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const Filter = ({ options, selected }) => (
-  <nav aria-label='Categorías de productos'>
+  <nav className='filter-chips' aria-label='Categorías de productos'>
     <ul>
       {options.map((item) => {
         const isSelected = selected.id === item.id;

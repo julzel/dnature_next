@@ -1,6 +1,6 @@
 import { expect, test } from './runtime-test';
 
-test('product discovery and welcome content remain usable without CSS', async ({ page }) => {
+test('product discovery and welcome content remain usable', async ({ page }) => {
   await page.goto('/');
   const products = page.getByRole('region', { name: 'Nuestros productos' });
   await expect(products.getByRole('link', { name: 'Ver todo el catálogo' })).toHaveAttribute('href', /\/productos\/?$/);

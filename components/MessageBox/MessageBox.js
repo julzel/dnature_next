@@ -6,7 +6,7 @@ import Button from "../Button";
 
 const MessageBox = ({ children, type, onClose, onCancel }) => {
   return (
-    <div>
+    <div className='message-box'>
       {children}
       <div>
         {onCancel && (

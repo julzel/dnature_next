@@ -66,7 +66,7 @@ const PresentationSelector = ({
   };
 
   return (
-    <div>
+    <div className='field'>
       <label htmlFor={selectId}>
         Presentación
       </label>

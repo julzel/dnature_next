@@ -1,6 +1,6 @@
 import { expect, test } from './runtime-test';
 
-test('contact links and store location remain usable without CSS', async ({ page }) => {
+test('contact links and store location remain usable', async ({ page }) => {
   await page.goto('/');
   const section = page.getByRole('region', { name: 'Cuéntanos de tu mascota.' });
   await expect(section.getByRole('link', { name: /Escríbenos por WhatsApp/ })).toHaveAttribute('href', 'https://wa.me/50671848868');

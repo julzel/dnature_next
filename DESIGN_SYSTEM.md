@@ -1,415 +1,204 @@
 # DNAture design system and implementation guide
 
-## Current Next.js frontend
+## Scope and authority
 
-The Next.js frontend intentionally uses browser-default HTML rendering. It has no application stylesheets, custom font loading, Material UI, Emotion, or third-party icon libraries. Shared controls use native HTML; `components/Icon` supplies decorative text symbols while buttons and links retain their accessible labels. Preserve this unstyled behavior unless the user explicitly requests a new design. The prototype guidance below records a separate visual reference and does not authorize restoring its styles to this frontend.
+This guide describes the **current Next.js site**. The earlier unstyled frontend has been replaced at the user's request with a native, dependency-free design system adapted from the DNAture V4 prototype direction. The prototype's `src/*.tsx` components and stylesheets are not present in this repository; use the implementation references below.
 
-This guide helps AI code agents build components and views that belong to DNAture. It describes the digital expression implemented in prot-v4 and gives defaults for extending it. Read the quick rules first, then the relevant component and layout sections before writing UI.
+The brand starts with the individual companion: **conocer, nutrir, acompañar**. Express that through calm editorial layouts, honest ingredient information, warm materials, and a connection to the visitor's actual companion. Browsing and checkout remain available without a profile.
 
-The brand starts with the individual companion: **conocer, nutrir, acompañar**. Express that through calm editorial layouts, honest ingredient information, warm materials, and a visible connection to the visitor’s actual companion.
+The system uses plain CSS, native HTML controls and dialogs, local SVG icons, and system fonts. Do not introduce Material UI, Emotion, Tailwind, icon packages, or remote fonts to reproduce these patterns. Product images, names, formulations, availability and prices come from the site's existing source data. The typeset wordmark is a digital expression, not a replacement packaging asset.
 
-**Authority:** the source references below establish implemented values and behavior. Recommendations marked **new work default** guide extensions; they are not claims that every legacy component already follows them. This guide documents the prototype’s digital expression. The current typeset wordmark and CSS packaging are conceptual assets, as recorded in [ASSETS.md](ASSETS.md).
+The live visual reference is `/design-demo`. It is excluded from indexing and clearly identifies its illustrative content.
 
-## Quick rules for code agents
+## Quick rules
 
-1. Reuse the existing components and CSS variables before inventing equivalents.
-2. Start with a warm paper surface, dark olive ink, generous spacing, and left-aligned content.
-3. Use large, regular-weight sans-serif headings with tight tracking. Use monospace for short metadata, identifiers, and section labels.
-4. Give orange to the main action or a small editorial accent. Give turquoise to companion identity and information.
-5. Build hierarchy with typography, alignment, and thin rules. Keep panels mostly square; use pills for filters and circles for small controls or motifs.
-6. Compose the smallest screen first. Use real content at 320 px; add columns when the content has room.
-7. Keep essential copy readable. Tiny lettering on an illustrated package is artwork, not a model for form labels or product information.
-8. Write customer-facing copy in Spanish. Invite exploration with concrete language and a clear next action.
-9. Use the visitor’s real profile when available. Unknown measurements stay “Por conocer”; browsing works without a profile.
-10. Implement hover, focus, selected, disabled, empty, and applicable loading/error states. A color change alone must not carry their meaning.
-11. Keep motion quiet and optional. Preserve native scrolling and reduced-motion behavior.
-12. Keep product information truthful. Use actual provided prices, formulations, photography, and claims; maintain explicit pending states where data is unavailable.
+1. Reuse the shared components and variables before inventing equivalents.
+2. Start with paper, olive ink, generous spacing and left-aligned content.
+3. Use large regular-weight sans-serif headings; monospace is for short metadata.
+4. Orange marks the main action. Turquoise identifies companion information.
+5. Build hierarchy with typography, alignment and thin rules. Keep panels square, filters pill-shaped and small utility controls circular.
+6. Start at 320 px, then add columns when the content has room.
+7. Essential copy stays readable; never shrink labels to fit artwork.
+8. Write practical customer-facing copy in Spanish with clear accents.
+9. Unknown measurements stay “Por conocer.” Never substitute a sample profile for the visitor's animal.
+10. Preserve hover, focus, selected, disabled, loading, empty, validation and error states. Use labels and native state indicators alongside color.
+11. Keep native scrolling and optional, quiet motion. Honor reduced motion.
+12. Preserve the actual commerce, authentication and portion-calculation behavior.
 
-## Brand character
+## Foundations
 
-| Quality | How it appears in the interface |
-| --- | --- |
-| Individual | A companion’s name and known details recur where they help the task. Identity panels feel like a personal record. |
-| Observant | Small section numbers, formulation codes, thin rules, and precise labels organize the information. |
-| Natural | Paper, olive, muted ingredient colors, soft shadows, and tangible photography suggest material rather than synthetic polish. |
-| Thoughtful | Short headlines have breathing room. The page explains its ingredients and offers exploration at the visitor’s pace. |
-| Confident | Large typography and restrained actions carry the page. Information is specific; unsupported promises do not fill gaps. |
-| Warm | Spanish copy speaks directly to the visitor and treats the animal as a companion with a history. |
+All variables are defined in [app/design-system.css](app/design-system.css). The stylesheet loads once from [app/layout.js](app/layout.js). Its cascade layers are `tokens`, `base`, `components`, then `views`: shared resets and controls precede layouts scoped to the owning view.
 
-A new view should still feel like DNAture when decorative photography is removed: its typography, spacing, color roles, copy, and structure should carry the identity.
+### Color roles
 
-## Color system
-
-### Shared variables
-
-These values are implemented in [styles.css](src/styles.css) and [profile-system.css](src/profile-system.css). Reference the variables in application CSS; the literal values below are for lookup and portability.
-
-| Variable | Value | Role |
+| Token | Value | Role |
 | --- | --- | --- |
-| `--paper` | `#f6f5f0` | Main warm background and light text on dark sections. |
-| `--ink` | `#262923` | Primary text and dark actions. |
-| `--muted` | `#6b6d64` | Supporting copy and quiet metadata. |
-| `--line` | `#d6d7ce` | Subtle rules and light control borders. |
-| `--orange` | `#ff6a00` | Primary actions, selected species underline, small editorial punctuation. |
-| `--turquoise` | `#00a9b5` | Companion identity accent. |
-| `--information` | `#00a9b5` | Same turquoise in the profile system. |
-| `--information-ink` | `#006b73` | Darker turquoise for information text on light surfaces. |
-| `--information-on-dark` | `#83d4d7` | Information text and accents on dark surfaces. |
-| `--information-surface` | `#e0ece7` | Quiet information background. |
-| `--information-line` | `#8ba9a1` | Information dividers. |
+| `--paper` | `#f6f5f0` | Main background; light text on olive. |
+| `--ink` | `#262923` | Primary text, dark actions. |
+| `--muted` | `#6b6d64` | Supporting copy on paper. |
+| `--line` | `#d6d7ce` | Rules and light borders. |
+| `--orange` | `#ff6a00` | Primary action and selected navigation underline. |
+| `--turquoise`, `--information` | `#00a9b5` | Companion accent; decorative use. |
+| `--information-ink` | `#006b73` | Readable information text and control focus on light surfaces. |
+| `--information-on-dark` | `#83d4d7` | Information labels and focus on olive. |
+| `--information-surface` | `#e0ece7` | Companion panels and information notices. |
+| `--information-line` | `#8ba9a1` | Information borders. |
+| `--information-muted` | `#54594e` | Supporting copy on information surfaces. |
+| `--olive` | `#293127` | Editorial bands and footer. |
+| `--surface` | `#faf9f5` | Secondary light surface. |
+| `--stage` | `#e9e8e1` | Product display and neutral pending surface. |
+| `--danger` | `#923c29` | Error text and destructive action outlines. |
+| `--danger-surface` | `#f4e5dc` | Error background. |
 
-Use dark ink on orange actions, as `.button-orange` does. Use `--information-ink` for readable turquoise text on paper and `--information-on-dark` on olive. Check the actual text/background pair, including opacity and image overlays, whenever extending the system.
+Use ink on orange, paper on olive, and information ink on the pale information surface. Supporting text on turquoise surfaces uses `--information-muted` because the ordinary muted token does not meet the small-text contrast requirement there. Dark editorial supporting text uses `#c2c8b9`. Do not use bright turquoise as small text on paper or white text on orange.
 
-### Supporting surfaces
+Most of a page should remain neutral. A dark band marks a change to philosophy or ingredient explanation. Do not assign fictional recipe colors or rebuild packaging from a prototype; use the actual source imagery.
 
-These are existing component colors, not additional global variables. Reuse the relevant component class, or scope a matching value locally when a new component needs the same surface role.
+### Typography
 
-| Existing color | Reference | Role |
-| --- | --- | --- |
-| `#faf9f5` | `.catalog-collection` | Collection surface, slightly lighter than paper. |
-| `#293127` | `.catalog-philosophy`, `.passport` | Dark olive storytelling and identity. |
-| `#292e27` | `.ingredient-section` | Dark ingredient section. |
-| `#e9e8e1` | `.catalog-object`, `.product-stage` | Neutral product display stage. |
-| `#e6e8df`, `#e4e9e5` | Alternating catalog objects | Subtle variety between products. |
-| `#e9ede3` | `.catalog-profile`, cart notice | Light olive contextual information. |
-| `#e5e8df` | `.intro-preview` | Profile preview surface. |
-| `#7b846e` | Catalog headline emphasis | Quiet olive emphasis within a large heading. |
-
-**New work default:** let neutral surfaces cover most of the page. Use a dark olive band when the content changes to philosophy, ingredient explanation, or identity. Keep orange and turquoise attached to their roles rather than spreading them across every panel.
-
-### Recipe identity colors
-
-Read these from `recipe.color` in [data.ts](src/data.ts), and pass them as `--recipe-color`. They identify packaging and recipe artwork; they are not general action or status colors.
-
-| Recipe | Color |
+| Role | Implementation |
 | --- | --- |
-| Pollo + Res | `#ae5033` |
-| Pollo + Cordero | `#7b805a` |
-| Trucha + Res | `#60827c` |
-| Pollo + Caballo | `#8a7061` |
-| Wild Ancestor | `#57594b` |
-| Wild Spirit | `#a37e49` |
+| Body and display | `--body-font`: Helvetica Neue, Helvetica, Arial, sans-serif. |
+| Metadata | `--metadata-font`: SFMono-Regular, Consolas, Liberation Mono, monospace. |
+| Main title | Regular weight, `clamp(44px, 6.5vw, 96px)`, 1.02 line height, −.06em tracking. |
+| Catalog title | `clamp(54px, 8.2vw, 126px)`. |
+| Product title | `clamp(44px, 5.5vw, 86px)`. |
+| Editorial section | `clamp(34px, 4.6vw, 68px)`, 1.07 line height, −.05em tracking. |
+| Card title | 21 px on compact grids, 28 px from 600 px. |
+| Body copy | 16 px base with 1.65 line height; view-specific essential copy 14–16 px. |
+| Functional labels | 14 px; controls at least 44 px tall. Inputs stay 16 px on phones. |
+| Short metadata | 10–12 px monospace with restrained uppercase tracking. |
 
-## Typography
+Headings wrap and balance; variable identifiers use `overflow-wrap: anywhere`. Paragraphs usually measure 35–60 characters. Use large type for hierarchy, not heavy weights. The wordmark's bold DNA segment is a specific identity treatment.
 
-### Font roles
+### Spacing and layout
 
-The body and display stack is `"Helvetica Neue", Helvetica, Arial, sans-serif`. The metadata stack is `"SFMono-Regular", Consolas, "Liberation Mono", monospace`, exposed as `--metadata-font` by the profile stylesheet. The current system loads no external fonts.
+`--space-1` through `--space-8` represent 8, 12, 16, 24, 32, 48, 64 and 96 px. `--radius` is 2 px for ordinary controls and panels.
 
-Display typography uses weight `400`, tight negative letter spacing, and short lines. Body copy uses regular weight with a comfortable line height. Weight `500` is used sparingly for action labels; the heavier DNA portion of the wordmark is a specific identity treatment.
-
-### Implemented reference treatments
-
-| Treatment | Size | Line height | Letter spacing | Reference |
-| --- | --- | --- | --- | --- |
-| Catalog page title | `clamp(56px, 8.2vw, 126px)` | `.98` | `-.065em` | `.catalog-intro h1` |
-| Product page title | `clamp(55px, 5.5vw, 86px)` | `1.02` | `-.06em` | `.product-information h1` |
-| Editorial section title | `clamp(38px, 4.8vw, 76px)` | `1.05` | `-.055em` | `.catalog-philosophy h2` |
-| Related collection title | `clamp(32px, 3.5vw, 52px)` | `1.12` | `-.045em` | `.product-related-heading h2` |
-| Product card title | `21px` mobile, `28px` from 600 px | `1.15` | `-.9px` | `.catalog-card h2` |
-| Catalog introduction copy | `15px` mobile, `17px` desktop | `1.7` | Default | `.catalog-intro-grid p` |
-| Standard action | `13px`, weight `500` | Inherited | Default | `.button` |
-| Standard metadata | `10px`, monospace | `1.5` | `1.1px` | `.micro`, `.eyebrow` |
-
-**New work default:** use 14–16 px for essential paragraphs and 12–14 px for functional labels, with line height 1.5–1.8. Short metadata can use 10–11 px. Some existing captions and packaging details are smaller; do not copy that scale into new essential UI. Allow containers to grow instead of shrinking important copy to fit.
-
-Use an olive phrase or an orange terminal dot to shape a major editorial headline when appropriate. The dot is optional. Do not apply colored punctuation to every title or turn whole paragraphs into accent text.
-
-Use intentional line breaks for stable, short editorial phrases, such as “Cada receta, / un porqué.” Avoid hard breaks in user names, translated copy, descriptions, and other content whose length varies. Keep paragraph measures roughly 35–60 characters where the layout allows; this is a new-work guideline, not a global width token.
-
-## Spacing and composition
-
-### Shared page gutter
-
-Use `var(--gutter)` to align headers, titles, grids, and footer content.
-
-| Width | Implemented gutter |
-| --- | --- |
-| Up to 390 px | `20px` |
-| 391–600 px | `22px` |
-| 601–1699 px | `clamp(24px, 4.45vw, 80px)` |
-| From 1700 px | `max(80px, calc((100vw - 1530px) / 2))` |
-
-The V4 store header uses a local 20 px gutter below 600 px to fit its controls. That is a scoped exception, not a replacement for the page gutter.
-
-`.section-shell` combines the page gutter with editorial vertical spacing: 112 px by default, 82 px below 900 px, and 64 px at 600 px and below. `.store-shell` supplies horizontal padding only; catalog and detail sections define their own vertical rhythm.
-
-**New work default:** use a small family of spacing values—8, 12, 16, 24, 32, 48, 64, and 96 px—as practical choices, not newly implemented tokens. Existing grid gaps such as 14, 28, and 45 px remain valid when matching those components. Use 64 px for a new mobile editorial section and about 96 px on desktop unless a neighboring reference establishes a different rhythm.
-
-### Layout rules
-
-- Align major content to shared gutters and a clear column system. Make asymmetry purposeful: a narrow information rail beside a wide statement, or copy beside a product stage.
-- Separate major regions with whitespace, a thin rule, or a surface change. Keep ordinary text and controls flat.
-- Use `minmax(0, 1fr)` for flexible grid tracks and `min-width: 0` on children that contain images, inputs, or variable text.
-- Use `overflow-wrap: anywhere` for names and other unbounded identifiers. Truncate compact header labels only when the full accessible name remains available.
-- Reserve `overflow: hidden` for intentional artwork cropping. Fix layout overflow at its source; clipping the entire page can hide broken content or focus rings.
-- Keep content order meaningful without desktop placement: introduction, controls, results; or product gallery, information, selection, action, supporting details.
-
-## Responsive behavior
-
-New components should use mobile base styles and enhance them with `min-width` queries. The older homepage and profile styles contain additional breakpoints; preserve them when editing those features.
-
-| V4 width | Catalog | Product detail |
+| Width | `--gutter` | Editorial section spacing |
 | --- | --- | --- |
-| 320–359 px | One product column. Controls wrap. | Stacked gallery and information; compact controls. |
-| 360–599 px | Two product columns with a 14 px gap. | Stacked layout and fixed bottom product action. |
-| 600–899 px | Two columns; search and sort share a row. | Stacked layout with a larger product stage; bottom action remains. |
-| From 900 px | Three columns with a 28 px gap. Intro copy and imagery share a row. | Gallery and information share two columns; gallery sticks below the header. Bottom action is removed. |
+| 320–390 px | 20 px | 64 px |
+| 391–600 px | 22 px | 64 px |
+| 601–899 px | `clamp(24px, 4.45vw, 80px)` | 82 px |
+| 900–1699 px | Same fluid gutter | 112 px |
+| From 1700 px | `max(80px, calc((100vw - 1530px) / 2))` | 112 px |
 
-Desktop navigation appears at 900 px. Smaller screens use the menu. The current header is 91 px on desktop and 72 px after scrolling, 78/66 px at tablet widths, and 68 px on small phones. Store content reserves 78 px initially and 91 px from 900 px; native anchor scrolling uses a 100 px top offset.
+Use `.section-shell` for horizontal gutters and editorial spacing; `.store-shell` provides horizontal gutters only. Flexible grid tracks use `minmax(0, 1fr)` and content regions have `min-width: 0`. Fix overflow at its source; never clip the document to conceal it.
 
-The profile introduction stacks its preview at 650 px and below. Do not replace all existing breakpoint behavior just to make it match the store table.
+## Shared components
 
-A fixed mobile action must include `env(safe-area-inset-bottom)` and enough end-of-page padding to keep footer content reachable. Sticky desktop panels must become ordinary stacked content on phones. Use `svh` for viewport-height features, and inspect short screen heights as well as widths.
+### Brand primitives
 
-## Component patterns
+[components/DesignSystem/index.js](components/DesignSystem/index.js) supplies:
 
-### Navigation
+- `Wordmark`: a typeset mark; its containing link carries the accessible name.
+- `Eyebrow`: a short context label with an optional decorative sequence number.
+- `SectionHeading`: eyebrow, `h2`, and optional supporting paragraph. Pass an `id` when the enclosing section uses `aria-labelledby`.
+- `Fingerprint`: decorative vertical-bar motif; use sparingly for identity.
+- `Notice`: an information surface with an optional title and error tone. Pass `role` only when announcements are appropriate.
 
-Reuse [Header.tsx](src/components/Header.tsx) and [Footer.tsx](src/components/Footer.tsx). Keep the wordmark left, navigation calm, and utility actions compact. The store header uses translucent paper with a subtle blur; blur supports the surface rather than becoming a glass-card theme.
-
-Use [StoreLink.tsx](src/components/StoreLink.tsx) for internal store navigation and the existing `navigate` function. It preserves normal link behavior for modifier clicks while supporting application history. Use anchors for navigation and buttons for local actions. Retain the skip link and named navigation regions.
-
-### Section headings
-
-Reuse `Eyebrow` for the short uppercase context label and optional two-digit number. Place the large heading below it with a generous gap, then a short paragraph or action. Numbers identify a page’s sequence; formulation identifiers describe recipes. Keep those meanings separate.
-
-Dark sections use `<Eyebrow light />`, paper text, and muted olive supporting text. Avoid placing essential paragraphs in the tiny monospace label style.
+The homepage reuses the section headings and shared gutters; account and tool views use the same typography and information language.
 
 ### Buttons and links
 
-| Pattern | Existing implementation | Appropriate use |
-| --- | --- | --- |
-| Primary action | `.button.button-orange` | The main next step in a region. Dark text, 2 px corners, trailing icon. |
-| Secondary filled action | `.button.button-dark` | Recovery or secondary progression on a light surface. |
-| Editorial link | `.text-link` | Underlined exploration action with an arrow. |
-| Utility control | `.icon-button` | Named search, close, menu, or compact adjustment action. |
-| Filter chip | `.catalog-proteins button` | Rounded category selection with a dark olive selected state. |
+Use [components/Button/index.js](components/Button/index.js) for actions with a clear visual hierarchy. It preserves native disabled buttons and renders disabled navigation as an inert, labeled link placeholder.
 
-Standard buttons have a 54 px minimum height and 17 × 22 px padding. The arrow moves about 4 px on hover; press feedback scales the action to `.985`. Keep one visually dominant action per decision area.
-
-**New work default:** give new interactive targets at least 44 × 44 px of usable area. Some legacy compact controls are narrower; enlarge the target when adding or substantially revising a functional control. Make focus visible, preserve disabled behavior, and give icon-only buttons an explicit accessible name.
-
-### Filters and selection
-
-Catalog species selection is a text-and-icon row with a 2 px orange underline. Protein chips use dark olive fill with light text when selected. Profile fields use information-colored borders, pale surfaces, and a checkmark or radio indicator.
-
-The homepage recipe chips retain an older orange selected treatment. Match the surface being extended: new catalog filters should follow `.catalog-proteins`, and profile controls should follow the profile information language. Expose toggle selection with `aria-pressed`; use native radio inputs for exclusive form choices where appropriate.
-
-### Product cards and packaging
-
-Reuse `ProductCard` from [ProductCatalog.tsx](src/components/ProductCatalog.tsx) and [ProductPouch.tsx](src/components/ProductPouch.tsx). The card has a flat, lightly tinted stage; a centered tangible product; a small formulation index and weight; then metadata, title, ingredients, and a ruled exploration link. Its text is outside the illustrated pack.
-
-The pouch is warm cream with a muted recipe color band, the wordmark, generous product typography, and a fingerprint motif. A small alternating rotation and soft ground shadow create physicality. Hover gently lifts and straightens it. Preserve `--recipe-color` and the recipe seed rather than inventing a second packaging renderer.
-
-The artwork stage may clip its decorative contents. Its adjacent product information and action must remain visible and accessible. When final product photography becomes available, preserve the stage, hierarchy, and meaningful alt text.
-
-### Companion information
-
-Reuse `ProfileContext`, `ProfileIdentity`, `ProfileAttributes`, and `ObservationCard` from [ProfileLanguage.tsx](src/components/ProfileLanguage.tsx), or the larger [CompanionPassport.tsx](src/components/CompanionPassport.tsx).
-
-Turquoise dots, information text, slim borders, and a quiet identity code connect these surfaces. Use the actual profile and formatting helpers from [profile.ts](src/profile.ts). A profile is optional; missing values have explicit neutral labels. A name or decorative signature does not establish nutritional suitability.
-
-### Forms and supporting details
-
-Use visible labels and native controls. Large identity inputs can use the existing underline treatment; search and structured selections use thin rectangular borders. Placeholder text supplements a label rather than replacing it. Keep validation messages beside the field and preserve entered data during edits.
-
-Reuse native `details` for product information or the existing [Disclosure.tsx](src/components/Disclosure.tsx) when extending its animated pattern. Summaries are full-width, ruled rows with text and a small plus icon. Open state rotates or replaces the icon and reveals readable supporting content.
-
-The current search, menu, and cart use native modal `dialog` elements in `Header.tsx`. Keep Escape dismissal, focus containment, trigger focus restoration, scroll locking, and backdrop behavior. Prefer the native top layer to arbitrary modal z-index escalation.
-
-### Empty and pending states
-
-Use a quiet pale olive region, a short human headline, a specific explanation, and a recovery action. For example: “No encontramos esa combinación.” followed by “Ver todas las recetas.” Preserve the visitor’s context and allow filters to be cleared.
-
-Where loading or errors are introduced, use the same typography and surfaces. Reserve space, state what is happening, and offer a concrete retry when appropriate. These are extension defaults; no shared loading component currently exists.
-
-## Photography and graphic motifs
-
-Photography is editorial: natural light, believable texture, calm posture, close attention to an individual animal, and space for the accompanying layout. Existing story portraits retain their own context. Photography supplies a subject, not a stock decoration layer on every panel.
-
-| Asset | Intended role |
+| Variant | Appearance and purpose |
 | --- | --- |
-| `public/images/lola-portrait.jpg` | Fictional editorial hero portrait; not the visitor’s companion. |
-| `public/images/ingredients-bowl.png` | Collection-level ingredient illustration; not a claim about every recipe’s exact contents. |
-| `public/images/story-*.jpg` | Existing illustrative companion stories, with provenance in `ASSETS.md`. |
+| `primary` | Orange with ink text: the main next step. |
+| `secondary` | Ink with paper text: secondary progression or recovery. |
+| `tertiary` | Quiet outlined action: back, cancel or supporting task. |
+| `accent` | Pale information surface: companion-context action. |
+| `danger` | Dark error outline/text: destructive action. |
 
-Keep ears, eyes, and the subject’s expression intact in portrait crops. Use `object-fit: cover` for photographic frames and `contain` or natural sizing for isolated bowls and product artwork. Load secondary imagery lazily when appropriate; preserve image dimensions or aspect ratios to prevent layout shifts.
+Supported props include `size` (`small`, `medium`, `large`), `fullWidth`, `loading`, `iconStart`, `iconEnd`, and `iconOnly`. Loading retains the action label, disables the control, and shows a local spinner with `aria-busy`. Icon-only actions require an accessible name.
 
-Reuse `Fingerprint` from [UI.tsx](src/components/UI.tsx) for the variable vertical-bar motif. It suggests individual identity and recipe character; it is decorative, not a genetic analysis. Orbit rings, fine coordinates, and small index labels can support an ingredient or identity illustration. Use them where they explain the composition rather than repeating them everywhere.
+Ordinary shared buttons are 54 px high; small and utility controls have a 44 px minimum target. Use real links for navigation and buttons for local state changes. The existing Next.js links preserve modifier clicks and browser history. One action per decision area should dominate.
 
-Icons use the existing `Icon` component: 24 × 24 viewBox, no fill, round caps and joins, and a 1.4 stroke. Typical rendered sizes are 18–22 px. Reuse or extend this vocabulary consistently. Keep decorative SVGs hidden from assistive technology and put the accessible name on the control.
+### Icons
 
-## Motion and layers
+[components/Icon/index.js](components/Icon/index.js) owns the local SVG path vocabulary. The viewBox is 24 × 24, with round caps and joins, no fill by default, and a 1.4 default stroke. Typical sizes are 18–24 px. Icons are decorative by default; name the containing control. The filled heart supplements `aria-pressed` for favorites. Existing `TextIcon` imports map compatibility symbols to the local vocabulary; brand letters do not load third-party artwork.
 
-| Motion | Implemented reference |
+### Forms and selection
+
+Use native inputs, selects, textareas, radio buttons and checkboxes with visible labels. Place hints and validation beside the field and connect them with `aria-describedby`. Errors include text and `aria-invalid`; preserve drafts during edits. Placeholder text supplements the label.
+
+Inputs have a light background, 50 px minimum height and thin border. Focus uses information ink. Checkbox and radio choices preserve their native indicators; selected option panels add information-colored borders and backgrounds. `aria-pressed` represents toggles. Exclusive choices use radio inputs.
+
+Filter pills use olive fill and paper text when selected. Navigation exposes `aria-current`, and tablists retain their existing roving focus and arrow-key behavior. Never show a hidden panel by overriding `[hidden]` accidentally. The account sidebar uses a responsive `.account-navigation` class: it stays collapsed on mobile until opened, and is persistent from 900 px. It does not override the native `hidden` attribute.
+
+### Dialogs and notices
+
+[components/Modal/Modal.js](components/Modal/Modal.js) keeps native `dialog` behavior, Escape dismissal, focus containment, restoration to the trigger, background inertness and backdrop dismissal where enabled. Modal styles constrain the content to the viewport and allow internal scrolling. The body stops scrolling while a dialog is open.
+
+The cart uses `.cart-dialog`, a right-aligned full-height panel. Checkout uses the ordinary centered dialog. On narrow and short screens, the close control remains sticky and all content stays reachable. Use the native top layer instead of arbitrary modal z-index values.
+
+Errors use readable text on the error surface. Empty states explain the situation and offer a concrete recovery action. Pending authentication and data states retain their actual explanations; do not display internal implementation details to shoppers.
+
+## Page composition
+
+| View | Applied pattern |
 | --- | --- |
-| Button color and press response | About 250 ms. |
-| Arrow hover | Small 3–5 px translation. |
-| Pack lift and straighten | About 550 ms with `cubic-bezier(.2,.7,.3,1)`. |
-| Existing recipe rearrangement | 360 ms with `cubic-bezier(.22,.7,.25,1)`. |
-| New recipe reveal in that hook | 280 ms, opacity plus a 6 px rise. |
-| Dialog entrance | 250 ms, opacity plus a 12 px rise. |
-| Header surface and size change | About 350 ms. |
+| Home | Editorial title/photo pairing, ruled trust signals, ingredients, category collection, dark olive nutrition section, community stories, information-colored contact section. |
+| Catalog | Large introduction, source category filters, result count, flat product stages, readable names/prices/availability, add or quantity controls. |
+| Product | Source gallery and information columns, native presentation selection, explicit availability, cart action, keyboard-operable supporting tabs. |
+| FAQ | Editorial introduction, labeled search, mobile category pills, desktop information rail, ruled answer disclosures. |
+| Calculator | Intro and source photo, inline native question sequence, radio panels, progress, explicit weight validation, information-colored result and guidance. |
+| Plan DNAture | Optional locally saved companion flow, readable steps, turquoise companion records, edit/delete actions. |
+| Checkout | Request introduction/progress, item detail, delivery/payment radio panels, summary, contact/review dialogs, readable export. |
+| Account | Optional access entry, personal information sidebar, common form/panel patterns, real empty and pending states. |
+| Error/loading/not found | Shared typography, clear explanation and recovery action. |
+| Design reference | Tokens, shared brand primitives, action hierarchy, states, forms, commerce and identity examples. |
+| Development diagnostics | Readable data tables, contained table scrolling, shared controls. |
 
-Motion should reinforce physicality, state, or continuity. Keep ordinary pages usable immediately. The homepage has a specific scroll-driven narrative; do not add scroll hijacking, smooth-scroll libraries, large parallax effects, or reveal-dependent content to ordinary views.
+No prices, nutrition claims, authentication behavior or inventory semantics are changed by this system. The receipt image uses the same calm typography and table hierarchy; the hidden export node stays hidden until the capture clone is prepared.
 
-The existing reduced-motion rules shorten transitions, remove animated transforms, and simplify the hero. New JavaScript animation must also respect `prefers-reduced-motion`; CSS alone cannot stop Web Animations API calls. Scroll hooks use passive listeners, a scheduled animation frame, and cleanup rather than triggering a React render on every scroll event.
+## Responsive behavior
 
-Existing layer values are: transfer artwork `15`, mobile purchase bar `20`, header `30`, status notice `50`, and focused skip link `100`. Modal dialogs use the native top layer. Respect these relationships and the corresponding safe-area and focus behavior.
-
-## Writing and personalization
-
-Customer-facing UI is Spanish with clear accents and direct address to the visitor. Use “tu compañero,” “su historia,” “conocer,” “explorar,” and “acompañar” when they fit the task. Labels remain practical: “Cantidad,” “Presentación,” “Ingredientes,” “Limpiar filtros.”
-
-| Intent | Aligned example | Pattern to avoid |
+| Width | Catalog | Focused detail and editorial layouts |
 | --- | --- | --- |
-| Introduce the collection | “Cada receta, un porqué.” | Generic enthusiasm without information. |
-| Explain ingredients | “Ingredientes que reconoces.” | Unsupported performance or health guarantees. |
-| Invite a profile | “Cuéntanos quién es.” | Making personal data a condition of browsing. |
-| Explore with a profile | “Explora las recetas con Moka.” when Moka is the actual saved name | Treating a sample persona as the visitor’s animal. |
-| Recover an empty result | “Prueba con otra proteína.” | Blame, dead ends, or pressure to buy. |
-| Represent an unknown value | “Por conocer” or “Precio por confirmar” | Invented measurements, prices, or availability. |
+| 320–359 px | One column. | Stacked content, wrapping controls. |
+| 360–599 px | Two columns, 14 px gap. | Stacked content. |
+| 600–899 px | Two columns with roomier stages. | Supporting grids gain columns; navigation stays compact. |
+| From 900 px | Three columns, 28 px gap. | Product/editorial layouts gain two columns; navigation and account rail appear. |
 
-Editorial headlines can be poetic, but explanations and actions should be concrete. Keep assertions proportional to verified data. Current recipes, story copy, and pack designs are conceptual; preserve their honest presentation until confirmed content replaces them.
+Desktop navigation begins at 900 px. The shared header is sticky with a small olive service strip; anchor offsets are declared through `--header-offset`. A product gallery sticks below the header only on desktop. Unlike the prototype, this implementation keeps product purchase controls in the source content flow; it does not duplicate state into a fixed phone action bar.
 
-## View composition recipes
+Mobile order remains meaningful: introduction, controls, results; gallery, product information, selection, action, supporting details. Forms precede supporting previews. Use real Spanish copy at 320, 390, 768 and desktop widths. Keep long names readable and use `svh` for viewport-constrained dialogs.
 
-### An editorial or learning view
+## Imagery, writing and motion
 
-Start with a short eyebrow and one clear page title. Follow with an introductory paragraph and purposeful imagery or an information rail. Arrange supporting material as ruled rows or a restrained grid. Use a dark olive region for a deeper ingredient or philosophy story when useful, then one next action. Keep long educational text in readable paragraphs rather than metadata typography.
+Use this site's actual photos and Contentful images. Photographs use purposeful `object-fit: cover`; product stages use `contain`. Intrinsic dimensions and optimized sources are retained by [components/Image/index.js](components/Image/index.js). Secondary images remain lazy where configured. Do not invent new assets or substitute a prototype's illustrative ingredients for an actual formulation.
 
-### A collection view
+Spanish copy should be specific: “Cantidad,” “Presentación,” “Ingredientes,” “Explorar,” “Por conocer.” Invite rather than pressure. General portion guidance does not establish suitability for a medical condition. A display name or motif is not a genetic analysis.
 
-Use a breadcrumb, editorial title, short explanation, species/category selection, search and sort, filter chips, result count, and product grid. Show a reversible empty state when nothing matches. Keep filter state in the URL when it changes the shareable result, and preserve it on browser back. V4’s full catalog is the implementation reference.
+Transitions are brief (200 ms for controls); product imagery has a subtle 550 ms lift. Motion is optional and content never waits for an animation to become usable. Reduced-motion rules remove animated transforms, shorten transitions and stop repeated animation. The existing carousel respects reduced motion and tab visibility. Preserve native scrolling and the calculator's reduced-motion-aware navigation.
 
-### A product or focused detail view
-
-Use a breadcrumb and a gallery alongside information on desktop. On mobile, stack them in a meaningful order. Present identity, short description, applicable selections, price/pending state, quantity, and action before expandable supporting details. Add related content after the main task, and keep the fixed mobile action consistent with the main selection.
-
-### A companion or data-entry view
-
-Ask only for information needed for the task. Use profile information colors and an optional live preview. Keep the form before the preview on small screens. Validate clearly, preserve drafts, support cancellation, and distinguish remembering on this device from an account or synchronization.
-
-## Starter component for a new editorial section
-
-This is a **new work default**, not an existing component. It demonstrates how to extend the system without duplicating its primitives. The imports assume the component lives in `src/components`; adapt the paths when moving it.
-
-```tsx
-import { useId } from 'react'
-import { Eyebrow, Icon } from './UI'
-
-type Props = {
-  eyebrow: string
-  title: string
-  description: string
-  number?: string
-  actionLabel: string
-  onAction: () => void
-}
-
-export default function BrandSection({
-  eyebrow, title, description, number, actionLabel, onAction,
-}: Props) {
-  const headingId = useId()
-
-  return (
-    <section className="brand-section" aria-labelledby={headingId}>
-      <Eyebrow number={number}>{eyebrow}</Eyebrow>
-      <div className="brand-section-layout">
-        <h2 id={headingId}>{title}</h2>
-        <div className="brand-section-copy">
-          <p>{description}</p>
-          <button className="button button-orange" onClick={onAction}>
-            <span>{actionLabel}</span>
-            <Icon name="arrow" />
-          </button>
-        </div>
-      </div>
-    </section>
-  )
-}
-```
-
-```css
-.brand-section {
-  padding: 64px var(--gutter);
-  background: var(--paper);
-  color: var(--ink);
-}
-
-.brand-section-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 24px;
-  margin-top: 28px;
-}
-
-.brand-section h2 {
-  font-size: clamp(38px, 4.8vw, 76px);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -.055em;
-  overflow-wrap: anywhere;
-}
-
-.brand-section-copy { min-width: 0; }
-.brand-section-copy p {
-  max-width: 42ch;
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-.brand-section-copy .button {
-  margin-top: 24px;
-  max-width: 100%;
-  text-align: left;
-}
-.brand-section-copy .button > span { overflow-wrap: anywhere; }
-
-@media (min-width: 900px) {
-  .brand-section { padding-block: 96px; }
-  .brand-section-layout {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-    align-items: end;
-    gap: 64px;
-  }
-}
-```
-
-For a page’s main title, use an `h1` and an appropriate display treatment instead of this section’s `h2`. For navigation, replace the action button with `StoreLink` and a real destination. Reuse the existing focus and reduced-motion styles; add component-specific behavior only where necessary.
+Layer relationships: sticky header 30, focused skip link 100, option menus local 10. Dialogs use the native top layer. Focus remains visible on paper, turquoise surfaces and olive sections.
 
 ## Implementation references
 
-| File | Read it for |
+| Source | Responsibility |
 | --- | --- |
-| [styles.css](src/styles.css) | Base tokens, reset, shared typography, actions, original editorial patterns. |
-| [profile-system.css](src/profile-system.css) | Information colors, companion identity grammar, readable overrides, motion reductions. |
-| [companion-v3.css](src/companion-v3.css) | Introduction, profile preview, companion header, long-name behavior. |
-| [catalog-v4.css](src/catalog-v4.css) | Mobile-first collection and detail styles, store-specific overrides. |
-| [main.tsx](src/main.tsx) | Stylesheet import order, which affects the final result. |
-| [UI.tsx](src/components/UI.tsx) | Wordmark, icons, eyebrow, fingerprint primitives. |
-| [ProductCatalog.tsx](src/components/ProductCatalog.tsx) | Catalog controls, empty state, reusable product card. |
-| [ProductDetail.tsx](src/components/ProductDetail.tsx) | Gallery, information hierarchy, quantity and mobile action. |
-| [ProfileLanguage.tsx](src/components/ProfileLanguage.tsx) | Actual profile identity, attributes, contextual panels. |
-| [useStoreRoute.ts](src/hooks/useStoreRoute.ts) | History, anchor behavior, focus and scroll restoration, page titles. |
-| [catalog.ts](src/catalog.ts) | Product routes, filters, validated cart changes. |
-| [data.ts](src/data.ts) | Existing recipe names, colors, ingredients, and sample content. |
-| [ASSETS.md](ASSETS.md) | Provenance and conceptual asset limits. |
-| [QA.md](QA.md) | Verified behavior and the limits of prior reviews. |
+| [app/design-system.css](app/design-system.css) | Tokens, base semantics, shared controls, responsive view styles. |
+| [app/layout.js](app/layout.js) | Single stylesheet entry point. |
+| [components/DesignSystem/index.js](components/DesignSystem/index.js) | Brand and section primitives. |
+| [components/Button/index.js](components/Button/index.js) | Action variants and states. |
+| [components/Icon/index.js](components/Icon/index.js) | Local SVG vocabulary. |
+| [components/Modal/Modal.js](components/Modal/Modal.js) | Native modal accessibility and behavior. |
+| [components/Layout/index.js](components/Layout/index.js) | Site shell and skip link. |
+| [components/Header/Header.js](components/Header/Header.js) | Shared navigation structure. |
+| [components/Footer/index.js](components/Footer/index.js) | Contact and navigation footer. |
+| [app/design-demo/page.js](app/design-demo/page.js) | Living visual reference. |
+| [tests/e2e/design-system.spec.js](tests/e2e/design-system.spec.js) | Responsive reflow and keyboard navigation checks. |
+| [tests/e2e/accessibility.spec.js](tests/e2e/accessibility.spec.js) | Contrast, native forms, dialogs, and keyboard accessibility. |
 
-Styles load in this order: `styles.css`, `profile-system.css`, `companion-v3.css`, then `catalog-v4.css`. A base declaration is not always the final computed style. Read later overrides before copying a value or changing a shared selector. Scope additions to their component; do not introduce broad `h2`, `button`, or `a` overrides to solve a local need.
+## Workflow and acceptance
 
-## Agent workflow and acceptance
+Identify the closest existing view and shared primitives. State the primary action, content states and mobile order. Use existing source data and CSS tokens. Scope local layout changes to the view; shared element styles belong in the foundation layer, not ad hoc overrides on another page.
 
-Before implementing, identify the closest existing view and reusable primitives. State the new component’s role, primary action, content states, and mobile order. Build with the existing stack and source data. A new library or external asset should solve a concrete requirement; the current design does not depend on a UI framework, remote fonts, or icon package.
+Inspect rendered results at 320, 390, 768 and desktop widths. Verify no document overflow, visible focus, reachable controls, long-name wrapping, meaningful source order and scrollable short-screen dialogs. Exercise empty, selected, disabled, validation and loading/error states. Check navigation, browser back, carousel/tab keyboard behavior and relevant checkout or account flows.
 
-Review the rendered result at 320 px, around 390 px, 768 px, and desktop. Verify content fits without document overflow, important controls are reachable, headings and actual names wrap, keyboard focus is visible, and mobile fixed elements leave content accessible. Exercise the relevant empty, selected, disabled, validation, and loading/error states. Verify navigation and browser back where the view changes routes.
+Run `npm run lint`, `npm test`, `npm run test:e2e`, and `E2E_USE_FIXTURES=1 npm run build` for local fixture validation. Fixture success does not validate live service availability or real authentication. Run `git diff --check` before handing off changes. Visual inspection complements tests; a successful build does not prove visual alignment.
 
-Use `npm run build` for TypeScript and production validation and `git diff --check` for patch cleanliness. Run relevant behavioral tests when changing logic; documentation or a reversible visual adjustment does not need a test that merely duplicates its implementation. A passing build does not establish visual alignment—inspect the page.
-
-The result is aligned when its color roles, typography, spacing, imagery, Spanish copy, and companion context follow this guide while the intended task remains clear. Update this document when an intentional shared pattern changes, distinguishing that change from a one-off layout exception.
-
-## Portable instruction for another code agent
-
-> Implement the requested DNAture view using this design guide and the repository’s existing components. Start with mobile content order and the paper/olive palette. Reuse `Eyebrow`, `Icon`, `Wordmark`, `Fingerprint`, profile primitives, and product components when applicable. Use regular-weight, tightly tracked editorial headings, thin rules, restrained corners, orange primary actions, and turquoise companion information. Keep Spanish UI copy concrete and profile data truthful. Preserve visible focus, reduced motion, responsive reflow, and meaningful empty states. Inspect the rendered result at phone, tablet, and desktop sizes. Explain any intentional departure from the shared system.
+Update this guide and `/design-demo` when intentionally changing a shared pattern.

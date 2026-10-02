@@ -52,8 +52,8 @@ const Calculator = () => {
   const start = () => setStarted(true);
 
   return (
-    <main>
-      <section aria-labelledby="calculator-title">
+    <div className='calculator-page'>
+      <section className='calculator-intro section-shell' aria-labelledby="calculator-title">
         <div>
           <div>
             <nav aria-label="Migas de pan">
@@ -91,7 +91,7 @@ const Calculator = () => {
               height={200}
               src="/calculator/calculadora.jpg"
               alt="Tazón DNAture con ingredientes de alimentación natural"
-              priority
+              loading='eager'
               sizes="(max-width: 767px) 100vw, 46vw"
             />
             <figcaption>
@@ -102,7 +102,7 @@ const Calculator = () => {
         </div>
       </section>
 
-      <section
+      <section className='calculator-tool section-shell'
         ref={toolRef}
         aria-labelledby={started ? undefined : 'calculator-preparation-title'}
       >
@@ -133,7 +133,7 @@ const Calculator = () => {
         )}
       </section>
 
-      <section aria-labelledby="calculator-guidance-title">
+      <section className='notice calculator-guidance' aria-labelledby="calculator-guidance-title">
         <span><ShieldCheck aria-hidden="true" size={24} /></span>
         <div>
           <h2 id="calculator-guidance-title">Una referencia, no una prescripción</h2>
@@ -144,7 +144,7 @@ const Calculator = () => {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 

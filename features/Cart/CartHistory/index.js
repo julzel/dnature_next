@@ -11,7 +11,7 @@ const CartHistory = () => {
   }
 
   return (
-    <div>
+    <div className='cart-history'>
       <h3>Solicitudes preparadas en este dispositivo</h3>
       <p>
         Son referencias locales para volver a armar un carrito; no representan

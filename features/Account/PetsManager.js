@@ -153,7 +153,7 @@ const PetsManager = () => {
         ) : null
       }
     >
-      <div>
+      <div className='account-pets'>
         {isFormOpen ? (
           <section aria-labelledby='pet-form-title'>
             <div>

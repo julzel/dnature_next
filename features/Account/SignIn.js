@@ -215,7 +215,7 @@ const SignIn = ({
   };
 
   return (
-    <div>
+    <div className='signin-page section-shell'>
       <div>
         <div>
           <section>

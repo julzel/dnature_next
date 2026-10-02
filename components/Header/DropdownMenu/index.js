@@ -8,7 +8,7 @@ import { DNATURE_WHATSAPP_PHONE } from '../../../constants/contact';
 
 const DropdownMenu = ({ items, onNavigate }) => {
   return (
-    <nav
+    <nav className='mobile-navigation'
       id="mobile-navigation"
       aria-label="Navegación móvil"
     >

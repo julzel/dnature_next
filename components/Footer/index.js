@@ -1,4 +1,4 @@
-import Image from '../Image';
+import { Wordmark } from '../DesignSystem';
 import Link from 'next/link';
 import { TextIcon } from '../Icon';
 import { instagramSymbol } from '../Icon';
@@ -27,17 +27,12 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer>
+    <footer className='site-footer'>
       <div>
         <div>
           <div>
             <Link href='/' aria-label='DNAture, ir al inicio'>
-              <Image
-                src='/images/dnature-logo.svg'
-                alt='DNAture'
-                width={55}
-                height={42}
-              />
+              <Wordmark />
             </Link>
             <p>Alimentación natural para cuidarles mejor, todos los días.</p>
             <div aria-label='Redes y contacto'>

@@ -48,7 +48,7 @@ const contactChannels = [
 ];
 
 const Contact = () => (
-  <section aria-labelledby='contact-title'>
+  <section className='home-contact section-shell' aria-labelledby='contact-title'>
     <div>
       <header>
         <p>Estamos para ayudarte</p>

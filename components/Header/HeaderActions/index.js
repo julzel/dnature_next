@@ -58,7 +58,7 @@ const HeaderActions = () => {
   }, [isSearchOpen]);
 
   return (
-    <div>
+    <div className='header-actions'>
       <div ref={searchControlRef}>
         <button
           ref={searchTriggerRef}

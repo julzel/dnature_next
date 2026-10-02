@@ -17,7 +17,7 @@ const PurchaseOrder = ({ cart }) => {
       }).format(new Date(date))
     : '';
   return (
-    <div>
+    <div className='purchase-order'>
       {cart.purchaseOrderId && (
         <h1>
           Solicitud DNAture:{' '}

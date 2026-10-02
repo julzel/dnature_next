@@ -3,7 +3,7 @@ import SelectInput from './SelectInput';
 import WeightInput from './WeightInput';
 
 const PetNameInput = ({ value, handleChange }) => (
-  <div>
+  <div className='field'>
     <label htmlFor='petName'>Nombre</label>{' '}
     <input
       required

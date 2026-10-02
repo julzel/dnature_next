@@ -7,7 +7,7 @@ const CartItemController = ({
   removeAllItemsOfAKind,
   item,
 }) => (
-  <div>
+  <div className='cart-item-controls'>
     <div
       aria-label={`Cantidad de ${item.productName}: ${item.quantity}`}
     >

@@ -1,7 +1,7 @@
 import Button from '../../../components/Button';
 
 const Intro = ({ start }) => (
-  <div>
+  <div className='plan-intro'>
     <h1>¡Hola!</h1>
     <p>
       A continuación te haremos algunas preguntas para conocer mejor a tu

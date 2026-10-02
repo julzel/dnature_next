@@ -8,9 +8,10 @@ import Footer from '../Footer';
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className='site-layout'>
+      <a className='skip-link' href='#main-content'>Saltar al contenido</a>
       <Header />
-      <main>{children}</main>
+      <main id='main-content' tabIndex={-1}>{children}</main>
       <Footer />
     </div>
   );

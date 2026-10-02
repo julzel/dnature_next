@@ -11,7 +11,7 @@ import CurrencyText from '../../../components/Currency';
 import { getAvailabilityUi } from '../lib/avify-commerce';
 import { getProductPath } from '../lib/product-url';
 
-const CatalogItem = ({ product }) => {
+const CatalogItem = ({ product, imageLoading = 'lazy' }) => {
   const {
     sys: { id },
     images,
@@ -84,8 +84,8 @@ const CatalogItem = ({ product }) => {
   }
 
   return (
-    <article>
-      <Link
+    <article className='product-card'>
+      <Link className='product-card-stage'
         href={productPath}
         aria-label={`Ver ${productName}`}
       >
@@ -96,14 +96,15 @@ const CatalogItem = ({ product }) => {
               alt={itemImage.title}
               width={100}
               height={100}
+              loading={imageLoading}
               sizes='(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw'
             />
           </span>
         )}
       </Link>
-      <div>
+      <div className='product-card-info'>
         <p>{category}</p>
-        <Link href={productPath}>
+        <Link className='product-card-title' href={productPath}>
           {productName}
         </Link>
         <p>
@@ -123,7 +124,7 @@ const CatalogItem = ({ product }) => {
             {availabilityUi.copy}
           </p>
         )}
-        <div>
+        <div className='product-card-action'>
           {hasPriceByUnit ? (
             <Link href={productPath}>
               Ver opciones

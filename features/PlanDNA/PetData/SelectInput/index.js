@@ -1,5 +1,5 @@
 const SelectInput = ({ label, id, value, options, onChange }) => (
-  <div>
+  <div className='field'>
     <label htmlFor={id}>{label}</label>{' '}
     <select id={id} value={value} onChange={(event) => onChange(event.target.value)}>
       {options.map((option) => (

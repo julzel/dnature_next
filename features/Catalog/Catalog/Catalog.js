@@ -9,7 +9,7 @@ const Catalog = ({
   products,
   totalCount,
 }) => (
-  <section>
+  <section className='catalog-page store-shell'>
     <header>
       <div>
         <p>{selectedCategory.label}</p>

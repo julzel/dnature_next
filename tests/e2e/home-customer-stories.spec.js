@@ -1,6 +1,6 @@
 import { expect, test } from './runtime-test';
 
-test('customer stories switch visible panels without CSS', async ({ page }) => {
+test('customer stories switch visible panels', async ({ page }) => {
   await page.goto('/');
   const section = page.getByRole('region', { name: 'Ellos ya viven la experiencia DNAture' });
   await expect(section.getByRole('tabpanel')).toHaveCount(1);

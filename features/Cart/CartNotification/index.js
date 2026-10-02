@@ -22,7 +22,7 @@ const CartNotification = ({
     closeModal={onCloseInfoModal}
     returnFocusRef={returnFocusRef}
   >
-    <section>
+    <section className='order-notification'>
       <CheckCircle2 aria-hidden='true' size={44} />
       <p>Resumen preparado</p>
       <h2>Tu solicitud está lista para enviar</h2>

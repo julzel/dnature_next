@@ -42,7 +42,7 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
 
   if (!isReady) {
     return (
-      <div>
+      <div className='account-page section-shell'>
         <div role='status'>
           <span aria-hidden='true' />
           Preparando tu cuenta…
@@ -53,7 +53,7 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
 
   if (!isAuthenticated) {
     return (
-      <div>
+      <div className='account-page section-shell'>
         <div>
           <DemoNotice />
           <section>
@@ -72,11 +72,11 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
   }
 
   return (
-    <div>
+    <div className='account-page section-shell'>
       <div>
         <DemoNotice compact />
-        <div>
-          <aside>
+        <div className='account-layout'>
+          <aside className='account-sidebar'>
             <div>
               <span aria-hidden='true'>
                 {(profile.firstName || 'C').charAt(0).toUpperCase()}
@@ -100,7 +100,7 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
 
             <nav
               id='demo-account-navigation'
-              hidden={!isMenuOpen}
+              className={`account-navigation${isMenuOpen ? ' is-open' : ''}`}
               aria-label='Cuenta de demostración'
             >
               {navigationItems.map(({ href, label, icon: Icon }) => {
@@ -126,7 +126,7 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
             </nav>
           </aside>
 
-          <div>
+          <div className='account-content'>
             <header>
               <div>
                 {eyebrow ? <p>{eyebrow}</p> : null}

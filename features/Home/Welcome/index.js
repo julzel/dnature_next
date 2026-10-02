@@ -1,19 +1,16 @@
 import Image from '../../../components/Image';
+import { SectionHeading } from '../../../components/DesignSystem';
 
 import items from './items';
 import wildPlateImage from '../../../public/images/wild-plate.jpg';
 
 const Welcome = () => {
   return (
-    <section aria-labelledby='welcome-title'>
-      <div>
-        <p>Alimentación DNAture</p>
-        <h2 id='welcome-title'>Comida real, preparada con intención</h2>
-        <p>
+    <section className='home-welcome section-shell' aria-labelledby='welcome-title'>
+      <SectionHeading id='welcome-title' number='01' eyebrow='Alimentación DNAture' title='Comida real, preparada con intención'>
           Una propuesta de alimentación natural que prioriza ingredientes
           reconocibles, equilibrio y acompañamiento para cada mascota.
-        </p>
-      </div>
+      </SectionHeading>
 
       <figure>
         <Image

@@ -1,7 +1,7 @@
 import { FlaskConical } from "../../../components/Icon";
 
 const DemoNotice = () => (
-  <aside
+  <aside className='demo-notice'
     aria-label='Aviso de demostración'
   >
     <FlaskConical aria-hidden='true' size={20} />

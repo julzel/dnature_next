@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { X } from '../Icon';
 
 const Modal = ({
   ariaDescribedBy,
@@ -8,6 +9,7 @@ const Modal = ({
   closeLabel = 'Cerrar diálogo',
   closeOnBackdrop = true,
   closeModal,
+  className = '',
   returnFocusRef,
 }) => {
   const dialogRef = useRef(null);
@@ -68,6 +70,7 @@ const Modal = ({
 
   return (
     <dialog
+      className={`dialog ${className}`}
       ref={dialogRef}
       data-dnature-modal-root
       aria-modal='true'
@@ -86,11 +89,11 @@ const Modal = ({
       }}
     >
       {closeModal && (
-        <button onClick={closeModal} type='button' aria-label={closeLabel}>
-          {closeLabel}
+        <button className='dialog-close icon-button' onClick={closeModal} type='button' aria-label={closeLabel}>
+          <X />
         </button>
       )}
-      <div>{children}</div>
+      <div className='dialog-content'>{children}</div>
     </dialog>
   );
 };

@@ -9,6 +9,7 @@ const ModalContainer = ({
   ariaLabel,
   ariaLabelledBy,
   children,
+  className,
   closeLabel,
   closeOnBackdrop,
   closeModal,
@@ -18,6 +19,7 @@ const ModalContainer = ({
 
   return createPortal(
     <Modal
+      className={className}
       ariaDescribedBy={ariaDescribedBy}
       ariaLabel={ariaLabel}
       ariaLabelledBy={ariaLabelledBy}

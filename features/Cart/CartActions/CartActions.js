@@ -13,7 +13,7 @@ const CartActions = ({
   toggleRemoveAllModal,
   isCheckingCart,
 }) => (
-  <div>
+  <div className='cart-actions'>
     {totalItems > 0 && (
       <Button
         variant='primary'

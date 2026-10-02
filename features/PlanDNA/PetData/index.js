@@ -70,7 +70,7 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
   };
 
   return (
-    <div>
+    <div className='plan-form'>
       <div>
         <p>
           Paso {currentStep + 1} de {steps.length}

@@ -1,7 +1,7 @@
 import Button from '../components/Button';
 
 const NotFound = () => (
-  <div>
+  <div className='page-state'>
     <div>
       <h1>Página no encontrada</h1>
       <p>

@@ -11,7 +11,7 @@ const Error = ({ error, reset }) => {
   }, [error]);
 
   return (
-    <div role='alert'>
+    <div className='page-state' role='alert'>
       <div>
         <h1>No pudimos cargar esta página</h1>
         <p>

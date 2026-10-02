@@ -6,10 +6,10 @@ import React from 'react';
 import CatalogItem from '../CatalogItem';
 
 const CatalogList = ({ products }) => (
-  <ul>
-    {products.map((product) => (
+  <ul className='product-grid'>
+    {products.map((product, index) => (
       <li key={product.sys.id}>
-        <CatalogItem product={product} />
+        <CatalogItem product={product} imageLoading={index < 3 ? 'eager' : 'lazy'} />
       </li>
     ))}
   </ul>

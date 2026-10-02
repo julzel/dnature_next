@@ -100,7 +100,7 @@ const ProductDetail = ({ productDetail }) => {
   };
 
   return (
-    <section
+    <section className='product-details'
       aria-label='Información del producto'
     >
       <div>

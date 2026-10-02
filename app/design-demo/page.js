@@ -2,6 +2,7 @@ import { arrowRightSymbol, bagShoppingSymbol, minusSymbol, plusSymbol, trashCanS
 import { TextIcon } from '../../components/Icon';
 
 import Button from '../../components/Button';
+import { Eyebrow, Fingerprint, Notice, SectionHeading, Wordmark } from '../../components/DesignSystem';
 
 export const metadata = {
   title: 'Sistema de diseño',
@@ -16,9 +17,9 @@ const ButtonExample = ({ label, children }) => (
 );
 
 const DesignDemoPage = () => (
-  <section>
+  <section className='design-demo section-shell'>
     <header>
-      <p>DNAture · Sistema de diseño</p>
+      <Eyebrow>DNAture · Sistema de diseño</Eyebrow>
       <h1>Componentes para decisiones claras.</h1>
       <p>
         Un catálogo vivo de los patrones de interfaz reutilizables. Esta página
@@ -34,9 +35,33 @@ const DesignDemoPage = () => (
       </div>
     </header>
 
+    <section aria-labelledby='foundations-title'>
+      <SectionHeading id='foundations-title' eyebrow='Fundamentos' title='Un lenguaje natural y preciso.'>
+        Papel cálido, tinta oliva y acentos con una función clara. Tipografía del sistema, sin fuentes externas.
+      </SectionHeading>
+      <dl className='token-grid'>
+        {[
+          ['paper', 'Papel', '#f6f5f0', 'Superficie principal'],
+          ['ink', 'Tinta', '#262923', 'Texto y contraste'],
+          ['orange', 'Naranja', '#ff6a00', 'Acción principal'],
+          ['information', 'Información', '#e0ece7', 'Identidad y contexto'],
+        ].map(([token, label, value, role]) => (
+          <div key={token}>
+            <div className={`token-swatch token-swatch--${token}`} aria-hidden='true' />
+            <dt>{label}</dt><dd>{value}<br /><small>{role}</small></dd>
+          </div>
+        ))}
+      </dl>
+      <div className='brand-primitives' aria-label='Elementos de identidad'>
+        <Wordmark />
+        <Fingerprint />
+        <Eyebrow number='01'>Conocer, nutrir, acompañar</Eyebrow>
+      </div>
+    </section>
+
     <section aria-labelledby='cta-title'>
       <div>
-        <p>01 · Calls to action</p>
+        <p>01 · Acciones</p>
         <h2 id='cta-title'>Una jerarquía para cada intención</h2>
         <p>El color y el peso visual comunican el resultado de una acción.</p>
       </div>
@@ -181,6 +206,32 @@ const DesignDemoPage = () => (
         <label htmlFor='email'>Correo electrónico</label>
         <input id='email' type='email' placeholder='nombre@correo.com' />
         <Button fullWidth>Guardar datos</Button>
+      </div>
+    </section>
+
+    <section aria-labelledby='context-title'>
+      <SectionHeading id='context-title' eyebrow='05 · Identidad y estados' title='Información que acompaña.'>
+        La identidad usa turquesa. Los datos desconocidos se muestran de forma explícita.
+      </SectionHeading>
+      <div>
+        <article className='companion-card'>
+          <Eyebrow>Perfil ilustrativo</Eyebrow>
+          <h3>Moka</h3>
+          <dl>
+            <div><dt>Etapa de vida</dt><dd>Por conocer</dd></div>
+            <div><dt>Peso actual</dt><dd>Por conocer</dd></div>
+          </dl>
+          <Button variant='accent'>Completar perfil</Button>
+        </article>
+        <div>
+          <Notice title='Un punto de partida'>
+            <p>La porción estimada se ajusta con observación y orientación veterinaria.</p>
+          </Notice>
+          <Notice title='No encontramos esa combinación'>
+            <p>Probá con otra categoría para seguir explorando.</p>
+            <Button variant='tertiary' size='small'>Limpiar filtros</Button>
+          </Notice>
+        </div>
       </div>
     </section>
   </section>

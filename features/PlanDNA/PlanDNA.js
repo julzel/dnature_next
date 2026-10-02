@@ -101,7 +101,7 @@ const PlanDNA = () => {
   };
 
   return (
-    <div>
+    <div className='plan-page section-shell'>
       {visibleStep === 0 && <Intro start={() => setStep(1)} />}
       {visibleStep === 1 && (
         <PetData

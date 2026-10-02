@@ -11,6 +11,7 @@ const routes = [
   '/preguntas-frecuentes',
   '/checkout',
   '/cuenta/iniciar-sesion',
+  '/design-demo',
 ];
 
 const getBlockingViolations = async (page) => {
@@ -131,6 +132,7 @@ test('@a11y calculator starts inline and moves focus to the active question', as
   await expect(
     page.getByRole('progressbar', { name: 'Progreso de la calculadora' }),
   ).toHaveAttribute('value', '1');
+  await page.getByRole('radio', { name: /Adulto/ }).check();
   expect(await getBlockingViolations(page)).toEqual([]);
 });
 
@@ -145,6 +147,7 @@ test('@a11y checkout modal is named and restores focus on Escape', async ({
   await page.getByRole('link', { name: 'Ver carrito (1)', exact: true }).click();
 
   await page.getByRole('radio', { name: /SINPE Móvil/ }).check();
+  expect(await getBlockingViolations(page)).toEqual([]);
   const continueButton = page.getByRole('button', {
     name: 'Continuar con mis datos',
   });

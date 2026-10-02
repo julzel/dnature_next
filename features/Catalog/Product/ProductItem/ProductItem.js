@@ -7,7 +7,7 @@ import ProductInfoContainer from '../ProductInfo';
 import ProductDetail from '../ProductDetail';
 
 const ProductItem = ({ productDetail }) => (
-  <section>
+  <section className='product-page store-shell'>
     <GoBack productDetail={productDetail} />
     <ProductInfoContainer productDetail={productDetail} />
     <ProductDetail productDetail={productDetail} />

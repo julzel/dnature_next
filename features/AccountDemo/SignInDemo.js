@@ -95,7 +95,7 @@ const SignInDemo = () => {
   };
 
   return (
-    <div>
+    <div className='signin-page section-shell'>
       <div>
         <DemoNotice />
 

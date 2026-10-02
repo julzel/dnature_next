@@ -38,7 +38,7 @@ const AvifyDiagnostics = async () => {
 
   if (!result.success) {
     return (
-      <main>
+      <div className='diagnostics-page section-shell'>
         <h1>Conciliación Contentful ↔ Avify</h1>
         <div role="alert">
           <strong>No se pudo generar el reporte</strong>
@@ -51,7 +51,7 @@ const AvifyDiagnostics = async () => {
             }</code></pre>
           ) : null}
         </div>
-      </main>
+      </div>
     );
   }
 
@@ -63,7 +63,7 @@ const AvifyDiagnostics = async () => {
   const reportDate = report.generatedAt?.slice(0, 10) || 'actual';
 
   return (
-    <main>
+    <div className='diagnostics-page section-shell'>
       <header>
         <p>Reporte de desarrollo</p>
         <h1>Conciliación Contentful ↔ Avify</h1>
@@ -321,7 +321,7 @@ const AvifyDiagnostics = async () => {
           </li>
         </ol>
       </section>
-    </main>
+    </div>
   );
 };
 

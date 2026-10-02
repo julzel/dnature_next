@@ -28,7 +28,7 @@ for (const viewport of [
   });
 }
 
-test('checkout content uses normal document flow on mobile and desktop', async ({ page }) => {
+test('checkout stacks on mobile and places the summary beside the order on desktop', async ({ page }) => {
   for (const viewport of [{ width: 390, height: 844 }, { width: 1200, height: 900 }]) {
     await page.setViewportSize(viewport);
     await page.goto('/checkout');
@@ -38,7 +38,11 @@ test('checkout content uses normal document flow on mobile and desktop', async (
     await expect(summary).toBeVisible();
     const orderBounds = await order.boundingBox();
     const summaryBounds = await summary.boundingBox();
-    expect(summaryBounds.y).toBeGreaterThanOrEqual(orderBounds.y + orderBounds.height);
-    await expect(page.locator('link[rel="stylesheet"]')).toHaveCount(0);
+    if (viewport.width < 900) {
+      expect(summaryBounds.y).toBeGreaterThanOrEqual(orderBounds.y + orderBounds.height);
+    } else {
+      expect(summaryBounds.x).toBeGreaterThanOrEqual(orderBounds.x + orderBounds.width);
+    }
+    expect(summaryBounds.x + summaryBounds.width).toBeLessThanOrEqual(viewport.width);
   }
 });

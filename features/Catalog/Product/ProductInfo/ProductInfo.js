@@ -46,8 +46,8 @@ const ProductInfo = ({
   };
 
   return (
-    <div>
-      <div>
+    <div className='product-layout'>
+      <div className='product-gallery'>
         {hasMultipleImages && (
           <div
             aria-label={`Imágenes de ${productDetail.productName}`}
@@ -74,7 +74,7 @@ const ProductInfo = ({
           </div>
         )}
 
-        <div>
+        <div className='product-stage'>
           {selectedImage && (
             <ContentfulImage
               src={selectedImage.url}
@@ -107,32 +107,32 @@ const ProductInfo = ({
         </div>
       </div>
 
-      <div>
+      <div className='product-information'>
         <div>
-          <p>
+          <p className='eyebrow'>
             {productDetail.category || 'Producto DNAture'}
           </p>
           <h1>{productDetail.productName}</h1>
           {productDetail.avifySku && (
-            <p>SKU: {productDetail.avifySku}</p>
+            <p className='product-sku'>SKU: {productDetail.avifySku}</p>
           )}
 
           {hasPriceByUnit ? (
-            <p>
+            <p className='product-price'>
               {selectedPresentation ? (
                 <CurrencyText value={selectedPresentation.price} />
               ) : null}
               {selectedPresentation && (
-                <span>
+                <span className='product-measure'>
                   {selectedPresentation.size}
                 </span>
               )}
             </p>
           ) : (
-            <p>
+            <p className='product-price'>
               <CurrencyText value={productDetail.precio} />
               {productDetail.medida && (
-                <span>{productDetail.medida}</span>
+                <span className='product-measure'>{productDetail.medida}</span>
               )}
             </p>
           )}
@@ -173,7 +173,7 @@ const ProductInfo = ({
           </p>
         )}
 
-        <div>
+        <div className='product-actions'>
           {itemsInCart > 0 ? (
             <div>
               <button

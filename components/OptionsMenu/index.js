@@ -86,7 +86,7 @@ const OptionsMenu = ({
   };
 
   return (
-    <div>
+    <div className='options-menu'>
       <button
         type='button'
         ref={triggerRef}

@@ -50,6 +50,7 @@ const CartDrawer = ({ isOpen, onClose, returnFocusRef }) => {
 
   return (
     <Modal
+      className='cart-dialog'
       ariaLabelledBy='cart-drawer-title'
       closeLabel='Cerrar carrito'
       closeModal={closeDrawer}

@@ -44,7 +44,7 @@ const MobileNavigation = ({ items }) => {
   }, [isOpen]);
 
   return (
-    <div ref={controlRef}>
+    <div ref={controlRef} className='mobile-navigation-control'>
       {isOpen && (
         <DropdownMenu
           items={items}

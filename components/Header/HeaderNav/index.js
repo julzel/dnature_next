@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from '../../Image';
+import { Wordmark } from '../../DesignSystem';
 
 // local imports
 
@@ -8,22 +8,14 @@ import NavigationBar from './NavigationBar';
 
 const HeaderNav = ({ mobileNavigation, navigationItems }) => {
   return (
-    <div>
-      <div>{mobileNavigation}</div>
+    <div className='header-navigation'>
+      <div className='mobile-menu-control'>{mobileNavigation}</div>
       <div>
         <Link href={'/'} aria-label='Ir al inicio'>
-          <span>
-            <Image
-              src='/images/dnature-logo.svg'
-              alt='DNAture Logo'
-              width={75}
-              height={58}
-              loading='eager'
-            />
-          </span>
+          <Wordmark />
         </Link>
       </div>
-      <div>
+      <div className='desktop-navigation'>
         <NavigationBar items={navigationItems} />
       </div>
     </div>

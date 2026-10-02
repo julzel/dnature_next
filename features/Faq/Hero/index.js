@@ -5,7 +5,7 @@ import { ArrowDown, MessageCircleMore } from "../../../components/Icon";
 import { WHATSAPP_URL } from '../../../constants/contact';
 
 const Hero = () => (
-  <section aria-labelledby="faq-title">
+  <section className='faq-hero section-shell' aria-labelledby="faq-title">
     <div>
       <div>
         <nav aria-label="Migas de pan">
@@ -48,7 +48,7 @@ const Hero = () => (
           width={300}
           height={375}
           alt="Perro sosteniendo un hueso carnoso al aire libre"
-          priority
+          loading='eager'
           sizes="(max-width: 767px) 100vw, 44vw"
         />
         <figcaption>

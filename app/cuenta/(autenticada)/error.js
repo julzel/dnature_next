@@ -14,7 +14,7 @@ const AccountError = ({ error, reset }) => {
   }, [error]);
 
   return (
-    <div>
+    <div className='page-state'>
       <div>
         <section>
           <span aria-hidden='true'>

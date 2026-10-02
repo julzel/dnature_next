@@ -1,6 +1,7 @@
 'use client';
 
 import Image from '../../../components/Image';
+import { SectionHeading } from '../../../components/DesignSystem';
 
 // local imports
 
@@ -51,17 +52,13 @@ const slides = costumers.map((costumer) => {
 
 const OurCostumers = () => {
   return (
-    <section
+    <section className='home-stories section-shell'
       aria-labelledby='customer-stories-title'
     >
-      <div>
-        <p>Historias de la comunidad</p>
-        <h2 id='customer-stories-title'>Ellos ya viven la experiencia DNAture</h2>
-        <p>
+      <SectionHeading id='customer-stories-title' number='04' eyebrow='Historias de la comunidad' title='Ellos ya viven la experiencia DNAture'>
           Familias que eligieron una alimentación más natural para acompañar
           el bienestar de sus mascotas.
-        </p>
-      </div>
+      </SectionHeading>
 
       <div>
         <Slider slides={slides} />

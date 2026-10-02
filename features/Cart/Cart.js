@@ -53,7 +53,7 @@ const Cart = ({
   checkoutReturnFocusRef,
 }) => {
   return (
-    <div>
+    <div className='checkout-page section-shell'>
       <div>
         <Link href='/productos'>
           <ArrowLeft aria-hidden='true' size={18} strokeWidth={1.9} />
@@ -74,7 +74,7 @@ const Cart = ({
           <li><span>3</span> Revisión</li>
         </ol>
 
-        <div>
+        <div className='checkout-layout'>
           <section aria-labelledby='order-title'>
             <div>
               <div>
@@ -101,7 +101,7 @@ const Cart = ({
             )}
           </section>
 
-          <aside aria-labelledby='summary-title'>
+          <aside className='checkout-summary' aria-labelledby='summary-title'>
             <div>
               <p>Coordinación</p>
               <h2 id='summary-title'>Resumen de la solicitud</h2>

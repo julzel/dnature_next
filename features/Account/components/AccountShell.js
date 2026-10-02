@@ -55,7 +55,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
   if (!isReady) {
     return (
-      <div>
+      <div className='account-page section-shell'>
         <div role='status'>
           <span aria-hidden='true' />
           Preparando tu cuenta…
@@ -66,7 +66,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
   if (!isAuthenticated) {
     return (
-      <div>
+      <div className='account-page section-shell'>
         <div>
           <section>
             <span aria-hidden='true'>
@@ -92,7 +92,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
   if (!profile.ageConfirmed) {
     return (
-      <div>
+      <div className='account-page section-shell'>
         <div>
           <section>
             <span aria-hidden='true'>
@@ -129,10 +129,10 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
   }
 
   return (
-    <div>
+    <div className='account-page section-shell'>
       <div>
-        <div>
-          <aside>
+        <div className='account-layout'>
+          <aside className='account-sidebar'>
             <div>
               <span aria-hidden='true'>
                 {(profile.firstName || 'C').charAt(0).toUpperCase()}
@@ -156,7 +156,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
             <nav
               id='account-navigation'
-              hidden={!isMenuOpen}
+              className={`account-navigation${isMenuOpen ? ' is-open' : ''}`}
               aria-label='Mi cuenta'
             >
               {navigationItems.map(({ href, label, icon: Icon }) => {
@@ -187,7 +187,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
             </nav>
           </aside>
 
-          <div>
+          <div className='account-content'>
             <header>
               <div>
                 {eyebrow ? <p>{eyebrow}</p> : null}

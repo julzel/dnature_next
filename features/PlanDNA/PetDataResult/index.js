@@ -2,7 +2,7 @@ import PetCard from '../PetCard';
 import Button from '../../../components/Button';
 
 const PetDataResult = ({ petData, addAnotherPet, onEdit, onDeletePet }) => (
-  <div>
+  <div className='plan-result'>
     <h2>¡Genial!</h2>
     <p>
       Verifica la información de {petData.length > 1 ? 'tus mascotas' : 'tu mascota'}.

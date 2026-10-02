@@ -61,7 +61,7 @@ const ProfileSettings = () => {
       title='Mi perfil'
       description='Mantené tus datos principales y tu dirección frecuente al día.'
     >
-      <div>
+      <div className='account-panels'>
         <section aria-labelledby='personal-data-title'>
           <div>
             <div>

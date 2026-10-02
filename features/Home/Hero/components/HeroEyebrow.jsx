@@ -2,7 +2,7 @@ import { Leaf } from "../../../../components/Icon";
 
 const HeroEyebrow = () => {
   return (
-    <div>
+    <div className='eyebrow'>
       <span>
         <Leaf aria-hidden="true" strokeWidth={2} />
       </span>

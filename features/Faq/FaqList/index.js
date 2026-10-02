@@ -121,7 +121,7 @@ const FaqList = () => {
   };
 
   return (
-    <section id="preguntas" aria-labelledby="faq-library-title">
+    <section className='faq-library section-shell' id="preguntas" aria-labelledby="faq-library-title">
       <div>
         <p>Información práctica</p>
         <h2 id="faq-library-title">¿Qué necesitás saber?</h2>
@@ -131,7 +131,7 @@ const FaqList = () => {
         </p>
       </div>
 
-      <div role="search">
+      <div className='search-field' role="search">
         <Search aria-hidden="true" size={20} />
         <label htmlFor={`${idPrefix}-faq-search`}>
           Buscar en preguntas frecuentes
@@ -158,7 +158,7 @@ const FaqList = () => {
         ) : null}
       </div>
 
-      <div aria-label="Filtrar por tema">
+      <div className='filter-chips faq-filters' aria-label="Filtrar por tema">
         <button
           type="button"
           aria-pressed={activeCategory === 'all'}
@@ -180,7 +180,7 @@ const FaqList = () => {
         ))}
       </div>
 
-      <div>
+      <div className='faq-layout'>
         <aside aria-label="Temas de preguntas frecuentes">
           <p>Explorar por tema</p>
           <nav>

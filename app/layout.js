@@ -1,4 +1,5 @@
 import Analytics from './analytics';
+import './design-system.css';
 import Providers from './providers';
 import Layout from '../components/Layout';
 import { defaultSocialImage, siteUrl } from '../constants/seo';

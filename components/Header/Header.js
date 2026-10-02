@@ -9,8 +9,8 @@ import HeaderNav from './HeaderNav';
 import HeaderActions from './HeaderActions';
 
 const Header = ({ navigationItems, mobileNavigation }) => (
-  <header>
-    <div>
+  <header className='site-header'>
+    <div className='service-bar'>
       <span>
         <Snowflake aria-hidden='true' size={13} strokeWidth={2} />
         Coordinamos envíos refrigerados en el GAM
@@ -24,8 +24,8 @@ const Header = ({ navigationItems, mobileNavigation }) => (
       </a>
     </div>
 
-    <div>
-      <div>
+    <div className='header-shell'>
+      <div className='header-row'>
         <HeaderNav
           mobileNavigation={mobileNavigation}
           navigationItems={navigationItems}

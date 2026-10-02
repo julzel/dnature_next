@@ -1,6 +1,6 @@
 import { expect, test } from './runtime-test';
 
-test('hero keeps its content, links, and art direction without CSS', async ({ page }) => {
+test('hero keeps its content, links, and art direction', async ({ page }) => {
   for (const viewport of [
     { width: 320, height: 780 },
     { width: 768, height: 900 },

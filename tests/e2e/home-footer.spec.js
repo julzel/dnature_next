@@ -1,6 +1,6 @@
 import { expect, test } from './runtime-test';
 
-test('footer navigation remains usable without CSS', async ({ page }) => {
+test('footer navigation remains usable', async ({ page }) => {
   await page.goto('/');
   const footer = page.getByRole('contentinfo');
   await expect(footer.getByRole('link', { name: 'Productos' })).toHaveAttribute('href', /\/productos\/?$/);

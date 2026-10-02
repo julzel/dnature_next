@@ -10,7 +10,7 @@ import OurCostumers from "./OurCostumers";
 
 const Home = ({ categories = [] }) => {
   return (
-    <div>
+    <div className='home-page'>
       <Hero />
       <Welcome />
       <Products categories={categories} />

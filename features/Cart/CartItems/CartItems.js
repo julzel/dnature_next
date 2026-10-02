@@ -16,7 +16,7 @@ const productPresentation = (item) => {
 };
 
 const CartItems = ({ items }) => (
-  <ul>
+  <ul className='cart-items'>
     {items.map((item) => (
       <li key={item.id}>
         <div>

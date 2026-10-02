@@ -54,7 +54,7 @@ const Dashboard = () => {
       title={`¡Hola, ${profile.firstName || 'Cliente'}!`}
       description='Una vista clara de tus mascotas, tus datos y tus próximas compras.'
     >
-      <div>
+      <div className='account-dashboard'>
         <section>
           <div>
             <p>Tu espacio DNAture</p>

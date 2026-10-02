@@ -89,7 +89,7 @@ const SavedCarts = () => {
       title='Mis carritos'
       description='Guardá combinaciones frecuentes y recuperalas cuando llegue la próxima compra.'
     >
-      <div>
+      <div className='account-carts'>
         <section aria-labelledby='save-cart-title'>
           <div>
             <div>

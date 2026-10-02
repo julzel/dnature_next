@@ -6,7 +6,7 @@ const WeightInput = ({ weight, handleChange, label, helpText }) => {
   const error = String(weight).trim() !== '' && !isValidPetWeight(weight);
 
   return (
-    <div>
+    <div className='field'>
       <label htmlFor={id}>{label}</label>{' '}
       <input
         id={id}

@@ -3,7 +3,7 @@ import { TextIcon } from '../../../components/Icon';
 
 const QuickAdd = ({ itemsInCart, removeOneItemFromCart, addItemToCart }) => {
   return (
-    <div>
+    <div className='quantity-control'>
       <button type="button" aria-label="Quitar una unidad" disabled={itemsInCart === 0} onClick={removeOneItemFromCart}>
         <TextIcon symbol={circleMinusSymbol} />
       </button>

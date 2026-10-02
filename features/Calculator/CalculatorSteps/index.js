@@ -32,7 +32,7 @@ const visibleOptions = (step, profile) =>
     : step.options;
 
 const OptionGroup = ({ onSelect, profile, step }) => (
-  <fieldset>
+  <fieldset className='option-group'>
     <legend>{step.title}</legend>
     {visibleOptions(step, profile).map((option) => {
       const selected = profile[step.key] === option.value;
@@ -150,7 +150,7 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
 
   if (result) {
     return (
-      <section aria-live="polite" aria-labelledby="calculator-result-title">
+      <section className='calculator-result' aria-live="polite" aria-labelledby="calculator-result-title">
         <div>
           <p>Tu referencia diaria</p>
           <h2 id="calculator-result-title" ref={headingRef} tabIndex={-1}>
@@ -200,7 +200,7 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
   }
 
   return (
-    <form onSubmit={submitStep} noValidate>
+    <form className='calculator-form' onSubmit={submitStep} noValidate>
       <div>
         <div>
           <span>Paso {stepIndex + 1} de {steps.length}</span>

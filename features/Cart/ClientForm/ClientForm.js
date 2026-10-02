@@ -24,7 +24,7 @@ const ClientForm = ({
   validationMessage,
 }) => {
   return (
-    <div>
+    <div className='client-form'>
       <header>
         <p>Paso 2 de 3</p>
         <h2 id='checkout-client-title'>

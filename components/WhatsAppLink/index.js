@@ -12,7 +12,7 @@ import { whatsappSymbol } from '../Icon';
 // Use the shared DNAture E.164 number from constants/contact for official links.
 const WhatsAppLink = ({
   phone,
-  className: _className,
+  className,
   display,
   children,
   targetBlank = true,
@@ -26,6 +26,7 @@ const WhatsAppLink = ({
   const content = children || display || formatPhoneForDisplay(sanitized);
   return (
     <a
+      className={className}
       href={href}
       aria-label={iconOnly ? `Contactar por WhatsApp al ${content}` : undefined}
       {...props}
@@ -33,7 +34,7 @@ const WhatsAppLink = ({
     >
       {(withIcon || iconOnly) && (
         <span>
-          <TextIcon symbol={whatsappSymbol} size="2x" />
+          <TextIcon symbol={whatsappSymbol} size={22} />
         </span>
       )}
       {!iconOnly && content}

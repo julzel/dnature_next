@@ -2,6 +2,7 @@ import Image from '../../../components/Image';
 import { ArrowRight, Check } from "../../../components/Icon";
 
 import Button from '../../../components/Button';
+import { Eyebrow } from '../../../components/DesignSystem';
 
 import benefits from './benefits';
 import planImage from '../../../public/images/plandna-mobile.jpg';
@@ -14,7 +15,7 @@ const systemFeatures = [
 
 const DNAtureSystem = () => {
   return (
-    <section
+    <section className='home-system section-shell'
       aria-labelledby='dnature-system-title'
     >
       <div>
@@ -29,7 +30,7 @@ const DNAtureSystem = () => {
           </div>
 
           <div>
-            <p>El sistema DNAture</p>
+            <Eyebrow number='03'>El sistema DNAture</Eyebrow>
             <h2 id='dnature-system-title'>Una alimentación pensada para su bienestar</h2>
             <p>
               Te ayudamos a incorporar alimentación natural de una forma

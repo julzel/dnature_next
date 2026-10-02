@@ -30,7 +30,7 @@ const PetCard = ({ petInfo, editPet, deletePet }) => {
   const { id, name, portionSize } = petInfo;
 
   return (
-    <article aria-labelledby={headingId}>
+    <article className='companion-card' aria-labelledby={headingId}>
       <h3 id={headingId}>{name}</h3>
       <p>PDR: {portionSize} gr</p>
       <OptionsMenu

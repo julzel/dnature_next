@@ -154,7 +154,7 @@ const PartnerNetwork = () => {
       title='Red Veterinaria'
       description='Encontrá veterinarias, profesionales y pet shops asociados para cuidarles con más confianza y conveniencia.'
     >
-      <div>
+      <div className='partner-network'>
         <section>
           <div>
             <span aria-hidden='true'>

@@ -3,6 +3,7 @@ import { ArrowRight } from "../../../components/Icon";
 
 import Button from '../../../components/Button';
 import ContentfulImage from '../../../components/ContentfulImage';
+import { SectionHeading } from '../../../components/DesignSystem';
 
 const Products = ({ categories = [] }) => {
   const availableCategories = Array.isArray(categories)
@@ -13,16 +14,12 @@ const Products = ({ categories = [] }) => {
     : [];
 
   return (
-    <section aria-labelledby='home-products-title'>
+    <section className='home-products section-shell' aria-labelledby='home-products-title'>
       <div>
-        <div>
-          <p>Elegí lo que necesita</p>
-          <h2 id='home-products-title'>Nuestros productos</h2>
-          <p>
+        <SectionHeading id='home-products-title' number='02' eyebrow='Elegí lo que necesita' title='Nuestros productos'>
             Recetas, proteínas, snacks y suplementos elaborados para sumar
             variedad a su alimentación.
-          </p>
-        </div>
+        </SectionHeading>
         <Button
           href='/productos'
           variant='secondary'

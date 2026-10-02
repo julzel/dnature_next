@@ -140,7 +140,7 @@ const Search = ({
   };
 
   return (
-    <div
+    <div className='site-search'
       ref={containerRef}
       role='search'
     >
