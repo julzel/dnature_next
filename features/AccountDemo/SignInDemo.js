@@ -1,7 +1,7 @@
 'use client';
 
-import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '../../components/Icon';
+import { facebookFSymbol, googleSymbol } from '../../components/Icon';
+import { TextIcon } from '../../components/Icon';
 import {
   Check,
   HeartHandshake,
@@ -10,7 +10,7 @@ import {
   PawPrint,
   ShoppingBasket,
   Stethoscope,
-} from 'lucide-react';
+} from "../../components/Icon";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -148,7 +148,7 @@ const SignInDemo = () => {
                       finishSignIn('google', 'cliente.google@ejemplo.com')
                     }
                   >
-                    <FontAwesomeIcon aria-hidden='true' icon={faGoogle} />
+                    <TextIcon aria-hidden='true' symbol={googleSymbol} />
                     Continuar con Google
                   </button>
                   <button
@@ -157,7 +157,7 @@ const SignInDemo = () => {
                       finishSignIn('facebook', 'cliente.facebook@ejemplo.com')
                     }
                   >
-                    <FontAwesomeIcon aria-hidden='true' icon={faFacebookF} />
+                    <TextIcon aria-hidden='true' symbol={facebookFSymbol} />
                     Continuar con Facebook
                   </button>
                 </div>

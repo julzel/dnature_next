@@ -9,7 +9,7 @@ import {
   Plus,
   ShieldCheck,
   ShoppingBag,
-} from 'lucide-react';
+} from "../../../../components/Icon";
 import { useState } from 'react';
 
 import ContentfulImage from '../../../../components/ContentfulImage';

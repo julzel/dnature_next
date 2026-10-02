@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '../../../components/Icon';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { TextIcon } from '../../../components/Icon';
+import { instagramSymbol } from '../../../components/Icon';
 import {
   ArrowUpRight,
   Clock3,
@@ -7,7 +7,7 @@ import {
   MapPin,
   MessageCircleMore,
   Navigation,
-} from 'lucide-react';
+} from "../../../components/Icon";
 
 import {
   DNATURE_SUPPORT_HOURS,
@@ -34,7 +34,7 @@ const contactChannels = [
     eyebrow: 'Ideas y novedades',
     title: 'Síguenos en Instagram',
     detail: '@dnaturecr',
-    brandIcon: faInstagram,
+    brandIcon: instagramSymbol,
   },
   {
     id: 'email',
@@ -83,7 +83,7 @@ const Contact = () => (
                 >
                   <span aria-hidden='true'>
                     {channel.brandIcon ? (
-                      <FontAwesomeIcon icon={channel.brandIcon} />
+                      <TextIcon symbol={channel.brandIcon} />
                     ) : (
                       <Icon size={22} strokeWidth={1.9} />
                     )}

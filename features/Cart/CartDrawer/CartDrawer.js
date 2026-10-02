@@ -11,7 +11,7 @@ import {
   ShoppingBag,
   Trash2,
   MessageCircleMore,
-} from 'lucide-react';
+} from "../../../components/Icon";
 
 import Modal from '../../../components/Modal';
 import ContentfulImage from '../../../components/ContentfulImage';

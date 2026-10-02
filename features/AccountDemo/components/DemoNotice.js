@@ -1,4 +1,4 @@
-import { FlaskConical } from 'lucide-react';
+import { FlaskConical } from "../../../components/Icon";
 
 const DemoNotice = () => (
   <aside

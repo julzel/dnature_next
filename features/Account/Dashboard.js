@@ -8,7 +8,7 @@ import {
   PawPrint,
   ShoppingBasket,
   UserRound,
-} from 'lucide-react';
+} from "../../components/Icon";
 import Link from 'next/link';
 import { useState } from 'react';
 

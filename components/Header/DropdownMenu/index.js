@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight } from "../../Icon";
 import WhatsAppLink from "../../WhatsAppLink";
 import { DNATURE_WHATSAPP_PHONE } from '../../../constants/contact';
 

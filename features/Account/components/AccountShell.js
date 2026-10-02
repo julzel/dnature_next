@@ -10,7 +10,7 @@ import {
   ShoppingBasket,
   UserRound,
   X,
-} from 'lucide-react';
+} from "../../../components/Icon";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';

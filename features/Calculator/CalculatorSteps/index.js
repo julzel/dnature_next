@@ -8,7 +8,7 @@ import {
   Info,
   RotateCcw,
   ShoppingBag,
-} from 'lucide-react';
+} from "../../../components/Icon";
 
 import Button from '../../../components/Button';
 import {

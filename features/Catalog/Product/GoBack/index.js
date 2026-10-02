@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight } from "../../../../components/Icon";
 
 const GoBack = ({ productDetail }) => (
   <nav aria-label='Migas de pan'>

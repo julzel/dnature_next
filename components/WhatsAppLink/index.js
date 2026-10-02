@@ -1,6 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from '../Icon';
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { TextIcon } from '../Icon';
+import { whatsappSymbol } from '../Icon';
 
 // Reusable WhatsApp link wrapper
 // Props:
@@ -33,7 +33,7 @@ const WhatsAppLink = ({
     >
       {(withIcon || iconOnly) && (
         <span>
-          <FontAwesomeIcon icon={faWhatsapp} size="2x" />
+          <TextIcon symbol={whatsappSymbol} size="2x" />
         </span>
       )}
       {!iconOnly && content}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MoreVertical, Pencil, Trash2 } from 'lucide-react';
+import { MoreVertical, Pencil, Trash2 } from "../Icon";
 
 const getMenuDefaultOptions = (type) => {
   const defaultOptions = {

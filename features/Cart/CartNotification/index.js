@@ -1,4 +1,4 @@
-import { CheckCircle2, Download, MessageCircleMore } from 'lucide-react';
+import { CheckCircle2, Download, MessageCircleMore } from "../../../components/Icon";
 
 import Button from '../../../components/Button';
 import ModalContainer from '../../../components/Modal';

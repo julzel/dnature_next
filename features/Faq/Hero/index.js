@@ -1,6 +1,6 @@
 import Image from '../../../components/Image';
 import Link from 'next/link';
-import { ArrowDown, MessageCircleMore } from 'lucide-react';
+import { ArrowDown, MessageCircleMore } from "../../../components/Icon";
 
 import { WHATSAPP_URL } from '../../../constants/contact';
 

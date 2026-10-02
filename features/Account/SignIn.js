@@ -1,7 +1,7 @@
 'use client';
 
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '../../components/Icon';
+import { googleSymbol } from '../../components/Icon';
+import { TextIcon } from '../../components/Icon';
 import {
   Check,
   LockKeyhole,
@@ -10,7 +10,7 @@ import {
   ShieldCheck,
   ShoppingBasket,
   UserRound,
-} from 'lucide-react';
+} from "../../components/Icon";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -301,7 +301,7 @@ const SignIn = ({
                     onClick={handleGoogle}
                     disabled={isPending}
                   >
-                    <FontAwesomeIcon aria-hidden='true' icon={faGoogle} />
+                    <TextIcon aria-hidden='true' symbol={googleSymbol} />
                     Continuar con Google
                   </button>
                 </div>

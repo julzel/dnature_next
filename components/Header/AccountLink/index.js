@@ -1,6 +1,6 @@
 'use client';
 
-import { UserRound } from 'lucide-react';
+import { UserRound } from "../../Icon";
 import Link from 'next/link';
 
 const AccountLink = () => (

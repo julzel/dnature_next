@@ -1,12 +1,5 @@
-import {
-  faArrowRight,
-  faBagShopping,
-  faMinus,
-  faPlus,
-  faTrashCan,
-  faXmark,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '../../components/Icon';
+import { arrowRightSymbol, bagShoppingSymbol, minusSymbol, plusSymbol, trashCanSymbol, xmarkSymbol } from '../../components/Icon';
+import { TextIcon } from '../../components/Icon';
 
 import Button from '../../components/Button';
 
@@ -32,7 +25,7 @@ const DesignDemoPage = () => (
         es de referencia visual; los controles no cambian datos.
       </p>
       <div>
-        <Button href='/productos' variant='primary' iconEnd={<FontAwesomeIcon icon={faArrowRight} />}>
+        <Button href='/productos' variant='primary' iconEnd={<TextIcon symbol={arrowRightSymbol} />}>
           Ver productos
         </Button>
         <Button href='/checkout' variant='secondary'>
@@ -61,7 +54,7 @@ const DesignDemoPage = () => (
           <Button variant='accent'>Empezar</Button>
         </ButtonExample>
         <ButtonExample label='variant="danger"'>
-          <Button variant='danger' iconStart={<FontAwesomeIcon icon={faTrashCan} />}>
+          <Button variant='danger' iconStart={<TextIcon symbol={trashCanSymbol} />}>
             Vaciar carrito
           </Button>
         </ButtonExample>
@@ -99,19 +92,19 @@ const DesignDemoPage = () => (
               variant='secondary'
               iconOnly
               aria-label='Agregar producto'
-              iconStart={<FontAwesomeIcon icon={faPlus} />}
+              iconStart={<TextIcon symbol={plusSymbol} />}
             />
             <Button
               variant='tertiary'
               iconOnly
               aria-label='Cerrar diálogo'
-              iconStart={<FontAwesomeIcon icon={faXmark} />}
+              iconStart={<TextIcon symbol={xmarkSymbol} />}
             />
             <Button
               variant='danger'
               iconOnly
               aria-label='Eliminar producto'
-              iconStart={<FontAwesomeIcon icon={faTrashCan} />}
+              iconStart={<TextIcon symbol={trashCanSymbol} />}
             />
           </div>
         </div>
@@ -137,7 +130,7 @@ const DesignDemoPage = () => (
             <option value='1kg'>1 kg</option>
             <option value='2kg'>2 kg</option>
           </select>
-          <Button fullWidth iconStart={<FontAwesomeIcon icon={faBagShopping} />}>
+          <Button fullWidth iconStart={<TextIcon symbol={bagShoppingSymbol} />}>
             Agregar al carrito
           </Button>
         </article>
@@ -157,11 +150,11 @@ const DesignDemoPage = () => (
             </div>
             <div aria-label='Cantidad: 2'>
               <button type='button' aria-label='Restar una unidad'>
-                <FontAwesomeIcon icon={faMinus} />
+                <TextIcon symbol={minusSymbol} />
               </button>
               <span>2</span>
               <button type='button' aria-label='Agregar una unidad'>
-                <FontAwesomeIcon icon={faPlus} />
+                <TextIcon symbol={plusSymbol} />
               </button>
             </div>
           </div>

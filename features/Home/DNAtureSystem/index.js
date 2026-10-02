@@ -1,5 +1,5 @@
 import Image from '../../../components/Image';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check } from "../../../components/Icon";
 
 import Button from '../../../components/Button';
 

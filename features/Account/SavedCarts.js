@@ -1,6 +1,6 @@
 'use client';
 
-import { BookmarkPlus, RotateCcw, ShoppingBasket, Trash2 } from 'lucide-react';
+import { BookmarkPlus, RotateCcw, ShoppingBasket, Trash2 } from "../../components/Icon";
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 

@@ -1,6 +1,6 @@
 // Import statements
 import Link from 'next/link';
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus } from "../../../components/Icon";
 import {
   ShoppingCartItem,
   useCartContext,

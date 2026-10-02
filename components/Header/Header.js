@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircleMore, Snowflake } from 'lucide-react';
+import { MessageCircleMore, Snowflake } from "../Icon";
 import { DNATURE_WHATSAPP_PHONE } from '../../constants/contact';
 
 // local imports

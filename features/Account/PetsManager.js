@@ -1,6 +1,6 @@
 'use client';
 
-import { Pencil, Plus, Trash2 } from 'lucide-react';
+import { Pencil, Plus, Trash2 } from "../../components/Icon";
 import { useMemo, useState } from 'react';
 
 import Button from '../../components/Button';

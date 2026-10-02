@@ -1,5 +1,9 @@
 # DNAture design system and implementation guide
 
+## Current Next.js frontend
+
+The Next.js frontend intentionally uses browser-default HTML rendering. It has no application stylesheets, custom font loading, Material UI, Emotion, or third-party icon libraries. Shared controls use native HTML; `components/Icon` supplies decorative text symbols while buttons and links retain their accessible labels. Preserve this unstyled behavior unless the user explicitly requests a new design. The prototype guidance below records a separate visual reference and does not authorize restoring its styles to this frontend.
+
 This guide helps AI code agents build components and views that belong to DNAture. It describes the digital expression implemented in prot-v4 and gives defaults for extending it. Read the quick rules first, then the relevant component and layout sections before writing UI.
 
 The brand starts with the individual companion: **conocer, nutrir, acompañar**. Express that through calm editorial layouts, honest ingredient information, warm materials, and a visible connection to the visitor’s actual companion.

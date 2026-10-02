@@ -1,4 +1,4 @@
-import { Leaf } from 'lucide-react';
+import { Leaf } from "../../../../components/Icon";
 
 const HeroEyebrow = () => {
   return (

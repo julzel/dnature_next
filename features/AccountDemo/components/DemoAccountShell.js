@@ -11,7 +11,7 @@ import {
   Stethoscope,
   UserRound,
   X,
-} from 'lucide-react';
+} from "../../../components/Icon";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';

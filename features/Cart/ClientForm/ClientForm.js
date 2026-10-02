@@ -1,6 +1,6 @@
 import React from "react";
 import Link from 'next/link';
-import { Check, Sparkles, UserRoundPlus } from 'lucide-react';
+import { Check, Sparkles, UserRoundPlus } from "../../../components/Icon";
 
 // local imports
 // components

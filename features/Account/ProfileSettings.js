@@ -1,6 +1,6 @@
 'use client';
 
-import { LogOut, MapPin, ShieldCheck } from 'lucide-react';
+import { LogOut, MapPin, ShieldCheck } from "../../components/Icon";
 import { useState } from 'react';
 
 import Button from '../../components/Button';

@@ -16,7 +16,7 @@ import {
   Sparkles,
   Stethoscope,
   Store,
-} from 'lucide-react';
+} from "../../components/Icon";
 import { useMemo, useState } from 'react';
 
 import Button from '../../components/Button';
@@ -368,7 +368,7 @@ const PartnerNetwork = () => {
                         aria-pressed={isFavorite}
                         onClick={() => toggleFavoritePartner(partner.id)}
                       >
-                        <Heart aria-hidden='true' size={20} fill={isFavorite ? 'currentColor' : 'none'} />
+                        <Heart aria-hidden='true' filled={isFavorite} />
                       </button>
                     </div>
 

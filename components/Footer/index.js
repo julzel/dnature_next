@@ -1,12 +1,12 @@
 import Image from '../Image';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '../Icon';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { TextIcon } from '../Icon';
+import { instagramSymbol } from '../Icon';
 import {
   Mail,
   MapPin,
   MessageCircleMore,
-} from 'lucide-react';
+} from "../Icon";
 
 import {
   DNATURE_SUPPORT_HOURS,
@@ -55,7 +55,7 @@ const Footer = () => {
                 rel='noopener noreferrer'
                 aria-label='Visitar DNAture en Instagram'
               >
-                <FontAwesomeIcon aria-hidden='true' icon={faInstagram} />
+                <TextIcon aria-hidden='true' symbol={instagramSymbol} />
               </a>
               <a
                 href='mailto:info@dnaturefood.com'

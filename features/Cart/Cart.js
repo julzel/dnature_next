@@ -9,7 +9,7 @@ import {
   Store,
   ShoppingBag,
   Truck,
-} from 'lucide-react';
+} from "../../components/Icon";
 
 import CurrencyText from '../../components/Currency';
 import CartPurchaseOrderContainer from './CartPurchaseOrder';

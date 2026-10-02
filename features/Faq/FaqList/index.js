@@ -13,7 +13,7 @@ import {
   Stethoscope,
   Truck,
   X,
-} from 'lucide-react';
+} from "../../../components/Icon";
 
 import { WHATSAPP_URL } from '../../../constants/contact';
 import { faqCategories } from './data';

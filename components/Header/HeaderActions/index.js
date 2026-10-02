@@ -1,6 +1,6 @@
 'use client';
 
-import { Search as SearchIcon, X } from 'lucide-react';
+import { Search as SearchIcon, X } from "../../Icon";
 import { useEffect, useRef, useState } from 'react';
 
 import SiteSearch from '../../../features/Search';

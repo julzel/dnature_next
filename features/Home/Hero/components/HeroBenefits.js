@@ -1,4 +1,4 @@
-import { Beef, FlaskConical, Heart, Leaf } from 'lucide-react';
+import { Beef, FlaskConical, Heart, Leaf } from "../../../../components/Icon";
 
 const benefits = [
   {
