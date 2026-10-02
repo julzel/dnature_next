@@ -168,48 +168,6 @@ test('unconfirmed inventory stays visible but cannot be purchased', async ({
   ).toBeDisabled();
 });
 
-test('catalogue layout is full-width and mobile-first', async ({ page }) => {
-  const viewportCases = [
-    { width: 390, height: 844, columns: 1 },
-    { width: 600, height: 900, columns: 2 },
-    { width: 800, height: 1000, columns: 3 },
-    { width: 1200, height: 900, columns: 4 },
-  ];
-
-  for (const viewport of viewportCases) {
-    await page.setViewportSize(viewport);
-    await page.goto('/productos');
-
-    const heading = page.getByRole('heading', { name: 'Nuestros productos' });
-    const catalogSection = page.locator('section').filter({ has: heading }).first();
-    const catalogList = page.locator('ul').filter({ has: page.locator('article') }).first();
-
-    const layout = await catalogSection.evaluate((section) => {
-      const styles = window.getComputedStyle(section);
-      const list = section.querySelector('ul:has(article)');
-
-      return {
-        backgroundColor: styles.backgroundColor,
-        backgroundImage: styles.backgroundImage,
-        columns: window
-          .getComputedStyle(list)
-          .gridTemplateColumns.split(' ')
-          .filter(Boolean).length,
-        documentWidth: document.documentElement.scrollWidth,
-        viewportWidth: document.documentElement.clientWidth,
-        sectionWidth: Math.round(section.getBoundingClientRect().width),
-      };
-    });
-
-    await expect(catalogList).toBeVisible();
-    expect(layout.backgroundColor).toBe('rgb(248, 247, 245)');
-    expect(layout.backgroundImage).toBe('none');
-    expect(layout.columns).toBe(viewport.columns);
-    expect(layout.sectionWidth).toBe(layout.viewportWidth);
-    expect(layout.documentWidth).toBe(layout.viewportWidth);
-  }
-});
-
 test('calculator produces a supported adult result', async ({ page }) => {
   await page.goto('/calculadora');
   await page.getByRole('button', { name: 'Calcular porción' }).click();

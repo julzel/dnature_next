@@ -1,8 +1,6 @@
 import React from "react";
 
 // local imports
-// styles
-import styles from "./CartPurchaseOrder.module.scss";
 
 // components
 import PurchaseOrderContainer from "../PurchaseOrder";
@@ -16,8 +14,8 @@ const CartPurchaseOrder = ({
   isCapturingPurchase,
 }) => {
   return (
-    <div className={styles.cartPurchaseOrder}>
-      <div className={styles.heading}>
+    <div>
+      <div>
         <p>Paso 3 de 3</p>
         <h2>Revisá la solicitud</h2>
         <span>
@@ -26,21 +24,19 @@ const CartPurchaseOrder = ({
         </span>
       </div>
       <PurchaseOrderContainer />
-      <div className={styles.actions}>
+      <div>
         <Button
-          className={styles.button}
           variant="secondary"
           onClick={onPurchaseEdit}
           disabled={isCapturingPurchase}
         >
           Editar datos
         </Button>
-        <Button className={styles.button} variant="primary" onClick={onPurchaseConfirm} disabled={isCapturingPurchase} loading={isCapturingPurchase}>
+        <Button variant="primary" onClick={onPurchaseConfirm} disabled={isCapturingPurchase} loading={isCapturingPurchase}>
           {isCapturingPurchase ? 'Generando…' : 'Preparar para WhatsApp'}
         </Button>
       </div>
       <Button
-        className={styles.backButton}
         variant='tertiary'
         onClick={onPurchaseCancel}
         disabled={isCapturingPurchase}

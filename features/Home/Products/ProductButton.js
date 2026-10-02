@@ -1,10 +1,8 @@
 import React from 'react';
 
-import styles from './ProductButton.module.scss';
-
-const ProductButton = ({ text, variant = 'primary' }) => {
+const ProductButton = ({ text }) => {
   return (
-    <span className={`${styles.heroButton} ${styles[variant]}`}>
+    <span>
       {text}
     </span>
   );

@@ -1,6 +1,4 @@
 // local imports
-// styles
-import styles from "./Home.module.scss";
 
 // components
 import Hero from "./Hero";
@@ -12,7 +10,7 @@ import OurCostumers from "./OurCostumers";
 
 const Home = ({ categories = [] }) => {
   return (
-    <div className={styles.home}>
+    <div>
       <Hero />
       <Welcome />
       <Products categories={categories} />

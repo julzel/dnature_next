@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './CartActions.module.scss';
 import Button from '../../../components/Button';
 import Modal from '../../../components/Modal';
 import MessageBoxContainer from '../../../components/MessageBox';
@@ -14,10 +13,9 @@ const CartActions = ({
   toggleRemoveAllModal,
   isCheckingCart,
 }) => (
-  <div className={styles.cartActions}>
+  <div>
     {totalItems > 0 && (
       <Button
-        className={styles.continueButton}
         variant='primary'
         size='large'
         fullWidth
@@ -29,13 +27,12 @@ const CartActions = ({
       </Button>
     )}
 
-    <div className={styles.secondaryActions}>
+    <div>
       <Button variant='tertiary' onClick={onBack}>
         Regresar
       </Button>
       {totalItems > 0 && (
         <Button
-          className={styles.emptyButton}
           variant='tertiary'
           onClick={toggleRemoveAllModal}
         >

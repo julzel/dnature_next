@@ -20,7 +20,7 @@ import {
 import { useMemo, useState } from 'react';
 
 import Button from '../../components/Button';
-import { accountStyles } from '../Account';
+
 import AccountShell from './components/DemoAccountShell';
 import { useAccountDemo } from './model/account-demo-context';
 import {
@@ -28,9 +28,6 @@ import {
   partnerProvinces,
   partnerServices,
 } from './model/demo-partners';
-import networkStyles from './PartnerNetwork.module.scss';
-
-const styles = { ...accountStyles, ...networkStyles };
 
 const partnerTypes = [
   { value: 'all', label: 'Todos' },
@@ -157,20 +154,20 @@ const PartnerNetwork = () => {
       title='Red Veterinaria'
       description='Encontrá veterinarias, profesionales y pet shops asociados para cuidarles con más confianza y conveniencia.'
     >
-      <div className={styles.contentStack}>
-        <section className={styles.networkHero}>
+      <div>
+        <section>
           <div>
-            <span className={styles.networkHeroIcon} aria-hidden='true'>
+            <span aria-hidden='true'>
               <Stethoscope size={30} />
             </span>
-            <p className={styles.eyebrow}>Una red que suma valor</p>
+            <p>Una red que suma valor</p>
             <h2>Atención, productos y beneficios más cerca de vos.</h2>
             <p>
               Explorá aliados por ubicación y servicios, guardá tus favoritos y
               prepará una solicitud de contacto desde tu cuenta.
             </p>
           </div>
-          <div className={styles.networkStats}>
+          <div>
             <div>
               <strong>{demoPartners.length}</strong>
               <span>aliados de ejemplo</span>
@@ -186,7 +183,7 @@ const PartnerNetwork = () => {
           </div>
         </section>
 
-        <aside className={styles.networkDemoNote}>
+        <aside>
           <Sparkles aria-hidden='true' size={21} />
           <div>
             <strong>Directorio demostrativo</strong>
@@ -197,22 +194,22 @@ const PartnerNetwork = () => {
           </div>
         </aside>
 
-        <section className={styles.networkFilters} aria-labelledby='network-search-title'>
-          <div className={styles.networkFilterHeading}>
+        <section aria-labelledby='network-search-title'>
+          <div>
             <div>
               <h2 id='network-search-title'>Encontrá un aliado</h2>
               <p>Buscá por nombre, ubicación o servicio.</p>
             </div>
             {favoritePartnerIds.length ? (
-              <span className={styles.selectedBadge}>
+              <span>
                 {favoritePartnerIds.length} {favoritePartnerIds.length === 1 ? 'favorito' : 'favoritos'}
               </span>
             ) : null}
           </div>
 
-          <div className={styles.networkSearchField}>
+          <div>
             <Search aria-hidden='true' size={20} />
-            <label className={styles.visuallyHidden} htmlFor='partner-search'>
+            <label htmlFor='partner-search'>
               Buscar aliados
             </label>
             <input
@@ -224,8 +221,8 @@ const PartnerNetwork = () => {
             />
           </div>
 
-          <div className={styles.mobileFilterBar}>
-            <div className={styles.mobileTypeSelect}>
+          <div>
+            <div>
               <label htmlFor='mobile-partner-type'>Tipo de aliado</label>
               <select
                 id='mobile-partner-type'
@@ -239,7 +236,6 @@ const PartnerNetwork = () => {
             </div>
             <button
               type='button'
-              className={styles.mobileFiltersButton}
               aria-expanded={areMobileFiltersOpen}
               aria-controls='advanced-partner-filters'
               onClick={() => setAreMobileFiltersOpen((open) => !open)}
@@ -259,12 +255,11 @@ const PartnerNetwork = () => {
             </button>
           </div>
 
-          <div className={styles.partnerTypeFilters} aria-label='Tipo de aliado'>
+          <div aria-label='Tipo de aliado'>
             {partnerTypes.map((type) => (
               <button
                 key={type.value}
                 type='button'
-                className={partnerType === type.value ? styles.partnerTypeActive : ''}
                 aria-pressed={partnerType === type.value}
                 onClick={() => setPartnerType(type.value)}
               >
@@ -275,12 +270,10 @@ const PartnerNetwork = () => {
 
           <div
             id='advanced-partner-filters'
-            className={`${styles.advancedFilters} ${
-              areMobileFiltersOpen ? styles.advancedFiltersOpen : ''
-            }`}
+            hidden={!areMobileFiltersOpen}
           >
-            <div className={styles.networkFilterGrid}>
-              <div className={styles.field}>
+            <div>
+              <div>
                 <label htmlFor='partner-province'>Provincia</label>
                 <select
                   id='partner-province'
@@ -293,7 +286,7 @@ const PartnerNetwork = () => {
                   ))}
                 </select>
               </div>
-              <div className={styles.field}>
+              <div>
                 <label htmlFor='partner-service'>Servicio</label>
                 <select
                   id='partner-service'
@@ -308,7 +301,7 @@ const PartnerNetwork = () => {
               </div>
             </div>
 
-            <div className={styles.filterChecks}>
+            <div>
               <label>
                 <input
                   type='checkbox'
@@ -331,9 +324,9 @@ const PartnerNetwork = () => {
         </section>
 
         <section aria-labelledby='partner-results-title'>
-          <div className={styles.resultsHeader}>
+          <div>
             <div>
-              <p className={styles.eyebrow}>Resultados</p>
+              <p>Resultados</p>
               <h2 id='partner-results-title'>
                 {filteredPartners.length}{' '}
                 {filteredPartners.length === 1 ? 'aliado disponible' : 'aliados disponibles'}
@@ -348,7 +341,7 @@ const PartnerNetwork = () => {
           </div>
 
           {filteredPartners.length ? (
-            <div className={styles.partnerGrid}>
+            <div>
               {filteredPartners.map((partner) => {
                 const isFavorite = favoritePartnerIds.includes(partner.id);
                 const isExpanded = expandedPartnerId === partner.id;
@@ -356,12 +349,12 @@ const PartnerNetwork = () => {
                 const detailsId = `partner-details-${partner.id}`;
 
                 return (
-                  <article className={styles.partnerCard} key={partner.id}>
-                    <div className={styles.partnerTopRow}>
-                      <span className={styles.partnerMonogram} aria-hidden='true'>
+                  <article key={partner.id}>
+                    <div>
+                      <span aria-hidden='true'>
                         {partner.initials}
                       </span>
-                      <div className={styles.partnerIdentity}>
+                      <div>
                         <span>{partner.typeLabel}</span>
                         <h3>{partner.name}</h3>
                         <small>
@@ -371,7 +364,6 @@ const PartnerNetwork = () => {
                       </div>
                       <button
                         type='button'
-                        className={`${styles.favoriteButton} ${isFavorite ? styles.favoriteButtonActive : ''}`}
                         aria-label={isFavorite ? `Quitar ${partner.name} de favoritos` : `Guardar ${partner.name} en favoritos`}
                         aria-pressed={isFavorite}
                         onClick={() => toggleFavoritePartner(partner.id)}
@@ -380,23 +372,23 @@ const PartnerNetwork = () => {
                       </button>
                     </div>
 
-                    <div className={styles.partnerLocation}>
+                    <div>
                       <MapPin aria-hidden='true' size={17} />
                       <span>{partner.district}, {partner.canton}, {partner.province}</span>
                     </div>
-                    <div className={styles.partnerSchedule}>
+                    <div>
                       <Clock3 aria-hidden='true' size={17} />
                       <span>{partner.today}</span>
                     </div>
 
-                    <ul className={styles.serviceTags} aria-label={`Servicios de ${partner.name}`}>
+                    <ul aria-label={`Servicios de ${partner.name}`}>
                       {partner.services.slice(0, 4).map((item) => (
                         <li key={item}>{item}</li>
                       ))}
                     </ul>
 
                     {partner.benefit ? (
-                      <div className={styles.partnerBenefit}>
+                      <div>
                         <Sparkles aria-hidden='true' size={18} />
                         <div>
                           <span>Beneficio propuesto</span>
@@ -405,7 +397,7 @@ const PartnerNetwork = () => {
                       </div>
                     ) : null}
 
-                    <div className={styles.partnerActions}>
+                    <div>
                       <Button
                         size='small'
                         variant='secondary'
@@ -415,7 +407,6 @@ const PartnerNetwork = () => {
                       </Button>
                       <button
                         type='button'
-                        className={styles.detailsButton}
                         aria-expanded={isExpanded}
                         aria-controls={detailsId}
                         onClick={() => toggleDetails(partner.id)}
@@ -426,7 +417,7 @@ const PartnerNetwork = () => {
                     </div>
 
                     {isExpanded ? (
-                      <div id={detailsId} className={styles.partnerDetails}>
+                      <div id={detailsId}>
                         <p>{partner.about}</p>
                         <dl>
                           <div>
@@ -442,7 +433,7 @@ const PartnerNetwork = () => {
                             <dd>{partner.specialties.join(' · ')}</dd>
                           </div>
                         </dl>
-                        <div className={styles.availabilityBlock}>
+                        <div>
                           <strong>Opciones ilustrativas</strong>
                           <div>
                             {partner.availability.map((slot) => (
@@ -452,7 +443,7 @@ const PartnerNetwork = () => {
                         </div>
 
                         {partner.benefit ? (
-                          <div className={styles.benefitDetails}>
+                          <div>
                             <span>Beneficio para miembros</span>
                             <h4>{partner.benefit.title}</h4>
                             <p>{partner.benefit.detail}</p>
@@ -463,18 +454,17 @@ const PartnerNetwork = () => {
 
                         {isRequestOpen ? (
                           <form
-                            className={styles.partnerRequestForm}
                             onSubmit={(event) => submitRequest(event, partner)}
                           >
-                            <div className={styles.requestFormHeading}>
+                            <div>
                               <div>
-                                <p className={styles.eyebrow}>Contacto demo</p>
+                                <p>Contacto demo</p>
                                 <h4>Preparar solicitud</h4>
                               </div>
                               <span>No se enviará</span>
                             </div>
-                            <div className={styles.networkFilterGrid}>
-                              <div className={styles.field}>
+                            <div>
+                              <div>
                                 <label htmlFor={`request-pet-${partner.id}`}>¿Para quién es?</label>
                                 <select
                                   id={`request-pet-${partner.id}`}
@@ -487,7 +477,7 @@ const PartnerNetwork = () => {
                                   ))}
                                 </select>
                               </div>
-                              <div className={styles.field}>
+                              <div>
                                 <label htmlFor={`request-reason-${partner.id}`}>Motivo</label>
                                 <select
                                   id={`request-reason-${partner.id}`}
@@ -501,7 +491,7 @@ const PartnerNetwork = () => {
                                   <option>Otro motivo</option>
                                 </select>
                               </div>
-                              <div className={styles.field}>
+                              <div>
                                 <label htmlFor={`request-channel-${partner.id}`}>Contacto preferido</label>
                                 <select
                                   id={`request-channel-${partner.id}`}
@@ -513,7 +503,7 @@ const PartnerNetwork = () => {
                                   <option>Correo</option>
                                 </select>
                               </div>
-                              <div className={styles.field}>
+                              <div>
                                 <label htmlFor={`request-time-${partner.id}`}>Horario preferido</label>
                                 <select
                                   id={`request-time-${partner.id}`}
@@ -526,7 +516,7 @@ const PartnerNetwork = () => {
                                 </select>
                               </div>
                             </div>
-                            <label className={styles.shareProfileCheck}>
+                            <label>
                               <input
                                 type='checkbox'
                                 checked={request.sharePetProfile}
@@ -540,7 +530,7 @@ const PartnerNetwork = () => {
                                 </small>
                               </span>
                             </label>
-                            <div className={styles.requestActions}>
+                            <div>
                               <Button type='submit' size='small'>Preparar solicitud demo</Button>
                               <Button
                                 size='small'
@@ -551,7 +541,7 @@ const PartnerNetwork = () => {
                               </Button>
                             </div>
                             {requestResult?.partnerId === partner.id ? (
-                              <div className={styles.requestSuccess} role='status'>
+                              <div role='status'>
                                 <CheckCircle2 aria-hidden='true' size={20} />
                                 <p>{requestResult.message}</p>
                               </div>
@@ -565,7 +555,7 @@ const PartnerNetwork = () => {
               })}
             </div>
           ) : (
-            <div className={styles.emptyState}>
+            <div>
               <Search aria-hidden='true' size={38} />
               <h3>No encontramos aliados con esos filtros</h3>
               <p>Probá otra ubicación o servicio, o volvé a ver toda la red.</p>
@@ -574,7 +564,7 @@ const PartnerNetwork = () => {
           )}
         </section>
 
-        <aside className={styles.networkSafety}>
+        <aside>
           <ShieldAlert aria-hidden='true' size={25} />
           <div>
             <h2>Para atención urgente</h2>
@@ -585,15 +575,15 @@ const PartnerNetwork = () => {
           </div>
         </aside>
 
-        <section className={styles.card} aria-labelledby='network-value-title'>
-          <div className={styles.cardHeader}>
+        <section aria-labelledby='network-value-title'>
+          <div>
             <div>
-              <p className={styles.eyebrow}>Más valor en cada etapa</p>
+              <p>Más valor en cada etapa</p>
               <h2 id='network-value-title'>Una experiencia conectada</h2>
               <p>La red puede unir el cuidado profesional con compras y beneficios útiles.</p>
             </div>
           </div>
-          <div className={styles.networkValueGrid}>
+          <div>
             <article>
               <Stethoscope aria-hidden='true' size={23} />
               <h3>Encontrá apoyo</h3>
@@ -617,7 +607,7 @@ const PartnerNetwork = () => {
           </div>
         </section>
 
-        <p className={styles.networkDisclaimer}>
+        <p>
           “Aliado DNAture” identificaría una relación comercial activa; no constituye una garantía
           sobre diagnósticos, tratamientos ni resultados clínicos. La información real requerirá
           verificación periódica antes de publicarse.

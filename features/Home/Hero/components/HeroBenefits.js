@@ -1,7 +1,5 @@
 import { Beef, FlaskConical, Heart, Leaf } from 'lucide-react';
 
-import styles from "./HeroBenefits.module.scss";
-
 const benefits = [
   {
     icon: Beef,
@@ -26,17 +24,16 @@ const benefits = [
 ];
 
 const HeroBenefits = () => (
-  <ul className={styles.benefits} aria-label="Beneficios de nuestros productos">
+  <ul aria-label="Beneficios de nuestros productos">
     {benefits.map(({ icon: Icon, title, description }) => (
-      <li className={styles.benefit} key={title}>
+      <li key={title}>
         <Icon
           aria-hidden="true"
-          className={styles.icon}
           strokeWidth={1}
         />
-        <span className={styles.copy}>
-          <span className={styles.title}>{title}</span>
-          <span className={styles.description}>{description}</span>
+        <span>
+          <span>{title}</span>{' '}
+          <span>{description}</span>
         </span>
       </li>
     ))}

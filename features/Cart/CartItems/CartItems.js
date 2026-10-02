@@ -1,6 +1,5 @@
 import React from 'react';
 
-import styles from './CartItems.module.scss';
 import ContentfulImage from '../../../components/ContentfulImage';
 import CurrencyText from '../../../components/Currency';
 import CartItemControllerContainer from '../CartItemController';
@@ -17,10 +16,10 @@ const productPresentation = (item) => {
 };
 
 const CartItems = ({ items }) => (
-  <ul className={styles.cartItems}>
+  <ul>
     {items.map((item) => (
-      <li key={item.id} className={styles.cartItem}>
-        <div className={styles.productImage}>
+      <li key={item.id}>
+        <div>
           {item.image ? (
             <ContentfulImage
               src={item.image}
@@ -34,15 +33,15 @@ const CartItems = ({ items }) => (
           )}
         </div>
 
-        <div className={styles.cartItemInfo}>
+        <div>
           <h3>{item.productName}</h3>
-          <p className={styles.presentation}>{productPresentation(item)}</p>
-          <p className={styles.unitPrice}>
+          <p>{productPresentation(item)}</p>
+          <p>
             <CurrencyText value={item.price} /> por unidad
           </p>
         </div>
 
-        <div className={styles.lineTotal}>
+        <div>
           <span>Total</span>
           <strong>
             <CurrencyText value={item.price * item.quantity} />

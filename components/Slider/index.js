@@ -4,7 +4,7 @@ import { useEffect, useId, useState } from 'react'
 
 // local imports
 import Slide from './Slide'
-import styles from './Slider.module.scss'
+
 import SliderControls from './SliderControls'
 
 const Slider = ({ slides, interval = 5, autoplay }) => {
@@ -34,11 +34,10 @@ const Slider = ({ slides, interval = 5, autoplay }) => {
 
     return (
         <section
-            className={styles.slider}
             aria-label="Testimonios de clientes"
             aria-roledescription="carrusel"
         >
-            <div className={styles.container}>
+            <div>
                 {slides.map((slide, i) => (
                     <Slide
                         key={i}

@@ -1,7 +1,7 @@
 'use client';
 
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '../../components/Icon';
 import {
   Check,
   LockKeyhole,
@@ -16,7 +16,6 @@ import { useEffect, useState } from 'react';
 
 import Button from '../../components/Button';
 import { createClient } from '../../services/supabase/client';
-import styles from './Account.module.scss';
 
 const benefits = [
   'Perfiles y datos esenciales de tus mascotas',
@@ -216,17 +215,17 @@ const SignIn = ({
   };
 
   return (
-    <div className={styles.signInPage}>
-      <div className={styles.signInContainer}>
-        <div className={styles.signInGrid}>
-          <section className={styles.signInHero}>
-            <p className={styles.eyebrow}>Mi DNAture</p>
+    <div>
+      <div>
+        <div>
+          <section>
+            <p>Mi DNAture</p>
             <h1>Todo lo que necesitás para cuidarles mejor.</h1>
             <p>
               Un espacio sencillo para reunir los perfiles de tus mascotas y
               hacer que cada compra sea más fácil.
             </p>
-            <ul className={styles.heroBenefits}>
+            <ul>
               {benefits.map((benefit) => (
                 <li key={benefit}>
                   <Check aria-hidden='true' size={20} />
@@ -236,10 +235,10 @@ const SignIn = ({
             </ul>
           </section>
 
-          <section className={styles.signInPanel} aria-labelledby='access-title'>
+          <section aria-labelledby='access-title'>
             {!configured ? (
-              <div className={styles.configurationState} role='status'>
-                <span className={styles.smallIcon} aria-hidden='true'>
+              <div role='status'>
+                <span aria-hidden='true'>
                   <ShieldCheck size={22} />
                 </span>
                 <h2 id='access-title'>Mi DNAture estará disponible pronto</h2>
@@ -254,7 +253,7 @@ const SignIn = ({
             ) : (
               <>
                 {publicRegistration ? (
-                  <div className={styles.authModeTabs} aria-label='Tipo de acceso'>
+                  <div aria-label='Tipo de acceso'>
                     <button
                       type='button'
                       aria-pressed={mode === 'signup'}
@@ -271,7 +270,7 @@ const SignIn = ({
                     </button>
                   </div>
                 ) : (
-                  <p className={styles.pilotBadge}>Piloto por invitación</p>
+                  <p>Piloto por invitación</p>
                 )}
 
                 <h2 id='access-title'>
@@ -286,7 +285,7 @@ const SignIn = ({
                 </p>
 
                 {mode === 'signup' ? (
-                  <label className={styles.ageConfirmation}>
+                  <label>
                     <input
                       type='checkbox'
                       checked={ageConfirmed}
@@ -296,10 +295,9 @@ const SignIn = ({
                   </label>
                 ) : null}
 
-                <div className={styles.providerStack}>
+                <div>
                   <button
                     type='button'
-                    className={styles.providerButton}
                     onClick={handleGoogle}
                     disabled={isPending}
                   >
@@ -308,12 +306,12 @@ const SignIn = ({
                   </button>
                 </div>
 
-                <div className={styles.divider}>o con tu correo</div>
+                <div>o con tu correo</div>
 
                 {step === 'email' ? (
                   <form onSubmit={handleEmailRequest} noValidate>
                     {mode === 'signup' ? (
-                      <div className={styles.field}>
+                      <div>
                         <label htmlFor='account-first-name'>Nombre</label>
                         <input
                           id='account-first-name'
@@ -325,7 +323,7 @@ const SignIn = ({
                         />
                       </div>
                     ) : null}
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='account-email'>Correo electrónico</label>
                       <input
                         id='account-email'
@@ -339,7 +337,7 @@ const SignIn = ({
                       />
                     </div>
                     {error ? (
-                      <p id='sign-in-error' className={styles.formError} role='alert'>
+                      <p id='sign-in-error' role='alert'>
                         {error}
                       </p>
                     ) : null}
@@ -348,14 +346,13 @@ const SignIn = ({
                       fullWidth
                       disabled={isPending}
                       iconStart={<Mail aria-hidden='true' size={18} />}
-                      className={styles.buttonRow}
                     >
                       {isPending ? 'Enviando…' : 'Enviarme un código'}
                     </Button>
                   </form>
                 ) : (
                   <form onSubmit={handleCode} noValidate>
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='account-code'>Código de acceso</label>
                       <input
                         id='account-code'
@@ -370,11 +367,11 @@ const SignIn = ({
                         aria-describedby='account-code-help'
                       />
                     </div>
-                    <p id='account-code-help' className={styles.demoCode}>
+                    <p id='account-code-help'>
                       {message || `Revisá el correo enviado a ${email}.`}
                     </p>
                     {error ? (
-                      <p className={styles.formError} role='alert'>
+                      <p role='alert'>
                         {error}
                       </p>
                     ) : null}
@@ -414,7 +411,7 @@ const SignIn = ({
                 )}
 
                 {message && step === 'email' ? (
-                  <p className={styles.formMessage} role='status'>
+                  <p role='status'>
                     {message}
                   </p>
                 ) : null}
@@ -423,9 +420,9 @@ const SignIn = ({
           </section>
         </div>
 
-        <section className={styles.benefitGrid} aria-label='Beneficios de la cuenta'>
+        <section aria-label='Beneficios de la cuenta'>
           {valueCards.map(({ icon: Icon, title, description }) => (
-            <article className={styles.benefitCard} key={title}>
+            <article key={title}>
               <Icon aria-hidden='true' size={25} />
               <h3>{title}</h3>
               <p>{description}</p>

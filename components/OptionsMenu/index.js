@@ -1,19 +1,15 @@
 'use client';
 
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import styles from './OptionsMenu.module.scss';
+import { MoreVertical, Pencil, Trash2 } from 'lucide-react';
 
 const getMenuDefaultOptions = (type) => {
   const defaultOptions = {
     'simple-edit': [{
-      icon: <EditIcon />,
+      icon: <Pencil aria-hidden='true' size={18} />,
       label: 'Editar',
     }, {
-      icon: <DeleteIcon />,
+      icon: <Trash2 aria-hidden='true' size={18} />,
       label: 'Borrar',
     }]
   };
@@ -90,8 +86,9 @@ const OptionsMenu = ({
   };
 
   return (
-    <div className={styles.optionsMenu}>
-      <IconButton
+    <div>
+      <button
+        type='button'
         ref={triggerRef}
         aria-label={ariaLabel}
         aria-controls={open ? menuId : undefined}
@@ -100,11 +97,10 @@ const OptionsMenu = ({
         onClick={() => setOpen((isOpen) => !isOpen)}
         onKeyDown={handleTriggerKeyDown}
       >
-        <MoreVertIcon />
-      </IconButton>
+        <MoreVertical aria-hidden='true' size={18} />
+      </button>
       {open && (
         <div
-          className={styles.menu}
           id={menuId}
           role="menu"
           onKeyDown={handleMenuKeyDown}

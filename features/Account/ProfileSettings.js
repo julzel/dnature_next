@@ -6,7 +6,6 @@ import { useState } from 'react';
 import Button from '../../components/Button';
 import { COSTA_RICA_PROVINCES, useAccount } from './state';
 import AccountShell from './components/AccountShell';
-import styles from './Account.module.scss';
 
 const ProfileSettings = () => {
   const { profile, saveAddress, signOut, updateProfile } = useAccount();
@@ -62,17 +61,17 @@ const ProfileSettings = () => {
       title='Mi perfil'
       description='Mantené tus datos principales y tu dirección frecuente al día.'
     >
-      <div className={styles.contentStack}>
-        <section className={styles.formCard} aria-labelledby='personal-data-title'>
-          <div className={styles.cardHeader}>
+      <div>
+        <section aria-labelledby='personal-data-title'>
+          <div>
             <div>
               <h2 id='personal-data-title'>Datos personales</h2>
               <p>Usaremos estos datos para facilitar la atención y tus compras.</p>
             </div>
           </div>
           <form onSubmit={handleProfileSubmit} noValidate>
-            <div className={styles.fieldGrid}>
-              <div className={styles.field}>
+            <div>
+              <div>
                 <label htmlFor='profile-first-name'>Nombre</label>
                 <input
                   id='profile-first-name'
@@ -82,7 +81,7 @@ const ProfileSettings = () => {
                   onChange={setProfileField('firstName')}
                 />
               </div>
-              <div className={styles.field}>
+              <div>
                 <label htmlFor='profile-last-name'>Apellidos</label>
                 <input
                   id='profile-last-name'
@@ -92,7 +91,7 @@ const ProfileSettings = () => {
                   onChange={setProfileField('lastName')}
                 />
               </div>
-              <div className={styles.field}>
+              <div>
                 <label htmlFor='profile-email'>Correo electrónico</label>
                 <input
                   id='profile-email'
@@ -102,11 +101,11 @@ const ProfileSettings = () => {
                   readOnly
                   aria-describedby='profile-email-help'
                 />
-                <span id='profile-email-help' className={styles.fieldHelp}>
+                <span id='profile-email-help'>
                   Es el correo verificado con el que ingresás a tu cuenta.
                 </span>
               </div>
-              <div className={styles.field}>
+              <div>
                 <label htmlFor='profile-phone'>Teléfono</label>
                 <input
                   id='profile-phone'
@@ -119,14 +118,13 @@ const ProfileSettings = () => {
                 />
               </div>
             </div>
-            <div className={styles.buttonRow}>
+            <div>
               <Button type='submit' disabled={isSavingProfile}>
                 {isSavingProfile ? 'Guardando…' : 'Guardar datos'}
               </Button>
             </div>
             {profileMessage ? (
               <p
-                className={profileMessage.error ? styles.formError : styles.formMessage}
                 role={profileMessage.error ? 'alert' : 'status'}
               >
                 {profileMessage.text}
@@ -135,10 +133,10 @@ const ProfileSettings = () => {
           </form>
         </section>
 
-        <section className={styles.formCard} aria-labelledby='address-title'>
-          <div className={styles.cardHeader}>
-            <div className={styles.cardTitleGroup}>
-              <span className={styles.smallIcon} aria-hidden='true'>
+        <section aria-labelledby='address-title'>
+          <div>
+            <div>
+              <span aria-hidden='true'>
                 <MapPin size={21} />
               </span>
               <div>
@@ -151,8 +149,8 @@ const ProfileSettings = () => {
             </div>
           </div>
           <form onSubmit={handleAddressSubmit} noValidate>
-            <div className={styles.fieldGrid}>
-              <div className={styles.field}>
+            <div>
+              <div>
                 <label htmlFor='profile-province'>Provincia</label>
                 <select
                   id='profile-province'
@@ -168,7 +166,7 @@ const ProfileSettings = () => {
                   ))}
                 </select>
               </div>
-              <div className={styles.field}>
+              <div>
                 <label htmlFor='profile-canton'>Cantón</label>
                 <input
                   id='profile-canton'
@@ -178,7 +176,7 @@ const ProfileSettings = () => {
                   onChange={setAddressField('canton')}
                 />
               </div>
-              <div className={styles.field}>
+              <div>
                 <label htmlFor='profile-district'>Distrito</label>
                 <input
                   id='profile-district'
@@ -188,7 +186,7 @@ const ProfileSettings = () => {
                   onChange={setAddressField('district')}
                 />
               </div>
-              <div className={styles.fullField}>
+              <div>
                 <label htmlFor='profile-address'>Otras señas</label>
                 <textarea
                   id='profile-address'
@@ -198,7 +196,7 @@ const ProfileSettings = () => {
                   onChange={setAddressField('address')}
                 />
               </div>
-              <div className={styles.fullField}>
+              <div>
                 <label htmlFor='profile-delivery-notes'>Notas para la entrega</label>
                 <textarea
                   id='profile-delivery-notes'
@@ -209,14 +207,13 @@ const ProfileSettings = () => {
                 />
               </div>
             </div>
-            <div className={styles.buttonRow}>
+            <div>
               <Button type='submit' disabled={isSavingAddress}>
                 {isSavingAddress ? 'Guardando…' : 'Guardar dirección'}
               </Button>
             </div>
             {addressMessage ? (
               <p
-                className={addressMessage.error ? styles.formError : styles.formMessage}
                 role={addressMessage.error ? 'alert' : 'status'}
               >
                 {addressMessage.text}
@@ -225,10 +222,10 @@ const ProfileSettings = () => {
           </form>
         </section>
 
-        <section className={styles.card} aria-labelledby='security-title'>
-          <div className={styles.cardHeader}>
-            <div className={styles.cardTitleGroup}>
-              <span className={styles.smallIcon} aria-hidden='true'>
+        <section aria-labelledby='security-title'>
+          <div>
+            <div>
+              <span aria-hidden='true'>
                 <ShieldCheck size={21} />
               </span>
               <div>
@@ -239,7 +236,7 @@ const ProfileSettings = () => {
               </div>
             </div>
           </div>
-          <div className={styles.buttonRow}>
+          <div>
             <Button
               variant='secondary'
               iconStart={<LogOut aria-hidden='true' size={17} />}
@@ -255,7 +252,7 @@ const ProfileSettings = () => {
             </Button>
           </div>
           {securityMessage ? (
-            <p className={styles.formError} role='alert'>
+            <p role='alert'>
               {securityMessage.text}
             </p>
           ) : null}

@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
 
 import Button from '../../../components/Button';
-import { accountStyles as styles } from '../../../features/Account';
 
 const AccountError = ({ error, reset }) => {
   useEffect(() => {
@@ -15,18 +14,18 @@ const AccountError = ({ error, reset }) => {
   }, [error]);
 
   return (
-    <div className={styles.accountPage}>
-      <div className={styles.signedOutWrap}>
-        <section className={styles.signedOutCard}>
-          <span className={styles.roundIcon} aria-hidden='true'>
+    <div>
+      <div>
+        <section>
+          <span aria-hidden='true'>
             <AlertTriangle size={32} />
           </span>
-          <p className={styles.eyebrow}>Mi DNAture</p>
+          <p>Mi DNAture</p>
           <h1>No pudimos cargar tu cuenta</h1>
           <p>
             Tus datos no se modificaron. Intentá nuevamente o volvé al inicio.
           </p>
-          <div className={styles.buttonRowCentered}>
+          <div>
             <Button onClick={reset}>Intentar de nuevo</Button>
             <Button href='/' variant='secondary'>
               Volver al inicio

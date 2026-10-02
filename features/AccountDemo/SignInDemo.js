@@ -1,7 +1,7 @@
 'use client';
 
 import { faFacebookF, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '../../components/Icon';
 import {
   Check,
   HeartHandshake,
@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Button from '../../components/Button';
-import { accountStyles as styles } from '../Account';
+
 import { useAccountDemo } from './model/account-demo-context';
 import DemoNotice from './components/DemoNotice';
 
@@ -95,19 +95,19 @@ const SignInDemo = () => {
   };
 
   return (
-    <div className={styles.signInPage}>
-      <div className={styles.signInContainer}>
+    <div>
+      <div>
         <DemoNotice />
 
-        <div className={styles.signInGrid}>
-          <section className={styles.signInHero}>
-            <p className={styles.eyebrow}>Mi DNAture</p>
+        <div>
+          <section>
+            <p>Mi DNAture</p>
             <h1>Todo lo que necesitás para cuidarles mejor.</h1>
             <p>
               Un espacio sencillo para reunir los perfiles de tus mascotas,
               calcular sus necesidades y hacer que cada compra sea más fácil.
             </p>
-            <ul className={styles.heroBenefits}>
+            <ul>
               {benefits.map((benefit) => (
                 <li key={benefit}>
                   <Check aria-hidden='true' size={20} />
@@ -117,10 +117,10 @@ const SignInDemo = () => {
             </ul>
           </section>
 
-          <section className={styles.signInPanel} aria-labelledby='access-title'>
+          <section aria-labelledby='access-title'>
             {isReady && isAuthenticated ? (
               <>
-                <span className={styles.smallIcon} aria-hidden='true'>
+                <span aria-hidden='true'>
                   <HeartHandshake size={22} />
                 </span>
                 <h2 id='access-title'>¡Hola de nuevo, {profile.firstName || 'Cliente'}!</h2>
@@ -132,7 +132,6 @@ const SignInDemo = () => {
                   fullWidth
                   variant='tertiary'
                   onClick={signOut}
-                  className={styles.buttonRow}
                 >
                   Usar otra cuenta
                 </Button>
@@ -142,10 +141,9 @@ const SignInDemo = () => {
                 <h2 id='access-title'>Entrá a tu cuenta</h2>
                 <p>Elegí la forma más cómoda. Este acceso es solo una simulación.</p>
 
-                <div className={styles.providerStack}>
+                <div>
                   <button
                     type='button'
-                    className={styles.providerButton}
                     onClick={() =>
                       finishSignIn('google', 'cliente.google@ejemplo.com')
                     }
@@ -155,7 +153,6 @@ const SignInDemo = () => {
                   </button>
                   <button
                     type='button'
-                    className={styles.providerButton}
                     onClick={() =>
                       finishSignIn('facebook', 'cliente.facebook@ejemplo.com')
                     }
@@ -165,11 +162,11 @@ const SignInDemo = () => {
                   </button>
                 </div>
 
-                <div className={styles.divider}>o con tu correo</div>
+                <div>o con tu correo</div>
 
                 {step === 'email' ? (
                   <form onSubmit={handleEmailRequest} noValidate>
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='demo-email'>Correo electrónico</label>
                       <input
                         id='demo-email'
@@ -183,7 +180,7 @@ const SignInDemo = () => {
                       />
                     </div>
                     {error ? (
-                      <p id='sign-in-error' className={styles.formError} role='alert'>
+                      <p id='sign-in-error' role='alert'>
                         {error}
                       </p>
                     ) : null}
@@ -191,14 +188,13 @@ const SignInDemo = () => {
                       type='submit'
                       fullWidth
                       iconStart={<Mail aria-hidden='true' size={18} />}
-                      className={styles.buttonRow}
                     >
                       Enviarme un código
                     </Button>
                   </form>
                 ) : (
                   <form onSubmit={handleCode} noValidate>
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='demo-code'>Código de acceso</label>
                       <input
                         id='demo-code'
@@ -211,12 +207,12 @@ const SignInDemo = () => {
                         aria-describedby='demo-code-help'
                       />
                     </div>
-                    <p id='demo-code-help' className={styles.demoCode}>
+                    <p id='demo-code-help'>
                       No enviamos ningún correo. Para probar el flujo usá el código{' '}
                       <strong>{DEMO_CODE}</strong>.
                     </p>
                     {error ? (
-                      <p className={styles.formError} role='alert'>
+                      <p role='alert'>
                         {error}
                       </p>
                     ) : null}
@@ -241,7 +237,7 @@ const SignInDemo = () => {
                   </form>
                 )}
 
-                <div className={styles.sampleCta}>
+                <div>
                   <h3>¿Querés ver la experiencia completa?</h3>
                   <p>
                     Abrí una cuenta con mascotas y carritos de ejemplo, ideal para
@@ -256,9 +252,9 @@ const SignInDemo = () => {
           </section>
         </div>
 
-        <section className={styles.benefitGrid} aria-label='Beneficios de la cuenta'>
+        <section aria-label='Beneficios de la cuenta'>
           {valueCards.map(({ icon: Icon, title, description }) => (
-            <article className={styles.benefitCard} key={title}>
+            <article key={title}>
               <Icon aria-hidden='true' size={25} />
               <h3>{title}</h3>
               <p>{description}</p>

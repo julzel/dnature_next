@@ -1,7 +1,5 @@
 import { useId } from 'react';
 
-import styles from './PresentationSelector.module.scss';
-
 export function convertObjectToArray(obj) {
   return Object.keys(obj || {}).map(key => ({
     size: key,
@@ -68,12 +66,11 @@ const PresentationSelector = ({
   };
 
   return (
-    <div className={styles.field}>
-      <label className={styles.label} htmlFor={selectId}>
+    <div>
+      <label htmlFor={selectId}>
         Presentación
       </label>
       <select
-        className={styles.select}
         id={selectId}
         value={selectedValue ? selectedValue.size : ''}
         onChange={handleChange}

@@ -11,7 +11,6 @@ import {
   Truck,
 } from 'lucide-react';
 
-import styles from './Cart.module.scss';
 import CurrencyText from '../../components/Currency';
 import CartPurchaseOrderContainer from './CartPurchaseOrder';
 import CartActionsContainer from './CartActions';
@@ -54,14 +53,14 @@ const Cart = ({
   checkoutReturnFocusRef,
 }) => {
   return (
-    <div className={styles.checkout}>
-      <div className={styles.checkoutShell}>
-        <Link className={styles.backLink} href='/productos'>
+    <div>
+      <div>
+        <Link href='/productos'>
           <ArrowLeft aria-hidden='true' size={18} strokeWidth={1.9} />
           Seguir comprando
         </Link>
 
-        <header className={styles.pageHeader}>
+        <header>
           <p>Tu pedido DNAture</p>
           <h1>Prepará tu solicitud</h1>
           <span>
@@ -69,20 +68,20 @@ const Cart = ({
           </span>
         </header>
 
-        <ol className={styles.progress} aria-label='Progreso de la solicitud'>
+        <ol aria-label='Progreso de la solicitud'>
           <li aria-current='step'><span>1</span> Carrito</li>
           <li><span>2</span> Tus datos</li>
           <li><span>3</span> Revisión</li>
         </ol>
 
-        <div className={styles.checkoutGrid}>
-          <section className={styles.orderCard} aria-labelledby='order-title'>
-            <div className={styles.orderHeading}>
+        <div>
+          <section aria-labelledby='order-title'>
+            <div>
               <div>
                 <p>Detalle del pedido</p>
                 <h2 id='order-title'>Tu carrito</h2>
               </div>
-              <span className={styles.itemCount}>
+              <span>
                 {cart.totalItems}{' '}
                 {cart.totalItems === 1 ? 'producto' : 'productos'}
               </span>
@@ -91,7 +90,7 @@ const Cart = ({
             {cart.totalItems > 0 ? (
               <CartItemsContainer items={cart.items} />
             ) : (
-              <div className={styles.emptyCart}>
+              <div>
                 <span>
                   <ShoppingBag aria-hidden='true' size={30} strokeWidth={1.6} />
                 </span>
@@ -102,18 +101,18 @@ const Cart = ({
             )}
           </section>
 
-          <aside className={styles.summary} aria-labelledby='summary-title'>
-            <div className={styles.summaryHeading}>
+          <aside aria-labelledby='summary-title'>
+            <div>
               <p>Coordinación</p>
               <h2 id='summary-title'>Resumen de la solicitud</h2>
             </div>
 
             {cart.totalItems > 0 && (
               <>
-                <fieldset className={styles.optionGroup}>
+                <fieldset>
                   <legend>¿Cómo querés recibirlo?</legend>
-                  <div className={styles.pickupOption}>
-                    <label className={styles.choiceCard}>
+                  <div>
+                    <label>
                       <input
                         type='radio'
                         name='fulfillment'
@@ -121,7 +120,7 @@ const Cart = ({
                         checked={!cart.wantsDelivery}
                         onChange={() => updateDelivery(false)}
                       />
-                      <span className={styles.choiceIcon}>
+                      <span>
                         <Store aria-hidden='true' size={21} />
                       </span>
                       <span>
@@ -131,7 +130,6 @@ const Cart = ({
                       <strong>Sin costo</strong>
                     </label>
                     <a
-                      className={styles.locationLink}
                       href={STORE_GOOGLE_MAPS_URL}
                       target='_blank'
                       rel='noopener noreferrer'
@@ -139,7 +137,7 @@ const Cart = ({
                       Ver ubicación en Google Maps
                     </a>
                   </div>
-                  <label className={styles.choiceCard}>
+                  <label>
                     <input
                       type='radio'
                       name='fulfillment'
@@ -147,7 +145,7 @@ const Cart = ({
                       checked={cart.wantsDelivery}
                       onChange={() => updateDelivery(true)}
                     />
-                    <span className={styles.choiceIcon}>
+                    <span>
                       <Truck aria-hidden='true' size={21} />
                     </span>
                     <span>
@@ -158,10 +156,10 @@ const Cart = ({
                   </label>
                 </fieldset>
 
-                <fieldset className={styles.optionGroup}>
+                <fieldset>
                   <legend>Preferencia de pago</legend>
                   {PAYMENT_METHODS.map((method) => (
-                    <label className={styles.choiceCard} key={method.id}>
+                    <label key={method.id}>
                       <input
                         type='radio'
                         name='payment-method'
@@ -169,7 +167,7 @@ const Cart = ({
                         checked={cart.paymentMethod === method.id}
                         onChange={() => updatePaymentMethod(method.id)}
                       />
-                      <span className={styles.choiceIcon}>
+                      <span>
                         <BadgeDollarSign aria-hidden='true' size={21} />
                       </span>
                       <span>
@@ -180,7 +178,7 @@ const Cart = ({
                   ))}
                 </fieldset>
 
-                <div className={styles.notesField}>
+                <div>
                   <label htmlFor='checkout-notes'>Indicaciones para el pedido</label>
                   <textarea
                     id='checkout-notes'
@@ -192,7 +190,7 @@ const Cart = ({
                   />
                 </div>
 
-                <dl className={styles.breakdown}>
+                <dl>
                   <div>
                     <dt>Subtotal</dt>
                     <dd>
@@ -209,11 +207,7 @@ const Cart = ({
                   </div>
                   <div>
                     <dt>{cart.wantsDelivery ? 'Entrega estimada' : 'Modalidad'}</dt>
-                    <dd
-                      className={
-                        cart.wantsDelivery ? '' : styles.noDeliveryFee
-                      }
-                    >
+                    <dd>
                       {cart.wantsDelivery ? (
                         <CurrencyText value={cart.deliveryFee} />
                       ) : (
@@ -221,14 +215,14 @@ const Cart = ({
                       )}
                     </dd>
                   </div>
-                  <div className={styles.grandTotal}>
+                  <div>
                     <dt>Total estimado</dt>
                     <dd>
                       <CurrencyText value={cart.total} />
                     </dd>
                   </div>
                 </dl>
-                <p className={styles.estimateNotice}>
+                <p>
                   DNAture confirmará disponibilidad, monto final, pago y entrega
                   antes de procesar la solicitud.
                 </p>
@@ -237,7 +231,6 @@ const Cart = ({
 
             {checkoutMessage ? (
               <p
-                className={checkoutMessage.error ? styles.checkoutError : styles.checkoutNotice}
                 role={checkoutMessage.error ? 'alert' : 'status'}
               >
                 {checkoutMessage.text}
@@ -250,7 +243,7 @@ const Cart = ({
             />
 
             {cart.totalItems > 0 && (
-              <div className={styles.trustNote}>
+              <div>
                 <MessageCircleMore aria-hidden='true' size={19} strokeWidth={1.8} />
                 <span>
                   <strong>Compra asistida</strong>
@@ -280,7 +273,6 @@ const Cart = ({
           <ClientFormContainer
             canCreateAccount={canCreateAccount}
             onSubmit={onClientInfoSubmit}
-            className={styles.cartClientForm}
             initialClient={cart.client.firstName ? cart.client : initialClient}
             requiresAddress={cart.wantsDelivery}
           />
@@ -320,10 +312,8 @@ const Cart = ({
       )}
 
       <div
+        hidden
         ref={canvasElem}
-        className={`${styles.canvas} ${
-          showPurchaseOrder ? styles.visible : ''
-        }`}
       >
         <PurchaseOrderContainer />
       </div>

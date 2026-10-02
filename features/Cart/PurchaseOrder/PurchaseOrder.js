@@ -1,8 +1,6 @@
 import React from 'react';
 
 // local imports
-// styles
-import styles from './PurchaseOrder.module.scss';
 
 // components
 import CurrencyText from '../../../components/Currency';
@@ -19,14 +17,14 @@ const PurchaseOrder = ({ cart }) => {
       }).format(new Date(date))
     : '';
   return (
-    <div className={styles.purchaseOrder}>
+    <div>
       {cart.purchaseOrderId && (
-        <h1 className={styles.title}>
+        <h1>
           Solicitud DNAture:{' '}
           <span>{cart.purchaseOrderId}</span>
         </h1>
       )}
-      <div className={styles.client}>
+      <div>
           <div>
             <span>Fecha:</span>
             {formattedDate}
@@ -75,8 +73,8 @@ const PurchaseOrder = ({ cart }) => {
           </div>
         ) : null}
       </div>
-      <table className={styles.table}>
-        <thead className={styles.tableHead}>
+      <table>
+        <thead>
           <tr>
             <th>Unds</th>
             <th>Producto</th>
@@ -84,7 +82,7 @@ const PurchaseOrder = ({ cart }) => {
             <th>Total</th>
           </tr>
         </thead>
-        <tbody className={styles.tableBody}>
+        <tbody>
           {cart.items.map((item) => (
             <tr key={item.id}>
               <td>{item.quantity}</td>
@@ -97,11 +95,11 @@ const PurchaseOrder = ({ cart }) => {
               </td>
             </tr>
           ))}
-          <tr className={styles.empty}>
+          <tr>
             <td colSpan='4' />
           </tr>
         </tbody>
-        <tfoot className={styles.tableFoot}>
+        <tfoot>
           <tr>
             <td colSpan='3'>Subtotal</td>
             <td>
@@ -128,7 +126,7 @@ const PurchaseOrder = ({ cart }) => {
           </tr>
         </tfoot>
       </table>
-      <div className={styles.footNote}>
+      <div>
         {cart.wantsDelivery && (
           <p>
             <span>Entrega:</span> Cobertura y tarifa sujetas a confirmación dentro de la Gran Área Metropolitana.

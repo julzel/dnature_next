@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import Image from '../../components/Image';
 import Link from 'next/link';
 import {
   ArrowDown,
@@ -14,7 +14,6 @@ import {
 
 import Button from '../../components/Button';
 import CalculatorSteps from './CalculatorSteps';
-import styles from './Calculator.module.scss';
 
 const preparationItems = [
   {
@@ -53,30 +52,29 @@ const Calculator = () => {
   const start = () => setStarted(true);
 
   return (
-    <main className={styles.calculator}>
-      <section className={styles.hero} aria-labelledby="calculator-title">
-        <div className={styles.heroShell}>
-          <div className={styles.heroCopy}>
-            <nav className={styles.breadcrumbs} aria-label="Migas de pan">
+    <main>
+      <section aria-labelledby="calculator-title">
+        <div>
+          <div>
+            <nav aria-label="Migas de pan">
               <ol>
                 <li><Link href="/">Inicio</Link></li>
                 <li aria-current="page">Calculadora de porciones</li>
               </ol>
             </nav>
-            <p className={styles.eyebrow}>Calculadora para perros</p>
+            <p>Calculadora para perros</p>
             <h1 id="calculator-title">Una guía clara para su porción diaria</h1>
-            <p className={styles.heroIntro}>
+            <p>
               Completá algunos datos y obtené una estimación inicial para servir
               nuestras Recetas completas DNAture.
             </p>
 
-            <ul className={styles.quickFacts} aria-label="Características de la calculadora">
+            <ul aria-label="Características de la calculadora">
               <li><Clock3 aria-hidden="true" size={17} /> Toma cerca de 2 minutos</li>
               <li><ShieldCheck aria-hidden="true" size={17} /> No guardamos estos datos</li>
             </ul>
 
             <Button
-              className={styles.startButton}
               variant="primary"
               size="large"
               onClick={start}
@@ -84,15 +82,15 @@ const Calculator = () => {
             >
               {started ? 'Continuar cálculo' : 'Calcular porción'}
             </Button>
-            <p className={styles.dogOnly}>Actualmente disponible únicamente para perros.</p>
+            <p>Actualmente disponible únicamente para perros.</p>
           </div>
 
-          <figure className={styles.heroVisual}>
+          <figure>
             <Image
-              className={styles.heroImage}
+              width={300}
+              height={200}
               src="/calculator/calculadora.jpg"
               alt="Tazón DNAture con ingredientes de alimentación natural"
-              fill
               priority
               sizes="(max-width: 767px) 100vw, 46vw"
             />
@@ -105,20 +103,19 @@ const Calculator = () => {
       </section>
 
       <section
-        className={styles.toolSection}
         ref={toolRef}
         aria-labelledby={started ? undefined : 'calculator-preparation-title'}
       >
         {started ? (
           <CalculatorSteps />
         ) : (
-          <div className={styles.preparation}>
-            <div className={styles.preparationHeading}>
-              <p className={styles.eyebrow}>Antes de empezar</p>
+          <div>
+            <div>
+              <p>Antes de empezar</p>
               <h2 id="calculator-preparation-title">Tené estos datos a mano</h2>
               <p>No necesitás crear una cuenta ni compartir datos de contacto.</p>
             </div>
-            <ul className={styles.preparationList}>
+            <ul>
               {preparationItems.map(({ icon: Icon, title, text }) => (
                 <li key={title}>
                   <span><Icon aria-hidden="true" size={21} /></span>
@@ -136,7 +133,7 @@ const Calculator = () => {
         )}
       </section>
 
-      <section className={styles.guidance} aria-labelledby="calculator-guidance-title">
+      <section aria-labelledby="calculator-guidance-title">
         <span><ShieldCheck aria-hidden="true" size={24} /></span>
         <div>
           <h2 id="calculator-guidance-title">Una referencia, no una prescripción</h2>

@@ -1,6 +1,6 @@
-import Image from 'next/image';
+import Image from '../Image';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '../Icon';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import {
   Mail,
@@ -14,7 +14,6 @@ import {
   DNATURE_WHATSAPP_PHONE,
 } from '../../constants/contact';
 import { STORE_GOOGLE_MAPS_URL } from '../../constants/store';
-import styles from './Footer.module.scss';
 
 const footerLinks = [
   { href: '/productos', label: 'Productos' },
@@ -28,11 +27,11 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className={styles.footer}>
-      <div className={styles.shell}>
-        <div className={styles.main}>
-          <div className={styles.brand}>
-            <Link className={styles.logo} href='/' aria-label='DNAture, ir al inicio'>
+    <footer>
+      <div>
+        <div>
+          <div>
+            <Link href='/' aria-label='DNAture, ir al inicio'>
               <Image
                 src='/images/dnature-logo.svg'
                 alt='DNAture'
@@ -41,7 +40,7 @@ const Footer = () => {
               />
             </Link>
             <p>Alimentación natural para cuidarles mejor, todos los días.</p>
-            <div className={styles.socialLinks} aria-label='Redes y contacto'>
+            <div aria-label='Redes y contacto'>
               <a
                 href={`https://wa.me/${DNATURE_WHATSAPP_PHONE}`}
                 target='_blank'
@@ -67,7 +66,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <nav className={styles.navigation} aria-label='Navegación del pie de página'>
+          <nav aria-label='Navegación del pie de página'>
             <h2>Explorá</h2>
             <ul>
               {footerLinks.map((link) => (
@@ -78,10 +77,9 @@ const Footer = () => {
             </ul>
           </nav>
 
-          <section className={styles.contact} aria-labelledby='footer-contact-title'>
+          <section aria-labelledby='footer-contact-title'>
             <h2 id='footer-contact-title'>Estamos cerca</h2>
             <a
-              className={styles.contactLink}
               href={`https://wa.me/${DNATURE_WHATSAPP_PHONE}`}
               target='_blank'
               rel='noopener noreferrer'
@@ -92,9 +90,8 @@ const Footer = () => {
                 {DNATURE_WHATSAPP_DISPLAY}
               </span>
             </a>
-            <p className={styles.schedule}>{DNATURE_SUPPORT_HOURS}</p>
+            <p>{DNATURE_SUPPORT_HOURS}</p>
             <a
-              className={styles.locationLink}
               href={STORE_GOOGLE_MAPS_URL}
               target='_blank'
               rel='noopener noreferrer'
@@ -105,7 +102,7 @@ const Footer = () => {
           </section>
         </div>
 
-        <div className={styles.bottom}>
+        <div>
           <p>© {year} DNAture. Todos los derechos reservados.</p>
           <p>Hecho con cariño en Costa Rica.</p>
         </div>

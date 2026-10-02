@@ -5,7 +5,7 @@ import {
   ShoppingCartItem,
   useCartContext,
 } from '../../Cart/state'; // Feature API
-import styles from './CatalogItem.module.scss'; // Styles
+
 import ContentfulImage from '../../../components/ContentfulImage';
 import CurrencyText from '../../../components/Currency';
 import { getAvailabilityUi } from '../lib/avify-commerce';
@@ -84,55 +84,52 @@ const CatalogItem = ({ product }) => {
   }
 
   return (
-    <article className={styles.catalogItem}>
+    <article>
       <Link
         href={productPath}
-        className={styles.imageLink}
         aria-label={`Ver ${productName}`}
       >
         {itemImage && (
-          <span className={styles.catalogItemImages}>
+          <span>
             <ContentfulImage
               src={itemImage.url}
               alt={itemImage.title}
               width={100}
               height={100}
               sizes='(min-width: 1024px) 25vw, (min-width: 600px) 50vw, 100vw'
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </span>
         )}
       </Link>
-      <div className={styles.catalogItemDetails}>
-        <p className={styles.category}>{category}</p>
-        <Link href={productPath} className={styles.productName}>
+      <div>
+        <p>{category}</p>
+        <Link href={productPath}>
           {productName}
         </Link>
-        <p className={styles.price}>
+        <p>
           {hasPriceByUnit && lowestPresentationPrice !== null ? 'Desde ' : ''}
           <CurrencyText value={displayPrice} />
         </p>
-        <p className={styles.presentation}>
+        <p>
           {hasPriceByUnit
             ? 'Elegí una presentación'
             : medida || 'Presentación disponible'}
         </p>
         {commerce && availabilityUi.copy && (
           <p
-            className={`${styles.availability} ${styles[availabilityUi.availability]}`}
             role={!availabilityUi.canPurchase ? 'status' : undefined}
           >
             <span aria-hidden='true' />
             {availabilityUi.copy}
           </p>
         )}
-        <div className={styles.cardFooter}>
+        <div>
           {hasPriceByUnit ? (
-            <Link href={productPath} className={styles.optionsLink}>
+            <Link href={productPath}>
               Ver opciones
             </Link>
           ) : itemsInCart > 0 ? (
-            <div className={styles.quantityControl}>
+            <div>
               <button
                 type='button'
                 aria-label={`Disminuir cantidad de ${productName}`}
@@ -163,7 +160,6 @@ const CatalogItem = ({ product }) => {
           ) : (
             <button
               type='button'
-              className={styles.addButton}
               aria-label={
                 canAddToCart
                   ? `Agregar ${productName} al carrito`

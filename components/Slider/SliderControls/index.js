@@ -1,7 +1,6 @@
 import React from 'react'
 
 // local imports
-import styles from './SliderControls.module.scss'
 
 const SliderControls = ({
     slides,
@@ -30,13 +29,12 @@ const SliderControls = ({
     };
 
     return (
-        <div className={styles.sliderControls}>
-            <div className={styles.bullets} role="tablist" aria-label="Seleccionar diapositiva">
+        <div>
+            <div role="tablist" aria-label="Seleccionar diapositiva">
                 {slides.map((slide, i) => (
                     <button
                         type="button"
                         id={`${idPrefix}-tab-${i}`}
-                        className={`${styles.bullet} ${i === currentBullet ? styles.active : ''}`}
                         key={`bullet-${i}`}
                         onClick={() => onBulletClick(i)}
                         aria-label={`Ir a la diapositiva ${i + 1}`}
@@ -45,7 +43,9 @@ const SliderControls = ({
                         tabIndex={i === currentBullet ? 0 : -1}
                         role="tab"
                         onKeyDown={(event) => handleKeyDown(event, i)}
-                    />
+                    >
+                        {i + 1}
+                    </button>
                 ))}
             </div>
         </div>

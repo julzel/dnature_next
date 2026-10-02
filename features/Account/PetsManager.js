@@ -12,7 +12,6 @@ import {
 } from '../../util/portion-size';
 import AccountShell from './components/AccountShell';
 import { useAccount } from './state';
-import styles from './Account.module.scss';
 
 const emptyPet = {
   id: '',
@@ -154,10 +153,10 @@ const PetsManager = () => {
         ) : null
       }
     >
-      <div className={styles.contentStack}>
+      <div>
         {isFormOpen ? (
-          <section className={styles.formCard} aria-labelledby='pet-form-title'>
-            <div className={styles.cardHeader}>
+          <section aria-labelledby='pet-form-title'>
+            <div>
               <div>
                 <h2 id='pet-form-title'>
                   {formPet.id ? `Editar a ${formPet.name}` : 'Nueva mascota'}
@@ -165,13 +164,13 @@ const PetsManager = () => {
                 <p>Completá los datos esenciales para mantener su perfil al día.</p>
               </div>
               {portionPreview ? (
-                <span className={styles.statusBadge}>Datos listos</span>
+                <span>Datos listos</span>
               ) : null}
             </div>
 
             <form onSubmit={handleSubmit} noValidate>
-              <div className={styles.fieldGrid}>
-                <div className={styles.field}>
+              <div>
+                <div>
                   <label htmlFor='pet-name'>Nombre</label>
                   <input
                     id='pet-name'
@@ -181,7 +180,7 @@ const PetsManager = () => {
                     autoComplete='off'
                   />
                 </div>
-                <div className={styles.field}>
+                <div>
                   <label htmlFor='pet-age'>Etapa de vida</label>
                   <select id='pet-age' value={formPet.age} onChange={setField('age')}>
                     <option value='adult'>Adulto</option>
@@ -190,7 +189,7 @@ const PetsManager = () => {
                 </div>
 
                 {formPet.age === 'puppy' ? (
-                  <div className={styles.field}>
+                  <div>
                     <label htmlFor='pet-stage'>Etapa del cachorro</label>
                     <select
                       id='pet-stage'
@@ -204,7 +203,7 @@ const PetsManager = () => {
                   </div>
                 ) : (
                   <>
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='pet-size'>Tamaño</label>
                       <select id='pet-size' value={formPet.size} onChange={setField('size')}>
                         <option value='small'>Mini — menos de 4 kg</option>
@@ -212,7 +211,7 @@ const PetsManager = () => {
                         <option value='large'>Grande o gigante — más de 25 kg</option>
                       </select>
                     </div>
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='pet-castrated'>Castración</label>
                       <select
                         id='pet-castrated'
@@ -223,7 +222,7 @@ const PetsManager = () => {
                         <option value='notCastrated'>Sin castrar</option>
                       </select>
                     </div>
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='pet-contexture'>Contextura física</label>
                       <select
                         id='pet-contexture'
@@ -235,7 +234,7 @@ const PetsManager = () => {
                         <option value='overWeight'>Sobrepeso</option>
                       </select>
                     </div>
-                    <div className={styles.field}>
+                    <div>
                       <label htmlFor='pet-activity'>Actividad diaria</label>
                       <select
                         id='pet-activity'
@@ -252,7 +251,7 @@ const PetsManager = () => {
                   </>
                 )}
 
-                <div className={styles.field}>
+                <div>
                   <label htmlFor='pet-weight'>Peso en kilogramos</label>
                   <input
                     id='pet-weight'
@@ -264,31 +263,30 @@ const PetsManager = () => {
                     value={formPet.weight}
                     onChange={setField('weight')}
                   />
-                  <span className={styles.fieldHelp}>
+                  <span>
                     Entre {MIN_PET_WEIGHT_KG} kg y {MAX_PET_WEIGHT_KG} kg.
                   </span>
                 </div>
               </div>
 
               {featureFlags.portionPlanning && portionPreview ? (
-                <div className={styles.portionCallout} aria-live='polite'>
+                <div aria-live='polite'>
                   Porción diaria estimada: <strong>{Math.round(portionPreview)} g</strong>
                 </div>
               ) : null}
               {message ? (
                 <p
-                  className={message.error ? styles.formError : styles.formMessage}
                   role={message.error ? 'alert' : 'status'}
                 >
                   {message.text}
                 </p>
               ) : null}
               {featureFlags.portionPlanning ? (
-                <p className={styles.disclaimer}>
+                <p>
                   Esta estimación orientativa no reemplaza la valoración de un profesional veterinario.
                 </p>
               ) : null}
-              <div className={styles.buttonRow}>
+              <div>
                 <Button type='submit' disabled={isSaving}>
                   {isSaving ? 'Guardando…' : 'Guardar perfil'}
                 </Button>
@@ -304,7 +302,6 @@ const PetsManager = () => {
 
         {message && !isFormOpen ? (
           <p
-            className={message.error ? styles.formError : styles.formMessage}
             role={message.error ? 'alert' : 'status'}
           >
             {message.text}
@@ -313,36 +310,35 @@ const PetsManager = () => {
 
         {pets.length ? (
           <section aria-label='Perfiles de mascotas'>
-            <div className={styles.petGrid}>
+            <div>
               {pets.map((pet) => {
                 const pendingDelete = pet.id === pendingDeleteId;
 
                 return (
                   <article
                     key={pet.id}
-                    className={styles.petCard}
                   >
-                    <div className={styles.petCardHeader}>
+                    <div>
                       <div>
                         <h3>{pet.name}</h3>
                         <p>Perfil de alimentación</p>
                       </div>
                     </div>
-                    <dl className={styles.petFacts}>
+                    <dl>
                       {petFacts(pet).map(([label, value]) => (
-                        <div className={styles.petFact} key={label}>
+                        <div key={label}>
                           <dt>{label}</dt>
                           <dd>{value}</dd>
                         </div>
                       ))}
                     </dl>
                     {featureFlags.portionPlanning && pet.portionSize ? (
-                      <div className={styles.portionCallout}>
+                      <div>
                         Porción orientativa:{' '}
                         <strong>{Math.round(pet.portionSize)} g al día</strong>
                       </div>
                     ) : null}
-                    <div className={styles.cardActions}>
+                    <div>
                       <Button
                         size='small'
                         variant='tertiary'
@@ -361,9 +357,9 @@ const PetsManager = () => {
                       </Button>
                     </div>
                     {pendingDelete ? (
-                      <div className={styles.inlineConfirm} role='alert'>
+                      <div role='alert'>
                         <p>¿Eliminar el perfil de {pet.name}?</p>
-                        <div className={styles.cardActions}>
+                        <div>
                           <Button size='small' variant='danger' onClick={() => confirmDelete(pet.id)}>
                             Sí, eliminar
                           </Button>
@@ -379,7 +375,7 @@ const PetsManager = () => {
             </div>
           </section>
         ) : !isFormOpen ? (
-          <section className={styles.emptyState}>
+          <section>
             <Plus aria-hidden='true' size={38} />
             <h2>Creá el primer perfil</h2>
             <p>
@@ -392,7 +388,7 @@ const PetsManager = () => {
         ) : null}
 
         {pets.length >= maxPets ? (
-          <p className={styles.disclaimer}>
+          <p>
             Podés guardar hasta {maxPets} perfiles de mascotas.
           </p>
         ) : null}

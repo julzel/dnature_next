@@ -1,17 +1,17 @@
 import React from 'react';
-import { TextField } from '@mui/material';
 import SelectInput from './SelectInput';
 import WeightInput from './WeightInput';
 
 const PetNameInput = ({ value, handleChange }) => (
-  <TextField
-    fullWidth
-    label="Nombre"
-    id="petName"
-    variant="outlined"
-    value={value}
-    onChange={(e) => handleChange(e.target.value)}
-  />
+  <div>
+    <label htmlFor='petName'>Nombre</label>{' '}
+    <input
+      required
+      id='petName'
+      value={value}
+      onChange={(event) => handleChange(event.target.value)}
+    />
+  </div>
 );
 
 const PetAgeInput = ({ value = 'adult', handleChange }) => {

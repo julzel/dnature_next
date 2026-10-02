@@ -1,12 +1,10 @@
 import Button from '../components/Button';
 
-import styles from './Fallback.module.scss';
-
 const NotFound = () => (
-  <div className={styles.fallback}>
-    <div className={styles.panel}>
-      <h1 className={styles.title}>Página no encontrada</h1>
-      <p className={styles.copy}>
+  <div>
+    <div>
+      <h1>Página no encontrada</h1>
+      <p>
         Lo sentimos, la página que buscas no está disponible.
       </p>
       <Button href='/' variant='primary'>

@@ -6,10 +6,9 @@ import {
   faTrashCan,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '../../components/Icon';
 
 import Button from '../../components/Button';
-import styles from './DesignDemo.module.scss';
 
 export const metadata = {
   title: 'Sistema de diseño',
@@ -17,22 +16,22 @@ export const metadata = {
 };
 
 const ButtonExample = ({ label, children }) => (
-  <div className={styles.buttonExample}>
+  <div>
     {children}
     <code>{label}</code>
   </div>
 );
 
 const DesignDemoPage = () => (
-  <section className={styles.demo}>
-    <header className={styles.hero}>
-      <p className={styles.eyebrow}>DNAture · Sistema de diseño</p>
+  <section>
+    <header>
+      <p>DNAture · Sistema de diseño</p>
       <h1>Componentes para decisiones claras.</h1>
       <p>
         Un catálogo vivo de los patrones de interfaz reutilizables. Esta página
         es de referencia visual; los controles no cambian datos.
       </p>
-      <div className={styles.heroActions}>
+      <div>
         <Button href='/productos' variant='primary' iconEnd={<FontAwesomeIcon icon={faArrowRight} />}>
           Ver productos
         </Button>
@@ -42,13 +41,13 @@ const DesignDemoPage = () => (
       </div>
     </header>
 
-    <section className={styles.section} aria-labelledby='cta-title'>
-      <div className={styles.sectionHeading}>
-        <p className={styles.eyebrow}>01 · Calls to action</p>
+    <section aria-labelledby='cta-title'>
+      <div>
+        <p>01 · Calls to action</p>
         <h2 id='cta-title'>Una jerarquía para cada intención</h2>
         <p>El color y el peso visual comunican el resultado de una acción.</p>
       </div>
-      <div className={styles.buttonGrid}>
+      <div>
         <ButtonExample label='variant="primary"'>
           <Button variant='primary'>Continuar</Button>
         </ButtonExample>
@@ -69,23 +68,23 @@ const DesignDemoPage = () => (
       </div>
     </section>
 
-    <section className={styles.section} aria-labelledby='states-title'>
-      <div className={styles.sectionHeading}>
-        <p className={styles.eyebrow}>02 · Estados y tamaños</p>
+    <section aria-labelledby='states-title'>
+      <div>
+        <p>02 · Estados y tamaños</p>
         <h2 id='states-title'>El mismo lenguaje en cada contexto</h2>
       </div>
-      <div className={styles.statesGrid}>
-        <div className={styles.surface}>
+      <div>
+        <div>
           <h3>Tamaños</h3>
-          <div className={styles.stack}>
+          <div>
             <Button size='small'>Pequeño</Button>
             <Button size='medium'>Mediano</Button>
             <Button size='large'>Grande</Button>
           </div>
         </div>
-        <div className={styles.surface}>
+        <div>
           <h3>Estados</h3>
-          <div className={styles.stack}>
+          <div>
             <Button loading>Generando orden</Button>
             <Button disabled>Continuar</Button>
             <Button href='/productos' disabled>
@@ -93,9 +92,9 @@ const DesignDemoPage = () => (
             </Button>
           </div>
         </div>
-        <div className={styles.surface}>
+        <div>
           <h3>Iconos</h3>
-          <div className={styles.iconRow}>
+          <div>
             <Button
               variant='secondary'
               iconOnly
@@ -119,19 +118,19 @@ const DesignDemoPage = () => (
       </div>
     </section>
 
-    <section className={styles.section} aria-labelledby='commerce-title'>
-      <div className={styles.sectionHeading}>
-        <p className={styles.eyebrow}>03 · Comercio</p>
+    <section aria-labelledby='commerce-title'>
+      <div>
+        <p>03 · Comercio</p>
         <h2 id='commerce-title'>Producto y carrito</h2>
       </div>
-      <div className={styles.commerceGrid}>
-        <article className={styles.productCard}>
-          <div className={styles.productVisual} aria-hidden='true'>
+      <div>
+        <article>
+          <div aria-hidden='true'>
             <span>DN</span>
           </div>
-          <p className={styles.productType}>Receta completa</p>
+          <p>Receta completa</p>
           <h3>Pollo y caballo</h3>
-          <p className={styles.price}>₡5,000 <span>· 1 kg</span></p>
+          <p>₡5,000 <span>· 1 kg</span></p>
           <label htmlFor='presentation'>Presentación</label>
           <select id='presentation' defaultValue='1kg'>
             <option value='500g'>500 g</option>
@@ -143,20 +142,20 @@ const DesignDemoPage = () => (
           </Button>
         </article>
 
-        <article className={styles.cartCard}>
-          <div className={styles.cartHeading}>
+        <article>
+          <div>
             <div>
-              <p className={styles.eyebrow}>Tu pedido</p>
+              <p>Tu pedido</p>
               <h3>Carrito</h3>
             </div>
-            <span className={styles.cartCount}>2</span>
+            <span>2</span>
           </div>
-          <div className={styles.cartItem}>
+          <div>
             <div>
               <strong>Pollo y caballo</strong>
               <span>₡5,000 · 1 kg</span>
             </div>
-            <div className={styles.quantity} aria-label='Cantidad: 2'>
+            <div aria-label='Cantidad: 2'>
               <button type='button' aria-label='Restar una unidad'>
                 <FontAwesomeIcon icon={faMinus} />
               </button>
@@ -166,11 +165,11 @@ const DesignDemoPage = () => (
               </button>
             </div>
           </div>
-          <div className={styles.total}>
+          <div>
             <span>Total</span>
             <strong>₡10,000</strong>
           </div>
-          <div className={styles.cartActions}>
+          <div>
             <Button variant='tertiary'>Regresar</Button>
             <Button>Continuar</Button>
           </div>
@@ -178,12 +177,12 @@ const DesignDemoPage = () => (
       </div>
     </section>
 
-    <section className={styles.section} aria-labelledby='field-title'>
-      <div className={styles.sectionHeading}>
-        <p className={styles.eyebrow}>04 · Formularios</p>
+    <section aria-labelledby='field-title'>
+      <div>
+        <p>04 · Formularios</p>
         <h2 id='field-title'>Campos tranquilos, foco evidente</h2>
       </div>
-      <div className={styles.fieldSurface}>
+      <div>
         <label htmlFor='name'>Nombre</label>
         <input id='name' placeholder='Nombre de tu mascota' />
         <label htmlFor='email'>Correo electrónico</label>

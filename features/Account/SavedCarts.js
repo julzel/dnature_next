@@ -8,7 +8,6 @@ import Button from '../../components/Button';
 import { useCartContext } from '../Cart/state';
 import { useAccount } from './state';
 import AccountShell from './components/AccountShell';
-import styles from './Account.module.scss';
 
 const formatCurrency = (value) =>
   new Intl.NumberFormat('es-CR', {
@@ -90,11 +89,11 @@ const SavedCarts = () => {
       title='Mis carritos'
       description='Guardá combinaciones frecuentes y recuperalas cuando llegue la próxima compra.'
     >
-      <div className={styles.contentStack}>
-        <section className={styles.formCard} aria-labelledby='save-cart-title'>
-          <div className={styles.cardHeader}>
-            <div className={styles.cardTitleGroup}>
-              <span className={styles.smallIcon} aria-hidden='true'>
+      <div>
+        <section aria-labelledby='save-cart-title'>
+          <div>
+            <div>
+              <span aria-hidden='true'>
                 <BookmarkPlus size={21} />
               </span>
               <div>
@@ -110,7 +109,7 @@ const SavedCarts = () => {
 
           {cart.items.length ? (
             <form onSubmit={handleSave}>
-              <div className={styles.field}>
+              <div>
                 <label htmlFor='saved-cart-name'>Nombre del carrito</label>
                 <input
                   id='saved-cart-name'
@@ -119,7 +118,7 @@ const SavedCarts = () => {
                   onChange={(event) => setLabel(event.target.value)}
                 />
               </div>
-              <div className={styles.buttonRow}>
+              <div>
                 <Button type='submit' disabled={busyAction === 'save'}>
                   {busyAction === 'save' ? 'Guardando…' : 'Guardar selección'}
                 </Button>
@@ -129,17 +128,16 @@ const SavedCarts = () => {
               </div>
             </form>
           ) : (
-            <div className={styles.buttonRow}>
+            <div>
               <Button href='/productos'>Explorar productos</Button>
             </div>
           )}
-          <p className={styles.disclaimer}>
+          <p>
             Podés guardar hasta {maxSavedCarts} carritos. Al recuperarlos,
             comprobaremos que los productos sigan en el catálogo y sus precios actuales.
           </p>
           {message ? (
             <p
-              className={message.error ? styles.formError : styles.formMessage}
               role={message.error ? 'alert' : 'status'}
             >
               {message.text}
@@ -149,13 +147,13 @@ const SavedCarts = () => {
 
         {savedCarts.length ? (
           <section aria-labelledby='saved-carts-title'>
-            <div className={styles.cardHeader}>
+            <div>
               <div>
                 <h2 id='saved-carts-title'>Selecciones guardadas</h2>
                 <p>Revisá el contenido antes de retomar una compra.</p>
               </div>
             </div>
-            <div className={styles.cartGrid}>
+            <div>
               {savedCarts.map((savedCart) => {
                 const pendingDelete = pendingDeleteId === savedCart.id;
                 const pendingRestore = pendingRestoreId === savedCart.id;
@@ -163,13 +161,13 @@ const SavedCarts = () => {
                 const isDeleting = busyAction === `delete-${savedCart.id}`;
 
                 return (
-                  <article className={styles.savedCartCard} key={savedCart.id}>
-                    <div className={styles.savedCartHeader}>
+                  <article key={savedCart.id}>
+                    <div>
                       <div>
                         <h3>{savedCart.label}</h3>
                         <p>Guardado el {formatDate(savedCart.savedAt)}</p>
                       </div>
-                      <span className={styles.selectedBadge}>
+                      <span>
                         {savedCart.items.reduce(
                           (total, item) => total + item.quantity,
                           0
@@ -177,9 +175,9 @@ const SavedCarts = () => {
                         artículos
                       </span>
                     </div>
-                    <ul className={styles.cartItems}>
+                    <ul>
                       {savedCart.items.slice(0, 4).map((item) => (
-                        <li className={styles.cartItem} key={item.databaseId || item.id}>
+                        <li key={item.databaseId || item.id}>
                           <span>
                             {item.quantity} × {item.productName}
                           </span>
@@ -187,16 +185,16 @@ const SavedCarts = () => {
                         </li>
                       ))}
                       {savedCart.items.length > 4 ? (
-                        <li className={styles.cartItem}>
+                        <li>
                           <span>y {savedCart.items.length - 4} más…</span>
                         </li>
                       ) : null}
                     </ul>
-                    <div className={styles.portionCallout}>
+                    <div>
                       Total guardado de referencia:{' '}
                       <strong>{formatCurrency(savedCartTotal(savedCart))}</strong>
                     </div>
-                    <div className={styles.cardActions}>
+                    <div>
                       <Button
                         size='small'
                         disabled={isRestoring}
@@ -218,12 +216,12 @@ const SavedCarts = () => {
                       </Button>
                     </div>
                     {pendingRestore ? (
-                      <div className={styles.inlineConfirm} role='alert'>
+                      <div role='alert'>
                         <p>
                           Esto reemplazará los productos del carrito actual.
                           Comprobaremos el catálogo y los precios antes de continuar.
                         </p>
-                        <div className={styles.cardActions}>
+                        <div>
                           <Button
                             size='small'
                             onClick={() => reopenCart(savedCart)}
@@ -242,9 +240,9 @@ const SavedCarts = () => {
                       </div>
                     ) : null}
                     {pendingDelete ? (
-                      <div className={styles.inlineConfirm} role='alert'>
+                      <div role='alert'>
                         <p>¿Eliminar “{savedCart.label}”?</p>
-                        <div className={styles.cardActions}>
+                        <div>
                           <Button
                             size='small'
                             variant='danger'
@@ -269,7 +267,7 @@ const SavedCarts = () => {
             </div>
           </section>
         ) : (
-          <section className={styles.emptyState}>
+          <section>
             <ShoppingBasket aria-hidden='true' size={38} />
             <h2>Todavía no guardaste carritos</h2>
             <p>

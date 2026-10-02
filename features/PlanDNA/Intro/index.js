@@ -1,34 +1,14 @@
-import { Box, Typography } from '@mui/material';
-import React from 'react';
-
 import Button from '../../../components/Button';
 
-import styles from './Intro.module.scss';
-
-const Intro = ({ start }) => {
-  return (
-    <Box className={styles.intro}>
-      <div className={styles.intro_content}>
-        <Typography mb={2} component="h1" variant="h1">
-          ¡Hola!
-        </Typography>
-        <Typography paragraph>
-          A continuación te haremos algunas preguntas para conocer mejor a tu
-          mascota y poder recomendarte el mejor plan para ella.
-        </Typography>
-      </div>
-      
-      <Box
-        display="flex"
-        justifyContent="center"
-        className={styles.intro_actions}
-      >
-        <Button variant="primary" onClick={start}>
-          Comencemos
-        </Button>
-      </Box>
-    </Box>
-  );
-};
+const Intro = ({ start }) => (
+  <div>
+    <h1>¡Hola!</h1>
+    <p>
+      A continuación te haremos algunas preguntas para conocer mejor a tu
+      mascota y poder recomendarte el mejor plan para ella.
+    </p>
+    <Button onClick={start}>Comencemos</Button>
+  </div>
+);
 
 export default Intro;

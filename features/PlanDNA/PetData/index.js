@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
-import styles from './PetData.module.scss';
+
 import Button from '../../../components/Button';
 
 // components
@@ -71,20 +70,14 @@ const PetData = ({ initialPetInfo, onSubmit, startOver }) => {
   };
 
   return (
-    <div className={styles['pet-data']}>
-      <div className={styles['steps-carousel']}>
-        <Typography
-          color="textSecondary"
-          mb={2}
-          variant="caption"
-          display="block"
-          gutterBottom
-        >
+    <div>
+      <div>
+        <p>
           Paso {currentStep + 1} de {steps.length}
-        </Typography>
-        <Box className={styles['step-item']}>{steps[currentStep].component}</Box>
+        </p>
+        <div>{steps[currentStep].component}</div>
       </div>
-      <div className={styles['steps-navigation']}>
+      <div>
         <Button onClick={onPrevStep} variant="secondary">
           Anterior
         </Button>

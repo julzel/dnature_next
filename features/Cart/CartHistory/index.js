@@ -2,8 +2,6 @@ import { useCartContext } from '../model/shopping-cart-context';
 import { formatToLocaleDate } from '../lib/dates';
 import CurrencyText from '../../../components/Currency';
 
-import styles from './CartHistory.module.scss';
-
 const CartHistory = () => {
   // Shopping cart context
   const { clearSavedCarts, updateCurrentCart, localCarts } = useCartContext();
@@ -13,7 +11,7 @@ const CartHistory = () => {
   }
 
   return (
-    <div className={styles.cartHistory}>
+    <div>
       <h3>Solicitudes preparadas en este dispositivo</h3>
       <p>
         Son referencias locales para volver a armar un carrito; no representan
@@ -23,7 +21,7 @@ const CartHistory = () => {
         Eliminar referencias guardadas
       </button>
       {localCarts.map((cart) => (
-        <div className={styles.cartHistoryItem} key={cart.purchaseOrderId || cart.date}>
+        <div key={cart.purchaseOrderId || cart.date}>
           <div>
             <strong>Preparada: </strong><span>{formatToLocaleDate(cart.date)}</span>
             <button type="button" onClick={() => updateCurrentCart(cart)}>

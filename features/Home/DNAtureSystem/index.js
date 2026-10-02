@@ -1,8 +1,8 @@
-import Image from 'next/image';
+import Image from '../../../components/Image';
 import { ArrowRight, Check } from 'lucide-react';
 
 import Button from '../../../components/Button';
-import styles from './DNAtureSystem.module.scss';
+
 import benefits from './benefits';
 import planImage from '../../../public/images/plandna-mobile.jpg';
 
@@ -15,35 +15,32 @@ const systemFeatures = [
 const DNAtureSystem = () => {
   return (
     <section
-      className={styles.dnatureSystem}
       aria-labelledby='dnature-system-title'
     >
-      <div className={styles.container}>
-        <div className={styles.introduction}>
-          <div className={styles.imageFrame}>
+      <div>
+        <div>
+          <div>
             <Image
               src={planImage}
               alt='Selección de ingredientes naturales utilizados por DNAture'
-              fill
               sizes='(min-width: 1024px) 46vw, calc(100vw - 32px)'
-              className={styles.image}
             />
-            <span className={styles.imageLabel}>Nutrición real</span>
+            <span>Nutrición real</span>
           </div>
 
-          <div className={styles.introductionContent}>
-            <p className={styles.eyebrow}>El sistema DNAture</p>
+          <div>
+            <p>El sistema DNAture</p>
             <h2 id='dnature-system-title'>Una alimentación pensada para su bienestar</h2>
-            <p className={styles.lead}>
+            <p>
               Te ayudamos a incorporar alimentación natural de una forma
               sencilla, con productos frescos y una porción adecuada para tu
               mascota.
             </p>
 
-            <ul className={styles.features}>
+            <ul>
               {systemFeatures.map((feature) => (
                 <li key={feature}>
-                  <span className={styles.check} aria-hidden='true'>
+                  <span aria-hidden='true'>
                     <Check size={16} strokeWidth={3} />
                   </span>
                   {feature}
@@ -51,7 +48,7 @@ const DNAtureSystem = () => {
               ))}
             </ul>
 
-            <div className={styles.actions}>
+            <div>
               <Button
                 href='/calculadora'
                 size='large'
@@ -66,8 +63,8 @@ const DNAtureSystem = () => {
           </div>
         </div>
 
-        <div className={styles.benefitsHeading}>
-          <p className={styles.eyebrow}>Bienestar integral</p>
+        <div>
+          <p>Bienestar integral</p>
           <h3 id='dnature-benefits-title'>Beneficios que buscamos acompañar</h3>
           <p>
             Cada mascota es diferente. Su alimentación debe considerar su
@@ -76,12 +73,11 @@ const DNAtureSystem = () => {
         </div>
 
         <ol
-          className={styles.benefits}
           aria-labelledby='dnature-benefits-title'
         >
           {benefits.map((benefit, index) => (
-            <li key={benefit.title} className={styles.benefit}>
-              <span className={styles.benefitNumber} aria-hidden='true'>
+            <li key={benefit.title}>
+              <span aria-hidden='true'>
                 {String(index + 1).padStart(2, '0')}
               </span>
               <h4>{benefit.title}</h4>

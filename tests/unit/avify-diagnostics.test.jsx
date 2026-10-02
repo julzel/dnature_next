@@ -82,11 +82,25 @@ const report = {
 
 describe('Avify catalog reconciliation diagnostics', () => {
   beforeEach(() => {
+    getCatalogReconciliation.mockClear();
     getCatalogReconciliation.mockResolvedValue({
       success: true,
       code: 'CATALOG_RECONCILIATION_READY',
       report,
     });
+  });
+
+  it('renders structured error details without crashing the development page', async () => {
+    getCatalogReconciliation.mockResolvedValue({
+      success: false,
+      message: 'No se pudo obtener el catálogo.',
+      developmentDetails: { code: 'AVIFY_UNAVAILABLE', status: 503 },
+    });
+
+    render(await AvifyDiagnostics());
+
+    expect(screen.getByRole('alert')).toHaveTextContent('AVIFY_UNAVAILABLE');
+    expect(screen.getByRole('alert')).toHaveTextContent('503');
   });
 
   it('renders a simplified reconciliation report', async () => {

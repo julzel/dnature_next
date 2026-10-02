@@ -17,7 +17,6 @@ import { useState } from 'react';
 
 import Button from '../../../components/Button';
 import { useAccount } from '../state';
-import styles from '../Account.module.scss';
 
 const navigationItems = [
   { href: '/cuenta', label: 'Inicio', icon: House },
@@ -56,9 +55,9 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
   if (!isReady) {
     return (
-      <div className={styles.accountPage}>
-        <div className={styles.loadingCard} role='status'>
-          <span className={styles.loadingMark} aria-hidden='true' />
+      <div>
+        <div role='status'>
+          <span aria-hidden='true' />
           Preparando tu cuenta…
         </div>
       </div>
@@ -67,19 +66,19 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
   if (!isAuthenticated) {
     return (
-      <div className={styles.accountPage}>
-        <div className={styles.signedOutWrap}>
-          <section className={styles.signedOutCard}>
-            <span className={styles.roundIcon} aria-hidden='true'>
+      <div>
+        <div>
+          <section>
+            <span aria-hidden='true'>
               <ShieldCheck size={32} />
             </span>
-            <p className={styles.eyebrow}>Espacio personal</p>
+            <p>Espacio personal</p>
             <h1>Iniciá sesión para ver esta sección</h1>
             <p>
               Ingresá para consultar tus mascotas, tus datos y tus carritos
               guardados.
             </p>
-            <div className={styles.buttonRowCentered}>
+            <div>
               <Button href='/cuenta/iniciar-sesion'>Iniciar sesión</Button>
               <Button href='/' variant='secondary'>
                 Volver al inicio
@@ -93,29 +92,29 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
   if (!profile.ageConfirmed) {
     return (
-      <div className={styles.accountPage}>
-        <div className={styles.signedOutWrap}>
-          <section className={styles.signedOutCard}>
-            <span className={styles.roundIcon} aria-hidden='true'>
+      <div>
+        <div>
+          <section>
+            <span aria-hidden='true'>
               <ShieldCheck size={32} />
             </span>
-            <p className={styles.eyebrow}>Un paso más</p>
+            <p>Un paso más</p>
             <h1>Confirmá tu edad para continuar</h1>
             <p>
               Los servicios en línea de Mi DNAture están disponibles para
               personas mayores de 18 años.
             </p>
             {confirmationError ? (
-              <p className={styles.formError} role='alert'>
+              <p role='alert'>
                 {confirmationError}
               </p>
             ) : null}
             {signOutError ? (
-              <p className={styles.formError} role='alert'>
+              <p role='alert'>
                 {signOutError}
               </p>
             ) : null}
-            <div className={styles.buttonRowCentered}>
+            <div>
               <Button onClick={handleAgeConfirmation} disabled={isConfirmingAge}>
                 {isConfirmingAge ? 'Guardando…' : 'Confirmo que tengo 18 años o más'}
               </Button>
@@ -130,12 +129,12 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
   }
 
   return (
-    <div className={styles.accountPage}>
-      <div className={styles.accountContainer}>
-        <div className={styles.accountGrid}>
-          <aside className={styles.sidebar}>
-            <div className={styles.sidebarIdentity}>
-              <span className={styles.avatar} aria-hidden='true'>
+    <div>
+      <div>
+        <div>
+          <aside>
+            <div>
+              <span aria-hidden='true'>
                 {(profile.firstName || 'C').charAt(0).toUpperCase()}
               </span>
               <div>
@@ -147,7 +146,6 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
             <button
               type='button'
-              className={styles.mobileMenuButton}
               aria-expanded={isMenuOpen}
               aria-controls='account-navigation'
               onClick={() => setIsMenuOpen((open) => !open)}
@@ -158,9 +156,7 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
 
             <nav
               id='account-navigation'
-              className={`${styles.accountNavigation} ${
-                isMenuOpen ? styles.accountNavigationOpen : ''
-              }`}
+              hidden={!isMenuOpen}
               aria-label='Mi cuenta'
             >
               {navigationItems.map(({ href, label, icon: Icon }) => {
@@ -171,7 +167,6 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
                   <Link
                     href={href}
                     key={href}
-                    className={isActive ? styles.navLinkActive : styles.navLink}
                     aria-current={isActive ? 'page' : undefined}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -180,26 +175,26 @@ const AccountShell = ({ children, eyebrow, title, description, action }) => {
                   </Link>
                 );
               })}
-              <button type='button' className={styles.signOutLink} onClick={handleSignOut}>
+              <button type='button' onClick={handleSignOut}>
                 <LogOut aria-hidden='true' size={20} />
                 Cerrar sesión
               </button>
               {signOutError ? (
-                <p className={styles.navigationError} role='alert'>
+                <p role='alert'>
                   {signOutError}
                 </p>
               ) : null}
             </nav>
           </aside>
 
-          <div className={styles.accountContent}>
-            <header className={styles.pageHeading}>
+          <div>
+            <header>
               <div>
-                {eyebrow ? <p className={styles.eyebrow}>{eyebrow}</p> : null}
+                {eyebrow ? <p>{eyebrow}</p> : null}
                 <h1>{title}</h1>
                 {description ? <p>{description}</p> : null}
               </div>
-              {action ? <div className={styles.headingAction}>{action}</div> : null}
+              {action ? <div>{action}</div> : null}
             </header>
             {children}
           </div>

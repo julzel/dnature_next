@@ -1,45 +1,32 @@
 import Link from 'next/link';
 
-import styles from './Button.module.scss';
-
 const Button = ({
   as,
   children,
-  className = '',
+  className: _className,
   disabled = false,
-  fullWidth = false,
+  fullWidth: _fullWidth,
   href,
   iconEnd,
   iconOnly = false,
   iconStart,
   loading = false,
   onClick,
-  size = 'medium',
+  size: _size,
   text,
   type = 'button',
-  variant = 'primary',
+  variant: _variant,
   ...props
 }) => {
   const content = text || children || null;
   const isDisabled = disabled || loading;
   const Component = as || (href ? Link : 'button');
-  const classNames = [
-    styles.button,
-    styles[variant],
-    styles[size],
-    fullWidth ? styles.fullWidth : '',
-    iconOnly ? styles.iconOnly : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   const buttonContent = (
     <>
-      {loading && <span className={styles.spinner} aria-hidden="true" />}
-      {!loading && iconStart ? <span className={styles.icon}>{iconStart}</span> : null}
+      {loading && !content && <span role="status">Cargando… </span>}
+      {!loading && iconStart ? <span>{iconStart}</span> : null}
       {iconOnly ? null : content}
-      {!loading && iconEnd ? <span className={styles.icon}>{iconEnd}</span> : null}
+      {!loading && iconEnd ? <span>{iconEnd}</span> : null}
     </>
   );
 
@@ -47,7 +34,6 @@ const Button = ({
     return (
       <button
         type={type}
-        className={classNames}
         disabled={isDisabled}
         aria-busy={loading || undefined}
         onClick={onClick}
@@ -61,7 +47,6 @@ const Button = ({
   if (isDisabled) {
     return (
       <span
-        className={classNames}
         role="link"
         aria-busy={loading || undefined}
         aria-disabled="true"
@@ -74,7 +59,6 @@ const Button = ({
 
   const linkProps = {
     href,
-    className: classNames,
     'aria-busy': loading || undefined,
     'aria-disabled': undefined,
     tabIndex: props.tabIndex,

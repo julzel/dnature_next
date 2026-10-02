@@ -1,21 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from '../../Image';
 
 // local imports
-
-// styles
-import styles from './HeaderNav.module.scss';
 
 import NavigationBar from './NavigationBar';
 
 const HeaderNav = ({ mobileNavigation, navigationItems }) => {
   return (
-    <div className={styles.headerNav}>
-      <div className={styles.mobileNavigation}>{mobileNavigation}</div>
-      <div className={styles.logoContainer}>
+    <div>
+      <div>{mobileNavigation}</div>
+      <div>
         <Link href={'/'} aria-label='Ir al inicio'>
-          <span className={styles.logo}>
+          <span>
             <Image
               src='/images/dnature-logo.svg'
               alt='DNAture Logo'
@@ -26,7 +23,7 @@ const HeaderNav = ({ mobileNavigation, navigationItems }) => {
           </span>
         </Link>
       </div>
-      <div className={styles.desktopNavigation}>
+      <div>
         <NavigationBar items={navigationItems} />
       </div>
     </div>

@@ -17,7 +17,6 @@ import {
 
 import { WHATSAPP_URL } from '../../../constants/contact';
 import { faqCategories } from './data';
-import styles from './FaqList.module.scss';
 
 const categoryIcons = {
   leaf: Leaf,
@@ -79,7 +78,7 @@ const AnswerBlock = ({ block }) => {
   });
 
   return (
-    <p className={block.type === 'note' ? styles.note : undefined}>
+    <p>
       {content || block.text}
     </p>
   );
@@ -122,9 +121,9 @@ const FaqList = () => {
   };
 
   return (
-    <section className={styles.faq} id="preguntas" aria-labelledby="faq-library-title">
-      <div className={styles.heading}>
-        <p className={styles.eyebrow}>Información práctica</p>
+    <section id="preguntas" aria-labelledby="faq-library-title">
+      <div>
+        <p>Información práctica</p>
         <h2 id="faq-library-title">¿Qué necesitás saber?</h2>
         <p>
           Buscá una palabra o explorá por tema. Podés abrir solamente las
@@ -132,9 +131,9 @@ const FaqList = () => {
         </p>
       </div>
 
-      <div className={styles.searchWrap} role="search">
-        <Search className={styles.searchIcon} aria-hidden="true" size={20} />
-        <label className="visually-hidden" htmlFor={`${idPrefix}-faq-search`}>
+      <div role="search">
+        <Search aria-hidden="true" size={20} />
+        <label htmlFor={`${idPrefix}-faq-search`}>
           Buscar en preguntas frecuentes
         </label>
         <input
@@ -150,7 +149,6 @@ const FaqList = () => {
         />
         {query ? (
           <button
-            className={styles.clearSearch}
             type="button"
             onClick={() => setQuery('')}
             aria-label="Limpiar búsqueda"
@@ -160,7 +158,7 @@ const FaqList = () => {
         ) : null}
       </div>
 
-      <div className={styles.mobileFilters} aria-label="Filtrar por tema">
+      <div aria-label="Filtrar por tema">
         <button
           type="button"
           aria-pressed={activeCategory === 'all'}
@@ -182,8 +180,8 @@ const FaqList = () => {
         ))}
       </div>
 
-      <div className={styles.layout}>
-        <aside className={styles.sidebar} aria-label="Temas de preguntas frecuentes">
+      <div>
+        <aside aria-label="Temas de preguntas frecuentes">
           <p>Explorar por tema</p>
           <nav>
             <button
@@ -191,7 +189,7 @@ const FaqList = () => {
               aria-current={activeCategory === 'all' ? 'true' : undefined}
               onClick={() => selectCategory('all')}
             >
-              <span className={styles.navIcon}><Search aria-hidden="true" size={18} /></span>
+              <span><Search aria-hidden="true" size={18} /></span>
               <span>Todos los temas</span>
               <small>{faqCategories.reduce((total, category) => total + category.items.length, 0)}</small>
             </button>
@@ -204,7 +202,7 @@ const FaqList = () => {
                   aria-current={activeCategory === category.id ? 'true' : undefined}
                   onClick={() => selectCategory(category.id)}
                 >
-                  <span className={styles.navIcon}><Icon aria-hidden="true" size={18} /></span>
+                  <span><Icon aria-hidden="true" size={18} /></span>
                   <span>{category.label}</span>
                   <small>{category.items.length}</small>
                 </button>
@@ -212,7 +210,7 @@ const FaqList = () => {
             })}
           </nav>
 
-          <div className={styles.helpCard}>
+          <div>
             <MessageCircleMore aria-hidden="true" size={22} />
             <strong>¿Necesitás ayuda personal?</strong>
             <p>Lun–Vie 8:00 a. m.–5:00 p. m.<br />Sáb 8:00 a. m.–4:30 p. m.</p>
@@ -222,8 +220,8 @@ const FaqList = () => {
           </div>
         </aside>
 
-        <div className={styles.results}>
-          <p className={styles.resultCount} aria-live="polite">
+        <div>
+          <p aria-live="polite">
             {resultCount === 1
               ? '1 respuesta encontrada'
               : `${resultCount} respuestas encontradas`}
@@ -234,11 +232,10 @@ const FaqList = () => {
               const Icon = categoryIcons[category.icon];
               return (
                 <section
-                  className={styles.category}
                   key={category.id}
                   aria-labelledby={`${idPrefix}-${category.id}-title`}
                 >
-                  <div className={styles.categoryHeading}>
+                  <div>
                     <span><Icon aria-hidden="true" size={22} /></span>
                     <div>
                       <h3 id={`${idPrefix}-${category.id}-title`}>{category.label}</h3>
@@ -246,14 +243,13 @@ const FaqList = () => {
                     </div>
                   </div>
 
-                  <div className={styles.questionList}>
+                  <div>
                     {category.items.map((item) => {
                       const isOpen = selectedQuestion === item.id;
                       const triggerId = `${idPrefix}-${item.id}-trigger`;
                       const answerId = `${idPrefix}-${item.id}-answer`;
                       return (
                         <article
-                          className={styles.question}
                           id={`faq-${item.id}`}
                           key={item.id}
                         >
@@ -267,7 +263,6 @@ const FaqList = () => {
                             >
                               <span>{item.question}</span>
                               <ChevronDown
-                                className={isOpen ? styles.chevronOpen : undefined}
                                 aria-hidden="true"
                                 size={20}
                               />
@@ -275,7 +270,6 @@ const FaqList = () => {
                           </h4>
                           <div
                             id={answerId}
-                            className={styles.answer}
                             role="region"
                             aria-labelledby={triggerId}
                             hidden={!isOpen}
@@ -292,7 +286,7 @@ const FaqList = () => {
               );
             })
           ) : (
-            <div className={styles.emptyState}>
+            <div>
               <Search aria-hidden="true" size={28} />
               <h3>No encontramos esa respuesta</h3>
               <p>Probá con otra palabra o consultanos directamente.</p>

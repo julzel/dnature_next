@@ -4,29 +4,29 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-// styles
-import styles from './NavigationBar.module.scss';
-
 const NavigationBar = ({ items }) => {
   const pathname = usePathname();
   const activePathname = pathname || '';
 
   return (
-    <nav className={styles.navbar} aria-label='Navegación principal'>
-      {items.map((link) => (
-        <Link
-          href={link.href}
-          key={link.href}
-          className={`${styles.navbarItem} ${
-            activePathname === link.href ||
-            (link.href !== '/' && activePathname.startsWith(`${link.href}/`))
-              ? styles.active
-              : ''
-          }`}
-        >
-          {link.label}
-        </Link>
-      ))}
+    <nav aria-label='Navegación principal'>
+      <ul>
+        {items.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              aria-current={
+                activePathname === link.href ||
+                (link.href !== '/' && activePathname.startsWith(`${link.href}/`))
+                  ? 'page'
+                  : undefined
+              }
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };

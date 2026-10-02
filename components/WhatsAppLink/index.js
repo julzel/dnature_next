@@ -1,11 +1,10 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '../Icon';
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 // Reusable WhatsApp link wrapper
 // Props:
 // - phone: string (digits only or with country code)
-// - className: string (styling classes passed from parent)
 // - display: optional custom display text (fallbacks to formatted phone)
 // - children: optional custom children; if provided they override display text
 // - targetBlank: boolean (default true) whether to open in new tab
@@ -13,7 +12,7 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 // Use the shared DNAture E.164 number from constants/contact for official links.
 const WhatsAppLink = ({
   phone,
-  className,
+  className: _className,
   display,
   children,
   targetBlank = true,
@@ -28,14 +27,12 @@ const WhatsAppLink = ({
   return (
     <a
       href={href}
-      className={className}
       aria-label={iconOnly ? `Contactar por WhatsApp al ${content}` : undefined}
       {...props}
       {...(targetBlank ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      style={{ display: "flex", flexFlow: "column", alignItems: "center" }}
     >
       {(withIcon || iconOnly) && (
-        <span style={{ fontSize: "14px" }}>
+        <span>
           <FontAwesomeIcon icon={faWhatsapp} size="2x" />
         </span>
       )}

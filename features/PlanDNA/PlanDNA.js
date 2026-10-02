@@ -17,8 +17,6 @@ import Intro from './Intro';
 import PetData from './PetData';
 import PetDataResult from './PetDataResult';
 
-import styles from './PlanDNA.module.scss';
-
 const initialClient = {
   firstName: '',
   lastName: '',
@@ -103,7 +101,7 @@ const PlanDNA = () => {
   };
 
   return (
-    <div className={styles['plan-dna']}>
+    <div>
       {visibleStep === 0 && <Intro start={() => setStep(1)} />}
       {visibleStep === 1 && (
         <PetData

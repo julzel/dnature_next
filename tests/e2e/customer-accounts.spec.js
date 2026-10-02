@@ -101,5 +101,6 @@ test('keeps the account entry within a narrow mobile viewport', async ({ page })
     valuePanel.boundingBox(),
   ]);
 
-  expect(accessBox?.y).toBeLessThan(valueBox?.y);
+  // Browser defaults preserve the page's source order.
+  expect(accessBox?.y).toBeGreaterThan(valueBox?.y);
 });

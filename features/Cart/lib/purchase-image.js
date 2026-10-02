@@ -20,7 +20,7 @@ const downloadScreenShot = (dataUrl, filename) => {
   const objectUrl = URL.createObjectURL(blob);
   link.href = objectUrl;
   link.download = filename;
-  link.style.display = "none";
+  link.hidden = true;
   try {
     document.body.appendChild(link);
     link.click();
@@ -33,7 +33,13 @@ const downloadScreenShot = (dataUrl, filename) => {
 const captureElementScreenshot = async (element) => {
   try {
     const { default: html2canvas } = await import("html2canvas");
-    const canvas = await html2canvas(element, { useCORS: true });
+    const canvas = await html2canvas(element, {
+      useCORS: true,
+      // The export-only order stays hidden on the page, but is visible in the clone.
+      onclone: (_document, clonedElement) => {
+        clonedElement.hidden = false;
+      },
+    });
 
     // Convert the canvas to a data URL (Base64 encoded image)
     const screenshotDataUrl = canvas.toDataURL("image/png");

@@ -36,7 +36,7 @@ test('puppy calculator uses its shorter flow and produces a result', async ({ pa
   await page.getByRole('button', { name: 'Siguiente' }).click();
   await expect(
     page.getByRole('progressbar', { name: 'Progreso de la calculadora' }),
-  ).toHaveAttribute('aria-valuemax', '3');
+  ).toHaveAttribute('max', '3');
 
   await page.getByRole('radio', { name: /Etapa 1/ }).check();
   await page.getByRole('button', { name: 'Siguiente' }).click();

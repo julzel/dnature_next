@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
 import DropdownMenu from '../DropdownMenu';
-import styles from './MobileNavigation.module.scss';
 
 const MobileNavigation = ({ items }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +44,7 @@ const MobileNavigation = ({ items }) => {
   }, [isOpen]);
 
   return (
-    <div ref={controlRef} className={styles.control}>
+    <div ref={controlRef}>
       {isOpen && (
         <DropdownMenu
           items={items}
@@ -55,7 +54,6 @@ const MobileNavigation = ({ items }) => {
       <button
         ref={triggerRef}
         type="button"
-        className={styles.menuButton}
         onClick={() => setIsOpen((currentValue) => !currentValue)}
         aria-expanded={isOpen}
         aria-controls="mobile-navigation"

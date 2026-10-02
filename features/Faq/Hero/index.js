@@ -1,34 +1,32 @@
-import Image from 'next/image';
+import Image from '../../../components/Image';
 import Link from 'next/link';
 import { ArrowDown, MessageCircleMore } from 'lucide-react';
 
 import { WHATSAPP_URL } from '../../../constants/contact';
-import styles from './Hero.module.scss';
 
 const Hero = () => (
-  <section className={styles.hero} aria-labelledby="faq-title">
-    <div className={styles.shell}>
-      <div className={styles.copy}>
-        <nav className={styles.breadcrumbs} aria-label="Migas de pan">
+  <section aria-labelledby="faq-title">
+    <div>
+      <div>
+        <nav aria-label="Migas de pan">
           <ol>
             <li><Link href="/">Inicio</Link></li>
             <li aria-current="page">Preguntas frecuentes</li>
           </ol>
         </nav>
-        <p className={styles.eyebrow}>Centro de ayuda</p>
+        <p>Centro de ayuda</p>
         <h1 id="faq-title">Respuestas para cuidarles mejor</h1>
-        <p className={styles.intro}>
+        <p>
           Encontrá información clara sobre alimentación natural, productos,
           conservación, pedidos y cuidados para perros y gatos.
         </p>
 
-        <div className={styles.actions}>
-          <a className={styles.primaryAction} href="#preguntas">
+        <div>
+          <a href="#preguntas">
             Explorar preguntas
             <ArrowDown aria-hidden="true" size={18} />
           </a>
           <a
-            className={styles.secondaryAction}
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -38,18 +36,18 @@ const Hero = () => (
           </a>
         </div>
 
-        <p className={styles.scopeNote}>
+        <p>
           La orientación general no sustituye la valoración de un médico
           veterinario cuando existe una condición de salud.
         </p>
       </div>
 
-      <figure className={styles.visual}>
+      <figure>
         <Image
-          className={styles.image}
           src="/faq/faq.jpg"
+          width={300}
+          height={375}
           alt="Perro sosteniendo un hueso carnoso al aire libre"
-          fill
           priority
           sizes="(max-width: 767px) 100vw, 44vw"
         />

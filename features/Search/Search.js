@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
 
 import ContentfulImage from '../../components/ContentfulImage';
-import styles from './Search.module.scss';
 
 const MIN_QUERY_LENGTH = 2;
 const SEARCH_DELAY_MS = 220;
@@ -15,7 +14,6 @@ const Search = ({
   id,
   focusInput = false,
   onNavigate,
-  variant = 'default',
 }) => {
   const router = useRouter();
   const resultsId = useId();
@@ -144,19 +142,15 @@ const Search = ({
   return (
     <div
       ref={containerRef}
-      className={`${styles.searchShell} ${
-        variant === 'headerPanel' ? styles.headerPanel : ''
-      }`}
       role='search'
     >
-      <div className={styles.searchField}>
+      <div>
         <SearchIcon
-          className={styles.searchIcon}
           aria-hidden='true'
           size={16}
           strokeWidth={2}
         />
-        <label className='visually-hidden' htmlFor={id}>
+        <label htmlFor={id}>
           Buscar productos
         </label>
         <input
@@ -181,7 +175,6 @@ const Search = ({
         />
         {query && (
           <button
-            className={styles.clearButton}
             type='button'
             aria-label='Limpiar búsqueda'
             onClick={handleClear}
@@ -192,47 +185,44 @@ const Search = ({
       </div>
 
       {showResults && (
-        <div id={resultsId} className={styles.resultsPanel}>
+        <div id={resultsId}>
           {(status === 'pending' || status === 'loading') && (
-            <p className={styles.status} role='status'>
-              <span className={styles.spinner} aria-hidden='true' />
+            <p role='status'>
+              <span aria-hidden='true' />
               Buscando productos…
             </p>
           )}
 
           {status === 'error' && (
-            <p className={styles.status} role='status'>
+            <p role='status'>
               No pudimos buscar ahora. Intenta de nuevo.
             </p>
           )}
 
           {status === 'success' && results.length === 0 && (
-            <p className={styles.status} role='status'>
+            <p role='status'>
               No encontramos productos para “{normalizedQuery}”.
             </p>
           )}
 
           {status === 'success' && results.length > 0 && (
             <>
-              <div className={styles.resultsHeader}>
+              <div>
                 <span>Productos</span>
                 <span>{results.length} resultados</span>
               </div>
               <ul
-                className={styles.resultsList}
                 role='listbox'
                 aria-label='Resultados de búsqueda'
               >
                 {results.map((result, index) => (
                   <li
                     key={`${result.type}:${result.id}`}
-                    className={styles.resultItem}
                     role='none'
                   >
                     <Link
                       id={`${resultsId}-option-${index}`}
                       href={result.href}
-                      className={styles.resultLink}
                       role='option'
                       aria-selected={activeIndex === index}
                       onMouseEnter={() => setActiveIndex(index)}
@@ -242,7 +232,7 @@ const Search = ({
                         onNavigate?.();
                       }}
                     >
-                      <span className={styles.thumbnail}>
+                      <span>
                         {result.image ? (
                           <ContentfulImage
                             src={result.image.url}
@@ -252,12 +242,12 @@ const Search = ({
                             sizes='48px'
                           />
                         ) : (
-                          <span className={styles.thumbnailFallback}>
+                          <span>
                             {result.title.charAt(0).toUpperCase()}
                           </span>
                         )}
                       </span>
-                      <span className={styles.resultCopy}>
+                      <span>
                         <strong>{result.title}</strong>
                         <small>{result.subtitle}</small>
                       </span>

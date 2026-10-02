@@ -3,17 +3,14 @@ import React from "react";
 import Button from "../Button";
 
 // local imports
-// styles
-import styles from "./MessageBox.module.scss";
 
 const MessageBox = ({ children, type, onClose, onCancel }) => {
   return (
-    <div className={`${styles.messageBoxContainer} ${styles[type]}`}>
+    <div>
       {children}
-      <div className={styles.actions}>
+      <div>
         {onCancel && (
           <Button
-            className={styles.button}
             variant="secondary"
             onClick={onCancel}
           >
@@ -22,7 +19,6 @@ const MessageBox = ({ children, type, onClose, onCancel }) => {
         )}
         {onClose && (
           <Button
-            className={styles.button}
             variant={type === 'warning' || type === 'error' ? 'danger' : 'primary'}
             onClick={onClose}
           >

@@ -1,17 +1,7 @@
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
-
 import Analytics from './analytics';
 import Providers from './providers';
 import Layout from '../components/Layout';
 import { defaultSocialImage, siteUrl } from '../constants/seo';
-
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import '@fontsource/corinthia/700.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import '../styles/globals.scss';
 
 const defaultTitle = 'DNAture - Alimentación natural para mascotas';
 const defaultDescription =
@@ -59,11 +49,9 @@ const organization = {
 const RootLayout = ({ children }) => (
   <html lang='es-CR'>
     <body>
-      <AppRouterCacheProvider>
-        <Providers>
-          <Layout>{children}</Layout>
-        </Providers>
-      </AppRouterCacheProvider>
+      <Providers>
+        <Layout>{children}</Layout>
+      </Providers>
       <Analytics />
       <script
         type='application/ld+json'

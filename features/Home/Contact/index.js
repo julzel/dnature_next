@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '../../../components/Icon';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import {
   ArrowUpRight,
@@ -17,7 +17,6 @@ import {
 } from '../../../constants/contact';
 import { STORE_GOOGLE_MAPS_URL } from '../../../constants/store';
 import Map from './Map';
-import styles from './Contact.module.scss';
 
 const contactChannels = [
   {
@@ -49,16 +48,16 @@ const contactChannels = [
 ];
 
 const Contact = () => (
-  <section className={styles.contact} aria-labelledby='contact-title'>
-    <div className={styles.shell}>
-      <header className={styles.header}>
-        <p className={styles.eyebrow}>Estamos para ayudarte</p>
+  <section aria-labelledby='contact-title'>
+    <div>
+      <header>
+        <p>Estamos para ayudarte</p>
         <h2 id='contact-title'>Cuéntanos de tu mascota.</h2>
-        <p className={styles.intro}>
+        <p>
           Te ayudamos a elegir productos, resolver dudas y coordinar tu pedido
           de una forma sencilla y cercana.
         </p>
-        <ul className={styles.serviceDetails} aria-label='Horario de atención'>
+        <ul aria-label='Horario de atención'>
           <li>
             <Clock3 aria-hidden='true' size={16} />
             {DNATURE_SUPPORT_HOURS}
@@ -67,38 +66,34 @@ const Contact = () => (
         </ul>
       </header>
 
-      <div className={styles.contentGrid}>
-        <div className={styles.channels}>
-          <div className={styles.channelList}>
+      <div>
+        <div>
+          <div>
             {contactChannels.map((channel) => {
               const Icon = channel.icon;
               const opensNewTab = channel.external !== false;
 
               return (
                 <a
-                  className={`${styles.channelCard} ${
-                    channel.featured ? styles.featured : ''
-                  }`}
                   href={channel.href}
                   key={channel.id}
                   {...(opensNewTab
                     ? { target: '_blank', rel: 'noopener noreferrer' }
                     : {})}
                 >
-                  <span className={styles.channelIcon} aria-hidden='true'>
+                  <span aria-hidden='true'>
                     {channel.brandIcon ? (
                       <FontAwesomeIcon icon={channel.brandIcon} />
                     ) : (
                       <Icon size={22} strokeWidth={1.9} />
                     )}
                   </span>
-                  <span className={styles.channelCopy}>
+                  <span>
                     <small>{channel.eyebrow}</small>
                     <strong>{channel.title}</strong>
                     <span>{channel.detail}</span>
                   </span>
                   <ArrowUpRight
-                    className={styles.channelArrow}
                     aria-hidden='true'
                     size={18}
                   />
@@ -107,7 +102,7 @@ const Contact = () => (
             })}
           </div>
 
-          <div className={styles.assistanceNote}>
+          <div>
             <span aria-hidden='true'>DNA</span>
             <div>
               <strong>Atención personalizada</strong>
@@ -119,15 +114,15 @@ const Contact = () => (
           </div>
         </div>
 
-        <article className={styles.locationCard} aria-labelledby='location-title'>
-          <div className={styles.mapFrame}>
+        <article aria-labelledby='location-title'>
+          <div>
             <Map />
           </div>
-          <div className={styles.locationDetails}>
-            <span className={styles.locationIcon} aria-hidden='true'>
+          <div>
+            <span aria-hidden='true'>
               <MapPin size={22} strokeWidth={1.9} />
             </span>
-            <div className={styles.locationCopy}>
+            <div>
               <p>Colima de Tibás · San José</p>
               <h3 id='location-title'>También podés pasar por nuestro local</h3>
               <span>
@@ -136,7 +131,6 @@ const Contact = () => (
               </span>
             </div>
             <a
-              className={styles.mapLink}
               href={STORE_GOOGLE_MAPS_URL}
               target='_blank'
               rel='noopener noreferrer'

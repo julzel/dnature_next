@@ -16,7 +16,6 @@ import Button from '../../components/Button';
 import { useCartContext } from '../Cart/state';
 import { useAccount } from './state';
 import AccountShell from './components/AccountShell';
-import styles from './Account.module.scss';
 
 const planDays = [7, 14, 30];
 
@@ -55,10 +54,10 @@ const Dashboard = () => {
       title={`¡Hola, ${profile.firstName || 'Cliente'}!`}
       description='Una vista clara de tus mascotas, tus datos y tus próximas compras.'
     >
-      <div className={styles.contentStack}>
-        <section className={styles.heroCard}>
+      <div>
+        <section>
           <div>
-            <p className={styles.eyebrow}>Tu espacio DNAture</p>
+            <p>Tu espacio DNAture</p>
             <h2>
               {pets.length
                 ? 'Su bienestar, más fácil de organizar.'
@@ -69,7 +68,7 @@ const Dashboard = () => {
                 ? 'Mantené su información al día, prepará la compra y encontrá todo en un solo lugar.'
                 : 'Agregá los datos de tu mascota para empezar a personalizar esta experiencia.'}
             </p>
-            <div className={styles.buttonRow}>
+            <div>
               <Button
                 href='/cuenta/mascotas'
                 variant='secondary'
@@ -79,23 +78,23 @@ const Dashboard = () => {
               </Button>
             </div>
           </div>
-          <div className={styles.heroStats}>
-            <div className={styles.heroStat}>
+          <div>
+            <div>
               <strong>{pets.length}</strong>
               <span>{pets.length === 1 ? 'mascota' : 'mascotas'}</span>
             </div>
-            <div className={styles.heroStat}>
+            <div>
               <strong>{savedCarts.length}</strong>
               <span>carritos guardados</span>
             </div>
           </div>
         </section>
 
-        <div className={styles.twoColumnGrid}>
-          <section className={styles.card} aria-labelledby='pet-summary-title'>
-            <div className={styles.cardHeader}>
-              <div className={styles.cardTitleGroup}>
-                <span className={styles.smallIcon} aria-hidden='true'>
+        <div>
+          <section aria-labelledby='pet-summary-title'>
+            <div>
+              <div>
+                <span aria-hidden='true'>
                   {portionEnabled ? <CalendarDays size={21} /> : <PawPrint size={21} />}
                 </span>
                 <div>
@@ -114,12 +113,11 @@ const Dashboard = () => {
             {selectedPet ? (
               <>
                 {pets.length > 1 ? (
-                  <div className={styles.segmentedControl} aria-label='Elegir mascota'>
+                  <div aria-label='Elegir mascota'>
                     {pets.map((pet) => (
                       <button
                         key={pet.id}
                         type='button'
-                        className={pet.id === selectedPet.id ? styles.segmentActive : ''}
                         aria-pressed={pet.id === selectedPet.id}
                         onClick={() => choosePet(pet.id)}
                       >
@@ -130,12 +128,12 @@ const Dashboard = () => {
                 ) : null}
                 {portionEnabled ? (
                   <>
-                    <div className={styles.metricRow}>
-                      <div className={styles.metric}>
+                    <div>
+                      <div>
                         <strong>{Math.round(selectedPet.portionSize)} g</strong>
                         <span>porción diaria de {selectedPet.name}</span>
                       </div>
-                      <div className={styles.metric}>
+                      <div>
                         <strong>
                           {totalKg.toLocaleString('es-CR', {
                             maximumFractionDigits: 1,
@@ -146,13 +144,12 @@ const Dashboard = () => {
                       </div>
                     </div>
 
-                    <div className={styles.buttonRow}>
-                      <div className={styles.segmentedControl} aria-label='Duración del plan'>
+                    <div>
+                      <div aria-label='Duración del plan'>
                         {planDays.map((option) => (
                           <button
                             key={option}
                             type='button'
-                            className={days === option ? styles.segmentActive : ''}
                             aria-pressed={days === option}
                             onClick={() => setDays(option)}
                           >
@@ -162,7 +159,7 @@ const Dashboard = () => {
                       </div>
                     </div>
 
-                    <p className={styles.disclaimer}>
+                    <p>
                       Equivale aproximadamente a {oneKgPackages}{' '}
                       {oneKgPackages === 1 ? 'paquete' : 'paquetes'} de 1 kg. La
                       porción es una referencia y no sustituye la recomendación
@@ -170,19 +167,19 @@ const Dashboard = () => {
                     </p>
                   </>
                 ) : (
-                  <div className={styles.metricRow}>
-                    <div className={styles.metric}>
+                  <div>
+                    <div>
                       <strong>{selectedPet.name}</strong>
                       <span>{selectedPet.age === 'puppy' ? 'cachorro' : 'adulto'}</span>
                     </div>
-                    <div className={styles.metric}>
+                    <div>
                       <strong>{selectedPet.weight} kg</strong>
                       <span>peso registrado</span>
                     </div>
                   </div>
                 )}
 
-                <div className={styles.buttonRow}>
+                <div>
                   {portionEnabled ? (
                     <Button href='/productos' size='small'>
                       Explorar productos
@@ -194,7 +191,7 @@ const Dashboard = () => {
                 </div>
               </>
             ) : (
-              <div className={styles.emptyState}>
+              <div>
                 <PawPrint aria-hidden='true' size={34} />
                 <h3>Todavía no hay mascotas</h3>
                 <p>Creá un perfil para reunir aquí su información.</p>
@@ -203,10 +200,10 @@ const Dashboard = () => {
             )}
           </section>
 
-          <section className={styles.card} aria-labelledby='cart-summary-title'>
-            <div className={styles.cardHeader}>
-              <div className={styles.cardTitleGroup}>
-                <span className={styles.smallIcon} aria-hidden='true'>
+          <section aria-labelledby='cart-summary-title'>
+            <div>
+              <div>
+                <span aria-hidden='true'>
                   <ShoppingBasket size={21} />
                 </span>
                 <div>
@@ -218,17 +215,17 @@ const Dashboard = () => {
 
             {cart.items.length ? (
               <>
-                <div className={styles.metricRow}>
-                  <div className={styles.metric}>
+                <div>
+                  <div>
                     <strong>{cart.totalItems}</strong>
                     <span>{cart.totalItems === 1 ? 'producto' : 'productos'}</span>
                   </div>
-                  <div className={styles.metric}>
+                  <div>
                     <strong>{formatCurrency(cart.subtotal)}</strong>
                     <span>subtotal</span>
                   </div>
                 </div>
-                <div className={styles.buttonRow}>
+                <div>
                   <Button href='/checkout'>Ver carrito</Button>
                   <Button href='/cuenta/carritos' variant='secondary'>
                     Guardarlo
@@ -236,7 +233,7 @@ const Dashboard = () => {
                 </div>
               </>
             ) : (
-              <div className={styles.emptyState}>
+              <div>
                 <PackageCheck aria-hidden='true' size={34} />
                 <h3>Tu carrito está listo para empezar</h3>
                 <p>Explorá los productos y guardá una selección frecuente.</p>
@@ -247,15 +244,15 @@ const Dashboard = () => {
         </div>
 
         <section aria-labelledby='shortcuts-title'>
-          <div className={styles.cardHeader}>
+          <div>
             <div>
               <h2 id='shortcuts-title'>Accesos rápidos</h2>
               <p>Lo importante, a un toque.</p>
             </div>
           </div>
-          <div className={styles.shortcutGrid}>
+          <div>
             {shortcuts.map(({ href, label, icon: Icon }) => (
-              <Link className={styles.shortcut} href={href} key={href}>
+              <Link href={href} key={href}>
                 <Icon aria-hidden='true' size={24} />
                 <span>{label}</span>
                 <ChevronRight aria-hidden='true' size={19} />

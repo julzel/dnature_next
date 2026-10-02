@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 
 import ContentfulImage from '../../../../components/ContentfulImage';
-import styles from './ProductDetail.module.scss';
 
 const PRODUCT_TABS = [
   { id: 'description', label: 'Descripción' },
@@ -13,7 +12,7 @@ const PRODUCT_TABS = [
 ];
 
 const EmptyTab = () => (
-  <p className={styles.emptyTab}>
+  <p>
     Este contenido estará disponible cuando se complete la información del
     producto.
   </p>
@@ -54,7 +53,7 @@ const ProductDetail = ({ productDetail }) => {
   const renderTabContent = (tabId) => {
     if (tabId === 'description') {
       return productDetail.description ? (
-        <div className={styles.copy}>{productDetail.description}</div>
+        <div>{productDetail.description}</div>
       ) : (
         <EmptyTab />
       );
@@ -63,18 +62,17 @@ const ProductDetail = ({ productDetail }) => {
     if (tabId === 'ingredients') {
       return productDetail.ingredientes ? (
         <>
-          <p className={styles.copy}>{productDetail.ingredientes}</p>
+          <p>{productDetail.ingredientes}</p>
           {productDetail.iconos?.length > 0 && (
-            <ul className={styles.icons} aria-label='Características'>
+            <ul aria-label='Características'>
               {productDetail.iconos.map((icon, index) => (
-                <li className={styles.icon} key={icon.url || index}>
+                <li key={icon.url || index}>
                   <ContentfulImage
                     src={icon.url}
                     alt={icon.title}
                     width={56}
                     height={56}
                     sizes='56px'
-                    className={styles.iconImage}
                   />
                 </li>
               ))}
@@ -88,14 +86,14 @@ const ProductDetail = ({ productDetail }) => {
 
     if (tabId === 'benefits') {
       return productDetail.beneficios ? (
-        <div className={styles.copy}>{productDetail.beneficios}</div>
+        <div>{productDetail.beneficios}</div>
       ) : (
         <EmptyTab />
       );
     }
 
     return productDetail.recomendaciones ? (
-      <div className={styles.copy}>{productDetail.recomendaciones}</div>
+      <div>{productDetail.recomendaciones}</div>
     ) : (
       <EmptyTab />
     );
@@ -103,16 +101,14 @@ const ProductDetail = ({ productDetail }) => {
 
   return (
     <section
-      className={styles.productDetail}
       aria-label='Información del producto'
     >
-      <div className={styles.tabRail}>
-        <div className={styles.tabList} role='tablist'>
+      <div>
+        <div role='tablist'>
           {PRODUCT_TABS.map(({ id, label }, index) => (
             <button
               type='button'
               id={`product-tab-${id}`}
-              className={styles.tab}
               role='tab'
               aria-selected={activeTab === id}
               aria-controls={`product-panel-${id}`}
@@ -133,7 +129,6 @@ const ProductDetail = ({ productDetail }) => {
       {PRODUCT_TABS.map(({ id }) => (
         <div
           id={`product-panel-${id}`}
-          className={styles.tabPanel}
           role='tabpanel'
           aria-labelledby={`product-tab-${id}`}
           tabIndex={activeTab === id ? 0 : -1}

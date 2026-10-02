@@ -17,7 +17,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 import Button from '../../../components/Button';
-import { accountStyles as styles } from '../../Account';
+
 import { useAccountDemo } from '../model/account-demo-context';
 import DemoNotice from './DemoNotice';
 
@@ -42,9 +42,9 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
 
   if (!isReady) {
     return (
-      <div className={styles.accountPage}>
-        <div className={styles.loadingCard} role='status'>
-          <span className={styles.loadingMark} aria-hidden='true' />
+      <div>
+        <div role='status'>
+          <span aria-hidden='true' />
           Preparando tu cuenta…
         </div>
       </div>
@@ -53,16 +53,16 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
 
   if (!isAuthenticated) {
     return (
-      <div className={styles.accountPage}>
-        <div className={styles.signedOutWrap}>
+      <div>
+        <div>
           <DemoNotice />
-          <section className={styles.signedOutCard}>
-            <span className={styles.roundIcon} aria-hidden='true'>
+          <section>
+            <span aria-hidden='true'>
               <ShieldCheck size={32} />
             </span>
-            <p className={styles.eyebrow}>Espacio de demostración</p>
+            <p>Espacio de demostración</p>
             <h1>Iniciá la demostración para continuar</h1>
-            <div className={styles.buttonRowCentered}>
+            <div>
               <Button href='/cuenta/iniciar-sesion'>Ir al acceso</Button>
             </div>
           </section>
@@ -72,13 +72,13 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
   }
 
   return (
-    <div className={styles.accountPage}>
-      <div className={styles.accountContainer}>
+    <div>
+      <div>
         <DemoNotice compact />
-        <div className={styles.accountGrid}>
-          <aside className={styles.sidebar}>
-            <div className={styles.sidebarIdentity}>
-              <span className={styles.avatar} aria-hidden='true'>
+        <div>
+          <aside>
+            <div>
+              <span aria-hidden='true'>
                 {(profile.firstName || 'C').charAt(0).toUpperCase()}
               </span>
               <div>
@@ -90,7 +90,6 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
 
             <button
               type='button'
-              className={styles.mobileMenuButton}
               aria-expanded={isMenuOpen}
               aria-controls='demo-account-navigation'
               onClick={() => setIsMenuOpen((open) => !open)}
@@ -101,9 +100,7 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
 
             <nav
               id='demo-account-navigation'
-              className={`${styles.accountNavigation} ${
-                isMenuOpen ? styles.accountNavigationOpen : ''
-              }`}
+              hidden={!isMenuOpen}
               aria-label='Cuenta de demostración'
             >
               {navigationItems.map(({ href, label, icon: Icon }) => {
@@ -114,7 +111,6 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
                   <Link
                     href={href}
                     key={href}
-                    className={isActive ? styles.navLinkActive : styles.navLink}
                     aria-current={isActive ? 'page' : undefined}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -123,21 +119,21 @@ const DemoAccountShell = ({ children, eyebrow, title, description, action }) => 
                   </Link>
                 );
               })}
-              <button type='button' className={styles.signOutLink} onClick={handleSignOut}>
+              <button type='button' onClick={handleSignOut}>
                 <LogOut aria-hidden='true' size={20} />
                 Cerrar demo
               </button>
             </nav>
           </aside>
 
-          <div className={styles.accountContent}>
-            <header className={styles.pageHeading}>
+          <div>
+            <header>
               <div>
-                {eyebrow ? <p className={styles.eyebrow}>{eyebrow}</p> : null}
+                {eyebrow ? <p>{eyebrow}</p> : null}
                 <h1>{title}</h1>
                 {description ? <p>{description}</p> : null}
               </div>
-              {action ? <div className={styles.headingAction}>{action}</div> : null}
+              {action ? <div>{action}</div> : null}
             </header>
             {children}
           </div>

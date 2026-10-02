@@ -1,17 +1,14 @@
 import React from 'react';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 
-import styles from './CartItemController.module.scss';
-
 const CartItemController = ({
   addOneItem,
   removeOneItem,
   removeAllItemsOfAKind,
   item,
 }) => (
-  <div className={styles.cartItemController}>
+  <div>
     <div
-      className={styles.badge}
       aria-label={`Cantidad de ${item.productName}: ${item.quantity}`}
     >
       <button
@@ -34,7 +31,6 @@ const CartItemController = ({
       type='button'
       aria-label={`Eliminar ${item.productName} del carrito`}
       onClick={() => removeAllItemsOfAKind(item.id)}
-      className={styles.delete}
     >
       <Trash2 aria-hidden='true' size={17} strokeWidth={1.9} />
     </button>

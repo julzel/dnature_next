@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { ShoppingBag } from 'lucide-react';
 
 // local imports
-// styles
-import styles from "./SubHeader.module.scss";
 
 const SubHeader = ({ onOpen, totalCartItems, triggerRef }) => {
   const handleCartClick = (event) => {
@@ -23,7 +21,7 @@ const SubHeader = ({ onOpen, totalCartItems, triggerRef }) => {
   };
 
   return (
-    <nav className={styles.subheader} aria-label='Carrito'>
+    <nav aria-label='Carrito'>
       <Link
         ref={triggerRef}
         href='/checkout'
@@ -36,10 +34,10 @@ const SubHeader = ({ onOpen, totalCartItems, triggerRef }) => {
             : 'Abrir carrito'
         }
       >
-        <span className={styles.link}>
+        <span>
           <ShoppingBag aria-hidden='true' size={27} strokeWidth={1.8} />
           {totalCartItems > 0 && (
-            <span className={styles.badge}>{totalCartItems}</span>
+            <span>{totalCartItems}</span>
           )}
         </span>
       </Link>

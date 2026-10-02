@@ -101,7 +101,12 @@ test('@a11y cart drawer is named, trapped, and restores focus', async ({
 
   const dialog = page.getByRole('dialog', { name: /Carrito/ });
   await expect(dialog).toBeVisible();
-  await expect(dialog).toBeFocused();
+  const closeButton = dialog.getByRole('button', { name: 'Cerrar carrito' });
+  await expect(closeButton).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(dialog.getByRole('link', { name: 'Revisar solicitud' })).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(closeButton).toBeFocused();
   expect(await getBlockingViolations(page)).toEqual([]);
 
   await page.keyboard.press('Escape');
@@ -125,7 +130,7 @@ test('@a11y calculator starts inline and moves focus to the active question', as
   await expect(firstQuestion).toBeFocused();
   await expect(
     page.getByRole('progressbar', { name: 'Progreso de la calculadora' }),
-  ).toHaveAttribute('aria-valuenow', '1');
+  ).toHaveAttribute('value', '1');
   expect(await getBlockingViolations(page)).toEqual([]);
 });
 

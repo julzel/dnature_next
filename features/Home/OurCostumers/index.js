@@ -1,10 +1,8 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '../../../components/Image';
 
 // local imports
-// styles
-import styles from './OurCostumers.module.scss';
 
 // data
 import costumers from './costumers';
@@ -14,35 +12,32 @@ import Slider from '../../../components/Slider';
 
 const slides = costumers.map((costumer) => {
   return (
-    <article key={costumer.name} className={styles.testimonial}>
+    <article key={costumer.name}>
       {costumer.thumbnail && (
-        <div className={styles.imageFrame}>
+        <div>
           <Image
             src={costumer.thumbnail.image}
             alt={costumer.thumbnail.alt}
-            fill
             sizes='(min-width: 1024px) 380px, (min-width: 768px) 42vw, calc(100vw - 64px)'
-            className={styles.image}
           />
-          <span className={styles.imageAccent} aria-hidden='true' />
+          <span aria-hidden='true' />
         </div>
       )}
 
-      <div className={styles.testimonialContent}>
-        <span className={styles.quoteMark} aria-hidden='true'>
+      <div>
+        <span aria-hidden='true'>
           “
         </span>
-        <blockquote className={styles.quote}>
+        <blockquote>
           <p>{costumer.quote}</p>
         </blockquote>
-        <footer className={styles.customer}>
-          <p className={styles.customerName}>{costumer.name}</p>
+        <footer>
+          <p>{costumer.name}</p>
         {costumer.socialMedia && (
           <a
             href={costumer.socialMedia.link}
             target='_blank'
             rel='noopener noreferrer'
-            className={styles.socialMedia}
             aria-label={`Ver a ${costumer.socialMedia.user} en Instagram`}
           >
             {costumer.socialMedia.user}
@@ -57,19 +52,18 @@ const slides = costumers.map((costumer) => {
 const OurCostumers = () => {
   return (
     <section
-      className={styles.ourCustomers}
       aria-labelledby='customer-stories-title'
     >
-      <div className={styles.heading}>
-        <p className={styles.eyebrow}>Historias de la comunidad</p>
+      <div>
+        <p>Historias de la comunidad</p>
         <h2 id='customer-stories-title'>Ellos ya viven la experiencia DNAture</h2>
-        <p className={styles.introduction}>
+        <p>
           Familias que eligieron una alimentación más natural para acompañar
           el bienestar de sus mascotas.
         </p>
       </div>
 
-      <div className={styles.sliderFrame}>
+      <div>
         <Slider slides={slides} />
       </div>
     </section>

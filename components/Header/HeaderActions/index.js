@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from 'react';
 import SiteSearch from '../../../features/Search';
 import AccountLink from '../AccountLink';
 import SubHeader from '../SubHeader';
-import styles from './HeaderActions.module.scss';
 
 const SEARCH_PANEL_ID = 'header-search-panel';
 
@@ -59,12 +58,11 @@ const HeaderActions = () => {
   }, [isSearchOpen]);
 
   return (
-    <div className={styles.actions}>
-      <div ref={searchControlRef} className={styles.searchControl}>
+    <div>
+      <div ref={searchControlRef}>
         <button
           ref={searchTriggerRef}
           type='button'
-          className={styles.iconButton}
           aria-expanded={isSearchOpen}
           aria-controls={SEARCH_PANEL_ID}
           aria-label={isSearchOpen ? 'Cerrar búsqueda' : 'Abrir búsqueda'}
@@ -79,14 +77,12 @@ const HeaderActions = () => {
 
         <section
           id={SEARCH_PANEL_ID}
-          className={`${styles.searchPanel} ${
-            isSearchOpen ? styles.searchPanelOpen : ''
-          }`}
           aria-label='Búsqueda de productos'
           aria-hidden={!isSearchOpen}
+          hidden={!isSearchOpen}
           inert={!isSearchOpen}
         >
-          <div className={styles.searchPanelInner}>
+          <div>
             <SiteSearch
               id='header-search'
               focusInput={isSearchOpen}

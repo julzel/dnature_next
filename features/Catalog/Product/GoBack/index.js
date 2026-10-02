@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 
-const GoBack = ({ className, productDetail }) => (
-  <nav className={className} aria-label='Migas de pan'>
+const GoBack = ({ productDetail }) => (
+  <nav aria-label='Migas de pan'>
     <ol>
       <li>
         <Link href='/'>Inicio</Link>

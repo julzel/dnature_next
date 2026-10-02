@@ -22,7 +22,6 @@ import {
   profileValueLabels,
   selectProfileValue,
 } from '../model';
-import styles from './CalculatorSteps.module.scss';
 
 const formatGrams = (value) =>
   new Intl.NumberFormat('es-CR', { maximumFractionDigits: 0 }).format(value);
@@ -33,13 +32,12 @@ const visibleOptions = (step, profile) =>
     : step.options;
 
 const OptionGroup = ({ onSelect, profile, step }) => (
-  <fieldset className={styles.optionGroup}>
-    <legend className="visually-hidden">{step.title}</legend>
+  <fieldset>
+    <legend>{step.title}</legend>
     {visibleOptions(step, profile).map((option) => {
       const selected = profile[step.key] === option.value;
       return (
         <label
-          className={selected ? styles.optionSelected : styles.option}
           key={option.value}
         >
           <input
@@ -49,11 +47,11 @@ const OptionGroup = ({ onSelect, profile, step }) => (
             checked={selected}
             onChange={() => onSelect(step.key, option.value)}
           />
-          <span className={styles.optionCopy}>
+          <span>
             <strong>{option.label}</strong>
             {option.detail ? <small>{option.detail}</small> : null}
           </span>
-          <span className={styles.optionCheck} aria-hidden="true">
+          <span aria-hidden="true">
             {selected ? <Check size={17} strokeWidth={3} /> : null}
           </span>
         </label>
@@ -65,7 +63,7 @@ const OptionGroup = ({ onSelect, profile, step }) => (
 const ProfileSummary = ({ profile }) => {
   const steps = getCalculatorSteps(profile);
   return (
-    <dl className={styles.summary}>
+    <dl>
       {steps.map((step) => {
         const value = profile[step.key];
         return (
@@ -152,8 +150,8 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
 
   if (result) {
     return (
-      <section className={styles.result} aria-live="polite" aria-labelledby="calculator-result-title">
-        <div className={styles.resultHeading}>
+      <section aria-live="polite" aria-labelledby="calculator-result-title">
+        <div>
           <p>Tu referencia diaria</p>
           <h2 id="calculator-result-title" ref={headingRef} tabIndex={-1}>
             {formatGrams(result.portionGrams)} g <span>al día</span>
@@ -164,12 +162,12 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
           </p>
         </div>
 
-        <div className={styles.resultGrid}>
+        <div>
           <div>
             <h3>Datos utilizados</h3>
             <ProfileSummary profile={profile} />
           </div>
-          <aside className={styles.resultNote}>
+          <aside>
             <Info aria-hidden="true" size={21} />
             <div>
               <strong>Es un punto de partida</strong>
@@ -181,7 +179,7 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
           </aside>
         </div>
 
-        <div className={styles.resultActions}>
+        <div>
           <Button
             variant="primary"
             href="/productos?category=recetas"
@@ -202,8 +200,8 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
   }
 
   return (
-    <form className={styles.calculatorSteps} onSubmit={submitStep} noValidate>
-      <div className={styles.progressHeader}>
+    <form onSubmit={submitStep} noValidate>
+      <div>
         <div>
           <span>Paso {stepIndex + 1} de {steps.length}</span>
           <strong>
@@ -214,24 +212,21 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
                 : 'Para perros'}
           </strong>
         </div>
-        <div
-          className={styles.progressTrack}
-          role="progressbar"
+        <progress
           aria-label="Progreso de la calculadora"
-          aria-valuemin="1"
-          aria-valuemax={steps.length}
-          aria-valuenow={stepIndex + 1}
+          max={steps.length}
+          value={stepIndex + 1}
         >
-          <span style={{ width: `${((stepIndex + 1) / steps.length) * 100}%` }} />
-        </div>
+          Paso {stepIndex + 1} de {steps.length}
+        </progress>
       </div>
 
-      <div className={styles.step}>
+      <div>
         <h2 ref={headingRef} tabIndex={-1}>{currentStep.title}</h2>
-        <p className={styles.stepDescription}>{currentStep.description}</p>
+        <p>{currentStep.description}</p>
 
         {currentStep.type === 'weight' ? (
-          <div className={styles.weightField}>
+          <div>
             <label htmlFor="calculator-weight">Peso actual</label>
             <div>
               <input
@@ -255,13 +250,13 @@ const CalculatorSteps = ({ initialProfile = {}, onResult }) => {
         )}
 
         {weightError ? (
-          <p className={styles.warning} id="calculator-weight-error" role="alert">
+          <p id="calculator-weight-error" role="alert">
             {weightError}
           </p>
         ) : null}
       </div>
 
-      <div className={styles.calculatorControls}>
+      <div>
         {stepIndex > 0 ? (
           <Button
             variant="tertiary"

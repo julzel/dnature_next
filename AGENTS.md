@@ -6,4 +6,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
+# DNAture UI guidance
+
+Before implementing or changing components and views, read [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). It documents the current brand expression, implemented tokens, reusable components, responsive patterns, and defaults for new work.
+
+Use the existing source components and preserve the stylesheet order in `src/main.tsx`. Distinguish implemented values from recommendations and conceptual assets. Keep additions scoped to their component, and inspect the result at mobile and desktop sizes.
+
+The user's task and explicit preferences take precedence over this guide. Keep the design guide current when intentionally changing a shared pattern.
+
+
 <!-- END:nextjs-agent-rules -->

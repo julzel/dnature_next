@@ -1,10 +1,7 @@
 import { FlaskConical } from 'lucide-react';
 
-import { accountStyles as styles } from '../../Account';
-
-const DemoNotice = ({ compact = false }) => (
+const DemoNotice = () => (
   <aside
-    className={`${styles.demoNotice} ${compact ? styles.demoNoticeCompact : ''}`}
     aria-label='Aviso de demostración'
   >
     <FlaskConical aria-hidden='true' size={20} />

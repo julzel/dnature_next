@@ -6,7 +6,6 @@ import {
   DNATURE_SUPPORT_HOURS,
   DNATURE_SUPPORT_RESPONSE,
 } from '../../../constants/contact';
-import styles from './CartNotification.module.scss';
 
 const CartNotification = ({
   cart,
@@ -23,9 +22,9 @@ const CartNotification = ({
     closeModal={onCloseInfoModal}
     returnFocusRef={returnFocusRef}
   >
-    <section className={styles.confirmation}>
-      <CheckCircle2 aria-hidden='true' className={styles.icon} size={44} />
-      <p className={styles.eyebrow}>Resumen preparado</p>
+    <section>
+      <CheckCircle2 aria-hidden='true' size={44} />
+      <p>Resumen preparado</p>
       <h2>Tu solicitud está lista para enviar</h2>
       {hasPurchaseArtifact ? (
         <p>
@@ -41,10 +40,10 @@ const CartNotification = ({
       )}
 
       {handoffWarning ? (
-        <p className={styles.warning} role='status'>{handoffWarning}</p>
+        <p role='status'>{handoffWarning}</p>
       ) : null}
 
-      <ol className={styles.steps}>
+      <ol>
         <li>Abrí WhatsApp con el botón.</li>
         {hasPurchaseArtifact ? (
           <li>Adjuntá manualmente la imagen descargada.</li>
@@ -54,16 +53,16 @@ const CartNotification = ({
         <li>Enviá el mensaje y esperá la confirmación de DNAture.</li>
       </ol>
 
-      <p className={styles.notice}>
+      <p>
         No realicés ningún pago hasta que confirmemos disponibilidad, monto final,
         modalidad y fecha.
       </p>
-      <p className={styles.supportHours}>
+      <p>
         Podés escribirnos 24/7. {DNATURE_SUPPORT_HOURS}{' '}
         {DNATURE_SUPPORT_RESPONSE}
       </p>
 
-      <div className={styles.actions}>
+      <div>
         <Button
           as='a'
           href={whatsappUrl}
@@ -86,7 +85,7 @@ const CartNotification = ({
         ) : null}
       </div>
 
-      <div className={styles.secondaryActions}>
+      <div>
         <Button variant='tertiary' onClick={onCloseInfoModal}>
           Cerrar y conservar el carrito
         </Button>

@@ -5,8 +5,6 @@ import {
   getReviewSignal,
 } from './review-export';
 
-import styles from './AvifyDiagnostics.module.scss';
-
 const currencyFormatter = new Intl.NumberFormat('es-CR', {
   currency: 'CRC',
   maximumFractionDigits: 0,
@@ -17,7 +15,7 @@ const formatCurrency = (value) =>
   typeof value === 'number' ? currencyFormatter.format(value) : '—';
 
 const SummaryCard = ({ label, value, detail }) => (
-  <article className={styles.summaryCard}>
+  <article>
     <span>{label}</span>
     <strong>{value}</strong>
     <small>{detail}</small>
@@ -25,7 +23,7 @@ const SummaryCard = ({ label, value, detail }) => (
 );
 
 const CategoryList = ({ categories }) => (
-  <ul className={styles.categoryList}>
+  <ul>
     {Object.entries(categories).map(([category, count]) => (
       <li key={category}>
         <span>{category}</span>
@@ -40,13 +38,17 @@ const AvifyDiagnostics = async () => {
 
   if (!result.success) {
     return (
-      <main className={styles.main}>
+      <main>
         <h1>Conciliación Contentful ↔ Avify</h1>
-        <div className={styles.error} role="alert">
+        <div role="alert">
           <strong>No se pudo generar el reporte</strong>
           <p>{result.message}</p>
           {result.developmentDetails ? (
-            <code>{result.developmentDetails}</code>
+            <pre><code>{
+              typeof result.developmentDetails === 'string'
+                ? result.developmentDetails
+                : JSON.stringify(result.developmentDetails, null, 2)
+            }</code></pre>
           ) : null}
         </div>
       </main>
@@ -61,9 +63,9 @@ const AvifyDiagnostics = async () => {
   const reportDate = report.generatedAt?.slice(0, 10) || 'actual';
 
   return (
-    <main className={styles.main}>
-      <header className={styles.header}>
-        <p className={styles.eyebrow}>Reporte de desarrollo</p>
+    <main>
+      <header>
+        <p>Reporte de desarrollo</p>
         <h1>Conciliación Contentful ↔ Avify</h1>
         <p>
           Contentful aporta contenido editorial; Avify debe convertirse en la
@@ -73,7 +75,7 @@ const AvifyDiagnostics = async () => {
 
       <section aria-labelledby="summary-heading">
         <h2 id="summary-heading">Estado actual</h2>
-        <div className={styles.summaryGrid}>
+        <div>
           <SummaryCard
             detail="entradas editoriales"
             label="Contentful"
@@ -104,7 +106,7 @@ const AvifyDiagnostics = async () => {
 
       <section aria-labelledby="findings-heading">
         <h2 id="findings-heading">Hallazgos importantes</h2>
-        <div className={styles.findings}>
+        <div>
           <article>
             <strong>Llave compartida disponible</strong>
             <p>
@@ -150,7 +152,7 @@ const AvifyDiagnostics = async () => {
           Diferencias de precio ({report.priceDifferences.length})
         </h2>
         {report.priceDifferences.length ? (
-          <div className={styles.tableWrapper}>
+          <div>
             <table>
               <thead>
                 <tr>
@@ -182,7 +184,7 @@ const AvifyDiagnostics = async () => {
       </section>
 
       <section aria-labelledby="review-heading">
-        <div className={styles.sectionHeading}>
+        <div>
           <h2 id="review-heading">
             Productos que requieren revisión ({report.reviewItems.length})
           </h2>
@@ -203,7 +205,7 @@ const AvifyDiagnostics = async () => {
           {report.summary.reviewCandidateConflicts} sugerencias ya están
           vinculadas a una coincidencia más fuerte.
         </p>
-        <div className={styles.tableWrapper}>
+        <div>
           <table>
             <thead>
               <tr>
@@ -223,7 +225,6 @@ const AvifyDiagnostics = async () => {
                     {item.contentfulUrl ? (
                       <a
                         aria-label={`Abrir ${item.contentfulName} en Contentful`}
-                        className={styles.contentfulLink}
                         href={item.contentfulUrl}
                         rel="noreferrer"
                         target="_blank"
@@ -253,7 +254,7 @@ const AvifyDiagnostics = async () => {
         <h2 id="likely-heading">
           Coincidencias probables ({report.likelyItems.length})
         </h2>
-        <div className={styles.tableWrapper}>
+        <div>
           <table>
             <thead>
               <tr>
@@ -285,7 +286,7 @@ const AvifyDiagnostics = async () => {
 
       <section aria-labelledby="categories-heading">
         <h2 id="categories-heading">Categorías</h2>
-        <div className={styles.categoryColumns}>
+        <div>
           <article>
             <h3>Contentful</h3>
             <CategoryList categories={report.categories.contentful} />
@@ -299,7 +300,7 @@ const AvifyDiagnostics = async () => {
 
       <section aria-labelledby="next-step-heading">
         <h2 id="next-step-heading">Siguiente paso recomendado</h2>
-        <ol className={styles.steps}>
+        <ol>
           <li>
             Crear en Contentful un campo único <code>avifySku</code> para guardar
             el SKU generado del producto padre en Avify.

@@ -15,7 +15,6 @@ import { useState } from 'react';
 import ContentfulImage from '../../../../components/ContentfulImage';
 import CurrencyText from '../../../../components/Currency';
 import PresentationSelector from '../../PresentationSelector';
-import styles from './ProductInfo.module.scss';
 
 const ProductInfo = ({
   productDetail,
@@ -47,21 +46,15 @@ const ProductInfo = ({
   };
 
   return (
-    <div className={styles.productInfo}>
-      <div
-        className={`${styles.gallery} ${
-          hasMultipleImages ? '' : styles.singleImageGallery
-        }`}
-      >
+    <div>
+      <div>
         {hasMultipleImages && (
           <div
-            className={styles.thumbnails}
             aria-label={`Imágenes de ${productDetail.productName}`}
           >
             {images.map((image, index) => (
               <button
                 type='button'
-                className={styles.thumbnail}
                 aria-current={index === selectedImageIndex ? 'true' : undefined}
                 aria-label={`Ver imagen ${index + 1} de ${images.length}: ${
                   image.title || productDetail.productName
@@ -81,7 +74,7 @@ const ProductInfo = ({
           </div>
         )}
 
-        <div className={styles.imageStage}>
+        <div>
           {selectedImage && (
             <ContentfulImage
               src={selectedImage.url}
@@ -90,7 +83,6 @@ const ProductInfo = ({
               height={900}
               loading='eager'
               sizes='(min-width: 1280px) 650px, (min-width: 1024px) 52vw, 100vw'
-              className={styles.productImage}
             />
           )}
 
@@ -98,7 +90,6 @@ const ProductInfo = ({
             <>
               <button
                 type='button'
-                className={`${styles.galleryArrow} ${styles.previousImage}`}
                 aria-label='Ver imagen anterior'
                 onClick={selectPreviousImage}
               >
@@ -106,7 +97,6 @@ const ProductInfo = ({
               </button>
               <button
                 type='button'
-                className={`${styles.galleryArrow} ${styles.nextImage}`}
                 aria-label='Ver imagen siguiente'
                 onClick={selectNextImage}
               >
@@ -117,38 +107,38 @@ const ProductInfo = ({
         </div>
       </div>
 
-      <div className={styles.info}>
-        <div className={styles.heading}>
-          <p className={styles.eyebrow}>
+      <div>
+        <div>
+          <p>
             {productDetail.category || 'Producto DNAture'}
           </p>
           <h1>{productDetail.productName}</h1>
           {productDetail.avifySku && (
-            <p className={styles.sku}>SKU: {productDetail.avifySku}</p>
+            <p>SKU: {productDetail.avifySku}</p>
           )}
 
           {hasPriceByUnit ? (
-            <p className={styles.price}>
+            <p>
               {selectedPresentation ? (
                 <CurrencyText value={selectedPresentation.price} />
               ) : null}
               {selectedPresentation && (
-                <span className={styles.small}>
+                <span>
                   {selectedPresentation.size}
                 </span>
               )}
             </p>
           ) : (
-            <p className={styles.price}>
+            <p>
               <CurrencyText value={productDetail.precio} />
               {productDetail.medida && (
-                <span className={styles.small}>{productDetail.medida}</span>
+                <span>{productDetail.medida}</span>
               )}
             </p>
           )}
         </div>
 
-        <ul className={styles.productPromises} aria-label='Calidad DNAture'>
+        <ul aria-label='Calidad DNAture'>
           <li>
             <Leaf aria-hidden='true' size={24} strokeWidth={1.8} />
             <span>Ingredientes naturales</span>
@@ -164,7 +154,7 @@ const ProductInfo = ({
         </ul>
 
         {hasPriceByUnit && (
-          <div className={styles.presentation}>
+          <div>
             <PresentationSelector
               presentations={productDetail.preciosPorUnidad}
               selectedPresentation={selectedPresentation}
@@ -176,7 +166,6 @@ const ProductInfo = ({
 
         {productDetail.commerce && availabilityUi.copy && (
           <p
-            className={`${styles.availability} ${styles[availabilityUi.availability]}`}
             role={!availabilityUi.canPurchase ? 'status' : undefined}
           >
             <span aria-hidden='true' />
@@ -184,9 +173,9 @@ const ProductInfo = ({
           </p>
         )}
 
-        <div className={styles.purchase}>
+        <div>
           {itemsInCart > 0 ? (
-            <div className={styles.quantityControl}>
+            <div>
               <button
                 type='button'
                 aria-label={`Disminuir cantidad de ${productDetail.productName}`}
@@ -217,7 +206,6 @@ const ProductInfo = ({
           ) : (
             <button
               type='button'
-              className={styles.addButton}
               aria-label={
                 canAddToCart
                   ? `Agregar ${productDetail.productName} al carrito`
@@ -238,7 +226,7 @@ const ProductInfo = ({
           )}
 
           {cartTotalItems > 0 && (
-            <Link className={styles.cartLink} href='/checkout'>
+            <Link href='/checkout'>
               <ShoppingBag aria-hidden='true' size={19} strokeWidth={1.9} />
               <span>Ver carrito ({cartTotalItems})</span>
               <ArrowRight aria-hidden='true' size={18} strokeWidth={1.9} />
