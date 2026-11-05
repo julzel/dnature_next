@@ -5,6 +5,8 @@ import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { Icon } from "@/components/icon";
 import { Logo } from "@/components/logo";
 import { HeaderSearch } from "./header-search";
+import { MobileMenu } from "./mobile-menu";
+import { headerLinks } from "../data/navigation";
 import styles from "./header.module.css";
 
 export function Header() {
@@ -51,6 +53,10 @@ export function Header() {
     searchButton.current?.focus({ preventScroll: true });
   }
 
+  function handleOpenMenu() {
+    setSearchOpen(false);
+  }
+
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
     if (event.key === "Escape" && searchOpen) {
       event.preventDefault();
@@ -71,20 +77,22 @@ export function Header() {
             <Logo shape="responsive" size={114} loading="eager" alt="" />
           </Link>
           <nav className={styles.navigation} aria-label="Navegación principal">
-            <Link href="/ciencia">Ciencia</Link>
-            <Link href="/nosotros">Nosotros</Link>
+            {headerLinks.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}
           </nav>
-          <button
-            ref={searchButton}
-            className={styles.searchToggle}
-            type="button"
-            aria-label={searchOpen ? "Cerrar búsqueda" : "Abrir búsqueda"}
-            aria-expanded={searchOpen}
-            aria-controls="header-search"
-            onClick={handleToggleSearch}
-          >
-            <Icon name={searchOpen ? "close" : "search"} />
-          </button>
+          <div className={styles.actions}>
+            <button
+              ref={searchButton}
+              className={styles.searchToggle}
+              type="button"
+              aria-label={searchOpen ? "Cerrar búsqueda" : "Abrir búsqueda"}
+              aria-expanded={searchOpen}
+              aria-controls="header-search"
+              onClick={handleToggleSearch}
+            >
+              <Icon name={searchOpen ? "close" : "search"} />
+            </button>
+            <MobileMenu buttonClassName={styles.searchToggle} onOpen={handleOpenMenu} />
+          </div>
         </div>
       </div>
       <HeaderSearch open={searchOpen} inputRef={searchInput} />

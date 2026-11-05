@@ -16,10 +16,12 @@ bun dev
 ```
 
 The homepage at [http://localhost:3000](http://localhost:3000) currently contains the
-header, an empty full-viewport hero with an image placeholder, and empty contact
+header, a full-viewport hero with lorem ipsum copy, two CTAs, a husky photograph, and empty contact
 and footer sections. Its header feature lives in
 `features/header/`: a 33px navy top row, a 78px navigation row, and an expandable
 search panel below navigation. Search currently covers the published editorial pages.
+Below 1024px, a menu button beside search opens a left-side navigation drawer
+with keyboard focus containment, Escape/backdrop dismissal, and reduced-motion support.
 The hero is implemented in `features/hero/` and uses a stacked mobile layout and
 a side-by-side desktop layout. Contact and footer placeholders live in
 `features/contact/` and `features/footer/`.

@@ -3,8 +3,8 @@
 Implementation date: 5 November 2026. Canonical origin confirmed by the project owner:
 `https://dnaturefood.com`. Source documents are preserved as supplied.
 
-Current route organization: `/` currently renders the new header and an empty hero
-with an image placeholder, followed by empty contact and footer sections, and remains noindex. The extracted
+Current route organization: `/` currently renders the new header and a hero with
+lorem ipsum copy, two CTAs, and a supplied husky photograph, followed by empty contact and footer sections, and remains noindex. The extracted
 `components/landing-prototype.tsx` is reviewable at `/prototype`, also noindex.
 Neither route is listed in the sitemap. The three editorial URLs below retain
 their existing paths through the `app/(site)/` route group and its shared layout.
@@ -111,7 +111,7 @@ indexing for tests. The preview config deliberately sets the launch flag to true
 while supplying preview deployment context, proving the preview guard wins.
 
 `npm run test:seo` runs just the production SEO/policy checks. Tests cover all three
-implemented editorial URLs, the blank homepage, the noindex prototype, query-independent canonicals, language, titles/descriptions,
+implemented editorial URLs, the noindex homepage with placeholder copy, the noindex prototype, query-independent canonicals, language, titles/descriptions,
 OG/Twitter data, accessible HTML without JavaScript, sitemap membership, private-path
 headers, breadcrumb/brand schema, social image responses, training policy separation,
 JSON-LD script escaping and the product publication gate. Browser/visual tests were

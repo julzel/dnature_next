@@ -27,6 +27,9 @@ does not require an unrelated repository-wide refactor.
 
 ## Design
 
+- Consult and follow `docs/graphic-design/DNAture_Design_System.md` when designing
+  or implementing UI. Apply the project rules below where they differ from the
+  design system, including the prohibition on warm tones.
 - Use consistent spacing throughout the app. Define a shared spacing scale with
   CSS tokens (`4, 8, 12, 16, 24, 32, 48, 64, 80px`) and reuse it for page gutters,
   containers, sections, headings, forms, and components. Avoid arbitrary one-off

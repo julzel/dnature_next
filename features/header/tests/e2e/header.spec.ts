@@ -28,7 +28,7 @@ test("header fades with scroll and returns to transparent at the top", async ({ 
   expect((await header.boundingBox())?.y).toBe(0);
   await page.evaluate(() => window.scrollTo(0, 120));
   await expect(bottom).toHaveCSS("background-color", "rgb(255, 255, 255)");
-  await expect(header.getByRole("link", { name: "Ciencia", exact: true })).toHaveCSS("color", "rgb(32, 50, 55)");
+  await expect(header.getByRole("navigation", { name: "Navegación principal", includeHidden: true }).getByRole("link", { name: "Ciencia", exact: true, includeHidden: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await expect(header.getByRole("button", { name: "Abrir búsqueda", exact: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0)");

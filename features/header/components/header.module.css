@@ -61,9 +61,16 @@
 }
 
 .navigation {
-  display: flex;
+  display: none;
   align-items: center;
   gap: var(--header-gap);
+  margin-inline-start: auto;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-inline-start: auto;
 }
 
@@ -219,21 +226,19 @@
   block-size: 20px;
 }
 
-@media (max-width: 1023px) {
-  .header:not([data-light-background]) .navigation,
-  .header:not([data-light-background]) .searchToggle {
-    color: #fff;
-  }
+.header:not([data-light-background]) .navigation,
+.header:not([data-light-background]) .searchToggle {
+  color: #fff;
+}
 
-  .header:not([data-light-background]) .searchToggle:hover,
-  .header:not([data-light-background]) .searchToggle[aria-expanded="true"] {
-    color: var(--header-blue);
-  }
+.header:not([data-light-background]) .searchToggle:hover,
+.header:not([data-light-background]) .searchToggle[aria-expanded="true"] {
+  color: var(--header-blue);
+}
 
-  .header:not([data-light-background]) .navigation a:focus-visible,
-  .header:not([data-light-background]) .searchToggle:focus-visible {
-    outline-color: #fff;
-  }
+.header:not([data-light-background]) .navigation a:focus-visible,
+.header:not([data-light-background]) .searchToggle:focus-visible {
+  outline-color: #fff;
 }
 
 @media (min-width: 640px) {
@@ -255,6 +260,16 @@
   .searchPanel,
   .searchContent {
     transition: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navigation {
+    display: flex;
+  }
+
+  .actions {
+    margin-inline-start: 0;
   }
 }
 

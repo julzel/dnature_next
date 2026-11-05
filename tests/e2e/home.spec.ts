@@ -8,7 +8,7 @@ test("home page renders its header, hero, contact and footer placeholders and re
   await expect(page).toHaveTitle("DNAture | Nutrición con esencia en el ADN");
   await expect(page.getByRole("banner")).toHaveCount(1);
   await expect(page.getByRole("main")).toHaveCount(1);
-  await expect(page.getByRole("main")).toHaveText("");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Lorem ipsum dolor sit amet.");
   await expect(page.getByRole("region", { name: "Contacto", exact: true })).toBeAttached();
   await expect(page.getByRole("contentinfo")).toHaveCount(1);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
