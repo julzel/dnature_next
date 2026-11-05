@@ -1,69 +1,38 @@
-import Image from "next/image";
+import Link from "next/link";
+import { JsonLd } from "@/components/json-ld";
+import { brand } from "@/lib/seo/config";
+import { pageMetadata } from "@/lib/seo/metadata";
+import { siteIdentity } from "@/lib/seo/structured-data";
+
+export const metadata = pageMetadata({
+  path: "/",
+  title: brand.tagline,
+  description: brand.description,
+});
 
 export default function Home() {
   return (
-    <div className="page">
-      <main className="main">
-        <Image
-          className="logo"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="intro">
-          <h1 className="heading">
-            To get started, edit the{" "}
-            <code className="filename">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="description">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="text-link"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="text-link"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="actions">
-          <a
-            className="button primary"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="vercel-logo"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="button secondary"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main id="contenido" className="shell home">
+      <JsonLd data={siteIdentity()} />
+      <section className="hero" aria-labelledby="home-title">
+        <p className="eyebrow">Nutrición · Educación · Acompañamiento</p>
+        <h1 id="home-title">Nutrición con esencia en el ADN</h1>
+        <p className="lead">DNAture parte del respeto por la biología de cada animal. Queremos acompañarte con información clara para comprender su alimentación y elegir con criterio.</p>
+        <Link className="primary-link" href="/nosotros">Conocé DNAture <span aria-hidden="true">↗</span></Link>
+      </section>
+      <section className="editorial-index" aria-labelledby="explore-title">
+        <h2 id="explore-title">Información para elegir con criterio</h2>
+        <Link className="editorial-row" href="/ciencia">
+          <span className="row-number" aria-hidden="true">01</span>
+          <span><strong>Ciencia y nutrición fisiológica</strong><span>El enfoque de DNAture y las preguntas que orientan nuestra comunicación.</span></span>
+          <span aria-hidden="true">↗</span>
+        </Link>
+        <Link className="editorial-row" href="/ciencia/nuestros-criterios">
+          <span className="row-number" aria-hidden="true">02</span>
+          <span><strong>Nuestros criterios de publicación</strong><span>Fuentes, revisión profesional y límites de la información nutricional.</span></span>
+          <span aria-hidden="true">↗</span>
+        </Link>
+      </section>
+    </main>
   );
 }

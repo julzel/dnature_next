@@ -28,6 +28,7 @@ jobs:
       - run: npx playwright install chromium firefox webkit
       - run: npm run lint
       - run: npm test
+      - run: npm run test:seo:preview
       - run: npm run typecheck
       - name: Upload report and failure artifacts
         if: ${{ !cancelled() }}

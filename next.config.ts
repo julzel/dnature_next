@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
+import { indexingHeaders } from "./lib/seo/config";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
-
+  headers: () => indexingHeaders(),
 };
 
 export default nextConfig;

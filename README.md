@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+DNAture's Spanish (`es-CR`) website, built with Next.js, TypeScript, and plain CSS.
+The canonical production origin is `https://dnaturefood.com`.
 
 ## Getting Started
 
@@ -18,7 +19,28 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses `next/font` to load Geist and includes server-rendered brand and
+editorial-policy pages.
+
+## SEO and GEO
+
+The project implementation follows `docs/SEO-GEO/DNAture_SEO_GEO_Strategy_2026.md`.
+See [the implementation and launch guide](docs/SEO-GEO/implementation.md) for the
+requirement mapping, content gates, remaining dependencies, and launch checks.
+
+The default setup is **noindex**. To enable indexing on a reviewed production
+deployment, set `SEO_INDEXING_ENABLED=true` and rebuild. The canonical origin is
+configured by `SITE_URL`, defaulting to `https://dnaturefood.com`. Known Vercel and
+Netlify preview environments remain noindex even if the flag is enabled. Other
+hosting providers must leave the flag disabled on their preview deployments.
+`.env.example` documents the settings; preserve existing secrets when adding them
+to `.env.local` or deployment configuration.
+
+Implemented: unique page metadata, canonicals, Open Graph/social images,
+Organization/WebSite identity, visible breadcrumbs with JSON-LD, sitemap,
+crawler rules, private-route noindex headers, and Search Console/Bing verification
+token hooks. The source product catalog is an editorial reference; verified live
+SKU data is required before product pages, offers, or merchant feeds are published.
 
 ## Testing
 
@@ -35,6 +57,8 @@ to install the browser system dependencies as well.
 ```bash
 npm test                       # All end-to-end and regression tests
 npm run test:e2e               # Chromium, Firefox, WebKit, and mobile Chromium
+npm run test:seo               # Production metadata, crawlability, schema, and policy checks
+npm run test:seo:preview       # Separate build proving preview responses remain noindex
 npm run test:regression        # Content, responsive layout, and screenshot checks
 npm run test:ui                # Interactive test runner
 npm run test:report            # Open the last HTML report
@@ -45,13 +69,14 @@ npm run typecheck
 Each test invocation builds the application and starts a production server at
 `http://127.0.0.1:3100`. Keep port 3100 available; an existing server is intentionally
 not reused. No separate development server is required. The initial build needs
-network access to fetch the starter app's Google fonts. Next.js loads local
-environment files normally; the current tests do not require application secrets.
+network access to fetch Google fonts. Next.js loads local environment files normally;
+the tests do not require application secrets. The primary Playwright config explicitly
+tests production indexing; the preview config rebuilds with preview deployment flags.
+Both use port 3100 and must run sequentially.
 
-The end-to-end suite in `tests/e2e/` checks successful page loading, page content,
-images, browser runtime errors, new-tab navigation, and the 404 response. External
-destinations are intercepted, so navigation tests do not depend on third-party
-sites. Add tests for new user journeys here as the application grows.
+The end-to-end suite in `tests/e2e/` checks successful page loading, brand content,
+browser runtime errors, internal navigation, breadcrumbs, and the Spanish 404
+response. Add tests for new user journeys here as the application grows.
 
 The regression suite in `tests/regression/` checks the main content's accessibility
 tree, horizontal overflow, visible actions, and full-page screenshots at desktop
@@ -84,12 +109,13 @@ reinstall its browsers and review any changed screenshots.
 
 ### Continuous integration and failures
 
-`.github/workflows/tests.yml` runs lint, all browser tests, and TypeScript checks
+`.github/workflows/tests.yml` runs lint, all browser tests, preview-indexing checks, and TypeScript checks
 on pull requests, pushes to `main` or `master`, and manual dispatch. It uses two
 workers, retries failures twice, rejects focused tests (`test.only`), and never
 updates baselines automatically.
 
-The HTML report is written to `playwright-report/`. Failed tests retain screenshots,
+The HTML report is written to `playwright-report/`; preview tests use its `preview/`
+subdirectory. Failed tests retain screenshots,
 video, and traces in `test-results/`; CI uploads both directories as the
 `playwright-results` artifact for 14 days. View a trace with
 `npx playwright show-trace <path-to-trace.zip>`. Reports and failure artifacts are

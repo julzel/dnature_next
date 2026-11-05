@@ -24,7 +24,7 @@ export default defineConfig({
   },
   use: {
     baseURL,
-    locale: "en-US",
+    locale: "es-CR",
     timezoneId: "America/Costa_Rica",
     colorScheme: "light",
     reducedMotion: "reduce",
@@ -34,6 +34,7 @@ export default defineConfig({
     video: "retain-on-failure",
   },
   projects: [
+    { name: "seo", testMatch: "seo/**/*.spec.ts", testIgnore: "**/preview.spec.ts" },
     {
       name: "chromium",
       testMatch: "e2e/**/*.spec.ts",
@@ -77,6 +78,13 @@ export default defineConfig({
     url: baseURL,
     reuseExistingServer: false,
     timeout: 180_000,
-    env: { NEXT_TELEMETRY_DISABLED: "1" },
+    env: {
+      NEXT_TELEMETRY_DISABLED: "1",
+      SITE_URL: "https://dnaturefood.com",
+      SEO_INDEXING_ENABLED: "true",
+      VERCEL_ENV: "production",
+      CONTEXT: "production",
+      GPTBOT_POLICY: "inherit",
+    },
   },
 });
