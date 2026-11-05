@@ -4,7 +4,7 @@ Implementation date: 5 November 2026. Canonical origin confirmed by the project 
 `https://dnaturefood.com`. Source documents are preserved as supplied.
 
 Current route organization: `/` currently renders the new header and a hero with
-lorem ipsum copy, two CTAs, and a supplied husky photograph, followed by empty contact and footer sections, and remains noindex. The extracted
+lorem ipsum copy, two CTAs, and a supplied dog photograph, followed by empty contact and footer sections, and remains noindex. The extracted
 `components/landing-prototype.tsx` is reviewable at `/prototype`, also noindex.
 Neither route is listed in the sitemap. The three editorial URLs below retain
 their existing paths through the `app/(site)/` route group and its shared layout.

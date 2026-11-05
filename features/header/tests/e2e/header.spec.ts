@@ -23,15 +23,30 @@ test("header fades with scroll and returns to transparent at the top", async ({ 
   });
 
   await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0)");
-  await page.evaluate(() => window.scrollTo(0, 60));
-  await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0.5)");
+  const fadeDistance = page.viewportSize()!.width < 1024 ? 45 : 60;
+  const midway = Math.floor(fadeDistance / 2);
+  await page.evaluate((position) => window.scrollTo(0, position), midway);
+  await expect.poll(() => bottom.evaluate((element) => Number(getComputedStyle(element).backgroundColor.match(/,\s*([\d.]+)\)$/)?.[1]))).toBeCloseTo(midway / fadeDistance, 2);
   expect((await header.boundingBox())?.y).toBe(0);
-  await page.evaluate(() => window.scrollTo(0, 120));
+  await page.evaluate((position) => window.scrollTo(0, position), fadeDistance);
   await expect(bottom).toHaveCSS("background-color", "rgb(255, 255, 255)");
   await expect(header.getByRole("navigation", { name: "Navegación principal", includeHidden: true }).getByRole("link", { name: "Ciencia", exact: true, includeHidden: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await expect(header.getByRole("button", { name: "Abrir búsqueda", exact: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0)");
+});
+
+test("header reaches solid white without animation lag on a fast scroll", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const bottom = page.locator('[data-header-section="bottom"]');
+  const fadeDistance = page.viewportSize()!.width < 1024 ? 45 : 60;
+  const background = await page.evaluate(async (position) => {
+    window.scrollTo({ top: position, behavior: "instant" });
+    await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    return getComputedStyle(document.querySelector('[data-header-section="bottom"]')!).backgroundColor;
+  }, fadeDistance);
+  expect(background).toBe("rgb(255, 255, 255)");
+  await expect(bottom).toHaveCSS("background-color", "rgb(255, 255, 255)");
 });
 
 test("search opens below navigation, receives focus, and closes with Escape", async ({ page }, testInfo) => {

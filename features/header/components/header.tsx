@@ -17,10 +17,13 @@ export function Header() {
 
   useEffect(function syncScrollBackground() {
     let frame: number | null = null;
+    const desktop = window.matchMedia("(min-width: 1024px)");
 
     function updateBackground() {
       frame = null;
-      const opacity = Math.min(1, Math.max(0, window.scrollY / 120));
+      // Follow scroll position directly, using a shorter fade on mobile.
+      const fadeDistance = desktop.matches ? 60 : 45;
+      const opacity = Math.min(1, Math.max(0, window.scrollY / fadeDistance));
       header.current?.style.setProperty("--header-scroll-opacity", String(opacity));
       header.current?.toggleAttribute("data-light-background", opacity >= 0.4);
     }
@@ -31,8 +34,10 @@ export function Header() {
 
     updateBackground();
     window.addEventListener("scroll", handleScroll, { passive: true });
+    desktop.addEventListener("change", handleScroll);
     return function cleanupScrollBackground() {
       window.removeEventListener("scroll", handleScroll);
+      desktop.removeEventListener("change", handleScroll);
       if (frame !== null) window.cancelAnimationFrame(frame);
     };
   }, []);

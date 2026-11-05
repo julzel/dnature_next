@@ -23,7 +23,7 @@ for (const viewport of [
     expect(header!.y + header!.height).toBeGreaterThan(hero!.y);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Lorem ipsum dolor sit amet.");
-    const photo = page.getByRole("img", { name: "Perro husky en un sendero del bosque." });
+    const photo = page.getByRole("img", { name: "Perro levantando una pata entre helechos y troncos en el bosque." });
     await expect.poll(() => photo.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
     const actions = page.locator('[data-hero-section="content"]').getByRole("link");
     await expect(actions).toHaveCount(2);

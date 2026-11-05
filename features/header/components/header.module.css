@@ -42,7 +42,6 @@
 .bottom {
   min-block-size: var(--header-bottom-height);
   background-color: rgb(255 255 255 / var(--header-scroll-opacity, 0));
-  transition: background-color 120ms linear;
 }
 
 .bottom .container {

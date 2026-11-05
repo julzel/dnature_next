@@ -15,16 +15,24 @@ pnpm dev
 bun dev
 ```
 
+For development on another device, set `ALLOWED_DEV_ORIGINS=192.168.100.13`
+in `.env.local` and restart the dev server. Separate multiple hostnames with commas;
+omit the protocol and port.
+
 The homepage at [http://localhost:3000](http://localhost:3000) currently contains the
-header, a full-viewport hero with lorem ipsum copy, two CTAs, a husky photograph, and empty contact
+header, a full-viewport hero with lorem ipsum copy, two CTAs, a dog photograph, and empty contact
 and footer sections. Its header feature lives in
 `features/header/`: a 33px navy top row, a 78px navigation row, and an expandable
 search panel below navigation. Search currently covers the published editorial pages.
+The navigation row fades from transparent to solid white over the first 45px of scrolling
+below 1024px, and over 60px on desktop.
 Below 1024px, a menu button beside search opens a left-side navigation drawer
 with keyboard focus containment, Escape/backdrop dismissal, and reduced-motion support.
 The hero is implemented in `features/hero/` and uses a stacked mobile layout and
 a side-by-side desktop layout. Contact and footer placeholders live in
 `features/contact/` and `features/footer/`.
+The current hero photo is `public/images/hero-02.jpg`; the previous photo is
+preserved at `public/images/hero.jpg`.
 Review the extracted prototype at [http://localhost:3000/prototype](http://localhost:3000/prototype).
 Both routes are noindex and excluded from the public sitemap.
 

@@ -45,7 +45,7 @@
   flex-shrink: 0;
   inline-size: var(--dn-space-6);
   block-size: 4px;
-  background: var(--hero-accent);
+  background: var(--dn-brand-orange);
 }
 
 .heading {
@@ -118,7 +118,7 @@
 
 .photo {
   object-fit: cover;
-  object-position: 75% center;
+  object-position: center;
 }
 
 @media (min-width: 1024px) {

@@ -11,8 +11,8 @@ export function Hero() {
       <div className={styles.image} data-hero-section="image">
         <Image
           className={styles.photo}
-          src="/images/hero.jpg"
-          alt="Perro husky en un sendero del bosque."
+          src="/images/hero-02.jpg"
+          alt="Perro levantando una pata entre helechos y troncos en el bosque."
           fill
           sizes="(min-width: 1024px) 50vw, 100vw"
           loading="eager"
