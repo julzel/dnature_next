@@ -1,6 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const baseURL = "http://127.0.0.1:3100";
+const e2eTestLocations = {
+  testDir: ".",
+  testMatch: ["tests/e2e/**/*.spec.ts", "features/**/tests/e2e/**/*.spec.ts"],
+};
 
 export default defineConfig({
   testDir: "./tests",
@@ -37,22 +41,22 @@ export default defineConfig({
     { name: "seo", testMatch: "seo/**/*.spec.ts", testIgnore: "**/preview.spec.ts" },
     {
       name: "chromium",
-      testMatch: "e2e/**/*.spec.ts",
+      ...e2eTestLocations,
       use: { ...devices["Desktop Chrome"] },
     },
     {
       name: "firefox",
-      testMatch: "e2e/**/*.spec.ts",
+      ...e2eTestLocations,
       use: { ...devices["Desktop Firefox"] },
     },
     {
       name: "webkit",
-      testMatch: "e2e/**/*.spec.ts",
+      ...e2eTestLocations,
       use: { ...devices["Desktop Safari"] },
     },
     {
       name: "mobile-chromium",
-      testMatch: "e2e/**/*.spec.ts",
+      ...e2eTestLocations,
       use: { ...devices["Pixel 7"] },
     },
     ...(["light", "dark"] as const).flatMap((colorScheme) =>

@@ -1,0 +1,261 @@
+.header {
+  --header-top-height: 33px;
+  --header-bottom-height: 78px;
+  --header-gutter: 20px;
+  --header-gap: 16px;
+  --header-blue: #124563;
+
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 10;
+  inline-size: 100%;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.container {
+  inline-size: min(1280px, calc(100% - var(--header-gutter) * 2));
+  min-inline-size: 0;
+  margin-inline: auto;
+}
+
+.top {
+  min-block-size: var(--header-top-height);
+  background: var(--header-blue);
+  color: #fff;
+}
+
+.top .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: inherit;
+}
+
+.top p {
+  padding-block: 4px;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.bottom {
+  min-block-size: var(--header-bottom-height);
+  border-block-end: 1px solid var(--dn-border-default);
+  background-color: rgb(255 255 255 / var(--header-scroll-opacity, 0));
+  transition: background-color 120ms linear;
+}
+
+.bottom .container {
+  display: flex;
+  align-items: center;
+  gap: var(--header-gap);
+  min-block-size: calc(var(--header-bottom-height) - 1px);
+}
+
+.logo {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+}
+
+.logo img {
+  inline-size: 56px;
+  block-size: 44px;
+  object-fit: contain;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: var(--header-gap);
+  margin-inline-start: auto;
+}
+
+.navigation a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+
+.searchToggle {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--header-blue);
+}
+
+.searchToggle:hover,
+.searchToggle[aria-expanded="true"] {
+  background: var(--dn-surface-muted);
+}
+
+.searchPanel {
+  display: grid;
+  grid-template-rows: 0fr;
+  background: var(--dn-surface-cool);
+  transition: grid-template-rows 240ms ease;
+}
+
+.searchPanel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.searchClip {
+  min-block-size: 0;
+  overflow: hidden;
+}
+
+.searchContent {
+  display: block;
+  padding-block: var(--header-gap);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 180ms ease, transform 240ms ease;
+}
+
+.searchPanel[data-open="true"] .searchContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.searchForm {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin: 0;
+}
+
+.searchInput {
+  flex: 1;
+  min-inline-size: 0;
+  min-block-size: 48px;
+  padding: 12px 16px;
+  border: 2px solid #7c919f;
+  border-radius: 8px;
+  background: var(--dn-surface-base);
+  font-size: 16px;
+}
+
+.searchInput:focus {
+  border-color: var(--header-blue);
+  outline: none;
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-inline-size: 48px;
+  min-block-size: 48px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--header-blue);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.submitButton svg {
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+.submitLabel {
+  display: none;
+}
+
+.results {
+  margin-block-start: var(--header-gap);
+}
+
+.resultStatus {
+  font-size: 14px;
+  color: var(--dn-text-secondary);
+}
+
+.results ul {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.results a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--header-gap);
+  min-block-size: 44px;
+  padding-block: 8px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.results a:hover {
+  text-decoration: underline;
+}
+
+.results svg {
+  flex-shrink: 0;
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+@media (min-width: 640px) {
+  .header {
+    --header-gutter: 24px;
+    --header-gap: 24px;
+  }
+
+  .logo img {
+    inline-size: 170px;
+  }
+
+  .navigation a {
+    font-size: 14px;
+  }
+
+  .submitLabel {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    --header-gutter: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom,
+  .searchPanel,
+  .searchContent {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .searchInput:focus {
+    border-color: Highlight;
+  }
+}

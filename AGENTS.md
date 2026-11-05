@@ -37,6 +37,12 @@ does not require an unrelated repository-wide refactor.
 - Build mobile first. Use fluid layouts and content-driven breakpoints to adapt
   from narrow phones to large screens without horizontal overflow. Check touch,
   keyboard, text wrapping, and enlarged text as well as desktop appearance.
+- For buttons displayed inline alongside other elements, show an icon without
+  visible text on mobile; on desktop, show both the icon and text. Keep an
+  accessible name on icon-only buttons and maintain usable touch targets.
+- Use `lucide-react` for interface icons. Import individual icons by name, and
+  hide decorative icons from assistive technology when the button already has
+  an accessible name.
 - Prefer native HTML controls, browser behaviors, and familiar platform interaction
   patterns. Favor subtle, native-feeling motion; respect `prefers-reduced-motion`.
   Preserve accessible semantics, visible focus, and usable touch targets when styling.

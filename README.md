@@ -15,12 +15,15 @@ pnpm dev
 bun dev
 ```
 
-The homepage at [http://localhost:3000](http://localhost:3000) is intentionally blank.
+The homepage at [http://localhost:3000](http://localhost:3000) currently contains the
+new header, with the rest of the page left blank. Its feature lives in
+`features/header/`: a 33px navy top row, a 78px navigation row, and an expandable
+search panel below navigation. Search currently covers the published editorial pages.
 Review the extracted prototype at [http://localhost:3000/prototype](http://localhost:3000/prototype).
 Both routes are noindex and excluded from the public sitemap.
 
 Edit `components/landing-prototype.tsx` to work on the prototype. The shared header
-and footer live in `app/(site)/layout.tsx`, keeping the root page free of site chrome.
+and footer for the prototype and editorial pages live in `app/(site)/layout.tsx`.
 
 The landing-page prototype follows `docs/graphic-design/DNAture_Design_System.md`,
 using the supplied monochrome logos, original photography, brand/category color
@@ -89,7 +92,7 @@ secrets. The primary Playwright config explicitly
 tests production indexing; the preview config rebuilds with preview deployment flags.
 Both use port 3100 and must run sequentially.
 
-The end-to-end suite in `tests/e2e/` checks successful page loading, brand content,
+The end-to-end suite in `tests/e2e/` and colocated `features/*/tests/e2e/` checks successful page loading, brand content,
 browser runtime errors, internal navigation, breadcrumbs, and the Spanish 404
 response. Add tests for new user journeys here as the application grows.
 

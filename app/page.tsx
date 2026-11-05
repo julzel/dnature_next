@@ -1,5 +1,6 @@
 import { brand } from "@/lib/seo/config";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { Header } from "@/features/header/components/header";
 
 export const metadata = pageMetadata({
   path: "/",
@@ -9,5 +10,5 @@ export const metadata = pageMetadata({
 });
 
 export default function Home() {
-  return null;
+  return <Header />;
 }
