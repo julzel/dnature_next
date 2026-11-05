@@ -1,26 +1,18 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
-import nextVitals from 'eslint-config-next/core-web-vitals';
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
-export default defineConfig([
+const eslintConfig = defineConfig([
   ...nextVitals,
-  {
-    rules: {
-      'react-hooks/immutability': 'error',
-      'react-hooks/set-state-in-effect': 'error',
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    },
-  },
+  ...nextTs,
+  // Override default ignores of eslint-config-next.
   globalIgnores([
-    '.next/**',
-    '.next-e2e/**',
-    '.next-baseline/**',
-    'coverage/**',
-    'playwright-report/**',
-    'test-results/**',
-    'out/**',
-    'build/**',
-    'supabase/.temp/**',
-    'supabase/.branches/**',
-    'next-env.d.ts',
+    // Default ignores of eslint-config-next:
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
   ]),
 ]);
+
+export default eslintConfig;
