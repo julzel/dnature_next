@@ -13,6 +13,18 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 Apply these rules to new and modified code. Adding or updating these instructions
 does not require an unrelated repository-wide refactor.
 
+## SEO/GEO
+
+- Prioritize SEO (Search Engine Optimization) and GEO (Generative Engine
+  Optimization) when building or modifying public pages.
+- Make the most strategically important public pages easy to discover from the
+  main navigation, footer, and relevant content pages. Use crawlable internal
+  links with descriptive anchor text.
+- Treat accessibility, clear content structure, and semantic HTML as core
+  requirements. Use meaningful page landmarks, a logical heading hierarchy,
+  descriptive links, appropriate image alternatives, and native HTML elements
+  that match the content and interaction.
+
 ## Design
 
 - Use consistent spacing throughout the app. Define a shared spacing scale with
