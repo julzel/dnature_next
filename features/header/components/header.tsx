@@ -71,11 +71,6 @@ export function Header() {
 
   return (
     <header ref={header} className={styles.header} onKeyDown={handleKeyDown}>
-      <div className={styles.top} data-header-section="top">
-        <div className={styles.container}>
-          <p>Nutrición con esencia en el ADN.</p>
-        </div>
-      </div>
       <div className={styles.bottom} data-header-section="bottom">
         <div className={styles.container}>
           <Link className={styles.logo} href="/" aria-label="DNAture, inicio">

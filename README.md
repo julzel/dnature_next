@@ -22,7 +22,7 @@ omit the protocol and port.
 The homepage at [http://localhost:3000](http://localhost:3000) currently contains the
 header, a full-viewport hero with lorem ipsum copy, two CTAs, a dog photograph, and empty contact
 and footer sections. Its header feature lives in
-`features/header/`: a 33px navy top row, a 78px navigation row, and an expandable
+`features/header/`: a 78px navigation row and an expandable
 search panel below navigation. Search currently covers the published editorial pages.
 The navigation row fades from transparent to solid white over the first 45px of scrolling
 below 1024px, and over 60px on desktop.

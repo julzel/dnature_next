@@ -1,8 +1,7 @@
 :root {
   color-scheme: light;
-  --dn-header-top-height: 33px;
   --dn-header-bottom-height: 78px;
-  --dn-header-height: calc(var(--dn-header-top-height) + var(--dn-header-bottom-height));
+  --dn-header-height: var(--dn-header-bottom-height);
   --dn-page-gutter: 20px;
   --dn-space-6: 24px;
   --dn-brand-teal: #00a9b5;

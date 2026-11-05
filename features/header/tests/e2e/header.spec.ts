@@ -2,12 +2,11 @@ import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => { await page.goto("/"); });
 
-test("header uses the requested row heights and top color", async ({ page }) => {
-  const top = page.locator('[data-header-section="top"]');
+test("header contains a 78px navigation row without a top section", async ({ page }) => {
   const bottom = page.locator('[data-header-section="bottom"]');
-  await expect(top).toHaveCSS("background-color", "rgb(18, 69, 99)");
+  await expect(page.locator('[data-header-section="top"]')).toHaveCount(0);
   await expect(bottom).toHaveCSS("border-bottom-width", "0px");
-  expect((await top.boundingBox())?.height).toBe(33);
+  expect((await page.getByRole("banner").boundingBox())?.height).toBe(78);
   expect((await bottom.boundingBox())?.height).toBe(78);
   expect((await page.locator('#header-search').boundingBox())?.height).toBe(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);
@@ -30,6 +29,7 @@ test("header fades with scroll and returns to transparent at the top", async ({ 
   expect((await header.boundingBox())?.y).toBe(0);
   await page.evaluate((position) => window.scrollTo(0, position), fadeDistance);
   await expect(bottom).toHaveCSS("background-color", "rgb(255, 255, 255)");
+  expect((await header.boundingBox())?.height).toBe(78);
   await expect(header.getByRole("navigation", { name: "Navegación principal", includeHidden: true }).getByRole("link", { name: "Ciencia", exact: true, includeHidden: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await expect(header.getByRole("button", { name: "Abrir búsqueda", exact: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await page.evaluate(() => window.scrollTo(0, 0));

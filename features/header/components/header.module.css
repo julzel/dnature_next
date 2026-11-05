@@ -1,5 +1,4 @@
 .header {
-  --header-top-height: var(--dn-header-top-height);
   --header-bottom-height: var(--dn-header-bottom-height);
   --header-gutter: var(--dn-page-gutter);
   --header-gap: 16px;
@@ -17,26 +16,6 @@
   inline-size: min(1280px, calc(100% - var(--header-gutter) * 2));
   min-inline-size: 0;
   margin-inline: auto;
-}
-
-.top {
-  min-block-size: var(--header-top-height);
-  background: var(--header-blue);
-  color: #fff;
-}
-
-.top .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-block-size: inherit;
-}
-
-.top p {
-  padding-block: 4px;
-  font-size: 11px;
-  line-height: 1.5;
-  text-align: center;
 }
 
 .bottom {
@@ -255,7 +234,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bottom,
   .searchPanel,
   .searchContent {
     transition: none;
