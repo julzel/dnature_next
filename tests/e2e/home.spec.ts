@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("home page renders its header and empty hero and remains non-indexable", async ({ page }) => {
+test("home page renders its header, hero, contact and footer placeholders and remains non-indexable", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   const response = await page.goto("/");
@@ -9,7 +9,8 @@ test("home page renders its header and empty hero and remains non-indexable", as
   await expect(page.getByRole("banner")).toHaveCount(1);
   await expect(page.getByRole("main")).toHaveCount(1);
   await expect(page.getByRole("main")).toHaveText("");
-  await expect(page.getByRole("contentinfo")).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "Contacto", exact: true })).toBeAttached();
+  await expect(page.getByRole("contentinfo")).toHaveCount(1);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
   expect(errors).toEqual([]);
 });

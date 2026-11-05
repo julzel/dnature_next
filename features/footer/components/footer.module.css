@@ -1,0 +1,6 @@
+.footer {
+  min-block-size: calc(var(--dn-space-6) * 8);
+  padding: calc(var(--dn-space-6) * 2) var(--dn-page-gutter);
+  background: var(--dn-category-wild);
+  color: #fff;
+}

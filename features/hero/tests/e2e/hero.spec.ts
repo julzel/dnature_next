@@ -8,7 +8,7 @@ for (const viewport of [
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto("/");
 
-    const hero = await page.getByRole("main").boundingBox();
+    const hero = await page.locator('[data-section="hero"]').boundingBox();
     const content = await page.locator('[data-hero-section="content"]').boundingBox();
     const image = await page.locator('[data-hero-section="image"]').boundingBox();
     const header = await page.getByRole("banner").boundingBox();

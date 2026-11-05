@@ -6,6 +6,7 @@ test("header uses the requested row heights and top color", async ({ page }) => 
   const top = page.locator('[data-header-section="top"]');
   const bottom = page.locator('[data-header-section="bottom"]');
   await expect(top).toHaveCSS("background-color", "rgb(18, 69, 99)");
+  await expect(bottom).toHaveCSS("border-bottom-width", "0px");
   expect((await top.boundingBox())?.height).toBe(33);
   expect((await bottom.boundingBox())?.height).toBe(78);
   expect((await page.locator('#header-search').boundingBox())?.height).toBe(0);
@@ -27,6 +28,8 @@ test("header fades with scroll and returns to transparent at the top", async ({ 
   expect((await header.boundingBox())?.y).toBe(0);
   await page.evaluate(() => window.scrollTo(0, 120));
   await expect(bottom).toHaveCSS("background-color", "rgb(255, 255, 255)");
+  await expect(header.getByRole("link", { name: "Ciencia", exact: true })).toHaveCSS("color", "rgb(32, 50, 55)");
+  await expect(header.getByRole("button", { name: "Abrir búsqueda", exact: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0)");
 });
@@ -70,6 +73,10 @@ test("search finds actual public pages and gives useful empty-result feedback", 
 
 test("header and expanded search fit a narrow phone", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
+  const logo = page.getByRole("link", { name: "DNAture, inicio" }).locator("img");
+  await expect(logo).toHaveAttribute("loading", "eager");
+  await expect.poll(() => logo.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/\/icon\.svg$/);
+  expect((await logo.boundingBox())!.width).toBe(56);
   await page.getByRole("button", { name: "Abrir búsqueda", exact: true }).click();
   await expect(page.getByRole("searchbox", { name: "Buscar en el sitio" })).toBeInViewport();
   const button = page.getByRole("search").getByRole("button", { name: "Buscar", exact: true });
@@ -79,6 +86,8 @@ test("header and expanded search fit a narrow phone", async ({ page }) => {
   expect((await button.boundingBox())!.width).toBeGreaterThanOrEqual(44);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(320);
   await page.setViewportSize({ width: 1024, height: 700 });
+  await expect.poll(() => logo.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/\/brand\/logo\.svg$/);
+  expect((await logo.boundingBox())!.width).toBe(114);
   await expect(button.locator("svg")).toBeVisible();
   await expect(button.getByText("Buscar", { exact: true })).toBeVisible();
 });

@@ -2,6 +2,8 @@ import { brand } from "@/lib/seo/config";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { Header } from "@/features/header/components/header";
 import { Hero } from "@/features/hero/components/hero";
+import { Contact } from "@/features/contact/components/contact";
+import { Footer } from "@/features/footer/components/footer";
 
 export const metadata = pageMetadata({
   path: "/",
@@ -11,5 +13,14 @@ export const metadata = pageMetadata({
 });
 
 export default function Home() {
-  return <><Header /><Hero /></>;
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
 }

@@ -41,7 +41,6 @@
 
 .bottom {
   min-block-size: var(--header-bottom-height);
-  border-block-end: 1px solid var(--dn-border-default);
   background-color: rgb(255 255 255 / var(--header-scroll-opacity, 0));
   transition: background-color 120ms linear;
 }
@@ -50,7 +49,7 @@
   display: flex;
   align-items: center;
   gap: var(--header-gap);
-  min-block-size: calc(var(--header-bottom-height) - 1px);
+  min-block-size: var(--header-bottom-height);
 }
 
 .logo {
@@ -59,12 +58,6 @@
   align-items: center;
   justify-content: center;
   min-block-size: 44px;
-}
-
-.logo img {
-  inline-size: 56px;
-  block-size: 44px;
-  object-fit: contain;
 }
 
 .navigation {
@@ -103,6 +96,11 @@
 .searchToggle:hover,
 .searchToggle[aria-expanded="true"] {
   background: var(--dn-surface-muted);
+}
+
+.header[data-light-background] .navigation,
+.header[data-light-background] .searchToggle {
+  color: var(--dn-text-primary);
 }
 
 .searchPanel {
@@ -227,11 +225,6 @@
     color: #fff;
   }
 
-  .header[data-light-background] .navigation,
-  .header[data-light-background] .searchToggle {
-    color: #000;
-  }
-
   .header:not([data-light-background]) .searchToggle:hover,
   .header:not([data-light-background]) .searchToggle[aria-expanded="true"] {
     color: var(--header-blue);
@@ -246,10 +239,6 @@
 @media (min-width: 640px) {
   .header {
     --header-gap: 24px;
-  }
-
-  .logo img {
-    inline-size: 170px;
   }
 
   .navigation a {

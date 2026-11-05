@@ -1,0 +1,16 @@
+.logo {
+  display: block;
+  inline-size: var(--logo-width);
+}
+
+.logo img {
+  inline-size: 100%;
+  block-size: var(--logo-height);
+  object-fit: contain;
+}
+
+@media (max-width: 639px) {
+  .logo[data-shape="responsive"] {
+    inline-size: var(--logo-compact-width);
+  }
+}

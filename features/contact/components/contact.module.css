@@ -1,0 +1,6 @@
+.contact {
+  min-block-size: calc(var(--dn-space-6) * 12);
+  padding: calc(var(--dn-space-6) * 2) var(--dn-page-gutter);
+  scroll-margin-block-start: var(--dn-header-height);
+  background: var(--dn-surface-cool);
+}

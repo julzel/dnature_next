@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { Icon } from "@/components/icon";
+import { Logo } from "@/components/logo";
 import { HeaderSearch } from "./header-search";
 import styles from "./header.module.css";
 
@@ -68,10 +68,7 @@ export function Header() {
       <div className={styles.bottom} data-header-section="bottom">
         <div className={styles.container}>
           <Link className={styles.logo} href="/" aria-label="DNAture, inicio">
-            <picture>
-              <source media="(min-width: 640px)" srcSet="/brand/logo.svg" />
-              <Image src="/icon.svg" width={170} height={44} alt="DNAture" unoptimized />
-            </picture>
+            <Logo shape="responsive" size={114} loading="eager" alt="" />
           </Link>
           <nav className={styles.navigation} aria-label="Navegación principal">
             <Link href="/ciencia">Ciencia</Link>
