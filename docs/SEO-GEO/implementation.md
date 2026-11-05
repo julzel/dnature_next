@@ -3,8 +3,8 @@
 Implementation date: 5 November 2026. Canonical origin confirmed by the project owner:
 `https://dnaturefood.com`. Source documents are preserved as supplied.
 
-Current route organization: `/` currently renders the new header with an otherwise
-blank page and remains noindex. The extracted
+Current route organization: `/` currently renders the new header and an empty hero
+with an image placeholder, and remains noindex. The extracted
 `components/landing-prototype.tsx` is reviewable at `/prototype`, also noindex.
 Neither route is listed in the sitemap. The three editorial URLs below retain
 their existing paths through the `app/(site)/` route group and its shared layout.

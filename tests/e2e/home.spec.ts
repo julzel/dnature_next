@@ -1,13 +1,14 @@
 import { expect, test } from "@playwright/test";
 
-test("home page renders its header with no main content and remains non-indexable", async ({ page }) => {
+test("home page renders its header and empty hero and remains non-indexable", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   const response = await page.goto("/");
   expect(response?.status()).toBe(200);
   await expect(page).toHaveTitle("DNAture | Nutrición con esencia en el ADN");
   await expect(page.getByRole("banner")).toHaveCount(1);
-  await expect(page.getByRole("main")).toHaveCount(0);
+  await expect(page.getByRole("main")).toHaveCount(1);
+  await expect(page.getByRole("main")).toHaveText("");
   await expect(page.getByRole("contentinfo")).toHaveCount(0);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
   expect(errors).toEqual([]);

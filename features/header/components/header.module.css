@@ -1,11 +1,11 @@
 .header {
-  --header-top-height: 33px;
-  --header-bottom-height: 78px;
-  --header-gutter: 20px;
+  --header-top-height: var(--dn-header-top-height);
+  --header-bottom-height: var(--dn-header-bottom-height);
+  --header-gutter: var(--dn-page-gutter);
   --header-gap: 16px;
   --header-blue: #124563;
 
-  position: sticky;
+  position: fixed;
   inset-block-start: 0;
   z-index: 10;
   inline-size: 100%;
@@ -221,9 +221,30 @@
   block-size: 20px;
 }
 
+@media (max-width: 1023px) {
+  .header:not([data-light-background]) .navigation,
+  .header:not([data-light-background]) .searchToggle {
+    color: #fff;
+  }
+
+  .header[data-light-background] .navigation,
+  .header[data-light-background] .searchToggle {
+    color: #000;
+  }
+
+  .header:not([data-light-background]) .searchToggle:hover,
+  .header:not([data-light-background]) .searchToggle[aria-expanded="true"] {
+    color: var(--header-blue);
+  }
+
+  .header:not([data-light-background]) .navigation a:focus-visible,
+  .header:not([data-light-background]) .searchToggle:focus-visible {
+    outline-color: #fff;
+  }
+}
+
 @media (min-width: 640px) {
   .header {
-    --header-gutter: 24px;
     --header-gap: 24px;
   }
 
@@ -237,12 +258,6 @@
 
   .submitLabel {
     display: block;
-  }
-}
-
-@media (min-width: 1024px) {
-  .header {
-    --header-gutter: 40px;
   }
 }
 

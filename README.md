@@ -16,9 +16,11 @@ bun dev
 ```
 
 The homepage at [http://localhost:3000](http://localhost:3000) currently contains the
-new header, with the rest of the page left blank. Its feature lives in
+header and an empty, full-viewport hero with an image placeholder. Its header feature lives in
 `features/header/`: a 33px navy top row, a 78px navigation row, and an expandable
 search panel below navigation. Search currently covers the published editorial pages.
+The hero is implemented in `features/hero/` and uses a stacked mobile layout and
+a side-by-side desktop layout.
 Review the extracted prototype at [http://localhost:3000/prototype](http://localhost:3000/prototype).
 Both routes are noindex and excluded from the public sitemap.
 

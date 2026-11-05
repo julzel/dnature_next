@@ -1,5 +1,10 @@
 :root {
   color-scheme: light;
+  --dn-header-top-height: 33px;
+  --dn-header-bottom-height: 78px;
+  --dn-header-height: calc(var(--dn-header-top-height) + var(--dn-header-bottom-height));
+  --dn-page-gutter: 20px;
+  --dn-space-6: 24px;
   --dn-brand-teal: #00a9b5;
   --dn-brand-orange: #ff6a00;
   --dn-brand-gray: #b2b2b2;
@@ -26,6 +31,14 @@
   --dn-focus-ring: #124563;
   --dn-overlay: rgb(17 45 53 / 56%);
   --font-body: "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
+}
+
+@media (min-width: 640px) {
+  :root { --dn-page-gutter: 24px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --dn-page-gutter: 40px; }
 }
 
 * { box-sizing: border-box; }

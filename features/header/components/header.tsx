@@ -20,6 +20,7 @@ export function Header() {
       frame = null;
       const opacity = Math.min(1, Math.max(0, window.scrollY / 120));
       header.current?.style.setProperty("--header-scroll-opacity", String(opacity));
+      header.current?.toggleAttribute("data-light-background", opacity >= 0.4);
     }
 
     function handleScroll() {
