@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { publicPages } from "../../lib/seo/pages";
 
-for (const entry of publicPages) {
+for (const entry of [{ path: "/" }, { path: "/prototype" }, ...publicPages]) {
   test(`preview ${entry.path} stays noindex despite the launch flag`, async ({ page }) => {
     const response = await page.goto(entry.path);
     expect(response?.status()).toBe(200);

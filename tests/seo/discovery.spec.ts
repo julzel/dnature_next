@@ -12,8 +12,8 @@ for (const entry of publicPages) {
     expect(response?.headers()["x-robots-tag"]).toBeUndefined();
     await expect(page.locator("html")).toHaveAttribute("lang", "es-CR");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(entry.title);
-    await expect(page).toHaveTitle(entry.path === "/" ? `${brand.name} | ${entry.title}` : `${entry.title} | ${brand.name}`);
-    const canonical = `${brand.origin}${entry.path === "/" ? "" : entry.path}`;
+    await expect(page).toHaveTitle(`${entry.title} | ${brand.name}`);
+    const canonical = `${brand.origin}${entry.path}`;
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", canonical);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /\S.{40,}/);
     await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", canonical);
@@ -31,7 +31,7 @@ test("sitemap lists exactly the implemented public canonicals", async ({ request
   expect(response.headers()["content-type"]).toContain("xml");
   const xml = await response.text();
   const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
-  expect(urls.sort()).toEqual(publicPages.map((page) => `${brand.origin}${page.path === "/" ? "" : page.path}`).sort());
+  expect(urls.sort()).toEqual(publicPages.map((page) => `${brand.origin}${page.path}`).sort());
   expect(xml).not.toContain("<lastmod>");
 });
 
@@ -52,8 +52,9 @@ for (const path of ["/cuenta", "/mi-dnature/mascotas", "/checkout", "/carrito", 
   });
 }
 
-test("home identity contains only documented brand facts", async ({ page, request }) => {
-  await page.goto("/");
+test("prototype identity contains only documented brand facts", async ({ page, request }) => {
+  await page.goto("/prototype");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
   const identity = JSON.parse(await page.locator('script[type="application/ld+json"]').innerText());
   expect(identity["@graph"].map((node: { "@type": string }) => node["@type"])).toEqual(["Organization", "WebSite"]);
   expect(identity["@graph"][0]).toMatchObject({ name: "DNAture", url: brand.origin, slogan: brand.tagline });

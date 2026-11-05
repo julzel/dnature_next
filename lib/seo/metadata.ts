@@ -49,11 +49,18 @@ export function pageMetadata(
       title,
       description: page.description,
       url: canonicalUrl(page.path, config),
+      images: [{
+        url: canonicalUrl("/opengraph-image", config),
+        width: 1200,
+        height: 630,
+        alt: `${brand.name} · ${brand.tagline}`,
+      }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: page.description,
+      images: [canonicalUrl("/opengraph-image", config)],
     },
   };
 }

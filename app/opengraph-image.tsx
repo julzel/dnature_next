@@ -7,7 +7,7 @@ export const contentType = "image/png";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
-    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", height: "100%", padding: 80, background: "#f8f6ef", color: "#183d35" }}>
+    <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", height: "100%", padding: 80, background: "#f6faff", color: "#124563" }}>
       <div style={{ display: "flex", fontSize: 48, fontWeight: 700 }}>{brand.name}</div>
       <div style={{ display: "flex", fontSize: 84, lineHeight: 1.08, maxWidth: 900 }}>{brand.tagline}</div>
       <div style={{ display: "flex", fontSize: 26 }}>Nutrición · Educación · Acompañamiento</div>

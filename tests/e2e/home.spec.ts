@@ -1,24 +1,30 @@
 import { expect, test } from "@playwright/test";
 
-test("home page loads brand content without runtime errors", async ({ page }) => {
+test("home page is blank and non-indexable", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   const response = await page.goto("/");
   expect(response?.status()).toBe(200);
   await expect(page).toHaveTitle("DNAture | Nutrición con esencia en el ADN");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Nutrición con esencia en el ADN");
-  await expect(page.getByRole("main")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Conocé DNAture", exact: true })).toBeVisible();
+  expect((await page.locator("body").innerText()).trim()).toBe("");
+  await expect(page.getByRole("banner")).toHaveCount(0);
+  await expect(page.getByRole("main")).toHaveCount(0);
+  await expect(page.getByRole("contentinfo")).toHaveCount(0);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
   expect(errors).toEqual([]);
 });
+
 
 for (const [name, destination, heading] of [
   ["Nosotros", "/nosotros", "Quiénes somos"],
   ["Ciencia", "/ciencia", "Ciencia y nutrición fisiológica"],
 ] as const) {
   test(`${name} is reachable from the main navigation`, async ({ page }) => {
-    await page.goto("/");
-    await page.getByRole("navigation", { name: "Navegación principal" }).getByRole("link", { name, exact: true }).click();
+    await page.goto("/prototype");
+    const menu = page.getByRole("button", { name: "Abrir menú", exact: true });
+    const mobile = await menu.isVisible();
+    if (mobile) await menu.click();
+    await page.getByRole("navigation", { name: mobile ? "Navegación móvil" : "Navegación principal", exact: true }).getByRole("link", { name, exact: true }).click();
     await expect(page).toHaveURL(destination);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(heading);
     await page.getByRole("navigation", { name: "Ruta de navegación" }).getByRole("link", { name: "Inicio", exact: true }).click();

@@ -15,12 +15,26 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The homepage at [http://localhost:3000](http://localhost:3000) is intentionally blank.
+Review the extracted prototype at [http://localhost:3000/prototype](http://localhost:3000/prototype).
+Both routes are noindex and excluded from the public sitemap.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Edit `components/landing-prototype.tsx` to work on the prototype. The shared header
+and footer live in `app/(site)/layout.tsx`, keeping the root page free of site chrome.
 
-This project uses `next/font` to load Geist and includes server-rendered brand and
-editorial-policy pages.
+The landing-page prototype follows `docs/graphic-design/DNAture_Design_System.md`,
+using the supplied monochrome logos, original photography, brand/category color
+tokens, and the specified Avenir/Segoe UI/Arial system-font fallback. Licensed
+Avenir Next LT Pro and Gotham Ultra webfont files have not been supplied.
+
+Interface surfaces use cool white (`#F6FAFF`) and blue-gray (`#F1F5F9`), overriding
+the design proposal's warm-white surface.
+
+The prototype includes three experience tabs, optional pet discovery, product-family
+filters and information dialogs, family search, mobile navigation, native FAQ
+accordions, and honest account/cart empty states. It does not create profiles,
+recommend diets, or process purchases. Family imagery is illustrative; approved live
+SKU, price, stock and species eligibility are still required for commerce.
 
 ## SEO and GEO
 
@@ -69,8 +83,9 @@ npm run typecheck
 Each test invocation builds the application and starts a production server at
 `http://127.0.0.1:3100`. Keep port 3100 available; an existing server is intentionally
 not reused. No separate development server is required. The initial build needs
-network access to fetch Google fonts. Next.js loads local environment files normally;
-the tests do not require application secrets. The primary Playwright config explicitly
+no font downloads: typography uses the design system's system-font fallback.
+Next.js loads local environment files normally; the tests do not require application
+secrets. The primary Playwright config explicitly
 tests production indexing; the preview config rebuilds with preview deployment flags.
 Both use port 3100 and must run sequentially.
 

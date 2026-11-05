@@ -3,16 +3,21 @@
 Implementation date: 5 November 2026. Canonical origin confirmed by the project owner:
 `https://dnaturefood.com`. Source documents are preserved as supplied.
 
+Current route organization: `/` is intentionally blank and noindex. The extracted
+`components/landing-prototype.tsx` is reviewable at `/prototype`, also noindex.
+Neither route is listed in the sitemap. The three editorial URLs below retain
+their existing paths through the `app/(site)/` route group and its shared layout.
+
 ## Implemented foundation
 
 | Playbook requirement | Project implementation |
 | --- | --- |
 | Spanish Costa Rica, brand terminology | `lang="es-CR"`, Spanish copy, official tagline, `es_CR` Open Graph locale; one language version, so no invented hreflang alternates |
-| Server-rendered public information and normal links | `/`, `/nosotros`, `/ciencia`, `/ciencia/nuestros-criterios`; headings, main/nav landmarks, keyboard skip link, visible breadcrumbs |
+| Server-rendered public information and normal links | `/nosotros`, `/ciencia`, `/ciencia/nuestros-criterios`; headings, main/nav landmarks, keyboard skip link, visible breadcrumbs |
 | Unique titles/descriptions and stable canonicals | `lib/seo/metadata.ts`; canonical origin from `SITE_URL`; query parameters excluded; no trailing slash except the HTTP root path; canonical root serialized as `https://dnaturefood.com` |
 | Public discovery | `app/sitemap.ts`, explicit implemented-page registry in `lib/seo/pages.ts`; no product drafts, private routes, fake dates, or future URLs |
-| Social identity | Open Graph/Twitter metadata and generated 1200 × 630 PNG; DNAture wordmark text and a letter-based favicon |
-| Organization identity | Homepage `Organization` + `WebSite` JSON-LD with name, URL, tagline and language; no invented address, credentials, affiliations, ratings, or social profiles |
+| Social identity | Open Graph/Twitter metadata and generated 1200 × 630 PNG; supplied monochrome DNAture logo in navigation and footer, plus a letter-based favicon |
+| Organization identity | Preserved inside the prototype as `Organization` + `WebSite` JSON-LD with name, URL, tagline and language; no invented address, credentials, affiliations, ratings, or social profiles |
 | Breadcrumbs | Visible trails and matching `BreadcrumbList` JSON-LD on secondary pages |
 | Product evidence gate | `productData()` only returns offers for records marked verified, with reviewer/date, SKU, label fields, HTTPS image and positive finite CRC price; excluded/draft records return no schema |
 | Preview and private-route indexing | Root robots metadata and `X-Robots-Tag` headers; explicit production launch flag; Vercel/Netlify preview guards; private account/cart/search/order paths always noindex |
@@ -104,8 +109,8 @@ rebuild the application. The primary Playwright config explicitly enables produc
 indexing for tests. The preview config deliberately sets the launch flag to true
 while supplying preview deployment context, proving the preview guard wins.
 
-`npm run test:seo` runs just the production SEO/policy checks. Tests cover all four
-implemented public URLs, query-independent canonicals, language, titles/descriptions,
+`npm run test:seo` runs just the production SEO/policy checks. Tests cover all three
+implemented editorial URLs, the blank homepage, the noindex prototype, query-independent canonicals, language, titles/descriptions,
 OG/Twitter data, accessible HTML without JavaScript, sitemap membership, private-path
 headers, breadcrumb/brand schema, social image responses, training policy separation,
 JSON-LD script escaping and the product publication gate. Browser/visual tests were
