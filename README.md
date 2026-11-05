@@ -20,6 +20,81 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Testing
+
+Install the project dependencies and Playwright browsers:
+
+```bash
+npm ci
+npx playwright install chromium firefox webkit
+```
+
+On Linux, use `npx playwright install --with-deps chromium firefox webkit`
+to install the browser system dependencies as well.
+
+```bash
+npm test                       # All end-to-end and regression tests
+npm run test:e2e               # Chromium, Firefox, WebKit, and mobile Chromium
+npm run test:regression        # Content, responsive layout, and screenshot checks
+npm run test:ui                # Interactive test runner
+npm run test:report            # Open the last HTML report
+npm run lint
+npm run typecheck
+```
+
+Each test invocation builds the application and starts a production server at
+`http://127.0.0.1:3100`. Keep port 3100 available; an existing server is intentionally
+not reused. No separate development server is required. The initial build needs
+network access to fetch the starter app's Google fonts. Next.js loads local
+environment files normally; the current tests do not require application secrets.
+
+The end-to-end suite in `tests/e2e/` checks successful page loading, page content,
+images, browser runtime errors, new-tab navigation, and the 404 response. External
+destinations are intercepted, so navigation tests do not depend on third-party
+sites. Add tests for new user journeys here as the application grows.
+
+The regression suite in `tests/regression/` checks the main content's accessibility
+tree, horizontal overflow, visible actions, and full-page screenshots at desktop
+(1440 × 900) and mobile (390 × 844) sizes, in light and dark mode. The configuration
+fixes locale, timezone, motion preferences, and pixel density for repeatable results.
+
+### Reviewing visual changes
+
+Screenshot baselines are versioned in `tests/regression/__screenshots__/` and
+separated by operating system and project. Missing or changed screenshots fail
+normal test runs. After an intentional design change:
+
+```bash
+npm run test:regression:update
+npm run test:regression
+```
+
+Review the changed PNGs and HTML report before committing the updated baselines.
+Do not update baselines just to make an unexplained failure pass. The inline
+accessibility snapshot in `tests/regression/home.spec.ts` should also be reviewed
+when page content or structure changes.
+
+The included screenshot baselines were generated on macOS 26 / Apple Silicon
+using the Playwright version locked in `package-lock.json`. CI runs on `macos-26`
+to match that environment. Screenshots can differ by OS, browser version, and font
+rendering; see [Playwright's visual comparison guidance](https://playwright.dev/docs/test-snapshots).
+On another OS, generate and review that platform's baselines explicitly; functional
+end-to-end tests can run without screenshot baselines. After upgrading Playwright,
+reinstall its browsers and review any changed screenshots.
+
+### Continuous integration and failures
+
+`.github/workflows/tests.yml` runs lint, all browser tests, and TypeScript checks
+on pull requests, pushes to `main` or `master`, and manual dispatch. It uses two
+workers, retries failures twice, rejects focused tests (`test.only`), and never
+updates baselines automatically.
+
+The HTML report is written to `playwright-report/`. Failed tests retain screenshots,
+video, and traces in `test-results/`; CI uploads both directories as the
+`playwright-results` artifact for 14 days. View a trace with
+`npx playwright show-trace <path-to-trace.zip>`. Reports and failure artifacts are
+ignored by Git; baseline PNGs are committed with the tests.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
