@@ -1,12 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
-import { ArrowLeft, ArrowRight, Pencil } from "lucide-react";
+import { ArrowLeft, ArrowRight, PawPrint, Pencil, Plus } from "lucide-react";
 import type { PetSpecies } from "../data/pet-breeds";
+import { MAX_PETS, upsertPet, type PetProfile } from "../data/pet-profiles";
 import { BreedCombobox } from "./breed-combobox";
 import { CatAvatar } from "./cat-avatar";
 import { DogAvatar } from "./dog-avatar";
 import { PetProfileCard } from "./pet-profile-card";
+import { SavedPetProfile } from "./saved-pet-profile";
 import styles from "./pet-questionnaire.module.css";
 
 export function PetQuestionnaire() {
@@ -15,6 +17,11 @@ export function PetQuestionnaire() {
   const [species, setSpecies] = useState<PetSpecies | null>(null);
   const [breed, setBreed] = useState("");
   const [error, setError] = useState("");
+  const [pets, setPets] = useState<PetProfile[]>([]);
+  const [editingPetId, setEditingPetId] = useState<string | null>(null);
+  const [reviewedPet, setReviewedPet] = useState<PetProfile | null>(null);
+  const nextPetId = useRef(0);
+  const collectionReturnStep = useRef(3);
   const [direction, setDirection] = useState<"forward" | "backward" | "none">("none");
   const [phase, setPhase] = useState<"idle" | "exiting" | "entering">("idle");
   const pendingStep = useRef<number | null>(null);
@@ -23,7 +30,9 @@ export function PetQuestionnaire() {
   const hasNavigated = useRef(false);
   const transitioning = phase !== "idle";
   const complete = step === 3;
-  const question = ["¿Gato o perro?", "¿Cómo se llama tu mascota?", `¿De qué raza es ${name}?`, `¡Un gusto, ${name}!`][step];
+  const viewingPets = step === 4;
+  const question = ["¿Gato o perro?", "¿Cómo se llama tu mascota?", `¿De qué raza es ${name}?`, `¡Un gusto, ${reviewedPet?.name ?? name}!`, "Tus mascotas"][step];
+  const limitReached = pets.length >= MAX_PETS;
 
   useEffect(function focusQuestion() {
     if (hasNavigated.current && phase === "idle") heading.current?.focus({ preventScroll: true });
@@ -86,11 +95,43 @@ export function PetQuestionnaire() {
     setError("");
   }
 
-  function handleBack() { goToStep(Math.max(0, step - 1)); }
+  function handleBack() {
+    goToStep(viewingPets ? collectionReturnStep.current : Math.max(0, step - 1));
+    if (viewingPets) form.current?.scrollIntoView({ block: "start", behavior: "auto" });
+  }
   function handleEdit() { goToStep(0); }
+
+  function handleViewPets() {
+    if (pendingStep.current !== null || pets.length < 2) return;
+    collectionReturnStep.current = step;
+    goToStep(4);
+    form.current?.scrollIntoView({ block: "start", behavior: "auto" });
+  }
+
+  function handleAddPet() {
+    if (pendingStep.current !== null || limitReached) return;
+    setName("");
+    setSpecies(null);
+    setBreed("");
+    setEditingPetId(null);
+    goToStep(0);
+    if (viewingPets) form.current?.scrollIntoView({ block: "start", behavior: "auto" });
+  }
+
+  function handleEditPet(pet: PetProfile) {
+    if (pendingStep.current !== null) return;
+    setName(pet.name);
+    setSpecies(pet.species);
+    setBreed(pet.breed);
+    setEditingPetId(pet.id);
+    setError("");
+    goToStep(0);
+    form.current?.scrollIntoView({ block: "start", behavior: "auto" });
+  }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (pendingStep.current !== null) return;
     if (step === 1) {
       if (!name.trim()) {
         setError("Escribí el nombre de tu mascota para continuar.");
@@ -105,6 +146,15 @@ export function PetQuestionnaire() {
         form.current?.querySelector<HTMLInputElement>("[name=breed]")?.focus();
         return;
       }
+      if (!species) return;
+      if (editingPetId === null && limitReached) {
+        setError("No se pueden agregar más mascotas.");
+        return;
+      }
+      const pet: PetProfile = { id: editingPetId ?? `pet-${++nextPetId.current}`, name: name.trim(), species, breed };
+      setPets((profiles) => upsertPet(profiles, pet));
+      setEditingPetId(pet.id);
+      setReviewedPet(pet);
       goToStep(3);
     }
   }
@@ -114,7 +164,7 @@ export function PetQuestionnaire() {
       <form ref={form} className={styles.form} onSubmit={handleSubmit} noValidate aria-labelledby="pet-question" aria-busy={transitioning}>
         <div className={styles.stageViewport}>
         <div className={styles.stage} key={step} data-direction={direction} data-phase={phase} onAnimationEnd={handleSlideEnd} inert={transitioning}>
-          <p className={styles.stepCount} aria-live="polite">{complete ? "Todo listo" : `Pregunta ${step + 1} de 3`}</p>
+          <p className={styles.stepCount} aria-live="polite">{viewingPets ? "Tus perfiles" : complete ? "Todo listo" : `Pregunta ${step + 1} de 3`}</p>
           <h2 id="pet-question" ref={heading} className={styles.question} tabIndex={-1}>{question}</h2>
 
           {step === 1 && (
@@ -151,10 +201,15 @@ export function PetQuestionnaire() {
             </div>
           )}
 
-          {complete && species && (
+          {complete && reviewedPet && (
             <div className={styles.answer}>
               <p className={styles.hint}>Así se ve su perfil. Podés revisar tus respuestas antes de seguir.</p>
-              <PetProfileCard name={name} species={species} breed={breed} revealed={phase !== "entering"} />
+              <PetProfileCard name={reviewedPet.name} species={reviewedPet.species} breed={reviewedPet.breed} revealed={phase !== "entering"} />
+            </div>
+          )}
+          {viewingPets && (
+            <div className={styles.petCollection}>
+              {pets.map((pet) => <SavedPetProfile pet={pet} onEdit={handleEditPet} key={pet.id} />)}
             </div>
           )}
         </div>
@@ -175,7 +230,18 @@ export function PetQuestionnaire() {
               <span>{step === 2 ? "Ver perfil" : "Continuar"}</span><ArrowRight size={24} aria-hidden="true" />
             </button>
           )}
-          {complete && <a className={styles.next} href="#explorar" aria-label="Continuar explorando"><span>Continuar explorando</span><ArrowRight size={24} aria-hidden="true" /></a>}
+          {(complete || viewingPets) && !limitReached && (
+            <button type="button" className={`${styles.back} ${styles.addPet}`} onClick={handleAddPet}
+              aria-label="Agregar otra mascota">
+              <Plus size={20} aria-hidden="true" /><span>Agregar otra mascota</span>
+            </button>
+          )}
+          {!viewingPets && pets.length >= 2 && (
+            <button type="button" className={styles.back} onClick={handleViewPets} aria-label="Ver mis mascotas">
+              <PawPrint size={20} aria-hidden="true" /><span>Ver mis mascotas</span>
+            </button>
+          )}
+          {(complete || viewingPets) && <a className={styles.next} href="#explorar" aria-label="Continuar explorando"><span>Continuar explorando</span><ArrowRight size={24} aria-hidden="true" /></a>}
         </div>
       </form>
     </div>

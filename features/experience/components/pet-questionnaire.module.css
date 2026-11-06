@@ -1,5 +1,5 @@
 .questionnaire { margin-block-start: 32px; color: #092f39; }
-.form { max-inline-size: 800px; margin-inline: auto; }
+.form { max-inline-size: 800px; margin-inline: auto; scroll-margin-block-start: calc(var(--dn-header-height) + 24px); }
 .stageViewport { overflow-x: clip; }
 .stage { min-block-size: 512px; padding-block: 48px 32px; }
 .stage[data-phase="exiting"][data-direction="forward"] { animation: question-exit-forward 160ms ease-in both; }
@@ -25,7 +25,7 @@
 .speciesChoices button:focus-visible { outline: 3px solid #092f39; outline-offset: -6px; }
 .choiceArrow { transition: transform 160ms ease; }
 .speciesChoices button:hover .choiceArrow { transform: translateX(4px); }
-.controls { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block-start: 24px; border-block-start: 1px solid rgb(9 47 57 / 40%); }
+.controls { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; padding-block-start: 24px; border-block-start: 1px solid rgb(9 47 57 / 40%); }
 .back, .next { display: inline-flex; justify-content: center; align-items: center; gap: 12px; min-block-size: 48px; min-inline-size: 48px; padding: 12px; border: 2px solid #092f39; font-weight: 700; text-decoration: none; }
 .back { border-color: transparent; background: transparent; color: #092f39; }
 .next { background: #092f39; color: #fff; }
@@ -34,6 +34,10 @@
 .back span, .next span { display: none; }
 .skip { display: inline-flex; align-items: center; min-block-size: 48px; color: inherit; font-size: 14px; }
 .controls :focus-visible { outline: 3px solid #092f39; outline-offset: 4px; }
+.addPet { border-color: rgb(9 47 57 / 40%); }
+.petCollection { display: grid; gap: 24px; margin-block-start: 32px; }
+.savedItem { min-inline-size: 0; }
+.savedItem > button { margin-block-start: 8px; }
 @keyframes question-slide-forward { from { transform: translateX(100%); } to { transform: translateX(0); } }
 @keyframes question-slide-backward { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 @keyframes question-exit-forward { from { transform: translateX(0); } to { transform: translateX(-100%); } }
@@ -44,6 +48,7 @@
   .stage { padding-block-start: 64px; }
 }
 @media (min-width: 1024px) {
+  .petCollection { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .back span, .next span { display: inline; }
   .back, .next { padding-inline: 24px; }
 }

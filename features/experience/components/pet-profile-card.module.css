@@ -1,13 +1,36 @@
 .card {
   position: relative;
-  overflow: hidden;
   padding: 24px 16px;
-  border: 1px solid rgb(9 47 57 / 40%);
+  border: 2px solid transparent;
   border-radius: 16px;
   background: transparent;
   color: #092f39;
   text-align: start;
 }
+
+.card::before, .card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 2px solid #092f39;
+  border-radius: inherit;
+  pointer-events: none;
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-repeat: no-repeat;
+}
+
+.card::before {
+  mask-position: center top, center bottom;
+  mask-size: 0% 16px;
+}
+
+.card::after {
+  mask-position: left center, right center;
+  mask-size: 16px 0%;
+}
+
+.card[data-revealed="true"]::before { animation: badge-borders-x 320ms ease-out both; }
+.card[data-revealed="true"]::after { animation: badge-borders-y 320ms ease-out both; }
 
 .body {
   display: grid;
@@ -59,8 +82,17 @@
 
 @keyframes divider-expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes details-reveal { to { opacity: 1; } }
+@keyframes badge-borders-x { from { mask-size: 0% 16px; } to { mask-size: 100% 16px; } }
+@keyframes badge-borders-y { from { mask-size: 16px 0%; } to { mask-size: 16px 100%; } }
+
+.card[data-animated="false"]::before { animation: none; mask-size: 100% 16px; }
+.card[data-animated="false"]::after { animation: none; mask-size: 16px 100%; }
+.card[data-animated="false"] .details > div + div::before { animation: none; transform: scaleX(1); }
+.card[data-animated="false"] .details dt, .card[data-animated="false"] .details dd { animation: none; opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
+  .card[data-revealed]::before { animation: none; mask-size: 100% 16px; }
+  .card[data-revealed]::after { animation: none; mask-size: 16px 100%; }
   .card[data-revealed] .details > div + div::before { animation: none; transform: scaleX(1); }
   .card[data-revealed] .details dt, .card[data-revealed] .details dd { animation: none; opacity: 1; }
 }
