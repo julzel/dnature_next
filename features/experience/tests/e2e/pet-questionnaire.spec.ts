@@ -138,7 +138,46 @@ test("supports custom breeds, escape, and narrow screens with reduced motion", a
   await expect(section.locator("dd")).toHaveText(["Sol", "Perro", "Cruce de collie"]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(320);
   await expect(section.getByRole("heading", { name: "¡Un gusto, Sol!" }).locator("..")).toHaveCSS("animation-name", "none");
+  const dogStroke = section.getByRole("article", { name: "Ficha de Sol" }).locator("svg path").first();
+  await expect(dogStroke).toHaveCSS("animation-name", "none");
+  await expect(dogStroke).toHaveCSS("stroke-dashoffset", "0px");
   await section.screenshot({ path: testInfo.outputPath("pet-narrow.png") });
+});
+
+test("the profile dog draws its strokes after the slide", async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const section = page.locator("#experiencia-personalizada");
+  await expect(section.getByRole("button", { name: "Perro", exact: true }).locator("svg").first()).toHaveAttribute("data-animated", "false");
+  await section.getByRole("button", { name: "Perro", exact: true }).click();
+  await expect(section.getByRole("heading", { name: "¿Cómo se llama tu mascota?" })).toBeFocused();
+  await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill("Juve");
+  await section.getByRole("button", { name: "Continuar", exact: true }).click();
+  await expect(section.getByRole("heading", { name: "¿De qué raza es Juve?" })).toBeFocused();
+  await section.getByRole("combobox", { name: "Raza", exact: true }).fill("Akita");
+  await section.getByRole("option", { name: "Akita", exact: true }).click();
+  await section.getByRole("button", { name: "Ver perfil" }).click();
+  await expect(section.getByRole("heading", { name: "¡Un gusto, Juve!" })).toBeFocused();
+  const profile = section.getByRole("article", { name: "Ficha de Juve" });
+  const strokes = profile.locator("svg path");
+  await expect(profile).toHaveAttribute("data-revealed", "true");
+  for (const stroke of await strokes.all()) {
+    await expect(stroke).toHaveAttribute("pathLength", "1");
+    await expect(stroke).toHaveCSS("animation-name", /draw-dog/);
+  }
+  const offsets = await strokes.last().evaluate((stroke) => {
+    const animation = stroke.getAnimations()[0];
+    animation.pause();
+    animation.currentTime = 300;
+    const during = parseFloat(getComputedStyle(stroke).strokeDashoffset);
+    animation.finish();
+    return { during, after: parseFloat(getComputedStyle(stroke).strokeDashoffset) };
+  });
+  expect(offsets.during).toBeGreaterThan(0);
+  expect(offsets.during).toBeLessThan(1);
+  expect(offsets.after).toBe(0);
+  await expect(profile.locator("dd").last()).toHaveCSS("opacity", "1");
+  await expect(strokes.first()).toHaveCSS("stroke-dashoffset", "0px");
+  await profile.screenshot({ path: testInfo.outputPath("drawn-dog-profile.png") });
 });
 
 test("the unfiltered breed list includes entries beyond the first eight", async ({ page }) => {

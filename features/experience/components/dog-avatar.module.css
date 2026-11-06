@@ -1,0 +1,26 @@
+.avatar[data-animated="true"] path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.avatar[data-animated="true"][data-revealed="true"] path {
+  animation: draw-dog 1000ms ease-out both;
+}
+
+.avatar[data-animated="true"][data-revealed="true"] path:is(:nth-child(1), :nth-child(2), :nth-child(4)) {
+  animation-duration: 400ms;
+  animation-delay: 600ms;
+}
+
+@keyframes draw-dog {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar[data-animated][data-revealed] path {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}

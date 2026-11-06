@@ -15,7 +15,7 @@ export function PetProfileCard({ name, species, breed, revealed = true }: PetPro
     <article className={styles.card} aria-label={`Ficha de ${name}`} data-species={species} data-revealed={revealed}>
       <div className={styles.body}>
         <div className={styles.portrait}>
-          {species === "cat" ? <CatAvatar size={80} /> : <DogAvatar size={80} />}
+          {species === "cat" ? <CatAvatar size={80} /> : <DogAvatar size={80} animated revealed={revealed} />}
         </div>
         <dl className={styles.details}>
           <div><dt>Nombre:</dt><dd>{name}</dd></div>

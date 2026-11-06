@@ -42,8 +42,10 @@
 .card[data-revealed="true"] .details > div + div::before { animation: divider-expand 320ms ease-out both; }
 .details dt, .details dd { opacity: 0; }
 .card[data-revealed="true"] .details dt, .card[data-revealed="true"] .details dd {
-  animation: details-reveal 0s 320ms forwards;
+  animation: details-reveal 0s var(--row-reveal-delay, 320ms) forwards;
 }
+.details > div:nth-child(2) { --row-reveal-delay: 480ms; }
+.details > div:nth-child(3) { --row-reveal-delay: 640ms; }
 .details dt { color: inherit; font-size: 14px; font-weight: 600; }
 .details dd { margin: 0; font-size: 16px; font-weight: 750; line-height: 1.4; text-align: end; overflow-wrap: anywhere; }
 
