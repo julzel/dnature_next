@@ -32,8 +32,8 @@ It also scales from two-thirds size (76px wide) to full size (114px wide) over t
 same scroll distance, with its layout space reserved to prevent surrounding elements shifting.
 Below 1024px, a menu button beside search opens a left-side navigation drawer
 with keyboard focus containment, Escape/backdrop dismissal, and reduced-motion support.
-The hero is implemented in `features/hero/` and uses a stacked mobile layout and
-a side-by-side desktop layout. Contact and footer placeholders live in
+The hero is implemented in `features/hero/` and uses a full-width photograph with
+the text and CTAs layered above it on mobile and desktop. Contact and footer placeholders live in
 `features/contact/` and `features/footer/`.
 The current hero photo is `public/images/hero-02.jpg`; the previous photo is
 preserved at `public/images/hero.jpg`.

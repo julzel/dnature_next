@@ -31,19 +31,17 @@ for (const viewport of [
       await expect(action).toBeVisible();
       await expect(action.locator("svg")).toHaveCSS("color", "rgb(255, 106, 0)");
     }
-    await expect(page.locator('[data-hero-section="content"]')).toHaveCSS("background-color", "rgb(9, 47, 57)");
+    await expect(page.locator('[data-hero-section="content"]')).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+    expect(content!.x).toBe(image!.x);
+    expect(content!.y).toBe(image!.y);
+    expect(content!.width).toBe(image!.width);
+    expect(image!.width).toBe(viewport.width);
+    expect(image!.height).toBe(hero!.height);
+    await expect(photo).toHaveAttribute("sizes", "100vw");
 
     if (viewport.layout === "mobile") {
       await expect(page.getByRole("button", { name: "Abrir menú", exact: true })).toHaveCSS("color", "rgb(255, 255, 255)");
       await expect(page.getByRole("button", { name: "Abrir búsqueda", exact: true })).toHaveCSS("color", "rgb(255, 255, 255)");
-      expect(content!.x).toBe(image!.x);
-      expect(image!.y).toBe(content!.y + content!.height);
-      expect(image!.width).toBe(viewport.width);
-      expect(image!.height).toBeCloseTo(content!.height, 0);
-    } else {
-      expect(content!.y).toBe(image!.y);
-      expect(image!.x).toBe(content!.x + content!.width);
-      expect(image!.height).toBe(hero!.height);
     }
 
     await page.screenshot({ path: testInfo.outputPath("hero.png"), fullPage: true });
