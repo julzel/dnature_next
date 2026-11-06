@@ -26,6 +26,10 @@ and footer sections. Its header feature lives in
 search panel below navigation. Search currently covers the published editorial pages.
 The navigation row fades from transparent to solid white over the first 45px of scrolling
 below 1024px, and over 60px on desktop.
+The header logo starts white and changes with the same scroll progress as the
+background, reaching its brand color when the background becomes solid white.
+It also scales from two-thirds size (76px wide) to full size (114px wide) over that
+same scroll distance, with its layout space reserved to prevent surrounding elements shifting.
 Below 1024px, a menu button beside search opens a left-side navigation drawer
 with keyboard focus containment, Escape/backdrop dismissal, and reduced-motion support.
 The hero is implemented in `features/hero/` and uses a stacked mobile layout and

@@ -74,7 +74,7 @@ export function Header() {
       <div className={styles.bottom} data-header-section="bottom">
         <div className={styles.container}>
           <Link className={styles.logo} href="/" aria-label="DNAture, inicio">
-            <Logo shape="responsive" size={114} loading="eager" alt="" />
+            <Logo shape="full" size={114} loading="eager" alt="" />
           </Link>
           <nav className={styles.navigation} aria-label="Navegación principal">
             {headerLinks.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}

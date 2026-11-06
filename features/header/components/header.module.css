@@ -38,6 +38,12 @@
   min-block-size: 44px;
 }
 
+.logo img {
+  filter: brightness(var(--header-scroll-opacity, 0)) invert(calc(1 - var(--header-scroll-opacity, 0)));
+  transform: scale(calc(2 / 3 + var(--header-scroll-opacity, 0) / 3));
+  transform-origin: left center;
+}
+
 .navigation {
   display: none;
   align-items: center;
