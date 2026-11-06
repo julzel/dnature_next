@@ -14,11 +14,18 @@
 
 .option {
   display: flex;
+  flex-direction: column;
+  gap: var(--dn-space-6);
   align-items: center;
   justify-content: center;
   min-inline-size: 0;
   padding: var(--dn-space-6) 12px;
   text-align: center;
+}
+
+.illustration {
+  inline-size: min(100%, 320px);
+  block-size: auto;
 }
 
 .eyebrow {
