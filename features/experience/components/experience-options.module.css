@@ -23,11 +23,6 @@
   text-align: center;
 }
 
-.illustration {
-  inline-size: min(100%, 320px);
-  block-size: auto;
-}
-
 .eyebrow {
   grid-column: 1 / -1;
   margin-block-end: var(--dn-space-6);

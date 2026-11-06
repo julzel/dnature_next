@@ -1,0 +1,13 @@
+.section {
+  min-block-size: calc(var(--dn-space-6) * 16);
+  padding: calc(var(--dn-space-6) * 2) var(--dn-page-gutter);
+  scroll-margin-block-start: var(--dn-header-height);
+  border-block-start: 1px solid var(--dn-border-default);
+  background: var(--dn-surface-base);
+  color: var(--dn-text-primary);
+}
+
+.container {
+  max-inline-size: 1280px;
+  margin-inline: auto;
+}
