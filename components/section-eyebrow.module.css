@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  color: var(--dn-category-wild);
+  color: var(--eyebrow-color, var(--dn-category-wild));
   font-size: 11px;
   font-weight: 900;
   line-height: 1.5;
@@ -11,7 +11,7 @@
 }
 
 .eyebrow[data-tone="light"] {
-  color: #b4e5e8;
+  color: var(--eyebrow-color, #b4e5e8);
 }
 
 .eyebrow::before {
@@ -19,7 +19,7 @@
   flex-shrink: 0;
   inline-size: var(--dn-space-6);
   block-size: 4px;
-  background: var(--dn-brand-orange);
+  background: var(--eyebrow-line-color, var(--dn-brand-orange));
 }
 
 .eyebrow span {

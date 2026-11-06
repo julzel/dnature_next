@@ -33,12 +33,24 @@
 }
 
 .heading {
-  font-size: clamp(18px, 2.4vw, 32px);
-  line-height: 1.25;
-  overflow-wrap: anywhere;
+  max-inline-size: 100%;
+}
+
+.description {
+  max-inline-size: 36ch;
+  color: var(--dn-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 639px) {
+  .cta { gap: 8px; }
+  .cta svg { inline-size: 24px; block-size: 24px; }
 }
 
 @media (min-width: 640px) {
+  .description { font-size: 16px; }
+
   .option {
     padding: calc(var(--dn-space-6) * 2) var(--dn-space-6);
   }

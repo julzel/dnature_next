@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowCta } from "@/components/arrow-cta";
 import { SectionEyebrow } from "@/components/section-eyebrow";
 import styles from "./hero.module.css";
 
@@ -11,7 +10,7 @@ const actions = [
 export function HeroContent() {
   return (
     <div className={styles.copy}>
-      <SectionEyebrow number={1} label="Lorem ipsum dolor" tone="light" />
+      <SectionEyebrow label="Lorem ipsum dolor" tone="light" />
       <h1 className={styles.heading}>
         <span>Lorem ipsum</span>{" "}
         <span>dolor sit</span>{" "}
@@ -22,10 +21,7 @@ export function HeroContent() {
       </p>
       <div className={styles.actions}>
         {actions.map((action) => (
-          <Link className={styles.action} href={action.href} key={action.href}>
-            <span>{action.label}</span>
-            <ArrowUpRight size={32} strokeWidth={1.25} aria-hidden="true" />
-          </Link>
+          <ArrowCta href={action.href} label={action.label} tone="light" key={action.href} />
         ))}
       </div>
     </div>

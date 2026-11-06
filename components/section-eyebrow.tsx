@@ -1,15 +1,22 @@
+import type { CSSProperties } from "react";
 import styles from "./section-eyebrow.module.css";
 
 type SectionEyebrowProps = {
-  number: number;
   label: string;
   tone?: "dark" | "light";
+  color?: CSSProperties["color"];
+  lineColor?: CSSProperties["color"];
 };
 
-export function SectionEyebrow({ number, label, tone = "dark" }: SectionEyebrowProps) {
+export function SectionEyebrow({ label, tone = "dark", color, lineColor }: SectionEyebrowProps) {
+  const style = {
+    "--eyebrow-color": color,
+    "--eyebrow-line-color": lineColor,
+  } as CSSProperties;
+
   return (
-    <p className={styles.eyebrow} data-tone={tone}>
-      <span>{String(number).padStart(2, "0")} / {label}</span>
+    <p className={styles.eyebrow} data-tone={tone} style={style}>
+      <span>{label}</span>
     </p>
   );
 }

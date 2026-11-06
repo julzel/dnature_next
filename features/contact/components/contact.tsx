@@ -5,7 +5,7 @@ export function Contact() {
   return (
     <section id="contacto" className={styles.contact} aria-label="Contacto">
       <div className={styles.container}>
-        <SectionEyebrow number={5} label="Contacto" />
+        <SectionEyebrow label="Contacto" />
       </div>
     </section>
   );

@@ -1,0 +1,27 @@
+.combobox { position: relative; text-align: start; }
+.label { display: block; margin-block-end: 12px; font-weight: 700; }
+.field { position: relative; }
+.field input {
+  inline-size: 100%; min-block-size: 64px; padding: 16px 48px 16px 16px;
+  border: 2px solid #092f39; border-radius: 0; background: transparent;
+  color: #092f39; font-size: 18px; outline: none;
+}
+.field input::placeholder { color: #092f39; opacity: 0.8; }
+.field input:focus { background: rgb(255 255 255 / 18%); box-shadow: inset 0 -3px #092f39; }
+.field > svg { position: absolute; inset-inline-end: 16px; inset-block-start: 20px; pointer-events: none; }
+.options {
+  position: absolute; z-index: 3; inset-inline: 0; inset-block-start: calc(100% + 8px);
+  max-block-size: 240px; margin: 0; padding: 8px; overflow-y: auto;
+  overscroll-behavior: contain; border: 2px solid #092f39;
+  background: var(--dn-surface-base); color: #092f39; list-style: none;
+  box-shadow: 0 12px 24px rgb(9 47 57 / 15%);
+}
+.options li {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  min-block-size: 48px; padding: 12px; cursor: pointer; overflow-wrap: anywhere;
+}
+.options li[data-active="true"], .options li:hover { background: #e1f4f2; }
+.options li[aria-selected="true"] { font-weight: 800; }
+.options svg { flex-shrink: 0; }
+.help { margin-block-start: 12px; font-size: 14px; }
+.error { margin-block-start: 12px; font-weight: 700; }

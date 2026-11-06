@@ -1,0 +1,59 @@
+.questionnaire { margin-block-start: 32px; color: #092f39; }
+.form { max-inline-size: 800px; margin-inline: auto; }
+.stageViewport { overflow-x: clip; }
+.stage { min-block-size: 512px; padding-block: 48px 32px; }
+.stage[data-phase="exiting"][data-direction="forward"] { animation: question-exit-forward 160ms ease-in both; }
+.stage[data-phase="exiting"][data-direction="backward"] { animation: question-exit-backward 160ms ease-in both; }
+.stage[data-phase="entering"][data-direction="forward"] { animation: question-slide-forward 280ms ease-out both; }
+.stage[data-phase="entering"][data-direction="backward"] { animation: question-slide-backward 280ms ease-out both; }
+.stepCount { margin-block-end: 16px; text-align: center; text-transform: uppercase; letter-spacing: .12em; font-size: 11px; font-weight: 800; }
+.question { font-size: clamp(32px, 4vw, 56px); font-weight: 800; line-height: 1.12; text-align: center; overflow-wrap: anywhere; }
+.question:focus { outline: none; }
+.answer { max-inline-size: 560px; margin: 32px auto 0; }
+.nameField { position: relative; }
+.nameField::after { content: ""; position: absolute; inset-inline: 0; inset-block-end: 0; block-size: 2px; background: #092f39; transform: scaleX(0); transform-origin: center; pointer-events: none; }
+.stage[data-phase="idle"] .nameField::after { animation: name-underline-expand 320ms ease-out both; }
+.nameField:focus-within::after { block-size: 4px; }
+.nameInput { inline-size: 100%; min-block-size: 64px; padding: 12px 0; border: 0; border-radius: 0; background: transparent; color: inherit; font-size: clamp(24px, 3vw, 32px); font-weight: 800; text-align: center; outline: none; }
+.nameInput::placeholder { color: #092f39; opacity: .8; }
+.error { margin-block-start: 12px; font-weight: 700; }
+.hint { margin-block-end: 24px; text-align: center; }
+.speciesChoices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 2px solid #092f39; }
+.speciesChoices button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-inline-size: 0; min-block-size: 184px; padding: 24px 12px; border: 0; background: transparent; color: inherit; font-size: 24px; font-weight: 700; transition: background 160ms ease; }
+.speciesChoices button + button { border-inline-start: 2px solid #092f39; }
+.speciesChoices button:is(:hover, [aria-pressed="true"]) { background: rgb(255 255 255 / 20%); }
+.speciesChoices button:focus-visible { outline: 3px solid #092f39; outline-offset: -6px; }
+.choiceArrow { transition: transform 160ms ease; }
+.speciesChoices button:hover .choiceArrow { transform: translateX(4px); }
+.controls { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block-start: 24px; border-block-start: 1px solid rgb(9 47 57 / 40%); }
+.back, .next { display: inline-flex; justify-content: center; align-items: center; gap: 12px; min-block-size: 48px; min-inline-size: 48px; padding: 12px; border: 2px solid #092f39; font-weight: 700; text-decoration: none; }
+.back { border-color: transparent; background: transparent; color: #092f39; }
+.next { background: #092f39; color: #fff; }
+.back:hover { background: rgb(255 255 255 / 16%); }
+.next:hover { background: #123f49; }
+.back span, .next span { display: none; }
+.skip { display: inline-flex; align-items: center; min-block-size: 48px; color: inherit; font-size: 14px; }
+.controls :focus-visible { outline: 3px solid #092f39; outline-offset: 4px; }
+.summary { border-block-start: 1px solid rgb(9 47 57 / 40%); }
+.summary > div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 24px; padding-block: 16px; border-block-end: 1px solid rgb(9 47 57 / 40%); }
+.summary dt { font-size: 14px; }
+.summary dd { margin: 0; font-weight: 800; overflow-wrap: anywhere; }
+@keyframes question-slide-forward { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes question-slide-backward { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes question-exit-forward { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes question-exit-backward { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes name-underline-expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (min-width: 640px) {
+  .questionnaire { margin-block-start: 48px; }
+  .stage { padding-block-start: 64px; }
+}
+@media (min-width: 1024px) {
+  .back span, .next span { display: inline; }
+  .back, .next { padding-inline: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stage[data-phase] .nameField::after { animation: none; transform: scaleX(1); }
+  .stage[data-phase][data-direction] { animation: none; }
+  .choiceArrow, .speciesChoices button { transition: none; }
+  .speciesChoices button:hover .choiceArrow { transform: none; }
+}

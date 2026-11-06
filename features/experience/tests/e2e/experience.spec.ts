@@ -1,5 +1,26 @@
 import { expect, test } from "@playwright/test";
 
+test("experience CTAs scroll to their matching sections", async ({ page }, testInfo) => {
+  await page.goto("/");
+  const choices = page.locator("#experiencia");
+  for (const option of [
+    { label: "Experiencia personalizada", target: "experiencia-personalizada" },
+    { label: "Explorar por mi cuenta", target: "explorar" },
+  ]) {
+    const cta = choices.getByRole("link", { name: option.label, exact: true });
+    await cta.scrollIntoViewIfNeeded();
+    await expect(cta.locator("svg")).toHaveCSS("color", "rgb(255, 106, 0)");
+    await cta.click();
+    await expect(page).toHaveURL(new RegExp(`#${option.target}$`));
+    const destination = page.locator(`#${option.target}`);
+    await expect.poll(async () => (await destination.boundingBox())!.y).toBeGreaterThanOrEqual(78);
+    await expect(destination).toBeInViewport();
+  }
+  await choices.scrollIntoViewIfNeeded();
+  await choices.screenshot({ path: testInfo.outputPath("experience-ctas.png") });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(page.viewportSize()!.width);
+});
+
 test("illustrations animate on entering view and settle into position", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");

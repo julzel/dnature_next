@@ -40,6 +40,16 @@ preserved at `public/images/hero.jpg`.
 Review the extracted prototype at [http://localhost:3000/prototype](http://localhost:3000/prototype).
 Both routes are noindex and excluded from the public sitemap.
 
+The landing page's personalized experience lives in `features/experience/`.
+It uses a three-question flow inspired by [Creative Types](https://mycreativetype.com/):
+cat/dog selection, pet name, and a keyboard-accessible breed autocomplete, followed
+by an editable profile review. Answers stay in React state for the current page;
+they are not sent to a server or persisted across reloads. The local starter breed
+catalogue uses [FCI](https://www.fci.be/es/nomenclature/varietes.aspx) and
+[CFA](https://cfa.org/breeds/) names, Spanish search aliases, mixed/unknown options,
+and an explicit custom-entry choice for breeds outside the list. Changing species
+clears the previous breed. Motion respects the user's reduced-motion preference.
+
 Edit `components/landing-prototype.tsx` to work on the prototype. The shared header
 and footer for the prototype and editorial pages live in `app/(site)/layout.tsx`.
 

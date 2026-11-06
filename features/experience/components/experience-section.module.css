@@ -11,3 +11,7 @@
   max-inline-size: 1280px;
   margin-inline: auto;
 }
+
+.section[id="experiencia-personalizada"] {
+  background: var(--dn-category-complete);
+}

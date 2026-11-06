@@ -28,9 +28,10 @@ does not require an unrelated repository-wide refactor.
 ## Design
 
 - Include the shared `SectionEyebrow` component (`components/section-eyebrow.tsx`)
-  in every new landing-page content section, using a sequential number and a
-  descriptive label. Use its light tone over dark backgrounds and its default
-  dark tone over light backgrounds. The orange marker is an approved exception
+  in every new landing-page content section, using a descriptive label without
+  sequence numbers. Use its light tone over dark backgrounds and its default
+  dark tone over light backgrounds. Use its `color` and `lineColor` props to
+  provide sufficient contrast on colored surfaces. The orange marker is an approved exception
   to the restriction on warm UI accents.
 - Consult and follow `docs/graphic-design/DNAture_Design_System.md` when designing
   or implementing UI. Apply the project rules below where they differ from the
