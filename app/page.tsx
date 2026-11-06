@@ -30,7 +30,7 @@ export default function Home() {
         >
           <PetExperience />
         </ExperienceSection>
-        <ExperienceSection id="explorar" label="¿Qué te gustaría explorar?" />
+        <ExperienceSection id="explorar" label="Variedad y salud" />
         <Contact />
       </main>
       <Footer />
