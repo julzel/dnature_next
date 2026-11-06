@@ -133,3 +133,21 @@ test("supports custom breeds, escape, and narrow screens with reduced motion", a
   await expect(section.getByRole("heading", { name: "¡Un gusto, Sol!" }).locator("..")).toHaveCSS("animation-name", "none");
   await section.screenshot({ path: testInfo.outputPath("pet-narrow.png") });
 });
+
+test("the unfiltered breed list includes entries beyond the first eight", async ({ page }) => {
+  const section = page.locator("#experiencia-personalizada");
+  await section.getByRole("button", { name: "Perro", exact: true }).click();
+  await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill("Juve");
+  await section.getByRole("button", { name: "Continuar", exact: true }).click();
+  const breed = section.getByRole("combobox", { name: "Raza", exact: true });
+  await breed.focus();
+  const options = section.getByRole("option");
+  expect(await options.count()).toBeGreaterThan(8);
+  const lastBreed = section.getByRole("option", { name: "Yorkshire Terrier", exact: true });
+  await lastBreed.scrollIntoViewIfNeeded();
+  await expect(lastBreed).toBeInViewport();
+  await lastBreed.click();
+  await expect(breed).toHaveValue("Yorkshire Terrier");
+  await section.getByRole("button", { name: "Ver perfil" }).click();
+  await expect(section.locator("dd")).toHaveText(["Juve", "Perro", "Yorkshire Terrier"]);
+});

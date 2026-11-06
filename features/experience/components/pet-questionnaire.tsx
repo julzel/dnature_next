@@ -144,7 +144,7 @@ export function PetQuestionnaire() {
 
           {step === 2 && species && (
             <div className={styles.answer}>
-              <BreedCombobox key={species} species={species} value={breed} onChange={handleBreedChange} error={error} />
+              <BreedCombobox key={species} species={species} value={breed} onChange={handleBreedChange} error={error} revealed={phase !== "entering"} />
             </div>
           )}
 

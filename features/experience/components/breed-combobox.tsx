@@ -10,9 +10,10 @@ type BreedComboboxProps = {
   value: string;
   onChange: (value: string) => void;
   error?: string;
+  revealed?: boolean;
 };
 
-export function BreedCombobox({ species, value, onChange, error }: BreedComboboxProps) {
+export function BreedCombobox({ species, value, onChange, error, revealed = true }: BreedComboboxProps) {
   const id = useId();
   const input = useRef<HTMLInputElement>(null);
   const list = useRef<HTMLUListElement>(null);
@@ -22,7 +23,7 @@ export function BreedCombobox({ species, value, onChange, error }: BreedCombobox
   const breeds = getBreeds(species);
   const search = normalizeBreed(query === value ? "" : query);
   const matches = breeds.filter((breed) => normalizeBreed(`${breed.label} ${breed.aliases ?? ""}`).includes(search));
-  const options = matches.slice(0, 8).map((breed) => ({ value: breed.label, label: breed.label }));
+  const options = matches.map((breed) => ({ value: breed.label, label: breed.label }));
   const custom = query.trim();
   if (search && !breeds.some((breed) => normalizeBreed(breed.label) === normalizeBreed(custom))) {
     options.push({ value: custom, label: `Usar «${custom}»` });
@@ -84,8 +85,8 @@ export function BreedCombobox({ species, value, onChange, error }: BreedCombobox
   }
 
   return (
-    <div className={styles.combobox} onBlur={handleBlur}>
-      <label className={styles.label} htmlFor={id}>Raza</label>
+    <div className={styles.combobox} onBlur={handleBlur} data-revealed={revealed}>
+      <label className="sr-only" htmlFor={id}>Raza</label>
       <div className={styles.field}>
         <input
           ref={input} id={id} name="breed" type="text" role="combobox"
