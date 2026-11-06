@@ -9,6 +9,10 @@
   object-fit: contain;
 }
 
+.logo[data-color="black"] img {
+  filter: brightness(0);
+}
+
 @media (max-width: 639px) {
   .logo[data-shape="responsive"] {
     inline-size: var(--logo-compact-width);

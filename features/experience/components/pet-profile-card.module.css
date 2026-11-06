@@ -1,0 +1,64 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 16px;
+  border: 1px solid rgb(9 47 57 / 40%);
+  border-radius: 16px;
+  background: transparent;
+  color: #092f39;
+  text-align: start;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+
+.portrait {
+  display: grid;
+  place-items: center;
+  inline-size: 80px;
+  block-size: 80px;
+}
+
+.portrait svg { inline-size: 56px; block-size: 56px; }
+.details { min-inline-size: 0; }
+.details > div { position: relative; display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; gap: 8px; min-inline-size: 0; padding-block: 12px; }
+.details > div:first-child { padding-block-start: 0; }
+.details > div:last-child { padding-block-end: 0; }
+.details > div + div::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background: rgb(9 47 57 / 40%);
+  transform: scaleX(0);
+  transform-origin: center;
+  pointer-events: none;
+}
+.card[data-revealed="true"] .details > div + div::before { animation: divider-expand 320ms ease-out both; }
+.details dt, .details dd { opacity: 0; }
+.card[data-revealed="true"] .details dt, .card[data-revealed="true"] .details dd {
+  animation: details-reveal 0s 320ms forwards;
+}
+.details dt { color: inherit; font-size: 14px; font-weight: 600; }
+.details dd { margin: 0; font-size: 16px; font-weight: 750; line-height: 1.4; text-align: end; overflow-wrap: anywhere; }
+
+@media (min-width: 640px) {
+  .card { padding: 32px; }
+  .body { grid-template-columns: 112px minmax(0, 1fr); gap: 32px; }
+  .portrait { inline-size: 112px; block-size: 112px; }
+  .portrait svg { inline-size: 80px; block-size: 80px; }
+  .details > div { gap: 16px; }
+}
+
+@keyframes divider-expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes details-reveal { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .card[data-revealed] .details > div + div::before { animation: none; transform: scaleX(1); }
+  .card[data-revealed] .details dt, .card[data-revealed] .details dd { animation: none; opacity: 1; }
+}

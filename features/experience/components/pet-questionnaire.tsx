@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
-import { ArrowLeft, ArrowRight, Cat, Dog, Pencil } from "lucide-react";
+import { ArrowLeft, ArrowRight, Pencil } from "lucide-react";
 import type { PetSpecies } from "../data/pet-breeds";
 import { BreedCombobox } from "./breed-combobox";
+import { CatAvatar } from "./cat-avatar";
+import { DogAvatar } from "./dog-avatar";
+import { PetProfileCard } from "./pet-profile-card";
 import styles from "./pet-questionnaire.module.css";
 
 export function PetQuestionnaire() {
@@ -131,11 +134,11 @@ export function PetQuestionnaire() {
               <p className={styles.hint}>Elegí una opción para continuar.</p>
               <div className={styles.speciesChoices}>
                 <button type="button" value="cat" onClick={handleSpeciesChoice} aria-pressed={species === "cat"}>
-                  <Cat size={64} strokeWidth={1.25} aria-hidden="true" /><span>Gato</span>
+                  <CatAvatar /><span>Gato</span>
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
                 <button type="button" value="dog" onClick={handleSpeciesChoice} aria-pressed={species === "dog"}>
-                  <Dog size={64} strokeWidth={1.25} aria-hidden="true" /><span>Perro</span>
+                  <DogAvatar /><span>Perro</span>
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
               </div>
@@ -148,14 +151,10 @@ export function PetQuestionnaire() {
             </div>
           )}
 
-          {complete && (
+          {complete && species && (
             <div className={styles.answer}>
               <p className={styles.hint}>Así se ve su perfil. Podés revisar tus respuestas antes de seguir.</p>
-              <dl className={styles.summary}>
-                <div><dt>Nombre</dt><dd>{name}</dd></div>
-                <div><dt>Especie</dt><dd>{species === "cat" ? "Gato" : "Perro"}</dd></div>
-                <div><dt>Raza</dt><dd>{breed}</dd></div>
-              </dl>
+              <PetProfileCard name={name} species={species} breed={breed} revealed={phase !== "entering"} />
             </div>
           )}
         </div>

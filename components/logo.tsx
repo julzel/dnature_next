@@ -4,7 +4,7 @@ import styles from "./logo.module.css";
 
 type LogoProps = {
   shape?: "compact" | "full" | "responsive";
-  color?: "brand" | "white";
+  color?: "brand" | "white" | "black";
   size?: number;
   compactSize?: number;
   height?: number;
@@ -27,7 +27,7 @@ export function Logo({
   const style = { "--logo-width": `${width}px`, "--logo-compact-width": `${compactSize}px`, "--logo-height": `${height}px` } as CSSProperties;
 
   return (
-    <picture className={styles.logo} data-shape={shape} style={style}>
+    <picture className={styles.logo} data-shape={shape} data-color={color} style={style}>
       {shape === "responsive" && <source media="(min-width: 640px)" srcSet={fullSrc} />}
       <Image
         src={shape === "full" ? fullSrc : compactSrc}

@@ -69,7 +69,7 @@ test("validates the name and completes a pet profile by keyboard", async ({ page
   await expect(section.getByRole("heading", { name: "¿De qué raza es Luna?" })).toBeFocused();
   const breed = section.getByRole("combobox", { name: "Raza", exact: true });
   await breed.fill("siam");
-  await expect(section.getByRole("option", { name: "Siamés", exact: true })).toBeVisible();
+  await expect(section.getByRole("option", { name: "Siamés · Siamese", exact: true })).toBeVisible();
   await breed.press("ArrowDown");
   await breed.press("Enter");
   await expect(breed).toHaveValue("Siamés");
@@ -91,7 +91,14 @@ test("changing species clears the breed and preserves the pet name", async ({ pa
   await section.getByRole("button", { name: "Continuar", exact: true }).click();
   const breed = section.getByRole("combobox", { name: "Raza", exact: true });
   await breed.fill("poodle");
-  await section.getByRole("option", { name: "Caniche", exact: true }).click();
+  await expect(section.getByRole("option", { name: "Caniche · Poodle", exact: true })).toBeVisible();
+  await expect(section.getByRole("option", { name: "Usar «poodle»", exact: true })).toHaveCount(0);
+  await breed.fill("great");
+  await expect(section.getByRole("option", { name: "Gran danés · Great Dane", exact: true })).toBeVisible();
+  await expect(section.getByRole("listbox")).not.toContainText("Dogo alemán");
+  await breed.fill("poodle");
+  await section.getByRole("option", { name: "Caniche · Poodle", exact: true }).click();
+  await expect(breed).toHaveValue("Caniche");
   await section.getByRole("button", { name: "Volver a la pregunta anterior" }).click();
   await expect(section.getByRole("textbox", { name: "Nombre de tu mascota" })).toHaveValue("Toby");
   await section.getByRole("button", { name: "Volver a la pregunta anterior" }).click();

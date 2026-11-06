@@ -22,11 +22,15 @@ export function BreedCombobox({ species, value, onChange, error, revealed = true
   const [activeIndex, setActiveIndex] = useState(-1);
   const breeds = getBreeds(species);
   const search = normalizeBreed(query === value ? "" : query);
-  const matches = breeds.filter((breed) => normalizeBreed(`${breed.label} ${breed.aliases ?? ""}`).includes(search));
-  const options = matches.map((breed) => ({ value: breed.label, label: breed.label }));
+  const matches = breeds.filter((breed) => [breed.label, ...(breed.aliases ?? [])].some((name) => normalizeBreed(name).includes(search)));
+  const options = matches.map((breed) => ({
+    value: breed.label,
+    label: breed.label,
+    aliases: search ? (breed.aliases ?? []).filter((alias) => normalizeBreed(alias).includes(search) && normalizeBreed(alias) !== normalizeBreed(breed.label)) : [],
+  }));
   const custom = query.trim();
-  if (search && !breeds.some((breed) => normalizeBreed(breed.label) === normalizeBreed(custom))) {
-    options.push({ value: custom, label: `Usar «${custom}»` });
+  if (search && !breeds.some((breed) => [breed.label, ...(breed.aliases ?? [])].some((name) => normalizeBreed(name) === normalizeBreed(custom)))) {
+    options.push({ value: custom, label: `Usar «${custom}»`, aliases: [] });
   }
 
   useEffect(function revealActiveOption() {
@@ -102,7 +106,8 @@ export function BreedCombobox({ species, value, onChange, error, revealed = true
           {options.map((option, index) => (
             <li key={option.label} id={`${id}-option-${index}`} role="option" aria-selected={value === option.value}
               data-option-index={index} data-active={activeIndex === index}>
-              <span>{option.label}</span>{value === option.value && <Check size={18} aria-hidden="true" />}
+              <span>{option.label}{option.aliases.length > 0 && <span className={styles.alias}> · {option.aliases.join(", ")}</span>}</span>
+              {value === option.value && <Check size={18} aria-hidden="true" />}
             </li>
           ))}
         </ul>

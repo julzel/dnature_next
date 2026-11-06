@@ -34,10 +34,6 @@
 .back span, .next span { display: none; }
 .skip { display: inline-flex; align-items: center; min-block-size: 48px; color: inherit; font-size: 14px; }
 .controls :focus-visible { outline: 3px solid #092f39; outline-offset: 4px; }
-.summary { border-block-start: 1px solid rgb(9 47 57 / 40%); }
-.summary > div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 24px; padding-block: 16px; border-block-end: 1px solid rgb(9 47 57 / 40%); }
-.summary dt { font-size: 14px; }
-.summary dd { margin: 0; font-weight: 800; overflow-wrap: anywhere; }
 @keyframes question-slide-forward { from { transform: translateX(100%); } to { transform: translateX(0); } }
 @keyframes question-slide-backward { from { transform: translateX(-100%); } to { transform: translateX(0); } }
 @keyframes question-exit-forward { from { transform: translateX(0); } to { transform: translateX(-100%); } }

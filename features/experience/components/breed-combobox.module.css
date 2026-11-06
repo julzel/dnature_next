@@ -36,6 +36,7 @@
 .options li[data-active="true"], .options li:hover { background: #e1f4f2; }
 .options li[aria-selected="true"] { font-weight: 800; }
 .options svg { flex-shrink: 0; }
+.alias { color: var(--dn-text-secondary); font-size: 0.875em; }
 .help { margin-block-start: 12px; font-size: 14px; }
 .error { margin-block-start: 12px; font-weight: 700; }
 
