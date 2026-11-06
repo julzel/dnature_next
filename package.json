@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "check:integrations": "node --conditions=react-server --import tsx scripts/check-integrations.ts",
+    "test:services": "node --conditions=react-server --import tsx --test lib/server/tests/*.test.ts features/*/tests/server/*.test.ts",
     "test": "playwright test",
     "test:e2e": "playwright test --project=chromium --project=firefox --project=webkit --project=mobile-chromium",
     "test:seo": "playwright test --project=seo",
@@ -18,10 +20,12 @@
     "test:report": "playwright show-report"
   },
   "dependencies": {
+    "@next/env": "^16.4.5",
     "lucide-react": "^1.69.0",
     "next": "16.4.5",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
@@ -30,6 +34,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.5",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

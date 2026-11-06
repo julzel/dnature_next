@@ -18,6 +18,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es-CR"
+      data-scroll-behavior="smooth"
     >
       <body>
         {children}

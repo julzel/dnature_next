@@ -24,13 +24,13 @@ test("header fades with scroll and returns to transparent at the top", async ({ 
 
   await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0)");
   await expect(logo).toHaveCSS("filter", "brightness(0) invert(1)");
-  await expect.poll(() => logo.evaluate((image) => image.getBoundingClientRect().width)).toBeCloseTo(76, 0);
+  await expect.poll(() => logo.evaluate((image) => image.getBoundingClientRect().width)).toBeCloseTo(114, 0);
   const fadeDistance = page.viewportSize()!.width < 1024 ? 45 : 60;
   const midway = Math.floor(fadeDistance / 2);
   await page.evaluate((position) => window.scrollTo(0, position), midway);
   await expect.poll(() => bottom.evaluate((element) => Number(getComputedStyle(element).backgroundColor.match(/,\s*([\d.]+)\)$/)?.[1]))).toBeCloseTo(midway / fadeDistance, 2);
   await expect(logo).not.toHaveCSS("filter", "brightness(0) invert(1)");
-  await expect.poll(() => logo.evaluate((image) => image.getBoundingClientRect().width)).toBeCloseTo(114 * (2 / 3 + midway / fadeDistance / 3), 0);
+  await expect.poll(() => logo.evaluate((image) => image.getBoundingClientRect().width)).toBeCloseTo(114, 0);
   expect((await header.boundingBox())?.y).toBe(0);
   await page.evaluate((position) => window.scrollTo(0, position), fadeDistance);
   await expect(bottom).toHaveCSS("background-color", "rgb(255, 255, 255)");
@@ -42,7 +42,7 @@ test("header fades with scroll and returns to transparent at the top", async ({ 
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0)");
   await expect(logo).toHaveCSS("filter", "brightness(0) invert(1)");
-  await expect.poll(() => logo.evaluate((image) => image.getBoundingClientRect().width)).toBeCloseTo(76, 0);
+  await expect.poll(() => logo.evaluate((image) => image.getBoundingClientRect().width)).toBeCloseTo(114, 0);
 });
 
 test("header reaches solid white without animation lag on a fast scroll", async ({ page }) => {
@@ -100,7 +100,7 @@ test("header and expanded search fit a narrow phone", async ({ page }) => {
   const logo = page.getByRole("link", { name: "DNAture, inicio" }).locator("img");
   await expect(logo).toHaveAttribute("loading", "eager");
   await expect.poll(() => logo.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/\/brand\/logo\.svg$/);
-  expect((await logo.boundingBox())!.width).toBeCloseTo(76, 0);
+  expect((await logo.boundingBox())!.width).toBeCloseTo(114, 0);
   await page.getByRole("button", { name: "Abrir búsqueda", exact: true }).click();
   await expect(page.getByRole("searchbox", { name: "Buscar en el sitio" })).toBeInViewport();
   const button = page.getByRole("search").getByRole("button", { name: "Buscar", exact: true });
@@ -111,7 +111,7 @@ test("header and expanded search fit a narrow phone", async ({ page }) => {
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(320);
   await page.setViewportSize({ width: 1024, height: 700 });
   await expect.poll(() => logo.evaluate((image: HTMLImageElement) => image.currentSrc)).toMatch(/\/brand\/logo\.svg$/);
-  expect((await logo.boundingBox())!.width).toBeCloseTo(76, 0);
+  expect((await logo.boundingBox())!.width).toBeCloseTo(114, 0);
   await expect(button.locator("svg")).toBeVisible();
   await expect(button.getByText("Buscar", { exact: true })).toBeVisible();
 });

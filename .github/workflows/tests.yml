@@ -27,6 +27,7 @@ jobs:
       - run: npm ci
       - run: npx playwright install chromium firefox webkit
       - run: npm run lint
+      - run: npm run test:services
       - run: npm test
       - run: npm run test:seo:preview
       - run: npm run typecheck

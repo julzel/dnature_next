@@ -28,15 +28,14 @@ The navigation row fades from transparent to solid white over the first 45px of 
 below 1024px, and over 60px on desktop.
 The header logo starts white and changes with the same scroll progress as the
 background, reaching its brand color when the background becomes solid white.
-It also scales from two-thirds size (76px wide) to full size (114px wide) over that
-same scroll distance, with its layout space reserved to prevent surrounding elements shifting.
+The header logo remains 114px wide throughout scrolling.
 Below 1024px, a menu button beside search opens a left-side navigation drawer
 with keyboard focus containment, Escape/backdrop dismissal, and reduced-motion support.
 The hero is implemented in `features/hero/` and uses a full-width photograph with
 the text and CTAs layered above it on mobile and desktop. Contact and footer placeholders live in
 `features/contact/` and `features/footer/`.
 The current hero photo is `public/images/hero-02.jpg`; the previous photo is
-preserved at `public/images/hero.jpg`.
+preserved at `public/images/hero.png`.
 Review the extracted prototype at [http://localhost:3000/prototype](http://localhost:3000/prototype).
 Both routes are noindex and excluded from the public sitemap.
 
@@ -96,6 +95,19 @@ Organization/WebSite identity, visible breadcrumbs with JSON-LD, sitemap,
 crawler rules, private-route noindex headers, and Search Console/Bing verification
 token hooks. The source product catalog is an editorial reference; verified live
 SKU data is required before product pages, offers, or merchant feeds are published.
+
+## Backend services
+
+Server-only Avify and Contentful adapters use the existing credentials in
+`.env.local`. Avify provides paginated catalog, variants, and location-scoped
+inventory; Contentful provides published entries, content models, and product
+copy matched through `avifySku`. The landing-page prototype is unchanged.
+See [integration setup and usage](docs/integrations.md).
+
+```bash
+npm run test:services
+npm run check:integrations
+```
 
 ## Testing
 
