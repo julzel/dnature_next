@@ -4,3 +4,8 @@
   scroll-margin-block-start: var(--dn-header-height);
   background: var(--dn-surface-cool);
 }
+
+.container {
+  max-inline-size: 1280px;
+  margin-inline: auto;
+}

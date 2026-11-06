@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import styles from "./hero.module.css";
 
 const actions = [
@@ -10,7 +11,7 @@ const actions = [
 export function HeroContent() {
   return (
     <div className={styles.copy}>
-      <p className={styles.eyebrow}>01 / Lorem ipsum dolor</p>
+      <SectionEyebrow number={1} label="Lorem ipsum dolor" tone="light" />
       <h1 className={styles.heading}>
         <span>Lorem ipsum</span>{" "}
         <span>dolor sit</span>{" "}

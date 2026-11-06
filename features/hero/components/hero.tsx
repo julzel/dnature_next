@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { HeroContent } from "./hero-content";
+import { HeroScrollCue } from "./hero-scroll-cue";
 import styles from "./hero.module.css";
 
 export function Hero() {
@@ -19,6 +20,7 @@ export function Hero() {
           fetchPriority="high"
         />
       </div>
+      <HeroScrollCue />
     </section>
   );
 }

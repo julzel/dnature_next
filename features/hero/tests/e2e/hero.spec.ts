@@ -48,5 +48,11 @@ for (const viewport of [
     await page.getByRole("button", { name: "Abrir búsqueda", exact: true }).click();
     await expect(page.getByRole("searchbox", { name: "Buscar en el sitio" })).toBeVisible();
     expect((await page.getByRole("main").boundingBox())?.y).toBe(0);
+    await page.getByRole("button", { name: "Cerrar búsqueda", exact: true }).click();
+    await page.getByRole("link", { name: "Desplazarse a A tu manera" }).click();
+    await expect(page).toHaveURL(/#experiencia$/);
+    const experience = page.getByRole("region", { name: "A tu manera" });
+    await expect.poll(async () => (await experience.boundingBox())!.y).toBeGreaterThanOrEqual(header!.height);
+    await expect.poll(async () => (await experience.boundingBox())!.y).toBeLessThan(viewport.height / 2);
   });
 }

@@ -2,6 +2,7 @@ import { brand } from "@/lib/seo/config";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { Header } from "@/features/header/components/header";
 import { Hero } from "@/features/hero/components/hero";
+import { ExperienceOptions } from "@/features/experience/components/experience-options";
 import { Contact } from "@/features/contact/components/contact";
 import { Footer } from "@/features/footer/components/footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <ExperienceOptions />
         <Contact />
       </main>
       <Footer />
