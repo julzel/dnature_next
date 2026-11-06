@@ -45,7 +45,7 @@ test("search crawler access and training policy remain independent", async ({ re
   expect(robots).not.toContain("User-Agent: GPTBot");
 });
 
-for (const path of ["/cuenta", "/mi-dnature/mascotas", "/checkout", "/carrito", "/buscar?q=pollo", "/pedidos/123"]) {
+for (const path of ["/cuenta", "/mi-dnature/mascotas", "/mis-mascotas", "/checkout", "/carrito", "/buscar?q=pollo", "/pedidos/123"]) {
   test(`${path} has a noindex HTTP header even before its page exists`, async ({ request }) => {
     const response = await request.get(path);
     expect(response.headers()["x-robots-tag"]).toBe("noindex, nofollow");

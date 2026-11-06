@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { Icon } from "@/components/icon";
 import { Logo } from "@/components/logo";
 import { HeaderSearch } from "./header-search";
@@ -9,7 +9,7 @@ import { MobileMenu } from "./mobile-menu";
 import { headerLinks } from "../data/navigation";
 import styles from "./header.module.css";
 
-export function Header() {
+export function Header({ solid = false }: { solid?: boolean }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const searchButton = useRef<HTMLButtonElement>(null);
@@ -23,7 +23,7 @@ export function Header() {
       frame = null;
       // Follow scroll position directly, using a shorter fade on mobile.
       const fadeDistance = desktop.matches ? 60 : 45;
-      const opacity = Math.min(1, Math.max(0, window.scrollY / fadeDistance));
+      const opacity = header.current?.dataset.solid === "true" ? 1 : Math.min(1, Math.max(0, window.scrollY / fadeDistance));
       header.current?.style.setProperty("--header-scroll-opacity", String(opacity));
       header.current?.toggleAttribute("data-light-background", opacity >= 0.4);
     }
@@ -70,7 +70,8 @@ export function Header() {
   }
 
   return (
-    <header ref={header} className={styles.header} onKeyDown={handleKeyDown}>
+    <header ref={header} className={styles.header} onKeyDown={handleKeyDown} data-solid={solid}
+      data-light-background={solid || undefined} style={solid ? { "--header-scroll-opacity": 1 } as CSSProperties : undefined}>
       <div className={styles.bottom} data-header-section="bottom">
         <div className={styles.container}>
           <Link className={styles.logo} href="/" aria-label="DNAture, inicio">

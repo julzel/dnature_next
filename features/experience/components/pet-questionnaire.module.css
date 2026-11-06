@@ -28,7 +28,9 @@
 .controls { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; padding-block-start: 24px; border-block-start: 1px solid rgb(9 47 57 / 40%); }
 .back, .next { display: inline-flex; justify-content: center; align-items: center; gap: 12px; min-block-size: 48px; min-inline-size: 48px; padding: 12px; border: 2px solid #092f39; font-weight: 700; text-decoration: none; }
 .back { border-color: transparent; background: transparent; color: #092f39; }
-.next { background: #092f39; color: #fff; }
+.next { margin-inline-start: auto; background: #092f39; color: #fff; }
+.next:disabled { cursor: wait; }
+.spinner { animation: spin 900ms linear infinite; }
 .back:hover { background: rgb(255 255 255 / 16%); }
 .next:hover { background: #123f49; }
 .back span, .next span { display: none; }
@@ -43,6 +45,7 @@
 @keyframes question-exit-forward { from { transform: translateX(0); } to { transform: translateX(-100%); } }
 @keyframes question-exit-backward { from { transform: translateX(0); } to { transform: translateX(100%); } }
 @keyframes name-underline-expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes spin { to { transform: rotate(360deg); } }
 @media (min-width: 640px) {
   .questionnaire { margin-block-start: 48px; }
   .stage { padding-block-start: 64px; }

@@ -114,9 +114,6 @@ test("changing species clears the breed and preserves the pet name", async ({ pa
   await section.getByRole("option", { name: "No lo sé", exact: true }).click();
   await section.getByRole("button", { name: "Ver perfil" }).click();
   await expect(section.locator("dd")).toHaveText(["Toby", "Gato", "No lo sé"]);
-  await section.getByRole("link", { name: "Continuar explorando" }).click();
-  await expect(page).toHaveURL(/#explorar$/);
-  await expect(page.locator("#explorar")).toBeInViewport();
 });
 
 test("supports custom breeds, escape, and narrow screens with reduced motion", async ({ page }, testInfo) => {
@@ -144,27 +141,31 @@ test("supports custom breeds, escape, and narrow screens with reduced motion", a
   await section.screenshot({ path: testInfo.outputPath("pet-narrow.png") });
 });
 
-test("the profile dog draws its strokes after the slide", async ({ page }, testInfo) => {
+for (const pet of [
+  { species: "dog", choice: "Perro", name: "Juve", breed: "Akita", outlineIndex: 4 },
+  { species: "cat", choice: "Gato", name: "Luna", breed: "Persa", outlineIndex: 0 },
+] as const) {
+test(`the profile ${pet.species} draws its strokes after the slide`, async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   const section = page.locator("#experiencia-personalizada");
-  await expect(section.getByRole("button", { name: "Perro", exact: true }).locator("svg").first()).toHaveAttribute("data-animated", "false");
-  await section.getByRole("button", { name: "Perro", exact: true }).click();
+  await expect(section.getByRole("button", { name: pet.choice, exact: true }).locator("svg").first()).toHaveAttribute("data-animated", "false");
+  await section.getByRole("button", { name: pet.choice, exact: true }).click();
   await expect(section.getByRole("heading", { name: "¿Cómo se llama tu mascota?" })).toBeFocused();
-  await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill("Juve");
+  await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill(pet.name);
   await section.getByRole("button", { name: "Continuar", exact: true }).click();
-  await expect(section.getByRole("heading", { name: "¿De qué raza es Juve?" })).toBeFocused();
-  await section.getByRole("combobox", { name: "Raza", exact: true }).fill("Akita");
-  await section.getByRole("option", { name: "Akita", exact: true }).click();
+  await expect(section.getByRole("heading", { name: `¿De qué raza es ${pet.name}?` })).toBeFocused();
+  await section.getByRole("combobox", { name: "Raza", exact: true }).fill(pet.breed);
+  await section.getByRole("option", { name: pet.breed, exact: true }).click();
   await section.getByRole("button", { name: "Ver perfil" }).click();
-  await expect(section.getByRole("heading", { name: "¡Un gusto, Juve!" })).toBeFocused();
-  const profile = section.getByRole("article", { name: "Ficha de Juve" });
+  await expect(section.getByRole("heading", { name: `¡Un gusto, ${pet.name}!` })).toBeFocused();
+  const profile = section.getByRole("article", { name: `Ficha de ${pet.name}` });
   const strokes = profile.locator("svg path");
   await expect(profile).toHaveAttribute("data-revealed", "true");
   for (const stroke of await strokes.all()) {
     await expect(stroke).toHaveAttribute("pathLength", "1");
-    await expect(stroke).toHaveCSS("animation-name", /draw-dog/);
+    await expect(stroke).toHaveCSS("animation-name", /draw-pet/);
   }
-  const offsets = await strokes.last().evaluate((stroke) => {
+  const offsets = await strokes.nth(pet.outlineIndex).evaluate((stroke) => {
     const animation = stroke.getAnimations()[0];
     animation.pause();
     animation.currentTime = 300;
@@ -176,9 +177,10 @@ test("the profile dog draws its strokes after the slide", async ({ page }, testI
   expect(offsets.during).toBeLessThan(1);
   expect(offsets.after).toBe(0);
   await expect(profile.locator("dd").last()).toHaveCSS("opacity", "1");
-  await expect(strokes.first()).toHaveCSS("stroke-dashoffset", "0px");
-  await profile.screenshot({ path: testInfo.outputPath("drawn-dog-profile.png") });
+  await expect.poll(() => strokes.evaluateAll((paths) => paths.every((path) => parseFloat(getComputedStyle(path).strokeDashoffset) === 0))).toBe(true);
+  await profile.screenshot({ path: testInfo.outputPath(`drawn-${pet.species}-profile.png`) });
 });
+}
 
 test("the unfiltered breed list includes entries beyond the first eight", async ({ page }) => {
   const section = page.locator("#experiencia-personalizada");

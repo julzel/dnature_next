@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
-import { ArrowLeft, ArrowRight, PawPrint, Pencil, Plus } from "lucide-react";
+import { useEffect, useRef, useState, useTransition, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus } from "lucide-react";
 import type { PetSpecies } from "../data/pet-breeds";
 import { MAX_PETS, upsertPet, type PetProfile } from "../data/pet-profiles";
+import { savePetProfiles } from "../data/pet-storage";
 import { BreedCombobox } from "./breed-combobox";
 import { CatAvatar } from "./cat-avatar";
 import { DogAvatar } from "./dog-avatar";
@@ -11,15 +13,19 @@ import { PetProfileCard } from "./pet-profile-card";
 import { SavedPetProfile } from "./saved-pet-profile";
 import styles from "./pet-questionnaire.module.css";
 
-export function PetQuestionnaire() {
-  const [step, setStep] = useState(0);
-  const [name, setName] = useState("");
-  const [species, setSpecies] = useState<PetSpecies | null>(null);
-  const [breed, setBreed] = useState("");
+export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfile[] }) {
+  const lastPet = initialPets.at(-1);
+  const router = useRouter();
+  const [navigating, startNavigation] = useTransition();
+  const [saveError, setSaveError] = useState("");
+  const [step, setStep] = useState(initialPets.length > 1 ? 4 : lastPet ? 3 : 0);
+  const [name, setName] = useState(lastPet?.name ?? "");
+  const [species, setSpecies] = useState<PetSpecies | null>(lastPet?.species ?? null);
+  const [breed, setBreed] = useState(lastPet?.breed ?? "");
   const [error, setError] = useState("");
-  const [pets, setPets] = useState<PetProfile[]>([]);
-  const [editingPetId, setEditingPetId] = useState<string | null>(null);
-  const [reviewedPet, setReviewedPet] = useState<PetProfile | null>(null);
+  const [pets, setPets] = useState<PetProfile[]>(initialPets);
+  const [editingPetId, setEditingPetId] = useState<string | null>(lastPet?.id ?? null);
+  const [reviewedPet, setReviewedPet] = useState<PetProfile | null>(lastPet ?? null);
   const nextPetId = useRef(0);
   const collectionReturnStep = useRef(3);
   const [direction, setDirection] = useState<"forward" | "backward" | "none">("none");
@@ -101,6 +107,17 @@ export function PetQuestionnaire() {
   }
   function handleEdit() { goToStep(0); }
 
+  function handleContinue() {
+    if (pendingStep.current !== null || navigating || pets.length === 0) return;
+    setSaveError("");
+    try {
+      savePetProfiles(pets);
+      startNavigation(function openMyPets() { router.push("/mis-mascotas"); });
+    } catch {
+      setSaveError("No pudimos guardar tus mascotas en este navegador. Tus respuestas siguen aquí. Revisá el almacenamiento e intentá de nuevo.");
+    }
+  }
+
   function handleViewPets() {
     if (pendingStep.current !== null || pets.length < 2) return;
     collectionReturnStep.current = step;
@@ -151,7 +168,11 @@ export function PetQuestionnaire() {
         setError("No se pueden agregar más mascotas.");
         return;
       }
-      const pet: PetProfile = { id: editingPetId ?? `pet-${++nextPetId.current}`, name: name.trim(), species, breed };
+      let id = editingPetId;
+      if (id === null) {
+        do { id = `pet-${++nextPetId.current}`; } while (pets.some((pet) => pet.id === id));
+      }
+      const pet: PetProfile = { id, name: name.trim(), species, breed };
       setPets((profiles) => upsertPet(profiles, pet));
       setEditingPetId(pet.id);
       setReviewedPet(pet);
@@ -181,7 +202,6 @@ export function PetQuestionnaire() {
 
           {step === 0 && (
             <div className={styles.answer}>
-              <p className={styles.hint}>Elegí una opción para continuar.</p>
               <div className={styles.speciesChoices}>
                 <button type="button" value="cat" onClick={handleSpeciesChoice} aria-pressed={species === "cat"}>
                   <CatAvatar /><span>Gato</span>
@@ -215,7 +235,7 @@ export function PetQuestionnaire() {
         </div>
         </div>
 
-        <div className={styles.controls} inert={transitioning}>
+        <div className={styles.controls} inert={transitioning || navigating}>
           {step > 0 && !complete ? (
             <button type="button" className={styles.back} onClick={handleBack} aria-label="Volver a la pregunta anterior">
               <ArrowLeft size={20} aria-hidden="true" /><span>Anterior</span>
@@ -241,8 +261,16 @@ export function PetQuestionnaire() {
               <PawPrint size={20} aria-hidden="true" /><span>Ver mis mascotas</span>
             </button>
           )}
-          {(complete || viewingPets) && <a className={styles.next} href="#explorar" aria-label="Continuar explorando"><span>Continuar explorando</span><ArrowRight size={24} aria-hidden="true" /></a>}
+          {(viewingPets || (complete && pets.length === 1)) && (
+            <button type="button" className={styles.next} onClick={handleContinue} disabled={navigating}
+              aria-label={navigating ? "Abriendo mis mascotas" : "Continuar"}>
+              <span>{navigating ? "Abriendo…" : "Continuar"}</span>
+              {navigating ? <LoaderCircle className={styles.spinner} size={24} aria-hidden="true" /> : <ArrowRight size={24} aria-hidden="true" />}
+            </button>
+          )}
         </div>
+        <p className="sr-only" role="status">{navigating ? "Abriendo mis mascotas…" : ""}</p>
+        {saveError && <p className={styles.error} role="alert">{saveError}</p>}
       </form>
     </div>
   );

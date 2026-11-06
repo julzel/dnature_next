@@ -4,7 +4,7 @@ import { Header } from "@/features/header/components/header";
 import { Hero } from "@/features/hero/components/hero";
 import { ExperienceOptions } from "@/features/experience/components/experience-options";
 import { ExperienceSection } from "@/features/experience/components/experience-section";
-import { PetQuestionnaire } from "@/features/experience/components/pet-questionnaire";
+import { PetExperience } from "@/features/experience/components/pet-experience";
 import { Contact } from "@/features/contact/components/contact";
 import { Footer } from "@/features/footer/components/footer";
 
@@ -28,7 +28,7 @@ export default function Home() {
           eyebrowColor="#092f39"
           eyebrowLineColor="#092f39"
         >
-          <PetQuestionnaire />
+          <PetExperience />
         </ExperienceSection>
         <ExperienceSection id="explorar" label="¿Qué te gustaría explorar?" />
         <Contact />

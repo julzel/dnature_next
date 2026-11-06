@@ -4,15 +4,16 @@
 }
 
 .avatar[data-animated="true"][data-revealed="true"] path {
-  animation: draw-dog 1000ms ease-out both;
+  animation: draw-pet 1000ms ease-out both;
 }
 
-.avatar[data-animated="true"][data-revealed="true"] path:is(:nth-child(1), :nth-child(2), :nth-child(4)) {
+.avatar[data-animated="true"][data-revealed="true"][data-species="dog"] path:is(:nth-child(1), :nth-child(2), :nth-child(4)),
+.avatar[data-animated="true"][data-revealed="true"][data-species="cat"] path:not(:first-child) {
   animation-duration: 400ms;
   animation-delay: 600ms;
 }
 
-@keyframes draw-dog {
+@keyframes draw-pet {
   from { stroke-dashoffset: 1; }
   to { stroke-dashoffset: 0; }
 }

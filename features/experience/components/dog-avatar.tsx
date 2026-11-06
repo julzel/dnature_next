@@ -1,8 +1,8 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
 import { Dog } from "lucide-react";
-import styles from "./dog-avatar.module.css";
+import { useStrokeDrawing } from "../hooks/use-stroke-drawing";
+import styles from "./pet-avatar.module.css";
 
 type DogAvatarProps = {
   size?: number;
@@ -11,16 +11,8 @@ type DogAvatarProps = {
 };
 
 export function DogAvatar({ size = 64, animated = false, revealed = true }: DogAvatarProps) {
-  const svg = useRef<SVGSVGElement>(null);
+  const svg = useStrokeDrawing(animated);
 
-  useLayoutEffect(function normalizeDrawingLengths() {
-    if (animated) {
-      svg.current?.querySelectorAll("path").forEach(function normalizePath(path) {
-        path.setAttribute("pathLength", "1");
-      });
-    }
-  }, [animated]);
-
-  return <Dog ref={svg} className={styles.avatar} data-animated={animated} data-revealed={revealed}
+  return <Dog ref={svg} className={styles.avatar} data-species="dog" data-animated={animated} data-revealed={revealed}
     size={size} strokeWidth={1.25} aria-hidden="true" />;
 }

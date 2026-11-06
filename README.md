@@ -47,8 +47,14 @@ by an editable profile review. Users can add up to 24 pets and edit completed
 profiles without consuming another slot. Adding a pet resets the questionnaire.
 Once two pets are complete, “Ver mis mascotas” opens a fifth slide containing all
 badges and edit controls. Returning from it restores the previous question.
-The interface does not display pet counts or the maximum. Answers stay in React state for the current page;
-they are not sent to a server or persisted across reloads. The local starter breed
+The interface does not display pet counts or the maximum. “Continuar” on either
+completed-profile slide saves the collection to `localStorage` under
+`dnature.pet-profiles.v1` and navigates to `/mis-mascotas`. The page reads validated,
+versioned profiles from the same browser, with empty/error states and a link back
+to manage them. Returning to the landing page restores saved profiles for editing
+or adding pets. Unsaved changes stay in page state until “Continuar”; storage
+failures preserve those changes and offer a retry. Profiles are not sent to a server.
+`/mis-mascotas` is noindex and excluded from the sitemap. The local starter breed
 catalogue uses [FCI](https://www.fci.be/es/nomenclature/varietes.aspx) and
 [CFA](https://cfa.org/breeds/) names, Spanish search aliases, mixed/unknown options,
 and an explicit custom-entry choice for breeds outside the list. Changing species
