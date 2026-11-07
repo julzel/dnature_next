@@ -22,8 +22,14 @@ omit the protocol and port.
 The homepage at [http://localhost:3000](http://localhost:3000) currently contains the
 header, a full-viewport hero with lorem ipsum copy, two CTAs, a dog photograph, and empty contact
 and footer sections. Its header feature lives in
-`features/header/`: a 78px navigation row and an expandable
-search panel below navigation. Search currently covers the published editorial pages.
+`features/header/`: a 74px navigation row and a compact Spotlight-style search dialog near the upper center,
+independent of the header's scrolling styles. It locks background scrolling, traps
+focus, and closes through its close button, Escape, backdrop, or a result link.
+Search filters the published editorial pages as the
+user types. The floating surface is capped at 500px, with a leading search icon,
+a single X that clears text or closes the empty search, and results in a separate
+floating panel 12px below the field. Arrow keys move
+through results and Enter opens the first match from the input.
 The navigation row fades from transparent to solid white over the first 45px of scrolling
 below 1024px, and over 60px on desktop.
 The header logo starts white and changes with the same scroll progress as the
@@ -102,6 +108,11 @@ Server-only Avify and Contentful adapters use the existing credentials in
 `.env.local`. Avify provides paginated catalog, variants, and location-scoped
 inventory; Contentful provides published entries, content models, and product
 copy matched through `avifySku`. The landing-page prototype is unchanged.
+
+In development, open `/ventas-internos` for a read-only Avify sales dashboard.
+It ranks products from the last six months and filters by product, category,
+channel, period, and currency. The route returns 404 in production.
+
 See [integration setup and usage](docs/integrations.md).
 
 ```bash

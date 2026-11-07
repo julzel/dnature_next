@@ -44,6 +44,22 @@ price are raw commerce data, not a claim that a product is suitable for a pet.
 Apply publication, availability, tax, currency, and nutritional rules in the
 consuming feature before presenting a purchasable offer.
 
+## Development sales dashboard
+
+`/ventas-internos` is available only under `next dev`; the production build returns
+404. It reads Avify orders from the last six calendar months and the full catalog,
+then groups completed and processing orders by product SKU, day, channel, and
+currency. The dashboard includes product search, category/channel/period filters,
+and sorting by units, order count, gross line value, or name. It requests no
+customer fields and sends only grouped sales data to the browser. Gross line value
+is `price × ordered`; it is not net revenue after discounts or refunds.
+
+Avify currently caps order pages at 100 and reports a request allowance, so the
+dashboard paces requests and retries HTTP 429 using `Retry-After` when provided.
+Loading six months of history may take time. If any page fails, the whole dashboard
+shows an error rather than an incomplete ranking. Refreshing the page fetches
+fresh data; nothing is stored persistently.
+
 ## Published content
 
 ```ts

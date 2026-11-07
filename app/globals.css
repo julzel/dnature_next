@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  --dn-header-bottom-height: 78px;
+  --dn-header-bottom-height: 74px;
   --dn-header-height: var(--dn-header-bottom-height);
   --dn-page-gutter: 20px;
   --dn-space-6: 24px;

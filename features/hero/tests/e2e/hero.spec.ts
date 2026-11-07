@@ -47,7 +47,7 @@ for (const viewport of [
     await page.screenshot({ path: testInfo.outputPath("hero.png"), fullPage: true });
     await page.getByRole("button", { name: "Abrir búsqueda", exact: true }).click();
     await expect(page.getByRole("searchbox", { name: "Buscar en el sitio" })).toBeVisible();
-    expect((await page.getByRole("main").boundingBox())?.y).toBe(0);
+    expect((await page.getByRole("main", { includeHidden: true }).boundingBox())?.y).toBe(0);
     await page.getByRole("button", { name: "Cerrar búsqueda", exact: true }).click();
     await page.getByRole("link", { name: "Desplazarse a A tu manera" }).click();
     await expect(page).toHaveURL(/#experiencia$/);

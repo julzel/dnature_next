@@ -10,18 +10,24 @@ const actions = [
 export function HeroContent() {
   return (
     <div className={styles.copy}>
-      <SectionEyebrow label="Lorem ipsum dolor" tone="light" />
+      <SectionEyebrow label="100 % natural - Costa Rica" tone="light" />
       <h1 className={styles.heading}>
-        <span>Lorem ipsum</span>{" "}
-        <span>dolor sit</span>{" "}
-        <span className={styles.highlight}>amet.</span>
+        <span>Su biología es</span>
+        <span className={styles.highlight}>única.</span>
       </h1>
       <p className={styles.description}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+        Su nutrición merece atención individual. En DNAture unimos ciencia y
+        naturaleza para nutrir con conciencia, respetando la esencia de cada
+        mascota.
       </p>
       <div className={styles.actions}>
         {actions.map((action) => (
-          <ArrowCta href={action.href} label={action.label} tone="light" key={action.href} />
+          <ArrowCta
+            href={action.href}
+            label={action.label}
+            tone="light"
+            key={action.href}
+          />
         ))}
       </div>
     </div>

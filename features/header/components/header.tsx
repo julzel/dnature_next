@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Icon } from "@/components/icon";
 import { Logo } from "@/components/logo";
-import { HeaderSearch } from "./header-search";
+import { SearchDialog } from "./search-dialog";
 import { MobileMenu } from "./mobile-menu";
 import { headerLinks } from "../data/navigation";
 import styles from "./header.module.css";
@@ -13,7 +13,6 @@ export function Header({ solid = false }: { solid?: boolean }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const header = useRef<HTMLElement>(null);
   const searchButton = useRef<HTMLButtonElement>(null);
-  const searchInput = useRef<HTMLInputElement>(null);
 
   useEffect(function syncScrollBackground() {
     let frame: number | null = null;
@@ -42,15 +41,9 @@ export function Header({ solid = false }: { solid?: boolean }) {
     };
   }, []);
 
-  function focusSearch() {
-    if (searchOpen) searchInput.current?.focus({ preventScroll: true });
-  }
-
-  useEffect(focusSearch, [searchOpen]);
-
-  function handleToggleSearch() {
+  function handleOpenSearch() {
     searchButton.current?.focus({ preventScroll: true });
-    setSearchOpen(!searchOpen);
+    setSearchOpen(true);
   }
 
   function handleCloseSearch() {
@@ -62,41 +55,37 @@ export function Header({ solid = false }: { solid?: boolean }) {
     setSearchOpen(false);
   }
 
-  function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
-    if (event.key === "Escape" && searchOpen) {
-      event.preventDefault();
-      handleCloseSearch();
-    }
-  }
-
   return (
-    <header ref={header} className={styles.header} onKeyDown={handleKeyDown} data-solid={solid}
-      data-light-background={solid || undefined} style={solid ? { "--header-scroll-opacity": 1 } as CSSProperties : undefined}>
-      <div className={styles.bottom} data-header-section="bottom">
-        <div className={styles.container}>
-          <Link className={styles.logo} href="/" aria-label="DNAture, inicio">
-            <Logo shape="full" size={114} loading="eager" alt="" />
-          </Link>
-          <nav className={styles.navigation} aria-label="Navegación principal">
-            {headerLinks.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}
-          </nav>
-          <div className={styles.actions}>
-            <button
-              ref={searchButton}
-              className={styles.searchToggle}
-              type="button"
-              aria-label={searchOpen ? "Cerrar búsqueda" : "Abrir búsqueda"}
-              aria-expanded={searchOpen}
-              aria-controls="header-search"
-              onClick={handleToggleSearch}
-            >
-              <Icon name={searchOpen ? "close" : "search"} />
-            </button>
-            <MobileMenu buttonClassName={styles.searchToggle} onOpen={handleOpenMenu} />
+    <>
+      <header ref={header} className={styles.header} data-solid={solid}
+        data-light-background={solid || undefined} style={solid ? { "--header-scroll-opacity": 1 } as CSSProperties : undefined}>
+        <div className={styles.bottom} data-header-section="bottom">
+          <div className={styles.container}>
+            <Link className={styles.logo} href="/" aria-label="DNAture, inicio">
+              <Logo shape="full" size={114} loading="eager" alt="" />
+            </Link>
+            <nav className={styles.navigation} aria-label="Navegación principal">
+              {headerLinks.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}
+            </nav>
+            <div className={styles.actions}>
+              <button
+                ref={searchButton}
+                className={styles.searchToggle}
+                type="button"
+                aria-label="Abrir búsqueda"
+                aria-haspopup="dialog"
+                aria-expanded={searchOpen}
+                aria-controls="site-search"
+                onClick={handleOpenSearch}
+              >
+                <Icon name="search" />
+              </button>
+              <MobileMenu buttonClassName={styles.searchToggle} onOpen={handleOpenMenu} />
+            </div>
           </div>
         </div>
-      </div>
-      <HeaderSearch open={searchOpen} inputRef={searchInput} />
-    </header>
+      </header>
+      <SearchDialog open={searchOpen} onClose={handleCloseSearch} />
+    </>
   );
 }

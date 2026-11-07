@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 test("experience CTAs scroll to their matching sections", async ({ page }, testInfo) => {
   await page.goto("/");
   const choices = page.locator("#experiencia");
+  const headerHeight = (await page.getByRole("banner").boundingBox())!.height;
   for (const option of [
     { label: "Experiencia personalizada", target: "experiencia-personalizada" },
     { label: "Explorar por mi cuenta", target: "explorar" },
@@ -13,7 +14,7 @@ test("experience CTAs scroll to their matching sections", async ({ page }, testI
     await cta.click();
     await expect(page).toHaveURL(new RegExp(`#${option.target}$`));
     const destination = page.locator(`#${option.target}`);
-    await expect.poll(async () => (await destination.boundingBox())!.y).toBeGreaterThanOrEqual(78);
+    await expect.poll(async () => (await destination.boundingBox())!.y).toBeGreaterThanOrEqual(headerHeight);
     await expect(destination).toBeInViewport();
   }
   await choices.scrollIntoViewIfNeeded();

@@ -56,9 +56,15 @@ test("drawer slides from the left and dismisses through its backdrop and close b
   await expect(menu).toBeFocused();
 });
 
-test("opening the menu closes search, links navigate, and desktop resize dismisses it", async ({ page }) => {
+test("search blocks the background menu; the drawer still navigates and dismisses on desktop", async ({ page }) => {
   await page.getByRole("button", { name: "Abrir búsqueda", exact: true }).click();
   await expect(page.getByRole("search")).toBeVisible();
+  const menu = page.getByRole("button", { name: "Abrir menú", exact: true });
+  expect(await menu.evaluate((button: HTMLButtonElement) => {
+    button.focus();
+    return document.activeElement === button;
+  })).toBe(false);
+  await page.getByRole("dialog", { name: "Buscar en DNAture" }).getByRole("button", { name: "Cerrar búsqueda", exact: true }).click();
   await page.getByRole("button", { name: "Abrir menú", exact: true }).click();
   await expect(page.getByRole("search")).toHaveCount(0);
   const drawer = page.getByRole("dialog", { name: "Menú", exact: true });

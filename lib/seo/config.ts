@@ -8,7 +8,7 @@ export const brand = {
 } as const;
 
 export const privateRoots = [
-  "carrito", "checkout", "mi-dnature", "mis-mascotas", "cuenta", "buscar", "pedidos",
+  "carrito", "checkout", "mi-dnature", "mis-mascotas", "cuenta", "buscar", "pedidos", "ventas-internos",
 ] as const;
 
 type Environment = Record<string, string | undefined>;

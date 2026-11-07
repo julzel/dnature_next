@@ -1,6 +1,7 @@
 import "server-only";
+import { queryAvify } from "@/lib/server/avify-client";
 import { IntegrationError } from "@/lib/server/integration-error";
-import { integerInRange, invalidResponse, requestIntegrationJson, requiredEnvironment, responseRecord, responseString } from "@/lib/server/integration-http";
+import { integerInRange, invalidResponse, responseRecord, responseString } from "@/lib/server/integration-http";
 import type { AvifyCategory, AvifyProduct, AvifyProductPage, AvifyProductQuery, AvifyVariant } from "../types/avify";
 
 const PRODUCTS_QUERY = `query DnatureProducts($pageNum: Int, $pageSize: Int, $skus: [String], $locationId: Int, $selectMode: ProductSelectMode) {
@@ -14,16 +15,6 @@ const PRODUCTS_QUERY = `query DnatureProducts($pageNum: Int, $pageSize: Int, $sk
   }
 }`;
 
-function configuration() {
-  const endpoint = requiredEnvironment("Avify", "AVIFY_GRAPHQL_URL");
-  let url: URL;
-  try { url = new URL(endpoint); } catch { throw new IntegrationError("Avify", "CONFIGURATION", "AVIFY_GRAPHQL_URL must be an HTTPS URL."); }
-  if (url.protocol !== "https:" || url.username || url.password || url.search || url.hash) {
-    throw new IntegrationError("Avify", "CONFIGURATION", "AVIFY_GRAPHQL_URL must use HTTPS without credentials, a query, or a fragment.");
-  }
-  return { url, apiKey: requiredEnvironment("Avify", "AVIFY_API_KEY") };
-}
-
 function locationId(override: number | null | undefined): number | null {
   if (override !== undefined) return override === null ? null : integerInRange(override, 1, 2_147_483_647, "locationId");
   const configured = process.env.AVIFY_LOCATION_ID?.trim();
@@ -33,20 +24,6 @@ function locationId(override: number | null | undefined): number | null {
     throw new IntegrationError("Avify", "CONFIGURATION", "AVIFY_LOCATION_ID must be a positive GraphQL integer.");
   }
   return value;
-}
-
-async function queryAvify(query: string, variables: Record<string, unknown> = {}) {
-  const { url, apiKey } = configuration();
-  const body = responseRecord(await requestIntegrationJson("Avify", url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "api-key": apiKey },
-    body: JSON.stringify({ query, variables }),
-  }), "Avify", "response");
-  if (body.errors !== undefined && (!Array.isArray(body.errors) || body.errors.length > 0)) {
-    // GraphQL errors may accompany HTTP 200 and partial data. Never present a partial catalog as complete.
-    throw new IntegrationError("Avify", "GRAPHQL", "Avify could not complete the catalog request.");
-  }
-  return responseRecord(body.data, "Avify", "data");
 }
 
 function identifier(value: unknown, path: string): string {
