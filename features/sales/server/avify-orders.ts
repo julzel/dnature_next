@@ -87,7 +87,7 @@ async function getCatalog(): Promise<SalesCatalog> {
   return products;
 }
 
-async function getOrdersSince(fromDate: string): Promise<SalesOrder[]> {
+export async function getAvifyOrdersSince(fromDate: string): Promise<SalesOrder[]> {
   const first = await getOrderPage(1);
   const orders = [...first.orders];
   const totalPages = Math.max(1, Math.ceil(first.totalCount / PAGE_SIZE));
@@ -110,7 +110,7 @@ async function getOrdersSince(fromDate: string): Promise<SalesOrder[]> {
 export async function getAvifySalesDataset(now = new Date()): Promise<SalesDataset> {
   const today = localDate(now);
   const fromDate = sixMonthsBefore(today);
-  const orders = await getOrdersSince(fromDate);
+  const orders = await getAvifyOrdersSince(fromDate);
   const catalog = await getCatalog();
   return summarizeSales(orders, catalog, fromDate, today, now.toISOString());
 }

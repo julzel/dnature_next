@@ -92,6 +92,45 @@ you also need its included media. Response envelopes and core IDs are validated;
 custom field types are TypeScript hints, so validate fields for the specific UI
 before rendering them. No raw Rich Text or CMS HTML is injected into the page.
 
+## Matched product catalog
+
+```ts
+import { getCatalogProducts, getCatalogProductBySku }
+  from "@/features/catalog/server/catalog";
+
+const products = await getCatalogProducts();
+const product = await getCatalogProductBySku("YOUR-AVIFY-PARENT-SKU");
+```
+
+These server-only functions join published Contentful `product.avifySku` values to
+Avify **parent** SKUs. Products without a matching published entry are omitted;
+single-product lookup returns `null` when there is no match. Variants remain in
+`commerce.children` and inherit their parent's editorial content. Each result
+keeps `commerce` and `editorial` separate; `editorial.images` contains the
+published, resolved image assets. Missing or unpublished image links are omitted.
+Duplicate published SKU mappings fail rather than choosing one arbitrarily.
+
+Full-catalog reads request Avify pages of 100 and Contentful pages of 1000,
+joining in memory instead of doing one CMS request per product. The Contentful
+snapshot is cached with a five-minute revalidation period and tagged
+`contentful-products`; Avify price and stock are fetched on each catalog call.
+The cache currently refreshes by time, with no webhook configured. Product UIs
+should still apply their own visibility and purchase rules to Avify statuses,
+quantities, and prices. Avify's `totalCount` can exceed the number of selectable
+products by one; the loader accepts a short final page but rejects empty pages
+before the end of the reported pagination range.
+
+The landing page's “Variedad y salud” feature ranks the `Snacks deshidratados`
+category by units sold in completed or processing orders during the last 30
+days. It groups variant sales under the parent SKU, then selects the first four
+matched products with a published image, positive stock, and a valid current
+price. A configurable product uses the lowest priced stocked active variant and
+displays “Desde”. The sales ranking is cached for one hour; catalog price and
+stock are read afresh. The section streams a loading state and offers a retry
+action on upstream errors. Avify currently marks every returned parent product
+`inactive`, including stocked simple products, so this feature uses quantity
+rather than parent status to decide whether a card appears.
+
 ## Fetching, caching, and errors
 
 Both adapters use native server-side `fetch`, a 10-second deadline covering

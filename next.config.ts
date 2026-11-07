@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
     .filter(Boolean),
   cacheComponents: true,
   partialPrefetching: true,
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "images.ctfassets.net" }],
+  },
   headers: () => indexingHeaders(),
 };
 

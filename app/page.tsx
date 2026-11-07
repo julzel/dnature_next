@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { brand } from "@/lib/seo/config";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { Header } from "@/features/header/components/header";
@@ -7,6 +8,8 @@ import { ExperienceSection } from "@/features/experience/components/experience-s
 import { PetExperience } from "@/features/experience/components/pet-experience";
 import { Contact } from "@/features/contact/components/contact";
 import { Footer } from "@/features/footer/components/footer";
+import { BestSellingSnacks } from "@/features/catalog/components/best-selling-snacks";
+import { BestSellingSnacksLoading } from "@/features/catalog/components/best-selling-snacks-loading";
 
 export const metadata = pageMetadata({
   path: "/",
@@ -30,7 +33,11 @@ export default function Home() {
         >
           <PetExperience />
         </ExperienceSection>
-        <ExperienceSection id="explorar" label="Variedad y salud" />
+        <ExperienceSection id="explorar" label="Variedad y salud">
+          <Suspense fallback={<BestSellingSnacksLoading />}>
+            <BestSellingSnacks />
+          </Suspense>
+        </ExperienceSection>
         <Contact />
       </main>
       <Footer />
