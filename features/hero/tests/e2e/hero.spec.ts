@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { dismissArrivalDialog } from "../../../../tests/helpers/dismiss-arrival-dialog";
 
 for (const viewport of [
   { width: 320, height: 700, layout: "mobile" },
@@ -7,6 +8,7 @@ for (const viewport of [
   test(`${viewport.layout} hero fills the viewport beneath the header`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await page.goto("/");
+    await dismissArrivalDialog(page);
 
     const hero = await page.locator('[data-section="hero"]').boundingBox();
     const content = await page.locator('[data-hero-section="content"]').boundingBox();
@@ -22,7 +24,7 @@ for (const viewport of [
     expect(header!.y).toBe(0);
     expect(header!.y + header!.height).toBeGreaterThan(hero!.y);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(viewport.width);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText("Lorem ipsum dolor sit amet.");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Su biología es\s*única\./);
     const photo = page.getByRole("img", { name: "Perro levantando una pata entre helechos y troncos en el bosque." });
     await expect.poll(() => photo.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
     const actions = page.locator('[data-hero-section="content"]').getByRole("link");
@@ -49,9 +51,9 @@ for (const viewport of [
     await expect(page.getByRole("searchbox", { name: "Buscar en el sitio" })).toBeVisible();
     expect((await page.getByRole("main", { includeHidden: true }).boundingBox())?.y).toBe(0);
     await page.getByRole("button", { name: "Cerrar búsqueda", exact: true }).click();
-    await page.getByRole("link", { name: "Desplazarse a A tu manera" }).click();
-    await expect(page).toHaveURL(/#experiencia$/);
-    const experience = page.getByRole("region", { name: "A tu manera" });
+    await page.getByRole("link", { name: "Desplazarse a Cuéntanos sobre tu mascota" }).click();
+    await expect(page).toHaveURL(/#experiencia-personalizada$/);
+    const experience = page.getByRole("region", { name: "Cuéntanos sobre tu mascota" });
     await expect.poll(async () => (await experience.boundingBox())!.y).toBeGreaterThanOrEqual(header!.height);
     await expect.poll(async () => (await experience.boundingBox())!.y).toBeLessThan(viewport.height / 2);
   });

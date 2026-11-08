@@ -3,7 +3,7 @@ import { completePet } from "../helpers/complete-pet";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
-  await page.locator("#experiencia").getByRole("link", { name: "Experiencia personalizada", exact: true }).click();
+  await page.getByRole("dialog").getByRole("link", { name: "Visita guiada", exact: true }).click();
 });
 
 test("adding and editing pets preserves each profile without duplicates", async ({ page }, testInfo) => {

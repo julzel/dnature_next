@@ -1,8 +1,10 @@
 import { expect, test } from "@playwright/test";
+import { dismissArrivalDialog } from "../../../../tests/helpers/dismiss-arrival-dialog";
 
 test.beforeEach(async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
+  await dismissArrivalDialog(page);
 });
 
 test("mobile menu sits beside search, traps focus, and closes with Escape", async ({ page }) => {
@@ -71,6 +73,7 @@ test("search blocks the background menu; the drawer still navigates and dismisse
   await drawer.getByRole("link", { name: "Ciencia", exact: true }).click();
   await expect(page).toHaveURL("/ciencia");
   await page.goto("/");
+  await dismissArrivalDialog(page);
   await page.getByRole("button", { name: "Abrir menú", exact: true }).click();
   await page.setViewportSize({ width: 1024, height: 768 });
   await expect(drawer).not.toBeVisible();

@@ -1,14 +1,16 @@
 import { expect, test } from "@playwright/test";
+import { dismissArrivalDialog } from "../helpers/dismiss-arrival-dialog";
 
 test("home page renders its header, hero, contact and footer placeholders and remains non-indexable", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   const response = await page.goto("/");
+  await dismissArrivalDialog(page);
   expect(response?.status()).toBe(200);
   await expect(page).toHaveTitle("DNAture | Nutrición con esencia en el ADN");
   await expect(page.getByRole("banner")).toHaveCount(1);
   await expect(page.getByRole("main")).toHaveCount(1);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Lorem ipsum dolor sit amet.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Su biología es\s*única\./);
   await expect(page.getByRole("region", { name: "Contacto", exact: true })).toBeAttached();
   await expect(page.getByRole("contentinfo")).toHaveCount(1);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");

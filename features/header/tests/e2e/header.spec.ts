@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
+import { dismissArrivalDialog } from "../../../../tests/helpers/dismiss-arrival-dialog";
 
-test.beforeEach(async ({ page }) => { await page.goto("/"); });
+test.beforeEach(async ({ page }) => { await page.goto("/"); await dismissArrivalDialog(page); });
 
 test("header contains a 74px navigation row without a top section", async ({ page }) => {
   const bottom = page.locator('[data-header-section="bottom"]');

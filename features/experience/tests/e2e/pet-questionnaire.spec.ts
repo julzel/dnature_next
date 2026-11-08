@@ -4,7 +4,7 @@ type SlideFrame = { text: string; opacity: number; underlineAnimatingBeforeSlide
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
-  await page.locator("#experiencia").getByRole("link", { name: "Experiencia personalizada", exact: true }).click();
+  await page.getByRole("dialog").getByRole("link", { name: "Visita guiada", exact: true }).click();
 });
 
 test("questions slide in the navigation direction without losing answers", async ({ page }) => {

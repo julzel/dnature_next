@@ -1,0 +1,52 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  inline-size: min(320px, calc(100% - 32px));
+  max-block-size: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+.dialog::backdrop {
+  background: rgb(4 23 32 / 82%);
+  backdrop-filter: blur(5px);
+}
+
+.content { position: relative; padding: 64px 0 24px; }
+.close { position: absolute; inset-block-start: 0; inset-inline-end: 0; display: grid; place-items: center; inline-size: 44px; block-size: 44px; border: 1px solid rgb(255 255 255 / 50%); border-radius: 50%; background: rgb(255 255 255 / 8%); color: #fff; }
+.close:hover { background: rgb(255 255 255 / 18%); }
+.choices { display: grid; justify-items: center; gap: 16px; }
+.choice { display: grid; place-items: center; align-content: center; gap: 8px; inline-size: min(100%, 320px); aspect-ratio: 1; padding: 24px; appearance: none; border: 1px solid var(--dn-border-default); border-radius: 0; background: #fff; color: var(--dn-text-primary); text-decoration: none; }
+.choice > div { inline-size: min(100%, 184px); }
+.choiceLabel { position: relative; display: grid; place-items: center; inline-size: 100%; min-block-size: 80px; padding: 12px 36px; border-block-end: 1px solid #8fe4d9; font-size: 14px; font-weight: 800; line-height: 1.6; text-align: center; letter-spacing: normal; }
+.choiceLabel > span { min-inline-size: 0; overflow-wrap: anywhere; }
+.choiceArrow { position: absolute; inset-block-start: 50%; inset-inline-end: 0; translate: 0 -50%; color: var(--dn-brand-orange); transition: transform 160ms ease; }
+.choice:hover { border-color: var(--dn-category-wild); }
+.choice:hover .choiceArrow { transform: translate(3px, -3px); }
+.close:focus-visible { outline: 3px solid #8fe4d9; outline-offset: 3px; }
+.choice:focus-visible { outline: 3px solid var(--dn-brand-orange); outline-offset: -3px; border-color: var(--dn-brand-orange); }
+
+@media (min-width: 768px) {
+  .dialog { inline-size: min(664px, calc(100% - 32px)); }
+  .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .choice { inline-size: 100%; }
+  .choice > div { inline-size: min(100%, 200px); }
+}
+
+@media (min-width: 1024px) {
+  .choiceLabel { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dialog[open] { animation: arrival-enter 180ms ease-out; }
+  @keyframes arrival-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choiceArrow { transition: none; }
+  .choice:hover .choiceArrow { transform: none; }
+}

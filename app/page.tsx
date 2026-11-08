@@ -3,7 +3,7 @@ import { brand } from "@/lib/seo/config";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { Header } from "@/features/header/components/header";
 import { Hero } from "@/features/hero/components/hero";
-import { ExperienceOptions } from "@/features/experience/components/experience-options";
+import { ExperienceArrivalDialog } from "@/features/experience/components/experience-arrival-dialog";
 import { ExperienceSection } from "@/features/experience/components/experience-section";
 import { PetExperience } from "@/features/experience/components/pet-experience";
 import { Contact } from "@/features/contact/components/contact";
@@ -22,9 +22,9 @@ export default function Home() {
   return (
     <>
       <Header />
+      <ExperienceArrivalDialog />
       <main>
         <Hero />
-        <ExperienceOptions />
         <ExperienceSection
           id="experiencia-personalizada"
           label="Cuéntanos sobre tu mascota"
