@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { connection } from "next/server";
+import { ArrowUpRight } from "lucide-react";
 import { getFeaturedSnacks } from "../server/featured-snacks";
 import { FeaturedSnackCard } from "./featured-snack-card";
 import { FeaturedSnacksRetry } from "./featured-snacks-retry";
@@ -33,6 +35,7 @@ export async function BestSellingSnacks() {
           {snacks.map((snack, index) => <FeaturedSnackCard key={snack.sku} snack={snack} rank={index + 1} />)}
         </div>
       ) : <p className={styles.message} role="status">No hay snacks deshidratados disponibles para mostrar ahora.</p>}
+      <Link className={styles.catalogLink} href="/productos">Explorar todos los productos <ArrowUpRight size={22} aria-hidden="true" /></Link>
     </div>
   );
 }

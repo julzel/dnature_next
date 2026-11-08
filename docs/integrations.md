@@ -113,12 +113,25 @@ Duplicate published SKU mappings fail rather than choosing one arbitrarily.
 Full-catalog reads request Avify pages of 100 and Contentful pages of 1000,
 joining in memory instead of doing one CMS request per product. The Contentful
 snapshot is cached with a five-minute revalidation period and tagged
-`contentful-products`; Avify price and stock are fetched on each catalog call.
+`contentful-products`; Avify price and stock are fetched on each uncached catalog call.
 The cache currently refreshes by time, with no webhook configured. Product UIs
 should still apply their own visibility and purchase rules to Avify statuses,
 quantities, and prices. Avify's `totalCount` can exceed the number of selectable
 products by one; the loader accepts a short final page but rejects empty pages
 before the end of the reported pagination range.
+
+The public `/productos` page reads only matched products. It shares an Avify
+catalog snapshot briefly across category and search requests (30-second
+revalidation), while Contentful uses the editorial cache above. Each category
+shows up to five product previews in a horizontally scrollable row,
+ordered by units sold in completed or processing orders over the last 30 days.
+Variant sales count toward the parent SKU. The shared sales ranking cache
+revalidates hourly; the catalog snapshot supplies current prices and stock.
+Availability is based on positive quantity because Avify currently reports all
+parent product statuses as `inactive`; unavailable products show “Agotado”.
+Category and search filters use query
+parameters, with the canonical URL remaining `/productos`. No individual
+product route or purchase action is implied by the listing.
 
 The landing page's “Variedad y salud” feature ranks the `Snacks deshidratados`
 category by units sold in completed or processing orders during the last 30

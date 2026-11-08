@@ -1,0 +1,82 @@
+import type { SalesBucket } from "@/features/sales/types/sales";
+import type { CatalogProduct } from "../types/catalog";
+import { contentfulImageUrl } from "./contentful-image-url";
+import { productOffer, type ProductOffer } from "./product-offer";
+
+export const CATALOG_SHELF_SIZE = 5;
+
+export type CatalogCategory = { id: string; label: string; color: string };
+export type CatalogListing = {
+  sku: string;
+  name: string;
+  categoryIds: string[];
+  imageUrl: string | null;
+  imageAlt: string;
+  offer: ProductOffer;
+  unitsSold: number;
+};
+export type CatalogShelf = { category: CatalogCategory; products: CatalogListing[] };
+
+const CATEGORY_COLORS: Record<string, string> = {
+  "snacks deshidratados": "#0b7282",
+  "recetas completas": "#5163a0",
+  proteinas: "#13648a",
+  snacks: "#5973a6",
+  suplementos: "#674f91",
+  organos: "#116978",
+};
+
+function normalized(value: string): string {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
+}
+
+function categoryColor(label: string): string {
+  return CATEGORY_COLORS[normalized(label)] ?? "#124563";
+}
+
+export function prepareCatalog(products: readonly CatalogProduct[], buckets: readonly SalesBucket[]) {
+  const unitsBySku = new Map<string, number>();
+  for (const bucket of buckets) unitsBySku.set(bucket.sku, (unitsBySku.get(bucket.sku) ?? 0) + bucket.units);
+
+  const categories = new Map<string, CatalogCategory>();
+  const listings = products.map((product): CatalogListing => {
+    const offer = productOffer(product.commerce);
+    for (const category of product.commerce.categories) {
+      if (!categories.has(category.id)) categories.set(category.id, {
+        id: category.id, label: category.label, color: categoryColor(category.label),
+      });
+    }
+    const image = product.editorial.images.find((asset) => contentfulImageUrl(asset.fields.file?.url));
+    const name = product.editorial.fields.productName?.trim() || product.commerce.name;
+    return {
+      sku: product.sku,
+      name,
+      categoryIds: product.commerce.categories.map((category) => category.id),
+      imageUrl: contentfulImageUrl(image?.fields.file?.url),
+      imageAlt: image?.fields.description?.trim() || name,
+      offer,
+      unitsSold: (unitsBySku.get(product.sku) ?? 0) + product.commerce.children.reduce(
+        (total, variant) => total + (unitsBySku.get(variant.sku) ?? 0), 0,
+      ),
+    };
+  });
+  return { categories: [...categories.values()].sort((a, b) => a.label.localeCompare(b.label, "es")), listings };
+}
+
+export function browseCatalog(
+  listings: readonly CatalogListing[],
+  categories: readonly CatalogCategory[],
+  options: { query?: string; categoryId?: string },
+) {
+  const query = (options.query ?? "").trim().slice(0, 100);
+  const search = normalized(query);
+  const categoryId = options.categoryId ?? "";
+  const filtered = listings.filter((product) => !search || normalized(`${product.name} ${product.sku}`).includes(search));
+  const shelves = categories.filter((category) => !categoryId || category.id === categoryId).flatMap((category): CatalogShelf[] => {
+    const products = filtered.filter((product) => product.categoryIds.includes(category.id))
+      .sort((a, b) => b.unitsSold - a.unitsSold || a.name.localeCompare(b.name, "es") || a.sku.localeCompare(b.sku, "es"))
+      .slice(0, CATALOG_SHELF_SIZE);
+    return products.length ? [{ category, products }] : [];
+  });
+  return { query, categoryId, shelves, total: shelves.reduce((sum, shelf) => sum + shelf.products.length, 0) };
+}

@@ -69,9 +69,21 @@ async function getCachedProductContent(): Promise<PublishedProductContent> {
   return loadPublishedProductContent();
 }
 
+async function getShortLivedAvifyCatalog(): Promise<AvifyProduct[]> {
+  "use cache";
+  cacheLife({ stale: 15, revalidate: 30, expire: 120 });
+  return loadAvifyCatalog();
+}
+
 /** Published parent products only. Avify prices and stock are read fresh on each call. */
 export async function getCatalogProducts(): Promise<CatalogProduct[]> {
   const [products, content] = await Promise.all([loadAvifyCatalog(), getCachedProductContent()]);
+  return joinProducts(products, content.entries, content.assets);
+}
+
+/** Shared briefly across catalog browsing requests to avoid repeating the full Avify scan for each filter change. */
+export async function getBrowseCatalogProducts(): Promise<CatalogProduct[]> {
+  const [products, content] = await Promise.all([getShortLivedAvifyCatalog(), getCachedProductContent()]);
   return joinProducts(products, content.entries, content.assets);
 }
 
