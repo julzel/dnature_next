@@ -132,6 +132,9 @@ parent product statuses as `inactive`; unavailable products show “Agotado”.
 Category and search filters use query
 parameters, with the canonical URL remaining `/productos`. No individual
 product route or purchase action is implied by the listing.
+Each preview row links to `/productos/categoria/<nombre>-<id>`, which displays
+the full matched category in the same sales order with a category-specific
+canonical URL. These pages are discoverable through crawlable catalog links.
 
 The landing page's “Variedad y salud” feature ranks the `Snacks deshidratados`
 category by units sold in completed or processing orders during the last 30

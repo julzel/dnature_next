@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { SalesBucket } from "@/features/sales/types/sales";
-import { browseCatalog, CATALOG_SHELF_SIZE, prepareCatalog } from "../../lib/browse-catalog";
+import { browseCatalog, CATALOG_SHELF_SIZE, categoryFromSlug, categoryPath, prepareCatalog, productsForCategory } from "../../lib/browse-catalog";
 import type { CatalogProduct } from "../../types/catalog";
 
 function product(sku: string, name: string, category: string, qty = 2): CatalogProduct {
@@ -57,4 +57,15 @@ test("groups categories and filters names or SKUs without accents", () => {
   assert.deepEqual(filtered.shelves[0].products.map((item) => item.sku), ["other", "pulmon"]);
   assert.equal(browseCatalog(listings, categories, { query: "mix" }).shelves[0].products[0].sku, "mix");
   assert.equal(browseCatalog(listings, categories, { query: "missing" }).total, 0);
+});
+
+test("category links use readable paths and the category page keeps the full sales ranking", () => {
+  const products = Array.from({ length: 7 }, (_, index) => product(`sku-${index}`, `Producto ${index}`, "Proteínas"));
+  for (const item of products) item.commerce.categories[0].id = "42";
+  const { categories, listings } = prepareCatalog(products, products.map((item, index) => sales(item.sku, index + 1)));
+  assert.equal(categoryPath(categories[0]), "/productos/categoria/proteinas-42");
+  assert.equal(categoryFromSlug(categories, "proteinas-42")?.id, "42");
+  assert.equal(categoryFromSlug(categories, "unknown"), undefined);
+  assert.equal(browseCatalog(listings, categories, {}).shelves[0].products.length, 5);
+  assert.deepEqual(productsForCategory(listings, categories[0].id).map((item) => item.sku), ["sku-6", "sku-5", "sku-4", "sku-3", "sku-2", "sku-1", "sku-0"]);
 });

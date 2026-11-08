@@ -34,6 +34,24 @@ function categoryColor(label: string): string {
   return CATEGORY_COLORS[normalized(label)] ?? "#124563";
 }
 
+export function categoryPath(category: CatalogCategory): string {
+  const name = normalized(category.label).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return `/productos/categoria/${name}-${encodeURIComponent(category.id)}`;
+}
+
+export function categoryFromSlug(categories: readonly CatalogCategory[], slug: string): CatalogCategory | undefined {
+  return categories.find((category) => categoryPath(category).endsWith(`/${slug}`));
+}
+
+export function isCategorySlug(slug: string): boolean {
+  return /^[a-z0-9-]{1,120}$/.test(slug);
+}
+
+export function productsForCategory(listings: readonly CatalogListing[], categoryId: string): CatalogListing[] {
+  return listings.filter((product) => product.categoryIds.includes(categoryId))
+    .sort((a, b) => b.unitsSold - a.unitsSold || a.name.localeCompare(b.name, "es") || a.sku.localeCompare(b.sku, "es"));
+}
+
 export function prepareCatalog(products: readonly CatalogProduct[], buckets: readonly SalesBucket[]) {
   const unitsBySku = new Map<string, number>();
   for (const bucket of buckets) unitsBySku.set(bucket.sku, (unitsBySku.get(bucket.sku) ?? 0) + bucket.units);
@@ -73,9 +91,7 @@ export function browseCatalog(
   const categoryId = options.categoryId ?? "";
   const filtered = listings.filter((product) => !search || normalized(`${product.name} ${product.sku}`).includes(search));
   const shelves = categories.filter((category) => !categoryId || category.id === categoryId).flatMap((category): CatalogShelf[] => {
-    const products = filtered.filter((product) => product.categoryIds.includes(category.id))
-      .sort((a, b) => b.unitsSold - a.unitsSold || a.name.localeCompare(b.name, "es") || a.sku.localeCompare(b.sku, "es"))
-      .slice(0, CATALOG_SHELF_SIZE);
+    const products = productsForCategory(filtered, category.id).slice(0, CATALOG_SHELF_SIZE);
     return products.length ? [{ category, products }] : [];
   });
   return { query, categoryId, shelves, total: shelves.reduce((sum, shelf) => sum + shelf.products.length, 0) };

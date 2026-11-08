@@ -32,7 +32,7 @@ export async function BestSellingSnacks() {
       </div>
       {snacks.length ? (
         <div className={styles.grid}>
-          {snacks.map((snack, index) => <FeaturedSnackCard key={snack.sku} snack={snack} rank={index + 1} />)}
+          {snacks.map((snack) => <FeaturedSnackCard key={snack.sku} snack={snack} />)}
         </div>
       ) : <p className={styles.message} role="status">No hay snacks deshidratados disponibles para mostrar ahora.</p>}
       <Link className={styles.catalogLink} href="/productos">Explorar todos los productos <ArrowUpRight size={22} aria-hidden="true" /></Link>

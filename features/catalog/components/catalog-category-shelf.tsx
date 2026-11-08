@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { CatalogShelf } from "../lib/browse-catalog";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { categoryPath, type CatalogShelf } from "../lib/browse-catalog";
 import { CatalogProductPreview } from "./catalog-product-preview";
 import styles from "./catalog-page.module.css";
 
@@ -53,8 +54,12 @@ export function CatalogCategoryShelf({ shelf }: { shelf: CatalogShelf }) {
         </div>
       </div>
       <ol ref={scroller} className={styles.shelfTrack} onScroll={updateControls} aria-label={`Productos de ${shelf.category.label}`}>
-        {shelf.products.map((product, index) => <CatalogProductPreview key={product.sku} product={product} rank={index + 1} />)}
+        {shelf.products.map((product) => <CatalogProductPreview key={product.sku} product={product} />)}
       </ol>
+      <Link className={styles.categoryLink} href={categoryPath(shelf.category)}>
+        Ver todos los productos de {shelf.category.label}
+        <ArrowUpRight size={20} aria-hidden="true" />
+      </Link>
     </section>
   );
 }
