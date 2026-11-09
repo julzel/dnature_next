@@ -1,5 +1,5 @@
 .illustration {
-  --pet-ink: var(--dn-category-wild, #124563);
+  --pet-ink: var(--dn-surface-dark, #124563);
   --pet-teal: var(--dn-brand-teal, #00a9b5);
   --pet-mint: #8fe4d9;
   --pet-paper: #fff;

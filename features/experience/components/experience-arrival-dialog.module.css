@@ -25,7 +25,7 @@
 .choiceLabel { position: relative; display: grid; place-items: center; inline-size: 100%; min-block-size: 80px; padding: 12px 36px; border-block-end: 1px solid #8fe4d9; font-size: 14px; font-weight: 800; line-height: 1.6; text-align: center; letter-spacing: normal; }
 .choiceLabel > span { min-inline-size: 0; overflow-wrap: anywhere; }
 .choiceArrow { position: absolute; inset-block-start: 50%; inset-inline-end: 0; translate: 0 -50%; color: var(--dn-brand-orange); transition: transform 160ms ease; }
-.choice:hover { border-color: var(--dn-category-wild); }
+.choice:hover { border-color: var(--dn-surface-dark); }
 .choice:hover .choiceArrow { transform: translate(3px, -3px); }
 .close:focus-visible { outline: 3px solid #8fe4d9; outline-offset: 3px; }
 .choice:focus-visible { outline: 3px solid var(--dn-brand-orange); outline-offset: -3px; border-color: var(--dn-brand-orange); }

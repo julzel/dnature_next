@@ -62,8 +62,10 @@ does not require an unrelated repository-wide refactor.
   and occasional continuous section bands; it is not limited to SectionEyebrow.
   Pair orange fills with readable dark text and verify contrast in every state.
   Keep cool white and blue-gray as the main reading surfaces. Warm whites, cream,
-  beige, yellow, and unrelated warm UI tones remain prohibited. The exception
-  does not extend automatically to other oranges, warm tints, or category colors.
+  beige, yellow, and unrelated warm UI tones remain prohibited. The five current
+  product categories may use their assigned colors, including warm hues, only to
+  identify those categories in catalog and product contexts. Category colors do
+  not become general brand, action, status, or background colors.
 
 ## Folder structure
 

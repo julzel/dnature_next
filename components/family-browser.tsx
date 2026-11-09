@@ -7,7 +7,7 @@ import { families, type Family } from "@/lib/landing-content";
 import { Icon } from "./icon";
 import { Modal } from "./modal";
 
-const filters = ["Todas", "Recetas", "Complementos", "Masticables y Treats", "Suplementos"] as const;
+const filters = ["Todas", "Complementos", "Deshidratados", "Órganos", "Recetas completas", "Suplementos"] as const;
 
 export function FamilyBrowser() {
   const [filter, setFilter] = useState<string>("Todas");

@@ -84,8 +84,14 @@
       "id": "digital_design_proposal",
       "type": "website_design_specification",
       "relative_path": "docs/graphic-design/DNAture_Design_System.md",
-      "version": "0.3",
-      "status": "Contains BRAND, REQUIRED, PROPOSED and VERIFY labels. Required website adaptations include flat open layouts, square geometry, and the active brand-orange exception; these are project rules, not revisions to the original PDF."
+      "version": "0.4",
+      "status": "Contains BRAND, REQUIRED, PROPOSED and VERIFY labels. Required website adaptations include flat open layouts, square geometry, active brand-orange use, and five current product categories with scoped identification colors; these are project rules, not revisions to the original PDF."
+    },
+    {
+      "id": "current_user_request",
+      "type": "project_instruction",
+      "scope": "dnature_next current website taxonomy and category-color exception",
+      "summary": "Current categories: Complementos, Deshidratados, Órganos, Recetas completas, Suplementos. Each may have an identification color, including a warm hue, without becoming a general brand color."
     }
   ],
   "quick_reference": {
@@ -121,9 +127,9 @@
     "critical_constraints": [
       "Use the exact official tagline; campaign lines are not replacements.",
       "Use supplied logo artwork rather than reconstructing it with a font.",
-      "Use canonical product-family vocabulary and the restricted-term rules.",
+      "Use the five current website category names (Complementos, Deshidratados, Órganos, Recetas completas, Suplementos) and the brandbook’s restricted-term rules; preserve historical family names only as source evidence.",
       "Brandbook claims are not proof of current product efficacy, completeness, certification, or availability.",
-      "For dnature_next UI, use cool/neutral foundations with exact brand orange #FF6A00 as an explicit exception for recurring actions, navigation accents, editorial emphasis, counters, and occasional continuous section bands; it is not limited to SectionEyebrow.",
+      "For dnature_next UI, use cool/neutral foundations with exact brand orange #FF6A00 as a recurring brand accent. The five assigned category colors may identify their own categories, including when warm; they are not general UI colors.",
       "Consult unresolved packaging rules before extending a label template."
     ],
     "canonical_details": [
@@ -1687,9 +1693,8 @@
         "Warm whites",
         "Cream",
         "Beige",
-        "Yellow accents",
-        "Other oranges and unapproved warm tints",
-        "Other warm UI tones outside the exact brand-orange exception"
+        "Yellow accents outside assigned category identification",
+        "Unrelated warm UI tones outside the exact brand-orange and five category-identification exceptions"
       ],
       "explicit_exception": "Exact brand orange #FF6A00 is exempt from the warm-color prohibition and should participate visibly across the website, not only in SectionEyebrow.",
       "orange_roles": [
@@ -1710,8 +1715,8 @@
         "selection_and_focus": "Do not rely on an orange-only indicator on white. Use dark text and an additional clear state cue; retain dark focus outlines on light/orange surfaces and light outlines on dark surfaces.",
         "states": "Preserve the exact orange; use contrast-tested borders, underlines, or icon changes instead of opacity reductions or unapproved warm shades."
       },
-      "effect_on_reference": "Preserve all original palette values. The exception permits institutional #FF6A00, not the distinct Treats #CA6C2A or other warm category colors.",
-      "effect_on_proposal": "Follow version 0.3 of the website design system for active orange roles and tokens. Earlier eyebrow-only restrictions are superseded; other prohibited warm surfaces remain excluded."
+      "effect_on_reference": "Preserve the original nine-color source palette. Exact #FF6A00 is the active brand-orange exception; the five current categories may also use their assigned warm or cool identification colors only in category and product contexts.",
+      "effect_on_proposal": "Follow the current website design system and app/theme.css for brand and category roles. Earlier eyebrow-only orange restrictions and historical nine-family website navigation are superseded."
     },
     "section_eyebrow": {
       "component_path": "components/section-eyebrow.tsx",
@@ -1756,6 +1761,62 @@
       "illustration_manifest": "public/images/icons/manifest.json",
       "illustration_reference": "docs/graphic-design/illustrator-icons.md",
       "guidance": "Inspect the actual asset before use. Do not assume a legacy file is approved merely because it is already in the repository."
+    },
+    "website_font_mapping": {
+      "evidence_status": "project_override",
+      "source_id": "digital_design_proposal",
+      "brandbook_primary": "Avenir Next LT Pro",
+      "website_primary": "Manrope",
+      "brandbook_secondary": "Gotham Ultra",
+      "website_display": "Montserrat Black (900)",
+      "fallback": "Arial, sans-serif",
+      "loading": "Bundled WOFF2 files in app/fonts/ loaded by next/font/local in app/layout.tsx; Latin Extended Manrope loads on demand for the Costa Rican colón sign. No runtime or build-time Google Fonts request.",
+      "css_tokens": {
+        "body": "--font-body",
+        "display": "--font-display"
+      },
+      "reason": "No licensed Avenir Next LT Pro or Gotham Ultra webfont files were found in the repository; both are commercial families. The selected Google Fonts are open-licensed substitutes for website text only, not replacements for supplied logo artwork or brandbook typography.",
+      "sources": {
+        "manrope": "https://github.com/google/fonts/blob/main/ofl/manrope/METADATA.pb",
+        "montserrat": "https://github.com/google/fonts/blob/main/ofl/montserrat/METADATA.pb"
+      },
+      "license_files": [
+        "app/fonts/Manrope-OFL.txt",
+        "app/fonts/Montserrat-OFL.txt"
+      ]
+    },
+    "current_product_categories": {
+      "evidence_status": "project_override",
+      "source_id": "current_user_request",
+      "note": "These five current website categories supersede the brandbook’s nine historical families for site navigation. Their colors identify product categories only; they are not general UI or brand colors.",
+      "theme_file": "app/theme.css",
+      "items": [
+        {
+          "name": "Complementos",
+          "color": "#80601F",
+          "css_token": "--dn-category-complementos"
+        },
+        {
+          "name": "Deshidratados",
+          "color": "#9A471B",
+          "css_token": "--dn-category-deshidratados"
+        },
+        {
+          "name": "Órganos",
+          "color": "#742019",
+          "css_token": "--dn-category-organos"
+        },
+        {
+          "name": "Recetas completas",
+          "color": "#426D36",
+          "css_token": "--dn-category-recetas-completas"
+        },
+        {
+          "name": "Suplementos",
+          "color": "#531845",
+          "css_token": "--dn-category-suplementos"
+        }
+      ]
     }
   },
   "review_findings": {
@@ -1912,8 +1973,8 @@
           56
         ],
         "additional_source_id": "repository_rules",
-        "issue": "The source palette includes multiple warm colors. The current website permits exact institutional brand orange but continues to exclude unrelated warm UI colors.",
-        "working_resolution": "Use #FF6A00 actively for actions, navigation accents, editorial emphasis, counters and occasional section bands, with readable dark text. The exception is not limited to SectionEyebrow and does not extend to Treats orange, yellow, cream, or other warm category colors."
+        "issue": "The source palette includes multiple warm colors. The current website permits exact institutional brand orange and assigned identification colors for the five current product categories.",
+        "working_resolution": "Use #FF6A00 actively for brand actions and emphasis. Use the five current category colors only to identify their own categories in catalog and product contexts. Other warm general UI colors remain excluded."
       },
       {
         "id": "generic_claims_inside_source",

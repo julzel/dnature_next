@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  color: var(--eyebrow-color, var(--dn-category-wild));
+  color: var(--eyebrow-color, var(--dn-surface-dark));
   font-size: 11px;
   font-weight: 900;
   line-height: 1.5;

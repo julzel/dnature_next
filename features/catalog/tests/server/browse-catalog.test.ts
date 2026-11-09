@@ -52,11 +52,23 @@ test("groups categories and filters names or SKUs without accents", () => {
     product("mix", "Mezcla", "Suplementos"),
   ], [sales("pulmon", 2), sales("other", 3), sales("mix", 4)]);
   const all = browseCatalog(listings, categories, {});
-  assert.deepEqual(all.shelves.map((shelf) => shelf.category.label), ["Snacks deshidratados", "Suplementos"]);
+  assert.deepEqual(all.shelves.map((shelf) => shelf.category.label), ["Deshidratados", "Suplementos"]);
   const filtered = browseCatalog(listings, categories, { query: "PULMON", categoryId: "Snacks deshidratados" });
   assert.deepEqual(filtered.shelves[0].products.map((item) => item.sku), ["other", "pulmon"]);
   assert.equal(browseCatalog(listings, categories, { query: "mix" }).shelves[0].products[0].sku, "mix");
   assert.equal(browseCatalog(listings, categories, { query: "missing" }).total, 0);
+});
+
+test("uses the five current category names and shared theme colors", () => {
+  const names = ["Suplementos", "Órganos", "Complementos", "Recetas completas", "Snacks deshidratados"];
+  const { categories } = prepareCatalog(names.map((name, index) => product(`item-${index}`, name, name)), []);
+  assert.deepEqual(categories.map(({ label, color }) => [label, color]), [
+    ["Complementos", "var(--dn-category-complementos)"],
+    ["Deshidratados", "var(--dn-category-deshidratados)"],
+    ["Órganos", "var(--dn-category-organos)"],
+    ["Recetas completas", "var(--dn-category-recetas-completas)"],
+    ["Suplementos", "var(--dn-category-suplementos)"],
+  ]);
 });
 
 test("category links use readable paths and the category page keeps the full sales ranking", () => {

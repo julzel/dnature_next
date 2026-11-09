@@ -12,7 +12,7 @@
 .intro h2,
 .message h2 {
   max-inline-size: 760px;
-  color: var(--dn-category-wild);
+  color: var(--dn-surface-dark);
   font-size: clamp(30px, 3.6vw, 48px);
 }
 
@@ -58,14 +58,14 @@
 .details { display: grid; gap: 12px; padding: 16px; }
 .family { font-size: 10px; }
 .details h3 { font-size: clamp(18px, 1.6vw, 23px); overflow-wrap: anywhere; }
-.price { margin-block-start: 4px; color: var(--dn-category-wild); font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.price { margin-block-start: 4px; color: var(--dn-surface-dark); font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .price span { font-size: 14px; font-weight: 600; }
 
 .placeholder { aspect-ratio: .77; border-radius: 16px; background: var(--dn-surface-muted); }
 .message { display: grid; justify-items: start; gap: 16px; padding-block: 48px; color: var(--dn-text-secondary); }
-.retry { min-block-size: 44px; padding-inline: 24px; border: 1px solid var(--dn-category-wild); border-radius: 12px; background: transparent; color: var(--dn-category-wild); font-weight: 700; }
+.retry { min-block-size: 44px; padding-inline: 24px; border: 1px solid var(--dn-surface-dark); border-radius: 12px; background: transparent; color: var(--dn-surface-dark); font-weight: 700; }
 .retry:hover { background: var(--dn-surface-muted); }
-.catalogLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; justify-self: start; min-block-size: 48px; border-block-end: 1px solid var(--dn-brand-teal); color: var(--dn-category-wild); font-weight: 800; text-decoration: none; }
+.catalogLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; justify-self: start; min-block-size: 48px; border-block-end: 1px solid var(--dn-brand-teal); color: var(--dn-surface-dark); font-weight: 800; text-decoration: none; }
 .catalogLink svg { color: var(--dn-brand-teal); }
 .catalogLink:hover svg { transform: translate(2px, -2px); }
 

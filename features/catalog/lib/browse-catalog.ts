@@ -17,21 +17,21 @@ export type CatalogListing = {
 };
 export type CatalogShelf = { category: CatalogCategory; products: CatalogListing[] };
 
-const CATEGORY_COLORS: Record<string, string> = {
-  "snacks deshidratados": "#0b7282",
-  "recetas completas": "#5163a0",
-  proteinas: "#13648a",
-  snacks: "#5973a6",
-  suplementos: "#674f91",
-  organos: "#116978",
+const CATEGORY_THEME: Record<string, { label: string; color: string; order: number }> = {
+  complementos: { label: "Complementos", color: "var(--dn-category-complementos)", order: 0 },
+  deshidratados: { label: "Deshidratados", color: "var(--dn-category-deshidratados)", order: 1 },
+  organos: { label: "Órganos", color: "var(--dn-category-organos)", order: 2 },
+  "recetas completas": { label: "Recetas completas", color: "var(--dn-category-recetas-completas)", order: 3 },
+  suplementos: { label: "Suplementos", color: "var(--dn-category-suplementos)", order: 4 },
 };
 
 function normalized(value: string): string {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
 }
 
-function categoryColor(label: string): string {
-  return CATEGORY_COLORS[normalized(label)] ?? "#124563";
+function categoryTheme(label: string) {
+  const key = normalized(label);
+  return CATEGORY_THEME[key === "snacks deshidratados" ? "deshidratados" : key];
 }
 
 export function categoryPath(category: CatalogCategory): string {
@@ -60,9 +60,14 @@ export function prepareCatalog(products: readonly CatalogProduct[], buckets: rea
   const listings = products.map((product): CatalogListing => {
     const offer = productOffer(product.commerce);
     for (const category of product.commerce.categories) {
-      if (!categories.has(category.id)) categories.set(category.id, {
-        id: category.id, label: category.label, color: categoryColor(category.label),
-      });
+      if (!categories.has(category.id)) {
+        const theme = categoryTheme(category.label);
+        categories.set(category.id, {
+          id: category.id,
+          label: theme?.label ?? category.label,
+          color: theme?.color ?? "var(--dn-surface-dark)",
+        });
+      }
     }
     const image = product.editorial.images.find((asset) => contentfulImageUrl(asset.fields.file?.url));
     const name = product.editorial.fields.productName?.trim() || product.commerce.name;
@@ -78,7 +83,9 @@ export function prepareCatalog(products: readonly CatalogProduct[], buckets: rea
       ),
     };
   });
-  return { categories: [...categories.values()].sort((a, b) => a.label.localeCompare(b.label, "es")), listings };
+  return { categories: [...categories.values()].sort((a, b) =>
+    (categoryTheme(a.label)?.order ?? 5) - (categoryTheme(b.label)?.order ?? 5)
+    || a.label.localeCompare(b.label, "es")), listings };
 }
 
 export function browseCatalog(

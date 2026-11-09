@@ -1,0 +1,62 @@
+/* Shared website theme. Category colors identify product groups only. */
+:root {
+  color-scheme: light;
+
+  --dn-space-1: 4px;
+  --dn-space-2: 8px;
+  --dn-space-3: 12px;
+  --dn-space-4: 16px;
+  --dn-space-6: 24px;
+  --dn-space-8: 32px;
+  --dn-space-12: 48px;
+  --dn-space-16: 64px;
+  --dn-space-20: 80px;
+
+  --dn-radius: 0;
+  --dn-shadow: none;
+  --dn-page-gutter: var(--dn-space-4);
+  --dn-content-max: 1280px;
+  --dn-reading-max: 760px;
+  --dn-header-bottom-height: 74px;
+  --dn-header-height: var(--dn-header-bottom-height);
+
+  --dn-brand-teal: #00a9b5;
+  --dn-brand-orange: #ff6a00;
+  --dn-brand-gray: #b2b2b2;
+  --dn-brand-charcoal: #3c3c3b;
+  --dn-surface-base: #ffffff;
+  --dn-surface-cool: #f6faff;
+  --dn-surface-muted: #f1f5f9;
+  --dn-surface-dark: #124563;
+  --dn-surface-emphasis: var(--dn-brand-orange);
+  --dn-text-primary: #203237;
+  --dn-text-secondary: #596f73;
+  --dn-text-inverse: #ffffff;
+  --dn-border-default: #d9e4ed;
+  --dn-border-control: #667f8b;
+  --dn-action-primary-bg: var(--dn-brand-orange);
+  --dn-action-primary-text: var(--dn-text-primary);
+  --dn-action-alternative-bg: var(--dn-surface-dark);
+  --dn-action-alternative-text: var(--dn-text-inverse);
+  --dn-focus-ring: var(--dn-surface-dark);
+  --dn-focus-ring-inverse: var(--dn-text-inverse);
+  --dn-overlay: rgb(17 45 53 / 56%);
+
+  /* These deeper shades work as text on white and as fills behind white text. */
+  --dn-category-complementos: #80601f;
+  --dn-category-deshidratados: #9a471b;
+  --dn-category-organos: #742019;
+  --dn-category-recetas-completas: #426d36;
+  --dn-category-suplementos: #531845;
+
+  --font-body: var(--dn-font-body), var(--dn-font-currency), Arial, sans-serif;
+  --font-display: var(--dn-font-display), Arial, sans-serif;
+}
+
+@media (min-width: 640px) {
+  :root { --dn-page-gutter: var(--dn-space-6); }
+}
+
+@media (min-width: 1024px) {
+  :root { --dn-page-gutter: var(--dn-space-8); }
+}

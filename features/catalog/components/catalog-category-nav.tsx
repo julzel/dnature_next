@@ -15,7 +15,7 @@ export function CatalogCategoryNav({ categories, activeId, query }: { categories
     <nav className={styles.categories} aria-label="Categorías de productos">
       <ul>
         <li>
-          <Link href={href(query, "")} aria-current={!activeId ? "page" : undefined} style={{ "--category-color": "#124563" } as CSSProperties}>
+          <Link href={href(query, "")} aria-current={!activeId ? "page" : undefined} style={{ "--category-color": "var(--dn-surface-dark)" } as CSSProperties}>
             <span className={styles.categoryDot} aria-hidden="true" /> Todas
           </Link>
         </li>

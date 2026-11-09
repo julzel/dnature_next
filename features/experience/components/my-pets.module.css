@@ -2,7 +2,7 @@
   flex: 1;
   min-block-size: 100svh;
   padding: calc(var(--dn-header-height) + 48px) var(--dn-page-gutter) 64px;
-  background: var(--dn-category-complete);
+  background: var(--dn-surface-cool);
   color: #092f39;
 }
 .container { max-inline-size: 1280px; margin-inline: auto; }

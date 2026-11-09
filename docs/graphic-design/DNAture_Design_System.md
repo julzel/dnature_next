@@ -1,6 +1,6 @@
 # DNAture — Digital Design System
 
-**Version:** 0.3 — Flat editorial website with active brand orange
+**Version:** 0.4 — Flat editorial website, active brand orange, and five product categories
 
 **Updated:** 2026-11-09
 
@@ -23,7 +23,7 @@ This revision replaces version 0.1's visual system. The website uses an open edi
 | **[PROPOSED]** | An implementation recommendation or optional feature; it must satisfy all required rules. |
 | **[VERIFY]** | An asset, product fact, claim, or operational detail that needs current evidence before use. |
 
-Apply current task instructions and AGENTS.md first, then this document's website requirements, then compatible brandbook guidance. The JSON reference preserves the original brandbook, its contradictions, and the current project adaptations. This document governs the website's updated visual treatment. Brand orange has the explicit exception defined below. Rounded panels, other warm accents, or elevated compositions in older mockups do not establish further exceptions.
+Apply current task instructions and AGENTS.md first, then this document's website requirements, then compatible brandbook guidance. The JSON reference preserves the original brandbook, its contradictions, and the current project adaptations. This document governs the website's updated visual treatment. Brand orange and assigned product-category colors have the explicit exceptions defined below. Rounded panels or elevated compositions in older mockups do not establish further exceptions.
 
 The brandbook is a source for identity and communication. Its product examples, nutritional statements, seals, and packaging mockups are not a live catalog or proof of current efficacy, certification, or availability. Feature names and page templates below describe a design direction; they do not imply those features already exist.
 
@@ -97,9 +97,9 @@ Use cool white, blue-gray, institutional turquoise, dark blue, and neutral text 
 
 Give orange a visible role in primary calls to action, active navigation and selection accents, editorial highlights, meaningful counters, and occasional continuous section bands. Use it to draw attention to a next step or important idea. Maintain clear priority within each action group rather than making every action equally prominent.
 
-The exception applies to the exact brand orange. Warm whites, cream, beige, yellow, unrelated oranges, and other warm UI tones remain prohibited. Do not create peach or cream surfaces by tinting orange. Cool/neutral surfaces remain the main reading areas. Orange elements follow the same square geometry, open layout, and zero-elevation rules as the rest of the site.
+The brand-level exception applies to the exact brand orange. Warm whites, cream, beige, yellow, unrelated oranges, and other warm UI tones remain prohibited in general UI. The five current product categories also have assigned identification colors; their warm hues are allowed only in category and product contexts. Do not create peach or cream surfaces by tinting orange. Cool/neutral surfaces remain the main reading areas. Orange and category elements follow the same square geometry, open layout, and zero-elevation rules as the rest of the site.
 
-Product photography and approved artwork should accurately show the real product. Their intrinsic colors do not authorize additional warm interface colors beyond the explicit brand-orange exception.
+Product photography and approved artwork should accurately show the real product. Their intrinsic colors do not authorize additional warm interface colors beyond the brand-orange and category-identification exceptions.
 
 ## 4. Visual foundations
 
@@ -107,13 +107,23 @@ Product photography and approved artwork should accurately show the real product
 
 The brandbook defines institutional turquoise `#00A9B5`, orange `#FF6A00`, gray `#B2B2B2`, and charcoal `#3C3C3B` (p. 31). It also defines nine category colors (p. 32). The complete source palette is preserved in the JSON reference under `visual_identity.color`.
 
-**[REQUIRED]** Do not import the entire category palette as website UI colors. Category names carry meaning in text. The institutional orange `#FF6A00` exception does not authorize the distinct Treats orange `#CA6C2A`, yellow, or other warm category colors as UI accents. Category color is never evidence of nutritional role or suitability.
+**[REQUIRED]** The nine-color brandbook palette is historical source evidence. The current website taxonomy has five categories and the assignments below. Use category color only to identify its category in navigation, catalog headings, dividers, product labels, or related product context. Do not use it for unrelated actions, statuses, or large general-purpose surfaces. Keep the category name visible; color is never evidence of nutritional role or suitability.
+
+| Current product category | Website color | CSS token |
+|---|---|---|
+| Complementos | Deep ochre `#80601F` | `--dn-category-complementos` |
+| Deshidratados | Rust `#9A471B` | `--dn-category-deshidratados` |
+| Órganos | Burgundy `#742019` | `--dn-category-organos` |
+| Recetas completas | Forest green `#426D36` | `--dn-category-recetas-completas` |
+| Suplementos | Plum `#531845` | `--dn-category-suplementos` |
+
+These are website identification colors, not a replacement for the source PDF's printed packaging specifications. Each has at least 5.8:1 contrast against white, so it can be used for normal-size text on white or as a fill behind white text. The category name and another cue must accompany color-coded controls. The theme values live in `app/theme.css`.
 
 | Website role | Value [PROPOSED] | Use |
 |---|---|---|
 | Institutional turquoise | `#00A9B5` [BRAND] | Recognizable graphic accents and occasional continuous section surfaces. |
 | Brand orange | `#FF6A00` [BRAND; explicit UI exception] | Primary calls to action, editorial emphasis, navigation accents, counters, and occasional continuous section bands. |
-| Dark blue | `#124563` [BRAND category color] | Headings, supporting actions, dark editorial sections, and an alternative action on orange surfaces; this UI role is a digital adaptation. |
+| Dark blue | `#124563` [BRAND palette-derived] | Headings, supporting actions, dark editorial sections, and an alternative action on orange surfaces; this UI role is a digital adaptation. |
 | Base | `#FFFFFF` | Main reading and commerce surface. |
 | Cool surface | `#F6FAFF` | Broad editorial regions. |
 | Muted surface | `#F1F5F9` | Broad secondary regions or restrained interaction feedback. |
@@ -144,7 +154,7 @@ Use text, icons, and semantics to communicate success, errors, warnings, and sto
 
 ### 4.2 Token contract
 
-**[REQUIRED]** Geometry and spacing below define the website direction. **[PROPOSED]** Semantic color assignments and container sizes are implementation values. Reuse and reconcile existing tokens during implementation; do not create competing aliases for the same role. This documentation change does not itself migrate application CSS.
+**[REQUIRED]** Geometry and spacing below define the website direction. The live token source is `app/theme.css`; the excerpt below describes its core contract. Reuse existing tokens rather than creating competing aliases.
 
 ```css
 :root {
@@ -185,6 +195,12 @@ Use text, icons, and semantics to communicate success, errors, warnings, and sto
   --dn-focus-ring-inverse: #FFFFFF;
   --dn-overlay: rgb(17 45 53 / 56%);
 
+  --dn-category-complementos: #80601F;
+  --dn-category-deshidratados: #9A471B;
+  --dn-category-organos: #742019;
+  --dn-category-recetas-completas: #426D36;
+  --dn-category-suplementos: #531845;
+
 }
 
 @media (min-width: 640px) {
@@ -224,20 +240,22 @@ Breakpoints at 640px and 1024px are reference points, not fixed device targets. 
 
 **[BRAND]** Primary: **Avenir Next LT Pro** (p. 39). Secondary: **Gotham Ultra** (p. 40). Alternate: **Arial Bold** (p. 41).
 
-**[VERIFY]** Use licensed font files and weights that actually exist. The suggested body fallback stack is `"Avenir Next", Avenir, "Segoe UI", Arial, sans-serif` [PROPOSED]. Do not substitute body Arial with Arial Bold merely because the brandbook names the latter as an alternate.
+**Website font decision [REQUIRED]:** Avenir Next LT Pro and Gotham Ultra are licensed commercial families, and the repository has no web-licensed copies. Use the open Google Fonts **Manrope** as the website's Avenir-like primary face and **Montserrat Black (900)** as the Gotham-like display face. Their WOFF2 files and OFL licenses are stored in `app/fonts/` and loaded through `next/font/local` in the root layout. Manrope's Latin Extended subset is loaded on demand for the Costa Rican colón symbol (`₡`). This makes builds independent of Google Fonts network access. The faces are exposed as `--font-body` and `--font-display` in CSS. Use Manrope for body text and most headings; reserve Montserrat Black for prominent, short display headings such as the page H1. Arial is the system fallback, not a separately loaded brand font.
+
+These are website substitutes, not replacements for the approved typography in printed brand assets or the supplied logo. If licensed Avenir/Gotham webfont files become available later, review the actual license and asset weights before changing the website. Manrope and Montserrat are published under the SIL Open Font License; see their [Google Fonts source records](https://github.com/google/fonts/blob/main/ofl/manrope/METADATA.pb) and [Montserrat record](https://github.com/google/fonts/blob/main/ofl/montserrat/METADATA.pb).
 
 | Role | Narrow / wide sizes [PROPOSED] | Treatment |
 |---|---|---|
-| Display / hero | 36–44px / 56–72px | Short headline, strong weight; line-height 1.1–1.15. |
-| Page H1 | 32–36px / 44–56px | One descriptive page heading; line-height 1.15. |
-| Section H2 | 26–30px / 32–40px | Clear section landmark; line-height 1.2. |
-| H3 / entry heading | 20–22px / 22–26px | Distinguish entries without enclosing them; line-height 1.3. |
-| Body | 16px / 16–18px | Avenir regular; line-height 1.6. |
+| Display / hero | 36–44px / 56–72px | Montserrat Black; short headline, line-height 1.1–1.15. |
+| Page H1 | 32–36px / 44–56px | Montserrat Black; one descriptive page heading, line-height 1.15. |
+| Section H2 | 26–30px / 32–40px | Manrope bold; clear section landmark, line-height 1.2. |
+| H3 / entry heading | 20–22px / 22–26px | Manrope semibold/bold; line-height 1.3. |
+| Body | 16px / 16–18px | Manrope regular; line-height 1.6. |
 | Supporting text | 14px | Brief helper copy and metadata; line-height 1.5. |
 | Section eyebrow | Shared component style | Short descriptive label; uppercase treatment belongs to the component. |
 | Price / key figure | 20–24px / 22–28px | Clear units and currency; tabular numerals where available. |
 
-Use Gotham Ultra for occasional short emphasis. Sentence case supports longer reading. Avoid long all-caps paragraphs, justified body text, excessively tight tracking, and truncated product names. Fluid sizing must preserve legibility at enlarged text sizes. Never select a heading level merely to obtain its visual size.
+Use Montserrat Black for occasional short emphasis; keep longer headings and all body text in Manrope. Sentence case supports longer reading. Avoid long all-caps paragraphs, justified body text, excessively tight tracking, and truncated product names. Fluid sizing must preserve legibility at enlarged text sizes. Never select a heading level merely to obtain its visual size.
 
 ### 4.5 Section signature
 
@@ -384,7 +402,7 @@ For buttons inline alongside other elements, show the icon without visible text 
 
 **Proposed primary navigation:** Productos · Ciencia y aprendizaje · Nosotros · Ayuda, with search, account, and cart utilities. Use the current route structure and verified catalog when implementing.
 
-Preserve the nine canonical family names: **Recetas Complete**, **Recetas de Trucha**, **Recetas Cocidas**, **Recetas Wild**, **Complementos Nutricionales**, **Complementos de Masticación**, **Masticables**, **Treats**, and **Suplementos**. Masticables and Treats remain distinct families. Species navigation reflects verified product eligibility.
+Use the current five product categories: **Complementos**, **Deshidratados**, **Órganos**, **Recetas completas**, and **Suplementos**. The nine family names in the original brandbook remain historical source material, not the website's current navigation taxonomy. Species navigation reflects verified product eligibility.
 
 ### 7.2 Discovery homepage [PROPOSED]
 
@@ -442,7 +460,7 @@ DNAture is **científica y experta, cálida y empática, responsable y protector
 
 Use “nutrición fisiológica” when it accurately describes the subject. Explain why an ingredient or product role matters using evidence. Avoid unexplained quality claims, exaggerated promises, and judgment toward guardians.
 
-The vocabulary on p. 14 restricts **BARF**, **huesos carnosos**, **presas completas**, and generic **snacks** for functional products. Use **órganos** with anatomical precision instead of **vísceras**. Choose **Treats** or **masticables funcionales** only where accurate. Later comparative campaign examples do not turn BARF into an authorized DNAture category label.
+The vocabulary on p. 14 restricts **BARF**, **huesos carnosos**, **presas completas**, and generic **snacks** for functional products. Use **órganos** with anatomical precision instead of **vísceras**. Use the current category names for navigation; a historical family term such as Treats may appear only where it accurately describes a product. Later comparative campaign examples do not turn BARF into an authorized DNAture category label.
 
 ### 8.2 Content structure [REQUIRED]
 
@@ -549,7 +567,7 @@ Reconcile the proposed tokens with existing styles instead of maintaining parall
 - [ ] No shadows, simulated elevation, glass effects, hover lifting, or decorative scaling remain.
 - [ ] Product names, roles, prices, and actions remain clearly grouped without boxes.
 - [ ] Every new landing-page content section uses the shared descriptive, unnumbered `SectionEyebrow`.
-- [ ] Cool/neutral foundations include a meaningful recurring role for exact brand orange beyond eyebrow markers, with no unrelated warm colors.
+- [ ] Cool/neutral foundations include a meaningful recurring role for exact brand orange beyond eyebrow markers; any other warm hue is confined to its assigned product category.
 - [ ] Orange actions, highlights, counters, and section bands use readable dark text; active and focus states meet contrast requirements.
 - [ ] Shared spacing, gutters, widths, headings, and form rhythm are consistent.
 - [ ] Typography, authentic imagery, and restrained engravings express science and empathetic care.

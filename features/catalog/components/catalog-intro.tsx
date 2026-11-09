@@ -8,7 +8,7 @@ export function CatalogIntro() {
         <h1 id="catalog-title">Productos <span>DNAture</span></h1>
         <p>Encontrá lo que buscás por familia o por nombre. Información clara para explorar a tu ritmo.</p>
       </div>
-      <div className={styles.colorRail} aria-hidden="true"><span /><span /><span /><span /><span /><span /></div>
+      <div className={styles.colorRail} aria-hidden="true"><span /><span /><span /><span /><span /></div>
     </section>
   );
 }
