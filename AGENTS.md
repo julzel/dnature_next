@@ -31,11 +31,11 @@ does not require an unrelated repository-wide refactor.
   in every new landing-page content section, using a descriptive label without
   sequence numbers. Use its light tone over dark backgrounds and its default
   dark tone over light backgrounds. Use its `color` and `lineColor` props to
-  provide sufficient contrast on colored surfaces. The orange marker is an approved exception
-  to the restriction on warm UI accents.
+  provide sufficient contrast on colored surfaces. Its orange marker participates
+  in the wider brand-orange accent system described below.
 - Consult and follow `docs/graphic-design/DNAture_Design_System.md` when designing
   or implementing UI. Apply the project rules below where they differ from the
-  design system, including the prohibition on warm tones.
+  design system, including the brand-orange exception to the warm-tone restriction.
 - Use consistent spacing throughout the app. Define a shared spacing scale with
   CSS tokens (`4, 8, 12, 16, 24, 32, 48, 64, 80px`) and reuse it for page gutters,
   containers, sections, headings, forms, and components. Avoid arbitrary one-off
@@ -55,9 +55,15 @@ does not require an unrelated repository-wide refactor.
 - Prefer native HTML controls, browser behaviors, and familiar platform interaction
   patterns. Favor subtle, native-feeling motion; respect `prefers-reduced-motion`.
   Preserve accessible semantics, visible focus, and usable touch targets when styling.
-- Use cool or neutral UI colors. Do not use warm tones, including warm whites,
-  cream, beige, orange, or yellow UI accents. Prefer cool white and blue-gray
-  surfaces. This rule overrides warmer palette proposals in design references.
+- Use cool or neutral foundations with DNAture brand orange (`#FF6A00`) as an
+  explicit brand-color exception. Treat this exact orange as permitted by the UI
+  palette policy, not as a prohibited warm tone. Give it a recurring, meaningful
+  role in primary actions, navigation/selection accents, editorial highlights,
+  and occasional continuous section bands; it is not limited to SectionEyebrow.
+  Pair orange fills with readable dark text and verify contrast in every state.
+  Keep cool white and blue-gray as the main reading surfaces. Warm whites, cream,
+  beige, yellow, and unrelated warm UI tones remain prohibited. The exception
+  does not extend automatically to other oranges, warm tints, or category colors.
 
 ## Folder structure
 

@@ -1,0 +1,2151 @@
+{
+  "schema_version": "1.0.0",
+  "reference_id": "dnature_brand_reference",
+  "updated_at": "2026-11-09",
+  "purpose": "A task-oriented reference for AI agents creating DNAture graphic design and customer-facing content. This is a curated analysis, not a verbatim transcription, live product catalog, or clinical evidence source.",
+  "languages": {
+    "keys_and_explanations": "en",
+    "brand_copy_and_canonical_names": "es",
+    "default_customer_locale": "es-CR",
+    "locale_basis": "The brand identifies itself as Costa Rican and the source copy is Spanish. Locale is an editorial implementation choice; a complete regional grammar guide is not specified."
+  },
+  "reading_contract": {
+    "read_first": [
+      "/quick_reference",
+      "/application_policy",
+      "/review_findings/conflicts"
+    ],
+    "evidence_inheritance": "Section-level evidence applies to descendants unless a descendant supplies its own evidence. Source pages are 1-based PDF page positions, not printed folios.",
+    "evidence_statuses": {
+      "brandbook_explicit": "Stated in the PDF; wording may be summarized. This establishes what the book says, not independent verification of a claim.",
+      "visual_observation": "Observed in rendered examples; not automatically a mandatory rule.",
+      "editorial_interpretation": "An operational recommendation derived from review; not an approved brandbook rule.",
+      "project_override": "An explicit repository rule, applicable only within its stated scope.",
+      "repository_reference": "A local resource found during review; existence does not prove brand approval.",
+      "unresolved": "The source is conflicting, incomplete, or insufficient to choose a definitive rule."
+    },
+    "null_meaning": "Not specified or not established; never substitute a guessed value.",
+    "approval_meaning": "No new design, product claim, asset, or legal assertion is approved by creating this JSON.",
+    "task_routes": {
+      "write_copy": [
+        "/brand_strategy",
+        "/verbal_identity",
+        "/content_strategy",
+        "/claim_controls"
+      ],
+      "design_graphics": [
+        "/visual_identity",
+        "/channel_guidelines",
+        "/review_findings/conflicts"
+      ],
+      "design_packaging": [
+        "/product_families",
+        "/channel_guidelines/packaging",
+        "/claim_controls",
+        "/review_findings/conflicts"
+      ],
+      "design_social_content": [
+        "/content_strategy",
+        "/channel_guidelines/social",
+        "/verbal_identity"
+      ],
+      "design_repository_ui": [
+        "/application_policy",
+        "/project_context",
+        "/visual_identity",
+        "/verbal_identity"
+      ],
+      "review_deliverable": [
+        "/review_checklist",
+        "/review_findings"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "brandbook_2025",
+      "type": "primary_brandbook",
+      "filename": "BRANDBOOK 2.pdf",
+      "local_path_at_review": "/Users/juliozeledon/Downloads/BRANDBOOK 2.pdf",
+      "sha256": "9f7ee032d16072fee7854bc8070f7a6e4f7819546cf549c573a28b13a4f7e2e5",
+      "page_count": 79,
+      "pdf_metadata_creation_date": "2025-10-21",
+      "brandbook_version_label": null,
+      "review_method": "Rendered all 79 pages with Poppler, reviewed page contact sheets, read local OCR, and inspected logo geometry and color specification pages at higher resolution.",
+      "extraction_limitations": "The PDF has no extractable text. OCR was checked against visuals for key specifications. Tiny packaging mockup text and SKU lists are not treated as verified production data. Unspecified geometry, tint percentages, and production dimensions remain unknown."
+    },
+    {
+      "id": "repository_rules",
+      "type": "project_instructions",
+      "relative_path": "AGENTS.md",
+      "scope": "dnature_next"
+    },
+    {
+      "id": "digital_design_proposal",
+      "type": "website_design_specification",
+      "relative_path": "docs/graphic-design/DNAture_Design_System.md",
+      "version": "0.3",
+      "status": "Contains BRAND, REQUIRED, PROPOSED and VERIFY labels. Required website adaptations include flat open layouts, square geometry, and the active brand-orange exception; these are project rules, not revisions to the original PDF."
+    }
+  ],
+  "quick_reference": {
+    "brand_name": "DNAture",
+    "official_tagline": "Nutrición con esencia en el ADN",
+    "positioning_summary": "Costa Rican physiological nutrition for dogs and cats, centered on individual biology, scientific understanding, education, and supportive care.",
+    "archetypes": [
+      "Sabio",
+      "Cuidador"
+    ],
+    "voice": [
+      "Científica y experta",
+      "Cálida y empática",
+      "Responsable y protectora",
+      "Educativa y transparente",
+      "Apasionada por los animales"
+    ],
+    "primary_logo": "Official monochromatic DNAture wordmark; horizontal is primary, stacked is secondary.",
+    "primary_color_id": "brand_turquoise",
+    "font_ids": [
+      "avenir_next_lt_pro",
+      "gotham_ultra",
+      "arial_bold"
+    ],
+    "photography": "Realistic dogs and cats, genuine human-animal connection, everyday settings, clean luminous color.",
+    "illustration": "Detailed monochromatic engraving and line art of animals and ingredients; scientific and timeless.",
+    "content_mix_percent": {
+      "educational_scientific": 30,
+      "differentiating": 30,
+      "product_portfolio": 20,
+      "emotional_aspirational": 20
+    },
+    "critical_constraints": [
+      "Use the exact official tagline; campaign lines are not replacements.",
+      "Use supplied logo artwork rather than reconstructing it with a font.",
+      "Use canonical product-family vocabulary and the restricted-term rules.",
+      "Brandbook claims are not proof of current product efficacy, completeness, certification, or availability.",
+      "For dnature_next UI, use cool/neutral foundations with exact brand orange #FF6A00 as an explicit exception for recurring actions, navigation accents, editorial emphasis, counters, and occasional continuous section bands; it is not limited to SectionEyebrow.",
+      "Consult unresolved packaging rules before extending a label template."
+    ],
+    "canonical_details": [
+      "/brand_strategy",
+      "/verbal_identity",
+      "/visual_identity",
+      "/content_strategy",
+      "/project_context"
+    ]
+  },
+  "application_policy": {
+    "evidence_status": "editorial_interpretation",
+    "scope_selection": {
+      "general_brand_graphics_and_content": "Use the brandbook rules, qualified by source conflicts and task-specific instructions.",
+      "dnature_next_ui": "Apply current AGENTS.md first, then compatible brandbook guidance, then compatible design-system proposals.",
+      "other_projects": "Do not export dnature_next-specific implementation requirements as universal DNAture brand rules."
+    },
+    "conflict_handling": [
+      "Respect the user's current task instructions and applicable project rules.",
+      "Prefer explicit identity specifications over incidental mockup details; record remaining ambiguity.",
+      "Treat source examples as examples, especially older taglines, product lists, seals, mockup prices and contact details.",
+      "For conflicting packaging instructions, use the confirmed production template for that family; do not silently declare a disputed option official.",
+      "Do not promote proposed web tokens, layouts, or copy into approved brand standards."
+    ]
+  },
+  "brand_strategy": {
+    "evidence_status": "brandbook_explicit",
+    "source_id": "brandbook_2025",
+    "source_pages": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "name": {
+      "display": "DNAture",
+      "construction": "DNA + Nature",
+      "meaning": "Connects individual biology and nature."
+    },
+    "origin": "Costa Rica",
+    "animal_audience": [
+      "Perros",
+      "Gatos"
+    ],
+    "human_audiences": [
+      {
+        "id": "guardians",
+        "label": "Tutores",
+        "need": "Clarity, confidence, guidance, and care for an individual animal."
+      },
+      {
+        "id": "animal_health_professionals",
+        "label": "Profesionales de salud animal",
+        "need": "Precise information, evidence, and professional collaboration."
+      },
+      {
+        "id": "future_complementary_audiences",
+        "label": "Refugios, criadores responsables e instituciones educativas",
+        "status": "Aspirational audiences on page 6, not confirmed existing services."
+      }
+    ],
+    "mission_summary": "Improve dogs' and cats' wellbeing through physiological nutrition, scientific understanding, individual needs, and ongoing professional accompaniment.",
+    "vision_summary": "Become a leading reference for physiological animal nutrition in Costa Rica through education, professional collaboration, technology, and informed guardians.",
+    "purpose_summary": "Transform how guardians understand nutrition by connecting biology, knowledge, and long-term care.",
+    "positioning": "A distinct physiological-nutrition approach, differentiated from generic natural-food or raw-food positioning through science, precision, education, and individualized support.",
+    "archetypes": [
+      {
+        "id": "sage",
+        "label": "Sabio",
+        "behavior": "Teach and guide with reliable knowledge."
+      },
+      {
+        "id": "caregiver",
+        "label": "Cuidador",
+        "behavior": "Protect, listen, accompany, and communicate responsibly."
+      }
+    ],
+    "emotional_territory": [
+      {
+        "label": "Ciencia",
+        "dimension": "Razón",
+        "associations": [
+          "Conocimiento",
+          "Confianza",
+          "Seguridad"
+        ]
+      },
+      {
+        "label": "Conciencia",
+        "dimension": "Emoción",
+        "associations": [
+          "Empatía",
+          "Propósito",
+          "Respeto"
+        ]
+      },
+      {
+        "label": "Tribu",
+        "dimension": "Acción",
+        "associations": [
+          "Comunidad",
+          "Acompañamiento",
+          "Coherencia"
+        ]
+      }
+    ],
+    "differentiators_stated_by_source": [
+      "Ciencia aplicada",
+      "Educación continua",
+      "Empoderamiento femenino",
+      "Sostenibilidad real",
+      "Innovación tecnológica",
+      "Acompañamiento ético"
+    ],
+    "claim_qualification": "The source also asserts personalized formulation, disease prevention, FEDIAF alignment, compostability, and other benefits. These require verification before being presented as current product facts; see claim_controls.",
+    "guardian_concerns": [
+      {
+        "concern": "Uncertainty about feeding correctly",
+        "communication_response": "Explain clearly and offer qualified guidance."
+      },
+      {
+        "concern": "Food safety and bacteria",
+        "communication_response": "Provide verified handling, cold-chain, and safety information without guaranteeing zero risk."
+      },
+      {
+        "concern": "Trust in claims",
+        "communication_response": "Show real traceability and evidence."
+      },
+      {
+        "concern": "Suitability and potential harm",
+        "communication_response": "Explain product-specific scope and professional guidance where relevant."
+      },
+      {
+        "concern": "Lack of support",
+        "communication_response": "Show actual available support and educational resources."
+      }
+    ]
+  },
+  "verbal_identity": {
+    "evidence_status": "brandbook_explicit",
+    "source_id": "brandbook_2025",
+    "source_pages": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      18,
+      20,
+      21
+    ],
+    "tagline": {
+      "canonical": "Nutrición con esencia en el ADN",
+      "source_pages": [
+        1,
+        18,
+        20,
+        21,
+        79
+      ],
+      "guidance": "Preserve wording, accents, and ADN. Uppercase and line breaks may follow the composition; they do not create a new tagline.",
+      "alternate_text_found_in_source": [
+        {
+          "text": "La nutrición comienza en el ADN",
+          "source_pages": [
+            28,
+            30,
+            43
+          ],
+          "usage": "Legacy/supporting variant found in examples; not the canonical tagline."
+        }
+      ]
+    },
+    "voice_attributes": [
+      {
+        "id": "expert",
+        "label": "Científica y experta",
+        "do": "Explain precisely using real evidence.",
+        "avoid": "Inaccessible jargon or invented authority."
+      },
+      {
+        "id": "empathetic",
+        "label": "Cálida y empática",
+        "do": "Recognize each guardian's concern and each animal's individuality.",
+        "avoid": "Cold clinical language, judgment, or condescension."
+      },
+      {
+        "id": "responsible",
+        "label": "Responsable y protectora",
+        "do": "Offer clear guidance and realistic expectations.",
+        "avoid": "Miracle promises, fear, or unsupported certainty."
+      },
+      {
+        "id": "educational",
+        "label": "Educativa y transparente",
+        "do": "Explain why a fact matters in understandable language.",
+        "avoid": "Vague quality claims and unexplained technical terms."
+      },
+      {
+        "id": "animal_centered",
+        "label": "Apasionada por los animales",
+        "do": "Show care through useful knowledge, respect, and community.",
+        "avoid": "Empty sentiment or exaggerated sales language."
+      }
+    ],
+    "tone_rules": [
+      {
+        "id": "voice_authority",
+        "guidance": "Speak with authority without rigidity.",
+        "evidence_status": "brandbook_explicit",
+        "source_id": "brandbook_2025",
+        "source_pages": [
+          13
+        ]
+      },
+      {
+        "id": "voice_education",
+        "guidance": "Educate without imposing.",
+        "evidence_status": "brandbook_explicit",
+        "source_id": "brandbook_2025",
+        "source_pages": [
+          13
+        ]
+      },
+      {
+        "id": "voice_clarity",
+        "guidance": "Inspire without embellishment; communicate clearly and coherently.",
+        "evidence_status": "brandbook_explicit",
+        "source_id": "brandbook_2025",
+        "source_pages": [
+          12,
+          13
+        ]
+      },
+      {
+        "id": "voice_restraint",
+        "guidance": "Explain without exaggerating or promising miracles.",
+        "evidence_status": "brandbook_explicit",
+        "source_id": "brandbook_2025",
+        "source_pages": [
+          11
+        ]
+      }
+    ],
+    "preferred_concepts": [
+      "Nutrición fisiológica",
+      "Dieta fisiológica",
+      "Evidencia",
+      "Biología individual",
+      "Educación",
+      "Acompañamiento",
+      "Bienestar",
+      "Tutores"
+    ],
+    "authorized_product_terms": [
+      "Suplementos",
+      "Recetas Complete",
+      "Recetas de Trucha",
+      "Recetas Cocidas",
+      "Complementos Nutricionales",
+      "Complementos de Masticación",
+      "Recetas Wild",
+      "Masticables",
+      "Treats"
+    ],
+    "capitalization_note": "Product-family labels are normalized here for consistency; the book varies case between lists, headings, and packaging.",
+    "restricted_terms": [
+      {
+        "term": "BARF",
+        "restriction": "Do not use as DNAture's product/category positioning.",
+        "replacement": "Nutrición fisiológica",
+        "source_pages": [
+          14
+        ],
+        "conflict_id": "barf_in_comparison_examples"
+      },
+      {
+        "term": "Huesos carnosos",
+        "restriction": "Not authorized in the brand vocabulary.",
+        "replacement": "Use the verified product name and appropriate canonical family; do not relabel a materially different product."
+      },
+      {
+        "term": "Vísceras",
+        "restriction": "Replace with precise organ terminology.",
+        "replacement": "Órganos, naming the actual organ when known."
+      },
+      {
+        "term": "Presas completas",
+        "restriction": "Not authorized in the brand vocabulary.",
+        "replacement": "Use the verified product name and canonical family."
+      },
+      {
+        "term": "Snacks",
+        "restriction": "Avoid when describing functional products.",
+        "replacement": "Treats or masticables funcionales, as appropriate to the actual product."
+      },
+      {
+        "term": "Comida natural como en la naturaleza",
+        "restriction": "Avoid romanticized wild/natural claims without scientific support.",
+        "replacement": "Explain the specific, evidenced nutritional role."
+      },
+      {
+        "term": "Ingredientes de la mejor calidad",
+        "restriction": "Avoid as an unexplained generic quality claim.",
+        "replacement": "State the verified ingredient, sourcing criterion, or relevant quality measure."
+      }
+    ],
+    "source_copy_examples": [
+      {
+        "text": "¡Comida natural que tu perro amará!",
+        "role": "Rejected old tone",
+        "source_pages": [
+          13
+        ],
+        "reuse": false
+      },
+      {
+        "text": "Nutrición fisiológica diseñada según su esencia biológica.",
+        "role": "Preferred tone example",
+        "source_pages": [
+          13
+        ],
+        "reuse_condition": "Any product-specific personalization claim must be substantiated."
+      },
+      {
+        "text": "La diferencia entre alimentar y nutrir está en la evidencia",
+        "role": "Campaign headline",
+        "source_pages": [
+          15,
+          65
+        ],
+        "reuse_condition": "Support associated factual claims with evidence."
+      },
+      {
+        "text": "Lo salvaje evoluciona con ciencia.",
+        "role": "Wild campaign line",
+        "source_pages": [
+          38,
+          68
+        ],
+        "reuse_condition": "Use in Wild context; not a scientific proof or replacement tagline."
+      },
+      {
+        "text": "No seguimos modas, seguimos la ciencia.",
+        "role": "Differentiating content example",
+        "source_pages": [
+          60
+        ],
+        "reuse_condition": "Do not imply unsupported comparative superiority."
+      },
+      {
+        "text": "Alimentar con ciencia, acompañar con conciencia.",
+        "role": "Emotional content example",
+        "source_pages": [
+          62
+        ],
+        "reuse_condition": "Preserve the caring, educational tone."
+      },
+      {
+        "text": "Lo natural tiene esencia y está aquí",
+        "role": "Treat-box interior copy",
+        "source_pages": [
+          47,
+          48
+        ],
+        "reuse_condition": "Context-specific example; not the official tagline."
+      }
+    ],
+    "new_copy_workflow": {
+      "evidence_status": "editorial_interpretation",
+      "steps": [
+        "Identify the audience and one communication objective.",
+        "Choose a content pillar and the correct product-family term.",
+        "Separate brand narrative from factual product claims.",
+        "Explain the useful point in plain Spanish; define necessary technical terms.",
+        "Use only verified benefits, ingredients, evidence, and availability.",
+        "Check tone, restricted terms, tagline, and source conflicts."
+      ],
+      "grammar_policy": "The book uses tu/tutores but does not define a full tú/vos/usted policy. Keep the active channel's established form consistent; do not invent a universal dialect rule."
+    }
+  },
+  "visual_identity": {
+    "logo": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "hierarchy": [
+        {
+          "variant": "horizontal",
+          "role": "Primary",
+          "source_pages": [
+            22,
+            23
+          ]
+        },
+        {
+          "variant": "stacked",
+          "role": "Secondary",
+          "source_pages": [
+            22,
+            24
+          ]
+        },
+        {
+          "variant": "monochromatic",
+          "role": "Primary color treatment",
+          "source_pages": [
+            19,
+            20
+          ]
+        },
+        {
+          "variant": "bicolor",
+          "role": "Secondary expressive resource, retained by page 20; not the primary identity.",
+          "source_pages": [
+            20
+          ],
+          "project_note": "The current website permits exact brand orange as an active accent. This does not change the primary monochromatic logo rule or authorize unrelated warm UI colors."
+        }
+      ],
+      "clear_space": {
+        "minimum": "1x around the mark",
+        "source_pages": [
+          26
+        ],
+        "x_definition": "Defined graphically in the construction diagram.",
+        "verified_numeric_ratio": null,
+        "guidance": "Use the supplied construction artwork. Do not guess that x equals a full letter height or a fixed pixel value."
+      },
+      "minimum_sizes": [
+        {
+          "variant": "horizontal_with_tagline",
+          "value": 250,
+          "unit": "px",
+          "dimension": "width as indicated by the horizontal guide",
+          "source_pages": [
+            27
+          ]
+        },
+        {
+          "variant": "horizontal_without_tagline",
+          "value": 155,
+          "unit": "px",
+          "dimension": "width as indicated by the horizontal guide",
+          "source_pages": [
+            27
+          ]
+        },
+        {
+          "variant": "stacked_without_tagline",
+          "value": 35,
+          "unit": "px",
+          "dimension": "width as indicated by the horizontal guide",
+          "source_pages": [
+            27
+          ]
+        }
+      ],
+      "background_handling": "Use the approved artwork variant that remains clearly legible on its actual background. The examples include turquoise on white/dark blue and white over dark or photographic backgrounds; the labels principal/invertida are not fully consistent.",
+      "do_not": [
+        "Stretch horizontally or vertically",
+        "Rotate or add perspective",
+        "Replace the wordmark with ordinary type",
+        "Use colors outside the applicable approved palette",
+        "Apply a drop shadow directly to the logo",
+        "Place the mark on low-contrast or visually confusing backgrounds"
+      ],
+      "implementation_recommendation": {
+        "evidence_status": "editorial_interpretation",
+        "guidance": "Use vector originals, preserve their proportions and clear space, and choose a compact official variant when a detailed lockup becomes illegible."
+      }
+    },
+    "color": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        31,
+        32
+      ],
+      "numeric_conventions": {
+        "rgb": "Red, green, blue integers from 0 to 255.",
+        "cmyk_percent": "Cyan, magenta, yellow, black percentages transcribed from the source; not computed from RGB.",
+        "hex": "Use exact specified hex values for digital reproduction."
+      },
+      "primary_palette": [
+        {
+          "id": "brand_turquoise",
+          "name": "Turquesa institucional",
+          "hex": "#00A9B5",
+          "rgb": [
+            0,
+            169,
+            181
+          ],
+          "cmyk_percent": [
+            75,
+            8,
+            30,
+            0
+          ],
+          "role": "Primary institutional recognition and monochromatic logo color.",
+          "source_pages": [
+            31
+          ]
+        },
+        {
+          "id": "brand_orange",
+          "name": "Naranja",
+          "hex": "#FF6A00",
+          "rgb": [
+            255,
+            106,
+            0
+          ],
+          "cmyk_percent": [
+            0,
+            69,
+            94,
+            0
+          ],
+          "role": "Brand palette accent.",
+          "source_pages": [
+            31
+          ],
+          "website_usage": {
+            "evidence_status": "project_override",
+            "source_id": "repository_rules",
+            "guidance": "Explicit exception to the warm-color prohibition, with a recurring role in primary actions, navigation/selection accents, editorial emphasis, numeric counters, and occasional continuous section bands. Not restricted to the eyebrow marker."
+          }
+        },
+        {
+          "id": "brand_gray",
+          "name": "Gris",
+          "hex": "#B2B2B2",
+          "rgb": [
+            178,
+            178,
+            178
+          ],
+          "cmyk_percent": [
+            33,
+            25,
+            26,
+            5
+          ],
+          "role": "Secondary neutral; not automatically suitable for readable text.",
+          "source_pages": [
+            31
+          ]
+        },
+        {
+          "id": "brand_charcoal",
+          "name": "Gris oscuro",
+          "hex": "#3C3C3B",
+          "rgb": [
+            60,
+            60,
+            59
+          ],
+          "cmyk_percent": [
+            66,
+            57,
+            55,
+            60
+          ],
+          "role": "Dark neutral.",
+          "source_pages": [
+            31
+          ]
+        }
+      ],
+      "category_palette": [
+        {
+          "id": "category_masticables",
+          "family_id": "masticables",
+          "name": "Masticables",
+          "hex": "#426D36",
+          "rgb": [
+            66,
+            109,
+            54
+          ],
+          "cmyk_percent": [
+            76,
+            35,
+            91,
+            24
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_complete",
+          "family_id": "complete",
+          "name": "Recetas Complete",
+          "hex": "#84A341",
+          "rgb": [
+            132,
+            163,
+            65
+          ],
+          "cmyk_percent": [
+            55,
+            18,
+            89,
+            3
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_trucha",
+          "family_id": "trucha",
+          "name": "Recetas de Trucha",
+          "hex": "#742019",
+          "rgb": [
+            116,
+            32,
+            25
+          ],
+          "cmyk_percent": [
+            32,
+            93,
+            88,
+            46
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_masticacion",
+          "family_id": "masticacion",
+          "name": "Complementos de Masticación",
+          "hex": "#8E3485",
+          "rgb": [
+            142,
+            52,
+            133
+          ],
+          "cmyk_percent": [
+            53,
+            91,
+            6,
+            1
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_suplementos",
+          "family_id": "suplementos",
+          "name": "Suplementos",
+          "hex": "#531845",
+          "rgb": [
+            83,
+            24,
+            69
+          ],
+          "cmyk_percent": [
+            65,
+            100,
+            34,
+            43
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_wild",
+          "family_id": "wild",
+          "name": "Recetas Wild",
+          "hex": "#124563",
+          "rgb": [
+            18,
+            69,
+            99
+          ],
+          "cmyk_percent": [
+            96,
+            66,
+            38,
+            28
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_cocidas",
+          "family_id": "cocidas",
+          "name": "Recetas Cocidas",
+          "hex": "#4E8997",
+          "rgb": [
+            78,
+            137,
+            151
+          ],
+          "cmyk_percent": [
+            70,
+            30,
+            33,
+            10
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_treats",
+          "family_id": "treats",
+          "name": "Treats",
+          "hex": "#CA6C2A",
+          "rgb": [
+            202,
+            108,
+            42
+          ],
+          "cmyk_percent": [
+            17,
+            64,
+            91,
+            6
+          ],
+          "source_pages": [
+            32
+          ]
+        },
+        {
+          "id": "category_complementos_nutricionales",
+          "family_id": "complementos_nutricionales",
+          "name": "Complementos Nutricionales",
+          "hex": "#D8A73C",
+          "rgb": [
+            216,
+            167,
+            60
+          ],
+          "cmyk_percent": [
+            15,
+            34,
+            83,
+            4
+          ],
+          "source_pages": [
+            32
+          ]
+        }
+      ],
+      "category_semantics": "Colors differentiate product families within a coherent identity; they do not prove nutritional completeness, safety, certification, or suitability.",
+      "tints": {
+        "observed": true,
+        "exact_percentages": null,
+        "guidance": "Lighter swatches appear above base colors; no numeric tint system is specified."
+      },
+      "print_profile": null,
+      "digital_usage_cautions": {
+        "evidence_status": "editorial_interpretation",
+        "guidance": [
+          "Check contrast for the actual text, logo, icon, and background combination; a brand swatch does not certify accessibility.",
+          "Do not sample incidental mockup colors as new official tokens.",
+          "Preserve the source palette as reference data, then apply channel-specific restrictions."
+        ]
+      }
+    },
+    "typography": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        39,
+        40,
+        41
+      ],
+      "families": [
+        {
+          "id": "avenir_next_lt_pro",
+          "name": "Avenir Next LT Pro",
+          "role": "Primary",
+          "source_pages": [
+            39
+          ]
+        },
+        {
+          "id": "gotham_ultra",
+          "name": "Gotham Ultra",
+          "role": "Secondary",
+          "source_pages": [
+            40
+          ]
+        },
+        {
+          "id": "arial_bold",
+          "name": "Arial Bold",
+          "role": "Alternate",
+          "source_pages": [
+            41
+          ]
+        }
+      ],
+      "layout_pattern": {
+        "evidence_status": "visual_observation",
+        "source_pages": [
+          7,
+          12,
+          15,
+          21,
+          38,
+          56
+        ],
+        "description": "Short emphatic uppercase headlines, strong bold/light contrast, and smaller clear supporting copy."
+      },
+      "web_type_scale": null,
+      "web_line_heights": null,
+      "web_tracking": null,
+      "font_license_status": null,
+      "operational_guidance": {
+        "evidence_status": "editorial_interpretation",
+        "guidance": "Use approved licensed font files. Reserve heavy display styling for short emphasis; do not infer that all body text should be bold or uppercase. Any fallback stack or responsive type scale is an implementation decision."
+      },
+      "wild_exception": {
+        "source_pages": [
+          52,
+          53
+        ],
+        "rule": "The Wild line combines bold lowercase wild with a script/cursive recipe subname.",
+        "script_font_name": null
+      }
+    },
+    "photography": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        36,
+        37
+      ],
+      "subjects": [
+        "Realistic dogs and cats",
+        "Guardians interacting naturally with their animals",
+        "Real products where the channel calls for product photography"
+      ],
+      "settings": [
+        "Homes",
+        "Gardens",
+        "Parks",
+        "Everyday outdoor environments"
+      ],
+      "emotion": [
+        "Authentic connection",
+        "Vitality",
+        "Trust",
+        "Wellbeing"
+      ],
+      "composition": [
+        "Documentary/editorial framing",
+        "Varied close-ups, medium interaction shots, and environmental wide shots",
+        "Rule of thirds",
+        "Clean backgrounds with space for graphic elements and text"
+      ],
+      "color_treatment": "Clean, luminous, consistent color with balanced contrast; avoid oversaturation.",
+      "source_effect_example": {
+        "label": "Efecto / luz suave al 50%",
+        "source_pages": [
+          36
+        ],
+        "interpretation": "The example shows a cool overlay with this label. A complete filter recipe, gradient specification, and color profile are not supplied."
+      },
+      "avoid": [
+        "Humanized pets in clothes or comic accessories",
+        "Forced gestures or artificial poses",
+        "Unrealistic scenarios",
+        "Overproduced stock aesthetics",
+        "Oversaturation"
+      ],
+      "generation_note": {
+        "evidence_status": "editorial_interpretation",
+        "guidance": "If commissioned or generated imagery is requested, match the visual direction. Do not present synthetic people as actual customers or synthetic animals as documented case histories."
+      }
+    },
+    "illustration": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        43,
+        44,
+        46,
+        48,
+        52,
+        53,
+        54
+      ],
+      "style": [
+        "Detailed engraving",
+        "Linear monochromatic drawing",
+        "Fine contour and hatching",
+        "Recognizable animal anatomy and ingredient forms"
+      ],
+      "character": [
+        "Scientific",
+        "Authentic",
+        "Timeless",
+        "Premium"
+      ],
+      "subjects": [
+        "Animals associated with the formula",
+        "Secondary protein sources",
+        "Ingredients",
+        "Wolf and wildcat in specific packaging contexts"
+      ],
+      "avoid": [
+        "Infantile or cartoon treatment",
+        "Generic unrelated animal imagery",
+        "Mixing incompatible illustration styles within a product line"
+      ],
+      "wild_signature": "Howling wolf in detailed engraving, prominent on the left of the label.",
+      "style_boundary": "Engraved brand illustrations are not interchangeable with functional interface icons."
+    },
+    "composition_and_motifs": {
+      "evidence_status": "visual_observation",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        1,
+        7,
+        12,
+        22,
+        42,
+        47,
+        54,
+        56,
+        63,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78
+      ],
+      "patterns": [
+        "Institutional turquoise blocks",
+        "Rounded rectangular panels",
+        "Hanging curved brand tab/banderola with the stacked logo",
+        "Cut-out animals overlapping photo or color-panel edges",
+        "Short headline with strong visual hierarchy",
+        "Circular paw-based line identifiers",
+        "Modular information boxes on packaging"
+      ],
+      "measurements_not_specified": [
+        "Universal corner radius",
+        "Global grid",
+        "Spacing scale",
+        "Universal tab geometry",
+        "Social post dimensions",
+        "Print bleed and dieline dimensions"
+      ],
+      "seal_caution": "Circular paw graphics are brand/line motifs. Their appearance in the PDF does not establish independent scientific or regulatory certification."
+    }
+  },
+  "product_families": {
+    "evidence_status": "brandbook_explicit",
+    "source_id": "brandbook_2025",
+    "source_pages": [
+      14,
+      32,
+      33,
+      34,
+      35
+    ],
+    "purpose": "Naming, category distinction, and graphic design reference only.",
+    "catalog_status": "Historical brandbook overview, not live inventory.",
+    "families": [
+      {
+        "id": "masticables",
+        "label": "Masticables",
+        "color_id": "category_masticables",
+        "source_pages": [
+          32,
+          35
+        ],
+        "source_role_summary": "Mostly hard or dehydrated pieces positioned primarily for chewing and enrichment.",
+        "publishing_caution": "Do not equate this family with Complementos de Masticación or assume every item has the same nutritional role or hardness.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "complete",
+        "label": "Recetas Complete",
+        "color_id": "category_complete",
+        "source_pages": [
+          32,
+          33
+        ],
+        "source_role_summary": "Raw, ground nutritional base described as balanced/complete, with individual complements and supplements discussed by the source.",
+        "publishing_caution": "The source simultaneously calls these complete and calls complements essential; do not infer a clinically complete feeding plan from this overview.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "trucha",
+        "label": "Recetas de Trucha",
+        "color_id": "category_trucha",
+        "source_pages": [
+          32,
+          33
+        ],
+        "source_role_summary": "Trout-based formulas described as functional or specialist-use alternatives, distinct from Recetas Complete.",
+        "publishing_caution": "Do not assume all trout recipes are complete diets, chicken-free, or suitable for unrestricted daily feeding.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "masticacion",
+        "label": "Complementos de Masticación",
+        "color_id": "category_masticacion",
+        "source_pages": [
+          32,
+          34
+        ],
+        "source_role_summary": "Chewing-oriented complements framed as contributing to chewing behavior and the nutritional plan.",
+        "publishing_caution": "Do not prescribe daily chewing items or general safety from a brandbook; suitability is individual and product-specific.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "suplementos",
+        "label": "Suplementos",
+        "color_id": "category_suplementos",
+        "source_pages": [
+          32,
+          35
+        ],
+        "source_role_summary": "Small-quantity additions in formats such as powders, tablets, or drops, aimed at specific nutritional purposes.",
+        "publishing_caution": "Ingredients listed in the book are not universal recommendations, doses, or proof of safety for all dogs and cats.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "wild",
+        "label": "Recetas Wild",
+        "color_id": "category_wild",
+        "source_pages": [
+          32,
+          34
+        ],
+        "source_role_summary": "Formulas described as combining ingredients that engage chewing and smell, with an ancestral visual narrative.",
+        "publishing_caution": "Ancestor and Spirit appear in label guidelines; verify current SKU spelling and composition. The portfolio list contains a spelling variant.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "cocidas",
+        "label": "Recetas Cocidas",
+        "color_id": "category_cocidas",
+        "source_pages": [
+          32,
+          33
+        ],
+        "source_role_summary": "Cooked formulas described as specialist-use options for dogs not consuming raw food, distinct from Recetas Complete.",
+        "publishing_caution": "The source discusses supplementation and professional oversight; verify current labeling before any use guidance.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "treats",
+        "label": "Treats",
+        "color_id": "category_treats",
+        "source_pages": [
+          32,
+          35
+        ],
+        "source_role_summary": "Mostly dehydrated, single-ingredient rewards used in training and enrichment; mixed products also appear.",
+        "publishing_caution": "Do not turn mostly single-ingredient into an all-products single-protein claim.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      },
+      {
+        "id": "complementos_nutricionales",
+        "label": "Complementos Nutricionales",
+        "color_id": "category_complementos_nutricionales",
+        "source_pages": [
+          32,
+          34
+        ],
+        "source_role_summary": "Foods added to the nutritional plan for ingredient, nutrient, flavor, and texture variety.",
+        "publishing_caution": "Do not publish the source's universal daily-use, allergy-prevention, or deficiency-prevention claims without verification.",
+        "verified_current_species": null,
+        "verified_current_skus": null
+      }
+    ],
+    "do_not_infer": [
+      "All products are complete diets",
+      "All products are appropriate for both dogs and cats",
+      "Current ingredients, pack sizes, prices, or stock",
+      "A feeding schedule or dosage",
+      "Therapeutic efficacy",
+      "Clinical or genetic personalization from a pet profile alone"
+    ],
+    "deliberate_omissions": "Long SKU lists, feeding frequencies, and doses are not reproduced as operative instructions. Use verified current product records for those details."
+  },
+  "content_strategy": {
+    "evidence_status": "brandbook_explicit",
+    "source_id": "brandbook_2025",
+    "source_pages": [
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62
+    ],
+    "objective": "Educate, differentiate, and build trust with guardians while maintaining scientific clarity and empathetic care.",
+    "pillars": [
+      {
+        "id": "educational_scientific",
+        "label": "Educativos / Científicos",
+        "target_percent": 30,
+        "purpose": "Explain physiological nutrition and make scientific concepts understandable.",
+        "formats": [
+          "Educational carousels",
+          "Qualified-expert clips",
+          "Simple evidence-based infographics"
+        ],
+        "source_pages": [
+          59
+        ]
+      },
+      {
+        "id": "differentiating",
+        "label": "Diferenciadores / Confrontativos",
+        "target_percent": 30,
+        "purpose": "Explain what makes the approach distinct from generic category narratives.",
+        "formats": [
+          "Short positioning statements",
+          "Supported comparisons",
+          "Myth-explanation videos"
+        ],
+        "source_pages": [
+          60
+        ],
+        "editorial_guardrail": "Challenge ideas respectfully; do not shame guardians or make unverified competitor claims."
+      },
+      {
+        "id": "product_portfolio",
+        "label": "Producto / Portafolio",
+        "target_percent": 20,
+        "purpose": "Explain the portfolio, ingredients, and product roles.",
+        "formats": [
+          "Product posts",
+          "Ingredient/function carousels",
+          "Real product photographs"
+        ],
+        "source_pages": [
+          61
+        ]
+      },
+      {
+        "id": "emotional_aspirational",
+        "label": "Emocionales / Aspiracionales",
+        "target_percent": 20,
+        "purpose": "Connect through real relationships, care, and everyday routines.",
+        "formats": [
+          "Guardian-and-pet photography",
+          "Authentic testimonials",
+          "Routine and wellbeing videos"
+        ],
+        "source_pages": [
+          62
+        ]
+      }
+    ],
+    "allocation_note": "Percentages describe the content mix, not text/image area within one post. A scheduling period and publication cadence are not specified.",
+    "publication_cadence": null
+  },
+  "channel_guidelines": {
+    "social": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        55,
+        56,
+        57,
+        58,
+        63
+      ],
+      "post_anatomy": [
+        {
+          "element": "Brand block",
+          "guidance": "Logo in a curved institutional tab at the upper left or right; turquoise is primary. The source allows occasional orange in social pieces."
+        },
+        {
+          "element": "Photographic protagonist",
+          "guidance": "Realistic pet or product imagery, natural/documentary treatment.",
+          "source_image_area_percent_range": [
+            60,
+            70
+          ]
+        },
+        {
+          "element": "Headline",
+          "guidance": "Short, dominant sans-serif bold uppercase message; white or contrasting color. Position follows the image."
+        },
+        {
+          "element": "Supporting line",
+          "guidance": "Optional, smaller, lighter type."
+        },
+        {
+          "element": "Product block",
+          "guidance": "When relevant, use realistic proportions and place product packs toward the bottom."
+        },
+        {
+          "element": "Secondary graphics",
+          "guidance": "Restrained scientific icons or line seals when relevant; do not invent health evidence or certification."
+        }
+      ],
+      "feed": [
+        "Repeat institutional turquoise anchors",
+        "Use authentic dog/cat imagery",
+        "Alternate education, differentiation, products, and emotional connection",
+        "Maintain a consistent logo corner and clear typographic hierarchy"
+      ],
+      "carousel_example": {
+        "source_pages": [
+          63
+        ],
+        "description": "Treats carousel distinguishes texture/hardness with recurring type, photography and product blocks.",
+        "limitation": "The example is not a new canonical product-family taxonomy."
+      }
+    },
+    "packaging": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "shared_requirements": [
+        "Recognizable institutional logo and brand tab",
+        "Consistent modular information hierarchy",
+        "Legible product name and formula descriptor",
+        "Ingredients and guaranteed analysis in clear information areas where applicable",
+        "Space for lot, expiry, and required current registration information"
+      ],
+      "nutrition_containers": {
+        "source_pages": [
+          43,
+          44,
+          45
+        ],
+        "fixed": [
+          "Logo and formula descriptor in the upper block",
+          "Consistent front, lid, and back-label hierarchy",
+          "Institutional turquoise with family/formula accents",
+          "Main and secondary protein illustration in linear engraving"
+        ],
+        "variable": [
+          "Verified recipe name, shown on two lines in the template",
+          "Secondary accent",
+          "Protein-specific illustration",
+          "Supported nutritional information and icons"
+        ],
+        "type": {
+          "recipe": "Bold uppercase sans serif, white on the color block.",
+          "technical": "Regular sans serif, black or white according to contrast.",
+          "minimum_technical_print_size_pt_in_source": 7,
+          "legal_and_warning_text": "Gray in the source; preserve actual legibility and contrast."
+        },
+        "limitation": "Seven points is a source minimum, not a guarantee of readable or compliant printed packaging."
+      },
+      "treat_pouches": {
+        "source_pages": [
+          49,
+          50
+        ],
+        "consistent_elements": [
+          "Prominent transparent product window",
+          "Solid category color block",
+          "Institutional logo block at the top",
+          "Ingredient-focused uppercase hierarchy",
+          "Subordinate line icon or supported claim"
+        ],
+        "source_warning": "Supervisar a tu mascota mientras consume el producto.",
+        "source_optional_warning": "No sustituye una alimentación balanceada.",
+        "unresolved_conflict_ids": [
+          "treat_illustration_conflict",
+          "treat_type_weight_conflict",
+          "label_logo_position_conflict"
+        ],
+        "claims_note": "Examples such as 100% natural, alto en proteína and single protein are not blanket authorization for all products."
+      },
+      "treat_box": {
+        "source_pages": [
+          47,
+          48
+        ],
+        "guidance": [
+          "Institutional turquoise block provides recognition",
+          "Wolf and wildcat engraving creates an ancestral narrative",
+          "Use the canonical tagline as shown",
+          "Interior discovery copy may complement the official slogan",
+          "Preserve hierarchy when adapting the format"
+        ]
+      },
+      "wild_labels": {
+        "source_pages": [
+          51,
+          52,
+          53
+        ],
+        "structure": [
+          "Institutional logo block at upper left",
+          "Large engraved howling wolf on the left",
+          "Lowercase white bold sans-serif wild as the central line name",
+          "Turquoise script ancestor or spirit immediately below",
+          "Ingredients at lower center-left and guaranteed analysis at lower center-right in turquoise modular boxes",
+          "Circular paw line seal at upper right",
+          "Repeated small recipe name in the footer",
+          "Lot and expiry at lower left; current official registration details at lower right"
+        ],
+        "variant_color_direction": {
+          "ancestor": "Darker secondary treatment",
+          "spirit": "Lighter secondary treatment"
+        },
+        "exact_variant_color_tokens": null,
+        "seal_text_shown": "Dieta Natural Cruda",
+        "seal_status": "A branded graphic in the source, not independently verified certification.",
+        "unresolved_conflict_ids": [
+          "wild_case_conflict"
+        ]
+      },
+      "production_inputs_not_supplied": [
+        "Approved editable dielines",
+        "Bleed and safe-area dimensions",
+        "Print color profile and proofing standard",
+        "Current ingredient and analysis data",
+        "Current registrations",
+        "Confirmed final template for contradictory instructions"
+      ]
+    },
+    "website": {
+      "evidence_status": "brandbook_explicit",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        64,
+        72
+      ],
+      "direction": "Transfer the visual and conceptual identity into clear, scientific, approachable digital communication, reinforcing confidence and the official tagline.",
+      "source_limitations": "The book provides look-and-feel mockups, not a responsive component system, interaction specification, accessibility standard, or checkout architecture.",
+      "repository_rules_pointer": "/project_context"
+    },
+    "physical_and_corporate_applications": {
+      "evidence_status": "visual_observation",
+      "source_id": "brandbook_2025",
+      "source_pages": [
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78
+      ],
+      "examples": [
+        "Outdoor advertisements",
+        "Bus-shelter displays",
+        "Flags and signage",
+        "Retail freezers",
+        "Stationery and badges",
+        "Email signatures",
+        "Apparel",
+        "Vehicle graphics"
+      ],
+      "transferable_patterns": [
+        "Strong brand block and tagline hierarchy",
+        "Prominent animal or product imagery",
+        "Repeated brand tab",
+        "Scale-appropriate short messaging"
+      ],
+      "limitation": "These are visual applications, not manufacturing dimensions, verified contact records, an email template specification, or permission to contact depicted people."
+    }
+  },
+  "claim_controls": {
+    "evidence_status": "editorial_interpretation",
+    "purpose": "Keep brand storytelling distinct from factual, clinical, environmental, or regulatory claims.",
+    "default_rule": "The brandbook establishes intended positioning. Verify product-specific claims against current approved records before publishing them as facts.",
+    "claims_requiring_evidence": [
+      {
+        "claim": "Disease prevention, treatment, longevity, digestive, immune or metabolic benefits",
+        "source_pages": [
+          2,
+          5,
+          9,
+          18,
+          33,
+          34,
+          35
+        ],
+        "needed": "Relevant product-specific evidence and qualified review; do not turn aspirations into outcome guarantees."
+      },
+      {
+        "claim": "Genetic or individually personalized formulation",
+        "source_pages": [
+          2,
+          3,
+          5,
+          18
+        ],
+        "needed": "An actual documented process and evidence for the claimed level of personalization; the DNA name alone does not imply testing."
+      },
+      {
+        "claim": "Complete or balanced diet",
+        "source_pages": [
+          5,
+          33,
+          34
+        ],
+        "needed": "Current formulation, species/life-stage scope, nutritional adequacy data and approved label."
+      },
+      {
+        "claim": "FEDIAF alignment",
+        "source_pages": [
+          5
+        ],
+        "needed": "Current formulation documentation specifying the relevant standard; do not convert alignment language into certification."
+      },
+      {
+        "claim": "Free from preservatives, additives, or ultra-processed ingredients",
+        "source_pages": [
+          2
+        ],
+        "needed": "Current ingredient and manufacturing records for each product concerned."
+      },
+      {
+        "claim": "Compostable packaging, sustainability, or circular production",
+        "source_pages": [
+          2,
+          9,
+          17
+        ],
+        "needed": "Material-specific documentation and accurate conditions/scope of the environmental claim."
+      },
+      {
+        "claim": "Controlled cold chain, traceability, or specialist validation",
+        "source_pages": [
+          16,
+          17
+        ],
+        "needed": "Actual current operational records and accurately identified qualified reviewers."
+      },
+      {
+        "claim": "100% natural, high protein, single protein, or functional benefit icons",
+        "source_pages": [
+          50,
+          56
+        ],
+        "needed": "Product-specific composition and approved claim wording."
+      },
+      {
+        "claim": "Scientific certification implied by a paw seal",
+        "source_pages": [
+          53,
+          54,
+          56
+        ],
+        "needed": "Independent authorization if claiming certification; otherwise describe it only as a brand/line mark."
+      },
+      {
+        "claim": "Feeding frequency, dosage, therapeutic use, universal chewing requirements, or ingredient safety",
+        "source_pages": [
+          33,
+          34,
+          35
+        ],
+        "needed": "Current product guidance and context-specific professional review; the design reference does not prescribe use."
+      }
+    ],
+    "when_evidence_is_missing": [
+      "Use neutral verified descriptions of the product and its stated category.",
+      "Keep an unverified claim in internal review notes rather than public copy.",
+      "Do not fabricate references, expert endorsements, test results, testimonials, or registration numbers."
+    ],
+    "verified_product_record_fields": [
+      "Product identifier and current name",
+      "Product family",
+      "Species and life-stage eligibility",
+      "Complete/complementary role",
+      "Ingredients and guaranteed analysis",
+      "Approved benefits and supporting evidence",
+      "Directions, storage and material restrictions",
+      "Current packaging and registration details"
+    ]
+  },
+  "project_context": {
+    "scope": "dnature_next website UI only unless a rule explicitly says otherwise.",
+    "evidence_status": "project_override",
+    "source_id": "repository_rules",
+    "re_read_current_instructions": "AGENTS.md can change; consult its current contents before implementing code.",
+    "ui_color_policy": {
+      "allowed_direction": [
+        "Cool white",
+        "Blue-gray",
+        "Cool or neutral interface colors",
+        "DNAture brand orange #FF6A00 as an explicit exception"
+      ],
+      "forbidden_direction": [
+        "Warm whites",
+        "Cream",
+        "Beige",
+        "Yellow accents",
+        "Other oranges and unapproved warm tints",
+        "Other warm UI tones outside the exact brand-orange exception"
+      ],
+      "explicit_exception": "Exact brand orange #FF6A00 is exempt from the warm-color prohibition and should participate visibly across the website, not only in SectionEyebrow.",
+      "orange_roles": [
+        "Primary calls to action",
+        "Navigation and selection accents with an independently clear active-state cue",
+        "Editorial highlights behind dark text and graphic rules",
+        "Compact square numeric counters with dark text",
+        "Occasional broad continuous section bands"
+      ],
+      "usage_balance": "Use orange meaningfully beyond eyebrow markers in major journeys. Keep cool/neutral surfaces for most reading and maintain clear action hierarchy. Orange does not permit cards, rounded geometry, or shadows.",
+      "contrast_guidance": {
+        "normal_text_on_orange": "Use #203237 on #FF6A00 (approximately 4.65:1).",
+        "avoid_for_normal_text": [
+          "White on orange (approximately 2.87:1)",
+          "Dark blue #124563 on orange (approximately 3.56:1)",
+          "Orange on white (approximately 2.87:1)"
+        ],
+        "selection_and_focus": "Do not rely on an orange-only indicator on white. Use dark text and an additional clear state cue; retain dark focus outlines on light/orange surfaces and light outlines on dark surfaces.",
+        "states": "Preserve the exact orange; use contrast-tested borders, underlines, or icon changes instead of opacity reductions or unapproved warm shades."
+      },
+      "effect_on_reference": "Preserve all original palette values. The exception permits institutional #FF6A00, not the distinct Treats #CA6C2A or other warm category colors.",
+      "effect_on_proposal": "Follow version 0.3 of the website design system for active orange roles and tokens. Earlier eyebrow-only restrictions are superseded; other prohibited warm surfaces remain excluded."
+    },
+    "section_eyebrow": {
+      "component_path": "components/section-eyebrow.tsx",
+      "requirement": "Use in every new landing-page content section with a descriptive, unnumbered label.",
+      "contrast": "Light tone on dark backgrounds; default dark tone on light backgrounds; use color and lineColor for colored surfaces. On orange, use primary dark text and a dark marker. The default orange marker is one part of the wider brand-orange system."
+    },
+    "spacing_scale_px": [
+      4,
+      8,
+      12,
+      16,
+      24,
+      32,
+      48,
+      64,
+      80
+    ],
+    "ui_rules": [
+      "Reuse shared gutters, container widths, headings, spacing tokens, and form rhythm.",
+      "Build mobile first and prevent horizontal overflow.",
+      "For inline buttons beside other elements, use icon-only on mobile and icon plus text on desktop, with an accessible name and usable target.",
+      "Use individual lucide-react icons for UI; hide decorative icons from assistive technology.",
+      "Preserve native semantics, visible focus, keyboard access, and reduced-motion behavior.",
+      "Use clear landmarks, heading hierarchy, descriptive links and appropriate image alternatives.",
+      "Make strategically important public pages discoverable through crawlable navigation, footer and contextual links."
+    ],
+    "design_system_reference": {
+      "source_id": "digital_design_proposal",
+      "relative_path": "docs/graphic-design/DNAture_Design_System.md",
+      "guidance": "Consult the current website specification and preserve its BRAND/REQUIRED/PROPOSED/VERIFY distinction. Website adaptations do not rewrite the original brandbook."
+    },
+    "local_asset_discovery": {
+      "evidence_status": "repository_reference",
+      "approval_status": "Paths existed at review time. Visual equivalence to the approved final identity was not established by filenames.",
+      "candidate_logo_paths": [
+        "public/brand/logo.svg",
+        "public/brand/logo-white.svg",
+        "public/brand/logo-compact-white.svg",
+        "images/logo/logo-brand-blue.svg",
+        "images/logo/logo-compact-brand-blue.svg"
+      ],
+      "illustration_manifest": "public/images/icons/manifest.json",
+      "illustration_reference": "docs/graphic-design/illustrator-icons.md",
+      "guidance": "Inspect the actual asset before use. Do not assume a legacy file is approved merely because it is already in the repository."
+    }
+  },
+  "review_findings": {
+    "evidence_status": "editorial_interpretation",
+    "summary": "A strong strategic and visual identity combining scientific authority with protective care. It is most useful as a brand and campaign guide; it needs conflict resolution, production assets, and verified product data before acting as a complete implementation specification.",
+    "strengths": [
+      {
+        "finding": "Coherent science-plus-care positioning, supported by archetypes and specific tone guidance.",
+        "source_pages": [
+          10,
+          11,
+          12,
+          13,
+          17
+        ]
+      },
+      {
+        "finding": "Concrete authorized/restricted vocabulary makes content easier to govern.",
+        "source_pages": [
+          14
+        ]
+      },
+      {
+        "finding": "Exact primary and category color values and named font families.",
+        "source_pages": [
+          31,
+          32,
+          39,
+          40,
+          41
+        ]
+      },
+      {
+        "finding": "Distinct photography, engraving, tab and packaging language across many applications.",
+        "source_pages": [
+          36,
+          37,
+          43,
+          46,
+          52,
+          56,
+          65,
+          78
+        ]
+      },
+      {
+        "finding": "A measurable 30/30/20/20 content mix with examples.",
+        "source_pages": [
+          59,
+          60,
+          61,
+          62
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "id": "tagline_variants",
+        "source_pages": [
+          20,
+          21,
+          28,
+          30,
+          43
+        ],
+        "issue": "The official tagline and La nutrición comienza en el ADN both appear.",
+        "working_resolution": "Use Nutrición con esencia en el ADN as canonical, explicitly defined on pages 20-21. Preserve the other wording only as a source example."
+      },
+      {
+        "id": "barf_in_comparison_examples",
+        "source_pages": [
+          14,
+          55,
+          59,
+          69
+        ],
+        "issue": "BARF is restricted in the vocabulary but appears in comparative campaign copy.",
+        "working_resolution": "Never use BARF as the brand's category label. Prefer positive physiological-nutrition wording; treating comparative use as a blanket exception is not supported."
+      },
+      {
+        "id": "treat_illustration_conflict",
+        "source_pages": [
+          49,
+          50,
+          54
+        ],
+        "issue": "Page 49 says to remove the animal icon because the window shows the product; page 50 calls for wolf/wildcat illustrations along the base; page 54 generalizes engraving to all labels.",
+        "working_resolution": "Unresolved. Retain the confirmed family template; seek a brand-owner decision before claiming a new universal pouch layout."
+      },
+      {
+        "id": "treat_type_weight_conflict",
+        "source_pages": [
+          49,
+          50
+        ],
+        "issue": "The process descriptor is described as bold on page 49 and regular on page 50.",
+        "working_resolution": "Unresolved. Follow the confirmed production template and keep a clear ingredient/process hierarchy."
+      },
+      {
+        "id": "label_logo_position_conflict",
+        "source_pages": [
+          50,
+          53,
+          54
+        ],
+        "issue": "Treat-pouch guidance centers the top logo, whereas Wild and the all-label summary put it at upper left.",
+        "working_resolution": "Preserve family-specific layouts; do not apply the all-label summary to relocate every logo without confirmation."
+      },
+      {
+        "id": "wild_case_conflict",
+        "source_pages": [
+          52,
+          53,
+          54
+        ],
+        "issue": "Page 53 explicitly requires lowercase wild; page 54 broadly says uppercase base names while using wild as its example.",
+        "working_resolution": "For Wild, follow the explicit line-specific lowercase treatment shown in the artwork and page 53."
+      },
+      {
+        "id": "complete_and_complements",
+        "source_pages": [
+          33,
+          34
+        ],
+        "issue": "Complete is called balanced/complete, while complements are described as essential. The complete overview also says chicken is the base but lists trout/beef; trout alternatives include chicken-containing names.",
+        "working_resolution": "Treat category names as branding, not clinical adequacy or allergen guarantees. Resolve each SKU against current formulation data."
+      },
+      {
+        "id": "cold_vs_clinical_tone",
+        "source_pages": [
+          10,
+          12,
+          57,
+          61
+        ],
+        "issue": "Core voice guidance avoids cold clinical communication, but portfolio sections refer to retaining a clinical tone.",
+        "working_resolution": "Interpret as technical precision with human warmth, not impersonal language."
+      },
+      {
+        "id": "logo_background_labels",
+        "source_pages": [
+          25,
+          28,
+          29
+        ],
+        "issue": "Principal/invertida labels are not fully consistent across examples.",
+        "working_resolution": "Choose by actual artwork color, legibility and approved variants rather than the example label alone."
+      },
+      {
+        "id": "warm_palette_vs_repository",
+        "source_pages": [
+          31,
+          32,
+          56
+        ],
+        "additional_source_id": "repository_rules",
+        "issue": "The source palette includes multiple warm colors. The current website permits exact institutional brand orange but continues to exclude unrelated warm UI colors.",
+        "working_resolution": "Use #FF6A00 actively for actions, navigation accents, editorial emphasis, counters and occasional section bands, with readable dark text. The exception is not limited to SectionEyebrow and does not extend to Treats orange, yellow, cream, or other warm category colors."
+      },
+      {
+        "id": "generic_claims_inside_source",
+        "source_pages": [
+          2,
+          5,
+          14,
+          50
+        ],
+        "issue": "The vocabulary rejects empty quality/natural claims, while introductory and packaging copy includes such language.",
+        "working_resolution": "Use precise supported descriptions; do not treat every example sentence as pre-approved public copy."
+      }
+    ],
+    "not_specified_or_unverified": [
+      {
+        "topic": "Brand governance",
+        "missing": "Named approval owner, release/version history, and final-template precedence."
+      },
+      {
+        "topic": "Logo production",
+        "missing": "A numeric definition of clear-space x and verified final asset inventory."
+      },
+      {
+        "topic": "Typography",
+        "missing": "Webfont licenses, fallback policy, responsive type scale, exact Wild script font."
+      },
+      {
+        "topic": "Color production",
+        "missing": "Print profile, exact tint steps, and exact colors for every Wild variant."
+      },
+      {
+        "topic": "Digital system",
+        "missing": "Accessibility specification, interactive states, semantic UI colors, responsive grids, motion and component contracts."
+      },
+      {
+        "topic": "Packaging",
+        "missing": "Dielines, production sizes, final claims, current registrations and resolution of contradictory label rules."
+      },
+      {
+        "topic": "Content operations",
+        "missing": "Publication cadence, grammar/dialect policy, claim review owner and substantiation records."
+      },
+      {
+        "topic": "Product catalog",
+        "missing": "Current SKU taxonomy, species eligibility, nutritional adequacy, directions, prices and availability."
+      }
+    ]
+  },
+  "review_checklist": [
+    {
+      "id": "scope",
+      "check": "The deliverable applies the correct general-brand or repository-specific rules."
+    },
+    {
+      "id": "identity",
+      "check": "DNAture and the canonical tagline are correct; campaign copy is not presented as the official slogan."
+    },
+    {
+      "id": "voice",
+      "check": "Copy is precise, understandable, empathetic, educational and free of unsupported promises."
+    },
+    {
+      "id": "vocabulary",
+      "check": "Product-family names and restricted-term rules are respected."
+    },
+    {
+      "id": "claims",
+      "check": "Every factual product, health, sustainability or certification claim has appropriate current evidence."
+    },
+    {
+      "id": "logo",
+      "check": "An appropriate supplied logo is used with preserved proportions, clear space, size and contrast."
+    },
+    {
+      "id": "palette",
+      "check": "Colors use exact applicable values; the website combines cool/neutral foundations with meaningful brand-orange participation beyond eyebrow markers, accessible pairings, and no other prohibited warm UI colors."
+    },
+    {
+      "id": "type",
+      "check": "Typography uses the defined roles and any approved implementation choices; body copy remains readable."
+    },
+    {
+      "id": "imagery",
+      "check": "Photographs and engravings match their separate brand roles; assets are suitable for the intended use."
+    },
+    {
+      "id": "channel",
+      "check": "Social, packaging, web or physical-format requirements are applied only within their own scope."
+    },
+    {
+      "id": "ambiguity",
+      "check": "Unresolved source conflicts are not silently converted into official standards."
+    },
+    {
+      "id": "accessibility",
+      "check": "Digital output preserves semantics, meaningful alternatives, keyboard usability and adequate contrast as required by the project."
+    },
+    {
+      "id": "traceability",
+      "check": "Brand rules, visual observations, proposals and product evidence remain distinguishable."
+    }
+  ],
+  "page_index": [
+    {
+      "first_page": 1,
+      "last_page": 1,
+      "topic": "Cover and official tagline"
+    },
+    {
+      "first_page": 2,
+      "last_page": 3,
+      "topic": "Brand introduction, name and objective"
+    },
+    {
+      "first_page": 4,
+      "last_page": 6,
+      "topic": "Manifesto, mission and vision"
+    },
+    {
+      "first_page": 7,
+      "last_page": 9,
+      "topic": "Campaign example, positioning challenge and golden circle"
+    },
+    {
+      "first_page": 10,
+      "last_page": 14,
+      "topic": "Archetypes, personality, voice and vocabulary"
+    },
+    {
+      "first_page": 15,
+      "last_page": 18,
+      "topic": "Evidence campaign, guardian concerns, differentiators and tagline rationale"
+    },
+    {
+      "first_page": 19,
+      "last_page": 25,
+      "topic": "Identity evolution, official tagline and logo variants"
+    },
+    {
+      "first_page": 26,
+      "last_page": 30,
+      "topic": "Logo construction, clear space, minimum sizes and misuse"
+    },
+    {
+      "first_page": 31,
+      "last_page": 32,
+      "topic": "Primary and category color specifications"
+    },
+    {
+      "first_page": 33,
+      "last_page": 35,
+      "topic": "Product-family overview and historical product lists"
+    },
+    {
+      "first_page": 36,
+      "last_page": 38,
+      "topic": "Photography guidance and Wild campaign example"
+    },
+    {
+      "first_page": 39,
+      "last_page": 41,
+      "topic": "Primary, secondary and alternate fonts"
+    },
+    {
+      "first_page": 42,
+      "last_page": 46,
+      "topic": "Nutrition-label design and engraving style"
+    },
+    {
+      "first_page": 47,
+      "last_page": 48,
+      "topic": "Treat box"
+    },
+    {
+      "first_page": 49,
+      "last_page": 50,
+      "topic": "Treat-pouch label guidance"
+    },
+    {
+      "first_page": 51,
+      "last_page": 53,
+      "topic": "Wild label system"
+    },
+    {
+      "first_page": 54,
+      "last_page": 54,
+      "topic": "General label summary"
+    },
+    {
+      "first_page": 55,
+      "last_page": 58,
+      "topic": "Social visual system and content balance introduction"
+    },
+    {
+      "first_page": 59,
+      "last_page": 62,
+      "topic": "Content pillar percentages and examples"
+    },
+    {
+      "first_page": 63,
+      "last_page": 64,
+      "topic": "Carousel reference and website look and feel"
+    },
+    {
+      "first_page": 65,
+      "last_page": 69,
+      "topic": "Outdoor advertising applications"
+    },
+    {
+      "first_page": 70,
+      "last_page": 71,
+      "topic": "Retail freezer applications"
+    },
+    {
+      "first_page": 72,
+      "last_page": 72,
+      "topic": "Digital device mockups"
+    },
+    {
+      "first_page": 73,
+      "last_page": 74,
+      "topic": "Stationery and email-signature applications"
+    },
+    {
+      "first_page": 75,
+      "last_page": 78,
+      "topic": "Apparel, signage and vehicle applications"
+    },
+    {
+      "first_page": 79,
+      "last_page": 79,
+      "topic": "Closing identity statement"
+    }
+  ]
+}
