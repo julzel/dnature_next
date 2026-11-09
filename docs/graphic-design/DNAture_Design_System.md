@@ -1,6 +1,6 @@
 # DNAture — Digital Design System
 
-**Version:** 0.4 — Flat editorial website, active brand orange, and five product categories
+**Version:** 0.5 — Revised brandbook palette and accessible five-category theme
 
 **Updated:** 2026-11-09
 
@@ -9,6 +9,8 @@
 **Customer-facing language:** Spanish, Costa Rica
 
 **Brand reference:** [DNAture_Brand_Reference.json](DNAture_Brand_Reference.json)
+
+**Current source:** `DNA-BRANDBOOK.pdf`, 79 pages, reviewed 2026-11-09. The file has no verified publication date or version label. The earlier `BRANDBOOK 2.pdf` is retained as historical evidence in the JSON.
 
 **Project requirements:** [AGENTS.md](../../AGENTS.md)
 
@@ -105,25 +107,29 @@ Product photography and approved artwork should accurately show the real product
 
 ### 4.1 Color roles
 
-The brandbook defines institutional turquoise `#00A9B5`, orange `#FF6A00`, gray `#B2B2B2`, and charcoal `#3C3C3B` (p. 31). It also defines nine category colors (p. 32). The complete source palette is preserved in the JSON reference under `visual_identity.color`.
+The current brandbook retains institutional turquoise `#00A9B5`, orange `#FF6A00`, gray `#B2B2B2`, and charcoal `#3C3C3B` (p. 31). Its revised p. 32 provides **18 secondary swatches without an explicit category mapping**. Exact values are in the JSON under `visual_identity.color.secondary_palette`; the previous nine family colors are archived under `historical_category_palette`.
 
-**[REQUIRED]** The nine-color brandbook palette is historical source evidence. The current website taxonomy has five categories and the assignments below. Use category color only to identify its category in navigation, catalog headings, dividers, product labels, or related product context. Do not use it for unrelated actions, statuses, or large general-purpose surfaces. Keep the category name visible; color is never evidence of nutritional role or suitability.
+**[REQUIRED website decision]** The current website taxonomy has five categories and the assignments below. Accent values are exact current source swatches; the category assignments and readable pairings are project decisions authorized by the user. They are not a claim that the PDF defines this mapping. Use category color only to identify its category in navigation, catalog headings, dividers, product labels, or related product context. Keep the category name visible; color is never evidence of nutritional role or suitability.
 
-| Current product category | Website color | CSS token |
-|---|---|---|
-| Complementos | Deep ochre `#80601F` | `--dn-category-complementos` |
-| Deshidratados | Rust `#9A471B` | `--dn-category-deshidratados` |
-| Órganos | Burgundy `#742019` | `--dn-category-organos` |
-| Recetas completas | Forest green `#426D36` | `--dn-category-recetas-completas` |
-| Suplementos | Plum `#531845` | `--dn-category-suplementos` |
+| Current category | Identification accent | Text on white/cool surfaces (`-ink`) | Text on solid accent (`-on-color`) | Base CSS token |
+|---|---|---|---|---|
+| Complementos | Amber `#D79412` | Brown `#5B2E20` | Black `#000000` | `--dn-category-complementos` |
+| Deshidratados | Orange `#ED6F1E` | Brown `#5B2E20` | Black `#000000` | `--dn-category-deshidratados` |
+| Órganos | Burgundy `#6A1B23` | Burgundy `#6A1B23` | White `#FFFFFF` | `--dn-category-organos` |
+| Recetas completas | Green `#2E7246` | Green `#2E7246` | White `#FFFFFF` | `--dn-category-recetas-completas` |
+| Suplementos | Mauve `#A05A77` | Mauve `#A05A77` | White `#FFFFFF` | `--dn-category-suplementos` |
 
-These are website identification colors, not a replacement for the source PDF's printed packaging specifications. Each has at least 5.8:1 contrast against white, so it can be used for normal-size text on white or as a fill behind white text. The category name and another cue must accompany color-coded controls. The theme values live in `app/theme.css`.
+This mapping preserves distinct warm, red, green and purple category cues using the revised source palette. Every `-ink` pairing exceeds 4.5:1 on white and cool `#F6FAFF`; every `-on-color` pairing exceeds 4.5:1 on its solid accent. Amber and orange base accents are unsuitable for small text on light surfaces. Use `-ink` for text, functional icons, control boundaries, selected underlines and scrollbars; use `-on-color` for filled hover states. Keep decorative category markers accompanied by visible names. These tokens live in `app/theme.css`; `categoryStyle` in the catalog supplies the three roles consistently.
+
+Category, ingredient/protein and species are different pieces of information. The revised icon examples on p. 46 do not assign the five website categories. Preserve supplied ingredient/species artwork and its original colors without using them to infer a category. Current commerce records determine product membership; do not automatically merge the nine historical families into the five current categories. In particular, an organ can also be dehydrated. The recognized display alias `Snacks deshidratados` → `Deshidratados` changes only its label, not its product membership.
+
+**Source correction:** The green swatch's hex `#2E7246` and upper RGB label agree on `46, 114, 70`; its lower RGB row incorrectly repeats `55, 66, 20` from the preceding swatch. Use the hex-consistent value for digital implementation and retain the discrepancy in the JSON.
 
 | Website role | Value [PROPOSED] | Use |
 |---|---|---|
 | Institutional turquoise | `#00A9B5` [BRAND] | Recognizable graphic accents and occasional continuous section surfaces. |
 | Brand orange | `#FF6A00` [BRAND; explicit UI exception] | Primary calls to action, editorial emphasis, navigation accents, counters, and occasional continuous section bands. |
-| Dark blue | `#124563` [BRAND palette-derived] | Headings, supporting actions, dark editorial sections, and an alternative action on orange surfaces; this UI role is a digital adaptation. |
+| Dark blue | `#124563` [existing digital adaptation] | Headings, supporting actions, dark editorial sections, and an alternative action on orange surfaces. Retained from the earlier palette as a website support color; it has no current category assignment. |
 | Base | `#FFFFFF` | Main reading and commerce surface. |
 | Cool surface | `#F6FAFF` | Broad editorial regions. |
 | Muted surface | `#F1F5F9` | Broad secondary regions or restrained interaction feedback. |
@@ -195,11 +201,21 @@ Use text, icons, and semantics to communicate success, errors, warnings, and sto
   --dn-focus-ring-inverse: #FFFFFF;
   --dn-overlay: rgb(17 45 53 / 56%);
 
-  --dn-category-complementos: #80601F;
-  --dn-category-deshidratados: #9A471B;
-  --dn-category-organos: #742019;
-  --dn-category-recetas-completas: #426D36;
-  --dn-category-suplementos: #531845;
+  --dn-category-complementos: #D79412;
+  --dn-category-complementos-ink: #5B2E20;
+  --dn-category-complementos-on-color: #000000;
+  --dn-category-deshidratados: #ED6F1E;
+  --dn-category-deshidratados-ink: #5B2E20;
+  --dn-category-deshidratados-on-color: #000000;
+  --dn-category-organos: #6A1B23;
+  --dn-category-organos-ink: var(--dn-category-organos);
+  --dn-category-organos-on-color: var(--dn-text-inverse);
+  --dn-category-recetas-completas: #2E7246;
+  --dn-category-recetas-completas-ink: var(--dn-category-recetas-completas);
+  --dn-category-recetas-completas-on-color: var(--dn-text-inverse);
+  --dn-category-suplementos: #A05A77;
+  --dn-category-suplementos-ink: var(--dn-category-suplementos);
+  --dn-category-suplementos-on-color: var(--dn-text-inverse);
 
 }
 
@@ -270,6 +286,8 @@ Use the default dark tone on light surfaces and `tone="light"` on dark surfaces.
 **[BRAND]** Photography is authentic, natural, and emotionally connected: realistic dogs and cats in everyday settings, with genuine expressions and human relationships (pp. 36–37). Use clean color, balanced contrast, and useful space for text. Avoid dressed-up animals, forced poses, comic accessories, and oversaturation.
 
 **[BRAND]** Engravings use detailed line work and recognizable animals or ingredients, with a scientific and timeless character (pp. 43–54). They can anchor a section or explain a specific ingredient.
+
+**Revised source artwork:** Page 46 expands the animal/ingredient engravings and shows a separate collection of colored ingredient/species silhouettes. Corresponding source exports are cataloged in `public/images/icons/manifest.json` (19 SVG assets). Their original badge geometry is part of supplied artwork, as allowed in §3.3; it is not a template for authored UI controls. Keep `lucide-react` for interface actions. The revised box on pp. 47–48 uses predominantly white surfaces and turquoise engravings. Use confirmed final product assets before replacing live imagery; conflicting PDF mockups are not production files.
 
 **Website treatment [REQUIRED]**
 
@@ -569,6 +587,7 @@ Reconcile the proposed tokens with existing styles instead of maintaining parall
 - [ ] Every new landing-page content section uses the shared descriptive, unnumbered `SectionEyebrow`.
 - [ ] Cool/neutral foundations include a meaningful recurring role for exact brand orange beyond eyebrow markers; any other warm hue is confined to its assigned product category.
 - [ ] Orange actions, highlights, counters, and section bands use readable dark text; active and focus states meet contrast requirements.
+- [ ] Category accents use their `-ink` and `-on-color` roles correctly; ingredient/species icon colors do not determine category membership.
 - [ ] Shared spacing, gutters, widths, headings, and form rhythm are consistent.
 - [ ] Typography, authentic imagery, and restrained engravings express science and empathetic care.
 - [ ] Public pages have logical headings, descriptive crawlable links, appropriate alternatives, and accurate metadata.
@@ -580,6 +599,8 @@ Reconcile the proposed tokens with existing styles instead of maintaining parall
 
 ## 13. Sources and boundaries
 
+Page references below apply to the current `DNA-BRANDBOOK.pdf`. The older PDF and earlier website category assignments are archived in the JSON for traceability. The source PDF provides brand evidence; current task instructions and project rules govern implementation.
+
 | Topic | Brandbook pages |
 |---|---|
 | Mission, vision, purpose | 2–9 |
@@ -587,11 +608,25 @@ Reconcile the proposed tokens with existing styles instead of maintaining parall
 | Guardian concerns and differentiation | 15–18 |
 | Logo evolution and official tagline | 19–25 |
 | Logo protection, sizes, and misuse | 26–30 |
-| Original primary and category palettes | 31–32 |
+| Primary palette and 18 revised secondary swatches | 31–32 |
 | Product-family overview | 33–35 |
 | Photography | 36–37 |
 | Typography | 39–41 |
 | Packaging and illustration | 42–54 |
 | Social and website direction | 55–64 |
 
-Consult [the structured brand reference](DNAture_Brand_Reference.json) for exact source colors, page references, restricted terms, and unresolved contradictions. Its `review_findings.conflicts` and `claim_controls` sections remain useful for content review. The original rounded brandbook layouts, earlier interface explorations, and version 0.1 proposals are historical references; they do not override this website's flat, open, square design requirements.
+Consult [the structured brand reference](DNAture_Brand_Reference.json) for exact source colors, page references, restricted terms, and unresolved contradictions. Schema 2 separates `secondary_palette`, `historical_category_palette`, and the website assignments in `project_context.current_product_categories`. Start with `revision_review` when reconciling earlier work. The book's rounded compositions do not override this website's flat, open, square design requirements.
+
+### 13.1 Unresolved source conflicts affecting future work
+
+| Topic | Current evidence | Implementation boundary |
+|---|---|---|
+| Taxonomy, pp. 14, 32–35 | Nine legacy families persist; 18 swatches have no five-category assignment. | Use the five website categories above and verified commerce membership. |
+| Green RGB, p. 32 | Lower RGB row conflicts with hex and upper label. | Use `#2E7246` / RGB `46, 114, 70`; record the source error. |
+| Recipe mockups, p. 44 | Beef/horse examples repeat chicken-only ingredient copy; horse also has a beef identifier. | Obtain verified product records; never ingest these mockup values as product facts. |
+| Dried lung, p. 45 | Front uses Treats; back says Suplementos. | Verify the current category rather than classifying from the mockup. |
+| Wild typography, pp. 45, 51–53 | Revised flat artwork uses sans serif subnames; prose and some renders retain script. | Use confirmed artwork; do not add a script webfont or redraw labels from this conflict. |
+| Box, pp. 47–48 | Artwork and interior tagline changed; explanatory text still describes the earlier design. | Use canonical tagline and confirmed revised box assets. |
+| Label rules, pp. 43–54 | Older turquoise/purple and illustration-removal instructions conflict with revised examples. | Keep source prose and visual evidence distinct; confirm final product-specific templates. |
+
+The primary colors, official tagline, principal logo hierarchy and named brand fonts are stable. Manrope/Montserrat remain the documented website substitutes. Product ingredients, analysis, feeding guidance and claimed benefits continue to require current product evidence, regardless of their appearance in a mockup.

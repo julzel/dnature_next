@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { categoryPath, type CatalogShelf } from "../lib/browse-catalog";
+import { categoryPath, categoryStyle, type CatalogShelf } from "../lib/browse-catalog";
 import { CatalogProductPreview } from "./catalog-product-preview";
 import styles from "./catalog-page.module.css";
 
@@ -42,7 +42,7 @@ export function CatalogCategoryShelf({ shelf }: { shelf: CatalogShelf }) {
   }
 
   return (
-    <section className={styles.shelf} style={{ "--shelf-accent": shelf.category.color } as CSSProperties} aria-labelledby={`category-${shelf.category.id}`}>
+    <section className={styles.shelf} style={categoryStyle(shelf.category)} aria-labelledby={`category-${shelf.category.id}`}>
       <div className={styles.shelfHeading}>
         <div>
           <p>Favoritos de la categoría</p>

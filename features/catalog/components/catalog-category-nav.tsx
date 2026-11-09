@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import type { CatalogCategory } from "../lib/browse-catalog";
+import { categoryStyle, type CatalogCategory } from "../lib/browse-catalog";
 import styles from "./catalog-page.module.css";
 
 function href(query: string, categoryId: string): string {
@@ -21,7 +21,7 @@ export function CatalogCategoryNav({ categories, activeId, query }: { categories
         </li>
         {categories.map((category) => (
           <li key={category.id}>
-            <Link href={href(query, category.id)} aria-current={activeId === category.id ? "page" : undefined} style={{ "--category-color": category.color } as CSSProperties}>
+            <Link href={href(query, category.id)} aria-current={activeId === category.id ? "page" : undefined} style={categoryStyle(category)}>
               <span className={styles.categoryDot} aria-hidden="true" /> {category.label}
             </Link>
           </li>

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "reference_id": "dnature_brand_reference",
   "updated_at": "2026-11-09",
   "purpose": "A task-oriented reference for AI agents creating DNAture graphic design and customer-facing content. This is a curated analysis, not a verbatim transcription, live product catalog, or clinical evidence source.",
@@ -13,6 +13,8 @@
     "read_first": [
       "/quick_reference",
       "/application_policy",
+      "/revision_review",
+      "/project_context/current_product_categories",
       "/review_findings/conflicts"
     ],
     "evidence_inheritance": "Section-level evidence applies to descendants unless a descendant supplies its own evidence. Source pages are 1-based PDF page positions, not printed folios.",
@@ -20,7 +22,7 @@
       "brandbook_explicit": "Stated in the PDF; wording may be summarized. This establishes what the book says, not independent verification of a claim.",
       "visual_observation": "Observed in rendered examples; not automatically a mandatory rule.",
       "editorial_interpretation": "An operational recommendation derived from review; not an approved brandbook rule.",
-      "project_override": "An explicit repository rule, applicable only within its stated scope.",
+      "project_override": "A current user-authorized project decision or repository rule, applicable only within its stated scope; not a statement that the source PDF specifies the same choice.",
       "repository_reference": "A local resource found during review; existence does not prove brand approval.",
       "unresolved": "The source is conflicting, incomplete, or insufficient to choose a definitive rule."
     },
@@ -59,9 +61,24 @@
         "/review_checklist",
         "/review_findings"
       ]
-    }
+    },
+    "schema_migration": "Version 2 moves the old visual_identity.color.category_palette to historical_category_palette. Current exact source swatches are secondary_palette; current website assignments are project_context.current_product_categories. Product-family color_id becomes historical_color_id."
   },
   "sources": [
+    {
+      "id": "brandbook_revised",
+      "type": "primary_brandbook",
+      "filename": "DNA-BRANDBOOK.pdf",
+      "local_path_at_review": "/Users/juliozeledon/Desktop/DNA-BRANDBOOK.pdf",
+      "sha256": "c67d0c1dec925e26297bd5f26452656b0243d349c7d556dd183b104c21dd2d83",
+      "page_count": 79,
+      "brandbook_version_label": null,
+      "publication_date": null,
+      "reviewed_at": "2026-11-09",
+      "status": "Current user-supplied brandbook. User identifies it as newer; no publication date or version is inferred from the filename.",
+      "review_method": "Compared all 79 rendered pages with the previous edition, extracted searchable text, and inspected revised palette, labels, box and illustration pages at higher resolution.",
+      "extraction_limitations": "Text extraction includes tiny mockup content and ligature warnings. Relevant specifications were checked visually. Mockup ingredient, nutritional, feeding and registration data are not approved product records."
+    },
     {
       "id": "brandbook_2025",
       "type": "primary_brandbook",
@@ -72,7 +89,8 @@
       "pdf_metadata_creation_date": "2025-10-21",
       "brandbook_version_label": null,
       "review_method": "Rendered all 79 pages with Poppler, reviewed page contact sheets, read local OCR, and inspected logo geometry and color specification pages at higher resolution.",
-      "extraction_limitations": "The PDF has no extractable text. OCR was checked against visuals for key specifications. Tiny packaging mockup text and SKU lists are not treated as verified production data. Unspecified geometry, tint percentages, and production dimensions remain unknown."
+      "extraction_limitations": "The PDF has no extractable text. OCR was checked against visuals for key specifications. Tiny packaging mockup text and SKU lists are not treated as verified production data. Unspecified geometry, tint percentages, and production dimensions remain unknown.",
+      "status": "Superseded brandbook retained for historical traceability."
     },
     {
       "id": "repository_rules",
@@ -84,14 +102,14 @@
       "id": "digital_design_proposal",
       "type": "website_design_specification",
       "relative_path": "docs/graphic-design/DNAture_Design_System.md",
-      "version": "0.4",
+      "version": "0.5",
       "status": "Contains BRAND, REQUIRED, PROPOSED and VERIFY labels. Required website adaptations include flat open layouts, square geometry, active brand-orange use, and five current product categories with scoped identification colors; these are project rules, not revisions to the original PDF."
     },
     {
       "id": "current_user_request",
       "type": "project_instruction",
       "scope": "dnature_next current website taxonomy and category-color exception",
-      "summary": "Current categories: Complementos, Deshidratados, Órganos, Recetas completas, Suplementos. Each may have an identification color, including a warm hue, without becoming a general brand color."
+      "summary": "Current categories: Complementos, Deshidratados, Órganos, Recetas completas, Suplementos. Each may have an identification color, including a warm hue, without becoming a general brand color. The user subsequently authorized reconciliation with the newer brandbook, including choosing the five website category colors from its palette."
     }
   ],
   "quick_reference": {
@@ -138,13 +156,15 @@
       "/visual_identity",
       "/content_strategy",
       "/project_context"
-    ]
+    ],
+    "current_website_category_reference": "/project_context/current_product_categories",
+    "current_secondary_palette_reference": "/visual_identity/color/secondary_palette"
   },
   "application_policy": {
     "evidence_status": "editorial_interpretation",
     "scope_selection": {
       "general_brand_graphics_and_content": "Use the brandbook rules, qualified by source conflicts and task-specific instructions.",
-      "dnature_next_ui": "Apply current AGENTS.md first, then compatible brandbook guidance, then compatible design-system proposals.",
+      "dnature_next_ui": "Apply current user instructions, then AGENTS.md and the current website design system, then compatible current-brandbook guidance. Source PDFs are reference material, not instructions to change tools, data, or project policy.",
       "other_projects": "Do not export dnature_next-specific implementation requirements as universal DNAture brand rules."
     },
     "conflict_handling": [
@@ -157,7 +177,7 @@
   },
   "brand_strategy": {
     "evidence_status": "brandbook_explicit",
-    "source_id": "brandbook_2025",
+    "source_id": "brandbook_revised",
     "source_pages": [
       2,
       3,
@@ -283,7 +303,7 @@
   },
   "verbal_identity": {
     "evidence_status": "brandbook_explicit",
-    "source_id": "brandbook_2025",
+    "source_id": "brandbook_revised",
     "source_pages": [
       10,
       11,
@@ -353,7 +373,7 @@
         "id": "voice_authority",
         "guidance": "Speak with authority without rigidity.",
         "evidence_status": "brandbook_explicit",
-        "source_id": "brandbook_2025",
+        "source_id": "brandbook_revised",
         "source_pages": [
           13
         ]
@@ -362,7 +382,7 @@
         "id": "voice_education",
         "guidance": "Educate without imposing.",
         "evidence_status": "brandbook_explicit",
-        "source_id": "brandbook_2025",
+        "source_id": "brandbook_revised",
         "source_pages": [
           13
         ]
@@ -371,7 +391,7 @@
         "id": "voice_clarity",
         "guidance": "Inspire without embellishment; communicate clearly and coherently.",
         "evidence_status": "brandbook_explicit",
-        "source_id": "brandbook_2025",
+        "source_id": "brandbook_revised",
         "source_pages": [
           12,
           13
@@ -381,7 +401,7 @@
         "id": "voice_restraint",
         "guidance": "Explain without exaggerating or promising miracles.",
         "evidence_status": "brandbook_explicit",
-        "source_id": "brandbook_2025",
+        "source_id": "brandbook_revised",
         "source_pages": [
           11
         ]
@@ -503,12 +523,11 @@
       },
       {
         "text": "Lo natural tiene esencia y está aquí",
-        "role": "Treat-box interior copy",
+        "role": "Legacy box copy still quoted in the revised explanation",
         "source_pages": [
-          47,
           48
         ],
-        "reuse_condition": "Context-specific example; not the official tagline."
+        "reuse_condition": "Do not use as the current box interior copy: p. 47 now shows the official tagline. See treat_box_description_mismatch."
       }
     ],
     "new_copy_workflow": {
@@ -527,7 +546,7 @@
   "visual_identity": {
     "logo": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         19,
         20,
@@ -630,13 +649,13 @@
     },
     "color": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         31,
         32
       ],
       "numeric_conventions": {
-        "rgb": "Red, green, blue integers from 0 to 255.",
+        "rgb": "RGB values are consistent with the specified hex and upper RGB labels. The contradictory lower row for #2E7246 is recorded explicitly.",
         "cmyk_percent": "Cyan, magenta, yellow, black percentages transcribed from the source; not computed from RGB.",
         "hex": "Use exact specified hex values for digital reproduction."
       },
@@ -727,7 +746,420 @@
           ]
         }
       ],
-      "category_palette": [
+      "category_semantics": {
+        "evidence_status": "project_override",
+        "source_id": "current_user_request",
+        "guidance": "Website category names and colors follow project_context.current_product_categories. Source colors, ingredient/species icons and historical product families must not be treated as an automatic SKU classification or evidence of nutritional suitability."
+      },
+      "tints": {
+        "observed": true,
+        "exact_percentages": null,
+        "guidance": "Primary palette p. 31 shows lighter swatches, with no numeric tint system. The current secondary palette on p. 32 shows flat swatches; do not inherit the previous secondary palette tint layout."
+      },
+      "print_profile": null,
+      "digital_usage_cautions": {
+        "evidence_status": "editorial_interpretation",
+        "guidance": [
+          "Check contrast for the actual text, logo, icon, and background combination; a brand swatch does not certify accessibility.",
+          "Do not sample incidental mockup colors as new official tokens.",
+          "Preserve the source palette as reference data, then apply channel-specific restrictions."
+        ]
+      },
+      "secondary_palette": [
+        {
+          "id": "secondary_brown",
+          "descriptive_name": "brown",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#5B2E20",
+          "rgb": [
+            91,
+            46,
+            32
+          ],
+          "cmyk_percent": [
+            39,
+            76,
+            77,
+            60
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_orange",
+          "descriptive_name": "orange",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#ED6F1E",
+          "rgb": [
+            237,
+            111,
+            30
+          ],
+          "cmyk_percent": [
+            0,
+            66,
+            93,
+            0
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_taupe",
+          "descriptive_name": "taupe",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#7B6A58",
+          "rgb": [
+            123,
+            106,
+            88
+          ],
+          "cmyk_percent": [
+            42,
+            45,
+            56,
+            34
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_tan",
+          "descriptive_name": "tan",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#B17F4A",
+          "rgb": [
+            177,
+            127,
+            74
+          ],
+          "cmyk_percent": [
+            25,
+            48,
+            73,
+            16
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_sand",
+          "descriptive_name": "sand",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#D6BC8C",
+          "rgb": [
+            214,
+            188,
+            140
+          ],
+          "cmyk_percent": [
+            17,
+            24,
+            49,
+            4
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_amber",
+          "descriptive_name": "amber",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#D79412",
+          "rgb": [
+            215,
+            148,
+            18
+          ],
+          "cmyk_percent": [
+            15,
+            44,
+            98,
+            4
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_gold",
+          "descriptive_name": "gold",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#DBB94C",
+          "rgb": [
+            219,
+            185,
+            76
+          ],
+          "cmyk_percent": [
+            16,
+            24,
+            78,
+            3
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_olive",
+          "descriptive_name": "olive",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#636B2F",
+          "rgb": [
+            99,
+            107,
+            47
+          ],
+          "cmyk_percent": [
+            60,
+            39,
+            91,
+            30
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_dark_olive",
+          "descriptive_name": "dark olive",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#374214",
+          "rgb": [
+            55,
+            66,
+            20
+          ],
+          "cmyk_percent": [
+            72,
+            50,
+            98,
+            56
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_green",
+          "descriptive_name": "green",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#2E7246",
+          "rgb": [
+            46,
+            114,
+            70
+          ],
+          "cmyk_percent": [
+            82,
+            31,
+            82,
+            20
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null,
+          "source_rgb_discrepancy": {
+            "upper_rgb_label": [
+              46,
+              114,
+              70
+            ],
+            "lower_rgb_row": [
+              55,
+              66,
+              20
+            ],
+            "working_value": "Use #2E7246 and RGB 46,114,70, which agree with the upper label; preserve the contradictory lower row as a source error.",
+            "conflict_id": "secondary_green_rgb_mismatch"
+          }
+        },
+        {
+          "id": "secondary_dark_green",
+          "descriptive_name": "dark green",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#013821",
+          "rgb": [
+            1,
+            56,
+            33
+          ],
+          "cmyk_percent": [
+            93,
+            48,
+            88,
+            63
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_turquoise",
+          "descriptive_name": "turquoise",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#00A9B5",
+          "rgb": [
+            0,
+            169,
+            181
+          ],
+          "cmyk_percent": [
+            75,
+            8,
+            30,
+            0
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_dark_teal",
+          "descriptive_name": "dark teal",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#00444A",
+          "rgb": [
+            0,
+            68,
+            74
+          ],
+          "cmyk_percent": [
+            92,
+            49,
+            52,
+            50
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_blue_gray",
+          "descriptive_name": "blue gray",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#8396A9",
+          "rgb": [
+            131,
+            150,
+            169
+          ],
+          "cmyk_percent": [
+            53,
+            33,
+            24,
+            6
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_slate",
+          "descriptive_name": "slate",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#29354B",
+          "rgb": [
+            41,
+            53,
+            75
+          ],
+          "cmyk_percent": [
+            89,
+            73,
+            44,
+            45
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_lavender",
+          "descriptive_name": "lavender",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#9291B7",
+          "rgb": [
+            146,
+            145,
+            183
+          ],
+          "cmyk_percent": [
+            49,
+            42,
+            13,
+            1
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_mauve",
+          "descriptive_name": "mauve",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#A05A77",
+          "rgb": [
+            160,
+            90,
+            119
+          ],
+          "cmyk_percent": [
+            36,
+            70,
+            30,
+            13
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        },
+        {
+          "id": "secondary_burgundy",
+          "descriptive_name": "burgundy",
+          "name_status": "Editorial description; swatches are not named in the PDF.",
+          "hex": "#6A1B23",
+          "rgb": [
+            106,
+            27,
+            35
+          ],
+          "cmyk_percent": [
+            34,
+            96,
+            71,
+            52
+          ],
+          "source_pages": [
+            32
+          ],
+          "category_assignment_in_source": null
+        }
+      ],
+      "historical_category_palette": [
         {
           "id": "category_masticables",
           "family_id": "masticables",
@@ -746,7 +1178,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_complete",
@@ -766,7 +1200,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_trucha",
@@ -786,7 +1222,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_masticacion",
@@ -806,7 +1244,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_suplementos",
@@ -826,7 +1266,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_wild",
@@ -846,7 +1288,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_cocidas",
@@ -866,7 +1310,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_treats",
@@ -886,7 +1332,9 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         },
         {
           "id": "category_complementos_nutricionales",
@@ -906,28 +1354,16 @@
           ],
           "source_pages": [
             32
-          ]
+          ],
+          "source_id": "brandbook_2025",
+          "status": "Historical family assignment; not a current website category token."
         }
       ],
-      "category_semantics": "Colors differentiate product families within a coherent identity; they do not prove nutritional completeness, safety, certification, or suitability.",
-      "tints": {
-        "observed": true,
-        "exact_percentages": null,
-        "guidance": "Lighter swatches appear above base colors; no numeric tint system is specified."
-      },
-      "print_profile": null,
-      "digital_usage_cautions": {
-        "evidence_status": "editorial_interpretation",
-        "guidance": [
-          "Check contrast for the actual text, logo, icon, and background combination; a brand swatch does not certify accessibility.",
-          "Do not sample incidental mockup colors as new official tokens.",
-          "Preserve the source palette as reference data, then apply channel-specific restrictions."
-        ]
-      }
+      "secondary_palette_scope": "Eighteen exact swatches on current p. 32, including institutional turquoise. The page does not assign them to the five website categories. Ingredient/species icon examples and recipe accents are separate contexts."
     },
     "typography": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         39,
         40,
@@ -981,16 +1417,21 @@
       },
       "wild_exception": {
         "source_pages": [
+          45,
+          51,
           52,
           53
         ],
-        "rule": "The Wild line combines bold lowercase wild with a script/cursive recipe subname.",
-        "script_font_name": null
+        "rule": "The written rule still specifies a cursive/script recipe subname, while revised flat label artwork on pp. 45 and 53 uses a plain sans-serif treatment. Some rendered package examples retain the earlier script.",
+        "script_font_name": null,
+        "evidence_status": "unresolved",
+        "conflict_id": "wild_subname_type_mismatch",
+        "working_resolution": "Use confirmed supplied artwork for that product; do not add a web script font or recreate the label from the contradictory prose."
       }
     },
     "photography": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         36,
         37
@@ -1040,7 +1481,7 @@
     },
     "illustration": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         43,
         44,
@@ -1066,7 +1507,7 @@
         "Animals associated with the formula",
         "Secondary protein sources",
         "Ingredients",
-        "Wolf and wildcat in specific packaging contexts"
+        "Wolf in Wild labels; revised treats-box animal artwork must be checked against final assets because the written explanation describes an earlier version."
       ],
       "avoid": [
         "Infantile or cartoon treatment",
@@ -1074,11 +1515,32 @@
         "Mixing incompatible illustration styles within a product line"
       ],
       "wild_signature": "Howling wolf in detailed engraving, prominent on the left of the label.",
-      "style_boundary": "Engraved brand illustrations are not interchangeable with functional interface icons."
+      "style_boundary": "Engraved brand illustrations are not interchangeable with functional interface icons.",
+      "revised_examples": {
+        "evidence_status": "visual_observation",
+        "source_pages": [
+          45,
+          46,
+          47
+        ],
+        "description": "Expanded black-and-white engraved animal/ingredient collection, including bee, pumpkin and shellfish, plus a separate colored silhouette icon collection. The revised box uses turquoise engraved dog/cat artwork on white."
+      },
+      "icon_system": {
+        "evidence_status": "visual_observation",
+        "source_pages": [
+          46
+        ],
+        "role": "Ingredient/protein, supplement and species identification; not the five website category assignments.",
+        "repository_manifest": "public/images/icons/manifest.json",
+        "repository_asset_count": 19,
+        "repository_evidence_status": "repository_reference",
+        "geometry": "Original colored circular badge geometry belongs to supplied artwork. It does not authorize round UI controls or containers.",
+        "interface_icons": "Keep lucide-react for interface actions."
+      }
     },
     "composition_and_motifs": {
       "evidence_status": "visual_observation",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         1,
         7,
@@ -1126,133 +1588,132 @@
   },
   "product_families": {
     "evidence_status": "brandbook_explicit",
-    "source_id": "brandbook_2025",
+    "source_id": "brandbook_revised",
     "source_pages": [
       14,
-      32,
       33,
       34,
       35
     ],
     "purpose": "Naming, category distinction, and graphic design reference only.",
-    "catalog_status": "Historical brandbook overview, not live inventory.",
+    "catalog_status": "Nine legacy families are still described in the current PDF. They are historical product-line vocabulary, not the current five-category website navigation or live inventory.",
     "families": [
       {
         "id": "masticables",
         "label": "Masticables",
-        "color_id": "category_masticables",
         "source_pages": [
-          32,
           35
         ],
         "source_role_summary": "Mostly hard or dehydrated pieces positioned primarily for chewing and enrichment.",
         "publishing_caution": "Do not equate this family with Complementos de Masticación or assume every item has the same nutritional role or hardness.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_masticables",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "complete",
         "label": "Recetas Complete",
-        "color_id": "category_complete",
         "source_pages": [
-          32,
           33
         ],
         "source_role_summary": "Raw, ground nutritional base described as balanced/complete, with individual complements and supplements discussed by the source.",
         "publishing_caution": "The source simultaneously calls these complete and calls complements essential; do not infer a clinically complete feeding plan from this overview.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_complete",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "trucha",
         "label": "Recetas de Trucha",
-        "color_id": "category_trucha",
         "source_pages": [
-          32,
           33
         ],
         "source_role_summary": "Trout-based formulas described as functional or specialist-use alternatives, distinct from Recetas Complete.",
         "publishing_caution": "Do not assume all trout recipes are complete diets, chicken-free, or suitable for unrestricted daily feeding.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_trucha",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "masticacion",
         "label": "Complementos de Masticación",
-        "color_id": "category_masticacion",
         "source_pages": [
-          32,
           34
         ],
         "source_role_summary": "Chewing-oriented complements framed as contributing to chewing behavior and the nutritional plan.",
         "publishing_caution": "Do not prescribe daily chewing items or general safety from a brandbook; suitability is individual and product-specific.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_masticacion",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "suplementos",
         "label": "Suplementos",
-        "color_id": "category_suplementos",
         "source_pages": [
-          32,
           35
         ],
         "source_role_summary": "Small-quantity additions in formats such as powders, tablets, or drops, aimed at specific nutritional purposes.",
         "publishing_caution": "Ingredients listed in the book are not universal recommendations, doses, or proof of safety for all dogs and cats.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_suplementos",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "wild",
         "label": "Recetas Wild",
-        "color_id": "category_wild",
         "source_pages": [
-          32,
           34
         ],
         "source_role_summary": "Formulas described as combining ingredients that engage chewing and smell, with an ancestral visual narrative.",
         "publishing_caution": "Ancestor and Spirit appear in label guidelines; verify current SKU spelling and composition. The portfolio list contains a spelling variant.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_wild",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "cocidas",
         "label": "Recetas Cocidas",
-        "color_id": "category_cocidas",
         "source_pages": [
-          32,
           33
         ],
         "source_role_summary": "Cooked formulas described as specialist-use options for dogs not consuming raw food, distinct from Recetas Complete.",
         "publishing_caution": "The source discusses supplementation and professional oversight; verify current labeling before any use guidance.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_cocidas",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "treats",
         "label": "Treats",
-        "color_id": "category_treats",
         "source_pages": [
-          32,
           35
         ],
         "source_role_summary": "Mostly dehydrated, single-ingredient rewards used in training and enrichment; mixed products also appear.",
         "publishing_caution": "Do not turn mostly single-ingredient into an all-products single-protein claim.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_treats",
+        "historical_color_source_id": "brandbook_2025"
       },
       {
         "id": "complementos_nutricionales",
         "label": "Complementos Nutricionales",
-        "color_id": "category_complementos_nutricionales",
         "source_pages": [
-          32,
           34
         ],
         "source_role_summary": "Foods added to the nutritional plan for ingredient, nutrient, flavor, and texture variety.",
         "publishing_caution": "Do not publish the source's universal daily-use, allergy-prevention, or deficiency-prevention claims without verification.",
         "verified_current_species": null,
-        "verified_current_skus": null
+        "verified_current_skus": null,
+        "historical_color_id": "category_complementos_nutricionales",
+        "historical_color_source_id": "brandbook_2025"
       }
     ],
     "do_not_infer": [
@@ -1263,11 +1724,12 @@
       "Therapeutic efficacy",
       "Clinical or genetic personalization from a pet profile alone"
     ],
-    "deliberate_omissions": "Long SKU lists, feeding frequencies, and doses are not reproduced as operative instructions. Use verified current product records for those details."
+    "deliberate_omissions": "Long SKU lists, feeding frequencies, and doses are not reproduced as operative instructions. Use verified current product records for those details.",
+    "current_taxonomy_pointer": "/project_context/current_product_categories"
   },
   "content_strategy": {
     "evidence_status": "brandbook_explicit",
-    "source_id": "brandbook_2025",
+    "source_id": "brandbook_revised",
     "source_pages": [
       55,
       56,
@@ -1344,7 +1806,7 @@
   "channel_guidelines": {
     "social": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         55,
         56,
@@ -1398,7 +1860,7 @@
     },
     "packaging": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         42,
         43,
@@ -1445,7 +1907,11 @@
           "minimum_technical_print_size_pt_in_source": 7,
           "legal_and_warning_text": "Gray in the source; preserve actual legibility and contrast."
         },
-        "limitation": "Seven points is a source minimum, not a guarantee of readable or compliant printed packaging."
+        "limitation": "Seven points is a source minimum, not a guarantee of readable or compliant printed packaging.",
+        "unresolved_conflict_ids": [
+          "recipe_mockup_copy_errors",
+          "revised_palette_vs_label_prose"
+        ]
       },
       "treat_pouches": {
         "source_pages": [
@@ -1464,9 +1930,11 @@
         "unresolved_conflict_ids": [
           "treat_illustration_conflict",
           "treat_type_weight_conflict",
-          "label_logo_position_conflict"
+          "label_logo_position_conflict",
+          "dried_lung_classification_mismatch"
         ],
-        "claims_note": "Examples such as 100% natural, alto en proteína and single protein are not blanket authorization for all products."
+        "claims_note": "Examples such as 100% natural, alto en proteína and single protein are not blanket authorization for all products.",
+        "guidance_status": "Written guidance remains but older pouch examples were removed from pp. 49-50; the revised p. 45 product label uses a prominent animal engraving. Do not infer one confirmed universal template."
       },
       "treat_box": {
         "source_pages": [
@@ -1474,12 +1942,20 @@
           48
         ],
         "guidance": [
-          "Institutional turquoise block provides recognition",
-          "Wolf and wildcat engraving creates an ancestral narrative",
-          "Use the canonical tagline as shown",
-          "Interior discovery copy may complement the official slogan",
-          "Preserve hierarchy when adapting the format"
-        ]
+          "Use the canonical tagline.",
+          "Preserve hierarchy when adapting the format.",
+          "Use confirmed current box artwork; the description of its old color block, animal symbolism and interior copy is unresolved."
+        ],
+        "revised_artwork": {
+          "evidence_status": "visual_observation",
+          "source_pages": [
+            47,
+            48
+          ],
+          "surface": "Predominantly white with turquoise animal engravings and lettering, plus an orange brand tab.",
+          "interior_copy": "Nutrición con esencia en el ADN",
+          "unresolved_conflict_id": "treat_box_description_mismatch"
+        }
       },
       "wild_labels": {
         "source_pages": [
@@ -1491,7 +1967,7 @@
           "Institutional logo block at upper left",
           "Large engraved howling wolf on the left",
           "Lowercase white bold sans-serif wild as the central line name",
-          "Turquoise script ancestor or spirit immediately below",
+          "Turquoise recipe subname below wild; exact type treatment is unresolved between revised sans-serif artwork and written script guidance.",
           "Ingredients at lower center-left and guaranteed analysis at lower center-right in turquoise modular boxes",
           "Circular paw line seal at upper right",
           "Repeated small recipe name in the footer",
@@ -1505,7 +1981,8 @@
         "seal_text_shown": "Dieta Natural Cruda",
         "seal_status": "A branded graphic in the source, not independently verified certification.",
         "unresolved_conflict_ids": [
-          "wild_case_conflict"
+          "wild_case_conflict",
+          "wild_subname_type_mismatch"
         ]
       },
       "production_inputs_not_supplied": [
@@ -1519,7 +1996,7 @@
     },
     "website": {
       "evidence_status": "brandbook_explicit",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         64,
         72
@@ -1530,7 +2007,7 @@
     },
     "physical_and_corporate_applications": {
       "evidence_status": "visual_observation",
-      "source_id": "brandbook_2025",
+      "source_id": "brandbook_revised",
       "source_pages": [
         65,
         66,
@@ -1687,7 +2164,8 @@
         "Cool white",
         "Blue-gray",
         "Cool or neutral interface colors",
-        "DNAture brand orange #FF6A00 as an explicit exception"
+        "DNAture brand orange #FF6A00 as an explicit exception",
+        "Assigned category identification colors, including warm hues, in product/category context only"
       ],
       "forbidden_direction": [
         "Warm whites",
@@ -1715,8 +2193,9 @@
         "selection_and_focus": "Do not rely on an orange-only indicator on white. Use dark text and an additional clear state cue; retain dark focus outlines on light/orange surfaces and light outlines on dark surfaces.",
         "states": "Preserve the exact orange; use contrast-tested borders, underlines, or icon changes instead of opacity reductions or unapproved warm shades."
       },
-      "effect_on_reference": "Preserve the original nine-color source palette. Exact #FF6A00 is the active brand-orange exception; the five current categories may also use their assigned warm or cool identification colors only in category and product contexts.",
-      "effect_on_proposal": "Follow the current website design system and app/theme.css for brand and category roles. Earlier eyebrow-only orange restrictions and historical nine-family website navigation are superseded."
+      "effect_on_reference": "Use current secondary_palette for exact source swatches; keep historical_category_palette as an archive. The five website category assignments and pairings are in current_product_categories. Exact institutional #FF6A00 remains the brand-orange exception.",
+      "effect_on_proposal": "Follow the current website design system and app/theme.css for brand and category roles. Earlier eyebrow-only orange restrictions and historical nine-family website navigation are superseded.",
+      "digital_support_color_note": "#124563 remains a website dark support color inherited from the earlier design. Its historical Wild category role does not assign it to any of the five current categories."
     },
     "section_eyebrow": {
       "component_path": "components/section-eyebrow.tsx",
@@ -1788,40 +2267,115 @@
     "current_product_categories": {
       "evidence_status": "project_override",
       "source_id": "current_user_request",
-      "note": "These five current website categories supersede the brandbook’s nine historical families for site navigation. Their colors identify product categories only; they are not general UI or brand colors.",
+      "note": "Five website categories specified by the user. Exact accent swatches come from the current brandbook; their category assignments and accessible pairings are user-authorized website design decisions. These decisions do not recolor approved packaging or imply nutritional roles.",
       "theme_file": "app/theme.css",
       "items": [
         {
           "name": "Complementos",
-          "color": "#80601F",
-          "css_token": "--dn-category-complementos"
+          "id": "complementos",
+          "palette_color_id": "secondary_amber",
+          "color": "#D79412",
+          "ink": "#5B2E20",
+          "on_color": "#000000",
+          "css_token": "--dn-category-complementos",
+          "ink_css_token": "--dn-category-complementos-ink",
+          "on_color_css_token": "--dn-category-complementos-on-color",
+          "contrast_ratio": {
+            "ink_on_white": 11.31,
+            "ink_on_cool_surface": 10.79,
+            "on_color_on_accent": 8.13
+          }
         },
         {
           "name": "Deshidratados",
-          "color": "#9A471B",
-          "css_token": "--dn-category-deshidratados"
+          "id": "deshidratados",
+          "palette_color_id": "secondary_orange",
+          "color": "#ED6F1E",
+          "ink": "#5B2E20",
+          "on_color": "#000000",
+          "css_token": "--dn-category-deshidratados",
+          "ink_css_token": "--dn-category-deshidratados-ink",
+          "on_color_css_token": "--dn-category-deshidratados-on-color",
+          "contrast_ratio": {
+            "ink_on_white": 11.31,
+            "ink_on_cool_surface": 10.79,
+            "on_color_on_accent": 6.89
+          }
         },
         {
           "name": "Órganos",
-          "color": "#742019",
-          "css_token": "--dn-category-organos"
+          "id": "organos",
+          "palette_color_id": "secondary_burgundy",
+          "color": "#6A1B23",
+          "ink": "#6A1B23",
+          "on_color": "#FFFFFF",
+          "css_token": "--dn-category-organos",
+          "ink_css_token": "--dn-category-organos-ink",
+          "on_color_css_token": "--dn-category-organos-on-color",
+          "contrast_ratio": {
+            "ink_on_white": 11.71,
+            "ink_on_cool_surface": 11.17,
+            "on_color_on_accent": 11.71
+          }
         },
         {
           "name": "Recetas completas",
-          "color": "#426D36",
-          "css_token": "--dn-category-recetas-completas"
+          "id": "recetas-completas",
+          "palette_color_id": "secondary_green",
+          "color": "#2E7246",
+          "ink": "#2E7246",
+          "on_color": "#FFFFFF",
+          "css_token": "--dn-category-recetas-completas",
+          "ink_css_token": "--dn-category-recetas-completas-ink",
+          "on_color_css_token": "--dn-category-recetas-completas-on-color",
+          "contrast_ratio": {
+            "ink_on_white": 5.81,
+            "ink_on_cool_surface": 5.55,
+            "on_color_on_accent": 5.81
+          }
         },
         {
           "name": "Suplementos",
-          "color": "#531845",
-          "css_token": "--dn-category-suplementos"
+          "id": "suplementos",
+          "palette_color_id": "secondary_mauve",
+          "color": "#A05A77",
+          "ink": "#A05A77",
+          "on_color": "#FFFFFF",
+          "css_token": "--dn-category-suplementos",
+          "ink_css_token": "--dn-category-suplementos-ink",
+          "on_color_css_token": "--dn-category-suplementos-on-color",
+          "contrast_ratio": {
+            "ink_on_white": 4.97,
+            "ink_on_cool_surface": 4.74,
+            "on_color_on_accent": 4.97
+          }
         }
-      ]
+      ],
+      "palette_source_id": "brandbook_revised",
+      "palette_source_pages": [
+        32
+      ],
+      "assignment_rationale": "Preserve recognizable warm, red, green and purple category distinctions using exact current swatches. Use lighter amber/orange for identification and dark ink for readable text.",
+      "usage": {
+        "accent": "Category identification swatches, decorative rules and category-specific fills. Amber/orange alone must not indicate a functional state on light surfaces.",
+        "ink": "Category text, prices, functional icons, control boundaries and active underlines on white/cool surfaces.",
+        "on_color": "Text and icons on a solid category accent fill. Black for Complementos/Deshidratados; white for the other three.",
+        "labels": "Keep category names visible; color is supplementary. Preserve native focus and selected semantics.",
+        "scope": "Category hues, including warm ones, are confined to category/product context. Ingredient and species artwork retain their source colors; do not infer category from them."
+      },
+      "legacy_family_mapping": {
+        "status": "No automatic migration of product membership from PDF examples.",
+        "known_display_alias": {
+          "Snacks deshidratados": "Deshidratados"
+        },
+        "rule": "Use verified commerce category membership. Recetas Complete, Trucha, Cocidas, Wild, Treats, Masticables and historical complement names are not sufficient to assign an SKU to one of the five categories. Órganos and Deshidratados can describe different facets; do not classify by name or imagery alone.",
+        "unknown_category_behavior": "Preserve its source label and use neutral colors until commerce classification is updated."
+      }
     }
   },
   "review_findings": {
     "evidence_status": "editorial_interpretation",
-    "summary": "A strong strategic and visual identity combining scientific authority with protective care. It is most useful as a brand and campaign guide; it needs conflict resolution, production assets, and verified product data before acting as a complete implementation specification.",
+    "summary": "The revised book preserves the core strategy, primary palette, logo and typography direction, while replacing the secondary swatches and revising labels, illustrations, icons and campaign mockups. Some explanatory copy and product data lag behind the artwork; use the explicit project mappings and unresolved conflict records.",
     "strengths": [
       {
         "finding": "Coherent science-plus-care positioning, supported by archetypes and specific tone guidance.",
@@ -1840,7 +2394,7 @@
         ]
       },
       {
-        "finding": "Exact primary and category color values and named font families.",
+        "finding": "Exact primary and secondary swatches and named font families; website category assignments are a separate project decision.",
         "source_pages": [
           31,
           32,
@@ -1883,7 +2437,8 @@
           43
         ],
         "issue": "The official tagline and La nutrición comienza en el ADN both appear.",
-        "working_resolution": "Use Nutrición con esencia en el ADN as canonical, explicitly defined on pages 20-21. Preserve the other wording only as a source example."
+        "working_resolution": "Use Nutrición con esencia en el ADN as canonical, explicitly defined on pages 20-21. Preserve the other wording only as a source example.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "barf_in_comparison_examples",
@@ -1894,17 +2449,20 @@
           69
         ],
         "issue": "BARF is restricted in the vocabulary but appears in comparative campaign copy.",
-        "working_resolution": "Never use BARF as the brand's category label. Prefer positive physiological-nutrition wording; treating comparative use as a blanket exception is not supported."
+        "working_resolution": "Never use BARF as the brand's category label. Prefer positive physiological-nutrition wording; treating comparative use as a blanket exception is not supported.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "treat_illustration_conflict",
         "source_pages": [
+          45,
           49,
           50,
           54
         ],
-        "issue": "Page 49 says to remove the animal icon because the window shows the product; page 50 calls for wolf/wildcat illustrations along the base; page 54 generalizes engraving to all labels.",
-        "working_resolution": "Unresolved. Retain the confirmed family template; seek a brand-owner decision before claiming a new universal pouch layout."
+        "issue": "Page 49 says to remove the animal icon because the window shows the product; p. 50 calls for wolf/wildcat illustrations and p. 54 generalizes engraving. The revised dried-lung label on p. 45 prominently shows a cattle engraving.",
+        "working_resolution": "Unresolved. Retain the confirmed family template; seek a brand-owner decision before claiming a new universal pouch layout.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "treat_type_weight_conflict",
@@ -1913,7 +2471,8 @@
           50
         ],
         "issue": "The process descriptor is described as bold on page 49 and regular on page 50.",
-        "working_resolution": "Unresolved. Follow the confirmed production template and keep a clear ingredient/process hierarchy."
+        "working_resolution": "Unresolved. Follow the confirmed production template and keep a clear ingredient/process hierarchy.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "label_logo_position_conflict",
@@ -1923,7 +2482,8 @@
           54
         ],
         "issue": "Treat-pouch guidance centers the top logo, whereas Wild and the all-label summary put it at upper left.",
-        "working_resolution": "Preserve family-specific layouts; do not apply the all-label summary to relocate every logo without confirmation."
+        "working_resolution": "Preserve family-specific layouts; do not apply the all-label summary to relocate every logo without confirmation.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "wild_case_conflict",
@@ -1933,7 +2493,8 @@
           54
         ],
         "issue": "Page 53 explicitly requires lowercase wild; page 54 broadly says uppercase base names while using wild as its example.",
-        "working_resolution": "For Wild, follow the explicit line-specific lowercase treatment shown in the artwork and page 53."
+        "working_resolution": "For Wild, follow the explicit line-specific lowercase treatment shown in the artwork and page 53.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "complete_and_complements",
@@ -1942,7 +2503,8 @@
           34
         ],
         "issue": "Complete is called balanced/complete, while complements are described as essential. The complete overview also says chicken is the base but lists trout/beef; trout alternatives include chicken-containing names.",
-        "working_resolution": "Treat category names as branding, not clinical adequacy or allergen guarantees. Resolve each SKU against current formulation data."
+        "working_resolution": "Treat category names as branding, not clinical adequacy or allergen guarantees. Resolve each SKU against current formulation data.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "cold_vs_clinical_tone",
@@ -1953,7 +2515,8 @@
           61
         ],
         "issue": "Core voice guidance avoids cold clinical communication, but portfolio sections refer to retaining a clinical tone.",
-        "working_resolution": "Interpret as technical precision with human warmth, not impersonal language."
+        "working_resolution": "Interpret as technical precision with human warmth, not impersonal language.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "logo_background_labels",
@@ -1963,7 +2526,8 @@
           29
         ],
         "issue": "Principal/invertida labels are not fully consistent across examples.",
-        "working_resolution": "Choose by actual artwork color, legibility and approved variants rather than the example label alone."
+        "working_resolution": "Choose by actual artwork color, legibility and approved variants rather than the example label alone.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "warm_palette_vs_repository",
@@ -1974,7 +2538,8 @@
         ],
         "additional_source_id": "repository_rules",
         "issue": "The source palette includes multiple warm colors. The current website permits exact institutional brand orange and assigned identification colors for the five current product categories.",
-        "working_resolution": "Use #FF6A00 actively for brand actions and emphasis. Use the five current category colors only to identify their own categories in catalog and product contexts. Other warm general UI colors remain excluded."
+        "working_resolution": "Use #FF6A00 actively for brand actions and emphasis. Use the five current category colors only to identify their own categories in catalog and product contexts. Other warm general UI colors remain excluded.",
+        "source_id": "brandbook_revised"
       },
       {
         "id": "generic_claims_inside_source",
@@ -1985,7 +2550,90 @@
           50
         ],
         "issue": "The vocabulary rejects empty quality/natural claims, while introductory and packaging copy includes such language.",
-        "working_resolution": "Use precise supported descriptions; do not treat every example sentence as pre-approved public copy."
+        "working_resolution": "Use precise supported descriptions; do not treat every example sentence as pre-approved public copy.",
+        "source_id": "brandbook_revised"
+      },
+      {
+        "id": "current_taxonomy_vs_legacy_families",
+        "evidence_status": "unresolved",
+        "source_id": "brandbook_revised",
+        "source_pages": [
+          14,
+          32,
+          33,
+          34,
+          35
+        ],
+        "issue": "The revised PDF still lists nine legacy families and provides 18 unassigned secondary swatches; it does not define the five current website categories.",
+        "working_resolution": "Apply the user-specified five categories and website assignments. Preserve legacy family vocabulary as source history. Verify SKU membership in commerce data."
+      },
+      {
+        "id": "secondary_green_rgb_mismatch",
+        "evidence_status": "unresolved",
+        "source_id": "brandbook_revised",
+        "source_pages": [
+          32
+        ],
+        "issue": "For #2E7246, the upper RGB label is 46,114,70 but the lower RGB row is 55,66,20, repeated from the preceding dark olive.",
+        "working_resolution": "Use #2E7246 / RGB 46,114,70 for digital work; flag the lower source row for correction."
+      },
+      {
+        "id": "recipe_mockup_copy_errors",
+        "evidence_status": "unresolved",
+        "source_id": "brandbook_revised",
+        "source_pages": [
+          44
+        ],
+        "issue": "Pollo y res and Pollo y caballo examples repeat chicken-only ingredient/nutrition copy and COMPLETE POLLO headings. The horse formula also carries a COMPLETE POLLO Y RES identifier.",
+        "working_resolution": "Treat these as unverified mockup content. Obtain actual recipe records before publishing ingredients, nutrition, claims or labels; do not propagate the apparent copy errors."
+      },
+      {
+        "id": "wild_subname_type_mismatch",
+        "evidence_status": "unresolved",
+        "source_id": "brandbook_revised",
+        "source_pages": [
+          45,
+          51,
+          52,
+          53
+        ],
+        "issue": "Revised flat labels show ancestor/spirit in sans serif, while p. 53 still requires script/cursive and some product renders retain the older treatment.",
+        "working_resolution": "Retain supplied confirmed artwork. Record written and visual evidence separately; do not declare a script or sans-serif production rule resolved."
+      },
+      {
+        "id": "treat_box_description_mismatch",
+        "evidence_status": "unresolved",
+        "source_id": "brandbook_revised",
+        "source_pages": [
+          47,
+          48
+        ],
+        "issue": "The revised box is predominantly white with turquoise animal artwork and the official tagline inside. Page 48 still describes the old turquoise block, wolf/wildcat narrative and previous interior copy.",
+        "working_resolution": "Use current confirmed assets and canonical tagline. Preserve the old description as unresolved source text, not current artwork instructions."
+      },
+      {
+        "id": "revised_palette_vs_label_prose",
+        "evidence_status": "unresolved",
+        "source_id": "brandbook_revised",
+        "source_pages": [
+          32,
+          43,
+          44,
+          49,
+          54
+        ],
+        "issue": "New swatches and recipe artwork use amber, orange and burgundy, while prose still describes turquoise/purple dominance and earlier color conventions.",
+        "working_resolution": "Use exact current swatches for digital color. Verify the final recipe/protein color mapping from production assets; do not invent it from contradictory descriptions."
+      },
+      {
+        "id": "dried_lung_classification_mismatch",
+        "evidence_status": "unresolved",
+        "source_id": "brandbook_revised",
+        "source_pages": [
+          45
+        ],
+        "issue": "The dried-lung front carries a Treats seal while the back describes Suplementos para perros y gatos.",
+        "working_resolution": "Do not classify this product from the mockup. Use its verified current commerce category and approved product record."
       }
     ],
     "not_specified_or_unverified": [
@@ -1999,7 +2647,7 @@
       },
       {
         "topic": "Typography",
-        "missing": "Webfont licenses, fallback policy, responsive type scale, exact Wild script font."
+        "missing": "Commercial brand-font web licenses and a confirmed Wild subname type treatment. Open website alternatives and their local licenses are recorded in project_context.website_font_mapping."
       },
       {
         "topic": "Color production",
@@ -2121,7 +2769,7 @@
     {
       "first_page": 31,
       "last_page": 32,
-      "topic": "Primary and category color specifications"
+      "topic": "Primary palette and 18 revised secondary swatches; no five-category mapping"
     },
     {
       "first_page": 33,
@@ -2141,7 +2789,7 @@
     {
       "first_page": 42,
       "last_page": 46,
-      "topic": "Nutrition-label design and engraving style"
+      "topic": "Revised labels, engraving collection and ingredient/species icon examples"
     },
     {
       "first_page": 47,
@@ -2208,5 +2856,99 @@
       "last_page": 79,
       "topic": "Closing identity statement"
     }
-  ]
+  ],
+  "active_brandbook_source_id": "brandbook_revised",
+  "revision_review": {
+    "evidence_status": "editorial_interpretation",
+    "source_id": "brandbook_revised",
+    "compared_with_source_id": "brandbook_2025",
+    "source_precedence": "Current task instructions and website project rules govern implementation. The new book supersedes the older book as brand evidence; conflicting prose and mockups remain explicitly unresolved.",
+    "changed": [
+      {
+        "pages": [
+          32
+        ],
+        "topic": "Nine labeled family colors replaced by 18 unlabeled secondary swatches."
+      },
+      {
+        "pages": [
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          53,
+          54
+        ],
+        "topic": "Revised recipe labels, Wild subname artwork, treats-box design, engraving collection and ingredient/species icon examples."
+      },
+      {
+        "pages": [
+          55,
+          56,
+          57,
+          58,
+          63,
+          64,
+          66,
+          67,
+          69,
+          71,
+          78
+        ],
+        "topic": "Updated packaging imagery propagated into social, web and physical mockups."
+      }
+    ],
+    "stable": [
+      "Institutional turquoise #00A9B5 and orange #FF6A00, gray #B2B2B2 and charcoal #3C3C3B.",
+      "Monochromatic main logo and Nutrición con esencia en el ADN tagline.",
+      "Avenir Next LT Pro, Gotham Ultra and Arial Bold source families.",
+      "Science-and-care positioning and 30/30/20/20 content mix."
+    ],
+    "implemented_website_decisions": [
+      "Five current category accents selected from exact new p. 32 swatches.",
+      "Separate ink and on-color roles preserve readable text and control boundaries.",
+      "Keep Manrope/Montserrat website substitutes, active brand orange, flat layouts, square UI and zero elevation.",
+      "Keep source ingredient/species graphics distinct from website category identifiers and lucide interface icons."
+    ],
+    "previous_website_category_colors": {
+      "status": "Superseded v0.4 website assignments; historical only.",
+      "items": [
+        {
+          "name": "Complementos",
+          "color": "#80601F",
+          "css_token": "--dn-category-complementos"
+        },
+        {
+          "name": "Deshidratados",
+          "color": "#9A471B",
+          "css_token": "--dn-category-deshidratados"
+        },
+        {
+          "name": "Órganos",
+          "color": "#742019",
+          "css_token": "--dn-category-organos"
+        },
+        {
+          "name": "Recetas completas",
+          "color": "#426D36",
+          "css_token": "--dn-category-recetas-completas"
+        },
+        {
+          "name": "Suplementos",
+          "color": "#531845",
+          "css_token": "--dn-category-suplementos"
+        }
+      ]
+    },
+    "pending_source_work": [
+      "Confirm product-specific ingredient, analysis and membership records outside the mockups.",
+      "Obtain/confirm final updated label and box assets before replacing live product imagery.",
+      "Correct the listed palette, label, type and box-description inconsistencies in the source brandbook."
+    ]
+  }
 }

@@ -2,8 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { ArrowLeft } from "lucide-react";
-import type { CSSProperties } from "react";
-import { categoryFromSlug, isCategorySlug, prepareCatalog, productsForCategory } from "../lib/browse-catalog";
+import { categoryFromSlug, categoryStyle, isCategorySlug, prepareCatalog, productsForCategory } from "../lib/browse-catalog";
 import { getBrowseCatalogProducts } from "../server/catalog";
 import { getRecentCatalogSales } from "../server/recent-sales";
 import { CatalogProductPreview } from "./catalog-product-preview";
@@ -35,7 +34,7 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
   const products = productsForCategory(prepared.listings, category.id);
 
   return <>
-    <section className={styles.categoryHero} style={{ "--shelf-accent": category.color } as CSSProperties} aria-labelledby="category-title">
+    <section className={styles.categoryHero} style={categoryStyle(category)} aria-labelledby="category-title">
       <div className={styles.categoryHeroInner}>
         <Link href="/productos" className={styles.backLink}><ArrowLeft size={20} aria-hidden="true" /> Todos los productos</Link>
         <p className={styles.categoryKicker}>Familia de productos</p>
@@ -43,7 +42,7 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
         <p>Explorá todos los productos de esta categoría y consultá sus precios y disponibilidad.</p>
       </div>
     </section>
-    <section className={styles.categoryCollection} style={{ "--shelf-accent": category.color } as CSSProperties} aria-labelledby="category-products-title">
+    <section className={styles.categoryCollection} style={categoryStyle(category)} aria-labelledby="category-products-title">
       <div className={styles.resultsInner}>
         <div className={styles.resultHeading}>
           <div><p className={styles.sectionLabel}>Según ventas de los últimos 30 días</p><h2 id="category-products-title">Todos los productos</h2></div>

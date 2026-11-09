@@ -42,12 +42,24 @@
   --dn-focus-ring-inverse: var(--dn-text-inverse);
   --dn-overlay: rgb(17 45 53 / 56%);
 
-  /* These deeper shades work as text on white and as fills behind white text. */
-  --dn-category-complementos: #80601f;
-  --dn-category-deshidratados: #9a471b;
-  --dn-category-organos: #742019;
-  --dn-category-recetas-completas: #426d36;
-  --dn-category-suplementos: #531845;
+  /* Exact p. 32 swatches from DNA-BRANDBOOK.pdf; category assignments are website decisions.
+     Base = identification accents; ink = text/boundaries on light surfaces;
+     on-color = text on the solid category fill. Never assume white on every fill. */
+  --dn-category-complementos: #d79412;
+  --dn-category-complementos-ink: #5b2e20;
+  --dn-category-complementos-on-color: #000000;
+  --dn-category-deshidratados: #ed6f1e;
+  --dn-category-deshidratados-ink: #5b2e20;
+  --dn-category-deshidratados-on-color: #000000;
+  --dn-category-organos: #6a1b23;
+  --dn-category-organos-ink: var(--dn-category-organos);
+  --dn-category-organos-on-color: var(--dn-text-inverse);
+  --dn-category-recetas-completas: #2e7246;
+  --dn-category-recetas-completas-ink: var(--dn-category-recetas-completas);
+  --dn-category-recetas-completas-on-color: var(--dn-text-inverse);
+  --dn-category-suplementos: #a05a77;
+  --dn-category-suplementos-ink: var(--dn-category-suplementos);
+  --dn-category-suplementos-on-color: var(--dn-text-inverse);
 
   --font-body: var(--dn-font-body), var(--dn-font-currency), Arial, sans-serif;
   --font-display: var(--dn-font-display), Arial, sans-serif;

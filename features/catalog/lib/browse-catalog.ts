@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { SalesBucket } from "@/features/sales/types/sales";
 import type { CatalogProduct } from "../types/catalog";
 import { contentfulImageUrl } from "./contentful-image-url";
@@ -5,7 +6,7 @@ import { productOffer, type ProductOffer } from "./product-offer";
 
 export const CATALOG_SHELF_SIZE = 5;
 
-export type CatalogCategory = { id: string; label: string; color: string };
+export type CatalogCategory = { id: string; label: string; color: string; ink: string; onColor: string };
 export type CatalogListing = {
   sku: string;
   name: string;
@@ -17,13 +18,21 @@ export type CatalogListing = {
 };
 export type CatalogShelf = { category: CatalogCategory; products: CatalogListing[] };
 
-const CATEGORY_THEME: Record<string, { label: string; color: string; order: number }> = {
-  complementos: { label: "Complementos", color: "var(--dn-category-complementos)", order: 0 },
-  deshidratados: { label: "Deshidratados", color: "var(--dn-category-deshidratados)", order: 1 },
-  organos: { label: "Órganos", color: "var(--dn-category-organos)", order: 2 },
-  "recetas completas": { label: "Recetas completas", color: "var(--dn-category-recetas-completas)", order: 3 },
-  suplementos: { label: "Suplementos", color: "var(--dn-category-suplementos)", order: 4 },
+const CATEGORY_THEME: Record<string, { label: string; token: string; order: number }> = {
+  complementos: { label: "Complementos", token: "--dn-category-complementos", order: 0 },
+  deshidratados: { label: "Deshidratados", token: "--dn-category-deshidratados", order: 1 },
+  organos: { label: "Órganos", token: "--dn-category-organos", order: 2 },
+  "recetas completas": { label: "Recetas completas", token: "--dn-category-recetas-completas", order: 3 },
+  suplementos: { label: "Suplementos", token: "--dn-category-suplementos", order: 4 },
 };
+
+export function categoryStyle(category: CatalogCategory): CSSProperties {
+  return {
+    "--category-color": category.color,
+    "--category-ink": category.ink,
+    "--category-on-color": category.onColor,
+  } as CSSProperties;
+}
 
 function normalized(value: string): string {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
@@ -65,7 +74,9 @@ export function prepareCatalog(products: readonly CatalogProduct[], buckets: rea
         categories.set(category.id, {
           id: category.id,
           label: theme?.label ?? category.label,
-          color: theme?.color ?? "var(--dn-surface-dark)",
+          color: theme ? `var(${theme.token})` : "var(--dn-surface-dark)",
+          ink: theme ? `var(${theme.token}-ink)` : "var(--dn-surface-dark)",
+          onColor: theme ? `var(${theme.token}-on-color)` : "var(--dn-text-inverse)",
         });
       }
     }
