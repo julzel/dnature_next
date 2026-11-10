@@ -3,7 +3,8 @@ import { expect, test } from "@playwright/test";
 type SlideFrame = { text: string; opacity: number; underlineAnimatingBeforeSlideEnds: boolean };
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/");
+  // The personalized form is in the static shell; catalog streaming is unrelated.
+  await page.goto("/", { waitUntil: "commit" });
   await page.getByRole("dialog").getByRole("link", { name: "Visita guiada", exact: true }).click();
 });
 
@@ -135,20 +136,24 @@ test("supports custom breeds, escape, and narrow screens with reduced motion", a
   await expect(section.locator("dd")).toHaveText(["Sol", "Perro", "Cruce de collie"]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(320);
   await expect(section.getByRole("heading", { name: "¡Un gusto, Sol!" }).locator("..")).toHaveCSS("animation-name", "none");
-  const dogStroke = section.getByRole("article", { name: "Ficha de Sol" }).locator("svg path").first();
-  await expect(dogStroke).toHaveCSS("animation-name", "none");
-  await expect(dogStroke).toHaveCSS("stroke-dashoffset", "0px");
+  const dogImage = section.getByRole("article", { name: "Ficha de Sol" }).locator('img[data-species="dog"]');
+  await expect(dogImage).toHaveCSS("animation-name", "none");
+  await expect(dogImage).toHaveCSS("opacity", "1");
   await section.screenshot({ path: testInfo.outputPath("pet-narrow.png") });
 });
 
 for (const pet of [
-  { species: "dog", choice: "Perro", name: "Juve", breed: "Akita", outlineIndex: 4 },
-  { species: "cat", choice: "Gato", name: "Luna", breed: "Persa", outlineIndex: 0 },
+  { species: "dog", choice: "Perro", name: "Juve", breed: "Akita" },
+  { species: "cat", choice: "Gato", name: "Luna", breed: "Persa" },
 ] as const) {
-test(`the profile ${pet.species} draws its strokes after the slide`, async ({ page }, testInfo) => {
+test(`the ${pet.species} artwork loads in the selector and reveals in the profile`, async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   const section = page.locator("#experiencia-personalizada");
-  await expect(section.getByRole("button", { name: pet.choice, exact: true }).locator("svg").first()).toHaveAttribute("data-animated", "false");
+  const choiceImage = section.getByRole("button", { name: pet.choice, exact: true }).locator("img");
+  await expect(choiceImage).toHaveAttribute("src", `/images/pets/${pet.species}.svg`);
+  await expect(choiceImage).toHaveAttribute("alt", "");
+  await expect(choiceImage).toHaveAttribute("data-animated", "false");
+  await expect.poll(() => choiceImage.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
   await section.getByRole("button", { name: pet.choice, exact: true }).click();
   await expect(section.getByRole("heading", { name: "¿Cómo se llama tu mascota?" })).toBeFocused();
   await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill(pet.name);
@@ -159,26 +164,24 @@ test(`the profile ${pet.species} draws its strokes after the slide`, async ({ pa
   await section.getByRole("button", { name: "Ver perfil" }).click();
   await expect(section.getByRole("heading", { name: `¡Un gusto, ${pet.name}!` })).toBeFocused();
   const profile = section.getByRole("article", { name: `Ficha de ${pet.name}` });
-  const strokes = profile.locator("svg path");
+  const image = profile.locator("img");
   await expect(profile).toHaveAttribute("data-revealed", "true");
-  for (const stroke of await strokes.all()) {
-    await expect(stroke).toHaveAttribute("pathLength", "1");
-    await expect(stroke).toHaveCSS("animation-name", /draw-pet/);
-  }
-  const offsets = await strokes.nth(pet.outlineIndex).evaluate((stroke) => {
-    const animation = stroke.getAnimations()[0];
+  await expect(image).toHaveAttribute("src", `/images/pets/${pet.species}-small.svg`);
+  await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
+  await expect(image).toHaveCSS("animation-name", /reveal-species/);
+  const opacity = await image.evaluate((element) => {
+    const animation = element.getAnimations()[0];
     animation.pause();
-    animation.currentTime = 300;
-    const during = parseFloat(getComputedStyle(stroke).strokeDashoffset);
+    animation.currentTime = 160;
+    const during = parseFloat(getComputedStyle(element).opacity);
     animation.finish();
-    return { during, after: parseFloat(getComputedStyle(stroke).strokeDashoffset) };
+    return { during, after: parseFloat(getComputedStyle(element).opacity) };
   });
-  expect(offsets.during).toBeGreaterThan(0);
-  expect(offsets.during).toBeLessThan(1);
-  expect(offsets.after).toBe(0);
+  expect(opacity.during).toBeGreaterThan(0);
+  expect(opacity.during).toBeLessThan(1);
+  expect(opacity.after).toBe(1);
   await expect(profile.locator("dd").last()).toHaveCSS("opacity", "1");
-  await expect.poll(() => strokes.evaluateAll((paths) => paths.every((path) => parseFloat(getComputedStyle(path).strokeDashoffset) === 0))).toBe(true);
-  await profile.screenshot({ path: testInfo.outputPath(`drawn-${pet.species}-profile.png`) });
+  await profile.screenshot({ path: testInfo.outputPath(`${pet.species}-profile.png`) });
 });
 }
 

@@ -5,7 +5,7 @@ export const metadata = pageMetadata({ path: "/ciencia/nuestros-criterios", titl
 
 export default function Criteria() {
   return <main id="contenido" className="shell article">
-    <Breadcrumbs items={[{ name: "Inicio", path: "/" }, { name: "Ciencia", path: "/ciencia" }, { name: "Nuestros criterios", path: "/ciencia/nuestros-criterios" }]} />
+    <Breadcrumbs items={[{ name: "Inicio", path: "/" }, { name: "Nuestros criterios", path: "/ciencia/nuestros-criterios" }]} />
     <p className="eyebrow">Transparencia editorial</p>
     <h1>Nuestros criterios de publicación</h1>
     <p className="lead">Esta es la pauta que debe cumplir la información nutricional antes de publicarse en DNAture.</p>

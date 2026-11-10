@@ -1,42 +1,16 @@
 .card {
-  position: relative;
-  padding: 24px 16px;
-  border: 2px solid transparent;
-  border-radius: 16px;
+  padding-block: var(--dn-space-6);
+  border-block: 1px solid rgb(9 47 57 / 40%);
   background: transparent;
   color: #092f39;
   text-align: start;
 }
 
-.card::before, .card::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border: 2px solid #092f39;
-  border-radius: inherit;
-  pointer-events: none;
-  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-  mask-repeat: no-repeat;
-}
-
-.card::before {
-  mask-position: center top, center bottom;
-  mask-size: 0% 16px;
-}
-
-.card::after {
-  mask-position: left center, right center;
-  mask-size: 16px 0%;
-}
-
-.card[data-revealed="true"]::before { animation: badge-borders-x 320ms ease-out both; }
-.card[data-revealed="true"]::after { animation: badge-borders-y 320ms ease-out both; }
-
 .body {
   display: grid;
   grid-template-columns: 80px minmax(0, 1fr);
   align-items: start;
-  gap: 16px;
+  gap: var(--dn-space-4);
 }
 
 .portrait {
@@ -46,7 +20,7 @@
   block-size: 80px;
 }
 
-.portrait svg { inline-size: 56px; block-size: 56px; }
+.portrait img { inline-size: 80px; block-size: auto; }
 .details { min-inline-size: 0; }
 .details > div { position: relative; display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; gap: 8px; min-inline-size: 0; padding-block: 12px; }
 .details > div:first-child { padding-block-start: 0; }
@@ -73,26 +47,17 @@
 .details dd { margin: 0; font-size: 16px; font-weight: 750; line-height: 1.4; text-align: end; overflow-wrap: anywhere; }
 
 @media (min-width: 640px) {
-  .card { padding: 32px; }
-  .body { grid-template-columns: 112px minmax(0, 1fr); gap: 32px; }
-  .portrait { inline-size: 112px; block-size: 112px; }
-  .portrait svg { inline-size: 80px; block-size: 80px; }
-  .details > div { gap: 16px; }
+  .card { padding-block: var(--dn-space-8); }
+  .body { gap: var(--dn-space-8); }
+  .details > div { gap: var(--dn-space-4); }
 }
 
 @keyframes divider-expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes details-reveal { to { opacity: 1; } }
-@keyframes badge-borders-x { from { mask-size: 0% 16px; } to { mask-size: 100% 16px; } }
-@keyframes badge-borders-y { from { mask-size: 16px 0%; } to { mask-size: 16px 100%; } }
-
-.card[data-animated="false"]::before { animation: none; mask-size: 100% 16px; }
-.card[data-animated="false"]::after { animation: none; mask-size: 16px 100%; }
 .card[data-animated="false"] .details > div + div::before { animation: none; transform: scaleX(1); }
 .card[data-animated="false"] .details dt, .card[data-animated="false"] .details dd { animation: none; opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
-  .card[data-revealed]::before { animation: none; mask-size: 100% 16px; }
-  .card[data-revealed]::after { animation: none; mask-size: 16px 100%; }
   .card[data-revealed] .details > div + div::before { animation: none; transform: scaleX(1); }
   .card[data-revealed] .details dt, .card[data-revealed] .details dd { animation: none; opacity: 1; }
 }

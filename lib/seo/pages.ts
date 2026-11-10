@@ -2,6 +2,5 @@
 export const publicPages = [
   { path: "/productos", title: "Productos DNAture" },
   { path: "/nosotros", title: "Quiénes somos" },
-  { path: "/ciencia", title: "Ciencia y nutrición fisiológica" },
   { path: "/ciencia/nuestros-criterios", title: "Nuestros criterios de publicación" },
 ] as const;

@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "name": "DNAture website species artwork",
+  "format": "svg",
+  "view_box": [0, 0, 480, 480],
+  "background": "transparent",
+  "status": "Website adaptations prepared for this request; not newly commissioned drawings or changes to the source brandbook.",
+  "palette": {
+    "ink": "#092F39",
+    "mint": "#8FE4D9"
+  },
+  "sources": {
+    "engraving": {
+      "file": "DNA-BRANDBOOK.pdf",
+      "sha256": "c67d0c1dec925e26297bd5f26452656b0243d349c7d556dd183b104c21dd2d83",
+      "page": 46,
+      "method": "Extracted native vector animal paths with Poppler, isolated each animal, recolored black/white to ink/mint, removed a detached dog-artwork speck, normalized to a shared canvas and baseline, and optimized path coordinates. No raster tracing or embedded bitmap."
+    },
+    "silhouette": {
+      "file": "EDITABLES.ai",
+      "sha256": "f1ad78867bf0c32c942d7981a709e327fd6dcf262ba9fc4326b65672a02dd4f4",
+      "manifest": "public/images/icons/manifest.json",
+      "artboards": { "cat": 18, "dog": 19 },
+      "method": "Adapted the existing source SVG exports, removed the circular badge and outer ring, recolored the animal to ink, and normalized its optical size. Original exports are preserved."
+    }
+  },
+  "assets": [
+    {
+      "species": "cat",
+      "label_es": "Gato",
+      "variant": "engraving",
+      "path": "/images/pets/cat.svg",
+      "source": "engraving",
+      "recommended_min_width_px": 96,
+      "use": ["Species selection", "Editorial species illustration"]
+    },
+    {
+      "species": "dog",
+      "label_es": "Perro",
+      "variant": "engraving",
+      "path": "/images/pets/dog.svg",
+      "source": "engraving",
+      "recommended_min_width_px": 96,
+      "use": ["Species selection", "Editorial species illustration"]
+    },
+    {
+      "species": "cat",
+      "label_es": "Gato",
+      "variant": "silhouette",
+      "path": "/images/pets/cat-small.svg",
+      "source": "silhouette",
+      "recommended_min_width_px": 24,
+      "use": ["Pet profile", "Cat-only product label", "Compact species metadata"]
+    },
+    {
+      "species": "dog",
+      "label_es": "Perro",
+      "variant": "silhouette",
+      "path": "/images/pets/dog-small.svg",
+      "source": "silhouette",
+      "recommended_min_width_px": 24,
+      "use": ["Pet profile", "Dog-only product label", "Compact species metadata"]
+    }
+  ],
+  "usage_rules": [
+    "Use the engraving at 96px or larger; prefer the silhouette at 24–80px.",
+    "The compact set uses distinct source-approved silhouettes, not crops of the engraving poses.",
+    "Place on light or turquoise surfaces; the ink silhouette is not a reverse asset for dark surfaces.",
+    "Preserve proportions, transparent margins, and natural contours. Do not add a card, circular crop, border, shadow, or category color.",
+    "Species artwork identifies an animal, not a product category or breed recommendation.",
+    "Pair product eligibility with explicit text such as Solo para gatos; do not infer compatibility from artwork alone.",
+    "For products suitable for both species, show both with text. Never imply cat-only or dog-only suitability without product data.",
+    "Use alt empty when adjacent text already names the species; otherwise provide contextual alt text.",
+    "Use lucide-react for functional interface actions; this artwork serves species identity."
+  ],
+  "react_component": "components/pet-species-image.tsx",
+  "usage_reference": "docs/graphic-design/pet-species-assets.md",
+  "preview": "docs/graphic-design/pet-species-preview.html"
+}

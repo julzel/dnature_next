@@ -73,6 +73,6 @@ test("breadcrumb schema matches the visible navigation", async ({ page }) => {
   expect(schema["@type"]).toBe("BreadcrumbList");
   const names = await page.getByRole("navigation", { name: "Ruta de navegación" }).locator("li").allTextContents();
   expect(schema.itemListElement.map((item: { name: string }) => item.name)).toEqual(names);
-  expect(schema.itemListElement.map((item: { position: number }) => item.position)).toEqual([1, 2, 3]);
+  expect(schema.itemListElement.map((item: { position: number }) => item.position)).toEqual([1, 2]);
   expect(schema.itemListElement.at(-1).item).toBe(`${brand.origin}/ciencia/nuestros-criterios`);
 });

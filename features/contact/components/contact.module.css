@@ -1,11 +1,92 @@
 .contact {
-  min-block-size: calc(var(--dn-space-6) * 12);
-  padding: calc(var(--dn-space-6) * 2) var(--dn-page-gutter);
+  padding: var(--dn-space-12) var(--dn-page-gutter);
   scroll-margin-block-start: var(--dn-header-height);
+  border-block-start: 1px solid var(--dn-border-default);
   background: var(--dn-surface-cool);
 }
 
 .container {
-  max-inline-size: 1280px;
+  max-inline-size: var(--dn-content-max);
   margin-inline: auto;
+}
+
+.layout {
+  display: grid;
+  gap: var(--dn-space-12);
+  margin-block-start: var(--dn-space-8);
+}
+
+.details { min-inline-size: 0; }
+
+.details h2 {
+  color: var(--dn-surface-dark);
+  text-wrap: balance;
+}
+
+.introduction {
+  max-inline-size: 44ch;
+  margin-block-start: var(--dn-space-6);
+  color: var(--dn-text-secondary);
+}
+
+.address {
+  margin-block-start: var(--dn-space-8);
+  font-style: normal;
+}
+
+.channels {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.channels li { border-block-start: 1px solid var(--dn-border-default); }
+.channels li:last-child { border-block-end: 1px solid var(--dn-border-default); }
+
+.channel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--dn-space-4);
+  min-block-size: var(--dn-space-20);
+  padding-block: var(--dn-space-4);
+  text-decoration: none;
+}
+
+.channelCopy { display: grid; gap: var(--dn-space-1); }
+
+.channelLabel {
+  color: var(--dn-text-secondary);
+  font-size: 13px;
+}
+
+.channelValue {
+  font-size: clamp(16px, 1.7vw, 20px);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.channelArrow {
+  display: grid;
+  place-items: center;
+  inline-size: var(--dn-space-12);
+  block-size: var(--dn-space-12);
+  border: 1px solid transparent;
+}
+
+.channel[data-primary] .channelArrow {
+  background: var(--dn-brand-orange);
+  color: var(--dn-text-primary);
+}
+
+.channel:is(:hover, :focus-visible) .channelValue { text-decoration: underline; }
+.channel:is(:hover, :focus-visible) .channelArrow { border-color: currentColor; }
+
+@media (min-width: 1024px) {
+  .contact { padding-block: var(--dn-space-20); }
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: var(--dn-space-20);
+    margin-block-start: var(--dn-space-12);
+  }
 }

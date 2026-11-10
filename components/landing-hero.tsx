@@ -19,6 +19,7 @@ export function LandingHero() {
   const dialog = useRef<HTMLDialogElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const mode = modes[selected];
+  function handleCloseDialog() { dialog.current?.close(); }
   return <>
     <div className="experience-bar shell">
       <span className="experience-label">Un mismo cuidado. Distintas formas de explorar.</span>
@@ -40,7 +41,7 @@ export function LandingHero() {
         <h1 id="home-title">{mode.heading}</h1>
         <p className="hero-description">{mode.body}</p>
         <div className="hero-actions">
-          {mode.id === "discover" ? <button className="button button-primary" type="button" onClick={(event) => { event.currentTarget.focus(); setSpecies(null); dialog.current?.showModal(); }}>Empezar por mi mascota <Icon name="arrow" /></button> : <Link className="button button-primary" href={mode.id === "science" ? "/ciencia" : "#productos"}>{mode.id === "science" ? "Explorar la ciencia" : "Explorar productos"}<Icon name="arrow" /></Link>}
+          {mode.id === "discover" ? <button className="button button-primary" type="button" onClick={(event) => { event.currentTarget.focus(); setSpecies(null); dialog.current?.showModal(); }}>Empezar por mi mascota <Icon name="arrow" /></button> : <Link className="button button-primary" href={mode.id === "science" ? "/nosotros#esencia" : "#productos"}>{mode.id === "science" ? "Conocer nuestra esencia" : "Explorar productos"}<Icon name="arrow" /></Link>}
           <a className="text-link" href="#productos">Ver productos <Icon name="arrow" /></a>
         </div>
         <p className="hero-note"><Icon name="check" />Sin crear un perfil. Con toda la libertad de explorar.</p>
@@ -54,7 +55,7 @@ export function LandingHero() {
     <Modal dialogRef={dialog} titleId="discovery-title" onClose={() => setSpecies(null)}>
       <p className="eyebrow">Un primer paso, a su ritmo</p><h2 id="discovery-title">¿Quién te acompaña?</h2><p>Elegí por dónde empezar. No guardamos un perfil ni hacemos recomendaciones individuales.</p>
       <fieldset className="species-options"><legend className="sr-only">Especie de tu mascota</legend>{(["Perro", "Gato"] as const).map((item) => <label key={item} className={`species-option ${species === item ? "selected" : ""}`}><input type="radio" name="species" value={item} checked={species === item} onChange={() => setSpecies(item)} /><Icon name="paw" /><span>{item}</span><Icon name="check" /></label>)}</fieldset>
-      <div role="status" className="discovery-result">{species ? <><strong>Empecemos por entender su alimentación.</strong><p>La especie es un punto de partida. La función y las indicaciones se revisan en cada fórmula.</p><Link className="button button-primary" href="/ciencia" onClick={() => dialog.current?.close()}>Conocer el enfoque DNAture <Icon name="arrow" /></Link></> : <p className="small muted">Podés seguir explorando sin elegir una opción.</p>}</div>
+      <div role="status" className="discovery-result">{species ? <><strong>Empecemos por entender su alimentación.</strong><p>La especie es un punto de partida. La función y las indicaciones se revisan en cada fórmula.</p><Link className="button button-primary" href="/nosotros#esencia" onClick={handleCloseDialog}>Conocer el enfoque DNAture <Icon name="arrow" /></Link></> : <p className="small muted">Podés seguir explorando sin elegir una opción.</p>}</div>
       <a href="#productos" className="text-link" onClick={() => dialog.current?.close()}>Prefiero ver las familias de productos <Icon name="arrow" /></a>
     </Modal>
   </>;

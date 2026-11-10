@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { dismissArrivalDialog } from "../../../../tests/helpers/dismiss-arrival-dialog";
 
-test.beforeEach(async ({ page }) => { await page.goto("/"); await dismissArrivalDialog(page); });
+test.beforeEach(async ({ page }) => { await page.goto("/", { waitUntil: "commit" }); await dismissArrivalDialog(page); });
 
 test("header contains a 74px navigation row without a top section", async ({ page }) => {
   const bottom = page.locator('[data-header-section="bottom"]');
@@ -38,7 +38,7 @@ test("header fades with scroll and returns to transparent at the top", async ({ 
   await expect(logo).toHaveCSS("filter", "brightness(1) invert(0)");
   await expect.poll(() => logo.evaluate((image) => image.getBoundingClientRect().width)).toBeCloseTo(114, 0);
   expect((await header.boundingBox())?.height).toBe(74);
-  await expect(header.getByRole("navigation", { name: "Navegación principal", includeHidden: true }).getByRole("link", { name: "Ciencia", exact: true, includeHidden: true })).toHaveCSS("color", "rgb(32, 50, 55)");
+  await expect(header.getByRole("navigation", { name: "Navegación principal", includeHidden: true }).getByRole("link", { name: "Nosotros", exact: true, includeHidden: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await expect(header.getByRole("button", { name: "Abrir búsqueda", exact: true })).toHaveCSS("color", "rgb(32, 50, 55)");
   await page.evaluate(() => window.scrollTo(0, 0));
   await expect(bottom).toHaveCSS("background-color", "rgba(255, 255, 255, 0)");
@@ -95,7 +95,7 @@ test("search closes and reopens reliably with live results", async ({ page }) =>
     await toggle.click();
     const dialog = page.getByRole("dialog", { name: "Buscar en DNAture" });
     const input = dialog.getByRole("searchbox", { name: "Buscar en el sitio" });
-    await input.fill("ciencia");
+    await input.fill("criterios");
     await expect(dialog.getByRole("link")).toHaveCount(1);
     await input.press("Escape");
     await expect(dialog).toBeHidden();
@@ -103,7 +103,7 @@ test("search closes and reopens reliably with live results", async ({ page }) =>
     expect((await page.getByRole("banner").boundingBox())!.height).toBe(74);
   }
   await toggle.click();
-  await expect(page.getByRole("searchbox")).toHaveValue("ciencia");
+  await expect(page.getByRole("searchbox")).toHaveValue("criterios");
 });
 
 test("search stays independent of header scrolling and dismisses through its backdrop", async ({ page }) => {
@@ -128,12 +128,12 @@ test("search updates while typing, clears accessibly, and keeps the input steady
   const search = page.getByRole("search", { name: "Buscar en DNAture" });
   const input = search.getByRole("searchbox", { name: "Buscar en el sitio" });
   const initialTop = (await input.boundingBox())!.y;
-  await input.fill("nutricion");
+  await input.fill("criterios");
   await expect(search.getByRole("button")).toHaveCount(1);
   await expect(search.getByRole("button", { name: "Borrar búsqueda", exact: true })).toBeVisible();
   await expect(search.getByRole("button", { name: "Buscar", exact: true })).toHaveCount(0);
   await expect(search.getByRole("status")).toHaveText("1 página encontrada.");
-  await expect(search.getByRole("link", { name: "Ciencia y nutrición fisiológica", exact: true })).toHaveAttribute("href", "/ciencia");
+  await expect(search.getByRole("link", { name: "Nuestros criterios de publicación", exact: true })).toHaveAttribute("href", "/ciencia/nuestros-criterios");
   expect((await input.boundingBox())!.y).toBe(initialTop);
   await input.fill("unmatched-query");
   await expect(search.getByRole("status")).toContainText("No encontramos páginas");
@@ -155,14 +155,14 @@ test("search updates while typing, clears accessibly, and keeps the input steady
 test("Spotlight arrow keys navigate results and Enter opens a match", async ({ page }) => {
   await page.getByRole("button", { name: "Abrir búsqueda", exact: true }).click();
   const input = page.getByRole("searchbox");
-  await input.fill("ciencia");
-  const result = page.getByRole("search").getByRole("link", { name: "Ciencia y nutrición fisiológica", exact: true });
+  await input.fill("criterios");
+  const result = page.getByRole("search").getByRole("link", { name: "Nuestros criterios de publicación", exact: true });
   await input.press("ArrowDown");
   await expect(result).toBeFocused();
   await result.press("ArrowUp");
   await expect(input).toBeFocused();
   await input.press("Enter");
-  await expect(page).toHaveURL(/\/ciencia$/);
+  await expect(page).toHaveURL(/\/ciencia\/nuestros-criterios$/);
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
 });
@@ -174,7 +174,7 @@ test("search dialog fits narrow phones and short viewports", async ({ page }) =>
     const dialog = page.getByRole("dialog", { name: "Buscar en DNAture" });
     const input = dialog.getByRole("searchbox");
     await expect(input).toBeInViewport();
-    await input.fill("ciencia");
+    await input.fill("criterios");
     const clear = dialog.getByRole("button", { name: "Borrar búsqueda", exact: true });
     await expect(clear).toBeInViewport();
     expect((await clear.boundingBox())!.width).toBeGreaterThanOrEqual(44);

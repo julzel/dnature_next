@@ -2239,6 +2239,10 @@
       ],
       "illustration_manifest": "public/images/icons/manifest.json",
       "illustration_reference": "docs/graphic-design/illustrator-icons.md",
+      "website_species_manifest": "public/images/pets/manifest.json",
+      "website_species_reference": "docs/graphic-design/pet-species-assets.md",
+      "website_experience_manifest": "public/images/experiences/manifest.json",
+      "website_experience_reference": "docs/graphic-design/experience-assets.md",
       "guidance": "Inspect the actual asset before use. Do not assume a legacy file is approved merely because it is already in the repository."
     },
     "website_font_mapping": {

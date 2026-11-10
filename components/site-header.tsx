@@ -33,7 +33,7 @@ export function SiteHeader() {
     <header className="site-header shell">
       <Link href="/" className="brand-logo" aria-label="DNAture, inicio"><Image src="/brand/logo.svg" alt="DNAture" width={170} height={34} unoptimized /></Link>
       <nav aria-label="Navegación principal" className="desktop-nav">
-        <Link href="/productos">Productos</Link><Link href="/ciencia">Ciencia</Link><Link href="/nosotros">Nosotros</Link><Link href="/prototype#preguntas">Ayuda</Link>
+        <Link href="/productos">Productos</Link><Link href="/nosotros">Nosotros</Link><Link href="/prototype#preguntas">Ayuda</Link>
       </nav>
       <div className="header-actions">
         <button className="icon-button" type="button" aria-label="Buscar en DNAture" onClick={handleOpenSearch}><Icon name="search" /></button>
@@ -43,7 +43,7 @@ export function SiteHeader() {
       </div>
     </header>
     <nav id="mobile-navigation" aria-label="Navegación móvil" className="mobile-nav shell" hidden={!menuOpen}>
-      <Link href="/productos" onClick={handleCloseMenu}>Productos <Icon name="arrow" /></Link><Link href="/ciencia" onClick={handleCloseMenu}>Ciencia <Icon name="arrow" /></Link><Link href="/nosotros" onClick={handleCloseMenu}>Nosotros <Icon name="arrow" /></Link><Link href="/prototype#preguntas" onClick={handleCloseMenu}>Ayuda <Icon name="arrow" /></Link>
+      <Link href="/productos" onClick={handleCloseMenu}>Productos <Icon name="arrow" /></Link><Link href="/nosotros" onClick={handleCloseMenu}>Nosotros <Icon name="arrow" /></Link><Link href="/prototype#preguntas" onClick={handleCloseMenu}>Ayuda <Icon name="arrow" /></Link>
     </nav>
     <Modal dialogRef={dialog} titleId="header-dialog-title">
       {panel === "search" ? <>

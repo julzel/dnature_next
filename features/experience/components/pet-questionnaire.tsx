@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState, useTransition, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus } from "lucide-react";
+import { PetSpeciesImage } from "@/components/pet-species-image";
 import type { PetSpecies } from "../data/pet-breeds";
 import { MAX_PETS, upsertPet, type PetProfile } from "../data/pet-profiles";
 import { savePetProfiles } from "../data/pet-storage";
 import { BreedCombobox } from "./breed-combobox";
-import { CatAvatar } from "./cat-avatar";
-import { DogAvatar } from "./dog-avatar";
 import { PetProfileCard } from "./pet-profile-card";
 import { SavedPetProfile } from "./saved-pet-profile";
 import styles from "./pet-questionnaire.module.css";
@@ -204,11 +203,11 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
             <div className={styles.answer}>
               <div className={styles.speciesChoices}>
                 <button type="button" value="cat" onClick={handleSpeciesChoice} aria-pressed={species === "cat"}>
-                  <CatAvatar /><span>Gato</span>
+                  <PetSpeciesImage species="cat" alt="" /><span>Gato</span>
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
                 <button type="button" value="dog" onClick={handleSpeciesChoice} aria-pressed={species === "dog"}>
-                  <DogAvatar /><span>Perro</span>
+                  <PetSpeciesImage species="dog" alt="" /><span>Perro</span>
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
               </div>

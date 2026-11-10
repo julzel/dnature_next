@@ -1,14 +1,15 @@
 .dialog {
   position: fixed;
   inset: 0;
-  inline-size: min(320px, calc(100% - 32px));
-  max-block-size: calc(100dvh - 32px);
+  inline-size: min(384px, calc(100% - var(--dn-space-8)));
+  max-block-size: calc(100dvh - var(--dn-space-8));
   margin: auto;
   padding: 0;
   overflow-y: auto;
   border: 0;
-  background: transparent;
-  color: #fff;
+  border-radius: 0;
+  background: var(--dn-surface-base);
+  color: var(--dn-text-primary);
 }
 
 .dialog::backdrop {
@@ -16,25 +17,26 @@
   backdrop-filter: blur(5px);
 }
 
-.content { position: relative; padding: 64px 0 24px; }
-.close { position: absolute; inset-block-start: 0; inset-inline-end: 0; display: grid; place-items: center; inline-size: 44px; block-size: 44px; border: 1px solid rgb(255 255 255 / 50%); border-radius: 50%; background: rgb(255 255 255 / 8%); color: #fff; }
-.close:hover { background: rgb(255 255 255 / 18%); }
-.choices { display: grid; justify-items: center; gap: 16px; }
-.choice { display: grid; place-items: center; align-content: center; gap: 8px; inline-size: min(100%, 320px); aspect-ratio: 1; padding: 24px; appearance: none; border: 1px solid var(--dn-border-default); border-radius: 0; background: #fff; color: var(--dn-text-primary); text-decoration: none; }
-.choice > div { inline-size: min(100%, 184px); }
-.choiceLabel { position: relative; display: grid; place-items: center; inline-size: 100%; min-block-size: 80px; padding: 12px 36px; border-block-end: 1px solid #8fe4d9; font-size: 14px; font-weight: 800; line-height: 1.6; text-align: center; letter-spacing: normal; }
+.content { position: relative; padding: var(--dn-space-16) var(--dn-space-6) var(--dn-space-6); }
+.close { position: absolute; inset-block-start: var(--dn-space-3); inset-inline-end: var(--dn-space-3); display: grid; place-items: center; inline-size: var(--dn-space-12); block-size: var(--dn-space-12); border: 0; border-radius: 0; background: transparent; color: inherit; }
+.close:hover { background: var(--dn-surface-muted); }
+.choices { display: grid; }
+.choice { display: grid; place-items: center; align-content: center; gap: var(--dn-space-2); min-inline-size: 0; inline-size: 100%; padding: var(--dn-space-4) 0; appearance: none; border: 0; border-radius: 0; background: transparent; color: inherit; text-decoration: none; }
+.choice + .choice { border-block-start: 1px solid var(--dn-border-default); }
+.choice > div { inline-size: min(100%, 256px); }
+.choiceLabel { position: relative; display: grid; place-items: center; inline-size: 100%; min-block-size: var(--dn-space-16); padding: var(--dn-space-3) var(--dn-space-12); font-size: 14px; font-weight: 800; line-height: 1.6; text-align: center; letter-spacing: normal; }
 .choiceLabel > span { min-inline-size: 0; overflow-wrap: anywhere; }
-.choiceArrow { position: absolute; inset-block-start: 50%; inset-inline-end: 0; translate: 0 -50%; color: var(--dn-brand-orange); transition: transform 160ms ease; }
-.choice:hover { border-color: var(--dn-surface-dark); }
+.choiceArrow { position: absolute; inset-block-start: 50%; inset-inline-end: var(--dn-space-2); translate: 0 -50%; color: var(--dn-brand-orange); transition: transform 160ms ease; }
+.choice:hover .choiceLabel > span { text-decoration: underline; text-underline-offset: var(--dn-space-2); }
 .choice:hover .choiceArrow { transform: translate(3px, -3px); }
-.close:focus-visible { outline: 3px solid #8fe4d9; outline-offset: 3px; }
-.choice:focus-visible { outline: 3px solid var(--dn-brand-orange); outline-offset: -3px; border-color: var(--dn-brand-orange); }
+.close:focus-visible { outline: 3px solid var(--dn-focus-ring); outline-offset: -3px; }
+.choice:focus-visible { outline: 3px solid var(--dn-focus-ring); outline-offset: -3px; }
 
 @media (min-width: 768px) {
-  .dialog { inline-size: min(664px, calc(100% - 32px)); }
-  .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-  .choice { inline-size: 100%; }
-  .choice > div { inline-size: min(100%, 200px); }
+  .dialog { inline-size: min(800px, calc(100% - var(--dn-space-8))); }
+  .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .choice { padding-inline: var(--dn-space-6); }
+  .choice + .choice { border-block-start: 0; border-inline-start: 1px solid var(--dn-border-default); }
 }
 
 @media (min-width: 1024px) {

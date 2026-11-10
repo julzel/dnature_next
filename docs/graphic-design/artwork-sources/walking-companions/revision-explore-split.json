@@ -1,0 +1,12 @@
+{
+  "revision": "explore-split-ways",
+  "request": "For explorar por mi cuenta, make the dog and cat actually split ways.",
+  "method": "Built-in image_gen edit; preserve character identity and redraw outward walking poses.",
+  "input": "explore-source.png",
+  "prompt": "Edit this DNAture illustration to clearly show the two friends choosing DIFFERENT DIRECTIONS.\n\nPreserve the identity and engraved appearance of the existing slender striped cat and soft-coated retriever dog, their natural proportions, friendly relaxed mood, and deep ink teal #092F39 / mint #8FE4D9 duotone. Change the composition and walking poses:\n- CAT on the LEFT, facing and WALKING OUTWARD TO THE LEFT, gaze ahead.\n- DOG on the RIGHT, facing and WALKING OUTWARD TO THE RIGHT, gaze ahead.\n- Their bodies point AWAY FROM EACH OTHER. Their heads are at the outside edges, their tails nearer the middle. They are parting ways at an implied fork, not following one another, not facing each other, not merely looking over their shoulders.\n- Leave a clear central gap between the animals, about one cat-head wide, so a branching route can be added later.\n- Both in plausible, calm walking strides with a lifted forepaw, four correct legs per animal and no merged limbs. Natural ears and tails, no distressed or aggressive body language.\n\nLandscape composition, full bodies, all paws, tails, ears and whiskers visible inside generous transparent margins. Keep both on the same implied ground plane. ONLY the animals: no route, compass, sign, ground shadow, scenery, text, clothes, collars, logo, frame or border. Exact copperplate / natural-history engraving with dense tapered fur strokes and selective crosshatching; crisp two-color print treatment without gradients or photorealism. Real transparent alpha outside the animal silhouettes and between their legs. No haze, vignette, glow, colored background or shadow.",
+  "scope": "Exploration artwork only; guided scene retained.",
+  "output": "explore-split-source.png",
+  "output_sha256": "b0e0d32fad9c7e3c8af4a220f5f154452191a8cb388b8d38648d6b8030ffab93",
+  "vector_output": "public/images/experiences/walking-explore.svg",
+  "scene_output": "public/images/experiences/explorar-por-mi-cuenta.svg"
+}

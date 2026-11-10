@@ -18,10 +18,10 @@
 .nameInput::placeholder { color: #092f39; opacity: .8; }
 .error { margin-block-start: 12px; font-weight: 700; }
 .hint { margin-block-end: 24px; text-align: center; }
-.speciesChoices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 2px solid #092f39; }
-.speciesChoices button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-inline-size: 0; min-block-size: 184px; padding: 24px 12px; border: 0; background: transparent; color: inherit; font-size: 24px; font-weight: 700; transition: background 160ms ease; }
-.speciesChoices button + button { border-inline-start: 2px solid #092f39; }
-.speciesChoices button:is(:hover, [aria-pressed="true"]) { background: rgb(255 255 255 / 20%); }
+.speciesChoices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--dn-space-4); border-block-end: 1px solid #092f39; }
+.speciesChoices button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--dn-space-4); min-inline-size: 0; padding: var(--dn-space-4) var(--dn-space-3); border: 0; border-block-end: 4px solid transparent; border-radius: 0; background: transparent; color: inherit; font-size: 24px; font-weight: 700; }
+.speciesChoices button[aria-pressed="true"] { border-block-end-color: var(--dn-brand-orange); }
+.speciesChoices button:is(:hover, [aria-pressed="true"]) > span { text-decoration: underline; text-underline-offset: 8px; }
 .speciesChoices button:focus-visible { outline: 3px solid #092f39; outline-offset: -6px; }
 .choiceArrow { transition: transform 160ms ease; }
 .speciesChoices button:hover .choiceArrow { transform: translateX(4px); }

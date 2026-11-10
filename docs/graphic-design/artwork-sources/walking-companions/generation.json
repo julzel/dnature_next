@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.1.0",
+  "method": "Built-in image_gen generation and edits, using the DNAture engraving skill; source PNGs preserved before two-color SVG tracing.",
+  "skill": "/Users/juliozeledon/.codex/skills/dnature-engraving/SKILL.md",
+  "date": "2026-11-09",
+  "prompts": {
+    "guided": "Create a NEW original full-body illustration of a dog and a cat walking together as calm, affectionate companions for the DNAture natural pet nutrition brand. This is new artwork, not a rearrangement or tracing of any existing animals.\n\nSTYLE: meticulous natural-history copperplate engraving, anatomically realistic animal proportions, crisp tapered fur strokes and selective crosshatching. Flat two-color print artwork: deep cool ink teal #092F39 for shadows and engraved strokes, luminous cool mint #8FE4D9 for the lit fur. No photographic shading or gradients. The engraved lines should be clear, deliberate, and suitable for later tracing into SVG.\n\nSUBJECTS: a NEW medium-sized soft-coated retriever-type dog with floppy ears and a softly curved feathered tail; a NEW slender shorthaired cat with a long upright gently hooked tail. Neither animal wears anything. Both are in a clear relaxed WALKING gait toward the RIGHT: naturally staggered legs, one forepaw lifted on each animal, no running or jumping. Dog at the left and slightly behind; cat at the right and slightly ahead, close enough to feel like friends sharing a walk. The dog lowers its attentive gaze toward the cat; the cat turns its head slightly back/up toward the dog while its body keeps walking forward. Natural peaceful expressions, no human smiles. Their silhouettes and legs must remain distinct, anatomically convincing, not merged. Four anatomically correct legs per animal, with natural partial occlusion only where needed.\n\nCOMPOSITION: landscape 3:2 canvas. Pair fills the central 85 percent of the width, all full bodies, paws, tails, whiskers and ears in frame with generous clear padding. Both walk on the same implied ground level. ONLY the two animals. No signpost, compass, route, scenery, decorative marks, text, logo, frame, card, border, ground shadow or backdrop. Real transparent alpha everywhere outside the animals and between their legs. No warm colors, sepia, beige, watercolor, cartoon outlines, cute mascot proportions, 3D, glow or distressed paper."
+  },
+  "sources": {
+    "guided": "guided-source.png",
+    "explore": "explore-split-source.png"
+  },
+  "vectorization": {
+    "tool": "vtracer",
+    "version": "0.6.15",
+    "script": "scripts/trace-walking-artwork.py",
+    "palette": {
+      "ink": "#092F39",
+      "mint": "#8FE4D9"
+    },
+    "alpha_threshold": 128,
+    "mode": "spline",
+    "filter_speckle": {
+      "silhouette": 8,
+      "engraving": 2
+    },
+    "length_threshold": 3.5,
+    "path_precision": 2,
+    "ink_threshold": 0.72
+  },
+  "note": "New walking characters and poses. The original brandbook species-selection animals are not used in these illustrations.",
+  "source_sha256": {
+    "guided": "c44debede7d5abce8e606504b5ddcefb2fa22d5116fdd2bc6048c0b2507cc5ed",
+    "explore": "b0e0d32fad9c7e3c8af4a220f5f154452191a8cb388b8d38648d6b8030ffab93"
+  },
+  "archived_sources": [
+    {
+      "experience": "explore",
+      "path": "explore-source.png",
+      "sha256": "fc65bea4268136898a907830025434438ce1c38f23aece9837ed673e731b7510",
+      "superseded_by": "explore-split-source.png"
+    }
+  ],
+  "revisions": [
+    "revision-explore-split.json"
+  ]
+}

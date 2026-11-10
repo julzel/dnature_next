@@ -1,6 +1,5 @@
 import type { PetSpecies } from "../data/pet-breeds";
-import { CatAvatar } from "./cat-avatar";
-import { DogAvatar } from "./dog-avatar";
+import { PetSpeciesImage } from "@/components/pet-species-image";
 import styles from "./pet-profile-card.module.css";
 
 type PetProfileCardProps = {
@@ -16,7 +15,7 @@ export function PetProfileCard({ name, species, breed, revealed = true, animated
     <article className={styles.card} aria-label={`Ficha de ${name}`} data-species={species} data-revealed={revealed} data-animated={animated}>
       <div className={styles.body}>
         <div className={styles.portrait}>
-          {species === "cat" ? <CatAvatar size={80} animated={animated} revealed={revealed} /> : <DogAvatar size={80} animated={animated} revealed={revealed} />}
+          <PetSpeciesImage species={species} alt="" size={80} animated={animated} revealed={revealed} />
         </div>
         <dl className={styles.details}>
           <div><dt>Nombre:</dt><dd>{name}</dd></div>

@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, type MouseEvent } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 import { AnimatedIllustration } from "./animated-illustration";
-import { ExplorerDogIllustration } from "./explorer-dog-illustration";
-import { GuideCatIllustration } from "./guide-cat-illustration";
+import { ExperienceChoiceImage } from "./experience-choice-image";
 import styles from "./experience-arrival-dialog.module.css";
 
 export function ExperienceArrivalDialog() {
@@ -32,11 +31,11 @@ export function ExperienceArrivalDialog() {
         <button type="button" className={styles.close} onClick={handleClose} aria-label="Cerrar opciones"><X size={24} aria-hidden="true" /></button>
         <div className={styles.choices}>
           <Link href="#experiencia-personalizada" className={styles.choice} onClick={handleClose} autoFocus>
-            <AnimatedIllustration><GuideCatIllustration /></AnimatedIllustration>
+            <AnimatedIllustration><ExperienceChoiceImage experience="guided" /></AnimatedIllustration>
             <span className={styles.choiceLabel}><span>Visita guiada</span><ArrowUpRight className={styles.choiceArrow} size={32} strokeWidth={1.5} aria-hidden="true" /></span>
           </Link>
           <button type="button" className={styles.choice} onClick={handleClose}>
-            <AnimatedIllustration><ExplorerDogIllustration /></AnimatedIllustration>
+            <AnimatedIllustration><ExperienceChoiceImage experience="explore" /></AnimatedIllustration>
             <span className={styles.choiceLabel}><span>Explorar por mi cuenta</span><ArrowUpRight className={styles.choiceArrow} size={32} strokeWidth={1.5} aria-hidden="true" /></span>
           </button>
         </div>

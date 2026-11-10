@@ -3,7 +3,7 @@ import { dismissArrivalDialog } from "../../../../tests/helpers/dismiss-arrival-
 
 test.beforeEach(async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "commit" });
   await dismissArrivalDialog(page);
 });
 
@@ -25,7 +25,7 @@ test("mobile menu sits beside search, traps focus, and closes with Escape", asyn
   await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
   await expect(drawer).toHaveCSS("transition-duration", "0s");
   await close.press("Shift+Tab");
-  await expect(drawer.getByRole("link", { name: "Nosotros", exact: true })).toBeFocused();
+  await expect(drawer.getByRole("link", { name: "Contacto", exact: true })).toBeFocused();
   await page.keyboard.press("Tab");
   await expect(close).toBeFocused();
   await page.keyboard.press("Escape");
@@ -70,9 +70,9 @@ test("search blocks the background menu; the drawer still navigates and dismisse
   await page.getByRole("button", { name: "Abrir menú", exact: true }).click();
   await expect(page.getByRole("search")).toHaveCount(0);
   const drawer = page.getByRole("dialog", { name: "Menú", exact: true });
-  await drawer.getByRole("link", { name: "Ciencia", exact: true }).click();
-  await expect(page).toHaveURL("/ciencia");
-  await page.goto("/");
+  await drawer.getByRole("link", { name: "Nosotros", exact: true }).click();
+  await expect(page).toHaveURL("/nosotros");
+  await page.goto("/", { waitUntil: "commit" });
   await dismissArrivalDialog(page);
   await page.getByRole("button", { name: "Abrir menú", exact: true }).click();
   await page.setViewportSize({ width: 1024, height: 768 });

@@ -12,8 +12,8 @@ export function Footer() {
         </div>
         <nav aria-label="Explorar DNAture" className={styles.navigation}>
           <Link href="/productos">Productos</Link>
-          <Link href="/ciencia">Ciencia</Link>
           <Link href="/nosotros">Nosotros</Link>
+          <Link href="/#contacto">Contacto</Link>
         </nav>
         <p className={styles.note}>Elegir con información también es cuidar.</p>
       </div>

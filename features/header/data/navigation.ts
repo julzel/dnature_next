@@ -1,5 +1,5 @@
 export const headerLinks = [
   { href: "/productos", label: "Productos" },
-  { href: "/ciencia", label: "Ciencia" },
   { href: "/nosotros", label: "Nosotros" },
+  { href: "/#contacto", label: "Contacto" },
 ] as const;

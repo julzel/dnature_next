@@ -1,0 +1,102 @@
+.explorer { margin-block-start: var(--dn-space-8); }
+
+.tabs {
+  display: flex;
+  gap: var(--dn-space-8);
+  border-block-end: 1px solid rgb(255 255 255 / 28%);
+}
+
+.tabs button {
+  position: relative;
+  min-block-size: var(--dn-space-16);
+  padding: var(--dn-space-4) var(--dn-space-2);
+  border: 0;
+  border-block-end: 4px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--dn-text-inverse);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.tabs button[aria-selected="true"] {
+  border-block-end-color: var(--dn-brand-orange);
+  font-weight: 800;
+}
+
+.tabs button:is(:hover, :focus-visible) { text-decoration: underline; }
+.tabs button:focus-visible,
+.panel:focus-visible { outline-color: var(--dn-focus-ring-inverse); }
+.panel:focus-visible { outline-offset: var(--dn-space-2); }
+
+.panel {
+  display: grid;
+  gap: var(--dn-space-6);
+  padding-block-start: var(--dn-space-8);
+}
+
+.horizon {
+  margin-block-end: var(--dn-space-4);
+  font-size: 14px;
+  color: #b4e5e8;
+}
+
+.panelHeading h3 {
+  max-inline-size: 23ch;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.copy {
+  display: grid;
+  align-content: start;
+  gap: var(--dn-space-4);
+  max-inline-size: 60ch;
+}
+
+.copy p { font-size: 17px; line-height: 1.75; }
+.copy p + p { color: #d7e9ed; }
+
+.principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--dn-space-4) var(--dn-space-8);
+  margin: 0;
+  padding: var(--dn-space-6) 0 0;
+  border-block-start: 1px solid rgb(255 255 255 / 28%);
+  list-style: none;
+  font-size: 14px;
+}
+
+.principles li {
+  display: flex;
+  align-items: center;
+  gap: var(--dn-space-3);
+}
+
+.principles li::before {
+  content: "";
+  inline-size: var(--dn-space-2);
+  block-size: var(--dn-space-2);
+  flex-shrink: 0;
+  background: var(--dn-brand-orange);
+}
+
+@media (min-width: 1024px) {
+  .panel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--dn-space-8) var(--dn-space-20);
+    min-block-size: 360px;
+    padding-block-start: var(--dn-space-12);
+  }
+  .principles { grid-column: 1 / -1; align-self: end; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .panel:not([hidden]) { animation: panel-enter 200ms ease-out; }
+  @keyframes panel-enter {
+    from { opacity: 0; transform: translateY(var(--dn-space-1)); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

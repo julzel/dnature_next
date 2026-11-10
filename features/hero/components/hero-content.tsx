@@ -3,8 +3,8 @@ import { SectionEyebrow } from "@/components/section-eyebrow";
 import styles from "./hero.module.css";
 
 const actions = [
-  { href: "/ciencia", label: "Lorem ipsum dolor" },
-  { href: "/nosotros", label: "Consectetur adipiscing" },
+  { href: "/productos", label: "Explorá nuestros productos" },
+  { href: "/nosotros", label: "Conocé DNAture" },
 ] as const;
 
 export function HeroContent() {

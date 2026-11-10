@@ -20,7 +20,6 @@ test("home page renders its header, hero, contact and footer placeholders and re
 
 for (const [name, destination, heading] of [
   ["Nosotros", "/nosotros", "Quiénes somos"],
-  ["Ciencia", "/ciencia", "Ciencia y nutrición fisiológica"],
 ] as const) {
   test(`${name} is reachable from the main navigation`, async ({ page }) => {
     await page.goto("/prototype");

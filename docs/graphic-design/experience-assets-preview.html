@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DNAture · Elegí tu experiencia</title>
+  <style>
+    @font-face{font-family:Manrope;src:url('../../app/fonts/Manrope-Latin.woff2') format('woff2');font-weight:200 800;font-display:swap}
+    *{box-sizing:border-box}body{margin:0;background:#f6faff;color:#092f39;font:16px/1.6 Manrope,Arial,sans-serif}main{max-width:1280px;margin:auto;padding:48px 32px}h1,h2,p,figure{margin:0}h1{font-size:clamp(32px,5vw,56px);line-height:1.12;letter-spacing:-.04em;margin:16px 0}h2{font-size:24px;line-height:1.2;margin:16px 0}header>p{max-width:760px}.eyebrow{display:flex;gap:12px;align-items:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}.eyebrow:before{content:'';width:8px;height:8px;background:#ff6a00}.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px;margin-top:48px}.choice{border-top:1px solid #91b8ba;padding-top:24px}.art{display:block;width:100%;height:auto}.meaning{max-width:44ch;margin:16px 0 24px}a{color:inherit;text-underline-offset:4px}a:focus-visible{outline:2px solid #092f39;outline-offset:4px}.small{margin-top:32px;padding-top:24px;border-top:1px solid #91b8ba}.small img{width:192px;height:144px;display:block}.small p{font-size:12px;margin-top:12px}footer{margin-top:48px;border-top:1px solid #91b8ba;padding-top:24px;font-size:14px}img{max-width:100%;object-fit:contain}@media(max-width:640px){main{padding:32px 16px}.pair{grid-template-columns:1fr;gap:48px;margin-top:32px}}
+  </style>
+</head>
+<body>
+<main>
+  <header><div class="eyebrow">DNAture · Biblioteca gráfica</div><h1>Dos formas de descubrir.</h1><p>Un perro y un gato: juntos en la visita guiada, cada uno por su camino en la exploración libre.</p></header>
+  <div class="pair">
+    <section class="choice" aria-labelledby="guided-heading">
+      <img class="art" src="../../public/images/experiences/visita-guiada.svg" width="640" height="480" alt="Un perro y un gato caminan juntos hacia la derecha, compartiendo una mirada, junto a una señal de dirección">
+      <h2 id="guided-heading">Visita guiada</h2>
+      <p class="meaning">Una mirada compartida y un paseo tranquilo. Los dos descubren el camino acompañados.</p>
+      <a href="../../public/images/experiences/visita-guiada.svg" download>Descargar SVG de visita guiada</a>
+      <p><a href="../../public/images/experiences/walking-guided.svg" download>Descargar solo la pareja</a></p>
+      <div class="small"><img src="../../public/images/experiences/visita-guiada.svg" width="192" height="144" alt="Visita guiada a escala pequeña"><p>Vista a 192 px</p></div>
+    </section>
+    <section class="choice" aria-labelledby="explore-heading">
+      <img class="art" src="../../public/images/experiences/explorar-por-mi-cuenta.svg" width="640" height="480" alt="El gato camina hacia la izquierda y el perro hacia la derecha, tomando caminos distintos bajo una brújula">
+      <h2 id="explore-heading">Explorar por mi cuenta</h2>
+      <p class="meaning">El gato toma el camino de la izquierda y el perro el de la derecha. Cada uno descubre a su propio ritmo.</p>
+      <a href="../../public/images/experiences/explorar-por-mi-cuenta.svg" download>Descargar SVG de exploración libre</a>
+      <p><a href="../../public/images/experiences/walking-explore.svg" download>Descargar solo la pareja</a></p>
+      <div class="small"><img src="../../public/images/experiences/explorar-por-mi-cuenta.svg" width="192" height="144" alt="Exploración libre a escala pequeña"><p>Vista a 192 px</p></div>
+    </section>
+  </div>
+  <footer>Ambas opciones incluyen gatos y perros. SVG vectoriales con fondo transparente. <a href="experience-assets.md">Guía de uso</a> · <a href="../../public/images/experiences/manifest.json">Referencia para agentes</a></footer>
+</main>
+</body>
+</html>

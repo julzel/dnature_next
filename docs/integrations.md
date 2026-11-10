@@ -1,6 +1,6 @@
 # Avify and Contentful backend services
 
-All integration modules import `server-only`. Call them from Server Components,
+Backend integration modules import `server-only`. Call them from Server Components,
 Route Handlers, or server actions; never import them into a Client Component.
 The current landing-page prototype stays independent of these services. No public
 API proxy, checkout, order mutation, CMS migration, or content publishing is added.
@@ -182,3 +182,22 @@ CI or page rendering.
 Sources: [Avify API and authentication](https://avify.com/docs/introduccion-api),
 [Contentful authentication](https://www.contentful.com/developers/docs/references/authentication/),
 [Content Delivery API](https://www.contentful.com/developers/docs/references/content-delivery-api/overview/).
+
+## Contact details and location map
+
+The homepage's `#contacto` section reads `features/contact/data/contact.json`.
+Update this file to change WhatsApp, Instagram, email, or location coordinates;
+the recorded source commit preserves where the initial values came from.
+The section renders as Server Components with native contact links and a lazy
+Google Maps iframe. Its main-navigation and footer links point to `/#contacto`.
+
+The iframe uses `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`, a public browser key requiring
+the Maps Embed API and the appropriate website referrer restrictions. It is
+separate from the server-only backend credentials above. The map uses the JSON
+coordinates, Spanish labels, and zoom level 16. No street address or opening
+hours have been inferred. Without a key, the section shows a location prompt;
+the direct Google Maps link is always available, including if the embed fails
+or a visitor blocks external content.
+
+See Google's [Maps Embed API documentation](https://developers.google.com/maps/documentation/embed/embedding-map)
+for the iframe parameters and referrer policy.
