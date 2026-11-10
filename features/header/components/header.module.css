@@ -65,8 +65,6 @@
   text-decoration: none;
 }
 
-.navigation a[aria-current] { font-weight: 750; }
-
 .searchToggle {
   display: grid;
   place-items: center;
