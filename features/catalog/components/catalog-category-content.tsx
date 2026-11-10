@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
-import { ArrowLeft } from "lucide-react";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageHero } from "@/components/page-hero";
 import { categoryFromSlug, categoryStyle, isCategorySlug, prepareCatalog, productsForCategory } from "../lib/browse-catalog";
 import { getBrowseCatalogProducts } from "../server/catalog";
@@ -21,7 +20,7 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
     [catalog, buckets] = await Promise.all([getBrowseCatalogProducts(), getRecentCatalogSales()]);
   } catch {
     return <>
-      <PageHero title="Categoría de" accent="productos" titleId="category-title" description="Explorá los productos de cada categoría." navigation={<Link href="/productos"><ArrowLeft size={20} aria-hidden="true" /> Todos los productos</Link>} />
+      <PageHero title="Categoría de" accent="productos" titleId="category-title" description="Explorá los productos de cada categoría." navigation={<Breadcrumbs items={[{ name: "Inicio", path: "/" }, { name: "Productos", path: "/productos" }, { name: "Categoría", path: `/productos/categoria/${slug}` }]} />} />
       <section className={styles.results} role="alert">
         <div className={styles.resultsInner}>
           <h2>No pudimos cargar esta categoría</h2>
@@ -43,7 +42,7 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
       titleId="category-title"
       description="Explorá todos los productos de esta categoría y consultá sus precios y disponibilidad."
       railColor={category.color}
-      navigation={<Link href="/productos"><ArrowLeft size={20} aria-hidden="true" /> Todos los productos</Link>}
+      navigation={<Breadcrumbs items={[{ name: "Inicio", path: "/" }, { name: "Productos", path: "/productos" }, { name: category.label, path: `/productos/categoria/${slug}` }]} />}
     />
     <section className={styles.categoryCollection} style={categoryStyle(category)} aria-labelledby="category-products-title">
       <div className={styles.resultsInner}>

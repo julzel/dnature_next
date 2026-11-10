@@ -2,6 +2,7 @@ import { JsonLd } from "@/components/json-ld";
 import { Header } from "@/features/header/components/header";
 import { Footer } from "@/features/footer/components/footer";
 import { AboutHero } from "@/features/about/components/about-hero";
+import { AboutSectionNav } from "@/features/about/components/about-section-nav";
 import { AboutPurpose } from "@/features/about/components/about-purpose";
 import { AboutDirection } from "@/features/about/components/about-direction";
 import { AboutEssence } from "@/features/about/components/about-essence";
@@ -9,8 +10,6 @@ import { AboutInvitation } from "@/features/about/components/about-invitation";
 import { aboutDescription } from "@/features/about/data/about-content";
 import { canonicalUrl } from "@/lib/seo/config";
 import { pageMetadata } from "@/lib/seo/metadata";
-import styles from "@/features/about/components/about.module.css";
-import navEffect from "@/components/center-out-nav-link.module.css";
 
 export const metadata = pageMetadata({
   path: "/nosotros",
@@ -25,14 +24,7 @@ export default function About() {
       <Header solid />
       <main id="contenido">
         <AboutHero />
-        <nav className={styles.sectionNav} aria-label="En esta página">
-          <div className={styles.container}>
-            <a className={navEffect.link} href="#proposito">Nuestro propósito</a>
-            <a className={navEffect.link} href="#direccion">Misión y visión</a>
-            <a className={navEffect.link} href="#esencia">Nuestra esencia</a>
-            <a className={navEffect.link} href="#acompanamiento">Sigamos cerca</a>
-          </div>
-        </nav>
+        <AboutSectionNav />
         <AboutPurpose />
         <AboutDirection />
         <AboutEssence />

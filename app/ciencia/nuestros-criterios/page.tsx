@@ -1,17 +1,21 @@
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageHero } from "@/components/page-hero";
+import { Header } from "@/features/header/components/header";
+import { Footer } from "@/features/footer/components/footer";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = pageMetadata({ path: "/ciencia/nuestros-criterios", title: "Nuestros criterios de publicación", description: "Fuentes, revisión profesional, información de cada fórmula y límites de uso: los criterios editoriales de DNAture para publicar información nutricional." });
 
 export default function Criteria() {
-  return <main id="contenido">
+  return <>
+    <a className="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header solid />
+    <main id="contenido">
     <PageHero
       title="Nuestros criterios"
       accent="de publicación"
       titleId="criteria-title"
       description="Esta es la pauta que debe cumplir la información nutricional antes de publicarse en DNAture."
-      fixedHeader={false}
       navigation={<Breadcrumbs items={[{ name: "Inicio", path: "/" }, { name: "Nuestros criterios", path: "/ciencia/nuestros-criterios" }]} />}
     />
     <div className="shell article">
@@ -27,5 +31,7 @@ export default function Criteria() {
     </dl></section>
     <section><h2>Fechas y correcciones</h2><p>Las fechas de actualización deben reflejar cambios reales en el contenido. Una modificación en la fórmula, las indicaciones o la evidencia requiere una nueva revisión.</p></section>
     </div>
-  </main>;
+    </main>
+    <Footer />
+  </>;
 }
