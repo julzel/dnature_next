@@ -10,6 +10,7 @@ import { aboutDescription } from "@/features/about/data/about-content";
 import { canonicalUrl } from "@/lib/seo/config";
 import { pageMetadata } from "@/lib/seo/metadata";
 import styles from "@/features/about/components/about.module.css";
+import navEffect from "@/components/center-out-nav-link.module.css";
 
 export const metadata = pageMetadata({
   path: "/nosotros",
@@ -26,10 +27,10 @@ export default function About() {
         <AboutHero />
         <nav className={styles.sectionNav} aria-label="En esta página">
           <div className={styles.container}>
-            <a href="#proposito">Nuestro propósito</a>
-            <a href="#direccion">Misión y visión</a>
-            <a href="#esencia">Nuestra esencia</a>
-            <a href="#acompanamiento">Sigamos cerca</a>
+            <a className={navEffect.link} href="#proposito">Nuestro propósito</a>
+            <a className={navEffect.link} href="#direccion">Misión y visión</a>
+            <a className={navEffect.link} href="#esencia">Nuestra esencia</a>
+            <a className={navEffect.link} href="#acompanamiento">Sigamos cerca</a>
           </div>
         </nav>
         <AboutPurpose />
