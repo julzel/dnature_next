@@ -1,7 +1,8 @@
 # Quiénes somos
 
 The `/nosotros` page uses the current site header/footer and the graphic design
-system's flat surfaces, square edges, spacing tokens, and approved engravings.
+system's flat surfaces, square edges, and spacing tokens. Its shared `PageHero`
+uses the Products page's dark-blue surface and white/mint display typography.
 Only the mission/vision explorer is a Client Component. The three essence
 disclosures use native `details` elements and work without JavaScript.
 

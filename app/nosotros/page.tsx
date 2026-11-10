@@ -22,7 +22,7 @@ export default function About() {
     <>
       <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <Header solid />
-      <main id="contenido" className={styles.page}>
+      <main id="contenido">
         <AboutHero />
         <nav className={styles.sectionNav} aria-label="En esta página">
           <div className={styles.container}>

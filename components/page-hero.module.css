@@ -1,0 +1,44 @@
+.hero {
+  --hero-header-offset: var(--dn-header-height);
+  --hero-height: calc(var(--dn-space-20) * 8);
+  position: relative;
+  display: flex;
+  min-block-size: var(--hero-height);
+  padding: calc(var(--hero-header-offset) + var(--dn-space-8)) var(--dn-page-gutter) var(--dn-space-8);
+  background: #103d53;
+  color: var(--dn-text-inverse);
+}
+
+.hero[data-fixed-header="false"] { --hero-header-offset: 0px; }
+.inner { position: relative; display: flex; flex-direction: column; justify-content: center; inline-size: 100%; max-inline-size: var(--dn-content-max); margin-inline: auto; }
+.title {
+  display: grid;
+  max-inline-size: var(--dn-content-max);
+  margin-block: 0 var(--dn-space-6);
+  font-size: clamp(52px, 10vw, 142px);
+  font-weight: 900;
+  line-height: .91;
+  letter-spacing: -.075em;
+  overflow-wrap: anywhere;
+}
+.title span { color: #8fe4d9; }
+.description { max-inline-size: 510px; color: #d2e5eb; font-size: clamp(16px, 1.7vw, 22px); line-height: 1.5; }
+.navigation { margin-block-end: var(--dn-space-6); }
+.navigation :global(.breadcrumbs) { padding-block: 0; color: #d2e5eb; }
+.navigation :global(.breadcrumbs li) { display: flex; align-items: center; }
+.navigation a { display: inline-flex; align-items: center; gap: var(--dn-space-2); min-block-size: 44px; color: #d2e5eb; font-size: 14px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dn-space-6); margin-block-start: var(--dn-space-6); }
+.actions a { display: inline-flex; align-items: center; gap: var(--dn-space-4); min-block-size: 48px; color: var(--dn-text-inverse); font-size: 14px; font-weight: 750; }
+.actions svg { flex-shrink: 0; }
+.hero a:focus-visible { outline-color: var(--dn-focus-ring-inverse); }
+.rail { position: absolute; inset-inline: 0; inset-block-end: 0; block-size: var(--dn-space-3); background: var(--page-hero-rail, var(--dn-brand-orange)); }
+.rail[data-catalog="true"] { display: grid; grid-template-columns: repeat(5, 1fr); }
+.rail span:nth-child(1) { background: var(--dn-category-complementos); }
+.rail span:nth-child(2) { background: var(--dn-category-deshidratados); }
+.rail span:nth-child(3) { background: var(--dn-category-organos); }
+.rail span:nth-child(4) { background: var(--dn-category-recetas-completas); }
+.rail span:nth-child(5) { background: var(--dn-category-suplementos); }
+
+@media (min-width: 1024px) {
+  .hero { --hero-height: calc(var(--dn-space-20) * 9); padding-block: calc(var(--hero-header-offset) + var(--dn-space-12)) var(--dn-space-12); }
+}

@@ -1,4 +1,5 @@
 import { Header } from "@/features/header/components/header";
+import { PageHero } from "@/components/page-hero";
 import { MyPets } from "@/features/experience/components/my-pets";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -14,7 +15,10 @@ export default function MyPetsPage() {
     <>
       <a className="skip-link" href="#contenido">Saltar al contenido</a>
       <Header solid />
-      <MyPets />
+      <main id="contenido">
+        <PageHero title="Mis" accent="mascotas" titleId="pets-title" description="Consultá los perfiles de tus mascotas guardados en este navegador." />
+        <MyPets />
+      </main>
     </>
   );
 }

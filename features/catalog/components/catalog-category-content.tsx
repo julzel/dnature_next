@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { ArrowLeft } from "lucide-react";
+import { PageHero } from "@/components/page-hero";
 import { categoryFromSlug, categoryStyle, isCategorySlug, prepareCatalog, productsForCategory } from "../lib/browse-catalog";
 import { getBrowseCatalogProducts } from "../server/catalog";
 import { getRecentCatalogSales } from "../server/recent-sales";
@@ -19,13 +20,16 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
   try {
     [catalog, buckets] = await Promise.all([getBrowseCatalogProducts(), getRecentCatalogSales()]);
   } catch {
-    return <section className={styles.results} role="alert">
-      <div className={styles.resultsInner}>
-        <h1>No pudimos cargar esta categoría</h1>
-        <p>Intentá de nuevo en un momento.</p>
-        <CatalogRetry />
-      </div>
-    </section>;
+    return <>
+      <PageHero title="Categoría de" accent="productos" titleId="category-title" description="Explorá los productos de cada categoría." navigation={<Link href="/productos"><ArrowLeft size={20} aria-hidden="true" /> Todos los productos</Link>} />
+      <section className={styles.results} role="alert">
+        <div className={styles.resultsInner}>
+          <h2>No pudimos cargar esta categoría</h2>
+          <p>Intentá de nuevo en un momento.</p>
+          <CatalogRetry />
+        </div>
+      </section>
+    </>;
   }
 
   const prepared = prepareCatalog(catalog, buckets);
@@ -34,14 +38,13 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
   const products = productsForCategory(prepared.listings, category.id);
 
   return <>
-    <section className={styles.categoryHero} style={categoryStyle(category)} aria-labelledby="category-title">
-      <div className={styles.categoryHeroInner}>
-        <Link href="/productos" className={styles.backLink}><ArrowLeft size={20} aria-hidden="true" /> Todos los productos</Link>
-        <p className={styles.categoryKicker}>Familia de productos</p>
-        <h1 id="category-title">{category.label}</h1>
-        <p>Explorá todos los productos de esta categoría y consultá sus precios y disponibilidad.</p>
-      </div>
-    </section>
+    <PageHero
+      title={category.label}
+      titleId="category-title"
+      description="Explorá todos los productos de esta categoría y consultá sus precios y disponibilidad."
+      railColor={category.color}
+      navigation={<Link href="/productos"><ArrowLeft size={20} aria-hidden="true" /> Todos los productos</Link>}
+    />
     <section className={styles.categoryCollection} style={categoryStyle(category)} aria-labelledby="category-products-title">
       <div className={styles.resultsInner}>
         <div className={styles.resultHeading}>

@@ -1,14 +1,13 @@
 .page {
   flex: 1;
-  min-block-size: 100svh;
-  padding: calc(var(--dn-header-height) + 48px) var(--dn-page-gutter) 64px;
+  padding: var(--dn-space-12) var(--dn-page-gutter) var(--dn-space-16);
   background: var(--dn-surface-cool);
   color: #092f39;
 }
 .container { max-inline-size: 1280px; margin-inline: auto; }
 .header { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-block-end: 48px; }
 .title { display: grid; gap: 24px; min-inline-size: 0; }
-.title h1 { font-size: clamp(40px, 5vw, 64px); overflow-wrap: anywhere; }
+.title h2 { font-size: clamp(28px, 3vw, 40px); overflow-wrap: anywhere; }
 .manage { display: inline-flex; align-items: center; justify-content: center; gap: 12px; flex-shrink: 0; min-block-size: 48px; min-inline-size: 48px; padding: 12px; border: 2px solid #092f39; text-decoration: none; font-weight: 700; }
 .manage span { display: none; }
 .manage:hover, .create:hover { background: rgb(255 255 255 / 16%); }

@@ -11,12 +11,12 @@ export function MyPets() {
   const stored = useStoredPets();
 
   return (
-    <main id="contenido" className={styles.page}>
+    <section className={styles.page} aria-labelledby="pets-profiles-title">
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.title}>
-            <SectionEyebrow label="Tu familia DNAture" color="#092f39" lineColor="#092f39" />
-            <h1>Mis mascotas</h1>
+            <SectionEyebrow label="Tus compañeros" />
+            <h2 id="pets-profiles-title">Sus perfiles</h2>
           </div>
           {stored.status === "ready" && stored.pets.length > 0 && (
             <Link href="/#experiencia-personalizada" className={styles.manage} aria-label="Gestionar mascotas">
@@ -46,6 +46,6 @@ export function MyPets() {
           </div>
         )}
       </div>
-    </main>
+    </section>
   );
 }
