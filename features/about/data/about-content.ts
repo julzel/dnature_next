@@ -19,7 +19,7 @@ export const directions = [
     id: "vision",
     label: "Visión",
     horizon: "El futuro que queremos construir",
-    heading: "Una Costa Rica que elige con conocimiento.",
+    heading: "Tutores conscientes y bien informados.",
     description:
       "Queremos ser un referente de nutrición fisiológica animal en Costa Rica y transformar la forma en que entendemos la alimentación de perros y gatos.",
     detail:

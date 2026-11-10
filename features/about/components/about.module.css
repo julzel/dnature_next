@@ -1,14 +1,20 @@
 .container { max-inline-size: var(--dn-content-max); margin-inline: auto; }
-.section { padding: var(--dn-space-12) var(--dn-page-gutter); scroll-margin-block-start: calc(var(--dn-header-height) + var(--about-nav-height, 0px)); }
+.section { padding: var(--dn-space-12) var(--dn-page-gutter); scroll-margin-block-start: calc(var(--dn-header-height) + var(--about-nav-height, var(--dn-header-height))); }
 .section h2 { line-height: 1.2; }
 .sectionTitle { margin-block-start: var(--dn-space-4); text-wrap: balance; }
 
 .textLink { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--dn-space-4); min-block-size: var(--dn-space-12); margin-block-start: var(--dn-space-4); font-size: 14px; font-weight: 750; }
 .textLink svg { flex-shrink: 0; }
 
+.stickySentinel, .stickySpacer { display: block; block-size: 0; }
 .sectionNav { position: sticky; inset-block-start: var(--dn-header-height); z-index: 5; padding: var(--dn-space-8) var(--dn-page-gutter); border-block: 1px solid var(--dn-border-default); background: var(--dn-surface-base); }
 .sectionNav > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--dn-space-4); padding-block: var(--dn-space-2); }
 .sectionNav a { display: flex; align-items: center; min-block-size: var(--dn-space-12); padding-block: var(--dn-space-3); font-size: 13px; font-weight: 700; text-decoration: none; }
+.sectionNav[data-stuck] { display: flex; align-items: center; min-block-size: var(--dn-header-height); padding-block: 0; }
+.sectionNav[data-stuck] > div { display: flex; flex-wrap: nowrap; align-items: center; gap: var(--dn-space-2); inline-size: 100%; overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: thin; padding: var(--dn-space-2); }
+.sectionNav[data-stuck] a { flex: 0 0 auto; padding-block: var(--dn-space-2); white-space: nowrap; }
+.sectionNav[data-transitioning] { overflow: clip; }
+.sectionNav:is([data-stuck], [data-transitioning]) + .stickySpacer { block-size: max(0px, calc(var(--about-nav-expanded-height, var(--dn-header-height)) - var(--about-nav-current-height, var(--dn-header-height)))); }
 
 .purpose { background: var(--dn-brand-orange); color: var(--dn-text-primary); }
 .purposeGrid { display: grid; gap: var(--dn-space-6); margin-block-start: var(--dn-space-4); }
