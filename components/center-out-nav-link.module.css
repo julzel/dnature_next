@@ -27,7 +27,7 @@
   background: var(--nav-ink, var(--dn-surface-dark));
 }
 
-.link:is(:hover, :focus-visible, [aria-current="location"])::before,
+.link:is(:hover, :focus-visible, [aria-current="page"], [aria-current="location"])::before,
 .link:is(:hover, :focus-visible, [aria-current="page"], [aria-current="location"])::after { transform: scaleX(1); }
 
 @media (prefers-reduced-motion: no-preference) {

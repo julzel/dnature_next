@@ -12,16 +12,14 @@ export const metadata = pageMetadata({
   description: "Explorá el catálogo de productos DNAture por familia o por nombre. Consultá imágenes, precios y disponibilidad actual de los productos publicados.",
 });
 
-type SearchParams = Promise<{ q?: string | string[]; categoria?: string | string[] }>;
-
-export default function ProductsPage({ searchParams }: { searchParams: SearchParams }) {
+export default function ProductsPage() {
   return (
     <>
       <Header solid />
       <main id="contenido">
         <CatalogIntro />
         <Suspense fallback={<CatalogLoading />}>
-          <CatalogResults searchParams={searchParams} />
+          <CatalogResults />
         </Suspense>
       </main>
       <Footer />
