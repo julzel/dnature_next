@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   } catch {
     return pageMetadata({ path, title: "Categoría de productos", description: "Explorá los productos DNAture por categoría.", indexable: false });
   }
-  const category = categoryFromSlug(prepareCatalog(catalog, []).categories, slug);
+  const category = categoryFromSlug(prepareCatalog(catalog).categories, slug);
   if (!category) notFound();
   return pageMetadata({
     path,

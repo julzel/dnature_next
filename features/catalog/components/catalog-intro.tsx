@@ -7,7 +7,7 @@ export function CatalogIntro() {
       title="Productos"
       accent="DNAture"
       titleId="catalog-title"
-      description="Encontrá lo que buscás por familia o por nombre. Información clara para explorar a tu ritmo."
+      description="Explorá nuestro catálogo. Buscá por producto o ingrediente y encontrá lo que necesitás para su alimentación."
       navigation={<Breadcrumbs items={[{ name: "Inicio", path: "/" }, { name: "Productos", path: "/productos" }]} />}
       catalogRail
     />

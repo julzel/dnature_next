@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { cacheLife, cacheTag } from "next/cache";
 import { getContentfulEntries } from "@/features/content/server/contentful";
 import type { ContentfulAsset, ContentfulEntry, ProductContentFields } from "@/features/content/types/contentful";
@@ -81,11 +82,11 @@ export async function getCatalogProducts(): Promise<CatalogProduct[]> {
   return joinProducts(products, content.entries, content.assets);
 }
 
-/** Shared briefly across catalog browsing requests to avoid repeating the full Avify scan for each filter change. */
-export async function getBrowseCatalogProducts(): Promise<CatalogProduct[]> {
+/** One joined snapshot per render; the underlying caches retain their own freshness windows. */
+export const getBrowseCatalogProducts = cache(async function getBrowseCatalogProducts(): Promise<CatalogProduct[]> {
   const [products, content] = await Promise.all([getShortLivedAvifyCatalog(), getCachedProductContent()]);
   return joinProducts(products, content.entries, content.assets);
-}
+});
 
 export async function getCatalogProductBySku(sku: string): Promise<CatalogProduct | null> {
   if (!sku.trim() || sku.length > 200) throw new RangeError("sku must be a nonempty string of at most 200 characters.");

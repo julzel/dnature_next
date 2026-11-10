@@ -9,7 +9,7 @@ import { CatalogLoading } from "@/features/catalog/components/catalog-loading";
 export const metadata = pageMetadata({
   path: "/productos",
   title: "Productos DNAture",
-  description: "Explorá el catálogo de productos DNAture por familia o por nombre. Consultá imágenes, precios y disponibilidad actual de los productos publicados.",
+  description: "Explorá los productos DNAture por categoría, nombre o ingrediente. Filtrá por disponibilidad y compará presentaciones y precios.",
 });
 
 export default function ProductsPage() {

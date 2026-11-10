@@ -1,7 +1,6 @@
 import { connection } from "next/server";
 import { prepareCatalog } from "../lib/browse-catalog";
 import { getBrowseCatalogProducts } from "../server/catalog";
-import { getRecentCatalogSales } from "../server/recent-sales";
 import { CatalogBrowser } from "./catalog-browser";
 import { CatalogRetry } from "./catalog-retry";
 import styles from "./catalog-page.module.css";
@@ -9,9 +8,8 @@ import styles from "./catalog-page.module.css";
 export async function CatalogResults() {
   await connection();
   let catalog;
-  let buckets;
   try {
-    [catalog, buckets] = await Promise.all([getBrowseCatalogProducts(), getRecentCatalogSales()]);
+    catalog = await getBrowseCatalogProducts();
   } catch {
     return (
       <section className={styles.results} aria-label="Catálogo de productos">
@@ -24,6 +22,6 @@ export async function CatalogResults() {
     );
   }
 
-  const prepared = prepareCatalog(catalog, buckets);
+  const prepared = prepareCatalog(catalog);
   return <CatalogBrowser categories={prepared.categories} listings={prepared.listings} />;
 }
