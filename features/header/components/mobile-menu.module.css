@@ -81,8 +81,8 @@
   text-decoration: none;
 }
 
-.navigation a:hover {
-  text-decoration: underline;
+.navigation a[aria-current] {
+  font-weight: 750;
 }
 
 @media (min-width: 1024px) {

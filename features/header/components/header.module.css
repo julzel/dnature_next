@@ -65,6 +65,8 @@
   text-decoration: none;
 }
 
+.navigation a[aria-current] { font-weight: 750; }
+
 .searchToggle {
   display: grid;
   place-items: center;
@@ -119,37 +121,7 @@
     display: flex;
   }
 
-  .navigation a {
-    position: relative;
-  }
-
-  .navigation a::after {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    inset-block-end: 8px;
-    block-size: 2px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: center;
-    pointer-events: none;
-  }
-
-  .navigation a:is(:hover, :focus-visible)::after {
-    transform: scaleX(1);
-  }
-
   .actions {
     margin-inline-start: 0;
-  }
-}
-
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-  .navigation a {
-    transition: color 180ms ease;
-  }
-
-  .navigation a::after {
-    transition: transform 180ms ease;
   }
 }

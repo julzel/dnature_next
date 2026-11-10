@@ -44,9 +44,8 @@ export function CatalogCategoryShelf({ shelf }: { shelf: CatalogShelf }) {
   return (
     <section className={styles.shelf} style={categoryStyle(shelf.category)} aria-labelledby={`category-${shelf.category.id}`}>
       <div className={styles.shelfHeading}>
-        <div>
-          <p>Favoritos de la categoría</p>
-          <h3 id={`category-${shelf.category.id}`}>{shelf.category.label}</h3>
+        <div className={styles.shelfTitle}>
+          <h2 id={`category-${shelf.category.id}`}>{shelf.category.label}</h2>
         </div>
         <div className={styles.shelfControls}>
           <button type="button" onClick={handleScrollBack} disabled={!canScrollBack} aria-label={`Desplazar ${shelf.category.label} hacia atrás`}><ArrowLeft size={20} aria-hidden="true" /><span>Anterior</span></button>
@@ -54,7 +53,7 @@ export function CatalogCategoryShelf({ shelf }: { shelf: CatalogShelf }) {
         </div>
       </div>
       <ol ref={scroller} className={styles.shelfTrack} onScroll={updateControls} aria-label={`Productos de ${shelf.category.label}`}>
-        {shelf.products.map((product) => <CatalogProductPreview key={product.sku} product={product} />)}
+        {shelf.products.map((product) => <CatalogProductPreview key={product.sku} product={product} headingLevel={3} />)}
       </ol>
       <Link className={styles.categoryLink} href={categoryPath(shelf.category)}>
         Ver todos los productos de {shelf.category.label}

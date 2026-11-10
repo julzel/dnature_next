@@ -47,10 +47,6 @@ export async function CatalogResults({ searchParams }: { searchParams: SearchPar
           <CatalogSearchForm query={view.query} categoryId={categoryId} />
           <CatalogCategoryNav categories={prepared.categories} activeId={categoryId} query={view.query} />
         </div>
-        <div className={styles.resultHeading}>
-          <div><p className={styles.sectionLabel}>Según ventas de los últimos 30 días</p><h2>Los más elegidos</h2></div>
-          <p role="status">{view.shelves.length} {view.shelves.length === 1 ? "categoría" : "categorías"} · hasta cinco productos por categoría</p>
-        </div>
         {view.shelves.length ? (
           <div className={styles.shelves}>
             {view.shelves.map((shelf) => <CatalogCategoryShelf key={shelf.category.id} shelf={shelf} />)}

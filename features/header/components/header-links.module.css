@@ -1,0 +1,10 @@
+.link {
+  --nav-accent: var(--dn-brand-teal);
+  --nav-ink: var(--dn-brand-teal);
+}
+
+.link:is(:hover, :focus-visible, [aria-current]) {
+  color: var(--dn-text-primary);
+}
+
+.link[aria-current]::before { transform: scaleX(1); }

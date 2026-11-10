@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
-import { headerLinks } from "../data/navigation";
+import { Suspense, useEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
+import { HeaderLinks } from "./header-links";
+import { ActiveHeaderLinks } from "./active-header-links";
 import styles from "./mobile-menu.module.css";
 
 type MobileMenuProps = {
@@ -96,7 +96,9 @@ export function MobileMenu({ buttonClassName, onOpen }: MobileMenuProps) {
           </button>
         </div>
         <nav className={styles.navigation} aria-label="Navegación móvil">
-          {headerLinks.map((link) => <Link key={link.href} href={link.href} onClick={handleClose}>{link.label}</Link>)}
+          <Suspense fallback={<HeaderLinks onNavigate={handleClose} />}>
+            <ActiveHeaderLinks onNavigate={handleClose} />
+          </Suspense>
         </nav>
       </dialog>
     </>

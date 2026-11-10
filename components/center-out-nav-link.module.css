@@ -2,7 +2,6 @@
   position: relative;
   isolation: isolate;
   padding-inline: var(--dn-space-3);
-  border-block-end: 2px solid transparent;
 }
 
 .link::before,
@@ -17,12 +16,13 @@
 .link::before {
   z-index: -1;
   inset: 0;
+  inset-block-end: 2px;
   background: color-mix(in srgb, var(--nav-accent, var(--dn-surface-dark)) 12%, var(--dn-surface-cool));
 }
 
 .link::after {
   inset-inline: 0;
-  inset-block-end: -2px;
+  inset-block-end: 0;
   block-size: 2px;
   background: var(--nav-ink, var(--dn-surface-dark));
 }

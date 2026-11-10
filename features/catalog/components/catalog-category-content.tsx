@@ -47,7 +47,7 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
     <section className={styles.categoryCollection} style={categoryStyle(category)} aria-labelledby="category-products-title">
       <div className={styles.resultsInner}>
         <div className={styles.resultHeading}>
-          <div><p className={styles.sectionLabel}>Según ventas de los últimos 30 días</p><h2 id="category-products-title">Todos los productos</h2></div>
+          <h2 id="category-products-title">Todos los productos</h2>
           <p>{products.length} {products.length === 1 ? "producto" : "productos"}</p>
         </div>
         <ol className={styles.categoryGrid} aria-label={`Productos de ${category.label}`}>

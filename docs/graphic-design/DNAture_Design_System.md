@@ -424,6 +424,8 @@ For buttons inline alongside other elements, show the icon without visible text 
 
 **[REQUIRED]** Important public pages are discoverable through main navigation, the footer, and contextual links. Links are crawlable and descriptive. Use real navigation links for page destinations; do not rely on client-only experience switching to expose content.
 
+**Main navigation active state [PROJECT]:** Use exact brand teal `#00A9B5` for desktop and mobile navigation underlines, with a soft teal background and a stronger readable active label. Reuse the shared center-out underline and background animation on hover and keyboard focus; retain both for the active item. Keep labels dark on the soft fill, including over the transparent homepage header. Respect reduced motion. Preserve dark text on light surfaces rather than using teal for small text. Mark the current page with `aria-current="page"`, retain Productos as current on nested product routes, and use `aria-current="location"` for Contacto while its homepage section is visible. Desktop and mobile navigation share the same selection rules.
+
 **Proposed primary navigation:** Productos · Ciencia y aprendizaje · Nosotros · Ayuda, with search, account, and cart utilities. Use the current route structure and verified catalog when implementing.
 
 Use the current five product categories: **Complementos**, **Deshidratados**, **Órganos**, **Recetas completas**, and **Suplementos**. The nine family names in the original brandbook remain historical source material, not the website's current navigation taxonomy. Species navigation reflects verified product eligibility.

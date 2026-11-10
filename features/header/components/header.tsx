@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { Suspense, useEffect, useRef, useState, type CSSProperties } from "react";
 import { Icon } from "@/components/icon";
 import { Logo } from "@/components/logo";
 import { SearchDialog } from "./search-dialog";
 import { MobileMenu } from "./mobile-menu";
-import { headerLinks } from "../data/navigation";
+import { HeaderLinks } from "./header-links";
+import { ActiveHeaderLinks } from "./active-header-links";
 import styles from "./header.module.css";
 
 export function Header({ solid = false }: { solid?: boolean }) {
@@ -65,7 +66,9 @@ export function Header({ solid = false }: { solid?: boolean }) {
               <Logo shape="full" size={114} loading="eager" alt="" />
             </Link>
             <nav className={styles.navigation} aria-label="Navegación principal">
-              {headerLinks.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}
+              <Suspense fallback={<HeaderLinks />}>
+                <ActiveHeaderLinks />
+              </Suspense>
             </nav>
             <div className={styles.actions}>
               <button
