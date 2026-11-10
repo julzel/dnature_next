@@ -7,6 +7,7 @@ import { categoryFromSlug, categoryStyle, filterCatalog, isCategorySlug, prepare
 import { catalogFilterUrl } from "../lib/catalog-filter-url";
 import { getBrowseCatalogProducts } from "../server/catalog";
 import { CatalogProductPreview } from "./catalog-product-preview";
+import { CatalogProductGallery } from "./catalog-product-gallery";
 import { CatalogRetry } from "./catalog-retry";
 import styles from "./catalog-page.module.css";
 
@@ -51,9 +52,9 @@ export async function CatalogCategoryContent({ params }: { params: Promise<{ slu
           <div><h2>Todos los productos</h2><p>{view.total} productos</p></div>
           <Link className={styles.catalogBrowseLink} href={catalogFilterUrl(filters, prepared.categories)}>Buscar y filtrar {category.label}</Link>
         </div>
-        <ul className={styles.productGrid}>
-          {view.products.map((product) => <CatalogProductPreview key={product.sku} product={product} categories={prepared.categories} />)}
-        </ul>
+        <CatalogProductGallery>
+          {view.products.map((product) => <CatalogProductPreview key={product.sku} product={product} categories={prepared.categories} imageSizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1023px) calc((100vw - 72px) / 2), (max-width: 1279px) calc((100vw - 88px) / 2), (max-width: 1343px) calc((100vw - 112px) / 3), 411px" />)}
+        </CatalogProductGallery>
       </div>
     </section>
   </>;

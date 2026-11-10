@@ -34,6 +34,22 @@ test("prepares catalog previews with images, availability, and active variant pr
   assert.equal(listings[1].offer.inStock, false);
 });
 
+test("reserves original image proportions and falls back safely when dimensions are unavailable", () => {
+  const entries = [
+    { width: 1920, height: 1080 },
+    { width: 1825, height: 2738 },
+    undefined,
+    { width: 0, height: 100 },
+    { width: 100, height: NaN },
+    { width: Infinity, height: 100 },
+  ].map((image, index) => {
+    const item = product(`image-${index}`, "Producto", "Complementos");
+    item.editorial.images[0].fields.file!.details = { image };
+    return item;
+  });
+  assert.deepEqual(prepareCatalog(entries).listings.map(({ imageAspectRatio }) => imageAspectRatio), [1920 / 1080, 1825 / 2738, 1, 1, 1, 1]);
+});
+
 test("uses the five current category names and shared theme colors", () => {
   const names = ["Suplementos", "Órganos", "Complementos", "Recetas completas", "Snacks deshidratados"];
   const { categories } = prepareCatalog(names.map((name, index) => product(`item-${index}`, name, name)));

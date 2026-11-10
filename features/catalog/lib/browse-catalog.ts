@@ -10,6 +10,7 @@ export type CatalogListing = {
   categoryIds: string[];
   imageUrl: string | null;
   imageAlt: string;
+  imageAspectRatio: number;
   offer: ProductOffer;
   ingredients: string;
   variants: { name: string; price: number | null; inStock: boolean }[];
@@ -96,6 +97,10 @@ export function prepareCatalog(products: readonly CatalogProduct[]) {
       }
     }
     const image = product.editorial.images.find((asset) => contentfulImageUrl(asset.fields.file?.url));
+    const dimensions = image?.fields.file?.details?.image;
+    const imageAspectRatio = dimensions && Number.isFinite(dimensions.width) && dimensions.width > 0
+      && Number.isFinite(dimensions.height) && dimensions.height > 0
+      ? dimensions.width / dimensions.height : 1;
     const name = product.editorial.fields.productName?.trim() || product.commerce.name;
     const ingredients = ingredientText(product.editorial.fields.ingredientes);
     const activeVariants = product.commerce.children.filter((variant) => variant.status === "active");
@@ -107,6 +112,7 @@ export function prepareCatalog(products: readonly CatalogProduct[]) {
       categoryIds: product.commerce.categories.map((category) => category.id),
       imageUrl: contentfulImageUrl(image?.fields.file?.url),
       imageAlt: image?.fields.description?.trim() || name,
+      imageAspectRatio,
       offer,
       ingredients,
       variants: activeVariants.map((variant) => {

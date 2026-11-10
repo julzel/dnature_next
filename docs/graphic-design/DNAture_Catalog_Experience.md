@@ -43,22 +43,30 @@ The references below informed the design. Their visual treatment and catalog sca
 | [Chewy: food collection](https://www.chewy.com/b/food-332) | Product collections use category and attribute refinement alongside product results. | Keep a clear filter area beside one collection; expose only attributes supported by DNAture data. |
 | [IKEA: sofas and sectionals](https://www.ikea.com/us/en/cat/sofas-sectionals-fu003/) | Collection browsing combines products, filtering, and sorting. | Keep results, their count, and sorting together rather than splitting matching products into short shelves. |
 | [Baymard: ecommerce filter UI](https://baymard.com/blog/ecommerce-filter-ui) | Filter design needs to support shoppers narrowing and comparing a product collection. | Use familiar labeled controls, multiple category selection, and visible result feedback. |
-| [Baymard: applied filters](https://baymard.com/research-articles/how-to-design-applied-filters) | Applied filters need an understandable overview and removal controls. | Show removable text filters and a clear-all action above results, with no pill or card styling. |
+| [Baymard: applied filters](https://baymard.com/research-articles/how-to-design-applied-filters) | Applied filters need an understandable overview and removal controls. | The project now keeps selection in the labeled checkboxes and search field. Separate active-filter chips and clear-all controls were removed at the owner’s request. |
 | [Baymard: product-finding research](https://baymard.com/research-articles/product-finding-2024-launch) | Product finding spans navigation, lists, filtering, and search as one connected task. | Treat search, filters, results, and browser history as one coherent interaction. |
 | [Google: pagination and incremental loading](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading) | Search discovery needs crawlable navigation; crawlers do not operate interactive controls like customers. | Keep real category links and server-visible product content. At 89 products, a full collection avoids unnecessary pagination complexity. Reassess if the catalog grows substantially. |
 
 **Our design decision:** keep the complete modest catalog searchable locally, use an open product collection, and preserve URL state. This is an adaptation to the audited inventory and DNAture's flat visual language, not a claim that the reference stores use the same technical architecture.
+
+### Unsplash gallery adaptation — 2026-11-10
+
+Inspection of the public HTML and inline CSS at [Unsplash’s Spanish homepage](https://unsplash.com/es) showed equal-width column containers, 24px horizontal/vertical gutters, and images with source width/height attributes. Its responsive image sizing describes one column below 768px, two below 992px, and three on desktop, capped at 416px per image. Later images use native lazy loading. The live browser preview service was unavailable; these observations come from the returned page source and styles.
+
+For DNAture, keep the photo-led staggered composition while preserving visible product names, category labels, neutral prices, availability, and native ingredient/presentation disclosures. The audited 89-product snapshot contains 68 exactly square images and 21 non-square images (some only differ by one pixel). Preserve those proportions rather than inventing tall crops or cutting off packaging.
+
+The implementation uses one semantic list, with one column below 640px, two from 640px, and three from 1280px. The catalog’s desktop filter column accounts for the later three-column breakpoint. Horizontal gutters use the shared 24px token; a 48px vertical gap separates each product’s information from the next image. A small ResizeObserver enhancement measures article heights into CSS Grid row spans. Sparse placement keeps DOM, keyboard, and top-to-bottom visual order aligned, including after sorting. It reflows when disclosures, fonts, and viewport sizes change. Without the observer, an ordinary responsive grid remains usable. No gallery dependency, duplicated responsive lists, image cropping, or new network request is needed for filtering.
 
 ## 3. Layout and information hierarchy
 
 The existing shared interior hero, breadcrumbs, typography, and alignment remain the entry to the page. Below it:
 
 1. **Compact search strip.** A visible search label, wide search field, and clear action. This strip becomes sticky immediately below the main header without covering focus or consuming most of a phone screen.
-2. **Filters and results.** Desktop uses a narrow aligned filter column and a wider product collection. Mobile uses an inline filter disclosure followed by the result count, sorting, active-filter summary, and product rows.
+2. **Filters and results.** Desktop uses a narrow aligned filter column and a wider product collection. Mobile uses an inline filter disclosure, sorting, and a single-column image-led gallery. Result totals are announced to assistive technology without a visible count below the heading.
 3. **One complete collection.** Every matching parent product is available in the results. Category selection changes the collection; it does not require a trip through a five-item shelf.
 4. **Product details in place.** Keep image, name, visible category, price, and availability together. Native disclosures reveal ingredients and available presentation information without inventing a separate destination or duplicating product entries.
 
-Products share one cool page surface. Desktop entries form an open grid; narrow screens use readable divided rows. No product cards, per-item tinted boxes, rounded borders, elevation, or hover scaling. Category colors identify their category through restrained text and rules; prices use the normal primary text color. Reuse the shared spacing scale and accessible category ink colors.
+Products share one cool page surface. Desktop entries form a staggered gallery with natural image proportions; narrow screens use full-width images followed by their product information. No product cards, per-item tinted boxes, rounded borders, elevation, or hover scaling. Category colors identify their category through restrained text and rules; prices use the normal primary text color. Reuse the shared spacing scale and accessible category ink colors.
 
 ## 4. Search and filtering contract
 
@@ -69,7 +77,7 @@ Products share one cool page surface. Desktop entries form an open grid; narrow 
 - Normalize case and accents. Multiword search does not require one contiguous phrase: “higado cordero” can match “Hígado de cordero”. All meaningful terms must match rather than broadening an unsuccessful query silently.
 - Rank useful exact/name matches ahead of secondary ingredient matches under relevance ordering. The display remains deterministic when scores tie.
 - Preserve input focus and the user's in-progress text. Avoid heavy result animations, focus jumps, or a server request per keystroke.
-- Display an accurate count and an understandable empty state. Keep the entered query and selected filters visible, with independent removal actions and a route back to the full catalog.
+- Announce an accurate result count and display an understandable empty state. Keep the entered query and selected checkboxes visible, with search clearing and empty-state recovery. Do not restore the removed share button, active-filter row, or visible total below the results heading.
 - Search is discovery, not a declaration of dietary suitability. A mention of an ingredient does not establish its proportion, exclusivity, absence of allergens, or suitability for an animal.
 
 ### Filters and sorting
@@ -79,8 +87,8 @@ Products share one cool page surface. Desktop entries form an open grid; narrow 
 | Categories | Multiple categories use OR: a product may match any selected category. No selection means all categories. Keep names visible alongside counts. |
 | Availability | A clear “Solo disponibles” option uses commerce-derived availability. Combine it with search/category filters using AND. |
 | Sort | Offer relevance, name A–Z, price ascending, and price descending. Preserve the chosen sort in the URL. |
-| Applied filters | Show human-readable selections with individual removal and clear-all controls. Removing one must preserve the others. |
-| Result count | Count matching parent products once; never count variants as additional products or cap the reported total at five per category. |
+| Applied filters | Use the checked category/availability controls and search input as the selection display. Unchecking one preserves the others. No separate active-filter chips or clear-all row. |
+| Result count | Announce matching parent products once in the live region; retain facet counts and the mobile “Ver productos” action. No visible total below the results heading. |
 | Ingredients/options | Use native disclosures. Show available source text; do not fill missing data with inferred statements. |
 
 No pet-species, age, health-condition, protein-exclusion, or “allergy-safe” filter is warranted by the current structured model. Add those only after explicit fields are defined, reviewed, and populated.
@@ -147,6 +155,8 @@ Their absence is a source-join finding, not a determination that they should be 
 ## 7. Acceptance criteria
 
 Verification on 2026-11-10 used the live 89-product catalog at 1440, 390, and 320px. Forty-five targeted interaction checks passed, including rapid typing, combined filters, sorting, Back/Forward, keyboard disclosures, deep scrolling, and empty-state recovery. Filter interactions issued no document or RSC requests and produced no runtime errors. Direct URL loading restored a nine-product query and all controls in both server-rendered markup and the hydrated interface. At 200% text size, controls wrapped without page overflow at all three widths. JavaScript-disabled visitors receive explicit guidance and a support link; the streamed interactive catalog itself requires scripting.
+
+The gallery revision was checked in Chromium against the live catalog at 1440, 1024, 768, 390, and 320px. Original image proportions, lazy loading, reading order, and non-overlapping entries passed, including keyboard-expanded details. Live search, combined filters, price sorting, Back/Forward, direct shared URLs, and mobile filter controls passed without document/RSC requests during filtering or runtime errors. The category gallery and 200% text checks also passed; the narrow-screen sort control was corrected to stay within its container. All 30 catalog service/model tests, targeted lint, TypeScript, and the production build passed.
 
 Keep the following acceptance checks for future changes:
 

@@ -8,6 +8,7 @@ import { categoryPath, filterCatalog, type CatalogCategory, type CatalogFilters,
 import { catalogFilterUrl, readCatalogFilters } from "../lib/catalog-filter-url";
 import { CatalogFiltersPanel } from "./catalog-filters-panel";
 import { CatalogProductPreview } from "./catalog-product-preview";
+import { CatalogProductGallery } from "./catalog-product-gallery";
 import { CatalogSearchForm } from "./catalog-search-form";
 import styles from "./catalog-page.module.css";
 
@@ -168,9 +169,9 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
               </form>
             </div>
             {view.products.length ? (
-              <ul className={styles.productGrid} aria-label="Productos encontrados">
+              <CatalogProductGallery>
                 {view.products.map((product) => <CatalogProductPreview key={product.sku} product={product} categories={categories} headingLevel={3} />)}
-              </ul>
+              </CatalogProductGallery>
             ) : (
               <div className={styles.emptyState}>
                 <h3>No encontramos esa combinación</h3>
