@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
-import { SlidersHorizontal, X } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import { categoryPath, filterCatalog, type CatalogCategory, type CatalogFilters, type CatalogListing } from "../lib/browse-catalog";
 import { catalogFilterUrl, readCatalogFilters } from "../lib/catalog-filter-url";
 import { CatalogFiltersPanel } from "./catalog-filters-panel";
@@ -143,14 +143,14 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
         </div>
         <div className={styles.collectionLayout}>
           <aside id="catalog-filters" className={styles.filters} data-open={filtersOpen} aria-label="Filtrar productos">
-            <CatalogFiltersPanel categories={categories} filters={filters} counts={view.categoryCounts} availableCount={view.availableCount} onChange={handleFilterChange} onNavigate={handleNavigate} />
+            <CatalogFiltersPanel categories={categories} filters={filters} counts={view.categoryCounts} availableCount={view.availableCount} onChange={handleFilterChange} />
             <button type="button" className={styles.viewResults} onClick={handleViewResults}>Ver {view.total} productos</button>
           </aside>
           <div className={styles.collection}>
             <div className={styles.resultHeading}>
               <div>
                 <h2>{filters.query.trim() ? "Resultados de búsqueda" : selected.length === 1 ? selected[0].label : selected.length > 1 ? "Productos filtrados" : filters.inStockOnly ? "Productos disponibles" : "Todos los productos"}</h2>
-                <p role="status" aria-atomic="true">{view.total} {view.total === 1 ? "producto" : "productos"}{filters.query.trim() ? ` para “${filters.query.trim()}”` : ""}</p>
+                <p className="sr-only" role="status" aria-atomic="true">{view.total} {view.total === 1 ? "producto" : "productos"}{filters.query.trim() ? ` para “${filters.query.trim()}”` : ""}</p>
               </div>
               <form action="/productos" method="get" onSubmit={handleSortSubmit} className={styles.resultActions}>
                 <input type="hidden" name="q" value={filters.query} />
@@ -167,12 +167,6 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
                 <noscript><button type="submit" className={styles.retry}>Ordenar</button></noscript>
               </form>
             </div>
-            {(filterCount > 0 || filters.query) && <div className={styles.activeFilters} aria-label="Filtros activos">
-              {selected.map((category) => <Link key={category.id} href={catalogFilterUrl({ ...filters, categoryIds: filters.categoryIds.filter((id) => id !== category.id) }, categories)} onClick={handleNavigate} scroll={false} prefetch={false} aria-label={`Quitar filtro ${category.label}`}>{category.label}<X size={16} aria-hidden="true" /></Link>)}
-              {filters.inStockOnly && <Link href={catalogFilterUrl({ ...filters, inStockOnly: false }, categories)} onClick={handleNavigate} scroll={false} prefetch={false}>Disponibles<X size={16} aria-hidden="true" /><span className="sr-only">: quitar filtro</span></Link>}
-              {filters.query && <button type="button" onClick={handleClearSearch}>Búsqueda: {filters.query}<X size={16} aria-hidden="true" /><span className="sr-only">: quitar</span></button>}
-              <Link className={styles.clearAll} href="/productos" onClick={handleNavigate} scroll={false} prefetch={false}>Limpiar todo</Link>
-            </div>}
             {view.products.length ? (
               <ul className={styles.productGrid} aria-label="Productos encontrados">
                 {view.products.map((product) => <CatalogProductPreview key={product.sku} product={product} categories={categories} headingLevel={3} />)}
