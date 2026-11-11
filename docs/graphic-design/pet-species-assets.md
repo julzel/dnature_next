@@ -1,11 +1,18 @@
 # DNAture species assets
 
 Four reusable, editable SVGs with transparent backgrounds. The detailed animals
-are adaptations of the native vector engravings on page 46 of the revised
-`DNA-BRANDBOOK.pdf`. The small variants use the supplied silhouettes from
-`EDITABLES.ai`, without the circular badge or outer ring. These are website
-adaptations of supplied artwork, not new original drawings. The source exports
-in `public/images/icons/` remain intact.
+use the DNAture ink-and-mint engraving style. Both detailed animals stand on
+four legs facing right; the dog is a golden retriever. They were created with
+built-in image generation and traced into native SVG paths on a shared canvas,
+optical width, and baseline. Original brandbook-derived SVGs, generated PNGs,
+and prompts are preserved alongside the
+[cat generation record](artwork-sources/pet-species/standing-cat-generation.json)
+and [golden retriever generation record](artwork-sources/pet-species/golden-retriever-generation.json).
+The retriever’s latest [lighter-shading revision](artwork-sources/pet-species/golden-retriever-lightening.json)
+opens the dense fur shadows while retaining the pose, palette, and baseline.
+The small variants use the supplied silhouettes from `EDITABLES.ai`, without
+the circular badge or outer ring. The source brandbook and original exports in
+`public/images/icons/` remain intact.
 
 [Open the visual preview](pet-species-preview.html). The
 [machine-readable manifest](../../public/images/pets/manifest.json) records

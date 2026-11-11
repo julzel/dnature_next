@@ -90,7 +90,7 @@ export function BreedCombobox({ species, value, onChange, error, revealed = true
 
   return (
     <div className={styles.combobox} onBlur={handleBlur} data-revealed={revealed}>
-      <label className="sr-only" htmlFor={id}>Raza</label>
+      <label className={styles.label} htmlFor={id}>Raza</label>
       <div className={styles.field}>
         <input
           ref={input} id={id} name="breed" type="text" role="combobox"

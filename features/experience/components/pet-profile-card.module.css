@@ -1,8 +1,8 @@
 .card {
   padding-block: var(--dn-space-6);
-  border-block: 1px solid rgb(9 47 57 / 40%);
+  border-block: 1px solid var(--dn-border-default);
   background: transparent;
-  color: #092f39;
+  color: var(--dn-text-primary);
   text-align: start;
 }
 
@@ -22,7 +22,7 @@
 
 .portrait img { inline-size: 80px; block-size: auto; }
 .details { min-inline-size: 0; }
-.details > div { position: relative; display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; gap: 8px; min-inline-size: 0; padding-block: 12px; }
+.details > div { position: relative; display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; gap: var(--dn-space-2); min-inline-size: 0; padding-block: var(--dn-space-3); }
 .details > div:first-child { padding-block-start: 0; }
 .details > div:last-child { padding-block-end: 0; }
 .details > div + div::before {
@@ -31,7 +31,7 @@
   inset-block-start: 0;
   inset-inline: 0;
   block-size: 1px;
-  background: rgb(9 47 57 / 40%);
+  background: var(--dn-border-default);
   transform: scaleX(0);
   transform-origin: center;
   pointer-events: none;
@@ -43,7 +43,7 @@
 }
 .details > div:nth-child(2) { --row-reveal-delay: 480ms; }
 .details > div:nth-child(3) { --row-reveal-delay: 640ms; }
-.details dt { color: inherit; font-size: 14px; font-weight: 600; }
+.details dt { color: var(--dn-text-secondary); font-size: 14px; font-weight: 600; }
 .details dd { margin: 0; font-size: 16px; font-weight: 750; line-height: 1.4; text-align: end; overflow-wrap: anywhere; }
 
 @media (min-width: 640px) {

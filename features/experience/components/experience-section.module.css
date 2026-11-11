@@ -13,5 +13,14 @@
 }
 
 .section[id="experiencia-personalizada"] {
+  padding-block: var(--dn-space-12);
+  scroll-margin-block-start: var(--dn-header-visible-height);
+}
+
+.section[id="explorar"] {
   background: var(--dn-surface-cool);
+}
+
+@media (min-width: 900px) {
+  .section[id="experiencia-personalizada"] { padding-block: var(--dn-space-20); }
 }

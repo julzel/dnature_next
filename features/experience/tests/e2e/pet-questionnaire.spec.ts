@@ -18,7 +18,7 @@ test("questions slide in the navigation direction without losing answers", async
       const started = performance.now();
       function sample() {
         const stage = document.querySelector<HTMLElement>('#experiencia-personalizada [data-phase]')!;
-        const text = stage.querySelector("h2")!.textContent!;
+        const text = stage.querySelector("h3")!.textContent!;
         const nameField = stage.querySelector('[name="petName"]')?.parentElement;
         frames.push({ text, opacity: Number(getComputedStyle(stage).opacity), underlineAnimatingBeforeSlideEnds:
           Boolean(nameField && stage.dataset.phase !== "idle" && getComputedStyle(nameField, "::after").animationName !== "none") });
@@ -39,8 +39,8 @@ test("questions slide in the navigation direction without losing answers", async
   await expect(question.locator("..")).toHaveAttribute("data-phase", "idle");
   expect((await question.locator("..").boundingBox())!.height).toBe(initialHeight);
   const nameInput = section.getByRole("textbox", { name: "Nombre de tu mascota" });
-  await expect(nameInput).toHaveCSS("text-align", "center");
-  await expect(nameInput).toHaveCSS("font-weight", "800");
+  await expect(nameInput).toHaveCSS("text-align", "start");
+  await expect(nameInput).toHaveCSS("font-weight", "700");
   await expect.poll(() => nameInput.evaluate((input) => getComputedStyle(input.parentElement!, "::after").transform)).toBe("matrix(1, 0, 0, 1, 0, 0)");
   await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill("Luna");
   await section.getByRole("button", { name: "Volver a la pregunta anterior" }).click();

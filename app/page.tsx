@@ -28,12 +28,10 @@ export default function Home() {
         <ExperienceSection
           id="experiencia-personalizada"
           label="Cuéntanos sobre tu mascota"
-          eyebrowColor="#092f39"
-          eyebrowLineColor="#092f39"
         >
           <PetExperience />
         </ExperienceSection>
-        <ExperienceSection id="explorar" label="Variedad y salud">
+        <ExperienceSection id="explorar" label="Variedad de deshidratados" showEyebrow={false}>
           <Suspense fallback={<BestSellingSnacksLoading />}>
             <BestSellingSnacks />
           </Suspense>

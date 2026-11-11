@@ -2,9 +2,14 @@
   "schema_version": "1.0.0",
   "name": "DNAture website species artwork",
   "format": "svg",
-  "view_box": [0, 0, 480, 480],
+  "view_box": [
+    0,
+    0,
+    480,
+    480
+  ],
   "background": "transparent",
-  "status": "Website adaptations prepared for this request; not newly commissioned drawings or changes to the source brandbook.",
+  "status": "Website species artwork: generated standing-cat and golden-retriever engravings, plus source-derived compact silhouettes. Source brandbook and original exports remain unchanged.",
   "palette": {
     "ink": "#092F39",
     "mint": "#8FE4D9"
@@ -20,8 +25,33 @@
       "file": "EDITABLES.ai",
       "sha256": "f1ad78867bf0c32c942d7981a709e327fd6dcf262ba9fc4326b65672a02dd4f4",
       "manifest": "public/images/icons/manifest.json",
-      "artboards": { "cat": 18, "dog": 19 },
+      "artboards": {
+        "cat": 18,
+        "dog": 19
+      },
       "method": "Adapted the existing source SVG exports, removed the circular badge and outer ring, recolored the animal to ink, and normalized its optical size. Original exports are preserved."
+    },
+    "standing_cat": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/standing-cat-source.png",
+      "sha256": "2a5b412ad775094e5fe28c4effb9dc6ea262e746849da6636de5511676e3abc1",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/standing-cat-generation.json",
+      "original": "docs/graphic-design/artwork-sources/pet-species/cat-crouching-original.svg",
+      "method": "Standing pose created with built-in image_gen using the original cat and dog as references. Converted with vtracer 0.6.15 into native paths using exact ink/mint fills, then normalized to the shared canvas, optical width, and dog baseline. No embedded bitmap."
+    },
+    "golden_retriever": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-source.png",
+      "sha256": "b3daaac32039e206acdb8583b524050b46aef5314bc9086e84ed0df8b06478dd",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-generation.json",
+      "original": "docs/graphic-design/artwork-sources/pet-species/dog-brandbook-original.svg",
+      "method": "Golden retriever created with built-in image_gen using the original dog and current standing cat as style/pose references. Converted with vtracer 0.6.15 to native paths in exact ink/mint fills and normalized to the shared canvas, optical width, and baseline. No embedded bitmap."
+    },
+    "golden_retriever_lighter": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-lighter-source.png",
+      "sha256": "0e2d51c6932e1290ee0d2c26caed92ceee2d622d199f8f0ed2f8f502857b1b29",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-lightening.json",
+      "original": "docs/graphic-design/artwork-sources/pet-species/dog-golden-original.svg",
+      "parent_source": "golden_retriever",
+      "method": "Lightened the dense fur shadows using built-in image_gen while retaining the golden retriever pose and composition; traced into native ink/mint SVG paths with vtracer 0.6.15 at ink threshold 0.6 to retain the lighter strokes, preserving shared canvas, optical width, and baseline. No embedded bitmap."
     }
   },
   "assets": [
@@ -30,18 +60,27 @@
       "label_es": "Gato",
       "variant": "engraving",
       "path": "/images/pets/cat.svg",
-      "source": "engraving",
+      "source": "standing_cat",
       "recommended_min_width_px": 96,
-      "use": ["Species selection", "Editorial species illustration"]
+      "use": [
+        "Species selection",
+        "Editorial species illustration"
+      ],
+      "pose": "Standing on four legs, facing right"
     },
     {
       "species": "dog",
       "label_es": "Perro",
       "variant": "engraving",
       "path": "/images/pets/dog.svg",
-      "source": "engraving",
+      "source": "golden_retriever_lighter",
       "recommended_min_width_px": 96,
-      "use": ["Species selection", "Editorial species illustration"]
+      "use": [
+        "Species selection",
+        "Editorial species illustration"
+      ],
+      "breed": "Golden retriever",
+      "pose": "Standing on four legs, facing right"
     },
     {
       "species": "cat",
@@ -50,7 +89,11 @@
       "path": "/images/pets/cat-small.svg",
       "source": "silhouette",
       "recommended_min_width_px": 24,
-      "use": ["Pet profile", "Cat-only product label", "Compact species metadata"]
+      "use": [
+        "Pet profile",
+        "Cat-only product label",
+        "Compact species metadata"
+      ]
     },
     {
       "species": "dog",
@@ -59,7 +102,11 @@
       "path": "/images/pets/dog-small.svg",
       "source": "silhouette",
       "recommended_min_width_px": 24,
-      "use": ["Pet profile", "Dog-only product label", "Compact species metadata"]
+      "use": [
+        "Pet profile",
+        "Dog-only product label",
+        "Compact species metadata"
+      ]
     }
   ],
   "usage_rules": [

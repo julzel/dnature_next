@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useTransition, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus } from "lucide-react";
+import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus, Check, Monitor } from "lucide-react";
 import { PetSpeciesImage } from "@/components/pet-species-image";
 import type { PetSpecies } from "../data/pet-breeds";
 import { MAX_PETS, upsertPet, type PetProfile } from "../data/pet-profiles";
@@ -10,6 +10,8 @@ import { savePetProfiles } from "../data/pet-storage";
 import { BreedCombobox } from "./breed-combobox";
 import { PetProfileCard } from "./pet-profile-card";
 import { SavedPetProfile } from "./saved-pet-profile";
+import { PetQuestionnaireIntro } from "./pet-questionnaire-intro";
+import { PetQuestionnaireProgress } from "./pet-questionnaire-progress";
 import styles from "./pet-questionnaire.module.css";
 
 export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfile[] }) {
@@ -37,6 +39,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
   const complete = step === 3;
   const viewingPets = step === 4;
   const question = ["¿Gato o perro?", "¿Cómo se llama tu mascota?", `¿De qué raza es ${name}?`, `¡Un gusto, ${reviewedPet?.name ?? name}!`, "Tus mascotas"][step];
+  const description = ["Elegí a tu compañero para comenzar.", "Ese nombre que hace que levante las orejas.", "Si no la conocés, también está bien.", "Revisá sus datos antes de continuar.", "Cada uno con su nombre, cada uno con su esencia."][step];
   const limitReached = pets.length >= MAX_PETS;
 
   useEffect(function focusQuestion() {
@@ -181,15 +184,18 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
 
   return (
     <div className={styles.questionnaire}>
+      <PetQuestionnaireIntro />
       <form ref={form} className={styles.form} onSubmit={handleSubmit} noValidate aria-labelledby="pet-question" aria-busy={transitioning}>
+        <PetQuestionnaireProgress step={step} />
         <div className={styles.stageViewport}>
         <div className={styles.stage} key={step} data-direction={direction} data-phase={phase} onAnimationEnd={handleSlideEnd} inert={transitioning}>
           <p className={styles.stepCount} aria-live="polite">{viewingPets ? "Tus perfiles" : complete ? "Todo listo" : `Pregunta ${step + 1} de 3`}</p>
-          <h2 id="pet-question" ref={heading} className={styles.question} tabIndex={-1}>{question}</h2>
+          <h3 id="pet-question" ref={heading} className={styles.question} tabIndex={-1}>{question}</h3>
+          <p className={styles.description}>{description}</p>
 
           {step === 1 && (
             <div className={styles.answer}>
-              <label className="sr-only" htmlFor="pet-name">Nombre de tu mascota</label>
+              <label className={styles.label} htmlFor="pet-name">Nombre de tu mascota</label>
               <div className={styles.nameField}>
                 <input id="pet-name" className={styles.nameInput} name="petName" value={name} onChange={handleNameChange}
                   placeholder="Su nombre va aquí" autoComplete="off" maxLength={60} required
@@ -203,11 +209,13 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
             <div className={styles.answer}>
               <div className={styles.speciesChoices}>
                 <button type="button" value="cat" onClick={handleSpeciesChoice} aria-pressed={species === "cat"}>
-                  <PetSpeciesImage species="cat" alt="" /><span>Gato</span>
+                  <PetSpeciesImage species="cat" alt="" size={176} /><span>Gato</span>
+                  {species === "cat" && <Check className={styles.choiceCheck} size={20} aria-hidden="true" />}
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
                 <button type="button" value="dog" onClick={handleSpeciesChoice} aria-pressed={species === "dog"}>
-                  <PetSpeciesImage species="dog" alt="" /><span>Perro</span>
+                  <PetSpeciesImage species="dog" alt="" size={176} /><span>Perro</span>
+                  {species === "dog" && <Check className={styles.choiceCheck} size={20} aria-hidden="true" />}
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
               </div>
@@ -222,7 +230,6 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
 
           {complete && reviewedPet && (
             <div className={styles.answer}>
-              <p className={styles.hint}>Así se ve su perfil. Podés revisar tus respuestas antes de seguir.</p>
               <PetProfileCard name={reviewedPet.name} species={reviewedPet.species} breed={reviewedPet.breed} revealed={phase !== "entering"} />
             </div>
           )}
@@ -268,6 +275,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
             </button>
           )}
         </div>
+        <p className={styles.storageNote}><Monitor size={16} aria-hidden="true" />Al continuar, sus perfiles se guardan en este navegador.</p>
         <p className="sr-only" role="status">{navigating ? "Abriendo mis mascotas…" : ""}</p>
         {saveError && <p className={styles.error} role="alert">{saveError}</p>}
       </form>

@@ -1,0 +1,10 @@
+.progress { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--dn-space-3); margin: 0; padding: 0; list-style: none; }
+.progress li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dn-space-2); min-inline-size: 0; padding-block: var(--dn-space-3); border-block-end: 2px solid var(--dn-border-default); color: var(--dn-text-secondary); font-size: 12px; }
+.progress li > span:last-child { min-inline-size: 0; overflow-wrap: anywhere; }
+.progress li[aria-current="step"], .progress li[data-complete] { border-color: var(--dn-brand-orange); color: var(--dn-text-primary); font-weight: 700; }
+.number { display: inline-flex; align-items: center; min-block-size: var(--dn-space-6); font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+@media (min-width: 640px) {
+  .progress { gap: var(--dn-space-6); }
+  .progress li { font-size: 14px; }
+}

@@ -14,7 +14,7 @@ export async function BestSellingSnacks() {
   } catch {
     return (
       <div className={styles.message} role="alert">
-        <h2>Snacks deshidratados más vendidos</h2>
+        <h2>Variedad de deshidratados</h2>
         <p>No pudimos cargar los productos en este momento.</p>
         <FeaturedSnacksRetry />
       </div>
@@ -24,18 +24,14 @@ export async function BestSellingSnacks() {
   return (
     <div className={styles.content}>
       <div className={styles.intro}>
-        <div>
-          <p className={styles.kicker}>Favoritos recientes</p>
-          <h2>Snacks deshidratados más vendidos</h2>
-        </div>
-        <p className={styles.caption}>Los más elegidos en los últimos 30 días, disponibles ahora.</p>
+        <h2>Variedad de deshidratados</h2>
       </div>
       {snacks.length ? (
-        <div className={styles.grid}>
+        <ul className={styles.grid}>
           {snacks.map((snack) => <FeaturedSnackCard key={snack.sku} snack={snack} />)}
-        </div>
-      ) : <p className={styles.message} role="status">No hay snacks deshidratados disponibles para mostrar ahora.</p>}
-      <Link className={styles.catalogLink} href="/productos">Explorar todos los productos <ArrowUpRight size={22} aria-hidden="true" /></Link>
+        </ul>
+      ) : <p className={styles.message} role="status">No hay deshidratados disponibles para mostrar ahora.</p>}
+      <Link className={styles.catalogLink} href="/productos?categoria=deshidratados" prefetch={false}>Explorar deshidratados <ArrowUpRight size={22} aria-hidden="true" /></Link>
     </div>
   );
 }
