@@ -64,6 +64,12 @@
       "sha256": "78b9bddb2cf0f41be67c131ab8d38b20354dad5a108e59ad9955835d3ffb59cc",
       "generation": "docs/graphic-design/artwork-sources/pet-species/poodle-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "chihuahua": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/chihuahua-source.png",
+      "sha256": "38453dcf8f3d6e836d94a76af0b8d57b8c73c0fee87d1ec462ddbe86e4b2da7c",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/chihuahua-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -137,6 +143,16 @@
       "variant": "engraving",
       "path": "/images/pets/poodle.svg",
       "source": "poodle",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Chihuahua",
+      "breed": "Chihuahua",
+      "variant": "engraving",
+      "path": "/images/pets/chihuahua.svg",
+      "source": "chihuahua",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

@@ -35,6 +35,11 @@ the same palette, 480×480 canvas and 428.5px baseline; its taller proportions f
 within 400px width and 380px height. The [source and generation prompt](artwork-sources/pet-species/poodle-generation.json)
 are preserved alongside the other breed artwork.
 
+The [short-haired Chihuahua engraving](../../public/images/pets/chihuahua.svg)
+uses the same native vector format, two-color palette, 480×480 canvas and 428.5px
+baseline. Its [source and generation prompt](artwork-sources/pet-species/chihuahua-generation.json)
+are preserved; it remains a standalone breed asset.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
