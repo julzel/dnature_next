@@ -52,6 +52,12 @@
       "original": "docs/graphic-design/artwork-sources/pet-species/dog-golden-original.svg",
       "parent_source": "golden_retriever",
       "method": "Lightened the dense fur shadows using built-in image_gen while retaining the golden retriever pose and composition; traced into native ink/mint SVG paths with vtracer 0.6.15 at ink threshold 0.6 to retain the lighter strokes, preserving shared canvas, optical width, and baseline. No embedded bitmap."
+    },
+    "border_collie": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/border-collie-source.png",
+      "sha256": "ecf152920247588b6eb84fffa48df5066e02ec18c5c8d38008f1bc517650cf75",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/border-collie-generation.json",
+      "method": "Built-in image_gen generation and style refinement, converted into native SVG paths with vtracer 0.6.15 using scripts/trace-walking-artwork.py. Normalized to the existing pet artwork canvas and baseline."
     }
   },
   "assets": [
@@ -107,6 +113,16 @@
         "Dog-only product label",
         "Compact species metadata"
       ]
+    },
+    {
+      "species": "dog",
+      "label_es": "Border collie",
+      "breed": "Border collie",
+      "variant": "engraving",
+      "path": "/images/pets/border-collie.svg",
+      "source": "border_collie",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
     }
   ],
   "usage_rules": [

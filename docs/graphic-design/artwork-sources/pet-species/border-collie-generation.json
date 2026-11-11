@@ -1,0 +1,19 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen generation and style refinement, converted into native SVG paths with vtracer 0.6.15 using scripts/trace-walking-artwork.py. Normalized to the existing pet artwork canvas and baseline.",
+  "source_png": "border-collie-source.png",
+  "source_sha256": "ecf152920247588b6eb84fffa48df5066e02ec18c5c8d38008f1bc517650cf75",
+  "style_reference": "golden-retriever-lighter-source.png",
+  "output": "../../../../public/images/pets/border-collie.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "optical_width": 400,
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "prompt": "Image 1 is the Border Collie subject to refine. Image 2 is ONLY the target engraving treatment reference, not the breed. Deliver ONLY the Border Collie from image 1 as a clean transparent standalone asset, keeping its distinctive face/blaze, athletic proportions, standing four-legged pose facing right and all paws and tail. Remove EVERY bit of the surrounding turquoise halo, glow, backdrop and ground shadow; genuine alpha transparency immediately outside its fur silhouette, including under belly and between legs. Redraw its fur line treatment to match image 2: crisp, larger, well-separated tapered dark ink strokes over luminous mint coat fill, airy visible mint negative spaces even across darker saddle markings; no photorealistic dense noisy fur. The saddle, head patches, chest blaze and socks must retain clear Border Collie identity using different engraving densities. Exactly two opaque interior inks: #092F39 and #8FE4D9. Absolutely no gradients, blur, outer glow, ground, checkerboard, extra object, text, frame or shadow. Square canvas with generous clear margins, fully uncropped ears, paws and tail, a single dog. Preserve its calm expression and natural anatomy."
+}

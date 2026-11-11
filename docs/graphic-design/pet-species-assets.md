@@ -1,6 +1,6 @@
 # DNAture species assets
 
-Four reusable, editable SVGs with transparent backgrounds. The detailed animals
+Reusable, editable SVGs with transparent backgrounds. The detailed animals
 use the DNAture ink-and-mint engraving style. Both detailed animals stand on
 four legs facing right; the dog is a golden retriever. They were created with
 built-in image generation and traced into native SVG paths on a shared canvas,
@@ -22,6 +22,12 @@ provenance, source hashes, colors, intended sizes, and usage rules.
 | --- | --- | --- |
 | Gato | [cat.svg](../../public/images/pets/cat.svg) | [cat-small.svg](../../public/images/pets/cat-small.svg) |
 | Perro | [dog.svg](../../public/images/pets/dog.svg) | [dog-small.svg](../../public/images/pets/dog-small.svg) |
+
+An additional [Border collie engraving](../../public/images/pets/border-collie.svg)
+uses the same ink/mint palette, 480×480 canvas, 400px optical width and 428.5px
+baseline. It was created with built-in image generation and converted into native
+SVG paths; its [source and prompt](artwork-sources/pet-species/border-collie-generation.json)
+are preserved. It is a standalone breed asset and does not replace the generic dog.
 
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
