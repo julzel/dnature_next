@@ -5,6 +5,13 @@ Route Handlers, or server actions; never import them into a Client Component.
 The catalog and product detail pages consume these services. No public API proxy,
 checkout, order mutation, CMS migration, or content publishing is added.
 
+The shared browser cart at `/carrito` validates additions and quantity updates
+through `features/cart/actions/validate-cart-item.ts`. It reads current Avify
+price/stock using the existing published-SKU join before saving a line locally.
+The browse cache is not used for this commerce validation. See
+[the cart implementation](../features/cart/README.md) for persistence and the
+WhatsApp fulfillment handoff.
+
 ## Environment
 
 The existing `.env.local` is preserved. Set the same server-side variables in your

@@ -205,6 +205,11 @@
           "type": "boolean",
           "source": "Avify qty",
           "transform": "Quantity is greater than zero; variants must also have active status"
+        },
+        "quantityAvailable": {
+          "type": "number | null",
+          "source": "Avify variant.qty; parent.qty for simple products",
+          "usage": "Whole-unit quantity limit when provided; purchase validation reads current inventory again."
         }
       }
     },
@@ -224,6 +229,16 @@
         "ingredients",
         "variants"
       ]
+    },
+    "introduction": {
+      "type": "string | null",
+      "source": "First published description paragraph",
+      "transform": "Shown only when 220 characters or fewer; no generated claims."
+    },
+    "composition": {
+      "type": "array<ProductCopyBlock>",
+      "source": "contentful.fields.description",
+      "transform": "Nutrition tables and their associated source heading are separated from narrative description."
     }
   },
   "additionalPageData": {
@@ -253,6 +268,13 @@
     "storageGuidance": {
       "source": "Static application copy directing visitors to packaging or support",
       "productSpecificStorageInstructions": false
+    },
+    "cart": {
+      "source": "features/cart/",
+      "storage": "Browser localStorage under dnature.cart.v1; synchronized across tabs",
+      "validation": "Server Action reads the published SKU and fresh Avify price/stock before addition or quantity updates",
+      "route": "/carrito",
+      "fulfillment": "WhatsApp inquiry; no payment collection or inventory reservation"
     }
   },
   "publicationRules": {

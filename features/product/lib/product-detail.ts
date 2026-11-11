@@ -34,8 +34,18 @@ export function buildProductDetail(product: CatalogProduct, catalog: readonly Ca
   const variants = product.commerce.children.filter((variant) => variant.status === "active");
   const options = variants.length ? variants.map((variant) => {
     const offer = productOffer({ ...product.commerce, children: [variant] });
-    return { sku: variant.sku, name: variant.name, price: offer.price, inStock: offer.inStock };
-  }) : product.commerce.children.length ? [] : [{ sku: product.sku, name: "Presentación única", ...productOffer(product.commerce) }];
+    return { sku: variant.sku, name: variant.name, price: offer.price, inStock: offer.inStock, quantityAvailable: variant.qty };
+  }) : product.commerce.children.length ? [] : [{ sku: product.sku, name: "Presentación única", ...productOffer(product.commerce), quantityAvailable: product.commerce.qty }];
+  const description: ProductCopyBlock[] = [];
+  const composition: ProductCopyBlock[] = [];
+  for (const block of descriptionBlocks(product.editorial.fields.description)) {
+    if (block.type === "table") {
+      const previous = description.at(-1);
+      if (previous?.type === "text" && /^(información nutricional|análisis|composición)/i.test(previous.text)) composition.push(description.pop()!);
+      composition.push(block);
+    } else description.push(block);
+  }
+  const first = description[0];
   return {
     sku: product.sku,
     name: listing.name,
@@ -45,7 +55,9 @@ export function buildProductDetail(product: CatalogProduct, catalog: readonly Ca
       return url ? [{ id: image.sys.id, url, alt: image.fields.description?.trim() || listing.name }] : [];
     }),
     categories,
-    description: descriptionBlocks(product.editorial.fields.description),
+    description,
+    composition,
+    introduction: first?.type === "text" && first.text.length <= 220 ? first.text : null,
     ingredients: listing.ingredients,
     reference: product.reference ?? null,
     options,

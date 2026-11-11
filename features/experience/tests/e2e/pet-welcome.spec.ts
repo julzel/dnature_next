@@ -14,7 +14,7 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
     await start.focus();
     await start.press("Enter");
     await expect(section.getByRole("heading", { name: "¿Gato o perro?" })).toBeFocused();
-    await expect(section).toContainText("Pregunta 1 de 3");
+    await expect(section).not.toContainText("Pregunta 1 de 3");
     await expect(start).toHaveCount(0);
     await expect(section.getByRole("button", { name: "Gato", exact: true })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);

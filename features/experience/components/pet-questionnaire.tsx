@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useTransition, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus, Check, Monitor } from "lucide-react";
+import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus, Monitor } from "lucide-react";
 import { PetSpeciesImage } from "@/components/pet-species-image";
 import type { PetSpecies } from "../data/pet-breeds";
 import { MAX_PETS, upsertPet, type PetProfile } from "../data/pet-profiles";
@@ -189,7 +189,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
       <form ref={form} className={styles.form} onSubmit={handleSubmit} noValidate aria-label={welcoming ? "Experiencia guiada" : undefined} aria-labelledby={welcoming ? undefined : "pet-question"} aria-busy={transitioning}>
         <div className={styles.stageViewport}>
         <div className={styles.stage} key={step} data-direction={direction} data-phase={phase} onAnimationEnd={handleSlideEnd} inert={transitioning}>
-          {!welcoming && <p className={styles.stepCount} aria-live="polite">{viewingPets ? "Tus perfiles" : complete ? "Todo listo" : `Pregunta ${step + 1} de 3`}</p>}
+          {!welcoming && (viewingPets || complete) && <p className={styles.stepCount} aria-live="polite">{viewingPets ? "Tus perfiles" : "Todo listo"}</p>}
           {!welcoming && <h3 id="pet-question" ref={heading} className={styles.question} tabIndex={-1}>{question}</h3>}
           <p className={styles.description}>{description}</p>
 
@@ -216,12 +216,10 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
               <div className={styles.speciesChoices}>
                 <button type="button" value="cat" onClick={handleSpeciesChoice} aria-pressed={species === "cat"}>
                   <PetSpeciesImage species="cat" alt="" size={176} /><span>Gato</span>
-                  {species === "cat" && <Check className={styles.choiceCheck} size={20} aria-hidden="true" />}
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
                 <button type="button" value="dog" onClick={handleSpeciesChoice} aria-pressed={species === "dog"}>
                   <PetSpeciesImage species="dog" alt="" size={176} /><span>Perro</span>
-                  {species === "dog" && <Check className={styles.choiceCheck} size={20} aria-hidden="true" />}
                   <ArrowRight className={styles.choiceArrow} size={24} aria-hidden="true" />
                 </button>
               </div>

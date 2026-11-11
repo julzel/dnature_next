@@ -14,10 +14,10 @@ test("product details have crawlable content and presentation-specific inquiries
   await radios.first().check();
   await expect(radios.first()).toBeChecked();
   const sku = await radios.first().inputValue();
-  const inquiry = page.getByRole("link", { name: /Consultar (pedido por WhatsApp|disponibilidad)/ });
+  const inquiry = page.getByRole("link", { name: /Tenés dudas sobre este producto/ });
   await expect(inquiry).toHaveAttribute("href", new RegExp(encodeURIComponent(sku)));
   expect(new URL((await inquiry.getAttribute("href"))!).searchParams.get("text")).toContain(`https://dnaturefood.com${path}`);
-  const related = page.getByRole("region", { name: /Seguí explorando/ });
+  const related = page.getByRole("region", { name: /Explorá otros productos/ });
   expect(await related.locator('a[href^="/producto/"]').count()).toBeGreaterThan(0);
   const profile = page.getByRole("region", { name: "Perfil de referencia del producto", exact: true });
   await expect(profile).toContainText("Perros");
@@ -25,7 +25,7 @@ test("product details have crawlable content and presentation-specific inquiries
   await expect(page.getByText("Supervisá su consumo.", { exact: true })).toBeVisible();
   await expect(page.getByText("Riesgo de atragantamiento indicado:")).toContainText("alto");
   expect(await page.locator('#product-precautions-title').evaluate((element) => Boolean(element.compareDocumentPosition(document.querySelector('a[href^="https://wa.me/"][href*="text="]')!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
-  await page.getByRole("navigation", { name: "Información del producto" }).getByRole("link", { name: "Ingredientes", exact: true }).click();
+  await page.getByRole("navigation", { name: "Información del producto" }).getByRole("link", { name: "Ingredientes y composición", exact: true }).click();
   await expect(page).toHaveURL(/#ingredientes$/);
   await expect(page.getByRole("heading", { name: "Ingredientes", exact: true })).toBeInViewport();
   await page.getByText("Sobre la información del producto", { exact: true }).click();
@@ -62,7 +62,7 @@ test("presentation controls support the keyboard and 200 percent text at a narro
     elements: [...document.querySelectorAll("main *")].filter((element) => element.getBoundingClientRect().right > innerWidth + 1).map((element) => ({ tag: element.tagName, className: element.className, text: element.textContent?.slice(0, 80) })),
   }));
   expect(overflow.width, JSON.stringify(overflow.elements)).toBeLessThanOrEqual(overflow.viewport);
-  await expect(page.getByRole("link", { name: /Consultar (pedido por WhatsApp|disponibilidad)/ })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Tenés dudas sobre este producto/ })).toBeVisible();
 });
 
 test("gallery thumbnails switch the displayed photo using native buttons", async ({ page }) => {

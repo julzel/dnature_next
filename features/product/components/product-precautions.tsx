@@ -15,6 +15,5 @@ export function ProductPrecautions({ reference }: { reference: ProductReference 
       <li>{allergens ? <>Sensibilidades a revisar: <strong>{allergens}.</strong></> : "Revisá los ingredientes si hay alergias o intolerancias."}</li>
       {restrictions && <li>Restricciones indicadas en el catálogo: <strong>{restrictions}.</strong> Consultá con tu veterinario antes de ofrecerlo.</li>}
     </ul>
-    <a href="#ingredientes">Ver ingredientes y composición</a>
   </div>;
 }

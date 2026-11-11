@@ -10,16 +10,23 @@ lookup between metadata and rendered content. Published copy and ingredient data
 come from Contentful; prices, active presentations, and stock come from Avify.
 The legacy Contentful prices, availability, and ratings are not used.
 
-The gallery and presentation selector contain the product interactions.
+The gallery and presentation/quantity form contain the product interactions.
+The page uses a white editorial layout with a mobile-first DOM order: identity,
+gallery, then purchase controls. Desktop places the gallery beside identity and
+purchase information; tablet keeps a comfortable stacked reading width.
 The main content, ingredients, default price, presentation list, breadcrumbs, and
 inquiry link render on the server. Product text, metadata, breadcrumbs, and links are present in the server HTML. Ordinary browsers use a streamed loading shell; with
 JavaScript disabled that shell offers contact/catalog links instead of an
 indefinite skeleton. Gallery image links and a presentation note also provide
 fallbacks when the complete response is rendered. WhatsApp inquiries include the selected
-presentation SKU and canonical page URL; no checkout or order confirmation is
-simulated. Final availability and delivery are coordinated with the team.
+presentation SKU, quantity and canonical page URL. The shared cart validates
+current Avify prices and stock through a Server Action, then persists the verified
+line in browser storage. `/carrito` supports quantity updates, removal, and a
+WhatsApp inquiry for the selection. Payment and fulfillment remain coordinated
+with the team. See [cart implementation](../cart/README.md).
 
-Nutrition rows in the existing `@` / underscore CMS format render as tables.
+Nutrition rows in the existing `@` / underscore CMS format render as tables in
+the ingredients/composition section, separately from the narrative description.
 Other published copy renders as escaped text. Missing species eligibility,
 nutritional adequacy, feeding directions, or storage facts are not inferred from
 categories or illustrations. Source content still needs the normal editorial
@@ -28,7 +35,8 @@ review before new medical or nutritional claims are approved.
 The local `docs/SEO-GEO/catalog-products.md` source now supplies a clearly labeled
 reference profile: product type, species, life stages, sizes, chewing level, and
 selection cautions. Price stays immediately below the title; reference facts and
-native presentation controls precede the visible cautions and inquiry action.
+native presentation controls precede the visible cautions, quantity field and
+add-to-cart action. A quieter support link retains the WhatsApp context.
 Jump links lead to ingredients, the published description, and use/care guidance.
 The profile and cautions are Server Components passed into the small interactive
 selector as rendered slots; the full source dataset never enters its client bundle.

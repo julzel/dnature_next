@@ -26,7 +26,7 @@ export function ProductGallery({ images, name }: { images: ProductImage[]; name:
   return (
     <div className={styles.gallery}>
       <div className={styles.mainImage} aria-busy={loading}>
-        {active && !failed ? <Image key={active.id} src={active.url} alt={active.alt} fill sizes="(min-width: 1344px) 608px, (min-width: 900px) 46vw, 100vw" loading="eager" onLoad={handleImageLoad} onError={handleImageError} /> : <p className={styles.imageFallback} role="status">Imagen de {name} no disponible</p>}
+        {active && !failed ? <Image key={active.id} src={active.url} alt={active.alt} fill sizes="(min-width: 1344px) 680px, (min-width: 1024px) 52vw, (min-width: 640px) 720px, 100vw" loading="eager" fetchPriority="high" onLoad={handleImageLoad} onError={handleImageError} /> : <p className={styles.imageFallback} role="status">Imagen de {name} no disponible</p>}
         {loading && <p className={styles.imageStatus} role="status">Cargando imagen…</p>}
       </div>
       {images.length > 1 && <div className={styles.thumbnails} role="group" aria-label="Imágenes del producto">

@@ -29,8 +29,8 @@ test("variant offers honor active status, sale prices, parent fallback, and real
   ];
   const detail = buildProductDetail(item, [item]);
   assert.deepEqual(detail.options, [
-    { sku: "s", name: "Pequeña", price: 800, inStock: false },
-    { sku: "l", name: "Grande", price: 2500, inStock: true },
+    { sku: "s", name: "Pequeña", price: 800, inStock: false, quantityAvailable: 0 },
+    { sku: "l", name: "Grande", price: 2500, inStock: true, quantityAvailable: 5 },
   ]);
   item.commerce.children.forEach((option) => { option.status = "inactive"; });
   assert.deepEqual(buildProductDetail(item, [item]).options, []);
