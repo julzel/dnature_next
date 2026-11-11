@@ -62,6 +62,12 @@ Its upright ears, saddle pattern and long bushy tail identify the breed; its
 [source and generation prompt](artwork-sources/pet-species/german-shepherd-generation.json)
 are preserved with the series.
 
+The [Pomeranian engraving](../../public/images/pets/pomeranian.svg) uses native
+paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its pointed ears, abundant ruff and curled plume tail preserve its breed identity.
+The [source and generation prompt](artwork-sources/pet-species/pomeranian-generation.json)
+are preserved with the series.
+
 The [Teckel / Dachshund engraving](../../public/images/pets/dachshund.svg)
 preserves the same native paths, ink/mint palette, 480×480 canvas and shared
 baseline, with the breed's elongated body, short legs and floppy ears. Its
@@ -78,6 +84,12 @@ The [Australian Cattle Dog engraving](../../public/images/pets/cattle-dog.svg)
 uses the same native paths, ink/mint palette, 480×480 canvas and shared baseline.
 Its upright ears and mottled coat distinguish the breed; its [source and generation
 prompt](artwork-sources/pet-species/cattle-dog-generation.json) are preserved.
+
+The [Labrador Retriever engraving](../../public/images/pets/labrador-retriever.svg)
+uses the same native paths, ink/mint palette, 480×480 canvas and shared baseline.
+Its short coat, dropped ears and thick otter tail distinguish it from the golden
+retriever. Its [source and generation prompts](artwork-sources/pet-species/labrador-retriever-generation.json)
+are preserved with the series.
 
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and

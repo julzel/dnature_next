@@ -112,6 +112,18 @@
       "sha256": "50416ea90c8103779ea9e68ef6a5b70b1a442440959596bed1d685da99d9d602",
       "generation": "docs/graphic-design/artwork-sources/pet-species/cattle-dog-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "labrador_retriever": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/labrador-retriever-source.png",
+      "sha256": "e937676d091a043c0b4f58f6b48b02979a4019a8d1d955eb2436b57e80a97107",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/labrador-retriever-generation.json",
+      "method": "Built-in image_gen generation and transparent-edge refinement using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pomeranian": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pomeranian-source.png",
+      "sha256": "f2f159c8413d3938d4d532a162e2c4f5ba937e5e9bace280df8aaf621bdde2fd",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pomeranian-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -265,6 +277,26 @@
       "variant": "engraving",
       "path": "/images/pets/cattle-dog.svg",
       "source": "cattle_dog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Labrador retriever",
+      "breed": "Labrador Retriever",
+      "variant": "engraving",
+      "path": "/images/pets/labrador-retriever.svg",
+      "source": "labrador_retriever",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Pomerania",
+      "breed": "Pomeranian",
+      "variant": "engraving",
+      "path": "/images/pets/pomeranian.svg",
+      "source": "pomeranian",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }
