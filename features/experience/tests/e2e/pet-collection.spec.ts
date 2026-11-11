@@ -4,6 +4,8 @@ import { completePet } from "../helpers/complete-pet";
 test.beforeEach(async ({ page }) => {
   await page.goto("/");
   await page.getByRole("dialog").getByRole("link", { name: "Visita guiada", exact: true }).click();
+  await page.locator("#experiencia-personalizada").getByRole("button", { name: "Empecemos", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "¿Gato o perro?", exact: true })).toBeFocused();
 });
 
 test("adding and editing pets preserves each profile without duplicates", async ({ page }, testInfo) => {

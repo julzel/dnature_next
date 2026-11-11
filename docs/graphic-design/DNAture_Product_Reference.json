@@ -1,0 +1,279 @@
+{
+  "sources": {
+    "contentful": {
+      "contentType": "product",
+      "joinField": "fields.avifySku",
+      "provides": "Published copy, ingredients, slug and images",
+      "revalidationSeconds": 300
+    },
+    "avify": {
+      "joinField": "product.sku",
+      "provides": "Product identity, categories, variants, prices and stock",
+      "inventoryScope": "AVIFY_LOCATION_ID when configured; otherwise global",
+      "revalidationSeconds": 30
+    },
+    "catalogReference": {
+      "source": "docs/SEO-GEO/catalog-products.md",
+      "generatedData": "features/catalog/data/product-reference.generated.json",
+      "skuBindings": "features/catalog/data/product-reference-bindings.json",
+      "join": "Explicit parent SKU → source row",
+      "provides": "Descriptive profile and selection cautions"
+    },
+    "application": {
+      "builder": "features/product/lib/product-detail.ts",
+      "provides": "Formatting, fallback text, navigation and derived values"
+    }
+  },
+  "productDetail": {
+    "sku": {
+      "type": "string",
+      "source": "avify.product.sku"
+    },
+    "name": {
+      "type": "string",
+      "source": "contentful.fields.productName",
+      "fallback": "avify.product.name"
+    },
+    "path": {
+      "type": "string",
+      "source": "contentful.fields.urlSlug",
+      "fallback": "avify.product.sku",
+      "transform": "/producto/{URL-encoded slug or SKU}"
+    },
+    "images": {
+      "type": "array",
+      "source": "contentful.fields.image → resolved published assets",
+      "items": {
+        "id": {
+          "type": "string",
+          "source": "asset.sys.id"
+        },
+        "url": {
+          "type": "string",
+          "source": "asset.fields.file.url",
+          "transform": "HTTPS URL; only images.ctfassets.net is accepted"
+        },
+        "alt": {
+          "type": "string",
+          "source": "asset.fields.description",
+          "fallback": "Resolved product name"
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "source": "avify.product.categories",
+      "items": {
+        "id": {
+          "type": "string",
+          "source": "avify.category.id"
+        },
+        "label": {
+          "type": "string",
+          "source": "avify.category.label",
+          "transform": "Known labels normalize to the five website categories"
+        },
+        "color": {
+          "type": "string",
+          "source": "Application category-to-CSS-token mapping"
+        },
+        "ink": {
+          "type": "string",
+          "source": "Application category text-color token"
+        },
+        "onColor": {
+          "type": "string",
+          "source": "Application text-on-category-color token"
+        }
+      }
+    },
+    "description": {
+      "type": "array",
+      "source": "contentful.fields.description",
+      "transform": "Convert published copy into escaped text and nutrition-table blocks",
+      "items": {
+        "textBlock": {
+          "type": "text",
+          "text": "string"
+        },
+        "tableBlock": {
+          "type": "table",
+          "rows": [
+            {
+              "label": "string",
+              "value": "string"
+            }
+          ]
+        }
+      }
+    },
+    "ingredients": {
+      "type": "string",
+      "source": "contentful.fields.ingredientes",
+      "transform": "Decode entities, remove HTML and normalize whitespace"
+    },
+    "reference": {
+      "type": "object | null",
+      "source": "catalogReference",
+      "nullWhen": "No explicit SKU binding exists",
+      "fields": {
+        "sourceRow": {
+          "type": "integer",
+          "source": "Markdown section: Fila N"
+        },
+        "kind": {
+          "type": "string",
+          "source": "Tipo",
+          "transform": "Normalize display label; use Complemento alimenticio when NOTA explicitly says it is not a complete diet"
+        },
+        "species": {
+          "type": "array<dog | cat>",
+          "source": "Especie",
+          "transform": "Perro → dog; Gato → cat"
+        },
+        "lifeStages": {
+          "type": "array<string>",
+          "source": "Etapa",
+          "transform": "Split the source into individual stages"
+        },
+        "sizes": {
+          "type": "array<string>",
+          "source": "Tamaño recomendado",
+          "transform": "Normalize capitalization and split comma-separated sizes"
+        },
+        "chewing": {
+          "type": "string | null",
+          "source": "Tipo de masticación",
+          "transform": "N/A becomes null"
+        },
+        "supervision": {
+          "type": "string | null",
+          "source": "Supervisión",
+          "transform": {
+            "Obligatoria / Sí": "Supervisá su consumo",
+            "primera vez": "Supervisá especialmente el primer uso",
+            "No": null
+          }
+        },
+        "allergens": {
+          "type": "string | null",
+          "source": "Riesgo alergias",
+          "transform": "N/A or Sin dato becomes null",
+          "displayRule": "Missing information or Revisar componentes shows a generic ingredient-review reminder"
+        },
+        "restrictions": {
+          "type": "string",
+          "source": "NO recomendado para",
+          "displayRule": "Remove the generic allergy prefix; show any remaining restrictions as cautions"
+        },
+        "chokingRisk": {
+          "type": "string | null",
+          "source": "Riesgo atragantamiento",
+          "transform": {
+            "Alta": "Alto",
+            "Media": "Medio",
+            "Baja": null
+          }
+        },
+        "complementary": {
+          "type": "boolean",
+          "source": "NOTA",
+          "transform": "True only when the note explicitly contains No es una dieta completa"
+        }
+      }
+    },
+    "options": {
+      "type": "array",
+      "source": "Active avify.product.children, or the parent for simple products",
+      "items": {
+        "sku": {
+          "type": "string",
+          "source": "Avify variant SKU; parent SKU for simple products"
+        },
+        "name": {
+          "type": "string",
+          "source": "avify.variant.name",
+          "simpleProductFallback": "Presentación única"
+        },
+        "price": {
+          "type": "number | null",
+          "source": "Avify salePrice or price",
+          "transform": "Use positive salePrice, otherwise positive price; variants fall back to the parent price",
+          "displayCurrency": "CRC, configured by the application"
+        },
+        "inStock": {
+          "type": "boolean",
+          "source": "Avify qty",
+          "transform": "Quantity is greater than zero; variants must also have active status"
+        }
+      }
+    },
+    "related": {
+      "type": "array<CatalogListing>",
+      "source": "The same joined Contentful/Avify catalog",
+      "selection": "Other products sharing an Avify category, available products first, maximum three",
+      "displayedFields": [
+        "name",
+        "path",
+        "imageUrl",
+        "imageAlt",
+        "categoryIds",
+        "offer.price",
+        "offer.inStock",
+        "offer.fromPrice",
+        "ingredients",
+        "variants"
+      ]
+    }
+  },
+  "additionalPageData": {
+    "initialSelectedOption": {
+      "source": "Derived from options",
+      "rule": "Available options first, then lowest price"
+    },
+    "whatsappDestination": {
+      "source": "features/contact/data/contact.json → whatsapp.url"
+    },
+    "whatsappMessage": {
+      "source": "Application template + product name + selected presentation + selected SKU + canonical URL"
+    },
+    "breadcrumbs": {
+      "source": "Application routes + first resolved category + product name/path"
+    },
+    "metadata": {
+      "title": "Resolved product name",
+      "description": "Application template using product name and first category",
+      "canonical": "Configured site origin + product path",
+      "socialImage": "First valid Contentful product image"
+    },
+    "portionAndFrequencyGuidance": {
+      "source": "Static application copy",
+      "productSpecificDose": false
+    },
+    "storageGuidance": {
+      "source": "Static application copy directing visitors to packaging or support",
+      "productSpecificStorageInstructions": false
+    }
+  },
+  "publicationRules": {
+    "requires": "Matching Avify parent SKU and published Contentful entry",
+    "hiddenReferenceStatuses": [
+      "Excluir",
+      "Continuidad pendiente"
+    ],
+    "referenceFieldsNotImported": [
+      "Cantidad recomendada",
+      "Frecuencia",
+      "Objetivos",
+      "Razas ideales",
+      "Objetivos especificos para la raza",
+      "Private source comments"
+    ],
+    "ignoredContentfulCommerceFields": [
+      "precio",
+      "disponible",
+      "rating"
+    ],
+    "structuredData": "WebPage and BreadcrumbList; Product/Offer remains behind the verified-record gate"
+  }
+}

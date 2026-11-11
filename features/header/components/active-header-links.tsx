@@ -25,6 +25,7 @@ export function ActiveHeaderLinks({ onNavigate }: { onNavigate?: () => void }) {
 
   const activeHref = pathname === "/"
     ? (contactVisible ? "/#contacto" : undefined)
+    : pathname.startsWith("/producto/") ? "/productos"
     : headerLinks.find(({ href }) => !href.includes("#") && (pathname === href || pathname.startsWith(`${href}/`)))?.href;
 
   return <HeaderLinks activeHref={activeHref} onNavigate={onNavigate} />;

@@ -5,10 +5,6 @@
 .statement h2 { max-inline-size: 18ch; font-family: var(--font-display); font-size: clamp(36px, 5.2vw, 72px); font-weight: 900; line-height: 1.04; letter-spacing: -.055em; overflow-wrap: anywhere; }
 .invitation { display: grid; justify-items: start; align-content: end; gap: var(--dn-space-6); }
 .invitation p { max-inline-size: 36ch; font-size: 16px; line-height: 1.6; }
-.primaryLink { display: inline-flex; align-items: center; justify-content: space-between; gap: var(--dn-space-6); min-block-size: 48px; max-inline-size: 100%; padding: var(--dn-space-3) var(--dn-space-6); border: 2px solid transparent; background: var(--dn-action-primary-bg); color: var(--dn-action-primary-text); font-size: 14px; font-weight: 700; line-height: 1.5; text-decoration: none; }
-.primaryLink svg { flex-shrink: 0; }
-.primaryLink:hover { border-color: var(--dn-text-primary); }
-.primaryLink:focus-visible { outline-color: var(--dn-text-primary); }
 .directory { padding: var(--dn-space-12) var(--dn-page-gutter) var(--dn-space-6); }
 .directoryLayout { display: grid; gap: var(--dn-space-8); }
 .brand { display: grid; justify-items: start; align-content: start; gap: var(--dn-space-6); }
@@ -46,7 +42,6 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .primaryLink { transition: border-color 160ms ease; }
   .textLink { transition: color 160ms ease; }
   .textLink::after { transition: transform 160ms ease; }
 }

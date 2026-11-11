@@ -2,8 +2,8 @@
 
 Backend integration modules import `server-only`. Call them from Server Components,
 Route Handlers, or server actions; never import them into a Client Component.
-The current landing-page prototype stays independent of these services. No public
-API proxy, checkout, order mutation, CMS migration, or content publishing is added.
+The catalog and product detail pages consume these services. No public API proxy,
+checkout, order mutation, CMS migration, or content publishing is added.
 
 ## Environment
 
@@ -120,6 +120,15 @@ quantities, and prices. Avify's `totalCount` can exceed the number of selectable
 products by one; the loader accepts a short final page but rejects empty pages
 before the end of the reported pagination range.
 
+The shared join also applies the local source reference from
+`docs/SEO-GEO/catalog-products.md`, using explicit parent-SKU/row bindings in
+`features/catalog/data/product-reference-bindings.json`. Bound `Excluir` and
+`Continuidad pendiente` records are omitted from all public consumers. Other
+bound records receive descriptive profile data; unmapped products retain their
+existing CMS/commerce content. The source never overrides price, inventory,
+variants, ingredients, or images. See [product detail](../features/product/README.md)
+for import commands, inspected coverage, and the public-field boundary.
+
 The public `/productos` page reads only matched products. It shares an Avify
 catalog snapshot briefly across category and search requests (30-second
 revalidation), while Contentful uses the editorial cache above. Each category
@@ -130,8 +139,9 @@ revalidates hourly; the catalog snapshot supplies current prices and stock.
 Availability is based on positive quantity because Avify currently reports all
 parent product statuses as `inactive`; unavailable products show “Agotado”.
 Category and search filters use query
-parameters, with the canonical URL remaining `/productos`. No individual
-product route or purchase action is implied by the listing.
+parameters, with the canonical URL remaining `/productos`. Product previews link
+to `/producto/<Contentful urlSlug>` (SKU fallback); detail pages provide
+presentation-specific WhatsApp inquiries.
 Each preview row links to `/productos/categoria/<nombre>-<id>`, which displays
 the full matched category in the same sales order with a category-specific
 canonical URL. These pages are discoverable through crawlable catalog links.

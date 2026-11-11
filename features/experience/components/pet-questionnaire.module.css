@@ -66,6 +66,10 @@
 .answer {
   margin-block-start: var(--dn-space-8);
 }
+.welcome { margin-block-start: var(--dn-space-6); max-inline-size: 56ch; }
+.welcome p { color: var(--dn-text-secondary); font-size: 14px; line-height: 1.7; }
+.welcome p + p { margin-block-start: var(--dn-space-3); }
+.controls .start span { display: inline; }
 .label {
   display: block;
   margin-block-end: var(--dn-space-2);

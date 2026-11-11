@@ -25,13 +25,19 @@ for (const entry of publicPages) {
   });
 }
 
-test("sitemap lists exactly the implemented public canonicals", async ({ request }) => {
+test("sitemap lists implemented pages and published product canonicals", async ({ request }) => {
   const response = await request.get("/sitemap.xml");
   expect(response.status()).toBe(200);
   expect(response.headers()["content-type"]).toContain("xml");
   const xml = await response.text();
   const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
-  expect(urls.sort()).toEqual(publicPages.map((page) => `${brand.origin}${page.path}`).sort());
+  expect(urls).toEqual(expect.arrayContaining(publicPages.map((page) => `${brand.origin}${page.path}`)));
+  const productUrls = urls.filter((url) => url.startsWith(`${brand.origin}/producto/`));
+  expect(productUrls.length).toBeGreaterThan(0);
+  expect(productUrls).not.toContain(`${brand.origin}/producto/ajo-y-perejil`);
+  expect(productUrls).not.toContain(`${brand.origin}/producto/callostrum`);
+  expect(new Set(urls).size).toBe(urls.length);
+  expect(urls.every((url) => publicPages.some((page) => url === `${brand.origin}${page.path}`) || productUrls.includes(url))).toBe(true);
   expect(xml).not.toContain("<lastmod>");
 });
 

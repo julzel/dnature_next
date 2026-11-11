@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, AtSign, Mail, MapPin, MessageCircle } from "lucide-react";
+import { AtSign, Mail, MapPin, MessageCircle } from "lucide-react";
+import { ArrowCta } from "@/components/arrow-cta";
 import { Logo } from "@/components/logo";
 import { SectionEyebrow } from "@/components/section-eyebrow";
 import { brand } from "@/lib/seo/config";
@@ -36,11 +37,7 @@ export function Footer() {
             <h2>{brand.tagline}</h2>
             <div className={styles.invitation}>
               <p>Elegir con información también es cuidar. Si tenés preguntas, conversemos.</p>
-              <a className={styles.primaryLink} href={contact.whatsapp.url} target="_blank" rel="noopener noreferrer">
-                Hablemos por WhatsApp
-                <ArrowUpRight size={20} aria-hidden="true" />
-                <span className="sr-only"> (abre en otra pestaña)</span>
-              </a>
+              <ArrowCta href={contact.whatsapp.url} label="Contáctanos por WhatsApp" target="_blank" rel="noopener noreferrer" aria-label="Contáctanos por WhatsApp (abre en otra pestaña)" />
             </div>
           </div>
         </div>

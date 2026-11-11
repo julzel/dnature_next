@@ -73,10 +73,19 @@ verified availability or approval to sell. Several linked rule documents referen
 by that file (`catalog.md`, its source README and the workbook) are not present in
 this directory. They cannot be treated as an implemented nutrition rules engine.
 
-No raw catalog rows are imported into public routes, structured data, feeds or
-recommendations. In particular, source values such as “alimentación completa y
-balanceada”, breed-specific goals, doses, “supervisión: no”, and disease-related
-notes are not automatically accepted as safe, substantiated public claims.
+Public product pages now use an explicitly labeled reference projection of this
+document, linked to live products through inspected parent-SKU bindings. Species,
+life stages, sizes, chewing level and selection cautions remain descriptive source
+information, not individualized suitability approval. The shared join omits bound
+excluded and pending records from listings, detail pages and sitemap.
+
+Raw rows are not published. Source values such as “alimentación completa y
+balanceada”, breed-specific goals, doses, frequency, “supervisión: no”, and
+disease-related notes do not become substantiated public claims. Documented
+restriction fields are shown as cautions to discuss before choosing; they do not
+drive a clinical recommendation engine. The Product/Offer verified-record gate
+remains in place. See [product detail](../../features/product/README.md) for the
+source hashes, current mapping coverage, and regeneration workflow.
 
 Before publishing a product:
 

@@ -2,6 +2,7 @@ import { IntegrationError } from "@/lib/server/integration-error";
 import type { ContentfulAsset, ContentfulEntry, ProductContentFields } from "@/features/content/types/contentful";
 import type { AvifyProduct } from "../types/avify";
 import type { CatalogProduct } from "../types/catalog";
+import { productReference } from "./product-reference";
 
 function publishedImages(fields: ProductContentFields, assets: Map<string, ContentfulAsset>): ContentfulAsset[] {
   if (!Array.isArray(fields.image)) return [];
@@ -44,9 +45,13 @@ export function joinProducts(
     seenSkus.add(commerce.sku);
     const entry = contentBySku.get(commerce.sku);
     if (!entry) continue;
+    const source = productReference(commerce.sku);
+    // Editorial exclusions apply to listings, detail pages, related products and sitemap alike.
+    if (source && source.status !== "Descripción comercial") continue;
     catalog.push({
       sku: commerce.sku,
       commerce,
+      ...(source ? { reference: source.reference } : {}),
       editorial: { id: entry.sys.id, fields: entry.fields, images: publishedImages(entry.fields, assets) },
     });
   }

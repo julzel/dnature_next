@@ -11,7 +11,6 @@ import { BreedCombobox } from "./breed-combobox";
 import { PetProfileCard } from "./pet-profile-card";
 import { SavedPetProfile } from "./saved-pet-profile";
 import { PetQuestionnaireIntro } from "./pet-questionnaire-intro";
-import { PetQuestionnaireProgress } from "./pet-questionnaire-progress";
 import styles from "./pet-questionnaire.module.css";
 
 export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfile[] }) {
@@ -19,7 +18,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
   const router = useRouter();
   const [navigating, startNavigation] = useTransition();
   const [saveError, setSaveError] = useState("");
-  const [step, setStep] = useState(initialPets.length > 1 ? 4 : lastPet ? 3 : 0);
+  const [step, setStep] = useState(initialPets.length > 1 ? 4 : lastPet ? 3 : -1);
   const [name, setName] = useState(lastPet?.name ?? "");
   const [species, setSpecies] = useState<PetSpecies | null>(lastPet?.species ?? null);
   const [breed, setBreed] = useState(lastPet?.breed ?? "");
@@ -38,8 +37,9 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
   const transitioning = phase !== "idle";
   const complete = step === 3;
   const viewingPets = step === 4;
-  const question = ["¿Gato o perro?", "¿Cómo se llama tu mascota?", `¿De qué raza es ${name}?`, `¡Un gusto, ${reviewedPet?.name ?? name}!`, "Tus mascotas"][step];
-  const description = ["Elegí a tu compañero para comenzar.", "Ese nombre que hace que levante las orejas.", "Si no la conocés, también está bien.", "Revisá sus datos antes de continuar.", "Cada uno con su nombre, cada uno con su esencia."][step];
+  const welcoming = step === -1;
+  const question = welcoming ? "¡Qué bueno tenerte por aquí!" : ["¿Gato o perro?", "¿Cómo se llama tu mascota?", `¿De qué raza es ${name}?`, `¡Un gusto, ${reviewedPet?.name ?? name}!`, "Tus mascotas"][step];
+  const description = welcoming ? "Las necesidades nutricionales de nuestras mascotas se pueden ver condicionadas por una serie de factores como la raza, el sexo, la actividad diaria, edad, entre otros." : ["Elegí a tu compañero para comenzar.", "Ese nombre que hace que levante las orejas.", "Si no la conocés, también está bien.", "Revisá sus datos antes de continuar.", "Cada uno con su nombre, cada uno con su esencia."][step];
   const limitReached = pets.length >= MAX_PETS;
 
   useEffect(function focusQuestion() {
@@ -108,6 +108,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
     if (viewingPets) form.current?.scrollIntoView({ block: "start", behavior: "auto" });
   }
   function handleEdit() { goToStep(0); }
+  function handleStart() { goToStep(0); }
 
   function handleContinue() {
     if (pendingStep.current !== null || navigating || pets.length === 0) return;
@@ -185,13 +186,18 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
   return (
     <div className={styles.questionnaire}>
       <PetQuestionnaireIntro />
-      <form ref={form} className={styles.form} onSubmit={handleSubmit} noValidate aria-labelledby="pet-question" aria-busy={transitioning}>
-        <PetQuestionnaireProgress step={step} />
+      <form ref={form} className={styles.form} onSubmit={handleSubmit} noValidate aria-label={welcoming ? "Experiencia guiada" : undefined} aria-labelledby={welcoming ? undefined : "pet-question"} aria-busy={transitioning}>
         <div className={styles.stageViewport}>
         <div className={styles.stage} key={step} data-direction={direction} data-phase={phase} onAnimationEnd={handleSlideEnd} inert={transitioning}>
-          <p className={styles.stepCount} aria-live="polite">{viewingPets ? "Tus perfiles" : complete ? "Todo listo" : `Pregunta ${step + 1} de 3`}</p>
-          <h3 id="pet-question" ref={heading} className={styles.question} tabIndex={-1}>{question}</h3>
+          {!welcoming && <p className={styles.stepCount} aria-live="polite">{viewingPets ? "Tus perfiles" : complete ? "Todo listo" : `Pregunta ${step + 1} de 3`}</p>}
+          {!welcoming && <h3 id="pet-question" ref={heading} className={styles.question} tabIndex={-1}>{question}</h3>}
           <p className={styles.description}>{description}</p>
+
+          {welcoming && (
+            <div className={styles.welcome}>
+              <p>A continuación conoceremos más de tu mascota para ofrecerle un plan nutricional que se ajuste a sus necesidades.</p>
+            </div>
+          )}
 
           {step === 1 && (
             <div className={styles.answer}>
@@ -251,6 +257,11 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
               <Pencil size={20} aria-hidden="true" /><span>Editar respuestas</span>
             </button>
           ) : <a className={styles.skip} href="#explorar">Prefiero explorar</a>}
+          {welcoming && (
+            <button type="button" className={`${styles.next} ${styles.start}`} onClick={handleStart}>
+              <span>Empecemos</span><ArrowRight size={24} aria-hidden="true" />
+            </button>
+          )}
           {(step === 1 || step === 2) && (
             <button type="submit" className={styles.next} aria-label={step === 2 ? "Ver perfil" : "Continuar"}>
               <span>{step === 2 ? "Ver perfil" : "Continuar"}</span><ArrowRight size={24} aria-hidden="true" />

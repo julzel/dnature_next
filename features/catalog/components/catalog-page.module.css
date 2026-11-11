@@ -43,6 +43,9 @@
 .productCategory { color: var(--category-ink, var(--dn-text-secondary)); font-size: 11px; font-weight: 650; }
 .previewDetails h3,
 .previewDetails h4 { color: var(--dn-text-primary); font-size: 16px; line-height: 1.4; overflow-wrap: anywhere; }
+.previewDetails h3 a, .previewDetails h4 a { text-decoration: none; }
+.previewDetails h3 a:hover, .previewDetails h4 a:hover { text-decoration: underline; }
+.detailLink { grid-column: 1 / -1; display: inline-flex; align-items: center; min-block-size: 44px; color: var(--dn-surface-dark); font-size: 13px; font-weight: 600; }
 .price { color: var(--dn-text-primary); font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .price span { font-size: 12px; font-weight: 500; }
 .availability { color: var(--dn-text-secondary); font-size: 12px; }

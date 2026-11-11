@@ -1,6 +1,6 @@
 import styles from "./catalog-page.module.css";
 
-export function CatalogProductSkeleton() {
+export function CatalogProductSkeleton({ showDetailLink = true }: { showDetailLink?: boolean }) {
   return (
     <li className={`${styles.preview} ${styles.previewSkeleton}`}>
       <article>
@@ -16,6 +16,7 @@ export function CatalogProductSkeleton() {
           <span className={`${styles.skeletonBlock} ${styles.skeletonFactsLabel}`} />
           <span className={`${styles.skeletonBlock} ${styles.skeletonFactsIcon}`} />
         </div>
+        {showDetailLink && <div className={styles.skeletonFacts}><span className={`${styles.skeletonBlock} ${styles.skeletonFactsLabel}`} /></div>}
       </article>
     </li>
   );

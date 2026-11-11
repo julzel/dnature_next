@@ -1,6 +1,8 @@
 import { expect, type Locator } from "@playwright/test";
 
 export async function completePet(section: Locator, name: string, species: "Gato" | "Perro" = "Gato") {
+  const start = section.getByRole("button", { name: "Empecemos", exact: true });
+  if (await start.isVisible()) await start.click();
   await section.getByRole("button", { name: species, exact: true }).click();
   await expect(section.getByRole("heading", { name: "¿Cómo se llama tu mascota?" })).toBeFocused();
   await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill(name);

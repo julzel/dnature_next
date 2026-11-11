@@ -1,4 +1,6 @@
 import type { CSSProperties } from "react";
+import { productText } from "./product-copy";
+import { productPath } from "./product-path";
 import type { CatalogProduct } from "../types/catalog";
 import { contentfulImageUrl } from "./contentful-image-url";
 import { productOffer, type ProductOffer } from "./product-offer";
@@ -6,6 +8,7 @@ import { productOffer, type ProductOffer } from "./product-offer";
 export type CatalogCategory = { id: string; label: string; color: string; ink: string; onColor: string };
 export type CatalogListing = {
   sku: string;
+  path: string;
   name: string;
   categoryIds: string[];
   imageUrl: string | null;
@@ -45,18 +48,6 @@ function normalized(value: string): string {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es").replace(/\s+/g, " ").trim();
 }
 
-function ingredientText(value: string | undefined): string {
-  if (!value) return "";
-  const entities: Record<string, string> = { amp: "&", quot: '"', apos: "'", lt: "<", gt: ">", nbsp: " " };
-  return value.replace(/&(#x[\da-f]+|#\d+|amp|quot|apos|lt|gt|nbsp);/gi, (entity, code: string) => {
-    if (!code.startsWith("#")) return entities[code.toLowerCase()] ?? entity;
-    const number = code[1].toLowerCase() === "x" ? parseInt(code.slice(2), 16) : parseInt(code.slice(1), 10);
-    return number > 0 && number <= 0x10ffff ? String.fromCodePoint(number) : " ";
-  }).replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
-    .replace(/<!--[^]*?-->/g, " ")
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ").trim();
-}
 
 function categoryTheme(label: string) {
   const key = normalized(label);
@@ -97,12 +88,13 @@ export function prepareCatalog(products: readonly CatalogProduct[]) {
     }
     const image = product.editorial.images.find((asset) => contentfulImageUrl(asset.fields.file?.url));
     const name = product.editorial.fields.productName?.trim() || product.commerce.name;
-    const ingredients = ingredientText(product.editorial.fields.ingredientes);
+    const ingredients = productText(product.editorial.fields.ingredientes).replace(/\s+/g, " ");
     const activeVariants = product.commerce.children.filter((variant) => variant.status === "active");
     const searchNames = [...new Set([name, product.commerce.name].map(normalized))];
     const searchSkus = [...new Set([product.sku, product.commerce.sku, ...activeVariants.map((variant) => variant.sku)].map(normalized))];
     return {
       sku: product.sku,
+      path: productPath({ sku: product.sku, slug: product.editorial.fields.urlSlug }),
       name,
       categoryIds: product.commerce.categories.map((category) => category.id),
       imageUrl: contentfulImageUrl(image?.fields.file?.url),

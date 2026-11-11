@@ -2,9 +2,11 @@ import type { SalesBucket } from "@/features/sales/types/sales";
 import type { CatalogProduct } from "../types/catalog";
 import { contentfulImageUrl } from "./contentful-image-url";
 import { productOffer } from "./product-offer";
+import { productPath } from "./product-path";
 
 export type FeaturedSnack = {
   sku: string;
+  path: string;
   name: string;
   price: number;
   fromPrice: boolean;
@@ -36,6 +38,7 @@ export function selectFeaturedSnacks(catalog: readonly CatalogProduct[], buckets
     const name = product.editorial.fields.productName?.trim() || product.commerce.name;
     return [{
       sku: product.sku,
+      path: productPath({ sku: product.sku, slug: product.editorial.fields.urlSlug }),
       name,
       price: offer.price,
       fromPrice: offer.fromPrice,
