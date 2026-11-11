@@ -68,6 +68,17 @@ baseline, with the breed's elongated body, short legs and floppy ears. Its
 [source and generation prompt](artwork-sources/pet-species/dachshund-generation.json)
 are preserved alongside the other standalone breed assets.
 
+The [Pit Bull engraving](../../public/images/pets/pitbull.svg) follows the same
+native vector format, ink/mint palette, 480×480 canvas and shared baseline.
+It depicts an athletic American Pit Bull Terrier type with natural ears and tail;
+its [source and generation prompt](artwork-sources/pet-species/pitbull-generation.json)
+are preserved with the other breed artwork.
+
+The [Australian Cattle Dog engraving](../../public/images/pets/cattle-dog.svg)
+uses the same native paths, ink/mint palette, 480×480 canvas and shared baseline.
+Its upright ears and mottled coat distinguish the breed; its [source and generation
+prompt](artwork-sources/pet-species/cattle-dog-generation.json) are preserved.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
