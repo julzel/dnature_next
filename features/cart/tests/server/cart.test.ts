@@ -48,6 +48,8 @@ test("invalid quantities are rejected before integration calls; missing quantity
 test("malformed browser storage cannot create usable fake cart lines", () => {
   assert.deepEqual(parseCart(null), []);
   for (const value of ["invalid", "{}", '[{"sku":"test"}]']) assert.throws(() => parseCart(value));
+  const oversized = { sku: "sku", parentSku: "sku", name: "Producto", presentation: "100 g", path: "/producto/sku", quantity: 999, price: Number.MAX_VALUE, imageUrl: null };
+  assert.throws(() => parseCart(JSON.stringify([oversized])));
 });
 
 test("published nutrition tables move to composition while narrative and care copy remain readable", () => {

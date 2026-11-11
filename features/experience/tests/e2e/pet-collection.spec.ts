@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { completePet } from "../helpers/complete-pet";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "commit" });
   await page.getByRole("dialog").getByRole("link", { name: "Visita guiada", exact: true }).click();
   await page.locator("#experiencia-personalizada").getByRole("button", { name: "Empecemos", exact: true }).click();
   await expect(page.getByRole("heading", { name: "¿Gato o perro?", exact: true })).toBeFocused();
@@ -22,6 +22,8 @@ test("adding and editing pets preserves each profile without duplicates", async 
   await expect(section.getByRole("article")).toHaveCount(2);
   await expect(section.getByRole("article", { name: "Ficha de Luna", exact: true }).locator("dd")).toHaveText(["Luna", "Gato", "Mestizo / sin raza definida"]);
   await expect(section.getByRole("article", { name: "Ficha de Juve", exact: true }).locator("dd")).toHaveText(["Juve", "Perro", "Mestizo / sin raza definida"]);
+  await expect(section.getByRole("article", { name: "Ficha de Luna", exact: true }).locator("img")).toHaveAttribute("src", "/images/pets/mixed-breed-cat.svg");
+  await expect(section.getByRole("article", { name: "Ficha de Juve", exact: true }).locator("img")).toHaveAttribute("src", "/images/pets/mixed-breed-dog.svg");
   await section.getByRole("button", { name: "Editar a Luna", exact: true }).click();
   await expect(section.getByRole("button", { name: "Gato", exact: true })).toHaveAttribute("aria-pressed", "true");
   await completePet(section, "Lunita");

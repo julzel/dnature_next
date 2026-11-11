@@ -172,6 +172,18 @@
       "sha256": "865b11e4e370b57e3230607ab7d9241f5ecb93bb387aa3ebd74ef3e66a1ba491",
       "generation": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-dog-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "mixed_breed_cat": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-cat-source.png",
+      "sha256": "89fbde78200b089e9aa6a6dc5b17fe75a6c17fbcee5479539889c664e7428220",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-cat-generation.json",
+      "method": "Built-in image_gen generation with Border Collie and DNAture dog/cat portrait style references, followed by framing refinement; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "boston_terrier": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/boston-terrier-source.png",
+      "sha256": "e12d8aecc60d35a605412b5324d1b29a5d8d61aaa40f413615b99f0607cdc2b1",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/boston-terrier-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -425,6 +437,26 @@
       "variant": "engraving",
       "path": "/images/pets/mixed-breed-dog.svg",
       "source": "mixed_breed_dog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "cat",
+      "label_es": "Gato mestizo",
+      "breed": "Mixed-breed domestic shorthair (no specific breed)",
+      "variant": "engraving",
+      "path": "/images/pets/mixed-breed-cat.svg",
+      "source": "mixed_breed_cat",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Boston terrier",
+      "breed": "Boston Terrier",
+      "variant": "engraving",
+      "path": "/images/pets/boston-terrier.svg",
+      "source": "boston_terrier",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

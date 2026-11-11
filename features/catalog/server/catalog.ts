@@ -89,10 +89,15 @@ export const getBrowseCatalogProducts = cache(async function getBrowseCatalogPro
 });
 
 export async function getCatalogProductBySku(sku: string): Promise<CatalogProduct | null> {
-  if (!sku.trim() || sku.length > 200) throw new RangeError("sku must be a nonempty string of at most 200 characters.");
+  return (await getCatalogProductsBySkus([sku]))[0] ?? null;
+}
+
+/** A single fresh inventory request for checkout, including all selected parent products. */
+export async function getCatalogProductsBySkus(skus: string[]): Promise<CatalogProduct[]> {
+  const requested = new Set(skus);
   const [page, content] = await Promise.all([
-    getAvifyProducts({ skus: [sku], pageSize: 100 }),
+    getAvifyProducts({ skus, pageSize: 100 }),
     getCachedProductContent(),
   ]);
-  return joinProducts(page.products.filter((product) => product.sku === sku), content.entries, content.assets)[0] ?? null;
+  return joinProducts(page.products.filter((product) => requested.has(product.sku)), content.entries, content.assets);
 }

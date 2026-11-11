@@ -43,7 +43,8 @@ test("questions slide in the navigation direction without losing answers", async
   const nameInput = section.getByRole("textbox", { name: "Nombre de tu mascota" });
   await expect(nameInput).toHaveCSS("text-align", "start");
   await expect(nameInput).toHaveCSS("font-weight", "700");
-  await expect.poll(() => nameInput.evaluate((input) => getComputedStyle(input.parentElement!, "::after").transform)).toBe("matrix(1, 0, 0, 1, 0, 0)");
+  await nameInput.focus();
+  await expect(nameInput.locator("..")).toHaveCSS("background-size", "100% 2px, 100% 2px");
   await section.getByRole("textbox", { name: "Nombre de tu mascota" }).fill("Luna");
   await section.getByRole("button", { name: "Volver a la pregunta anterior" }).click();
   const previous = section.getByRole("heading", { name: "¿Gato o perro?" });
@@ -80,6 +81,7 @@ test("validates the name and completes a pet profile by keyboard", async ({ page
   await breed.press("Enter");
   await expect(section.getByRole("heading", { name: "¡Un gusto, Luna!" })).toBeFocused();
   await expect(section.locator("dd")).toHaveText(["Luna", "Gato", "Siamés"]);
+  await expect(section.getByRole("article").locator("img")).toHaveAttribute("src", "/images/pets/mixed-breed-cat.svg");
   await section.screenshot({ path: testInfo.outputPath("pet-review.png") });
   await section.getByRole("button", { name: "Editar respuestas" }).click();
   await section.getByRole("button", { name: "Gato", exact: true }).click();
@@ -102,6 +104,11 @@ test("changing species clears the breed and preserves the pet name", async ({ pa
   await breed.fill("poodle");
   await section.getByRole("option", { name: "Caniche · Poodle", exact: true }).click();
   await expect(breed).toHaveValue("Caniche");
+  await section.getByRole("button", { name: "Ver perfil" }).click();
+  await expect(section.getByRole("article").locator("img")).toHaveAttribute("src", "/images/pets/poodle.svg");
+  await section.getByRole("button", { name: "Editar respuestas" }).click();
+  await section.getByRole("button", { name: "Perro", exact: true }).click();
+  await section.getByRole("button", { name: "Continuar", exact: true }).click();
   await section.getByRole("button", { name: "Volver a la pregunta anterior" }).click();
   await expect(section.getByRole("textbox", { name: "Nombre de tu mascota" })).toHaveValue("Toby");
   await section.getByRole("button", { name: "Volver a la pregunta anterior" }).click();
@@ -136,6 +143,7 @@ test("supports custom breeds, escape, and narrow screens with reduced motion", a
   await expect(breed).toHaveValue("Cruce de collie");
   await section.getByRole("button", { name: "Ver perfil" }).click();
   await expect(section.locator("dd")).toHaveText(["Sol", "Perro", "Cruce de collie"]);
+  await expect(section.getByRole("article").locator("img")).toHaveAttribute("src", "/images/pets/mixed-breed-dog.svg");
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(320);
   await expect(section.getByRole("heading", { name: "¡Un gusto, Sol!" }).locator("..")).toHaveCSS("animation-name", "none");
   const dogImage = section.getByRole("article", { name: "Ficha de Sol" }).locator('img[data-species="dog"]');
@@ -152,7 +160,7 @@ test(`the ${pet.species} artwork loads in the selector and reveals in the profil
   await page.emulateMedia({ reducedMotion: "no-preference" });
   const section = page.locator("#experiencia-personalizada");
   const choiceImage = section.getByRole("button", { name: pet.choice, exact: true }).locator("img");
-  await expect(choiceImage).toHaveAttribute("src", `/images/pets/${pet.species}.svg`);
+  await expect(choiceImage).toHaveAttribute("src", `/images/pets/mixed-breed-${pet.species}.svg`);
   await expect(choiceImage).toHaveAttribute("alt", "");
   await expect(choiceImage).toHaveAttribute("data-animated", "false");
   await expect.poll(() => choiceImage.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
@@ -168,7 +176,7 @@ test(`the ${pet.species} artwork loads in the selector and reveals in the profil
   const profile = section.getByRole("article", { name: `Ficha de ${pet.name}` });
   const image = profile.locator("img");
   await expect(profile).toHaveAttribute("data-revealed", "true");
-  await expect(image).toHaveAttribute("src", `/images/pets/${pet.species}-small.svg`);
+  await expect(image).toHaveAttribute("src", `/images/pets/mixed-breed-${pet.species}.svg`);
   await expect.poll(() => image.evaluate((element: HTMLImageElement) => element.complete && element.naturalWidth > 0)).toBe(true);
   await expect(image).toHaveCSS("animation-name", /reveal-species/);
   const opacity = await image.evaluate((element) => {

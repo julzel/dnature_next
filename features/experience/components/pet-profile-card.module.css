@@ -7,20 +7,21 @@
 }
 
 .body {
+  --portrait-size: 96px;
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr);
-  align-items: start;
+  grid-template-columns: var(--portrait-size) minmax(0, 1fr);
+  align-items: center;
   gap: var(--dn-space-4);
 }
 
 .portrait {
   display: grid;
   place-items: center;
-  inline-size: 80px;
-  block-size: 80px;
+  inline-size: var(--portrait-size);
+  block-size: var(--portrait-size);
 }
 
-.portrait img { inline-size: 80px; block-size: auto; }
+.portrait img { inline-size: 100%; block-size: auto; }
 .details { min-inline-size: 0; }
 .details > div { position: relative; display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; gap: var(--dn-space-2); min-inline-size: 0; padding-block: var(--dn-space-3); }
 .details > div:first-child { padding-block-start: 0; }
@@ -48,7 +49,7 @@
 
 @media (min-width: 640px) {
   .card { padding-block: var(--dn-space-8); }
-  .body { gap: var(--dn-space-8); }
+  .body { --portrait-size: 160px; gap: var(--dn-space-8); }
   .details > div { gap: var(--dn-space-4); }
 }
 

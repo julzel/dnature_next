@@ -8,6 +8,7 @@ import { formatCatalogPrice } from "@/features/catalog/lib/catalog-money";
 import { validateCartItemAction } from "@/features/cart/actions/validate-cart-item";
 import { getCartItems, saveValidatedCartItem, useCart } from "@/features/cart/lib/cart-store";
 import { CartStorageError } from "@/features/cart/lib/cart-storage";
+import { IVA_PERCENT } from "@/features/checkout/lib/checkout";
 import type { ProductOption } from "../types/product";
 import { ProductQuantity } from "./product-quantity";
 import { maximumQuantity, quantityError } from "../lib/product-quantity";
@@ -62,6 +63,7 @@ export function ProductOptions({ parentSku, name, options, url, profile, precaut
       <p className={styles.price}>{selected?.price != null ? formatCatalogPrice(selected.price) : "Precio a consultar"}</p>
       <p className={styles.availability} data-available={available}>{available ? "Disponible" : "Agotado"}</p>
     </div>
+    {selected?.price != null && <p className={styles.purchaseNote}>Precio sin IVA. El {IVA_PERCENT}% de IVA y el envío se calculan en el carrito.</p>}
     {profile}
     {currentOptions.length > 1 && <fieldset className={styles.presentations} disabled={pending}>
       <legend>Presentación</legend>

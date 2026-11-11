@@ -36,7 +36,7 @@ test("the shared cart synchronizes between tabs", async ({ page, context }) => {
   const add = page.getByRole("button", { name: "Agregar al carrito", exact: true });
   await expect(add).toBeEnabled({ timeout: 45_000 });
   await add.click();
-  await expect(cartPage.getByRole("main").getByRole("heading", { level: 2 })).toContainText("Oreja de res");
+  await expect(cartPage.getByRole("main").getByRole("heading", { level: 3 })).toContainText("Oreja de res");
   await cartPage.getByRole("button", { name: /Quitar .* del carrito/ }).click();
   await expect(page.getByRole("link", { name: /Ver carrito/ })).toHaveCount(0);
   await cartPage.close();

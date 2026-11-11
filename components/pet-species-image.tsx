@@ -3,6 +3,8 @@ import styles from "./pet-species-image.module.css";
 
 type PetSpeciesImageProps = {
   species: "cat" | "dog";
+  /** Optional breed artwork selected by the owning feature. */
+  src?: string;
   /** Use an empty alt when adjacent text already names the species. */
   alt: string;
   size?: number;
@@ -13,6 +15,7 @@ type PetSpeciesImageProps = {
 
 export function PetSpeciesImage({
   species,
+  src,
   alt,
   size = 128,
   variant = size < 96 ? "silhouette" : "engraving",
@@ -23,7 +26,7 @@ export function PetSpeciesImage({
 
   return (
     <Image
-      src={`/images/pets/${species}${suffix}.svg`}
+      src={src ?? `/images/pets/${species}${suffix}.svg`}
       alt={alt}
       width={size}
       height={size}

@@ -8,6 +8,7 @@ import { SearchDialog } from "./search-dialog";
 import { MobileMenu } from "./mobile-menu";
 import { HeaderLinks } from "./header-links";
 import { ActiveHeaderLinks } from "./active-header-links";
+import { CartLink } from "@/features/cart/components/cart-link";
 import styles from "./header.module.css";
 
 export function Header({ solid = false }: { solid?: boolean }) {
@@ -99,6 +100,7 @@ export function Header({ solid = false }: { solid?: boolean }) {
               </Suspense>
             </nav>
             <div className={styles.actions}>
+              <CartLink className={styles.searchToggle} />
               <button
                 ref={searchButton}
                 className={styles.searchToggle}

@@ -140,6 +140,20 @@ everyday companion without a specific breed. The
 [source and generation prompt](artwork-sources/pet-species/mixed-breed-dog-generation.json)
 are preserved with the series.
 
+The [mixed-breed cat engraving](../../public/images/pets/mixed-breed-cat.svg) uses
+native paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its short tabby coat, upright ears and gently raised tail represent an everyday
+domestic companion without a specific breed. The
+[source and generation prompts](artwork-sources/pet-species/mixed-breed-cat-generation.json)
+are preserved with the series.
+
+The [Boston Terrier engraving](../../public/images/pets/boston-terrier.svg) uses
+native paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its square head, upright pointed ears, compact athletic build and tuxedo markings
+preserve its breed identity. It is assigned to the Boston Terrier profile option.
+The [source and generation prompt](artwork-sources/pet-species/boston-terrier-generation.json)
+are preserved with the series.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
@@ -165,8 +179,14 @@ The component defaults to an engraving at 96px or larger and a silhouette below
 96px. Set `variant="engraving"` or `variant="silhouette"` to choose explicitly.
 It serves the SVG directly through `next/image`, with intrinsic dimensions and
 no client-side drawing code. A brief optional opacity reveal honors reduced
-motion. The questionnaire uses the engravings; saved/reviewed pet profiles use
-the compact assets.
+motion. The questionnaire species choices use the mixed-breed dog and cat.
+Reviewed and saved profiles use the matching breed engraving through
+`getBreedArtwork` in `features/experience/data/pet-breeds.ts`, including normalized
+Spanish/English aliases. Breeds without a specific drawing, custom crosses,
+mixed breeds and unknown breeds use `mixed-breed-dog.svg` or
+`mixed-breed-cat.svg` according to species. Golden Retriever uses `dog.svg`.
+Profile artwork is displayed at 96px on narrow screens and 160px on desktop.
+Compact silhouettes remain available for small product eligibility indicators.
 
 Place the animals directly on white, cool-light, or turquoise surfaces. Keep
 natural transparent edges and generous room for whiskers and tails. Do not add

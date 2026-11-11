@@ -1,4 +1,4 @@
-import type { PetSpecies } from "../data/pet-breeds";
+import { getBreedArtwork, type PetSpecies } from "../data/pet-breeds";
 import { PetSpeciesImage } from "@/components/pet-species-image";
 import styles from "./pet-profile-card.module.css";
 
@@ -15,7 +15,7 @@ export function PetProfileCard({ name, species, breed, revealed = true, animated
     <article className={styles.card} aria-label={`Ficha de ${name}`} data-species={species} data-revealed={revealed} data-animated={animated}>
       <div className={styles.body}>
         <div className={styles.portrait}>
-          <PetSpeciesImage species={species} alt="" size={80} animated={animated} revealed={revealed} />
+          <PetSpeciesImage species={species} src={getBreedArtwork(species, breed)} alt="" size={160} variant="engraving" animated={animated} revealed={revealed} />
         </div>
         <dl className={styles.details}>
           <div><dt>Nombre:</dt><dd>{name}</dd></div>
