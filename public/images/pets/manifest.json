@@ -94,6 +94,12 @@
       "sha256": "c26459084a4e47bf0c041ba2e20e05e4352f3687b7665401996cfc7d6d626e48",
       "generation": "docs/graphic-design/artwork-sources/pet-species/german-shepherd-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "dachshund": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/dachshund-source.png",
+      "sha256": "227201846a507a8334b60181df455f5bd8d6a22cf3d5d0d2424d79f8dc783772",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/dachshund-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -217,6 +223,16 @@
       "variant": "engraving",
       "path": "/images/pets/german-shepherd.svg",
       "source": "german_shepherd",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Teckel",
+      "breed": "Dachshund (Teckel)",
+      "variant": "engraving",
+      "path": "/images/pets/dachshund.svg",
+      "source": "dachshund",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

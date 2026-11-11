@@ -62,6 +62,12 @@ Its upright ears, saddle pattern and long bushy tail identify the breed; its
 [source and generation prompt](artwork-sources/pet-species/german-shepherd-generation.json)
 are preserved with the series.
 
+The [Teckel / Dachshund engraving](../../public/images/pets/dachshund.svg)
+preserves the same native paths, ink/mint palette, 480×480 canvas and shared
+baseline, with the breed's elongated body, short legs and floppy ears. Its
+[source and generation prompt](artwork-sources/pet-species/dachshund-generation.json)
+are preserved alongside the other standalone breed assets.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
