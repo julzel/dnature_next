@@ -91,6 +91,48 @@ Its short coat, dropped ears and thick otter tail distinguish it from the golden
 retriever. Its [source and generation prompts](artwork-sources/pet-species/labrador-retriever-generation.json)
 are preserved with the series.
 
+The [Beagle engraving](../../public/images/pets/beagle.svg) uses native paths,
+the same ink/mint palette, a 480×480 canvas and the shared baseline. Its long
+dropped ears, short coat and upright tail distinguish its breed. The
+[source and generation prompt](artwork-sources/pet-species/beagle-generation.json)
+are preserved with the series.
+
+The [Weimaraner engraving](../../public/images/pets/weimaraner.svg) uses native
+paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its sleek coat, athletic frame, long dropped ears and full natural tail preserve
+its breed identity. The [source and generation prompt](artwork-sources/pet-species/weimaraner-generation.json)
+are preserved with the series.
+
+The [Samoyed engraving](../../public/images/pets/samoyed.svg) uses native paths,
+the same ink/mint palette, a 480×480 canvas and the shared baseline. Its abundant
+coat, upright ears and curled plume tail preserve its breed identity. The
+[source and generation prompt](artwork-sources/pet-species/samoyed-generation.json)
+are preserved with the series.
+
+The [Schnauzer engraving](../../public/images/pets/schnauzer.svg) uses native
+paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its prominent beard and eyebrows, wiry coat and natural folded ears preserve
+its breed identity. The [source and generation prompt](artwork-sources/pet-species/schnauzer-generation.json)
+are preserved with the series.
+
+The [Bull Terrier engraving](../../public/images/pets/bull-terrier.svg) uses native
+paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its egg-shaped head, upright pointed ears, muscular frame and short coat preserve
+its breed identity. The [source and generation prompt](artwork-sources/pet-species/bull-terrier-generation.json)
+are preserved with the series.
+
+The [Dalmatian engraving](../../public/images/pets/dalmatian.svg) uses native
+paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its rounded spots, sleek coat and athletic frame preserve its breed identity.
+The [source and generation prompt](artwork-sources/pet-species/dalmatian-generation.json)
+are preserved with the series.
+
+The [Doberman engraving](../../public/images/pets/doberman.svg) uses native paths,
+the same ink/mint palette, a 480×480 canvas and the shared baseline. Its sleek
+athletic frame, wedge-shaped head, natural folded ears and full tail preserve
+its breed identity. The [source and generation prompt](artwork-sources/pet-species/doberman-generation.json)
+are preserved with the series.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors

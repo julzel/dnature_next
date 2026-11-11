@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "samoyed-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create a standalone SAMOYED (SAMOYEDO) in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a style reference for tapered engraved fur strokes, palette and natural standing presentation, not breed or proportions. One realistic healthy adult Samoyed standing naturally on all FOUR legs facing RIGHT, body in side profile and head gently turned three-quarter toward the viewer. Unmistakable Samoyed characteristics: medium-large sturdy balanced Arctic spitz body, deep chest, strong straight legs with four distinct substantial furry paws, broad wedge-shaped head with moderately long tapering muzzle, small thick upright triangular ears with gently rounded tips, natural almond eyes, and the subtle upturned lip corners of the breed's calm friendly expression without a human grin. Abundant thick long double coat, full neck ruff, dense flowing shoulder and chest fur, feathering on legs and rear, profuse plume tail curled loosely forward over the back and resting to one side. Adult working-dog proportions, not a tiny Pomeranian or a round teddy bear; no exaggerated puppy face. Entire full natural coat rendered as flat luminous MINT #8FE4D9 with fine deep INK TEAL #092F39 engraving strokes, not literal white or cream fur. Uniform coat treatment with airy open mint highlights, varied crisp tapered long fur strokes following coat flow and anatomy, restrained crosshatching and dark shading, detailed eyes and face. Exactly these TWO interior colors only. Anatomically plausible limbs underneath the coat, four separated paws, natural relaxed standing stance and closed mouth. Square canvas with generous genuinely transparent margins around both ears, full curled tail, all fur tips and all paws. Entire animal fully visible and uncropped. Genuine alpha transparency immediately outside clean crisp fur silhouette, under belly and between legs, opaque mint inside animal. No background, floor, printed checkerboard, ground shadow, halo, glow, haze, gradients, blur, photographic texture, cartoon, 3D, text, watermark, frame, collar, clothing, props, extra animals, white, black, cream, orange, brown, sepia or warm tones. A reusable clean transparent animal engraving matching the DNAture breed series.",
+  "output": "../../../../public/images/pets/samoyed.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "27e272177f923ee86043c04f7fca223000efe17107230d85a48815afa91b09f1",
+  "optical_width": 399.45,
+  "optical_height": 380.0
+}

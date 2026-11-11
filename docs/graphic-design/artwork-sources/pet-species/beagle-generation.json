@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "beagle-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create a standalone BEAGLE in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a style reference for crisp tapered engraving, palette and natural standing presentation: do not copy its breed, coat length or body proportions. One realistic adult Beagle standing naturally on all FOUR legs facing RIGHT, body in side profile and head gently turned three-quarter toward the viewer. Unmistakable Beagle characteristics: compact sturdy medium-small scent-hound build, deep chest, level back, substantial straight legs and four distinct rounded paws, moderately broad rounded head with a clear stop, square moderately long muzzle, soft soulful natural eyes, long broad low-set rounded floppy ears hanging close to the cheeks, short dense smooth coat, and moderately long thick tail carried upright in a gentle sabre curve, not curled over the back. Calm curious gentle expression, closed mouth. Show Beagle saddle and face-blaze coat pattern through contrasting engraving density in the SAME TWO inks, never brown/orange/black/white coat colors: open mint chest, muzzle and tail tip with somewhat denser ink hatching on saddle and ears; retain readable short fur strokes and avoid large flat dark masses. Match the reference's meticulous crisp tapered engraved strokes following fur and anatomy, airy crosshatching, flat mint highlights, restrained shadow density and clear facial detail. EXACTLY luminous mint #8FE4D9 and deep cool ink teal #092F39 inside the animal. Anatomically plausible healthy adult, no exaggerated puppy head, no long feathered coat, no collars, props or extra animals. Square canvas, entire Beagle including full upright tail, both floppy ears and all four paws visible and uncropped with comfortable transparent margins. Genuine alpha transparency directly outside the crisp silhouette, under the belly and between legs; opaque mint inside the dog. No background, floor, printed checkerboard, ground shadow, halo, glow, colored haze, gradient, blur, photographic texture, cartoon, 3D, text, watermark, border, clothing, warm tones, sepia or aged paper. A clean reusable cutout engraving matching the same DNAture breed series.",
+  "output": "../../../../public/images/pets/beagle.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "ac86e9e1c1e49d392dc435ede909054c259509b209c664710019d6bea5d5ae45",
+  "optical_width": 400.0,
+  "optical_height": 364.32
+}

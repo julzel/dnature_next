@@ -124,6 +124,48 @@
       "sha256": "f2f159c8413d3938d4d532a162e2c4f5ba937e5e9bace280df8aaf621bdde2fd",
       "generation": "docs/graphic-design/artwork-sources/pet-species/pomeranian-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "beagle": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/beagle-source.png",
+      "sha256": "ac86e9e1c1e49d392dc435ede909054c259509b209c664710019d6bea5d5ae45",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/beagle-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "weimaraner": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/weimaraner-source.png",
+      "sha256": "43f4f4269827c617b7de84320b54c15a3bf7e67be11f1eadf07537156ef37ec6",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/weimaraner-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "samoyed": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/samoyed-source.png",
+      "sha256": "27e272177f923ee86043c04f7fca223000efe17107230d85a48815afa91b09f1",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/samoyed-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "schnauzer": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/schnauzer-source.png",
+      "sha256": "b2ea078eefc266b191d7f2b1efb1718bc2f6a40f854ed200e61bc3abd8812e2a",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/schnauzer-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "bull_terrier": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/bull-terrier-source.png",
+      "sha256": "fac7bce21690d3ee3006e3b903a6c4fdfcfc089f33202200b1ea56ef77bac912",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/bull-terrier-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "dalmatian": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/dalmatian-source.png",
+      "sha256": "2500d6f618a1d3d30251fa2ca0deb0427a93d0790e5febb41c62636610efa3ef",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/dalmatian-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "doberman": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/doberman-source.png",
+      "sha256": "867cba3b7b37045ac6162c4a38f648490e9c97bddd767339141af48e75c39c1b",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/doberman-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -297,6 +339,76 @@
       "variant": "engraving",
       "path": "/images/pets/pomeranian.svg",
       "source": "pomeranian",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Beagle",
+      "breed": "Beagle",
+      "variant": "engraving",
+      "path": "/images/pets/beagle.svg",
+      "source": "beagle",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Weimaraner",
+      "breed": "Weimaraner",
+      "variant": "engraving",
+      "path": "/images/pets/weimaraner.svg",
+      "source": "weimaraner",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Samoyedo",
+      "breed": "Samoyed",
+      "variant": "engraving",
+      "path": "/images/pets/samoyed.svg",
+      "source": "samoyed",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Schnauzer",
+      "breed": "Standard Schnauzer",
+      "variant": "engraving",
+      "path": "/images/pets/schnauzer.svg",
+      "source": "schnauzer",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Bull terrier",
+      "breed": "Bull Terrier",
+      "variant": "engraving",
+      "path": "/images/pets/bull-terrier.svg",
+      "source": "bull_terrier",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Dálmata",
+      "breed": "Dalmatian",
+      "variant": "engraving",
+      "path": "/images/pets/dalmatian.svg",
+      "source": "dalmatian",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Dóberman",
+      "breed": "Doberman Pinscher",
+      "variant": "engraving",
+      "path": "/images/pets/doberman.svg",
+      "source": "doberman",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

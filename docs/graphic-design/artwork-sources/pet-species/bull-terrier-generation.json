@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "bull-terrier-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create a standalone BULL TERRIER in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a style reference for crisp tapered engraving strokes, palette and natural standing presentation; do not copy its breed, fur length or proportions. One realistic healthy adult English Bull Terrier standing naturally on all FOUR legs facing RIGHT, body in side profile and head slightly turned three-quarter toward the viewer while preserving the characteristic head outline. Unmistakable breed anatomy: muscular compact strong body, deep broad chest, rounded rib cage, short firm back, thick muscular neck, straight substantial forelegs, powerful hindquarters and four distinct compact paws. Distinctive long EGG-SHAPED HEAD with smooth continuous convex downward curve from skull to nose, NO brow stop or forehead indentation, deep powerful lower jaw, small high-set triangular natural eyes, two narrow upright pointed ears close together on top. Not a pit bull, not a bulldog, no short flat muzzle. Very short smooth dense coat. Natural moderately short tapering tail set low and carried nearly horizontal or gently downward, fully visible, no docked tail and no upward curled tail. Calm alert gentle expression, relaxed closed mouth, no exaggerated aggression or human smile. Uniform open mint coat with fine deep-ink hatching, no literal white or other coat colors. Match reference's fine crisp tapered engraved strokes and airy crosshatching, but very SHORT strokes following sleek coat and musculature, restrained shadows and flat mint highlights, clear eyes and face, mint-dominant with no large solid dark masses. EXACTLY luminous mint #8FE4D9 and deep cool ink teal #092F39 inside the animal. Square canvas with comfortable transparent margins around both upright ears, nose, full tail and all four paws; entire dog uncropped with plausible adult proportions. Genuine alpha transparency immediately outside the clean silhouette, including under belly and between legs, opaque mint inside animal. No background, floor, printed checkerboard, ground shadow, halo, glow, haze, gradients, blur, photographic texture, cartoon, 3D, text, watermark, frame, collar, clothing, props or additional animals. No white, black, brown, orange, cream, sepia or warm colors. A reusable clean cutout engraving matching the same DNAture breed series.",
+  "output": "../../../../public/images/pets/bull-terrier.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "fac7bce21690d3ee3006e3b903a6c4fdfcfc089f33202200b1ea56ef77bac912",
+  "optical_width": 400.0,
+  "optical_height": 343.97
+}

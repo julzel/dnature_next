@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "weimaraner-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create a standalone WEIMARANER in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a style reference for crisp tapered engraving, palette and natural standing presentation; do not copy its breed, fur length or proportions. One realistic healthy adult SHORT-HAIRED WEIMARANER standing naturally on all FOUR legs facing RIGHT, body in side profile and head gently turned three-quarter toward the viewer. Unmistakable breed features: elegant medium-large athletic gun-dog build, long lean muscular body, deep chest, pronounced abdominal tuck, long straight legs with four distinct compact paws, long graceful strong neck, aristocratic elongated clean head, moderately long square muzzle, soft attentive natural eyes, and long broad rounded floppy ears set high and hanging close to the head. Very short smooth sleek coat, no feathering or long hair. Natural FULL-LENGTH slender tapering tail carried gently backward at or slightly below the line of the back, entirely visible; no docked tail, no curled spitz tail. Calm intelligent gentle expression, closed mouth, anatomically plausible balanced adult proportions. Uniform coat treatment rendered entirely in two DNAture inks, no contrasting Beagle saddle or spotted patches. Match the reference's fine crisp tapered engraving strokes and airy crosshatching, but SHORT strokes flowing along sleek coat and musculature, restrained dark shading and open flat mint highlights, excellent facial detail. EXACTLY luminous mint #8FE4D9 and deep cool ink teal #092F39 inside the animal, mint-dominant and readable, not a dark silhouette. Square canvas with comfortable transparent margins around ears, nose, FULL tail and all four paws; no clipping. Genuine alpha transparency directly outside the clean silhouette, including under belly and between legs, opaque mint inside animal. No background, floor, printed checkerboard, ground shadow, halo, glow, colored haze, gradients, blur, photographic texture, cartoon, 3D, text, watermark, frame, collar, clothing, props, additional animals, black, white, warm colors, gray photography, sepia or aged paper. A reusable clean cutout engraving matching the DNAture breed series.",
+  "output": "../../../../public/images/pets/weimaraner.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "43f4f4269827c617b7de84320b54c15a3bf7e67be11f1eadf07537156ef37ec6",
+  "optical_width": 400.0,
+  "optical_height": 353.6
+}

@@ -1,0 +1,21 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "doberman-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create a standalone DOBERMAN PINSCHER in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a style reference for crisp tapered engraving strokes, palette and natural standing presentation; do not copy its breed, coat length or proportions. One realistic healthy adult Doberman standing naturally on all FOUR legs facing RIGHT, body in side profile and head gently turned three-quarter toward the viewer. Unmistakable breed traits: elegant powerful medium-large square athletic build, deep chest, sleek muscular shoulders, short firm back gently sloping toward the croup, clear abdominal tuck, long straight strong legs and four distinct compact catlike paws, long arched muscular neck, long clean narrow blunt-wedge head with flat skull and moderately long strong muzzle, natural almond-shaped attentive eyes. NATURAL UNCROPPED EARS: medium triangular ears folded forward hanging close to cheeks. NATURAL UNDOCKED full-length slender tapering tail carried in a relaxed gentle upward sabre curve, entirely visible, no tight curl. Short smooth close-lying coat with Doberman markings rendered in two inks only: slightly denser deep-ink engraving over torso and top of head, open mint eyebrow points, muzzle sides, chest and lower legs. No literal black or rust coat colors, no solid featureless dark body. Calm attentive confident gentle expression, relaxed closed mouth, no aggression or human smile. Match reference's meticulous crisp tapered engraving and airy crosshatching, but SHORT sleek coat strokes following anatomy and musculature, restrained shadow density and flat open mint highlights, excellent facial detail. EXACTLY luminous mint #8FE4D9 and deep cool ink teal #092F39 inside the animal, mint-dominant overall, detailed dark coat texture with ample readable mint strokes. Square canvas with comfortable transparent margins around ears, nose, FULL tail and all four paws; entire dog uncropped with balanced adult anatomy. Genuine alpha transparency directly outside the crisp silhouette, under belly and between legs, opaque mint inside animal. No background, floor, printed checkerboard, ground shadow, halo, glow, haze, gradients, blur, photographic texture, cartoon, 3D, text, watermark, frame, collar, clothing, props or additional animals. No cropped ears, docked tail, white, black, brown, orange, cream, sepia or warm colors. A reusable clean transparent cutout engraving matching the same DNAture breed series.",
+  "output": "../../../../public/images/pets/doberman.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.4,
+    "note": "Lower threshold preserves more mint engraving detail in the darker coat."
+  },
+  "source_sha256": "867cba3b7b37045ac6162c4a38f648490e9c97bddd767339141af48e75c39c1b",
+  "optical_width": 400.0,
+  "optical_height": 377.52
+}

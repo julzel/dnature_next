@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "schnauzer-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create a standalone SCHNAUZER in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a graphic-style reference for crisp tapered engraving strokes, palette and natural standing presentation; do not copy its breed, coat or proportions. One realistic healthy adult Standard Schnauzer standing naturally on all FOUR legs facing RIGHT, body in side profile and head gently turned three-quarter toward the viewer. Unmistakable breed traits: sturdy compact nearly square muscular body, deep chest, firm level to gently sloping back, strong straight legs and four distinct compact paws, long strong rectangular head, blunt rectangular muzzle, prominent long wiry beard and moustache, expressive thick arched eyebrows with natural attentive eyes clearly visible underneath. Natural uncropped V-shaped ears fold forward close to the cheeks. Natural undocked full-length tail carried up in a gentle sabre curve, fully visible. Traditional tidy Schnauzer coat: short dense wiry coat on torso and neck, longer wiry furnishings on legs and underside, clean clear body silhouette and full beard. Salt-and-pepper character expressed only through alternating fine mint/ink short engraving strokes, no literal gray or extra coat colors. Calm alert dignified gentle expression, closed mouth hidden naturally behind beard, no human expression. Match reference's meticulous fine tapered strokes following fur and anatomy, airy crosshatching, restrained shadow density, flat mint highlights and excellent facial detail. EXACTLY luminous mint #8FE4D9 and deep cool ink teal #092F39 within the animal, mint-dominant and readable; avoid large featureless dark masses. Square canvas with comfortable transparent margins around both ears, eyebrows, entire beard, full tail and every paw. Entire animal uncropped, four anatomically plausible separate legs and paws. Genuine alpha transparency directly outside the crisp wiry fur silhouette, including between legs and under belly, opaque mint inside the animal. No background, floor, printed checkerboard, ground shadow, halo, glow, colored haze, gradients, blur, photographic texture, cartoon, 3D, text, watermark, frame, collar, clothing, props or additional animals. No cropped ears, docked tail, fluffy Poodle curls, white, black, brown, cream, sepia or warm colors. A reusable clean cutout engraving matching the same DNAture breed series.",
+  "output": "../../../../public/images/pets/schnauzer.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "b2ea078eefc266b191d7f2b1efb1718bc2f6a40f854ed200e61bc3abd8812e2a",
+  "optical_width": 394.27,
+  "optical_height": 380.0
+}
