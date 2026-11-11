@@ -45,6 +45,12 @@ uses the same native vector format, ink/mint palette, 480×480 canvas and shared
 baseline. Its [source and generation prompt](artwork-sources/pet-species/english-bulldog-generation.json)
 are preserved with the other standalone breed assets.
 
+The [French Bulldog engraving](../../public/images/pets/french-bulldog.svg)
+shares the series' native paths, two-color palette, 480×480 canvas and baseline.
+Its upright ears and compact proportions distinguish it from the English Bulldog;
+the [source and generation prompt](artwork-sources/pet-species/french-bulldog-generation.json)
+are preserved with the breed artwork.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors

@@ -76,6 +76,12 @@
       "sha256": "9130334fb0331313b8bb8a444e91812bdbb5659d6c07cfb42f0ee03260a93e57",
       "generation": "docs/graphic-design/artwork-sources/pet-species/english-bulldog-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "french_bulldog": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/french-bulldog-source.png",
+      "sha256": "fcbedd181cb8f5a3f3d7c19fb93c0949fa326f9e3cbeb5150e61740160598ec4",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/french-bulldog-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -169,6 +175,16 @@
       "variant": "engraving",
       "path": "/images/pets/english-bulldog.svg",
       "source": "english_bulldog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Bulldog francés",
+      "breed": "French Bulldog",
+      "variant": "engraving",
+      "path": "/images/pets/french-bulldog.svg",
+      "source": "french_bulldog",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

@@ -1,0 +1,19 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "french-bulldog-source.png",
+  "style_reference": "border-collie-source.png",
+  "output": "../../../../public/images/pets/french-bulldog.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "fcbedd181cb8f5a3f3d7c19fb93c0949fa326f9e3cbeb5150e61740160598ec4",
+  "optical_width": 400.0,
+  "optical_height": 359.45
+}
