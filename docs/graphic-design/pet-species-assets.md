@@ -40,6 +40,11 @@ uses the same native vector format, two-color palette, 480×480 canvas and 428.5
 baseline. Its [source and generation prompt](artwork-sources/pet-species/chihuahua-generation.json)
 are preserved; it remains a standalone breed asset.
 
+The [English Bulldog engraving](../../public/images/pets/english-bulldog.svg)
+uses the same native vector format, ink/mint palette, 480×480 canvas and shared
+baseline. Its [source and generation prompt](artwork-sources/pet-species/english-bulldog-generation.json)
+are preserved with the other standalone breed assets.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
