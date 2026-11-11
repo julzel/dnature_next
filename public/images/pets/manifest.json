@@ -58,6 +58,12 @@
       "sha256": "ecf152920247588b6eb84fffa48df5066e02ec18c5c8d38008f1bc517650cf75",
       "generation": "docs/graphic-design/artwork-sources/pet-species/border-collie-generation.json",
       "method": "Built-in image_gen generation and style refinement, converted into native SVG paths with vtracer 0.6.15 using scripts/trace-walking-artwork.py. Normalized to the existing pet artwork canvas and baseline."
+    },
+    "poodle": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/poodle-source.png",
+      "sha256": "78b9bddb2cf0f41be67c131ab8d38b20354dad5a108e59ad9955835d3ffb59cc",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/poodle-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -121,6 +127,16 @@
       "variant": "engraving",
       "path": "/images/pets/border-collie.svg",
       "source": "border_collie",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Caniche",
+      "breed": "Poodle (caniche)",
+      "variant": "engraving",
+      "path": "/images/pets/poodle.svg",
+      "source": "poodle",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

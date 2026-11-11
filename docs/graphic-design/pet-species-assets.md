@@ -29,6 +29,12 @@ baseline. It was created with built-in image generation and converted into nativ
 SVG paths; its [source and prompt](artwork-sources/pet-species/border-collie-generation.json)
 are preserved. It is a standalone breed asset and does not replace the generic dog.
 
+The [Poodle / caniche engraving](../../public/images/pets/poodle.svg) matches this
+graphic line with a curly coat and natural standing pose. It uses native paths,
+the same palette, 480×480 canvas and 428.5px baseline; its taller proportions fit
+within 400px width and 380px height. The [source and generation prompt](artwork-sources/pet-species/poodle-generation.json)
+are preserved alongside the other breed artwork.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
