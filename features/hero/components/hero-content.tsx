@@ -12,8 +12,8 @@ export function HeroContent() {
     <div className={styles.copy}>
       <SectionEyebrow label="100 % natural - Costa Rica" tone="light" />
       <h1 className={styles.heading}>
-        <span>Su biología es</span>
-        <span className={styles.highlight}>única.</span>
+        <span>Nutrición</span>
+        <span className={styles.highlight}>a la medida</span>
       </h1>
       <p className={styles.description}>
         Su nutrición merece atención individual. En DNAture unimos ciencia y

@@ -10,7 +10,12 @@
 }
 
 .hero[data-fixed-header="false"] { --hero-header-offset: 0px; }
-.inner { position: relative; display: flex; flex-direction: column; justify-content: flex-start; inline-size: 100%; max-inline-size: var(--dn-content-max); margin-inline: auto; }
+.hero[data-has-media="true"] { isolation: isolate; overflow: hidden; padding-block-end: calc(100vw * 993 / 1584 + var(--dn-space-8) + var(--dn-space-3)); }
+.inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-start; inline-size: 100%; max-inline-size: var(--dn-content-max); margin-inline: auto; }
+.body { display: grid; gap: var(--dn-space-8); }
+.content { min-inline-size: 0; }
+.media { position: absolute; z-index: 0; inset-inline-end: 0; inset-block-end: var(--dn-space-3); inline-size: 100%; pointer-events: none; user-select: none; }
+.media img { display: block; inline-size: 100%; block-size: auto; }
 .title {
   display: grid;
   max-inline-size: var(--dn-content-max);
@@ -33,7 +38,7 @@
 .actions a { display: inline-flex; align-items: center; gap: var(--dn-space-4); min-block-size: 48px; color: var(--dn-text-inverse); font-size: 14px; font-weight: 750; }
 .actions svg { flex-shrink: 0; }
 .hero a:focus-visible { outline-color: var(--dn-focus-ring-inverse); }
-.rail { position: absolute; inset-inline: 0; inset-block-end: 0; block-size: var(--dn-space-3); background: var(--page-hero-rail, var(--dn-brand-orange)); }
+.rail { position: absolute; z-index: 2; inset-inline: 0; inset-block-end: 0; block-size: var(--dn-space-3); background: var(--page-hero-rail, var(--dn-brand-orange)); }
 .rail[data-catalog="true"] { display: grid; grid-template-columns: repeat(5, 1fr); }
 .rail span:nth-child(1) { background: var(--dn-category-complementos); }
 .rail span:nth-child(2) { background: var(--dn-category-deshidratados); }
@@ -43,4 +48,7 @@
 
 @media (min-width: 1024px) {
   .hero { --hero-height: calc(var(--dn-space-20) * 9); padding-block: calc(var(--hero-header-offset) + var(--dn-space-12)) var(--dn-space-12); }
+  .hero[data-has-media="true"] { padding-block-end: var(--dn-space-12); }
+  .body[data-has-media="true"] { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+  .media { inline-size: clamp(640px, 64vw, 1120px); }
 }

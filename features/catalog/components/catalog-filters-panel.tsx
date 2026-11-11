@@ -14,6 +14,7 @@ export function CatalogFiltersPanel({ categories, filters, counts, availableCoun
     <form action="/productos" method="get" onChange={onChange} className={styles.filterForm}>
       <input type="hidden" name="q" value={filters.query} />
       <input type="hidden" name="orden" value={filters.sort} />
+      <input type="hidden" name="categoria" value="todas" />
       <fieldset>
         <legend>Categorías</legend>
         {categories.map((category) => <label key={category.id} className={`${styles.categoryFilter} ${navEffect.link}`} style={categoryStyle(category)}>

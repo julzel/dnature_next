@@ -59,6 +59,39 @@ test("header reaches solid white without animation lag on a fast scroll", async 
   await expect(bottom).toHaveCSS("background-color", "rgb(255, 255, 255)");
 });
 
+test("header hides downward, ignores small reversals, and returns upward or on keyboard focus", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const header = page.getByRole("banner");
+  await page.evaluate(() => window.scrollTo({ top: 300, behavior: "instant" }));
+  await expect(header).not.toBeInViewport();
+
+  await page.evaluate(() => window.scrollBy({ top: -4, behavior: "instant" }));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(296);
+  await expect(header).not.toBeInViewport();
+  await page.evaluate(() => window.scrollBy({ top: -12, behavior: "instant" }));
+  await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().y)).toBe(0);
+
+  await page.evaluate(() => window.scrollTo({ top: 400, behavior: "instant" }));
+  await expect(header).not.toBeInViewport();
+  const logo = header.getByRole("link", { name: "DNAture, inicio", exact: true });
+  await logo.focus();
+  await expect(logo).toBeFocused();
+  await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().y)).toBe(0);
+  await logo.press("Tab");
+  await expect(header).toBeInViewport();
+});
+
+test("solid header returns at the top and respects reduced motion", async ({ page }) => {
+  await page.goto("/nosotros");
+  const header = page.getByRole("banner");
+  await expect(header).toHaveCSS("transition-duration", "0s");
+  await page.evaluate(() => window.scrollTo({ top: 300, behavior: "instant" }));
+  await expect(header).not.toBeInViewport();
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await expect.poll(() => header.evaluate((element) => element.getBoundingClientRect().y)).toBe(0);
+  await expect(page.locator('[data-header-section="bottom"]')).toHaveCSS("background-color", "rgb(255, 255, 255)");
+});
+
 test("Spotlight search opens near the upper center, contains focus, and closes with Escape", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   const toggle = page.getByRole("button", { name: "Abrir búsqueda", exact: true, includeHidden: true });
@@ -108,6 +141,9 @@ test("search closes and reopens reliably with live results", async ({ page }) =>
 
 test("search stays independent of header scrolling and dismisses through its backdrop", async ({ page }) => {
   await page.evaluate(() => window.scrollTo({ top: 300, behavior: "instant" }));
+  await expect(page.getByRole("banner")).not.toBeInViewport();
+  await page.evaluate(() => window.scrollBy({ top: -16, behavior: "instant" }));
+  await expect(page.getByRole("banner")).toBeInViewport();
   const initialScroll = await page.evaluate(() => window.scrollY);
   const toggle = page.getByRole("button", { name: "Abrir búsqueda", exact: true });
   await toggle.click();

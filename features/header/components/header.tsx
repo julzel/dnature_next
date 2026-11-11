@@ -15,27 +15,55 @@ export function Header({ solid = false }: { solid?: boolean }) {
   const header = useRef<HTMLElement>(null);
   const searchButton = useRef<HTMLButtonElement>(null);
 
-  useEffect(function syncScrollBackground() {
+  useEffect(function syncScrollAppearance() {
     let frame: number | null = null;
+    let previousY = Math.max(0, window.scrollY);
+    let direction = 0;
+    let distance = 0;
     const desktop = window.matchMedia("(min-width: 1024px)");
 
-    function updateBackground() {
+    function updateAppearance() {
       frame = null;
+      const element = header.current;
+      if (!element) return;
+      // Clamp overscroll so rubber-banding cannot reverse the detected direction.
+      const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      const y = Math.min(maxY, Math.max(0, window.scrollY));
+      const delta = y - previousY;
+      previousY = y;
+
       // Follow scroll position directly, using a shorter fade on mobile.
       const fadeDistance = desktop.matches ? 60 : 45;
-      const opacity = header.current?.dataset.solid === "true" ? 1 : Math.min(1, Math.max(0, window.scrollY / fadeDistance));
-      header.current?.style.setProperty("--header-scroll-opacity", String(opacity));
-      header.current?.toggleAttribute("data-light-background", opacity >= 0.4);
+      const opacity = element.dataset.solid === "true" ? 1 : Math.min(1, y / fadeDistance);
+      element.style.setProperty("--header-scroll-opacity", String(opacity));
+      element.toggleAttribute("data-light-background", opacity >= 0.4);
+
+      if (y <= element.offsetHeight || element.contains(document.activeElement) || element.querySelector('[aria-expanded="true"]')) {
+        element.removeAttribute("data-scroll-hidden");
+        direction = 0;
+        distance = 0;
+        return;
+      }
+
+      if (delta === 0) return;
+      const nextDirection = Math.sign(delta);
+      distance = nextDirection === direction ? distance + Math.abs(delta) : Math.abs(delta);
+      direction = nextDirection;
+      // Require a little deliberate movement in either direction to avoid jitter.
+      if (distance >= (direction > 0 ? 8 : 12)) {
+        element.toggleAttribute("data-scroll-hidden", direction > 0);
+        distance = 0;
+      }
     }
 
     function handleScroll() {
-      if (frame === null) frame = window.requestAnimationFrame(updateBackground);
+      if (frame === null) frame = window.requestAnimationFrame(updateAppearance);
     }
 
-    updateBackground();
+    updateAppearance();
     window.addEventListener("scroll", handleScroll, { passive: true });
     desktop.addEventListener("change", handleScroll);
-    return function cleanupScrollBackground() {
+    return function cleanupScrollAppearance() {
       window.removeEventListener("scroll", handleScroll);
       desktop.removeEventListener("change", handleScroll);
       if (frame !== null) window.cancelAnimationFrame(frame);

@@ -264,7 +264,7 @@ Make real contact details, shipping and any temperature-controlled handling requ
 | Page | Proposed `<title>` | Suggested meta description |
 |---|---|---|
 | Home | `DNAture | Nutrición con esencia en el ADN` | `Conocé las familias de productos DNAture y nuestro enfoque de nutrición fisiológica, educación y acompañamiento para tutores de mascotas.` |
-| All products | `Productos DNAture | Explorar recetas y complementos` | `Explorá las recetas, complementos, masticables, treats y suplementos DNAture. Revisá qué función cumple cada familia antes de elegir.` |
+| All products | `Nuestros productos | Explorar recetas y complementos` | `Explorá las recetas, complementos, masticables, treats y suplementos DNAture. Revisá qué función cumple cada familia antes de elegir.` |
 | Complete | `Recetas Complete para perros | DNAture` | `Conocé la familia Recetas Complete, su función nutricional y las fórmulas disponibles. Consultá ingredientes, presentación y disponibilidad.` |
 | Trout | `Recetas de Trucha | DNAture` | `Descubrí las Recetas de Trucha y su uso específico. Revisá las indicaciones y por qué no deben confundirse con una receta Complete.` |
 | Cooked | `Recetas Cocidas | DNAture` | `Explorá las Recetas Cocidas DNAture y su función nutricional, con información clara sobre uso, ingredientes y orientación profesional.` |

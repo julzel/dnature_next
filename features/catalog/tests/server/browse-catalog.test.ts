@@ -183,8 +183,26 @@ test("filter URLs use readable category slugs and round-trip the full selection 
   const parsed = readCatalogFilters(new URL(url, "https://example.com").searchParams, categories);
   assert.deepEqual(parsed, { ...selection, categoryIds: ["14528", "14527"] });
   assert.equal(catalogFilterUrl(parsed, categories), url);
-  assert.equal(catalogFilterUrl(filters(), categories), "/productos");
+  assert.equal(catalogFilterUrl(filters(), categories), "/productos?categoria=todas");
   assert.equal(readCatalogFilters(new URLSearchParams("q=+"), categories).query, " ");
+});
+
+test("starts with Deshidratados and preserves explicit categories and cleared filters in shared URLs", () => {
+  const { categories } = prepareCatalog([
+    product("snack", "Pulmón", "Snacks deshidratados"),
+    product("recipe", "Receta", "Recetas completas"),
+  ]);
+  const defaultSelection = filters({ categoryIds: ["Snacks deshidratados"] });
+  assert.deepEqual(readCatalogFilters(new URLSearchParams(), categories), defaultSelection);
+  assert.deepEqual(readCatalogFilters(new URLSearchParams("q=pollo&orden=price-asc"), categories), {
+    ...defaultSelection, query: "pollo", sort: "price-asc",
+  });
+  assert.deepEqual(readCatalogFilters(new URLSearchParams("categoria=recetas-completas"), categories), filters({ categoryIds: ["Recetas completas"] }));
+  assert.deepEqual(readCatalogFilters(new URLSearchParams("categoria=todas&categoria=recetas-completas"), categories), filters({ categoryIds: ["Recetas completas"] }));
+  const allProductsUrl = catalogFilterUrl(filters(), categories);
+  assert.equal(allProductsUrl, "/productos?categoria=todas");
+  assert.deepEqual(readCatalogFilters(new URL(allProductsUrl, "https://example.com").searchParams, categories), filters());
+  assert.deepEqual(readCatalogFilters(new URLSearchParams(), categories.filter(({ label }) => label !== "Deshidratados")), filters());
 });
 
 test("URL parsing accepts old category IDs, handles invalid or repeated scalar parameters, and limits query size", () => {

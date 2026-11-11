@@ -1,5 +1,6 @@
 import type { ChangeEventHandler, FocusEventHandler, FormEventHandler, RefObject } from "react";
 import { Search, X } from "lucide-react";
+import searchField from "@/components/search-field.module.css";
 import type { CatalogCategory, CatalogFilters } from "../lib/browse-catalog";
 import { catalogFilterUrl } from "../lib/catalog-filter-url";
 import styles from "./catalog-page.module.css";
@@ -16,12 +17,11 @@ export function CatalogSearchForm({ filters, categories, inputRef, onChange, onB
   const params = new URL(catalogFilterUrl(filters, categories), "https://dnature.invalid").searchParams;
   return (
     <form className={styles.searchForm} action="/productos" method="get" role="search" onSubmit={onSubmit}>
-      <div className={styles.searchControls}>
-        <Search className={styles.searchIcon} size={22} aria-hidden="true" />
-        <input ref={inputRef} id="catalog-search" name="q" type="search" value={filters.query} onChange={onChange} onBlur={onBlur} placeholder="Producto, ingrediente o SKU" maxLength={100} autoComplete="off" />
+      <div className={searchField.field}>
+        <Search className={`${styles.searchIcon} ${searchField.icon}`} size={22} aria-hidden="true" />
+        <input ref={inputRef} id="catalog-search" name="q" type="search" className={searchField.input} value={filters.query} onChange={onChange} onBlur={onBlur} aria-label="Buscar productos" placeholder="Producto, ingrediente o SKU" maxLength={100} autoComplete="off" />
         {[...params].filter(([key]) => key !== "q").map(([key, value]) => <input key={`${key}-${value}`} type="hidden" name={key} value={value} />)}
-        {filters.query && <button className={styles.clearSearch} type="button" onClick={onClear} aria-label="Limpiar búsqueda"><X size={20} aria-hidden="true" /><span>Limpiar</span></button>}
-        <button className={styles.submitSearch} type="submit" aria-label="Buscar productos"><Search size={20} aria-hidden="true" /><span>Buscar</span></button>
+        {filters.query && <button className={`${styles.clearSearch} ${searchField.action}`} type="button" onClick={onClear} aria-label="Limpiar búsqueda"><X size={20} aria-hidden="true" /><span>Limpiar</span></button>}
       </div>
     </form>
   );

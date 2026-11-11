@@ -92,7 +92,7 @@ export function AboutSectionNav() {
 
       const scrollPadding = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
       // Selection follows the settled bar, rather than its animated bottom edge.
-      const navigationBottom = stickyTop + (compactHeightRef.current ?? stickyTop);
+      const navigationBottom = stickyTop + (compactHeightRef.current ?? navBounds.height);
       const readingLine = navigationBottom + scrollPadding + 1;
       const lastSection = sections.at(-1);
       const lastBounds = lastSection?.getBoundingClientRect();
@@ -106,6 +106,10 @@ export function AboutSectionNav() {
 
     function scheduleUpdate() {
       if (frame === null) frame = window.requestAnimationFrame(updateActiveSection);
+    }
+
+    function handleHeaderFocus(event: FocusEvent) {
+      if (event.target instanceof Element && event.target.closest("header")) scheduleUpdate();
     }
 
     const updateHeight = () => {
@@ -126,11 +130,17 @@ export function AboutSectionNav() {
     sections.forEach((section) => observer.observe(section));
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
+    nav.addEventListener("transitionend", scheduleUpdate);
+    document.addEventListener("focusin", handleHeaderFocus);
+    document.addEventListener("focusout", handleHeaderFocus);
 
     return function cleanupNavigation() {
       observer.disconnect();
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      nav.removeEventListener("transitionend", scheduleUpdate);
+      document.removeEventListener("focusin", handleHeaderFocus);
+      document.removeEventListener("focusout", handleHeaderFocus);
       if (frame !== null) window.cancelAnimationFrame(frame);
       page.style.removeProperty("--about-nav-height");
       page.style.removeProperty("--about-nav-current-height");

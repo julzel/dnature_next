@@ -19,6 +19,9 @@
   --dn-reading-max: 760px;
   --dn-header-bottom-height: 74px;
   --dn-header-height: var(--dn-header-bottom-height);
+  --dn-header-visible-height: var(--dn-header-height);
+  --dn-header-motion-duration: 180ms;
+  --dn-header-motion-easing: ease-out;
 
   --dn-brand-teal: #00a9b5;
   --dn-brand-orange: #ff6a00;
@@ -63,6 +66,10 @@
 
   --font-body: var(--dn-font-body), var(--dn-font-currency), Arial, sans-serif;
   --font-display: var(--dn-font-display), Arial, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dn-header-motion-duration: 0ms; }
 }
 
 @media (min-width: 640px) {

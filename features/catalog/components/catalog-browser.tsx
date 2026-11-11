@@ -131,6 +131,7 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
   }
 
   const withoutFacets = catalogFilterUrl({ ...filters, categoryIds: [], inStockOnly: false }, categories);
+  const allProductsUrl = catalogFilterUrl({ query: "", categoryIds: [], inStockOnly: false, sort: "relevance" }, categories);
   const sortOptions: SelectOption<CatalogFilters["sort"]>[] = [
     { value: "relevance", label: filters.query.trim() ? "Más relevantes" : "Disponibles primero" },
     { value: "name", label: "Nombre: A–Z" },
@@ -162,6 +163,7 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
               <form action="/productos" method="get" onSubmit={handleSortSubmit} className={styles.resultActions}>
                 <input type="hidden" name="q" value={filters.query} />
                 {filters.categoryIds.map((id) => <input key={id} type="hidden" name="categoria" value={id} />)}
+                {!filters.categoryIds.length && <input type="hidden" name="categoria" value="todas" />}
                 {filters.inStockOnly && <input type="hidden" name="disponible" value="1" />}
                 <Select label="Ordenar" name="orden" value={filters.sort} options={sortOptions} onValueChange={handleSort} className={styles.sortSelect} />
                 <noscript><button type="submit" className={styles.retry}>Ordenar</button></noscript>
@@ -177,7 +179,7 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
                 <p>Probá con otro nombre o ingrediente, o quitá un filtro para ampliar la búsqueda.</p>
                 {filterCount > 0 && <Link href={withoutFacets} onClick={handleNavigate} scroll={false} prefetch={false}>Buscar en todas las categorías y disponibilidades</Link>}
                 {filters.query && <button type="button" onClick={handleClearSearch}>Limpiar la búsqueda</button>}
-                <Link href="/productos" onClick={handleNavigate} scroll={false} prefetch={false}>Ver todo el catálogo</Link>
+                <Link href={allProductsUrl} onClick={handleNavigate} scroll={false} prefetch={false}>Ver todo el catálogo</Link>
               </div>
             )}
             <nav className={styles.categoryDirectory} aria-label="Explorar páginas de categorías">

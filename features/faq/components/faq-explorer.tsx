@@ -2,6 +2,7 @@
 
 import { useRef, useState, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
 import { Search, X } from "lucide-react";
+import navEffect from "@/components/center-out-nav-link.module.css";
 import { SectionEyebrow } from "@/components/section-eyebrow";
 import faq from "../data/faq.json";
 import { FaqQuestion } from "./faq-question";
@@ -83,9 +84,9 @@ export function FaqExplorer() {
           <nav className={styles.topicNav} aria-label="Temas de preguntas frecuentes">
             <p>Explorá por tema</p>
             <ul>
-              <li><a href="#respuestas" data-topic="all" aria-current={activeTopic === "all" ? "true" : undefined} onClick={handleTopicClick}><span>Todos los temas</span><span aria-label={`${allTotal} preguntas`}>{allTotal}</span></a></li>
+              <li><a className={navEffect.link} href="#respuestas" data-topic="all" aria-current={activeTopic === "all" ? "true" : undefined} onClick={handleTopicClick}><span>Todos los temas</span><span aria-label={`${allTotal} preguntas`}>{allTotal}</span></a></li>
               {groups.map((group) => (
-                <li key={group.id}><a href={`#tema-${group.id}`} data-topic={group.id} aria-current={activeTopic === group.id ? "true" : undefined} onClick={handleTopicClick}><span>{group.label}</span><span aria-label={`${group.questions.length} preguntas`}>{group.questions.length}</span></a></li>
+                <li key={group.id}><a className={navEffect.link} href={`#tema-${group.id}`} data-topic={group.id} aria-current={activeTopic === group.id ? "true" : undefined} onClick={handleTopicClick}><span>{group.label}</span><span aria-label={`${group.questions.length} preguntas`}>{group.questions.length}</span></a></li>
               ))}
             </ul>
           </nav>

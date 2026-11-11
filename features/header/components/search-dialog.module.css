@@ -1,5 +1,6 @@
 .dialog {
   --search-top: clamp(80px, 20dvh, 160px);
+  --search-fade-duration: 160ms;
   position: fixed;
   inset-block-start: var(--search-top);
   inset-block-end: auto;
@@ -11,45 +12,40 @@
   border: 0;
   background: transparent;
   color: var(--dn-text-primary);
+  opacity: 0;
 }
 
-.dialog search { display: grid; gap: 12px; }
-.searchField, .results {
-  border-radius: 16px;
-  background: rgb(246 250 255 / 94%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  backdrop-filter: blur(24px) saturate(140%);
-  box-shadow: 0 16px 48px rgb(9 47 57 / 24%), 0 4px 12px rgb(9 47 57 / 12%);
-}
+.dialog[open] { opacity: 1; }
+.dialog search { display: grid; }
 
-.dialog::backdrop { background: rgb(9 47 57 / 20%); }
-.searchField { display: flex; align-items: center; gap: 8px; min-block-size: 72px; padding: 8px 12px; border: 2px solid transparent; border-radius: 16px; }
-.searchField:focus-within { border-color: #124563; }
-.leadingIcon { flex-shrink: 0; color: var(--dn-text-secondary); }
-.searchInput { flex: 1; inline-size: 100%; min-inline-size: 0; min-block-size: 48px; padding: 8px 0; border: 0; background: transparent; color: inherit; caret-color: #124563; color-scheme: light; font-size: 18px; font-weight: 400; line-height: 1.4; }
-.searchInput::placeholder { color: var(--dn-text-secondary); opacity: 1; }
-.searchInput:focus { outline: none; }
-.searchInput::-webkit-search-cancel-button, .searchInput::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
-.close { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; gap: 4px; min-inline-size: 44px; block-size: 44px; padding: 0 4px; border: 0; border-radius: 8px; background: transparent; color: var(--dn-text-secondary); }
-.close:hover { background: rgb(18 69 99 / 8%); color: #124563; }
+.dialog::backdrop { background-color: rgb(9 47 57 / 0%); }
+.dialog[open]::backdrop { background-color: rgb(9 47 57 / 40%); }
+.dialog[open][data-closing] { opacity: 0; }
+.dialog[open][data-closing]::backdrop { background-color: rgb(9 47 57 / 0%); }
+.searchField { --dn-search-idle-bg: var(--dn-surface-cool); }
 .close:focus-visible { outline: 2px solid #124563; outline-offset: -4px; }
 .close kbd { display: none; font: inherit; font-size: 11px; }
-.results { max-block-size: min(320px, calc(100dvh - var(--search-top) - 112px)); padding: 12px; overflow-y: auto; }
+.results { max-block-size: min(320px, calc(100dvh - var(--search-top) - 112px)); padding: var(--dn-space-3); overflow-y: auto; background: var(--dn-surface-base); }
 .resultStatus { padding: 4px 8px 8px; color: var(--dn-text-secondary); font-size: 12px; }
 .results ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.results a { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-block-size: 48px; padding: 12px; border-radius: 8px; font-size: 14px; text-decoration: none; }
+.results a { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-block-size: 48px; padding: 12px; border-radius: 0; font-size: 14px; text-decoration: none; }
 .results a:is(:hover, :focus-visible) { background: #124563; color: #fff; outline: none; }
 .results svg { flex-shrink: 0; inline-size: 20px; block-size: 20px; }
 
-@media (min-width: 640px) { .searchInput { font-size: 20px; } .close kbd { display: inline; } }
+@media (min-width: 640px) { .close kbd { display: inline; } }
 @media (prefers-reduced-motion: no-preference) {
-  .dialog[open] { animation: search-appear 140ms ease-out; }
-  @keyframes search-appear { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .dialog { transition: opacity var(--search-fade-duration) ease; }
+  .dialog::backdrop { transition: background-color var(--search-fade-duration) ease; }
+  @starting-style {
+    .dialog[open] { opacity: 0; }
+    .dialog[open]::backdrop { background-color: rgb(9 47 57 / 0%); }
+  }
 }
+@media (prefers-reduced-motion: reduce) { .dialog { --search-fade-duration: 0ms; } }
 @media (forced-colors: active) {
   .dialog { color: CanvasText; }
-  .searchField, .results { background: Canvas; }
+  .searchField { --dn-search-idle-bg: Canvas; }
+  .results { background: Canvas; }
   .results { border: 1px solid CanvasText; }
-  .searchField:focus-within { border-color: Highlight; }
   .results a:focus-visible { outline: 2px solid Highlight; outline-offset: -2px; }
 }

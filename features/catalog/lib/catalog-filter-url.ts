@@ -11,7 +11,7 @@ function singleParam(params: SearchParams, name: string): string {
 export function readCatalogFilters(
   params: SearchParams,
   categories: readonly CatalogCategory[],
-  defaultCategoryId = "",
+  defaultCategoryId = categories.find((category) => categoryFilterSlug(category) === "deshidratados")?.id ?? "",
 ): CatalogFilters {
   const requested = params.getAll("categoria");
   const categoryIds = categories.filter((category) => requested.length
@@ -33,6 +33,9 @@ export function catalogFilterUrl(filters: CatalogFilters, categories: readonly C
   for (const category of categories) {
     if (filters.categoryIds.includes(category.id)) params.append("categoria", categoryFilterSlug(category));
   }
+  // An explicit all-categories value keeps cleared filters shareable when the
+  // bare catalog URL starts with Deshidratados selected.
+  if (!params.has("categoria")) params.set("categoria", "todas");
   if (filters.inStockOnly) params.set("disponible", "1");
   if (filters.sort !== "relevance" && SORTS.includes(filters.sort)) params.set("orden", filters.sort);
   return params.size ? `/productos?${params}` : "/productos";

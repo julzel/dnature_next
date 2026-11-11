@@ -10,6 +10,27 @@
   inline-size: 100%;
   flex-shrink: 0;
   background: transparent;
+  transition: transform var(--dn-header-motion-duration) var(--dn-header-motion-easing);
+}
+
+/* Share the effective header state with sticky content, including focus/dialog overrides. */
+:global(:root):has(.header[data-scroll-hidden]) {
+  --dn-header-visible-height: 0px;
+}
+
+:global(:root):has(.header:focus-within, .header [aria-expanded="true"]) {
+  --dn-header-visible-height: var(--dn-header-height);
+  --dn-header-motion-duration: 0ms;
+}
+
+.header[data-scroll-hidden] {
+  transform: translateY(-100%);
+}
+
+.header:focus-within,
+.header:has([aria-expanded="true"]) {
+  transform: none;
+  transition: none;
 }
 
 .container {

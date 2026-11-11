@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { Search, X } from "lucide-react";
-import { useEffect, useRef, useState, type ChangeEvent, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type ChangeEvent, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
 import { Icon } from "@/components/icon";
+import searchField from "@/components/search-field.module.css";
 import { publicPages } from "@/lib/seo/pages";
 import styles from "./search-dialog.module.css";
 
@@ -17,6 +18,7 @@ export function SearchDialog({ open, onClose }: {
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const closeTimer = useRef<number | null>(null);
   const backdropPointerDown = useRef(false);
   const [query, setQuery] = useState("");
   const normalizedQuery = normalizeQuery(query);
@@ -56,18 +58,46 @@ export function SearchDialog({ open, onClose }: {
     else links[next].focus();
   }
 
+  const handleClose = useCallback(function closeSearch() {
+    const element = dialog.current;
+    if (!element?.open || closeTimer.current !== null) return;
+    const cssDuration = getComputedStyle(element).getPropertyValue("--search-fade-duration").trim();
+    const duration = (Number.parseFloat(cssDuration) || 0) * (cssDuration.endsWith("ms") ? 1 : 1000);
+    if (duration <= 0) {
+      element.close();
+      return;
+    }
+    element.setAttribute("data-closing", "");
+    closeTimer.current = window.setTimeout(() => {
+      closeTimer.current = null;
+      element.close();
+      element.removeAttribute("data-closing");
+    }, duration);
+  }, []);
+
   useEffect(function syncDialog() {
     const element = dialog.current;
     if (!element) return;
-    if (open && !element.open) {
-      element.showModal();
-      inputRef.current?.focus({ preventScroll: true });
+    if (open) {
+      if (closeTimer.current !== null) {
+        window.clearTimeout(closeTimer.current);
+        closeTimer.current = null;
+        element.removeAttribute("data-closing");
+      }
+      if (!element.open) {
+        element.showModal();
+        inputRef.current?.focus({ preventScroll: true });
+      }
     } else if (!open && element.open) {
-      element.close();
+      handleClose();
     }
-  }, [open]);
+  }, [open, handleClose]);
 
-  function handleClose() { dialog.current?.close(); }
+  useEffect(function clearPendingCloseOnUnmount() {
+    return () => {
+      if (closeTimer.current !== null) window.clearTimeout(closeTimer.current);
+    };
+  }, []);
 
   function outsideDialog(event: MouseEvent<HTMLDialogElement>) {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -103,13 +133,13 @@ export function SearchDialog({ open, onClose }: {
       onClose={onClose} onClick={handleBackdropClick} onPointerDown={handlePointerDown} onKeyDown={handleKeyDown}>
       <h2 id="site-search-title" className="sr-only">Buscar en DNAture</h2>
       <search aria-label="Buscar en DNAture">
-        <div className={styles.searchField}>
-          <Search className={styles.leadingIcon} size={24} strokeWidth={1.7} aria-hidden="true" />
+        <div className={`${styles.searchField} ${searchField.field}`}>
+          <Search className={searchField.icon} size={22} aria-hidden="true" />
           <label className="sr-only" htmlFor="header-search-query">Buscar en el sitio</label>
           <input
             ref={inputRef}
             id="header-search-query"
-            className={styles.searchInput}
+            className={searchField.input}
             type="search"
             name="q"
             placeholder="Buscar en DNAture"
@@ -120,10 +150,10 @@ export function SearchDialog({ open, onClose }: {
             aria-controls={normalizedQuery ? "header-search-results" : undefined}
             aria-describedby={normalizedQuery ? "header-search-status" : undefined}
           />
-          <button className={styles.close} type="button"
+          <button className={`${styles.close} ${searchField.action}`} type="button"
             aria-label={query.length > 0 ? "Borrar búsqueda" : "Cerrar búsqueda"}
             onClick={query.length > 0 ? handleClearQuery : handleClose}>
-            {query.length === 0 && <kbd aria-hidden="true">esc</kbd>}<X size={18} aria-hidden="true" />
+            {query.length === 0 && <kbd aria-hidden="true">esc</kbd>}<X size={20} aria-hidden="true" />{query.length > 0 && <span>Limpiar</span>}
           </button>
         </div>
         {normalizedQuery && <div className={styles.results} id="header-search-results">

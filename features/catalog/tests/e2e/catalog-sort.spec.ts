@@ -34,7 +34,7 @@ test("sorting supports keyboard exploration, cancellation, typeahead, and browse
   await expect(sort).toHaveText("Menor precio");
   await expect(sort).toHaveAttribute("aria-expanded", "false");
   await expect(sort).toBeFocused();
-  await expect(page).toHaveURL(/q=pollo&orden=price-asc$/);
+  await expect(page).toHaveURL(/q=pollo&categoria=deshidratados&orden=price-asc$/);
   await expect(page.locator('select[name="orden"]')).toHaveValue("price-asc");
 
   await page.goBack();
@@ -62,7 +62,7 @@ test("pointer selection reorders products locally and outside clicks dismiss the
   expect(documentRequests).toEqual([]);
 
   await sort.click();
-  await page.getByRole("heading", { name: "Todos los productos", exact: true }).click();
+  await page.getByRole("heading", { name: "Deshidratados", exact: true }).click();
   await expect(sort).toHaveAttribute("aria-expanded", "false");
   await expect(sort).toHaveText("Mayor precio");
   await sort.click();

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import searchField from "@/components/search-field.module.css";
 import { CatalogProductSkeleton } from "./catalog-product-skeleton";
 import styles from "./catalog-page.module.css";
 
@@ -14,9 +15,8 @@ export function CatalogLoading() {
           <div className={styles.tools}>
             <div className={styles.searchForm}>
               <span className={styles.skeletonSearchLabel}>Buscar productos</span>
-              <div className={styles.searchControls}>
+              <div className={searchField.field}>
                 <span className={`${styles.skeletonBlock} ${styles.skeletonSearchText}`} />
-                <span className={`${styles.skeletonBlock} ${styles.skeletonSearchAction}`} />
               </div>
             </div>
             <span className={styles.skeletonMobileFilter} />
@@ -34,7 +34,7 @@ export function CatalogLoading() {
             </aside>
             <div className={styles.collection}>
               <div className={styles.resultHeading}>
-                <h2>Todos los productos</h2>
+                <h2>Deshidratados</h2>
                 <div className={styles.skeletonSort}>
                   <span>Ordenar</span>
                   <span className={`${styles.skeletonBlock} ${styles.skeletonSortControl}`} />
