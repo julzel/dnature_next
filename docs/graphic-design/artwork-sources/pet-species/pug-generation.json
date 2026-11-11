@@ -12,5 +12,8 @@
   "tracing": {
     "tool": "vtracer 0.6.15",
     "ink_threshold": 0.6
-  }
+  },
+  "source_sha256": "b16d6d99d9c0cae9bad5f314368af257424ecf4d26d23ec5080342e311398631",
+  "optical_width": 400.0,
+  "optical_height": 363.5
 }

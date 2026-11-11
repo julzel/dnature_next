@@ -82,6 +82,12 @@
       "sha256": "fcbedd181cb8f5a3f3d7c19fb93c0949fa326f9e3cbeb5150e61740160598ec4",
       "generation": "docs/graphic-design/artwork-sources/pet-species/french-bulldog-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pug": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pug-source.png",
+      "sha256": "b16d6d99d9c0cae9bad5f314368af257424ecf4d26d23ec5080342e311398631",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pug-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -185,6 +191,16 @@
       "variant": "engraving",
       "path": "/images/pets/french-bulldog.svg",
       "source": "french_bulldog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Pug",
+      "breed": "Pug (carlino)",
+      "variant": "engraving",
+      "path": "/images/pets/pug.svg",
+      "source": "pug",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

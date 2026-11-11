@@ -51,6 +51,11 @@ Its upright ears and compact proportions distinguish it from the English Bulldog
 the [source and generation prompt](artwork-sources/pet-species/french-bulldog-generation.json)
 are preserved with the breed artwork.
 
+The [Pug engraving](../../public/images/pets/pug.svg) follows the same native
+vector format, ink/mint palette, 480×480 canvas and shared baseline. It features
+folded ears, an engraved facial mask and curled tail; its [source and generation
+prompt](artwork-sources/pet-species/pug-generation.json) are preserved.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
