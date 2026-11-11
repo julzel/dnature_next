@@ -133,6 +133,13 @@ athletic frame, wedge-shaped head, natural folded ears and full tail preserve
 its breed identity. The [source and generation prompt](artwork-sources/pet-species/doberman-generation.json)
 are preserved with the series.
 
+The [mixed-breed dog engraving](../../public/images/pets/mixed-breed-dog.svg) uses
+native paths, the same ink/mint palette, a 480×480 canvas and the shared baseline.
+Its mildly asymmetrical ears, natural coat and balanced proportions represent an
+everyday companion without a specific breed. The
+[source and generation prompt](artwork-sources/pet-species/mixed-breed-dog-generation.json)
+are preserved with the series.
+
 All files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors

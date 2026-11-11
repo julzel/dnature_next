@@ -166,6 +166,12 @@
       "sha256": "867cba3b7b37045ac6162c4a38f648490e9c97bddd767339141af48e75c39c1b",
       "generation": "docs/graphic-design/artwork-sources/pet-species/doberman-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "mixed_breed_dog": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-dog-source.png",
+      "sha256": "865b11e4e370b57e3230607ab7d9241f5ecb93bb387aa3ebd74ef3e66a1ba491",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-dog-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -409,6 +415,16 @@
       "variant": "engraving",
       "path": "/images/pets/doberman.svg",
       "source": "doberman",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Perro mestizo",
+      "breed": "Mixed-breed dog (no specific breed)",
+      "variant": "engraving",
+      "path": "/images/pets/mixed-breed-dog.svg",
+      "source": "mixed_breed_dog",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }
