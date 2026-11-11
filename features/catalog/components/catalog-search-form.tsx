@@ -16,7 +16,6 @@ export function CatalogSearchForm({ filters, categories, inputRef, onChange, onB
   const params = new URL(catalogFilterUrl(filters, categories), "https://dnature.invalid").searchParams;
   return (
     <form className={styles.searchForm} action="/productos" method="get" role="search" onSubmit={onSubmit}>
-      <label htmlFor="catalog-search">Encontrá su próximo favorito</label>
       <div className={styles.searchControls}>
         <Search className={styles.searchIcon} size={22} aria-hidden="true" />
         <input ref={inputRef} id="catalog-search" name="q" type="search" value={filters.query} onChange={onChange} onBlur={onBlur} placeholder="Producto, ingrediente o SKU" maxLength={100} autoComplete="off" />

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
 import { SlidersHorizontal } from "lucide-react";
+import { Select, type SelectOption } from "@/components/select";
 import { categoryPath, filterCatalog, type CatalogCategory, type CatalogFilters, type CatalogListing } from "../lib/browse-catalog";
 import { catalogFilterUrl, readCatalogFilters } from "../lib/catalog-filter-url";
 import { CatalogFiltersPanel } from "./catalog-filters-panel";
@@ -99,8 +100,8 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
     updateFilters({ ...filters, categoryIds: data.getAll("categoria").map(String), inStockOnly: data.has("disponible") });
   }
 
-  function handleSort(event: ChangeEvent<HTMLSelectElement>) {
-    updateFilters({ ...filters, sort: event.currentTarget.value as CatalogFilters["sort"] });
+  function handleSort(sort: CatalogFilters["sort"]) {
+    updateFilters({ ...filters, sort });
   }
 
   function handleSortSubmit(event: FormEvent<HTMLFormElement>) {
@@ -130,6 +131,12 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
   }
 
   const withoutFacets = catalogFilterUrl({ ...filters, categoryIds: [], inStockOnly: false }, categories);
+  const sortOptions: SelectOption<CatalogFilters["sort"]>[] = [
+    { value: "relevance", label: filters.query.trim() ? "Más relevantes" : "Disponibles primero" },
+    { value: "name", label: "Nombre: A–Z" },
+    { value: "price-asc", label: "Menor precio" },
+    { value: "price-desc", label: "Mayor precio" },
+  ];
 
   return (
     <section ref={sectionRef} id="catalogo" className={styles.results} aria-label="Catálogo de productos">
@@ -156,14 +163,7 @@ export function CatalogBrowser({ categories, listings }: { categories: CatalogCa
                 <input type="hidden" name="q" value={filters.query} />
                 {filters.categoryIds.map((id) => <input key={id} type="hidden" name="categoria" value={id} />)}
                 {filters.inStockOnly && <input type="hidden" name="disponible" value="1" />}
-                <label className={styles.sortLabel}>Ordenar
-                  <select value={filters.sort} onChange={handleSort} name="orden">
-                    <option value="relevance">{filters.query.trim() ? "Más relevantes" : "Disponibles primero"}</option>
-                    <option value="name">Nombre: A–Z</option>
-                    <option value="price-asc">Menor precio</option>
-                    <option value="price-desc">Mayor precio</option>
-                  </select>
-                </label>
+                <Select label="Ordenar" name="orden" value={filters.sort} options={sortOptions} onValueChange={handleSort} className={styles.sortSelect} />
                 <noscript><button type="submit" className={styles.retry}>Ordenar</button></noscript>
               </form>
             </div>

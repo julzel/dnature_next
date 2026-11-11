@@ -1,8 +1,7 @@
 import Image from "next/image";
 import type { FeaturedSnack } from "../lib/featured-snacks";
+import { formatCatalogPrice } from "../lib/catalog-money";
 import styles from "./best-selling-snacks.module.css";
-
-const money = new Intl.NumberFormat("es-CR", { style: "currency", currency: "CRC", maximumFractionDigits: 0 });
 
 export function FeaturedSnackCard({ snack }: { snack: FeaturedSnack }) {
   return (
@@ -19,7 +18,7 @@ export function FeaturedSnackCard({ snack }: { snack: FeaturedSnack }) {
       <div className={styles.details}>
         <p className={styles.family}>Snack deshidratado</p>
         <h3>{snack.name}</h3>
-        <p className={styles.price}>{snack.fromPrice && <span>Desde </span>}{money.format(snack.price)}</p>
+        <p className={styles.price}>{snack.fromPrice && <span>Desde </span>}{formatCatalogPrice(snack.price)}</p>
       </div>
     </article>
   );

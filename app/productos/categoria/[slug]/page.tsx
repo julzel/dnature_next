@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/features/header/components/header";
 import { Footer } from "@/features/footer/components/footer";
 import { CatalogCategoryContent } from "@/features/catalog/components/catalog-category-content";
-import { CatalogLoading } from "@/features/catalog/components/catalog-loading";
+import { CatalogCategoryLoading } from "@/features/catalog/components/catalog-category-loading";
 import { categoryFromSlug, isCategorySlug, prepareCatalog } from "@/features/catalog/lib/browse-catalog";
 import { getBrowseCatalogProducts } from "@/features/catalog/server/catalog";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -33,7 +33,7 @@ export default function ProductCategoryPage({ params }: { params: Params }) {
   return <>
     <Header solid />
     <main id="contenido">
-      <Suspense fallback={<CatalogLoading />}>
+      <Suspense fallback={<CatalogCategoryLoading />}>
         <CatalogCategoryContent params={params} />
       </Suspense>
     </main>

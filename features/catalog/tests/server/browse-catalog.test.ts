@@ -38,11 +38,11 @@ test("uses the five current category names and shared theme colors", () => {
   const names = ["Suplementos", "Órganos", "Complementos", "Recetas completas", "Snacks deshidratados"];
   const { categories } = prepareCatalog(names.map((name, index) => product(`item-${index}`, name, name)));
   assert.deepEqual(categories.map(({ label, color }) => [label, color]), [
-    ["Complementos", "var(--dn-category-complementos)"],
     ["Deshidratados", "var(--dn-category-deshidratados)"],
-    ["Órganos", "var(--dn-category-organos)"],
     ["Recetas completas", "var(--dn-category-recetas-completas)"],
+    ["Complementos", "var(--dn-category-complementos)"],
     ["Suplementos", "var(--dn-category-suplementos)"],
+    ["Órganos", "var(--dn-category-organos)"],
   ]);
 });
 
@@ -179,9 +179,9 @@ test("filter URLs use readable category slugs and round-trip the full selection 
   const { categories } = prepareCatalog(entries);
   const selection = filters({ query: "búfalo ", categoryIds: ["14528", "14527", "14527", "unknown"], inStockOnly: true, sort: "price-asc" });
   const url = catalogFilterUrl(selection, categories);
-  assert.equal(url, "/productos?q=b%C3%BAfalo+&categoria=organos&categoria=recetas-completas&disponible=1&orden=price-asc");
+  assert.equal(url, "/productos?q=b%C3%BAfalo+&categoria=recetas-completas&categoria=organos&disponible=1&orden=price-asc");
   const parsed = readCatalogFilters(new URL(url, "https://example.com").searchParams, categories);
-  assert.deepEqual(parsed, { ...selection, categoryIds: ["14527", "14528"] });
+  assert.deepEqual(parsed, { ...selection, categoryIds: ["14528", "14527"] });
   assert.equal(catalogFilterUrl(parsed, categories), url);
   assert.equal(catalogFilterUrl(filters(), categories), "/productos");
   assert.equal(readCatalogFilters(new URLSearchParams("q=+"), categories).query, " ");

@@ -26,11 +26,11 @@ export type CatalogFilters = {
 };
 
 const CATEGORY_THEME: Record<string, { label: string; token: string; order: number }> = {
-  complementos: { label: "Complementos", token: "--dn-category-complementos", order: 0 },
-  deshidratados: { label: "Deshidratados", token: "--dn-category-deshidratados", order: 1 },
-  organos: { label: "Órganos", token: "--dn-category-organos", order: 2 },
-  "recetas completas": { label: "Recetas completas", token: "--dn-category-recetas-completas", order: 3 },
-  suplementos: { label: "Suplementos", token: "--dn-category-suplementos", order: 4 },
+  deshidratados: { label: "Deshidratados", token: "--dn-category-deshidratados", order: 0 },
+  "recetas completas": { label: "Recetas completas", token: "--dn-category-recetas-completas", order: 1 },
+  complementos: { label: "Complementos", token: "--dn-category-complementos", order: 2 },
+  suplementos: { label: "Suplementos", token: "--dn-category-suplementos", order: 3 },
+  organos: { label: "Órganos", token: "--dn-category-organos", order: 4 },
 };
 
 export function categoryStyle(category: CatalogCategory): CSSProperties {
