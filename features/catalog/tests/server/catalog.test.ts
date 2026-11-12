@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { afterEach, beforeEach, test } from "node:test";
 import type { ContentfulAsset, ContentfulEntry, ProductContentFields } from "@/features/content/types/contentful";
 import { joinProducts } from "../../lib/join-products";
-import { loadAvifyCatalog, loadPublishedProductContent } from "../../server/catalog";
+import { loadAvifyCatalog, loadAvifyProductsBySkus, loadPublishedProductContent } from "../../server/catalog";
 import type { AvifyProduct } from "../../types/avify";
 
 const originalEnvironment = { ...process.env };
@@ -74,6 +74,23 @@ test("accepts Avify's observed off-by-one total on a short final page", async (t
     return Response.json({ data: { products: { products, pageSize: 100, totalCount: 102 } } });
   });
   assert.equal((await loadAvifyCatalog()).length, 101);
+});
+
+test("cart and checkout SKU lookup finds later-page products when Avify ignores SKU filters", async (t) => {
+  const fetch = t.mock.method(globalThis, "fetch", async (_url: URL, init: RequestInit) => {
+    const variables = JSON.parse(init.body as string).variables;
+    assert.equal(variables.skus, undefined);
+    const products = variables.pageNum === 3 ? [commerce]
+      : Array.from({ length: 100 }, (_, index) => ({ ...commerce, sku: `P-${variables.pageNum}-${index}` }));
+    return Response.json({ data: { products: { products, pageSize: 100, totalCount: 201 } } });
+  });
+  const selected = await loadAvifyProductsBySkus(["PARENT-1", "P-1-0"]);
+  assert.deepEqual(selected.map((product) => product.sku), ["P-1-0", "PARENT-1"]);
+  assert.equal(fetch.mock.callCount(), 3);
+  assert.deepEqual(await loadAvifyProductsBySkus(["MISSING"]), []);
+  const calls = fetch.mock.callCount();
+  for (const skus of [[], [""], ["x".repeat(201)]]) await assert.rejects(loadAvifyProductsBySkus(skus), RangeError);
+  assert.equal(fetch.mock.callCount(), calls);
 });
 
 test("loads published Contentful entries and their linked assets in one collection read", async (t) => {

@@ -1,0 +1,39 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen group portrait using approved DNAture animal artwork as style references, followed by cutout/framing refinement; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "pet-diversity-source.png",
+  "refinement_prompt": "Edit this EXACT seven-pet group portrait. Preserve ALL SEVEN animals, their identities, individual anatomy, seated positions, scale differences, direct eye contact, arrangement, fur markings and fine engraving. There are FIVE DOGS: back row German Shepherd, Labrador, mixed-breed dog and Poodle, plus tiny Chihuahua in front; and TWO CATS: tabby domestic shorthair and long-haired cat in front. Do not remove, add, duplicate or change any pet. Main required correction: REMOVE ALL of the turquoise glow, hazy backdrop, shadow, gradient, floor and every colored pixel outside the animals. This is a TRANSPARENT REUSABLE CUTOUT, not a poster or atmospheric scene. Genuine alpha transparency immediately outside each animal's silhouette, throughout gaps between pets, around tails, under paws and between whiskers. No halo, no haze, no glowing fringe, no ground or floor line. Keep deep-ink shading INSIDE pets. Preserve opaque mint INSIDE pets; do not hollow out the animals. Framing: retain horizontal landscape 3:2 canvas, scale whole group DOWN slightly so there is a generous transparent margin on ALL sides, at least 7 percent beyond the tallest ears and outermost tails and paws. Entire group uncropped including full whiskers, ears, tails and paws. Fine DNAture engraving in exactly TWO interior colors: deep cool ink teal #092F39 and flat luminous mint #8FE4D9, mint-dominant with crisp tapered fur strokes and airy crosshatching. No gradients, photographs, 3D, blur, warm tones, white, black, sepia, lettering, props, collars, extra animals or checkerboard texture. Keep ALL SEVEN PETS SITTING and LOOKING AT VIEWER, with the same calm natural expressions and coherent diverse group composition.",
+  "style_references": [
+    "border-collie-source.png",
+    "mixed-breed-cat-source.png",
+    "/Users/juliozeledon/.codex/skills/dnature-engraving/assets/dog-cat-reference.png"
+  ],
+  "prompt": "Use case: stylized-concept. Create ONE COHESIVE FULL-BODY GROUP PORTRAIT of EXACTLY SEVEN PETS: EXACTLY FIVE DIFFERENT DOGS and EXACTLY TWO DIFFERENT CATS, all SITTING naturally and looking directly toward the viewer at eye level. The whole point is diversity of species, body size, head shape, ears and coat textures, including ordinary mixed-breed companion animals. Use supplied images ONLY as references for the DNAture mint-and-ink engraving graphic line, not their poses or existing compositions. Image 1 Border Collie: precise tapered engraved strokes, open mint highlights and crisp cutout style. Image 2 tabby cat: feline anatomy, facial detail and style. Image 3 dog/cat portrait: additional engraving treatment. Draw a NEW scene; do not collage or rearrange the supplied animals.\n\nEXACT CAST, each appears ONCE, total SEVEN distinct visible heads and bodies:\nDOG 1: a large tall German Shepherd with upright triangular ears, long muzzle, athletic frame and medium coat, sitting at back left.\nDOG 2: a large broad-chested Labrador Retriever with dropped ears, broad gentle head and short sleek coat, sitting near back center-left.\nDOG 3: an ordinary medium-sized mixed-breed / village dog (mestizo, no identifiable pedigree), mildly asymmetrical semi-folded ears and slightly scruffy short-to-medium coat, sitting near back center-right. Healthy, well nourished and dignified, no suffering or dirt.\nDOG 4: a medium Poodle with distinct natural curly coat, dropped ears and slender elegant build, sitting at back right. No costume, bows or exaggerated show trim.\nDOG 5: a tiny adult Chihuahua with large upright ears, fine short coat and small delicate body, sitting toward front left. A realistic healthy adult, no exaggerated cartoon eyes.\nCAT 1: an ordinary mixed-breed domestic shorthair tabby (gato mestizo, no pedigree), sitting toward front center, natural upright ears, almond eyes, whiskers and tail curled beside paws.\nCAT 2: a visibly different long-haired domestic cat, broader round gentle head and fluffy chest/body, upright ears and flowing tail, sitting toward front right. Natural facial proportions, no flat face.\n\nCOMPOSITION: horizontal landscape canvas approximately 3:2. A warm-in-attitude but cool-in-palette inclusive family group in a shallow loose arc with TWO subtle depth levels. Large dogs behind, Chihuahua and cats slightly forward. Give each animal its own believable seated silhouette, visible chest, straight resting front legs and paws and folded hindquarters. Carefully minimize overlaps: all seven faces, all seven torsos and front paws are clearly identifiable; no pet is hidden behind another. Natural scale: Chihuahua and cats clearly smaller than big dogs, Poodle and mixed-breed dog intermediate, German Shepherd tallest. Pets form ONE connected composition rather than seven framed icons or evenly sized columns. Keep breathing room and transparent gaps between animal heads and contours, preserve all tails, ear tips, whiskers and paws. Do not crop any part. ALL seven are seated with calm attentive gentle expressions, relaxed closed mouths and gaze meeting the viewer; subtle head turns are fine only if eyes still address viewer. Anatomically plausible four-limbed animals with no merged bodies, extra limbs or duplicate heads.\n\nSTYLE: exact established DNAture scientific hand-engraved animal line. Meticulous crisp tapered fur strokes following anatomy, airy fine crosshatching, varied density to model volume, detailed natural eyes and whiskers. Distinct SHORT sleek coat, wiry scruffy coat, curly Poodle coat, medium Shepherd fur and fluffy cat fur, using the SAME graphic treatment. EXACTLY TWO opaque interior inks: deep cool ink teal #092F39 and luminous mint #8FE4D9. Overall mint-dominant with open flat mint highlights and restrained ink shading. Use engraving density for natural coat markings; retain fine mint strokes within dark markings, no large featureless ink masses. Genuine alpha transparency directly outside each silhouette and between animals, legs, tails and whiskers. No painted background or ground, no floor line, shadow, halo, glow, haze, gradients or texture outside pets. Generous TRANSPARENT margins around the ENTIRE group on all four sides, at least 8 percent beyond the outermost whisker/tail/ear/paw. No setting, props, furniture, collar, clothing, label, text, logos, watermark, border, frame, badges or printed checkerboard. No literal white, black, brown, orange, cream, sepia or warm tones. No photograph, cartoon, 3D, poster or collage. EXACTLY FIVE DOGS plus TWO CATS, all seated and facing the viewer.",
+  "output": "../../../../public/images/pets/pet-diversity.svg",
+  "canvas": [
+    1600,
+    1000
+  ],
+  "subject_counts": {
+    "dogs": 5,
+    "cats": 2
+  },
+  "subjects": [
+    "German Shepherd",
+    "Labrador Retriever",
+    "Mixed-breed dog",
+    "Poodle",
+    "Chihuahua",
+    "Mixed-breed domestic shorthair cat",
+    "Long-haired domestic cat"
+  ],
+  "pose": "All seven pets sitting and looking toward the viewer",
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.5
+  },
+  "source_sha256": "d7064de4aa36e3f7d0fd2c112f08bf251b8a921738cb59761669e355372541a7",
+  "optical_width": 1316.76,
+  "optical_height": 840.0,
+  "baseline": 920
+}

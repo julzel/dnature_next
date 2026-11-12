@@ -154,11 +154,39 @@ preserve its breed identity. It is assigned to the Boston Terrier profile option
 The [source and generation prompt](artwork-sources/pet-species/boston-terrier-generation.json)
 are preserved with the series.
 
-All files have a `480 × 480` viewBox and a shared baseline. Different poses
+Individual species and breed files have a `480 × 480` viewBox and a shared baseline. Different poses
 retain their natural proportions. Detailed engravings use ink `#092F39` and
 mint `#8FE4D9`; compact silhouettes use ink alone. These illustration colors
 are not additional UI or category tokens. Files contain native paths, with no
 embedded raster image, font dependency, script, external resource, or filter.
+
+## Group portrait
+
+The [revised pet diversity scene](../../public/images/pets/pet-diversity-v2.svg)
+uses a 2000×1000 transparent landscape canvas. It intersperses sizes and species
+in one seated row rather than sorting large animals behind small ones. From left
+to right: long-haired domestic cat, German Shepherd, Chihuahua, mixed-breed dog,
+mixed-breed tabby cat, Poodle and Boston Terrier. All seven face the viewer.
+The Boston Terrier replaces the retriever from the first composition. Use this
+revision at 800px wide or larger, preserving its transparent margins and natural
+proportions. The [revised source and prompt](artwork-sources/pet-species/pet-diversity-v2-generation.json)
+are preserved, and the manifest records the revision under `scenes`.
+The revised scene appears beneath the questionnaire welcome copy and above its
+controls. It scales to the form width on desktop and mobile, retaining its 2:1
+aspect ratio, natural transparent edges and descriptive Spanish alternative text.
+
+The [pet diversity scene](../../public/images/pets/pet-diversity.svg) is a separate
+1600×1000 landscape SVG with a transparent background and native ink/mint paths.
+It shows exactly five dogs (German Shepherd, Labrador Retriever, mixed-breed dog,
+Poodle and Chihuahua) and two cats (mixed-breed domestic shorthair and long-haired
+domestic cat), all seated and looking toward the viewer. Sizes, ears, head shapes
+and coat textures vary naturally within one composition.
+
+Use at 640px wide or larger to preserve facial and fur details. Keep its landscape
+proportions and transparent margins; avoid cropping ears, whiskers, tails or paws.
+This scene is listed under `scenes` in the manifest, separately from individual
+profile portraits. The [source and generation prompts](artwork-sources/pet-species/pet-diversity-generation.json)
+are preserved. No website placement is implied.
 
 ## Website use
 

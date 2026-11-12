@@ -184,6 +184,18 @@
       "sha256": "e12d8aecc60d35a605412b5324d1b29a5d8d61aaa40f413615b99f0607cdc2b1",
       "generation": "docs/graphic-design/artwork-sources/pet-species/boston-terrier-generation.json",
       "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pet_diversity": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-source.png",
+      "sha256": "d7064de4aa36e3f7d0fd2c112f08bf251b8a921738cb59761669e355372541a7",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-generation.json",
+      "method": "Built-in image_gen group portrait using approved DNAture animal artwork as style references, followed by cutout/framing refinement; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pet_diversity_v2": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-v2-source.png",
+      "sha256": "7745b0145b51e96a50f28fed445cecada0ef9be341a30f2ce750d8921465bab2",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-v2-generation.json",
+      "method": "Built-in image_gen revision using the first group portrait and approved Boston Terrier as references; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
     }
   },
   "assets": [
@@ -474,5 +486,63 @@
   ],
   "react_component": "components/pet-species-image.tsx",
   "usage_reference": "docs/graphic-design/pet-species-assets.md",
-  "preview": "docs/graphic-design/pet-species-preview.html"
+  "preview": "docs/graphic-design/pet-species-preview.html",
+  "scenes": [
+    {
+      "label_es": "Diversidad de mascotas",
+      "path": "/images/pets/pet-diversity.svg",
+      "source": "pet_diversity",
+      "view_box": [
+        0,
+        0,
+        1600,
+        1000
+      ],
+      "background": "transparent",
+      "subject_counts": {
+        "dogs": 5,
+        "cats": 2
+      },
+      "subjects": [
+        "German Shepherd",
+        "Labrador Retriever",
+        "Mixed-breed dog",
+        "Poodle",
+        "Chihuahua",
+        "Mixed-breed domestic shorthair cat",
+        "Long-haired domestic cat"
+      ],
+      "pose": "All seven pets sitting and looking toward the viewer",
+      "recommended_min_width_px": 640
+    },
+    {
+      "label_es": "Diversidad de mascotas, composición mixta",
+      "path": "/images/pets/pet-diversity-v2.svg",
+      "source": "pet_diversity_v2",
+      "view_box": [
+        0,
+        0,
+        2000,
+        1000
+      ],
+      "background": "transparent",
+      "subject_counts": {
+        "dogs": 5,
+        "cats": 2
+      },
+      "subjects_left_to_right": [
+        "Long-haired domestic cat",
+        "German Shepherd",
+        "Chihuahua",
+        "Mixed-breed dog",
+        "Mixed-breed domestic shorthair cat",
+        "Poodle",
+        "Boston Terrier"
+      ],
+      "pose": "All seven pets sitting and looking toward the viewer",
+      "arrangement": "One seated row with interspersed sizes and species",
+      "supersedes": "/images/pets/pet-diversity.svg",
+      "recommended_min_width_px": 800
+    }
+  ]
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState, useTransition, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useRef, useState, useTransition, type ChangeEvent, type FormEvent } from "react";
+import type { CartStep } from "@/features/cart/components/cart-progress";
 import { ArrowRight, Store, Truck } from "lucide-react";
 import type { CartItem } from "@/features/cart/types/cart";
 import { getCartItems } from "@/features/cart/lib/cart-store";
@@ -13,7 +14,7 @@ import { OrderTotals } from "./order-totals";
 import { OrderReview } from "./order-review";
 import styles from "./checkout.module.css";
 
-export function CheckoutForm({ items, blocked }: { items: CartItem[]; blocked: boolean }) {
+export function CheckoutForm({ items, blocked, hidden = false, onStepChange }: { items: CartItem[]; blocked: boolean; hidden?: boolean; onStepChange?: (step: CartStep) => void }) {
   const form = useRef<HTMLFormElement>(null);
   const submitting = useRef(false);
   const [fields, setFields] = useState<CheckoutFields>({ ...emptyCheckout });
@@ -25,6 +26,7 @@ export function CheckoutForm({ items, blocked }: { items: CartItem[]; blocked: b
   const fingerprint = cartFingerprint(items);
   const order = !blocked && prepared?.fingerprint === fingerprint ? prepared.order : null;
   const totals = orderTotals(items, fields.fulfillment, fields.zone);
+  useEffect(function syncStep() { if (!hidden) onStepChange?.(order ? "review" : "details"); }, [hidden, order, onStepChange]);
 
   function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.currentTarget;
@@ -58,7 +60,7 @@ export function CheckoutForm({ items, blocked }: { items: CartItem[]; blocked: b
 
   return <div className={styles.checkout}>
     {order ? <OrderReview order={order} onEdit={handleEdit} /> : <form ref={form} onSubmit={handleSubmit} noValidate aria-busy={pending}>
-      <h2>Prepará tu pedido</h2>
+      <h2 id="checkout-title" tabIndex={-1}>Prepará tu pedido</h2>
       <p>Completá tus datos y elegí cómo recibirlo. Te prepararemos un resumen para enviar por WhatsApp.</p>
       {prepared && <p role="status">El carrito cambió. Generá un nuevo resumen con tu selección actual.</p>}
       <fieldset disabled={pending} className={styles.fields}>

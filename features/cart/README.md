@@ -8,7 +8,9 @@ recoverable Spanish feedback; success is announced only after persistence succee
 
 `validateCartItemAction` accepts parent SKU, selected SKU, desired total quantity
 and the displayed unit price. The server loads the published product through the
-existing SKU join and reads Avify inventory afresh. It rejects hidden products,
+existing SKU join and reads all Avify inventory pages afresh before selecting the
+requested SKU. The provider currently ignores its SKU filter; checking only its
+first page incorrectly rejected products on later pages. It rejects hidden products,
 inactive variants, missing prices, insufficient whole-unit stock, invalid inputs
 and changed prices. Refreshed options let the visitor review changes and confirm
 again. The client does not provide trusted product copy or prices for storage.

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useTransition, type AnimationEvent, type ChangeEvent, type FormEvent, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus, Monitor } from "lucide-react";
 import { PetSpeciesImage } from "@/components/pet-species-image";
 import { getBreedArtwork, type PetSpecies } from "../data/pet-breeds";
@@ -194,9 +195,19 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
           <p className={styles.description}>{description}</p>
 
           {welcoming && (
+            <>
             <div className={styles.welcome}>
               <p>A continuación conoceremos más de tu mascota para ofrecerle un plan nutricional que se ajuste a sus necesidades.</p>
             </div>
+            <Image
+              src="/images/pets/pet-diversity-v2.svg"
+              alt="Perros y gatos de distintos tamaños y razas, incluidos mestizos, sentados juntos."
+              width={2000}
+              height={1000}
+              unoptimized
+              className={styles.welcomeArtwork}
+            />
+            </>
           )}
 
           {step === 1 && (

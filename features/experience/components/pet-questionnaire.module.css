@@ -69,6 +69,13 @@
 .welcome { margin-block-start: var(--dn-space-6); max-inline-size: 56ch; }
 .welcome p { color: var(--dn-text-secondary); font-size: 14px; line-height: 1.7; }
 .welcome p + p { margin-block-start: var(--dn-space-3); }
+.welcomeArtwork {
+  display: block;
+  inline-size: 80%;
+  block-size: auto;
+  margin-block-start: var(--dn-space-6);
+  margin-inline: auto;
+}
 .controls .start span { display: inline; }
 .label {
   display: block;

@@ -17,5 +17,5 @@ export async function validateCartItem(input: CartItemRequest, loadProduct = get
   const maximum = maximumQuantity(option.quantityAvailable);
   if (maximum !== undefined && input.quantity > maximum) return { ok: false, message: `El inventario cambió. Hay ${maximum} unidades disponibles; revisá la cantidad, incluyendo las que ya tenés en el carrito.`, options: detail.options };
   if (option.price !== input.expectedPrice) return { ok: false, message: "El precio se actualizó. Revisá el nuevo precio y volvé a confirmar.", options: detail.options };
-  return { ok: true, item: { sku: option.sku, parentSku: detail.sku, name: detail.name, presentation: option.name, price: option.price, quantity: input.quantity, path: detail.path, imageUrl: detail.images[0]?.url ?? null } };
+  return { ok: true, item: { sku: option.sku, parentSku: detail.sku, name: detail.name, presentation: option.name, ...(detail.categories[0] ? { category: detail.categories[0].label } : {}), price: option.price, quantity: input.quantity, path: detail.path, imageUrl: detail.images[0]?.url ?? null } };
 }

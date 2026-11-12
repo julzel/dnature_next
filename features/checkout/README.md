@@ -20,8 +20,9 @@ adding it. The header exposes the cart on every page.
 
 ## Order lifecycle
 
-`prepareOrderAction` validates input and performs **one fresh batched inventory
-lookup** for all parent SKUs. Each line reuses the cart's price/availability rules.
+`prepareOrderAction` validates input and performs **one fresh, fully paginated inventory
+snapshot** shared by all parent SKUs. Avify currently ignores its SKU filter, so products are selected locally after all
+inventory pages have loaded. Each line reuses the cart's price/availability rules.
 Client-supplied identity, images, totals, taxes, and fees are not trusted. A changed
 price or insufficient stock blocks the draft and asks the customer to review the
 affected products. Integration failure preserves the cart and customer input.

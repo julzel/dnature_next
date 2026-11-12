@@ -7,6 +7,10 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
     const section = page.locator("#experiencia-personalizada");
     await expect(section.getByRole("heading", { name: "¡Qué bueno tenerte por aquí!" })).toHaveCount(0);
     await expect(section).toContainText("A continuación conoceremos más de tu mascota");
+    const artwork = section.getByRole("img", { name: "Perros y gatos de distintos tamaños y razas, incluidos mestizos, sentados juntos." });
+    await expect(artwork).toHaveAttribute("src", "/images/pets/pet-diversity-v2.svg");
+    await artwork.scrollIntoViewIfNeeded();
+    await expect.poll(() => artwork.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     await expect(section.getByRole("button", { name: "Gato", exact: true })).toHaveCount(0);
     const start = section.getByRole("button", { name: "Empecemos", exact: true });
     await expect(start.locator("span")).toBeVisible();
@@ -16,6 +20,7 @@ for (const reducedMotion of ["reduce", "no-preference"] as const) {
     await expect(section.getByRole("heading", { name: "¿Gato o perro?" })).toBeFocused();
     await expect(section).not.toContainText("Pregunta 1 de 3");
     await expect(start).toHaveCount(0);
+    await expect(artwork).toHaveCount(0);
     await expect(section.getByRole("button", { name: "Gato", exact: true })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(page.viewportSize()!.width);
   });

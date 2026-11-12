@@ -92,12 +92,20 @@ export async function getCatalogProductBySku(sku: string): Promise<CatalogProduc
   return (await getCatalogProductsBySkus([sku]))[0] ?? null;
 }
 
-/** A single fresh inventory request for checkout, including all selected parent products. */
-export async function getCatalogProductsBySkus(skus: string[]): Promise<CatalogProduct[]> {
+/** Avify currently ignores its SKU filter, so selection must follow complete pagination. */
+export async function loadAvifyProductsBySkus(skus: string[]): Promise<AvifyProduct[]> {
+  if (!Array.isArray(skus) || !skus.length || skus.length > 100 || skus.some((sku) => typeof sku !== "string" || !sku.trim() || sku.length > 200)) {
+    throw new RangeError("Provide between 1 and 100 valid product SKUs.");
+  }
   const requested = new Set(skus);
-  const [page, content] = await Promise.all([
-    getAvifyProducts({ skus, pageSize: 100 }),
+  return (await loadAvifyCatalog()).filter((product) => requested.has(product.sku));
+}
+
+/** One fresh, fully paginated inventory snapshot shared by all checkout lines. */
+export async function getCatalogProductsBySkus(skus: string[]): Promise<CatalogProduct[]> {
+  const [products, content] = await Promise.all([
+    loadAvifyProductsBySkus(skus),
     getCachedProductContent(),
   ]);
-  return joinProducts(page.products.filter((product) => requested.has(product.sku)), content.entries, content.assets);
+  return joinProducts(products, content.entries, content.assets);
 }

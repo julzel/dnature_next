@@ -5,6 +5,7 @@ export type CartItem = {
   parentSku: string;
   name: string;
   presentation: string;
+  category?: string;
   quantity: number;
   price: number;
   path: string;

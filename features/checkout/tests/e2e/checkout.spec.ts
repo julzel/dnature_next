@@ -6,6 +6,7 @@ const sample = { sku: "sample", parentSku: "sample", name: "Producto de prueba",
 async function seedCart(page: Page) {
   await page.addInitScript(({ key, item }) => { localStorage.setItem(key, JSON.stringify([item])); }, { key: storageKey, item: sample });
   await page.goto("/carrito");
+  await page.getByRole("button", { name: "Continuar al pedido" }).click();
   await expect(page.getByRole("heading", { name: "Prepará tu pedido" })).toBeVisible();
 }
 async function contactDetails(page: Page) {
@@ -30,19 +31,20 @@ test("checkout requires a delivery choice and address, shows tax/shipping, and b
   await generate.click();
   await expect(page.getByLabel("Provincia", { exact: true })).toBeFocused();
   await expect(page.getByLabel("Provincia", { exact: true })).toHaveAttribute("aria-invalid", "true");
-  await expect(page.locator("dl")).toContainText("₡7 794");
-  await expect(page.locator("dl")).toContainText("IVA (13%)₡494");
+  await expect(page.locator("form dl")).toContainText("₡7 794");
+  await expect(page.locator("form dl")).toContainText("IVA (13%)₡494");
   await addressDetails(page);
   await page.getByRole("radio", { name: /Fuera de la GAM/ }).check();
-  await expect(page.locator("dl")).toContainText("Por cotizar");
-  await expect(page.locator("dl")).toContainText("Total sin envío₡4 294");
+  await expect(page.locator("form dl")).toContainText("Por cotizar");
+  await expect(page.locator("form dl")).toContainText("Total sin envío₡4 294");
   await page.getByRole("radio", { name: /Retiro/ }).check();
   await expect(page.getByLabel("Dirección exacta y referencias", { exact: true })).toHaveCount(0);
-  await expect(page.locator("dl")).toContainText("Sin costo · retiro");
+  await expect(page.locator("form dl")).toContainText("Sin costo · retiro");
+  await page.getByRole("navigation", { name: "Pasos del pedido" }).getByRole("button", { name: /Carrito/ }).click();
   await page.getByRole("spinbutton", { name: "Cantidad" }).fill("3");
-  await expect(generate).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Continuar al pedido" })).toBeDisabled();
   await page.getByRole("spinbutton", { name: "Cantidad" }).fill("2");
-  await expect(generate).toBeEnabled();
+  await expect(page.getByRole("button", { name: "Continuar al pedido" })).toBeEnabled();
   await expect(page.getByRole("link", { name: "Carrito, 2 productos", exact: true })).toBeVisible();
   await page.setViewportSize({ width: 320, height: 800 });
   await expect(page.getByRole("link", { name: "Carrito, 2 productos", exact: true })).toBeVisible();
@@ -86,6 +88,7 @@ test("a real cart generates GAM, pickup and outside-GAM orders without sending o
   await add.click();
   await expect(page.getByText("Producto agregado al carrito.", { exact: true })).toBeVisible();
   await page.getByRole("link", { name: /Ver carrito/ }).click();
+  await page.getByRole("button", { name: "Continuar al pedido" }).click();
   await contactDetails(page);
   await page.getByRole("radio", { name: /Entrega a domicilio/ }).check();
   await page.getByRole("radio", { name: /Dentro de la GAM/ }).check();
@@ -129,6 +132,7 @@ test("a real cart generates GAM, pickup and outside-GAM orders without sending o
     window.dispatchEvent(new StorageEvent("storage", { key }));
   }, storageKey);
   await expect(send).toHaveCount(0);
-  await expect(page.getByRole("spinbutton", { name: "Cantidad" })).toHaveValue("2");
   await expect(page.getByText("El carrito cambió. Generá un nuevo resumen con tu selección actual.")).toBeVisible();
+  await page.getByRole("navigation", { name: "Pasos del pedido" }).getByRole("button", { name: /Carrito/ }).click();
+  await expect(page.getByRole("spinbutton", { name: "Cantidad" })).toHaveValue("2");
 });
