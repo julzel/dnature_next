@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { SectionEyebrow } from "@/components/section-eyebrow";
 import { CheckoutForm } from "@/features/checkout/components/checkout-form";
 import { clearCart, useCart } from "../lib/cart-store";
 import { CartItemRow } from "./cart-item-row";
@@ -22,7 +21,7 @@ export function CartContent() {
   function handleContinue() { setStep("details"); requestAnimationFrame(function focusDetails() { document.getElementById("checkout-title")?.focus(); }); }
   function handleBack() { setStep("cart"); requestAnimationFrame(function focusSelection() { document.getElementById("cart-products-heading")?.focus(); }); }
   return <div className={styles.page}>
-    <header className={styles.intro}><SectionEyebrow label="Tu selección" /><h1>Tu carrito.</h1><p>Una vista clara de lo que elegiste, con espacio para revisar cada detalle antes de continuar.</p></header>
+    <header className={styles.intro}><h1>Tu carrito.</h1></header>
     {!cart.ready && <p role="status">Cargando carrito…</p>}
     {(cart.error || error) && <p role="alert">{error || cart.error}</p>}
     {cart.ready && !cart.items.length && !cart.error && <p>Tu carrito está vacío. Explorá los productos para empezar.</p>}
