@@ -14,9 +14,20 @@ test("product details have crawlable content and presentation-specific inquiries
   await radios.first().check();
   await expect(radios.first()).toBeChecked();
   const sku = await radios.first().inputValue();
-  const inquiry = page.getByRole("link", { name: /Tenés dudas sobre este producto/ });
+  const guidance = page.locator("#uso-y-cuidados");
+  const inquiry = guidance.getByRole("link", { name: /Tenés dudas sobre este producto/ });
+  await expect(guidance.getByRole("heading", { name: "Antes de elegir", level: 3 })).toBeVisible();
+  await expect(page.locator("form").getByText("Antes de elegir", { exact: true })).toHaveCount(0);
+  await expect(page.locator("form").getByRole("link", { name: /Tenés dudas sobre este producto/ })).toHaveCount(0);
   await expect(inquiry).toHaveAttribute("href", new RegExp(encodeURIComponent(sku)));
   expect(new URL((await inquiry.getAttribute("href"))!).searchParams.get("text")).toContain(`https://dnaturefood.com${path}`);
+  await radios.nth(1).check();
+  await expect(inquiry).toHaveAttribute("href", new RegExp(encodeURIComponent(await radios.nth(1).inputValue())));
+  const quantity = page.getByRole("spinbutton", { name: "Cantidad", exact: true });
+  if (await quantity.isEnabled()) {
+    await quantity.fill("1");
+    await expect(inquiry).toHaveAttribute("href", new RegExp(encodeURIComponent("Cantidad: 1.")));
+  }
   const related = page.getByRole("region", { name: /Explorá otros productos/ });
   expect(await related.locator('a[href^="/producto/"]').count()).toBeGreaterThan(0);
   const profile = page.getByRole("region", { name: "Perfil de referencia del producto", exact: true });

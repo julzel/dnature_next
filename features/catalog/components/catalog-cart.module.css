@@ -1,0 +1,19 @@
+.control { grid-column: 1 / -1; display: grid; gap: var(--dn-space-3); min-inline-size: 0; margin-block-start: var(--dn-space-4); }
+.quantityForm { display: grid; justify-items: stretch; gap: var(--dn-space-2); min-inline-size: 0; }
+.add { inline-size: 100%; display: inline-flex; justify-content: center; align-items: center; gap: var(--dn-space-3); min-block-size: 48px; max-inline-size: 100%; padding: var(--dn-space-3) var(--dn-space-4); border: 1px solid #1f456d; border-radius: 0; background: var(--dn-surface-base); color: #1f456d; font: 400 14px/1.5 var(--font-body); text-align: start; cursor: pointer; }
+.add svg { flex-shrink: 0; }
+.add { transition: border-color 160ms ease, background-color 160ms ease; }
+.add:not(:disabled):is(:hover, :focus, :active) { border-color: var(--dn-brand-teal); }
+.add:not(:disabled):hover { background: color-mix(in srgb, var(--dn-brand-teal) 12%, var(--dn-surface-base)); }
+.add:disabled { background: var(--dn-surface-muted); color: var(--dn-text-secondary); cursor: not-allowed; border-color: transparent; }
+.stepper { inline-size: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-inline-size: 100%; border: 1px solid var(--dn-border-control); background: var(--dn-surface-base); }
+.stepper button { display: grid; place-items: center; min-inline-size: 0; inline-size: 100%; min-block-size: 48px; padding: var(--dn-space-2); border: 0; border-radius: 0; background: transparent; color: var(--dn-surface-dark); cursor: pointer; transition: background-color 160ms ease; }
+.stepper button:hover { background: var(--dn-surface-muted); }
+.stepper button:disabled { color: var(--dn-text-secondary); cursor: not-allowed; }
+.stepper input { inline-size: 100%; min-inline-size: 0; min-block-size: 48px; border: 0; border-inline: 1px solid var(--dn-border-default); border-radius: 0; padding: var(--dn-space-1); color: var(--dn-text-primary); background: transparent; font: 500 14px/1.5 var(--font-body); text-align: center; appearance: textfield; }
+.stepper input::-webkit-inner-spin-button, .stepper input::-webkit-outer-spin-button { appearance: none; margin: 0; }
+.stepper input:disabled { opacity: 1; color: var(--dn-text-secondary); }
+.feedback { max-inline-size: 100%; color: var(--dn-text-secondary); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.feedback a { color: var(--dn-surface-dark); }
+.retry { min-block-size: 44px; padding: var(--dn-space-2) var(--dn-space-3); border: 1px solid var(--dn-border-control); border-radius: 0; color: var(--dn-surface-dark); background: transparent; font: inherit; font-size: 13px; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .add, .stepper button { transition: none; } }

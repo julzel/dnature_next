@@ -1,4 +1,5 @@
 import type { AvifyProduct, AvifyVariant } from "../types/avify";
+import type { ProductOption } from "../types/product-option";
 
 export type ProductOffer = { price: number | null; inStock: boolean; fromPrice: boolean };
 
@@ -22,4 +23,16 @@ export function productOffer(product: AvifyProduct): ProductOffer {
     inStock: stocked.length > 0,
     fromPrice: true,
   };
+}
+
+/** The same purchasable presentations for catalog, detail, and server validation. */
+export function productOptions(product: AvifyProduct): ProductOption[] {
+  if (!product.children.length) {
+    const offer = productOffer(product);
+    return [{ sku: product.sku, name: "Presentación única", price: offer.price, inStock: offer.inStock, quantityAvailable: product.qty }];
+  }
+  return product.children.filter((variant) => variant.status === "active").map((variant) => {
+    const offer = productOffer({ ...product, children: [variant] });
+    return { sku: variant.sku, name: variant.name, price: offer.price, inStock: offer.inStock, quantityAvailable: variant.qty };
+  });
 }

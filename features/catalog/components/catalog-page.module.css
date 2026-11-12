@@ -35,17 +35,20 @@
 .sortSelect { inline-size: 224px; }
 .productGrid { display: grid; align-items: start; gap: var(--dn-space-6); margin: 0; padding: 0; list-style: none; }
 .preview { min-inline-size: 0; padding-block-start: var(--dn-space-6); border-block-start: 1px solid var(--dn-border-default); }
-.preview article { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; gap: var(--dn-space-4); min-inline-size: 0; }
+.preview article { background: var(--dn-surface-base); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; gap: var(--dn-space-4); min-inline-size: 0; }
+.catalogArticle { padding-block-end: var(--dn-space-4); }
 .previewImage { position: relative; display: grid; place-items: center; inline-size: 100%; aspect-ratio: 1; overflow: hidden; background: var(--dn-surface-base); }
 .previewImage img { object-fit: contain; }
 .imageFallback { color: var(--dn-surface-dark); font-size: 48px; font-weight: 900; letter-spacing: -.08em; }
 .previewDetails { display: grid; gap: var(--dn-space-2); }
+.catalogDetails { gap: var(--dn-space-1); padding: var(--dn-space-4) var(--dn-space-4) 0; }
 .productCategory { color: var(--category-ink, var(--dn-text-secondary)); font-size: 11px; font-weight: 650; }
+.categoryOverlay { position: absolute; inset-inline-start: var(--dn-space-2); inset-block-end: var(--dn-space-2); max-inline-size: calc(100% - var(--dn-space-4)); padding: var(--dn-space-1) var(--dn-space-2); background: var(--dn-surface-base); line-height: 1.4; overflow-wrap: anywhere; }
 .previewDetails h3,
 .previewDetails h4 { color: var(--dn-text-primary); font-size: 16px; line-height: 1.4; overflow-wrap: anywhere; }
 .previewDetails h3 a, .previewDetails h4 a { text-decoration: none; }
 .previewDetails h3 a:hover, .previewDetails h4 a:hover { text-decoration: underline; }
-.productCta { grid-column: 1 / -1; justify-self: start; margin-block-start: var(--dn-space-2); }
+.preview .productCta { grid-column: 1 / -1; justify-self: end; display: flex; inline-size: fit-content; margin-inline-start: auto; margin-block-start: var(--dn-space-2); margin-inline-end: var(--dn-space-4); max-inline-size: calc(100% - var(--dn-space-8)); }
 .price { color: var(--dn-text-primary); font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .price span { font-size: 12px; font-weight: 500; }
 .availability { color: var(--dn-text-secondary); font-size: 12px; }
@@ -81,7 +84,7 @@
 .skeletonSortControl { display: flex; align-items: center; inline-size: 224px; max-inline-size: 100%; block-size: 48px; padding-inline: var(--dn-space-4); border: 1px solid var(--dn-border-control); background: var(--dn-surface-base); }
 .skeletonSortControl::after { content: ""; inline-size: 60%; block-size: 12px; background: var(--dn-border-default); }
 .skeletonImage::after { content: ""; inline-size: 68%; aspect-ratio: 1; background: var(--dn-surface-muted); }
-.skeletonCategory { inline-size: 42%; block-size: 10px; }
+.skeletonCategory { position: absolute; inset-inline-start: var(--dn-space-2); inset-block-end: var(--dn-space-2); inline-size: 42%; block-size: 10px; }
 .skeletonName, .skeletonNameShort { block-size: 18px; }
 .skeletonName { inline-size: 86%; }
 .skeletonNameShort { inline-size: 58%; }
@@ -90,6 +93,7 @@
 .skeletonFacts { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; min-block-size: 56px; inline-size: min(100%, 180px); }
 .skeletonFactsLabel { inline-size: 90px; block-size: 12px; }
 .skeletonFactsIcon { inline-size: 16px; block-size: 16px; }
+.skeletonCartControl { grid-column: 1 / -1; inline-size: 100%; block-size: 48px; margin-block-start: var(--dn-space-4); }
 .skeletonCategoryLink { inline-size: 164px; block-size: 48px; background: var(--dn-border-default); }
 
 @media (min-width: 640px) {
@@ -100,6 +104,7 @@
   .preview article { display: block; }
   .previewDetails { padding-block-start: var(--dn-space-4); }
   .previewDetails h3 { min-block-size: 2.8em; font-size: 18px; }
+  .catalogDetails h3 { min-block-size: 0; }
   .productCategory { font-size: 12px; }
   .skeletonFacts { margin-block-start: var(--dn-space-2); }
 }

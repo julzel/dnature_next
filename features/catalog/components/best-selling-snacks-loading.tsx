@@ -9,7 +9,7 @@ export function BestSellingSnacksLoading() {
         <h2>Variedad de deshidratados</h2>
       </div>
       <ul className={styles.grid} aria-hidden="true">
-        {Array.from({ length: 4 }, (_, index) => <CatalogProductSkeleton key={index} />)}
+        {Array.from({ length: 4 }, (_, index) => <CatalogProductSkeleton key={index} showCartControl={false} />)}
       </ul>
     </div>
   );

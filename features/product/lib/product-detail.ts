@@ -1,6 +1,5 @@
 import { prepareCatalog } from "@/features/catalog/lib/browse-catalog";
 import { contentfulImageUrl } from "@/features/catalog/lib/contentful-image-url";
-import { productOffer } from "@/features/catalog/lib/product-offer";
 import { productPath } from "@/features/catalog/lib/product-path";
 import { productText } from "@/features/catalog/lib/product-copy";
 import type { CatalogProduct } from "@/features/catalog/types/catalog";
@@ -31,11 +30,6 @@ export function buildProductDetail(product: CatalogProduct, catalog: readonly Ca
   const prepared = prepareCatalog(catalog);
   const listing = prepareCatalog([product]).listings[0];
   const categories = prepared.categories.filter((category) => listing.categoryIds.includes(category.id));
-  const variants = product.commerce.children.filter((variant) => variant.status === "active");
-  const options = variants.length ? variants.map((variant) => {
-    const offer = productOffer({ ...product.commerce, children: [variant] });
-    return { sku: variant.sku, name: variant.name, price: offer.price, inStock: offer.inStock, quantityAvailable: variant.qty };
-  }) : product.commerce.children.length ? [] : [{ sku: product.sku, name: "Presentación única", ...productOffer(product.commerce), quantityAvailable: product.commerce.qty }];
   const description: ProductCopyBlock[] = [];
   const composition: ProductCopyBlock[] = [];
   for (const block of descriptionBlocks(product.editorial.fields.description)) {
@@ -60,7 +54,7 @@ export function buildProductDetail(product: CatalogProduct, catalog: readonly Ca
     introduction: first?.type === "text" && first.text.length <= 220 ? first.text : null,
     ingredients: listing.ingredients,
     reference: product.reference ?? null,
-    options,
+    options: listing.options,
     related: prepared.listings.filter((item) => item.sku !== product.sku && item.categoryIds.some((id) => listing.categoryIds.includes(id))).sort((a, b) => Number(b.offer.inStock) - Number(a.offer.inStock)).slice(0, 3),
   };
 }

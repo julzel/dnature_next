@@ -34,12 +34,15 @@ review before new medical or nutritional claims are approved.
 
 The local `docs/SEO-GEO/catalog-products.md` source now supplies a clearly labeled
 reference profile: product type, species, life stages, sizes, chewing level, and
-selection cautions. Price stays immediately below the title; reference facts and
-native presentation controls precede the visible cautions, quantity field and
-add-to-cart action. A quieter support link retains the WhatsApp context.
+selection cautions. Price stays immediately below the title, followed by the
+quantity field, add-to-cart action and cart link. Reference facts and native
+presentation controls follow. Selection cautions and the product inquiry link
+appear in the use/care guidance. The inquiry retains the selected presentation,
+quantity and availability through the shared product selection provider.
 Jump links lead to ingredients, the published description, and use/care guidance.
-The profile and cautions are Server Components passed into the small interactive
-selector as rendered slots; the full source dataset never enters its client bundle.
+The profile and cautions remain Server Components; only the profile is passed
+into the interactive selector as a rendered slot. The full source dataset never
+enters its client bundle.
 
 `features/catalog/data/product-reference-bindings.json` links 87 inspected parent
 SKUs to exact source rows/names. No runtime title similarity is used. The generated

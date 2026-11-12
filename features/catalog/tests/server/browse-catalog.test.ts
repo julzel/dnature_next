@@ -85,8 +85,8 @@ test("searches accent-insensitive words in any order across names, ingredients, 
   for (const query of ["discontinued-sku", "retirada", "secreta", "pollo"]) {
     assert.equal(filterCatalog(listings, categories, filters({ query })).total, 0, query);
   }
-  assert.equal(listings[0].variants.length, 1);
-  assert.deepEqual(listings[0].variants[0], { name: "500g", price: 2800, inStock: true });
+  assert.equal(listings[0].options.length, 1);
+  assert.deepEqual(listings[0].options[0], { sku: "VAR-500-G", name: "500g", price: 2800, inStock: true, quantityAvailable: 3 });
   assert.ok(!JSON.stringify(listings).includes("Descripción secreta"));
 });
 
@@ -96,7 +96,7 @@ test("prepares ingredient copy as plain text and uses the same fallback pricing 
   item.commerce.children = [{ id: "v", sku: "v", name: "Grande", status: "active", price: null, salePrice: null, qty: 0 }];
   const { listings } = prepareCatalog([item]);
   assert.equal(listings[0].ingredients, "Hígado & arroz Cúrcuma");
-  assert.deepEqual(listings[0].variants, [{ name: "Grande", price: 2500, inStock: false }]);
+  assert.deepEqual(listings[0].options, [{ sku: "v", name: "Grande", price: 2500, inStock: false, quantityAvailable: 0 }]);
   assert.equal(listings[0].offer.inStock, false);
 });
 

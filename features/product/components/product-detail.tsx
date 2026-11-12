@@ -15,6 +15,8 @@ import { ProductDescription } from "./product-description";
 import { ProductProfile } from "./product-profile";
 import { ProductPrecautions } from "./product-precautions";
 import { ProductIdentity } from "./product-identity";
+import { ProductSelectionProvider } from "./product-selection-provider";
+import { ProductInquiryLink } from "./product-inquiry-link";
 import styles from "./product-detail.module.css";
 
 export function ProductDetail({ product }: { product: ProductDetailData }) {
@@ -26,6 +28,7 @@ export function ProductDetail({ product }: { product: ProductDetailData }) {
   ];
 
   return <article className={styles.page} style={category ? categoryStyle(category) : undefined}>
+    <ProductSelectionProvider key={product.sku} options={product.options}>
     <div className={styles.container}>
       <div className={styles.breadcrumbs}><Breadcrumbs items={breadcrumbs} /></div>
       <div className={styles.overview}>
@@ -34,11 +37,7 @@ export function ProductDetail({ product }: { product: ProductDetailData }) {
         <div className={styles.summary}>
           <ProductOptions
             parentSku={product.sku}
-            name={product.name}
-            options={product.options}
-            url={canonicalUrl(product.path)}
             profile={product.reference && <ProductProfile reference={product.reference} compact />}
-            precautions={product.reference && <ProductPrecautions reference={product.reference} />}
           />
         </div>
       </div>
@@ -78,6 +77,8 @@ export function ProductDetail({ product }: { product: ProductDetailData }) {
         <aside id="uso-y-cuidados" className={styles.guidance} aria-labelledby="product-guidance-title">
           <SectionEyebrow label="Uso y cuidados" />
           <h2 id="product-guidance-title">Elegir con información también es cuidar.</h2>
+          {product.reference && <ProductPrecautions reference={product.reference} />}
+          <ProductInquiryLink name={product.name} url={canonicalUrl(product.path)} />
           <dl className={styles.usageFacts}>
             <div><dt>Porciones y frecuencia</dt><dd>Confirmá la cantidad y la frecuencia con nuestro equipo y el profesional que acompaña su alimentación.</dd></div>
             <div><dt>Conservación</dt><dd>Seguí las indicaciones del envase de tu presentación. Si tenés dudas, consultanos antes de usarla.</dd></div>
@@ -98,6 +99,7 @@ export function ProductDetail({ product }: { product: ProductDetailData }) {
       </section>}
       <Link className={styles.backLink} href="/productos" prefetch={false}><ArrowLeft size={18} aria-hidden="true" />Volver al catálogo</Link>
     </div>
+    </ProductSelectionProvider>
     {/* Product/Offer schema remains subject to the verified-record gate in lib/seo/structured-data.ts. */}
     <JsonLd data={{ "@context": "https://schema.org", "@type": "WebPage", name: product.name, url: canonicalUrl(product.path), description: productSummary(product), inLanguage: "es-CR" }} />
   </article>;

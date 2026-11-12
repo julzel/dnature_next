@@ -3,7 +3,8 @@ import { productText } from "./product-copy";
 import { productPath } from "./product-path";
 import type { CatalogProduct } from "../types/catalog";
 import { contentfulImageUrl } from "./contentful-image-url";
-import { productOffer, type ProductOffer } from "./product-offer";
+import { productOffer, productOptions, type ProductOffer } from "./product-offer";
+import type { ProductOption } from "../types/product-option";
 
 export type CatalogCategory = { id: string; label: string; color: string; ink: string; onColor: string };
 export type CatalogListing = {
@@ -15,7 +16,7 @@ export type CatalogListing = {
   imageAlt: string;
   offer: ProductOffer;
   ingredients: string;
-  variants: { name: string; price: number | null; inStock: boolean }[];
+  options: ProductOption[];
   searchText: string;
   searchNames: string[];
   searchSkus: string[];
@@ -101,13 +102,7 @@ export function prepareCatalog(products: readonly CatalogProduct[]) {
       imageAlt: image?.fields.description?.trim() || name,
       offer,
       ingredients,
-      variants: activeVariants.map((variant) => {
-        const variantOffer = productOffer({
-          ...product.commerce,
-          children: [variant],
-        });
-        return { name: variant.name, price: variantOffer.price, inStock: variantOffer.inStock };
-      }),
+      options: productOptions(product.commerce),
       searchNames,
       searchSkus,
       searchText: normalized([

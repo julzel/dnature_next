@@ -37,14 +37,15 @@
 .sizeNames::first-letter { text-transform: uppercase; }
 .referenceNote { color: var(--dn-text-secondary); font-size: 13px; line-height: 1.6; }
 .precautions { display: grid; gap: var(--dn-space-2); padding-block-start: var(--dn-space-3); border-block-start: 1px solid var(--dn-border-default); }
-.precautions h2 { display: flex; align-items: center; gap: var(--dn-space-2); color: var(--dn-surface-dark); font-size: 16px; }
+.precautions h3 { display: flex; align-items: center; gap: var(--dn-space-2); color: var(--dn-surface-dark); font-size: 16px; }
 .precautions ul { display: grid; gap: var(--dn-space-1); margin: 0; padding: 0; list-style: none; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
 .supervision { display: flex; align-items: start; gap: var(--dn-space-2); }
 .supervision svg { flex-shrink: 0; margin-block-start: var(--dn-space-1); }
 .precautions a { justify-self: start; display: inline-flex; align-items: center; min-block-size: 44px; color: var(--dn-surface-dark); font-size: 14px; text-underline-offset: 4px; }
 .options { display: grid; gap: var(--dn-space-3); }
 .offer { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--dn-space-4); }
-.price { color: var(--dn-text-primary); font-size: clamp(24px, 2vw, 28px); font-weight: 750; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.price { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--dn-space-2); color: var(--dn-text-primary); font-size: clamp(24px, 2vw, 28px); font-weight: 750; line-height: 1.3; font-variant-numeric: tabular-nums; }
+.priceTax { color: var(--dn-text-secondary); font-size: 13px; font-weight: 400; white-space: nowrap; }
 .availability { color: var(--dn-text-secondary); font-size: 14px; }
 .availability[data-available="false"] { font-weight: 700; }
 .presentations { min-inline-size: 0; margin: 0; padding: 0; border: 0; }

@@ -2,7 +2,8 @@ import type { CatalogCategory, CatalogListing } from "@/features/catalog/lib/bro
 import type { ProductReference } from "@/features/catalog/types/product-reference";
 
 export type ProductImage = { id: string; url: string; alt: string };
-export type ProductOption = { sku: string; name: string; price: number | null; inStock: boolean; quantityAvailable: number | null };
+import type { ProductOption } from "@/features/catalog/types/product-option";
+export type { ProductOption } from "@/features/catalog/types/product-option";
 export type ProductCopyBlock =
   | { type: "text"; text: string }
   | { type: "table"; rows: { label: string; value: string }[] };

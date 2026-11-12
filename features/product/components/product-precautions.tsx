@@ -7,7 +7,7 @@ export function ProductPrecautions({ reference }: { reference: ProductReference 
   const allergens = reference.allergens && reference.allergens !== "Revisar componentes" ? reference.allergens : null;
 
   return <div className={styles.precautions} aria-labelledby="product-precautions-title">
-    <h2 id="product-precautions-title"><Info size={18} aria-hidden="true" />Antes de elegir</h2>
+    <h3 id="product-precautions-title"><Info size={18} aria-hidden="true" />Antes de elegir</h3>
     <ul>
       {reference.supervision && <li className={styles.supervision}><Eye size={18} aria-hidden="true" /><strong>{reference.supervision}.</strong></li>}
       {reference.chokingRisk && <li>Riesgo de atragantamiento indicado: <strong>{reference.chokingRisk.toLocaleLowerCase("es")}.</strong></li>}
