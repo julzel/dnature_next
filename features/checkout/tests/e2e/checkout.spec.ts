@@ -7,7 +7,7 @@ async function seedCart(page: Page) {
   await page.addInitScript(({ key, item }) => { localStorage.setItem(key, JSON.stringify([item])); }, { key: storageKey, item: sample });
   await page.goto("/carrito");
   await page.getByRole("button", { name: "Continuar al pedido" }).click();
-  await expect(page.getByRole("heading", { name: "Prepará tu pedido" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Completa tu pedido" })).toBeVisible();
 }
 async function contactDetails(page: Page) {
   await page.getByLabel("Nombre completo", { exact: true }).fill("Ana Pérez");

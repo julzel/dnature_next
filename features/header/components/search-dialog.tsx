@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import { Search, X } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type ChangeEvent, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ChangeEvent, type KeyboardEvent, type MouseEvent, type PointerEvent } from "react";
 import { Icon } from "@/components/icon";
 import searchField from "@/components/search-field.module.css";
 import { publicPages } from "@/lib/seo/pages";
 import styles from "./search-dialog.module.css";
+
+function subscribeToHydration() { return () => {}; }
+function clientSnapshot() { return true; }
+function serverSnapshot() { return false; }
 
 function normalizeQuery(value: string) {
   return value.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
@@ -16,6 +20,7 @@ export function SearchDialog({ open, onClose }: {
   open: boolean;
   onClose: () => void;
 }) {
+  const hydrated = useSyncExternalStore(subscribeToHydration, clientSnapshot, serverSnapshot);
   const dialog = useRef<HTMLDialogElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const closeTimer = useRef<number | null>(null);
@@ -91,7 +96,7 @@ export function SearchDialog({ open, onClose }: {
     } else if (!open && element.open) {
       handleClose();
     }
-  }, [open, handleClose]);
+  }, [open, handleClose, hydrated]);
 
   useEffect(function clearPendingCloseOnUnmount() {
     return () => {
@@ -127,6 +132,10 @@ export function SearchDialog({ open, onClose }: {
     event.preventDefault();
     controls[next].focus();
   }
+
+  // Hidden search UI has no server content to expose. Mount it after hydration so
+  // browser autofill attributes cannot change its input before React attaches.
+  if (!hydrated) return null;
 
   return (
     <dialog ref={dialog} id="site-search" className={styles.dialog} aria-labelledby="site-search-title"

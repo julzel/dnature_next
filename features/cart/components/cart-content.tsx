@@ -21,7 +21,7 @@ export function CartContent() {
   function handleContinue() { setStep("details"); requestAnimationFrame(function focusDetails() { document.getElementById("checkout-title")?.focus(); }); }
   function handleBack() { setStep("cart"); requestAnimationFrame(function focusSelection() { document.getElementById("cart-products-heading")?.focus(); }); }
   return <div className={styles.page}>
-    <header className={styles.intro}><h1>Tu carrito.</h1></header>
+    <h1 className="sr-only">Tu carrito.</h1>
     {!cart.ready && <p role="status">Cargando carrito…</p>}
     {(cart.error || error) && <p role="alert">{error || cart.error}</p>}
     {cart.ready && !cart.items.length && !cart.error && <p>Tu carrito está vacío. Explorá los productos para empezar.</p>}

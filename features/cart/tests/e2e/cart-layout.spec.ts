@@ -24,7 +24,7 @@ test("responsive cart overview and steps preserve customer input", async ({ page
     if (width === 1440 || width === 390) await page.screenshot({ path: testInfo.outputPath(`cart-${width}.png`), fullPage: true });
   }
   await page.getByRole("button", { name: "Continuar al pedido" }).click();
-  await expect(page.getByRole("heading", { name: "Prepará tu pedido" })).toBeFocused();
+  await expect(page.getByRole("heading", { name: "Completa tu pedido" })).toBeFocused();
   await expect(page.locator('[aria-current="step"]')).toHaveText("02Datos y entrega");
   await page.getByLabel("Nombre completo", { exact: true }).fill("Ana Pérez");
   await page.getByRole("navigation", { name: "Pasos del pedido" }).getByRole("button", { name: /Carrito/ }).click();

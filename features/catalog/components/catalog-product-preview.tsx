@@ -19,7 +19,7 @@ export function CatalogProductPreview({ product, categories = [], headingLevel =
           {category && <span className={`${styles.productCategory} ${styles.categoryOverlay}`}>{category.label}</span>}
         </Link>
         <div className={`${styles.previewDetails} ${styles.catalogDetails}`}>
-          <Heading><Link href={product.path} prefetch={false}>{product.name}</Link></Heading>
+          <Heading><Link href={product.path} prefetch={false} title={product.name}>{product.name}</Link></Heading>
           <p className={styles.price}>{product.offer.price !== null ? <>{product.offer.fromPrice && <span>Desde </span>}{formatCatalogPrice(product.offer.price)}</> : "Precio a consultar"}</p>
           {product.offer.inStock && <CatalogCartControl parentSku={product.sku} name={product.name} options={product.options} />}
           {!product.offer.inStock && <p className={styles.availability}>Agotado</p>}

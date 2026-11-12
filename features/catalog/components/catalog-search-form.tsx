@@ -15,12 +15,14 @@ export function CatalogSearchForm({ filters, categories, inputRef, onChange, onB
   onClear: () => void;
 }) {
   const params = new URL(catalogFilterUrl(filters, categories), "https://dnature.invalid").searchParams;
+  // Browser autofill can add __gCrUniqueid before hydration. Keep the native GET
+  // form server-rendered and tolerate browser-managed attributes on these nodes.
   return (
-    <form className={styles.searchForm} action="/productos" method="get" role="search" onSubmit={onSubmit}>
+    <form suppressHydrationWarning className={styles.searchForm} action="/productos" method="get" role="search" onSubmit={onSubmit}>
       <div className={searchField.field}>
         <Search className={`${styles.searchIcon} ${searchField.icon}`} size={22} aria-hidden="true" />
-        <input ref={inputRef} id="catalog-search" name="q" type="search" className={searchField.input} value={filters.query} onChange={onChange} onBlur={onBlur} aria-label="Buscar productos" placeholder="Producto, ingrediente o SKU" maxLength={100} autoComplete="off" />
-        {[...params].filter(([key]) => key !== "q").map(([key, value]) => <input key={`${key}-${value}`} type="hidden" name={key} value={value} />)}
+        <input suppressHydrationWarning ref={inputRef} id="catalog-search" name="q" type="search" className={searchField.input} value={filters.query} onChange={onChange} onBlur={onBlur} aria-label="Buscar productos" placeholder="Producto, ingrediente o SKU" maxLength={100} autoComplete="off" />
+        {[...params].filter(([key]) => key !== "q").map(([key, value]) => <input suppressHydrationWarning key={`${key}-${value}`} type="hidden" name={key} value={value} />)}
         {filters.query && <button className={`${styles.clearSearch} ${searchField.action}`} type="button" onClick={onClear} aria-label="Limpiar búsqueda"><X size={20} aria-hidden="true" /><span>Limpiar</span></button>}
       </div>
     </form>

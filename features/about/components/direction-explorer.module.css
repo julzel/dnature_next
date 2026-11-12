@@ -1,9 +1,27 @@
 .explorer { margin-block-start: var(--dn-space-8); }
 
-.tabs {
-  display: flex;
-  gap: var(--dn-space-8);
+.tabRule {
   border-block-end: 1px solid rgb(255 255 255 / 28%);
+}
+
+.tabs {
+  --tab-gap: var(--dn-space-8);
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--tab-gap);
+  max-inline-size: 100%;
+}
+
+.marker {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+  inline-size: calc((100% - var(--tab-gap)) / 2);
+  block-size: 4px;
+  background: var(--dn-brand-orange);
+  transform: translateX(calc(var(--selected-index) * (100% + var(--tab-gap))));
+  pointer-events: none;
 }
 
 .tabs button {
@@ -20,16 +38,24 @@
 }
 
 .tabs button[aria-selected="true"] {
-  border-block-end-color: var(--dn-brand-orange);
   font-weight: 800;
 }
 
 .tabs button:is(:hover, :focus-visible) { text-decoration: underline; }
 .tabs button:focus-visible,
 .panel:focus-visible { outline-color: var(--dn-focus-ring-inverse); }
-.panel:focus-visible { outline-offset: var(--dn-space-2); }
+.panel:focus-visible { outline-offset: calc(-1 * var(--dn-space-1)); }
+
+.panelViewport { overflow: clip; }
+.panelTrack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  inline-size: 200%;
+  transform: translateX(calc(var(--selected-index) * -50%));
+}
 
 .panel {
+  min-inline-size: 0;
   display: grid;
   gap: var(--dn-space-6);
   padding-block-start: var(--dn-space-8);
@@ -94,9 +120,8 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .panel:not([hidden]) { animation: panel-enter 200ms ease-out; }
-  @keyframes panel-enter {
-    from { opacity: 0; transform: translateY(var(--dn-space-1)); }
-    to { opacity: 1; transform: translateY(0); }
+  .panelTrack,
+  .marker {
+    transition: transform 280ms cubic-bezier(0.2, 0, 0, 1);
   }
 }

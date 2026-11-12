@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, type KeyboardEvent, type MouseEvent } from "react";
+import { useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from "react";
 import { directions } from "../data/about-content";
 import styles from "./direction-explorer.module.css";
 
 export function DirectionExplorer() {
-  const [selected, setSelected] = useState<string>(directions[0].id);
+  const [selected, setSelected] = useState(0);
 
   function handleSelect(event: MouseEvent<HTMLButtonElement>) {
-    setSelected(event.currentTarget.value);
+    setSelected(directions.findIndex((direction) => direction.id === event.currentTarget.value));
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
@@ -22,54 +22,62 @@ export function DirectionExplorer() {
       default: return;
     }
     event.preventDefault();
-    setSelected(directions[next].id);
+    setSelected(next);
     const tabs = event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
     tabs?.[next].focus();
   }
 
   return (
-    <div className={styles.explorer}>
-      <div className={styles.tabs} role="tablist" aria-label="Explorá nuestra misión y visión">
-        {directions.map((direction) => (
-          <button
-            key={direction.id}
-            id={`about-${direction.id}-tab`}
-            role="tab"
-            type="button"
-            value={direction.id}
-            aria-selected={selected === direction.id}
-            aria-controls={`about-${direction.id}-panel`}
-            tabIndex={selected === direction.id ? 0 : -1}
-            onClick={handleSelect}
-            onKeyDown={handleKeyDown}
-          >
-            {direction.label}
-          </button>
-        ))}
-      </div>
-      {directions.map((direction) => (
-        <div
-          key={direction.id}
-          id={`about-${direction.id}-panel`}
-          className={styles.panel}
-          role="tabpanel"
-          aria-labelledby={`about-${direction.id}-tab`}
-          hidden={selected !== direction.id}
-          tabIndex={0}
-        >
-          <div className={styles.panelHeading}>
-            <p className={styles.horizon}>{direction.horizon}</p>
-            <h3>{direction.heading}</h3>
-          </div>
-          <div className={styles.copy}>
-            <p>{direction.description}</p>
-            <p>{direction.detail}</p>
-          </div>
-          <ul className={styles.principles} aria-label={`Ejes de nuestra ${direction.label.toLowerCase()}`}>
-            {direction.principles.map((principle) => <li key={principle}>{principle}</li>)}
-          </ul>
+    <div className={styles.explorer} style={{ "--selected-index": selected } as CSSProperties}>
+      <div className={styles.tabRule}>
+        <div className={styles.tabs} role="tablist" aria-label="Explorá nuestra misión y visión">
+          {directions.map((direction, index) => (
+            <button
+              key={direction.id}
+              id={`about-${direction.id}-tab`}
+              role="tab"
+              type="button"
+              value={direction.id}
+              aria-selected={selected === index}
+              aria-controls={`about-${direction.id}-panel`}
+              tabIndex={selected === index ? 0 : -1}
+              onClick={handleSelect}
+              onKeyDown={handleKeyDown}
+            >
+              {direction.label}
+            </button>
+          ))}
+          <span className={styles.marker} aria-hidden="true" />
         </div>
-      ))}
+      </div>
+      <div className={styles.panelViewport}>
+        <div className={styles.panelTrack}>
+          {directions.map((direction, index) => (
+            <div
+              key={direction.id}
+              id={`about-${direction.id}-panel`}
+              className={styles.panel}
+              role="tabpanel"
+              aria-labelledby={`about-${direction.id}-tab`}
+              aria-hidden={selected !== index}
+              inert={selected !== index}
+              tabIndex={selected === index ? 0 : -1}
+            >
+              <div className={styles.panelHeading}>
+                <p className={styles.horizon}>{direction.horizon}</p>
+                <h3>{direction.heading}</h3>
+              </div>
+              <div className={styles.copy}>
+                <p>{direction.description}</p>
+                <p>{direction.detail}</p>
+              </div>
+              <ul className={styles.principles} aria-label={`Ejes de nuestra ${direction.label.toLowerCase()}`}>
+                {direction.principles.map((principle) => <li key={principle}>{principle}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
