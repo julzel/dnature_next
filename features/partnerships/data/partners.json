@@ -1,0 +1,253 @@
+[
+  {
+    "id": "alejandro-quesada-bolanos",
+    "name": "Alejandro Quesada Bolaños",
+    "group": "health",
+    "summary": "Servicios veterinarios con énfasis en ecografía abdominal.",
+    "services": [
+      "Ecografía"
+    ],
+    "modalities": [
+      "home_visit"
+    ],
+    "phones": [
+      {
+        "label": "+506 8525-2661",
+        "href": "tel:+50685252661"
+      }
+    ],
+    "links": [
+      {
+        "kind": "instagram",
+        "href": "https://www.instagram.com/ecopets_dr.quesada/"
+      }
+    ]
+  },
+  {
+    "id": "ana-laura-gonzalez-arias",
+    "name": "Ana Laura González Arias",
+    "group": "health",
+    "summary": "Servicios de dermatología veterinaria y alergias.",
+    "services": [
+      "Dermatología y alergias"
+    ],
+    "modalities": [
+      "in_person"
+    ],
+    "phones": [
+      {
+        "label": "+506 8836-9092",
+        "href": "tel:+50688369092"
+      }
+    ],
+    "links": [],
+    "location": "Escazú centro, San José",
+    "contactNote": "Las citas se coordinan con Sara."
+  },
+  {
+    "id": "catalina-barquero-hernandez",
+    "name": "Catalina Barquero Hernández",
+    "group": "health",
+    "summary": "Atención integrativa que considera distintos aspectos de la salud animal, incluida la alimentación.",
+    "services": [
+      "Medicina integrativa"
+    ],
+    "modalities": [
+      "online",
+      "home_visit"
+    ],
+    "phones": [
+      {
+        "label": "+506 8497-5181",
+        "href": "tel:+50684975181"
+      }
+    ],
+    "links": [
+      {
+        "kind": "instagram",
+        "href": "https://www.instagram.com/dra.catalinabarquero/"
+      }
+    ]
+  },
+  {
+    "id": "esteban-salmeron-sibaja",
+    "name": "Esteban Salmerón Sibaja",
+    "group": "health",
+    "summary": "Servicios de ortopedia y neurocirugía.",
+    "services": [
+      "Ortopedia y neurocirugía"
+    ],
+    "modalities": [
+      "in_person"
+    ],
+    "phones": [
+      {
+        "label": "+506 8314-8343",
+        "href": "tel:+50683148343"
+      }
+    ],
+    "links": [],
+    "organization": "Fisiovet CR"
+  },
+  {
+    "id": "gabriela-pacheco",
+    "name": "Gabriela Pacheco",
+    "group": "health",
+    "summary": "Consultas de etología.",
+    "services": [
+      "Conducta y etología"
+    ],
+    "modalities": [
+      "online",
+      "home_visit"
+    ],
+    "phones": [
+      {
+        "label": "+506 8339-4287",
+        "href": "tel:+50683394287"
+      }
+    ],
+    "links": [
+      {
+        "kind": "website",
+        "href": "http://www.ethosconductaanimal.com/"
+      }
+    ]
+  },
+  {
+    "id": "karla-tatiana-alvarado-rodriguez",
+    "name": "Karla Tatiana Alvarado Rodríguez",
+    "group": "health",
+    "summary": "Consultas de nutrición animal natural para perros y gatos sanos y con patologías.",
+    "services": [
+      "Nutrición animal"
+    ],
+    "modalities": [
+      "online",
+      "in_person"
+    ],
+    "phones": [
+      {
+        "label": "+506 6233-3275",
+        "href": "tel:+50662333275"
+      }
+    ],
+    "links": [
+      {
+        "kind": "booking",
+        "href": "https://calendly.com/mascotica-veterinaria/45m-60m"
+      },
+      {
+        "kind": "website",
+        "href": "https://www.mascotica.com/"
+      },
+      {
+        "kind": "instagram",
+        "href": "https://www.instagram.com/mascoticacom/"
+      }
+    ],
+    "location": "Dulce Nombre, Cartago"
+  },
+  {
+    "id": "maria-jose-pacheco-rojas",
+    "name": "Maria José Pacheco Rojas",
+    "group": "health",
+    "summary": "Medicina veterinaria integrativa para perros, con enfoque en terapias naturales y regenerativas.",
+    "services": [
+      "Medicina integrativa"
+    ],
+    "modalities": [
+      "in_person"
+    ],
+    "phones": [
+      {
+        "label": "+506 8425-5353",
+        "href": "tel:+50684255353"
+      }
+    ],
+    "links": [
+      {
+        "kind": "booking",
+        "href": "https://confirmafy.com/perrolisticocr"
+      },
+      {
+        "kind": "website",
+        "href": "https://perrolistico.com/"
+      }
+    ],
+    "location": "Alajuela, Alajuela"
+  },
+  {
+    "id": "michelle-saravia-hernandez",
+    "name": "Michelle Saravia Hernandez",
+    "group": "health",
+    "summary": "En Fisiovet CR: fisioterapia, rehabilitación, ortopedia, neurocirugía y TAC.",
+    "services": [
+      "Fisioterapia y rehabilitación",
+      "Ortopedia y neurocirugía",
+      "Diagnóstico por imágenes"
+    ],
+    "modalities": [
+      "in_person"
+    ],
+    "phones": [
+      {
+        "label": "+506 8314-8343",
+        "href": "tel:+50683148343"
+      }
+    ],
+    "links": [],
+    "organization": "Fisiovet CR"
+  },
+  {
+    "id": "nancy-chacon-vega",
+    "name": "Nancy Chacon Vega",
+    "group": "wellbeing",
+    "summary": "Estética canina, pastelería y repostería para perros y gatos.",
+    "services": [
+      "Estética canina",
+      "Repostería canina y felina"
+    ],
+    "modalities": [
+      "in_person"
+    ],
+    "phones": [
+      {
+        "label": "+506 8992-6425",
+        "href": "tel:+50689926425"
+      },
+      {
+        "label": "+506 7118-5851",
+        "href": "tel:+50671185851"
+      }
+    ],
+    "links": [],
+    "organization": "Rusti Pets / pawstres&treats"
+  },
+  {
+    "id": "sebastian-pena",
+    "name": "Sebastian Peña",
+    "group": "health",
+    "summary": "Exámenes de sangre, odontología y cirugía.",
+    "services": [
+      "Exámenes de laboratorio",
+      "Odontología",
+      "Cirugía"
+    ],
+    "modalities": [
+      "in_person"
+    ],
+    "phones": [
+      {
+        "label": "+506 6253-2424",
+        "href": "tel:+50662532424"
+      }
+    ],
+    "links": [
+      {
+        "kind": "instagram",
+        "href": "https://www.instagram.com/veterinariadrpena/"
+      }
+    ]
+  }
+]

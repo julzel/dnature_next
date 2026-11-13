@@ -11,6 +11,7 @@ const exploreLinks = [
   { href: "/productos", label: "Productos" },
   { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
   { href: "/nosotros", label: "Quiénes somos" },
+  { href: "/alianzas", label: "Profesionales aliados" },
   { href: "/#contacto", label: "Contacto" },
 ];
 

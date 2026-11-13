@@ -16,6 +16,10 @@ export function AboutInvitation() {
           </Link>
         </div>
         <div className={styles.nextSteps}>
+          <Link href="/alianzas">
+            <span><strong>Conocé profesionales aliados</strong><span>Servicios y contactos para acompañar su cuidado.</span></span>
+            <ArrowUpRight size={24} aria-hidden="true" />
+          </Link>
           <Link href="/ciencia/nuestros-criterios">
             <span><strong>Conocé nuestros criterios</strong><span>Fuentes claras y comunicación responsable.</span></span>
             <ArrowUpRight size={24} aria-hidden="true" />
