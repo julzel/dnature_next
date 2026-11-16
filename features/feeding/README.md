@@ -1,7 +1,7 @@
 # Guided feeding and package estimates
 
 Entry point: the initial guided pet questionnaire continues to
-`/mi-dnature/alimentacion`. Existing names, species and breeds are reused. The
+`/mi-dnature/mis-mascotas`. Existing names, species and breeds are reused. The
 welcome introduces the saved pets and their breed illustrations. Each dog then
 moves through Datos esenciales, Su día a día, and Últimos detalles beside a
 sticky profile. Users can switch pets, review/edit the complete profiles, and

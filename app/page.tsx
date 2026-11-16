@@ -28,6 +28,7 @@ export default function Home() {
         <ExperienceSection
           id="experiencia-personalizada"
           label="Cuéntanos sobre tu mascota"
+          showEyebrow={false}
         >
           <PetExperience />
         </ExperienceSection>

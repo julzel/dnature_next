@@ -52,3 +52,4 @@
   .choiceArrow { transition: none; }
   .choice:hover .choiceArrow { transform: none; }
 }
+.storageNotice { position: fixed; inset-inline: var(--dn-page-gutter); inset-block-end: var(--dn-space-4); z-index: 11; max-inline-size: var(--dn-reading-max); margin-inline: auto; padding: var(--dn-space-4); border-inline-start: 3px solid var(--dn-brand-teal); background: var(--dn-surface-cool); color: var(--dn-text-primary); font-size: 14px; line-height: 1.6; }

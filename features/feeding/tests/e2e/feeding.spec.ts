@@ -5,20 +5,27 @@ import { DRAFT_KEY } from "../../lib/intake";
 const pet = { id: "pet-1", name: "Luna", species: "dog", breed: "Labrador Retriever" };
 async function seed(page: Page, pets = [pet]) {
   await page.addInitScript(({ key, pets }) => localStorage.setItem(key, JSON.stringify({ version: 1, pets })), { key: PET_STORAGE_KEY, pets });
-  await page.goto("/mi-dnature/alimentacion");
+  await page.goto("/mi-dnature/mis-mascotas");
+}
+async function choose(page: Page, name: string, value: string) {
+  const native = page.locator(`select[name="${name}"]`);
+  const id = (await native.getAttribute("id"))!.replace(/-native$/, "");
+  await page.locator(`[id="${id}"]`).click();
+  const label = await native.locator(`option[value="${value}"]`).textContent();
+  await page.getByRole("option", { name: label!, exact: true }).click();
 }
 async function essentials(page: Page, id = pet.id, weight = "20") {
   await page.getByLabel("Edad en años", { exact: true }).fill("3");
   await page.getByLabel("Peso actual en kg").fill(weight);
-  await page.locator(`[name="${id}.lifeStage"]`).selectOption("adult");
-  await page.locator(`[name="${id}.neutered"]`).selectOption("yes");
+  await choose(page, `${id}.lifeStage`, "adult");
+  await choose(page, `${id}.neutered`, "yes");
 }
 async function answer(page: Page, id = pet.id) {
   await essentials(page, id);
   await page.getByRole("button", { name: "Continuar", exact: true }).click();
-  for (const [key, value] of Object.entries({ body: "ideal", activity: "normal", behavior: "calm", brachycephaly: "no" })) await page.locator(`[name="${id}.${key}"]`).selectOption(value);
+  for (const [key, value] of Object.entries({ body: "ideal", activity: "normal", behavior: "calm", brachycephaly: "no" })) await choose(page, `${id}.${key}`, value);
   await page.getByRole("button", { name: "Continuar", exact: true }).click();
-  for (const [key, value] of Object.entries({ health: "healthy", allergyStatus: "no", goal: "wellness" })) await page.locator(`[name="${id}.${key}"]`).selectOption(value);
+  for (const [key, value] of Object.entries({ health: "healthy", allergyStatus: "no", goal: "wellness" })) await choose(page, `${id}.${key}`, value);
   await page.getByRole("button", { name: /Revisar sus datos|Continuar con/ }).click();
 }
 
@@ -72,7 +79,7 @@ test("failed requests retain answers and allow retry; changed input is recalcula
   await expect(page.getByRole("article", { name: "Información de Luna" })).toContainText("20 kg");
   await expect(page.getByRole("button", { name: "Estimar porción y ver paquetes" })).toBeEnabled();
   await page.getByRole("button", { name: "Editar últimos detalles de Luna" }).click();
-  await page.locator('[name="pet-1.health"]').selectOption("condition");
+  await choose(page, "pet-1.health", "condition");
   await page.getByRole("button", { name: "Guardar y revisar" }).click();
   await page.getByRole("button", { name: "Estimar porción y ver paquetes" }).click();
   await expect(page.getByRole("link", { name: "Consultar con DNAture" })).toBeVisible();
@@ -84,11 +91,13 @@ test("multiple pets keep independent answers, breed art, sticky profile and revi
   await seed(page, [pet, { ...pet, id: "pet-2", name: "Toby", breed: "Yorkshire Terrier" }, { ...pet, id: "cat", name: "Milo", species: "cat", breed: "Mestizo" }]);
   await page.getByRole("button", { name: "Conozcámoslos mejor" }).click();
   await essentials(page);
-  await page.getByLabel("Cambiar mascota").selectOption("1");
+  await page.getByRole("combobox", { name: "Cambiar mascota" }).click();
+  await page.getByRole("option", { name: /^Toby/ }).click();
   await expect(page.getByLabel("Peso actual en kg")).toHaveValue("");
   await expect(page.getByRole("complementary").locator("img")).toHaveAttribute("src", "/images/pets/yorkshire-terrier.svg");
   await essentials(page, "pet-2", "5");
-  await page.getByLabel("Cambiar mascota").selectOption("0");
+  await page.getByRole("combobox", { name: "Cambiar mascota" }).click();
+  await page.getByRole("option", { name: /^Luna/ }).click();
   await page.getByRole("button", { name: /01\s*Datos esenciales/ }).click();
   await expect(page.getByLabel("Peso actual en kg")).toHaveValue("20");
   await answer(page);
@@ -107,12 +116,15 @@ test("multiple pets keep independent answers, breed art, sticky profile and revi
   await page.screenshot({ path: testInfo.outputPath("feeding-mobile.png"), fullPage: false });
   await page.reload();
   await expect(page.getByLabel("Peso actual en kg")).toHaveValue("6");
-  await expect(page.getByLabel("Cambiar mascota")).toHaveValue("1");
+  await expect(page.getByRole("combobox", { name: "Cambiar mascota" })).toHaveText(/Toby/);
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("empty, cat-only, invalid requests and invalid saved answers recover clearly", async ({ page, request }) => {
-  const response = await page.goto("/mi-dnature/alimentacion");
+  const redirect = await request.get("/mi-dnature/alimentacion?from=bookmark", { maxRedirects: 0 });
+  expect(redirect.status()).toBe(308);
+  expect(redirect.headers().location).toBe("/mi-dnature/mis-mascotas?from=bookmark");
+  const response = await page.goto("/mi-dnature/mis-mascotas");
   expect(response?.headers()["x-robots-tag"]).toBe("noindex, nofollow");
   await expect(page.getByRole("link", { name: "Iniciar visita guiada" })).toBeVisible();
   await page.evaluate(({ key, draftKey }) => { localStorage.setItem(key, JSON.stringify({ version: 1, pets: [{ id: "cat", name: "Milo", species: "cat", breed: "Mestizo" }] })); sessionStorage.setItem(draftKey, "invalid"); }, { key: PET_STORAGE_KEY, draftKey: DRAFT_KEY });
@@ -125,4 +137,36 @@ test("empty, cat-only, invalid requests and invalid saved answers recover clearl
   const invalid = await request.post("/api/feeding/quote", { data: { days: 28, pets: [], total: 1 } });
   expect(invalid.status()).toBe(400);
   expect(invalid.headers()["cache-control"]).toBe("no-store");
+});
+
+test("shared selects validate required answers and searchable pet switching handles empty results", async ({ page }, testInfo) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await seed(page, Array.from({ length: 7 }, (_, index) => ({ ...pet, id: `pet-${index + 1}`, name: index === 6 ? "Tobías" : `Mascota ${index + 1}` })));
+  await page.getByRole("button", { name: "Conozcámoslos mejor" }).click();
+  await page.getByLabel("Edad en años", { exact: true }).fill("3");
+  await page.getByLabel("Peso actual en kg").fill("20");
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  const lifeStage = page.getByRole("combobox", { name: "Etapa de vida" });
+  await expect(lifeStage).toBeFocused();
+  await expect(lifeStage).toHaveAttribute("aria-invalid", "true");
+  await lifeStage.click();
+  await page.getByRole("option", { name: "Adulto", exact: true }).click();
+  await expect(lifeStage).not.toHaveAttribute("aria-invalid", "true");
+  await expect(page.locator('select[name="pet-1.lifeStage"]')).toHaveValue("adult");
+  const switcher = page.getByRole("combobox", { name: "Cambiar mascota" });
+  await switcher.fill("No existe");
+  await expect(page.getByRole("listbox")).toContainText("No encontramos coincidencias");
+  await switcher.press("Escape");
+  await expect(switcher).toHaveValue("Mascota 1");
+  await switcher.fill("tobias");
+  await expect(page.getByRole("option", { name: "Tobías", exact: true })).toBeVisible();
+  const menuBounds = await page.getByRole("listbox").boundingBox();
+  const controlWidth = await switcher.evaluate((input) => input.parentElement!.getBoundingClientRect().width);
+  expect(Math.abs(menuBounds!.width - controlWidth)).toBeLessThan(1);
+  await page.screenshot({ path: testInfo.outputPath("select-autocomplete-mobile.png") });
+  await switcher.press("ArrowDown");
+  await switcher.press("Enter");
+  await expect(page.getByRole("complementary")).toContainText("Tobías");
+  await expect(page.getByLabel("Peso actual en kg")).toHaveValue("");
+  await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

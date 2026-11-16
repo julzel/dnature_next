@@ -47,7 +47,7 @@ test("experience illustrations reveal on view and respect reduced motion", async
   await expect(explorer).toHaveCSS("animation-name", "none");
 });
 
-test("explore choice and Escape both dismiss the modal", async ({ page }) => {
+test("explore choice is remembered while Escape only dismisses the modal", async ({ page }) => {
   await page.goto("/", { waitUntil: "commit" });
   const dialog = page.getByRole("dialog", { name: "Elegí cómo explorar DNAture", exact: true });
   const initialURL = page.url();
@@ -58,6 +58,9 @@ test("explore choice and Escape both dismiss the modal", async ({ page }) => {
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(initialScroll);
   await expect(page.locator("body")).not.toHaveCSS("overflow", "hidden");
   await page.goto("/", { waitUntil: "commit" });
+  await expect(dialog).toBeHidden();
+  await page.evaluate(() => localStorage.removeItem("dnature.visit-preference.v1"));
+  await page.reload({ waitUntil: "commit" });
   await expect(dialog).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();

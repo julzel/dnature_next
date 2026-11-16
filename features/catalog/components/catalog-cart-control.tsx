@@ -38,7 +38,7 @@ export function CatalogCartControl({ parentSku, name, options }: { parentSku: st
       : !purchasable && !inCart ? <p className={styles.feedback}>Esta presentación ya no está disponible.</p>
       : multiple && !expanded ? <button className={styles.add} type="button" onClick={handleStart} disabled={!cart.ready}><ShoppingCart size={18} strokeWidth={1.5} aria-hidden="true" />Agregar al carrito</button>
       : <>
-        {multiple && <Select id={id} label={`Presentación de ${name}`} value={selected?.sku ?? ""} onValueChange={handleSelection} placeholder="Elegí una presentación" options={currentOptions.map((option) => ({ value: option.sku, label: `${option.name} · ${option.price === null ? "Consultar" : formatCatalogPrice(option.price)}${option.inStock ? "" : " · Agotado"}`, disabled: !option.inStock || option.price === null }))} />}
+        {multiple && <Select autocomplete={currentOptions.length > 8} id={id} label={`Presentación de ${name}`} value={selected?.sku ?? ""} onValueChange={handleSelection} placeholder="Elegí una presentación" options={currentOptions.map((option) => ({ value: option.sku, label: `${option.name} · ${option.price === null ? "Consultar" : formatCatalogPrice(option.price)}${option.inStock ? "" : " · Agotado"}`, disabled: !option.inStock || option.price === null }))} />}
         {selected ? <CatalogCartQuantity key={selected.sku} parentSku={parentSku} name={name} option={selected} onOptionsChange={setOptions} onAdded={handleAdded} onEmpty={handleEmpty} />
           : <p className={styles.feedback}>Elegí una presentación para agregarla al carrito.</p>}
       </>}

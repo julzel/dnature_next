@@ -7,7 +7,7 @@ test("Continuar saves a single pet and the new page survives refresh", async ({ 
   const section = page.locator("#experiencia-personalizada");
   await completePet(section, "Luna");
   await section.getByRole("button", { name: "Continuar", exact: true }).click();
-  await expect(page).toHaveURL(/\/mi-dnature\/alimentacion$/);
+  await expect(page).toHaveURL(/\/mi-dnature\/mis-mascotas$/);
   await expect(page.getByRole("heading", { level: 1, name: "Hola, Luna." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Luna", exact: true })).toBeVisible();
   const stored = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!), PET_STORAGE_KEY);
@@ -32,9 +32,11 @@ test("the fifth slide saves all pets and restored profiles can be edited or exte
   await section.getByRole("button", { name: "Ver mis mascotas" }).click();
   await expect(section.getByRole("heading", { name: "Tus mascotas", exact: true })).toBeFocused();
   await section.getByRole("button", { name: "Continuar", exact: true }).click();
-  await expect(page).toHaveURL(/\/mi-dnature\/alimentacion$/);
+  await expect(page).toHaveURL(/\/mi-dnature\/mis-mascotas$/);
   await expect(page.getByRole("button", { name: "Conozcámoslos mejor" })).toBeVisible();
   await page.getByRole("link", { name: "Editar o agregar mascotas" }).click();
+  await expect(section.getByRole("heading", { name: "¡Qué bueno verlos de nuevo!", exact: true })).toBeVisible();
+  await section.getByRole("button", { name: "Editar o agregar mascotas" }).click();
   await expect(section.getByRole("heading", { name: "Tus mascotas", exact: true })).toBeVisible();
   await section.getByRole("button", { name: "Editar a Luna", exact: true }).click();
   await completePet(section, "Lunita");
@@ -45,7 +47,7 @@ test("the fifth slide saves all pets and restored profiles can be edited or exte
   await section.getByRole("button", { name: "Ver mis mascotas" }).click();
   await expect(section.getByRole("heading", { name: "Tus mascotas", exact: true })).toBeFocused();
   await section.getByRole("button", { name: "Continuar", exact: true }).click();
-  await expect(page).toHaveURL(/\/mi-dnature\/alimentacion$/);
+  await expect(page).toHaveURL(/\/mi-dnature\/mis-mascotas$/);
   await expect(page.getByRole("button", { name: "Conozcámoslos mejor" })).toBeVisible();
   for (const name of ["Lunita", "Sol"]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
   await page.reload();
@@ -67,12 +69,12 @@ test("storage errors preserve the profiles and allow retrying", async ({ page })
   await completePet(section, "Toby", "Perro");
   await section.getByRole("button", { name: "Continuar", exact: true }).click();
   await expect(section.getByRole("alert")).toContainText("No pudimos guardar tus mascotas");
-  await expect(page).not.toHaveURL(/\/mi-dnature\/alimentacion$/);
+  await expect(page).not.toHaveURL(/\/mi-dnature\/mis-mascotas$/);
   await expect(section.getByRole("article", { name: "Ficha de Toby" })).toBeVisible();
   await expect(section.getByRole("button", { name: "Continuar", exact: true })).toBeEnabled();
   await page.evaluate(() => document.documentElement.setAttribute("data-storage-available", "true"));
   await section.getByRole("button", { name: "Continuar", exact: true }).click();
-  await expect(page).toHaveURL(/\/mi-dnature\/alimentacion$/);
+  await expect(page).toHaveURL(/\/mi-dnature\/mis-mascotas$/);
   await expect(page.getByRole("heading", { name: "Toby", exact: true })).toBeVisible();
 });
 

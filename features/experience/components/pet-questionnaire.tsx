@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, LoaderCircle, PawPrint, Pencil, Plus, Monitor } 
 import { PetSpeciesImage } from "@/components/pet-species-image";
 import { getBreedArtwork, type PetSpecies } from "../data/pet-breeds";
 import { MAX_PETS, upsertPet, type PetProfile } from "../data/pet-profiles";
+import { useVisitPreference } from "../hooks/use-visit-preference";
 import { savePetProfiles } from "../data/pet-storage";
 import { BreedCombobox } from "./breed-combobox";
 import { PetProfileCard } from "./pet-profile-card";
@@ -15,6 +16,7 @@ import { PetQuestionnaireIntro } from "./pet-questionnaire-intro";
 import styles from "./pet-questionnaire.module.css";
 
 export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfile[] }) {
+  const visit = useVisitPreference();
   const lastPet = initialPets.at(-1);
   const router = useRouter();
   const [navigating, startNavigation] = useTransition();
@@ -109,14 +111,15 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
     if (viewingPets) form.current?.scrollIntoView({ block: "start", behavior: "auto" });
   }
   function handleEdit() { goToStep(0); }
-  function handleStart() { goToStep(0); }
+  function handleStart() { visit.choose("guided"); goToStep(0); }
+  function handleExplore() { visit.choose("explore"); }
 
   function handleContinue() {
     if (pendingStep.current !== null || navigating || pets.length === 0) return;
     setSaveError("");
     try {
       savePetProfiles(pets);
-      startNavigation(function openMyPets() { router.push("/mi-dnature/alimentacion"); });
+      startNavigation(function openMyPets() { router.push("/mi-dnature/mis-mascotas"); });
     } catch {
       setSaveError("No pudimos guardar tus mascotas en este navegador. Tus respuestas siguen aquí. Revisá el almacenamiento e intentá de nuevo.");
     }
@@ -164,7 +167,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
     } else if (step === 2) {
       if (!breed) {
         setError("Elegí una sugerencia, agregá tu raza o seleccioná «No lo sé».");
-        form.current?.querySelector<HTMLInputElement>("[name=breed]")?.focus();
+        form.current?.querySelector<HTMLInputElement>('[role="combobox"]')?.focus();
         return;
       }
       if (!species) return;
@@ -265,7 +268,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
             <button type="button" className={styles.back} onClick={handleEdit} aria-label="Editar respuestas">
               <Pencil size={20} aria-hidden="true" /><span>Editar respuestas</span>
             </button>
-          ) : <a className={styles.skip} href="#explorar">Prefiero explorar</a>}
+          ) : <a className={styles.skip} href="#explorar" onClick={handleExplore}>Prefiero explorar</a>}
           {welcoming && (
             <button type="button" className={`${styles.next} ${styles.start}`} onClick={handleStart}>
               <span>Empecemos</span><ArrowRight size={24} aria-hidden="true" />
@@ -297,6 +300,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
         </div>
         <p className={styles.storageNote}><Monitor size={16} aria-hidden="true" />Al continuar, sus perfiles se guardan en este navegador.</p>
         <p className="sr-only" role="status">{navigating ? "Preparando su alimentación…" : ""}</p>
+        {visit.error && <p role="status" className={styles.error}>{visit.error}</p>}
         {saveError && <p className={styles.error} role="alert">{saveError}</p>}
       </form>
     </div>

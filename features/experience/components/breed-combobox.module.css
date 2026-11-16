@@ -1,15 +1,3 @@
 .combobox { position: relative; text-align: start; }
-.label { display: block; margin-block-end: var(--dn-space-2); color: var(--dn-text-primary); font-size: 14px; font-weight: 650; }
-.field { position: relative; border-block-end: 2px solid var(--dn-surface-dark); background: var(--dn-surface-cool); }
-.field:focus-within { border-color: var(--dn-brand-orange); outline: 2px solid var(--dn-focus-ring); outline-offset: var(--dn-space-1); }
-.field input { inline-size: 100%; min-block-size: var(--dn-space-16); padding: var(--dn-space-4) var(--dn-space-12) var(--dn-space-4) var(--dn-space-4); border: 0; border-radius: 0; background: transparent; color: var(--dn-text-primary); font-size: 18px; outline: none; }
-.field input::placeholder { color: var(--dn-text-secondary); opacity: 1; }
-.field > svg { position: absolute; inset-inline-end: var(--dn-space-4); inset-block-start: 50%; transform: translateY(-50%); pointer-events: none; color: var(--dn-surface-dark); }
-.options { position: absolute; z-index: 3; inset-inline: 0; inset-block-start: calc(100% + var(--dn-space-2)); max-block-size: 240px; margin: 0; padding: var(--dn-space-2); overflow-y: auto; overscroll-behavior: contain; border: 1px solid var(--dn-border-control); background: var(--dn-surface-base); color: var(--dn-text-primary); list-style: none; }
-.options li { display: flex; align-items: center; justify-content: space-between; gap: var(--dn-space-4); min-block-size: var(--dn-space-12); padding: var(--dn-space-3); border-block-end: 2px solid transparent; cursor: pointer; overflow-wrap: anywhere; }
-.options li[data-active="true"], .options li:hover { background: color-mix(in srgb, var(--dn-brand-orange) 12%, var(--dn-surface-base)); border-block-end-color: var(--dn-brand-orange); }
-.options li[aria-selected="true"] { font-weight: 700; }
-.options svg { flex-shrink: 0; }
-.alias { color: var(--dn-text-secondary); font-size: .875em; }
 .help { margin-block-start: var(--dn-space-3); color: var(--dn-text-secondary); font-size: 14px; line-height: 1.6; }
 .error { margin-block-start: var(--dn-space-3); padding-inline-start: var(--dn-space-3); border-inline-start: 3px solid var(--dn-brand-orange); color: var(--dn-text-primary); font-size: 14px; font-weight: 650; }

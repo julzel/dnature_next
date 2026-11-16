@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowDown, RefreshCw, RotateCcw, Search } from "lucide-react";
 import { useMemo, useState, useTransition, type ChangeEvent } from "react";
+import { Select } from "@/components/select";
 import { Logo } from "@/components/logo";
 import { visibleSales, type SalesFilters } from "../lib/filter-sales";
 import type { SalesDataset } from "../types/sales";
@@ -40,24 +41,24 @@ export function SalesDashboard({ dataset }: { dataset: SalesDataset }) {
     setFilters((current) => ({ ...current, search: event.target.value }));
     setLimit(PAGE_SIZE);
   }
-  function handlePeriod(event: ChangeEvent<HTMLSelectElement>) {
-    setFilters((current) => ({ ...current, period: event.target.value as SalesFilters["period"] }));
+  function handlePeriod(value: string) {
+    setFilters((current) => ({ ...current, period: value as SalesFilters["period"] }));
     setLimit(PAGE_SIZE);
   }
-  function handleCategory(event: ChangeEvent<HTMLSelectElement>) {
-    setFilters((current) => ({ ...current, category: event.target.value }));
+  function handleCategory(value: string) {
+    setFilters((current) => ({ ...current, category: value }));
     setLimit(PAGE_SIZE);
   }
-  function handleChannel(event: ChangeEvent<HTMLSelectElement>) {
-    setFilters((current) => ({ ...current, channel: event.target.value }));
+  function handleChannel(value: string) {
+    setFilters((current) => ({ ...current, channel: value }));
     setLimit(PAGE_SIZE);
   }
-  function handleCurrency(event: ChangeEvent<HTMLSelectElement>) {
-    setFilters((current) => ({ ...current, currency: event.target.value }));
+  function handleCurrency(value: string) {
+    setFilters((current) => ({ ...current, currency: value }));
     setLimit(PAGE_SIZE);
   }
-  function handleSort(event: ChangeEvent<HTMLSelectElement>) {
-    setFilters((current) => ({ ...current, sort: event.target.value as SalesFilters["sort"] }));
+  function handleSort(value: string) {
+    setFilters((current) => ({ ...current, sort: value as SalesFilters["sort"] }));
   }
   function handleReset() {
     setFilters({ period: "6m", search: "", category: "", channel: "", currency: currencies.includes("CRC") ? "CRC" : (currencies[0] ?? ""), sort: "units" });
@@ -105,11 +106,11 @@ export function SalesDashboard({ dataset }: { dataset: SalesDataset }) {
           <label className={styles.searchLabel}>Buscar producto o SKU
             <span className={styles.searchWrap}><Search size={18} aria-hidden="true" /><input type="search" value={filters.search} onChange={handleSearch} placeholder="Buscar producto" /></span>
           </label>
-          <label>Período<select value={filters.period} onChange={handlePeriod}><option value="30">Últimos 30 días</option><option value="90">Últimos 90 días</option><option value="6m">Últimos 6 meses</option></select></label>
-          <label>Categoría<select value={filters.category} onChange={handleCategory}><option value="">Todas</option>{categories.map(([id, label]) => <option key={id} value={id}>{label}</option>)}</select></label>
-          <label>Canal<select value={filters.channel} onChange={handleChannel}><option value="">Todos</option>{channels.map((channel) => <option key={channel} value={channel}>{channel}</option>)}</select></label>
-          {currencies.length > 1 && <label>Moneda<select value={filters.currency} onChange={handleCurrency}>{currencies.map((currency) => <option key={currency} value={currency}>{currency}</option>)}</select></label>}
-          <label>Ordenar por<select value={filters.sort} onChange={handleSort}><option value="units">Más unidades</option><option value="orders">Más órdenes</option><option value="gross">Mayor valor bruto</option><option value="name">Nombre</option></select></label>
+          <Select label="Período" value={filters.period} onValueChange={handlePeriod} options={[{ value: "30", label: "Últimos 30 días" }, { value: "90", label: "Últimos 90 días" }, { value: "6m", label: "Últimos 6 meses" }]} />
+          <Select label="Categoría" value={filters.category} onValueChange={handleCategory} autocomplete={categories.length > 8} options={[{ value: "", label: "Todas" }, ...categories.map(([value, label]) => ({ value, label }))]} />
+          <Select label="Canal" value={filters.channel} onValueChange={handleChannel} autocomplete={channels.length > 8} options={[{ value: "", label: "Todos" }, ...channels.map((value) => ({ value, label: value }))]} />
+          {currencies.length > 1 && <Select label="Moneda" value={filters.currency} onValueChange={handleCurrency} options={currencies.map((value) => ({ value, label: value }))} />}
+          <Select label="Ordenar por" value={filters.sort} onValueChange={handleSort} options={[{ value: "units", label: "Más unidades" }, { value: "orders", label: "Más órdenes" }, { value: "gross", label: "Mayor valor bruto" }, { value: "name", label: "Nombre" }]} />
           <button type="button" className={styles.reset} onClick={handleReset} aria-label="Limpiar filtros"><RotateCcw size={18} aria-hidden="true" /><span>Limpiar filtros</span></button>
         </div>
 

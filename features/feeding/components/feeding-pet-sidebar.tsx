@@ -1,4 +1,4 @@
-import type { ChangeEvent } from "react";
+import { Select } from "@/components/select";
 import { Check } from "lucide-react";
 import { PetSpeciesImage } from "@/components/pet-species-image";
 import { getBreedArtwork } from "@/features/experience/data/pet-breeds";
@@ -11,11 +11,9 @@ export function FeedingPetSidebar({ pets, petIndex, answers, onSelect }: { pets:
   const pet = pets[petIndex];
   const completed = pets.filter((item) => item.species === "dog" && missingGroup(item, answers) === null).length;
   const dogs = pets.filter((item) => item.species === "dog").length;
-  function handleSelect(event: ChangeEvent<HTMLSelectElement>) { onSelect(Number(event.target.value)); }
+  function handleSelect(value: string) { onSelect(Number(value)); }
   return <aside className={styles.petSidebar} aria-label={`Perfil de ${pet.name}`}>
-    {pets.length > 1 && <label className={styles.petSwitcher}>Tu tribu · mascota {petIndex + 1} de {pets.length}
-      <select value={petIndex} onChange={handleSelect} aria-label="Cambiar mascota">{pets.map((item, index) => <option key={item.id} value={index}>{item.name}{item.species === "dog" && missingGroup(item, answers) === null ? " · Datos completos" : item.species === "cat" ? " · Atención personalizada" : ""}</option>)}</select>
-    </label>}
+    {pets.length > 1 && <Select className={styles.petSwitcher} label={`Tu tribu · mascota ${petIndex + 1} de ${pets.length}`} aria-label="Cambiar mascota" value={String(petIndex)} onValueChange={handleSelect} autocomplete={pets.length > 6} options={pets.map((item, index) => ({ value: String(index), label: `${item.name}${item.species === "dog" && missingGroup(item, answers) === null ? " · Datos completos" : item.species === "cat" ? " · Atención personalizada" : ""}` }))} />}
     <div className={styles.petIdentity}>
       <PetSpeciesImage species={pet.species} src={getBreedArtwork(pet.species, pet.breed)} alt="" size={240} />
       <div><p className={styles.kicker}>{pet.species === "dog" ? "Su plan empieza con" : "También cuidamos de"}</p><h2>{pet.name}</h2><p className={styles.breed}>{pet.breed}</p></div>

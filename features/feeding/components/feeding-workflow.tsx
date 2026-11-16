@@ -1,5 +1,6 @@
 "use client";
 
+import { Select } from "@/components/select";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState, type FormEvent } from "react";
@@ -55,9 +56,10 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
   function handleAnswers(event: FormEvent<HTMLFormElement>) {
     const target = event.target;
     if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement) || !target.name) return;
-    const updated = { ...answers, [target.name]: target.value };
-    setAnswers(updated); persist(updated, step);
+    handleAnswerChange(target.name, target.value);
   }
+  function handleAnswerChange(name: string, value: string) { const updated = { ...answers, [name]: value }; setAnswers(updated); persist(updated, step); }
+  function handleDays(value: string) { handleAnswerChange("days", value); }
   function handleStart() { goTo(0); }
   function handlePrevious() { goTo(Math.max(-1, step - 1)); }
   function handleNext(event: FormEvent<HTMLFormElement>) { event.preventDefault(); goTo(editingReview ? flow.length : step + 1); setEditingReview(false); }
@@ -101,7 +103,7 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
       <form onSubmit={handleSubmit} onChange={handleAnswers} aria-label="Revisar datos y preparar paquetes" aria-busy={pending}>
         <fieldset disabled={pending} className={styles.formFields}><legend className="sr-only">Revisión de tus mascotas</legend>
           {pets.map((item, index) => <FeedingPetReview key={item.id} pet={item} index={index} answers={answers} onEdit={handleEdit} />)}
-          <div className={styles.reviewFinish}><label className={styles.period}>Duración del paquete<select name="days" defaultValue={answers.days ?? "28"}><option value="14">14 días</option><option value="28">28 días</option></select></label>
+          <div className={styles.reviewFinish}><Select className={styles.period} label="Duración del paquete" name="days" value={answers.days ?? "28"} onValueChange={handleDays} options={[{ value: "14", label: "14 días" }, { value: "28", label: "28 días" }]} />
             <p>Las porciones son estimaciones. Si hay crecimiento, una condición de salud o alergias, te orientaremos hacia una revisión individual.</p>
             <button type="submit" className={styles.primary}>{pending ? "Preparando sus paquetes…" : "Estimar porción y ver paquetes"}<ArrowRight size={20} aria-hidden="true" /></button>
           </div>
@@ -116,7 +118,7 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
           <h1 tabIndex={-1} ref={heading}>{pet.species === "dog" ? feedingGroups[current.group].title : `Un camino para ${pet.name}`}</h1>
           <p className={styles.stepIntro}>{pet.species === "dog" ? feedingGroups[current.group].description : "Cada especie tiene necesidades distintas. Nuestro equipo te acompañará para definir la alimentación de tu gato; la estimación automática de esta visita es para perros."}</p>
           <form onSubmit={handleNext} onChange={handleAnswers} aria-label={`Datos de ${pet.name}`}>
-            {pet.species === "dog" && <PetFeedingFields pet={pet} group={current.group} answers={answers} />}
+            {pet.species === "dog" && <PetFeedingFields onAnswerChange={handleAnswerChange} pet={pet} group={current.group} answers={answers} />}
             <div className={styles.actions}>
               <button className={styles.backButton} type="button" onClick={handlePrevious} aria-label="Volver al paso anterior"><ArrowLeft size={20} aria-hidden="true" /><span>Volver</span></button>
               <button type="submit" className={styles.primary}>{editingReview ? "Guardar y revisar" : step + 1 === flow.length ? "Revisar sus datos" : flow[step + 1].petIndex !== current.petIndex ? `Continuar con ${pets[flow[step + 1].petIndex].name}` : "Continuar"}<ArrowRight size={20} aria-hidden="true" /></button>

@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "images.ctfassets.net" }],
   },
   headers: () => indexingHeaders(),
+  redirects: () => [{ source: "/mi-dnature/alimentacion", destination: "/mi-dnature/mis-mascotas", permanent: true }],
 };
 
 export default nextConfig;

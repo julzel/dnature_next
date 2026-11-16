@@ -52,7 +52,7 @@ test("variable products require an explicit presentation and synchronize with ca
   const select = group.getByRole("combobox");
   await expect(select).toBeFocused();
   await select.click();
-  await group.getByRole("option", { name: /^pequeño/ }).click();
+  await page.getByRole("option", { name: /^pequeño/ }).click();
   await group.getByRole("button", { name: "Agregar al carrito", exact: true }).click();
   await expect(group.getByRole("spinbutton")).toHaveValue("1", { timeout: 20_000 });
   await expect(select).toContainText("pequeño");

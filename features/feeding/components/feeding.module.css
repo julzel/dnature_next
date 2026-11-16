@@ -11,7 +11,7 @@
 .petFields legend span { font-size: 14px; font-weight: 400; }
 .fields { display: grid; gap: var(--dn-space-6); }
 .page label { display: grid; gap: var(--dn-space-2); font-size: 14px; min-inline-size: 0; }
-.page input, .page select { inline-size: 100%; min-inline-size: 0; min-block-size: 48px; padding: var(--dn-space-3); border: 1px solid var(--dn-border-control); border-radius: 0; background: white; color: var(--dn-text-primary); font: inherit; font-size: 16px; }
+.field > input { inline-size: 100%; min-inline-size: 0; min-block-size: 48px; padding: var(--dn-space-3); border: 1px solid var(--dn-border-control); border-radius: 0; background: white; color: var(--dn-text-primary); font: inherit; font-size: 16px; }
 .period { max-inline-size: 320px; }
 .primary, .secondary { display: inline-flex; align-items: center; justify-content: center; gap: var(--dn-space-4); min-block-size: 48px; padding: var(--dn-space-4) var(--dn-space-6); border: 1px solid var(--dn-text-primary); border-radius: 0; font: inherit; cursor: pointer; }
 .primary { background: var(--dn-brand-orange); color: var(--dn-text-primary); }
@@ -65,7 +65,6 @@
 .petFacts dd { margin: 0; font-weight: 600; }
 .page .tribeProgress { display: none; }
 .petSwitcher { margin-block-end: var(--dn-space-2); }
-.petSwitcher select { padding-block: var(--dn-space-2); }
 .questionPane { min-inline-size: 0; }
 .groupSteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0 0 var(--dn-space-8); border-block-end: 1px solid var(--dn-border-default); }
 .groupSteps button { display: flex; flex-direction: column; align-items: start; gap: var(--dn-space-2); inline-size: 100%; block-size: 100%; padding: var(--dn-space-3) var(--dn-space-2); border: 0; border-block-end: 3px solid transparent; background: transparent; color: var(--dn-text-secondary); text-align: start; font: inherit; font-size: 12px; cursor: pointer; }
@@ -77,7 +76,7 @@
 .field { display: grid; align-content: start; gap: var(--dn-space-2); }
 .field > label { font-size: 16px; color: var(--dn-surface-dark); font-weight: 600; }
 .optional, .field small { font-size: 12px; color: var(--dn-text-secondary); font-weight: 400; line-height: 1.5; }
-.page input:focus, .page select:focus { outline: 2px solid var(--dn-surface-dark); outline-offset: 3px; border-color: var(--dn-brand-teal); }
+.field > input:focus { outline: 2px solid var(--dn-surface-dark); outline-offset: 3px; border-color: var(--dn-brand-teal); }
 .actions { display: flex; align-items: center; justify-content: space-between; gap: var(--dn-space-4); padding-block: var(--dn-space-6); border-block-start: 1px solid var(--dn-border-default); }
 .actions .primary { min-inline-size: 0; }
 .primary svg, .backButton svg { flex-shrink: 0; }
