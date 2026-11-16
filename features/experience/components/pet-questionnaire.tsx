@@ -116,7 +116,7 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
     setSaveError("");
     try {
       savePetProfiles(pets);
-      startNavigation(function openMyPets() { router.push("/mis-mascotas"); });
+      startNavigation(function openMyPets() { router.push("/mi-dnature/alimentacion"); });
     } catch {
       setSaveError("No pudimos guardar tus mascotas en este navegador. Tus respuestas siguen aquí. Revisá el almacenamiento e intentá de nuevo.");
     }
@@ -289,14 +289,14 @@ export function PetQuestionnaire({ initialPets = [] }: { initialPets?: PetProfil
           )}
           {(viewingPets || (complete && pets.length === 1)) && (
             <button type="button" className={styles.next} onClick={handleContinue} disabled={navigating}
-              aria-label={navigating ? "Abriendo mis mascotas" : "Continuar"}>
+              aria-label={navigating ? "Preparando su alimentación" : "Continuar"}>
               <span>{navigating ? "Abriendo…" : "Continuar"}</span>
               {navigating ? <LoaderCircle className={styles.spinner} size={24} aria-hidden="true" /> : <ArrowRight size={24} aria-hidden="true" />}
             </button>
           )}
         </div>
         <p className={styles.storageNote}><Monitor size={16} aria-hidden="true" />Al continuar, sus perfiles se guardan en este navegador.</p>
-        <p className="sr-only" role="status">{navigating ? "Abriendo mis mascotas…" : ""}</p>
+        <p className="sr-only" role="status">{navigating ? "Preparando su alimentación…" : ""}</p>
         {saveError && <p className={styles.error} role="alert">{saveError}</p>}
       </form>
     </div>

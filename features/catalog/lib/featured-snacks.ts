@@ -1,3 +1,4 @@
+import { prepareCatalog, type CatalogCategory, type CatalogListing } from "./browse-catalog";
 import type { SalesBucket } from "@/features/sales/types/sales";
 import type { CatalogProduct } from "../types/catalog";
 import { contentfulImageUrl } from "./contentful-image-url";
@@ -13,6 +14,8 @@ export type FeaturedSnack = {
   imageUrl: string;
   imageAlt: string;
   unitsSold: number;
+  listing: CatalogListing;
+  categories: CatalogCategory[];
 };
 
 function isDehydratedSnack(product: CatalogProduct): boolean {
@@ -36,7 +39,10 @@ export function selectFeaturedSnacks(catalog: readonly CatalogProduct[], buckets
     const src = contentfulImageUrl(image?.fields.file?.url);
     if (!offer.inStock || offer.price === null || !image || !src) return [];
     const name = product.editorial.fields.productName?.trim() || product.commerce.name;
+    const { listings, categories } = prepareCatalog([product]);
     return [{
+      listing: listings[0],
+      categories,
       sku: product.sku,
       path: productPath({ sku: product.sku, slug: product.editorial.fields.urlSlug }),
       name,

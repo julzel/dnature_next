@@ -2,10 +2,6 @@
 .intro h2,
 .message h2 { max-inline-size: var(--dn-reading-max); color: var(--dn-surface-dark); font-size: clamp(30px, 3.6vw, 48px); }
 .grid { display: grid; align-items: start; grid-template-columns: minmax(0, 1fr); gap: var(--dn-space-6); margin: 0; padding: 0; list-style: none; }
-.category { color: var(--dn-category-deshidratados-ink); }
-.productLink { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: var(--dn-space-3); min-block-size: 44px; padding-block: var(--dn-space-2); color: var(--dn-surface-dark); font-size: 13px; font-weight: 600; text-decoration: none; }
-.productLink svg { flex-shrink: 0; }
-.productLink:hover { text-decoration: underline; }
 .message { display: grid; justify-items: start; gap: var(--dn-space-4); color: var(--dn-text-secondary); }
 .retry { min-block-size: 48px; padding-inline: var(--dn-space-6); border: 1px solid var(--dn-surface-dark); background: transparent; color: var(--dn-surface-dark); font-weight: 700; }
 .retry:hover { background: var(--dn-surface-muted); }
@@ -16,7 +12,6 @@
 
 @media (min-width: 640px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--dn-space-12) var(--dn-space-6); }
-  .productLink { margin-block-start: var(--dn-space-2); }
 }
 
 @media (min-width: 1024px) {
