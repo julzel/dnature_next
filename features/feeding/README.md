@@ -2,8 +2,12 @@
 
 Entry point: the initial guided pet questionnaire continues to
 `/mi-dnature/alimentacion`. Existing names, species and breeds are reused. The
-first step collects each dog's remaining inputs; the second shows the daily
-portion and four independently priced alternatives. Cats have a direct review
+welcome introduces the saved pets and their breed illustrations. Each dog then
+moves through Datos esenciales, Su día a día, and Últimos detalles beside a
+sticky profile. Users can switch pets, review/edit the complete profiles, and
+then request the daily portion and four independently priced alternatives.
+Answers and the current step persist per tab, bound to each pet identity.
+Meals per day are optional: a blank answer returns no per-meal breakdown. Cats have a direct review
 path without being assigned a dog's formula.
 
 ## Source analysis

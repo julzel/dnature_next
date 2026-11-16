@@ -6,7 +6,7 @@ import { getBreedArtwork, getBreeds } from "../../data/pet-breeds";
 
 test("every illustrated breed and alias resolves to an existing native SVG", () => {
   const illustrated = getBreeds("dog").filter((breed) => breed.artwork);
-  assert.equal(illustrated.length, 21);
+  assert.equal(illustrated.length, 23);
   for (const breed of illustrated) {
     const expected = `/images/pets/${breed.artwork}.svg`;
     for (const name of [breed.label, ...(breed.aliases ?? [])]) {
@@ -26,6 +26,8 @@ test("Spanish, English and accented saved names select the matching drawing", ()
     ["Poodle", "poodle"], ["Bulldog inglés", "english-bulldog"],
     ["French Bulldog", "french-bulldog"], ["Cattle Dog", "cattle-dog"],
     ["Pitbull", "pitbull"], ["Golden Retriever", "dog"],
+    ["Yorkshire Terrier", "yorkshire-terrier"], ["Yorkie", "yorkshire-terrier"],
+    ["Cocker Spaniel inglés", "cocker-spaniel"], ["English Cocker Spaniel", "cocker-spaniel"],
   ]) assert.equal(getBreedArtwork("dog", name), `/images/pets/${file}.svg`);
 });
 

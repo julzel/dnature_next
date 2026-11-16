@@ -17,7 +17,7 @@ const dogBreeds: Breed[] = [
   { label: "Bulldog francés", aliases: ["French Bulldog"], artwork: "french-bulldog" },
   { label: "Caniche", aliases: ["Poodle"], artwork: "poodle" }, { label: "Cavalier King Charles Spaniel" },
   { label: "Chihuahua", aliases: ["Chihuahueño"], artwork: "chihuahua" }, { label: "Chow Chow" },
-  { label: "Cocker Spaniel inglés" }, { label: "Collie" },
+  { label: "Cocker Spaniel inglés", aliases: ["Cocker Spaniel", "English Cocker Spaniel"], artwork: "cocker-spaniel" }, { label: "Collie" },
   { label: "Dálmata", aliases: ["Dalmatian"], artwork: "dalmatian" },
   { label: "Dóberman", aliases: ["Dobermann", "Doberman", "Doberman Pinscher"], artwork: "doberman" },
   { label: "Golden Retriever", artwork: "dog" }, { label: "Gran danés", aliases: ["Great Dane", "Dogo alemán"] },
@@ -35,7 +35,7 @@ const dogBreeds: Breed[] = [
   { label: "Teckel", aliases: ["Dachshund", "Salchicha", "Tekel"], artwork: "dachshund" },
   { label: "Weimaraner", artwork: "weimaraner" },
   { label: "Welsh Corgi Pembroke" }, { label: "West Highland White Terrier", aliases: ["Westie"] },
-  { label: "Yorkshire Terrier", aliases: ["Yorkie"] },
+  { label: "Yorkshire Terrier", aliases: ["Yorkie"], artwork: "yorkshire-terrier" },
 ];
 
 const catBreeds: Breed[] = [

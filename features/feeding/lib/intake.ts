@@ -10,7 +10,7 @@ const dogSchema = z.object({
   allergyStatus: z.enum(["no", "yes", "unknown"]),
   goal: z.enum(["wellness", "digestion", "skin", "joints", "energy", "weight"]),
   behavior: z.enum(["unknown", "calm", "anxious", "training", "destructive", "energetic", "other"]),
-  brachycephaly: z.enum(["yes", "no", "unknown"]), meals: z.number().int().min(1).max(4),
+  brachycephaly: z.enum(["yes", "no", "unknown"]), meals: z.number().int().min(1).max(4).nullable().default(null),
 }).strict();
 export const feedingPetSchema = z.discriminatedUnion("species", [dogSchema, z.object({ id: z.string().trim().min(1).max(100), name: z.string().trim().min(1).max(60), species: z.literal("cat"), breed: z.string().trim().min(1).max(100) }).strict()]);
 export const quoteRequestSchema = z.object({

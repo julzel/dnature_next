@@ -94,3 +94,12 @@ test("missing or exhausted products leave four explicitly incomplete packages", 
   assert.equal(unusual.pets[0].dailyGrams, null);
   assert.ok(unusual.pets[0].review);
 });
+
+test("optional meal count preserves the daily ration without assuming a schedule", () => {
+  const withoutMeals = quoteRequestSchema.parse({ ...request, pets: [{ ...pet, meals: undefined }] });
+  const result = calculateQuote(withoutMeals, products());
+  assert.equal(result.pets[0].meals, null);
+  assert.equal(result.pets[0].dailyGrams, 600);
+  assert.equal(result.pets[0].packages.length, 4);
+  assert.equal(quoteRequestSchema.safeParse({ ...request, pets: [{ ...pet, meals: 0 }] }).success, false);
+});
