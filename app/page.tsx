@@ -31,7 +31,7 @@ export default function Home() {
         >
           <PetExperience />
         </ExperienceSection>
-        <ExperienceSection id="explorar" label="Variedad de deshidratados" showEyebrow={false}>
+        <ExperienceSection id="explorar" label="Variedad de treats" showEyebrow={false}>
           <Suspense fallback={<BestSellingSnacksLoading />}>
             <BestSellingSnacks />
           </Suspense>

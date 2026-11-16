@@ -6,7 +6,7 @@ export function BestSellingSnacksLoading() {
     <div className={styles.content} aria-busy="true">
       <p className="sr-only" role="status">Cargando deshidratados…</p>
       <div className={styles.intro}>
-        <h2>Variedad de deshidratados</h2>
+        <h2>Variedad de treats</h2>
       </div>
       <ul className={styles.grid} aria-hidden="true">
         {Array.from({ length: 4 }, (_, index) => <CatalogProductSkeleton key={index} />)}

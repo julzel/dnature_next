@@ -196,6 +196,18 @@
       "sha256": "7745b0145b51e96a50f28fed445cecada0ef9be341a30f2ce750d8921465bab2",
       "generation": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-v2-generation.json",
       "method": "Built-in image_gen revision using the first group portrait and approved Boston Terrier as references; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "yorkshire_terrier": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/yorkshire-terrier-source.png",
+      "sha256": "d59d21c915da0f31dbbe41187f65b856bc1578c220bc3f686c7c9fa83b2ebcf2",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/yorkshire-terrier-generation.json",
+      "method": "Built-in image_gen using pomeranian.svg as style reference; traced into native ink/mint SVG paths with vtracer 0.6.15, normalized to the shared 480px canvas and baseline."
+    },
+    "cocker_spaniel": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/cocker-spaniel-source.png",
+      "sha256": "7dd37f63b13480fdc709b510a2c40f81d30310cfddf6057fb6de7b724cd023ad",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/cocker-spaniel-generation.json",
+      "method": "Built-in image_gen using pomeranian.svg as style reference; traced into native ink/mint SVG paths with vtracer 0.6.15, normalized to the shared 480px canvas and baseline."
     }
   },
   "assets": [
@@ -469,6 +481,26 @@
       "variant": "engraving",
       "path": "/images/pets/boston-terrier.svg",
       "source": "boston_terrier",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Yorkshire terrier",
+      "breed": "Yorkshire Terrier",
+      "variant": "engraving",
+      "path": "/images/pets/yorkshire-terrier.svg",
+      "source": "yorkshire_terrier",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Cocker spaniel",
+      "breed": "English Cocker Spaniel",
+      "variant": "engraving",
+      "path": "/images/pets/cocker-spaniel.svg",
+      "source": "cocker_spaniel",
       "recommended_min_width_px": 96,
       "pose": "Standing on four legs, facing right"
     }

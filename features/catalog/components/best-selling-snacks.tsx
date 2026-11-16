@@ -14,7 +14,7 @@ export async function BestSellingSnacks() {
   } catch {
     return (
       <div className={styles.message} role="alert">
-        <h2>Variedad de deshidratados</h2>
+        <h2>Variedad de treats</h2>
         <p>No pudimos cargar los productos en este momento.</p>
         <FeaturedSnacksRetry />
       </div>
@@ -24,7 +24,7 @@ export async function BestSellingSnacks() {
   return (
     <div className={styles.content}>
       <div className={styles.intro}>
-        <h2>Variedad de deshidratados</h2>
+        <h2>Variedad de treats</h2>
       </div>
       {snacks.length ? (
         <ul className={styles.grid}>

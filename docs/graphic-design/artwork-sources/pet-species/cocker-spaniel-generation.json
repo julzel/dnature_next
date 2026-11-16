@@ -1,0 +1,17 @@
+{
+  "created": "2026-11-16",
+  "method": "Built-in image_gen with Pomeranian reference, followed by native SVG tracing.",
+  "prompt": "Transform the supplied Pomeranian into a new COCKER SPANIEL breed illustration for the same DNAture pet set. Reference is ONLY for engraving linework, two-color palette and standing presentation. One realistic adult English Cocker Spaniel standing naturally on all FOUR legs, body in side profile facing RIGHT, head turned gently three-quarter toward viewer. Distinct Cocker Spaniel anatomy: medium-small compact sturdy sporting dog, gently domed head, broad moderately long square muzzle with soft lips, attentive gentle almond eyes, very long low-set pendant lobular ears with flowing wavy silky feathering, smooth short hair on head and back, longer feathering on chest, belly and legs. Four anatomically distinct paws on common baseline. Natural undocked feathered tail extends back with a gentle lift, not curled over back. Calm attentive closed-mouth expression. Match reference with mint-dominant engraved illustration, crisp tapered deep-ink strokes following fur growth, airy crosshatching and clear silhouette. ONLY luminous mint #8FE4D9 and deep cool ink teal #092F39. Preserve ample mint highlights and avoid solid dark masses. Flat opaque mint inside dog, genuine alpha outside and between legs. Square canvas generous margins around paws, ears and tail, entire animal uncropped. No props, collars, clothing, text, logo, additional animals, floor, ground shadow, halo, glow, haze, printed checkerboard, photographic textures, gradients, cartoon or 3D. No white, warm colors or black. Cocker Spaniel breed traits must replace ALL Pomeranian characteristics while retaining graphic style.",
+  "source_png": "cocker-spaniel-source.png",
+  "style_reference": "public/images/pets/pomeranian.svg",
+  "output": "public/images/pets/cocker-spaniel.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  }
+}
