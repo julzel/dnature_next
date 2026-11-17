@@ -112,11 +112,13 @@
 }
 
 .header[data-light-background] .navigation,
+.header[data-light-background] .navigation a,
 .header[data-light-background] .actionControl {
   color: var(--dn-text-primary);
 }
 
 .header:not([data-light-background]) .navigation,
+.header:not([data-light-background]) .navigation a,
 .header:not([data-light-background]) .actionControl {
   color: #fff;
 }

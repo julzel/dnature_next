@@ -14,7 +14,7 @@ export function CatalogProductPreview({ product, categories = [], headingLevel =
       <article className={styles.catalogArticle}>
         <Link href={product.path} prefetch={false} className={styles.previewImage} aria-label={`Ver ${product.name}`}>
           {product.imageUrl
-            ? <Image src={product.imageUrl} alt={product.imageAlt} fill sizes="(max-width: 639px) 32vw, (max-width: 899px) 46vw, (max-width: 1279px) 33vw, 304px" />
+            ? <Image src={product.imageUrl} alt={product.imageAlt} fill sizes="(max-width: 639px) 40vw, (max-width: 899px) 46vw, (max-width: 1279px) 33vw, 304px" />
             : <span className={styles.imageFallback} aria-hidden="true">DN</span>}
           {category && <span className={`${styles.productCategory} ${styles.categoryOverlay}`}>{category.label}</span>}
         </Link>
