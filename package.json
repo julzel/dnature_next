@@ -17,6 +17,7 @@
     "test:e2e": "playwright test --project=chromium --project=firefox --project=webkit --project=mobile-chromium",
     "test:seo": "playwright test --project=seo",
     "test:seo:preview": "playwright test --config=playwright.preview.config.ts",
+    "test:seo:canary": "playwright test --config=playwright.canary.config.ts",
     "test:regression": "playwright test tests/regression",
     "test:regression:update": "playwright test tests/regression --update-snapshots",
     "test:ui": "playwright test --ui",

@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# These branch-specific settings also apply when Netlify calls the branch
+# its production deployment. The public website has a separate indexing opt-in.
+[context.development.environment]
+  SEO_INDEXING_ENABLED = "false"
+
+[context.canary.environment]
+  SEO_INDEXING_ENABLED = "false"
+
+[context.branch-deploy.environment]
+  SEO_INDEXING_ENABLED = "false"
+
+[context.deploy-preview.environment]
+  SEO_INDEXING_ENABLED = "false"

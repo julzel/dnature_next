@@ -18,3 +18,10 @@ test("preview exposes no sitemap entries but permits bots to read noindex", asyn
   expect(await robots.text()).toContain("Allow: /");
   expect(await robots.text()).not.toContain("Sitemap:");
 });
+
+for (const path of ["/contacto", "/mi-dnature/mis-mascotas", "/images/pets/dog.svg", "/this-page-does-not-exist"]) {
+  test(`non-indexable deployment also protects ${path}`, async ({ request }) => {
+    const response = await request.get(path);
+    expect(response.headers()["x-robots-tag"]).toBe("noindex, nofollow");
+  });
+}

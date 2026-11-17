@@ -30,6 +30,7 @@ jobs:
       - run: npm run test:services
       - run: npm test
       - run: npm run test:seo:preview
+      - run: npm run test:seo:canary
       - run: npm run typecheck
       - name: Upload report and failure artifacts
         if: ${{ !cancelled() }}

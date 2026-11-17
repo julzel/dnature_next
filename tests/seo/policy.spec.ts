@@ -10,6 +10,13 @@ for (const [name, env] of [
   ["development", { ...production, NODE_ENV: "development" }],
   ["Vercel preview", { ...production, VERCEL_ENV: "preview" }],
   ["Netlify preview", { ...production, CONTEXT: "deploy-preview" }],
+  ["Netlify development production branch", { ...production, CONTEXT: "production", BRANCH: "development" }],
+  ["Netlify development HEAD", { ...production, CONTEXT: "production", HEAD: "development" }],
+  ["canary branch", { ...production, BRANCH: "canary" }],
+  ["full development branch ref", { ...production, BRANCH: "refs/heads/development" }],
+  ["Vercel development production branch", { ...production, VERCEL_ENV: "production", VERCEL_GIT_COMMIT_REF: "development" }],
+  ["canary canonical origin", { ...production, SITE_URL: "https://canary.dnaturefood.com" }],
+  ["unrecognized canonical origin", { ...production, SITE_URL: "https://preview.example.com" }],
 ] as const) {
   test(`${name} cannot expose an indexable sitemap or page`, () => {
     const config = resolveSeoConfig(env);
@@ -24,6 +31,15 @@ for (const [name, env] of [
 test("production requires an explicit indexing opt-in", () => {
   expect(resolveSeoConfig({ NODE_ENV: "production" }).indexable).toBe(false);
   expect(resolveSeoConfig(production).indexable).toBe(true);
+  expect(resolveSeoConfig({ ...production, CONTEXT: "production", BRANCH: "main" }).indexable).toBe(true);
+  expect(resolveSeoConfig({ ...production, SITE_URL: "https://www.dnaturefood.com" }).indexable).toBe(true);
+});
+
+test("even a production build sends noindex on the canary host", () => {
+  expect(indexingHeaders(resolveSeoConfig(production))).toContainEqual({
+    source: "/:path*", has: [{ type: "host", value: "canary\\.dnaturefood\\.com" }],
+    headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+  });
 });
 
 test("canonical URLs reject foreign origins, queries, and invalid deployment URLs", () => {

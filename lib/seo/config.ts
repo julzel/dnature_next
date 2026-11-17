@@ -12,6 +12,8 @@ export const privateRoots = [
 ] as const;
 
 type Environment = Record<string, string | undefined>;
+const productionHosts = new Set(["dnaturefood.com", "www.dnaturefood.com"]);
+const nonIndexableBranches = new Set(["development", "canary"]);
 
 export function resolveSeoConfig(env: Environment) {
   const url = new URL(env.SITE_URL || brand.origin);
@@ -29,12 +31,15 @@ export function resolveSeoConfig(env: Environment) {
   }
   const preview =
     (env.VERCEL_ENV !== undefined && env.VERCEL_ENV !== "production") ||
-    (env.CONTEXT !== undefined && env.CONTEXT !== "production");
+    (env.CONTEXT !== undefined && env.CONTEXT !== "production") ||
+    [env.BRANCH, env.HEAD, env.VERCEL_GIT_COMMIT_REF].some((branch) =>
+      branch !== undefined && nonIndexableBranches.has(branch.replace(/^refs\/heads\//, "")),
+    );
   return {
     origin: url.origin,
     indexable:
       env.NODE_ENV === "production" &&
-      env.SEO_INDEXING_ENABLED === "true" && !preview,
+      env.SEO_INDEXING_ENABLED === "true" && !preview && productionHosts.has(url.hostname),
     trainingPolicy: trainingPolicy as "inherit" | "allow" | "disallow",
     googleVerification: env.GOOGLE_SITE_VERIFICATION,
     bingVerification: env.BING_SITE_VERIFICATION,
@@ -60,6 +65,10 @@ export function isPrivatePath(path: string) {
 export function indexingHeaders(config: SeoConfig = seoConfig) {
   const headers = [{ key: "X-Robots-Tag", value: "noindex, nofollow" }];
   return config.indexable
-    ? privateRoots.map((root) => ({ source: `/${root}/:path*`, headers }))
+    ? [
+      ...privateRoots.map((root) => ({ source: `/${root}/:path*`, headers })),
+      // Protect the canary alias even if a production-configured build serves it.
+      { source: "/:path*", has: [{ type: "host" as const, value: "canary\\.dnaturefood\\.com" }], headers },
+    ]
     : [{ source: "/:path*", headers }];
 }

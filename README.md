@@ -91,10 +91,27 @@ requirement mapping, content gates, remaining dependencies, and launch checks.
 The default setup is **noindex**. To enable indexing on a reviewed production
 deployment, set `SEO_INDEXING_ENABLED=true` and rebuild. The canonical origin is
 configured by `SITE_URL`, defaulting to `https://dnaturefood.com`. Known Vercel and
-Netlify preview environments remain noindex even if the flag is enabled. Other
-hosting providers must leave the flag disabled on their preview deployments.
+Netlify preview environments and the `development` / `canary` branches remain
+noindex even if the flag is enabled or the host labels the deploy `production`.
+Only `dnaturefood.com` and `www.dnaturefood.com` can opt into indexing. Other
+hosting providers must leave the flag disabled on preview deployments.
 `.env.example` documents the settings; preserve existing secrets when adding them
 to `.env.local` or deployment configuration.
+
+Canary releases target the `development` branch. `netlify.toml` disables indexing
+for that branch, the `canary` branch, deploy previews and branch deploys. These
+builds send `X-Robots-Tag: noindex, nofollow`, render matching robots metadata,
+return an empty sitemap and omit the sitemap declaration from robots.txt. A
+host-specific HTTP header also protects `canary.dnaturefood.com` if a production
+build is accidentally served there. Keep crawling allowed so search engines can
+read the noindex instruction; a robots.txt crawl block would prevent that.
+These directives control search visibility, not access: anyone with the URL can
+still visit canary. Existing indexed URLs disappear after a search engine recrawls
+them. See [Google's noindex guidance](https://developers.google.com/search/docs/crawling-indexing/block-indexing).
+
+Run `npm run test:seo:canary` to verify the development branch stays non-indexable
+even with production context and `SEO_INDEXING_ENABLED=true`. After deployment,
+check the live HTML metadata, HTTP headers and `/sitemap.xml` on the canary domain.
 
 Implemented: unique page metadata, canonicals, Open Graph/social images,
 Organization/WebSite identity, visible breadcrumbs with JSON-LD, sitemap,
