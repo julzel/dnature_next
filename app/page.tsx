@@ -34,14 +34,14 @@ export default function Home() {
         >
           <PetExperience />
         </ExperienceSection>
-        <ExperienceSection id="explorar" label="Variedad de treats" showEyebrow={false}>
+        <ExperienceSection id="explorar" label="Treats populares" showEyebrow={false}>
           <Suspense fallback={<BestSellingSnacksLoading />}>
             <BestSellingSnacks />
           </Suspense>
         </ExperienceSection>
         <CategoryGallery />
-        <Contact />
         <PartnershipsPreview />
+        <Contact />
       </main>
       <Footer />
     </>
