@@ -1,0 +1,14 @@
+{
+  "created": "2026-11-16",
+  "method": "Built-in image_gen",
+  "reference": "public/images/hero.png",
+  "source": "docs/graphic-design/artwork-sources/hero/hero-mobile-source.png",
+  "output": "public/images/hero-mobile.webp",
+  "prompt": "Use case: photorealistic-natural.\nAsset type: portrait mobile website hero background for DNAture, 9:16 aspect ratio, ideally 1080 x 1920 pixels.\nInput image: the existing desktop hero is the visual reference. Create a new art-directed portrait composition, preserving the same recognizable tan Belgian Malinois-type dog with black muzzle, tall upright ears, friendly open mouth, brown eyes and lifted front paw, and the same lush tropical forest trail, ferns and natural photographic lighting.\nComposition: the dog is fully readable in the LOWER HALF of the portrait, centered slightly right, ears starting around 48% of image height, paws within frame around 92%. Keep breathing room on both sides and below paws for phone cropping. The UPPER 45% is naturally dark, soft-focus deep green forest foliage with very low detail and even tones: generous quiet negative space for a separately rendered white heading and buttons. Smooth continuous forest scene from top to bottom, no obvious gradient seam, no graphic panel. Dog remains a strong appealing focal point even at 360px wide. Camera near dog's eye level; natural proportions, alert cheerful expression, forward walking pose.\nStyle: premium realistic editorial animal photography matching the reference, sharp eyes and detailed coat, gentle depth of field, cool shadow greens, soft daylight filtered through trees. Maintain natural dog coat colors. Do not make an illustration or engraving.\nConstraints: exactly one dog; anatomically correct legs and paws, no extra limbs; preserve the reference dog's identity and forest atmosphere. No people, collar, product, text, lettering, logo, watermark, border or UI. Not a simple center crop of the wide reference: recomposed intentionally for a narrow portrait screen.",
+  "usage": "Homepage hero below 768px, using a responsive picture source; desktop uses hero.png.",
+  "encoding": {
+    "format": "webp",
+    "quality": 85,
+    "effort": 6
+  }
+}

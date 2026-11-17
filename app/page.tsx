@@ -7,9 +7,11 @@ import { ExperienceArrivalDialog } from "@/features/experience/components/experi
 import { ExperienceSection } from "@/features/experience/components/experience-section";
 import { PetExperience } from "@/features/experience/components/pet-experience";
 import { Contact } from "@/features/contact/components/contact";
+import { PartnershipsPreview } from "@/features/partnerships/components/partnerships-preview";
 import { Footer } from "@/features/footer/components/footer";
 import { BestSellingSnacks } from "@/features/catalog/components/best-selling-snacks";
 import { BestSellingSnacksLoading } from "@/features/catalog/components/best-selling-snacks-loading";
+import { CategoryGallery } from "@/features/catalog/components/category-gallery";
 
 export const metadata = pageMetadata({
   path: "/",
@@ -32,11 +34,13 @@ export default function Home() {
         >
           <PetExperience />
         </ExperienceSection>
-        <ExperienceSection id="explorar" label="Variedad de treats" showEyebrow={false}>
+        <ExperienceSection id="explorar" label="Treats populares" showEyebrow={false}>
           <Suspense fallback={<BestSellingSnacksLoading />}>
             <BestSellingSnacks />
           </Suspense>
         </ExperienceSection>
+        <CategoryGallery />
+        <PartnershipsPreview />
         <Contact />
       </main>
       <Footer />

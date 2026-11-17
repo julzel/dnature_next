@@ -1,0 +1,29 @@
+{
+  "created": "2026-11-16",
+  "method": "Built-in image_gen edit of an earlier pet-care concept; native SVG tracing with vtracer 0.6.15. Earlier unused concepts were removed at the user’s request.",
+  "source_png": "dog-caring-for-cat-v2-source.png",
+  "prompt": "Edit the supplied DNAture illustration with ONLY these requested changes, keeping the same mixed-breed dog, same mixed-breed tabby cat, composition, proportions, mint-and-ink engraving style and transparent background.\n\n1. Change the dog's caring gesture: its mouth is gently CLOSED, with NO TONGUE visible anywhere. The dog carefully rests the underside of its chin/lower jaw ON the crown of the cat's head, a soft, light resting contact between the cat's ears. The dog's muzzle should be held more horizontally, directed toward the right, and its eyes look thoughtfully toward the distant horizon at the upper right, NOT downward at the cat and NOT toward the viewer. Calm, protective and serene. Make the head-to-head contact readable, without crushing, flattening or hiding the cat's ears.\n2. HIDE the dog's anatomical FRONT LEFT leg: this is the far-side foreleg that currently wraps behind the cat and ends in the large isolated dog paw at the FAR RIGHT edge of the reference. Remove that visible far-right paw and the wrapping leg entirely from view, so that foreleg is naturally occluded behind the dog/cat. Do NOT remove or change the other front leg extending across the LOWER CENTER foreground. Keep the dog's hind leg on the left and its tail as they are. The cat's rightmost silhouette should now end naturally with its own curled striped tail/body, with alpha transparency beyond it, not with a dog paw.\n3. Preserve the CAT EXACTLY as closely as possible: same curled lying pose, head angle, peacefully closed eyes, relaxed upright ears, striped markings, delicate whiskers, two front paws and curled tail. No changes to its expression. Keep the dog and cat clearly anatomically distinct.\n\nKeep everything else unchanged: dog lying on LEFT, cat nestled on RIGHT against its chest. Same natural mixed-breed features, fine tapered engraved fur strokes, crisp crosshatching, luminous mint #8FE4D9 and deep cool ink teal #092F39 ONLY. Landscape 3:2, full uncropped animals, breathing room on all sides, no humans, props, symbols, text, collar, backdrop, glow, haze or ground shadow. Preserve genuine alpha transparency outside the animals and throughout gaps; opaque mint within the animals. This is a precise revision of the reference, not a new art style or different scene. Essential: closed dog mouth, NO tongue, dog's chin resting gently on the cat's head while gazing at the horizon, NO dog paw at the far right.",
+  "output": "../../../../public/images/pets/dog-caring-for-cat-v2.svg",
+  "canvas": [
+    1536,
+    1024
+  ],
+  "changes": [
+    "Dog rests its chin gently on the cat's head and looks toward the horizon.",
+    "Dog's mouth is closed, with no visible tongue.",
+    "Far-side front left leg and paw behind the cat are hidden.",
+    "Cat retains its curled resting pose and peaceful closed-eye expression."
+  ],
+  "composition": "Mixed-breed dog lying on the left with its chin resting on the mixed-breed tabby cat's head. The dog looks toward the horizon; the cat sleeps beside its chest.",
+  "subject_counts": {
+    "dogs": 1,
+    "cats": 1
+  },
+  "background": "transparent",
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "placement": "Selected for the homepage Alianzas DNAture section, rendered by features/partnerships/components/partnerships-preview.tsx.",
+  "source_sha256": "52e62b9f44fe27a41e7643c6521b00d1757aa1d885fa5a68b7e334bfb081f1e2"
+}

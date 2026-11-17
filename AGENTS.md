@@ -67,6 +67,14 @@ does not require an unrelated repository-wide refactor.
   identify those categories in catalog and product contexts. Category colors do
   not become general brand, action, status, or background colors.
 
+- Main-header search and cart controls must share one action class and identical
+  geometry, icon size/stroke, colors, hover, keyboard focus, pressed, expanded,
+  and current-page styling on both transparent and solid headers. Use square
+  44px touch targets, a soft teal interaction fill with dark icons and a teal
+  lower accent, and a visible surface-appropriate focus outline. Keep the cart
+  count separate from the control state. On desktop, center the text navigation
+  independently of the logo and right-aligned action icons.
+
 ## Folder structure
 
 - Use vertical slices: organize application code by feature or business capability,

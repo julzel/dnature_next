@@ -29,7 +29,7 @@ test("mission and vision support selection and keyboard navigation", async ({ pa
 test("brand pillars open with the keyboard and keep only one expanded", async ({ page }) => {
   const science = page.locator("details").filter({ has: page.locator("summary").getByText("Ciencia", { exact: true }) });
   const conscience = page.locator("details").filter({ has: page.locator("summary").getByText("Conciencia", { exact: true }) });
-  const community = page.locator("details").filter({ has: page.locator("summary").getByText("Tribu", { exact: true }) });
+  const community = page.locator("details").filter({ has: page.locator("summary").getByText("Manada", { exact: true }) });
   await expect(science).toHaveAttribute("open", "");
   await conscience.locator("summary").focus();
   await conscience.locator("summary").press("Enter");

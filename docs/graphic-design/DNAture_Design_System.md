@@ -1,8 +1,8 @@
 # DNAture — Digital Design System
 
-**Version:** 0.5 — Revised brandbook palette and accessible five-category theme
+**Version:** 0.6 — Manada community concept and current website direction
 
-**Updated:** 2026-11-09
+**Updated:** 2026-11-16
 
 **Scope:** Public website, catalog, product detail, customer account, educational content, cart and checkout
 
@@ -426,6 +426,8 @@ For buttons inline alongside other elements, show the icon without visible text 
 
 **[REQUIRED]** Important public pages are discoverable through main navigation, the footer, and contextual links. Links are crawlable and descriptive. Use real navigation links for page destinations; do not rely on client-only experience switching to expose content.
 
+**Main-header action controls [PROJECT]:** Search and cart share a single action style, including 44 × 44px square targets and 22px Lucide icons with 1.5px strokes. Hover, keyboard focus, pressed, expanded, and current-page states use the same soft teal fill, dark icon, and brand-teal lower accent. Focus adds a visible 3px outline: white over the transparent dark hero and dark blue over the solid light header. Preserve the cart count independently. Apply the same treatment to the mobile menu trigger. Desktop text navigation is centered independently of the logo and the right-aligned action group; navigation links contain no icons.
+
 **Main navigation active state [PROJECT]:** Use exact brand teal `#00A9B5` for desktop and mobile navigation underlines, with a soft teal background. Keep navigation labels at the same regular font weight in default, hover, focus, and active states. Reuse the shared center-out underline and background animation on hover and keyboard focus; retain both for the active item. Keep labels dark on the soft fill, including over the transparent homepage header. Respect reduced motion. Preserve dark text on light surfaces rather than using teal for small text. Mark the current page with `aria-current="page"`, retain Productos as current on nested product routes, and use `aria-current="location"` for Contacto while its homepage section is visible. Desktop and mobile navigation share the same selection rules.
 
 **Proposed primary navigation:** Productos · Ciencia y aprendizaje · Nosotros · Ayuda, with search, account, and cart utilities. Use the current route structure and verified catalog when implementing.
@@ -495,6 +497,8 @@ Use “nutrición fisiológica” when it accurately describes the subject. Expl
 The vocabulary on p. 14 restricts **BARF**, **huesos carnosos**, **presas completas**, and generic **snacks** for functional products. Use **órganos** with anatomical precision instead of **vísceras**. Use the current category names for navigation; a historical family term such as Treats may appear only where it accurately describes a product. Later comparative campaign examples do not turn BARF into an authorized DNAture category label.
 
 ### 8.2 Content structure [REQUIRED]
+
+**Community concept [REQUIRED, user direction 2026-11-16]:** Use **manada** in current website copy in place of **tribu**. The manada brings together dogs, cats, their guardians, and the professionals who support their care. It expresses belonging, mutual support, and respect for each animal's individuality. Use “Tu manada DNAture”, “Cuidar es mejor en manada” and “Ciencia. Conciencia. Manada.” where appropriate. This is an inclusive community metaphor, not a claim about animal social behavior or hierarchy. The JSON retains the original brandbook term as source evidence and records the current wording under `project_context.community_concept`.
 
 - Give each section a clear subject, a useful explanation, and an appropriate next step.
 - Use one descriptive page H1 and a logical heading hierarchy. Eyebrows do not carry the heading structure.

@@ -67,7 +67,7 @@
   display: none;
   align-items: center;
   gap: var(--header-gap);
-  margin-inline-start: auto;
+  margin-inline-start: 0;
 }
 
 .actions {
@@ -86,41 +86,54 @@
   text-decoration: none;
 }
 
-.searchToggle {
+.actionControl {
   display: grid;
   place-items: center;
   flex-shrink: 0;
   inline-size: 44px;
   block-size: 44px;
-  padding: 0;
+  padding: 2px 0 0;
   border: 0;
-  border-radius: 50%;
+  border-block-end: 2px solid transparent;
+  border-radius: 0;
   background: transparent;
   color: var(--header-blue);
 }
 
-.searchToggle:hover,
-.searchToggle[aria-expanded="true"] {
-  background: var(--dn-surface-muted);
+.actionControl {
+  text-decoration: none;
+  outline-offset: var(--dn-space-1);
+}
+
+.actionControl svg {
+  inline-size: 22px;
+  block-size: 22px;
+  stroke-width: 1.5;
 }
 
 .header[data-light-background] .navigation,
-.header[data-light-background] .searchToggle {
+.header[data-light-background] .actionControl {
   color: var(--dn-text-primary);
 }
 
 .header:not([data-light-background]) .navigation,
-.header:not([data-light-background]) .searchToggle {
+.header:not([data-light-background]) .actionControl {
   color: #fff;
 }
 
-.header:not([data-light-background]) .searchToggle:hover,
-.header:not([data-light-background]) .searchToggle[aria-expanded="true"] {
-  color: var(--header-blue);
+/* One state contract for links and buttons, on every header surface. */
+.header .actionControl:is(:hover, :focus-visible, :active, [aria-expanded="true"], [aria-current="page"]) {
+  background: color-mix(in srgb, var(--dn-brand-teal) 12%, var(--dn-surface-cool));
+  color: var(--dn-text-primary);
+  border-block-end-color: var(--dn-brand-teal);
+}
+
+.actionControl:focus-visible {
+  outline: 3px solid var(--dn-focus-ring);
 }
 
 .header:not([data-light-background]) .navigation a:focus-visible,
-.header:not([data-light-background]) .searchToggle:focus-visible {
+.header:not([data-light-background]) .actionControl:focus-visible {
   outline-color: #fff;
 }
 
@@ -136,11 +149,22 @@
 }
 
 @media (min-width: 1024px) {
+  .bottom .container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .logo {
+    justify-self: start;
+  }
+
   .navigation {
     display: flex;
+    justify-content: center;
   }
 
   .actions {
+    justify-self: end;
     margin-inline-start: 0;
   }
 }

@@ -17,7 +17,7 @@ const exploreLinks = [
 
 const learnLinks = [
   { href: "/nosotros#proposito", label: "Nuestro propósito" },
-  { href: "/nosotros#esencia", label: "Ciencia, conciencia y tribu" },
+  { href: "/nosotros#esencia", label: "Ciencia, conciencia y manada" },
   { href: "/ciencia/nuestros-criterios", label: "Criterios de publicación" },
 ];
 
@@ -33,7 +33,7 @@ export function Footer() {
     <footer id="footer" className={styles.footer} aria-label="Pie de página">
       <div className={styles.statement}>
         <div className={styles.container}>
-          <SectionEyebrow label="Ciencia. Conciencia. Tribu." color="var(--dn-text-primary)" />
+          <SectionEyebrow label="Ciencia. Conciencia. Manada." color="var(--dn-text-primary)" />
           <div className={styles.statementLayout}>
             <h2>{brand.tagline}</h2>
             <div className={styles.invitation}>
@@ -81,7 +81,7 @@ export function Footer() {
           </div>
           <div className={styles.bottom}>
             <p>DNAture · Costa Rica</p>
-            <p>Ciencia para comprender. Conciencia para cuidar. Tribu para acompañar.</p>
+            <p>Ciencia para comprender. Conciencia para cuidar. Manada para acompañar.</p>
           </div>
         </div>
       </div>

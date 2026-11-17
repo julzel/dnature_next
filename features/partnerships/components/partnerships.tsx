@@ -19,7 +19,7 @@ export function Partnerships() {
       actions={<a href="#directorio">Encontrá tu profesional <ArrowDown size={20} strokeWidth={1.5} aria-hidden="true" /></a>} /></div>
     <section className={styles.statement} aria-labelledby="care-title">
       <div className={`${styles.container} ${styles.statementGrid}`}>
-        <div><SectionEyebrow label="Cuidar en comunidad" color="var(--dn-text-primary)" lineColor="var(--dn-text-primary)" /><h2 id="care-title">Una tribu que<br />te acompaña<MoveUpRight size={48} strokeWidth={1} aria-hidden="true" /></h2></div>
+        <div><SectionEyebrow label="Cuidar en comunidad" color="var(--dn-text-primary)" lineColor="var(--dn-text-primary)" /><h2 id="care-title">Una manada que<br />te acompaña<MoveUpRight size={48} strokeWidth={1} aria-hidden="true" /></h2></div>
         <div className={styles.statementCopy}><HeartHandshake size={48} strokeWidth={1} aria-hidden="true" /><p>Nutrición, conducta, movimiento y bienestar: cada mirada aporta a una atención más completa.</p><p>Encontrá el servicio que necesitás y conversá con quien lo ofrece.</p></div>
       </div>
     </section>

@@ -208,6 +208,12 @@
       "sha256": "7dd37f63b13480fdc709b510a2c40f81d30310cfddf6057fb6de7b724cd023ad",
       "generation": "docs/graphic-design/artwork-sources/pet-species/cocker-spaniel-generation.json",
       "method": "Built-in image_gen using pomeranian.svg as style reference; traced into native ink/mint SVG paths with vtracer 0.6.15, normalized to the shared 480px canvas and baseline."
+    },
+    "dog_caring_for_cat_v2": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/dog-caring-for-cat-v2-source.png",
+      "sha256": "52e62b9f44fe27a41e7643c6521b00d1757aa1d885fa5a68b7e334bfb081f1e2",
+      "generation_record": "docs/graphic-design/artwork-sources/pet-species/dog-caring-for-cat-v2-generation.json",
+      "method": "Built-in image_gen edit of dog-caring-for-cat-source.png; native SVG tracing with vtracer 0.6.15."
     }
   },
   "assets": [
@@ -575,6 +581,24 @@
       "arrangement": "One seated row with interspersed sizes and species",
       "supersedes": "/images/pets/pet-diversity.svg",
       "recommended_min_width_px": 800
+    },
+    {
+      "label_es": "Cuidarnos en manada, descanso protector",
+      "path": "/images/pets/dog-caring-for-cat-v2.svg",
+      "source": "dog_caring_for_cat_v2",
+      "view_box": [
+        0,
+        0,
+        1536,
+        1024
+      ],
+      "background": "transparent",
+      "subject_counts": {
+        "dogs": 1,
+        "cats": 1
+      },
+      "composition": "Mixed-breed dog lying on the left with its chin resting on the mixed-breed tabby cat's head. The dog looks toward the horizon; the cat sleeps beside its chest.",
+      "recommended_min_width_px": 400
     }
   ]
 }
