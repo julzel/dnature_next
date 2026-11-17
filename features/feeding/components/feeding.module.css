@@ -32,7 +32,6 @@
 .quietLink { display: block; inline-size: fit-content; padding-block: var(--dn-space-3); color: var(--dn-surface-dark); font-size: 14px; text-underline-offset: 4px; }
 .welcomePets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); align-content: center; gap: var(--dn-space-8); list-style: none; padding: var(--dn-space-8); margin: 0; background: var(--dn-surface-cool); }
 .welcomePets li { text-align: center; min-inline-size: 0; }
-.welcomePets img { margin-inline: auto; inline-size: min(100%, 240px); block-size: auto; }
 .welcomePets h2 { font-size: 24px; overflow-wrap: anywhere; }
 .welcomePets p { font-size: 14px; color: var(--dn-text-secondary); margin-block: var(--dn-space-2); overflow-wrap: anywhere; }
 .journey { display: grid; gap: var(--dn-space-8); align-items: start; }

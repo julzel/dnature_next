@@ -1,8 +1,7 @@
 import type { Ref } from "react";
 import Link from "next/link";
 import { ArrowCta } from "@/components/arrow-cta";
-import { PetSpeciesImage } from "@/components/pet-species-image";
-import { getBreedArtwork } from "@/features/experience/data/pet-breeds";
+import { PetGroupPortrait } from "@/features/experience/components/pet-group-portrait";
 import type { PetProfile } from "@/features/experience/data/pet-profiles";
 import styles from "./feeding.module.css";
 
@@ -17,7 +16,7 @@ export function FeedingWelcome({ pets, onStart, headingRef }: { pets: PetProfile
       <Link href="/#experiencia-personalizada" className={styles.quietLink}>Editar o agregar mascotas</Link>
     </div>
     <ul className={styles.welcomePets}>{pets.map((pet) => <li key={pet.id}>
-      <PetSpeciesImage species={pet.species} src={getBreedArtwork(pet.species, pet.breed)} alt="" size={240} />
+      <PetGroupPortrait pet={pet} proportional={pets.length > 1} />
       <h2>{pet.name}</h2><p>{pet.breed}</p>
     </li>)}</ul>
   </section>;

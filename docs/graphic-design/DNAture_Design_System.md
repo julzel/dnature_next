@@ -299,6 +299,8 @@ Use the default dark tone on light surfaces and `tone="light"` on dark surfaces.
 
 **Website treatment [REQUIRED]**
 
+- When several saved pets appear together, use the shared `PetGroupPortrait` and internal breed-size metadata (`mini`, `small`, `medium`, `large`, `extra-large`). Align their paws on a common baseline, preserve intrinsic proportions, and keep names readable. These approximate illustration classes do not determine weight, portions, or eligibility. Unknown sizes retain neutral artwork fallbacks; single portraits keep their full-size presentation. See [group sizing guidance](pet-species-assets.md#relative-size-in-group-portraits).
+
 - Place imagery directly in the composition with square edges or a natural transparent cutout. Use no rounded masks, circular crops, decorative mats, borders around each product image, or added drop shadows.
 - Place image captions in the document flow. If text overlays a photograph, provide a readable continuous treatment without a floating caption box.
 - Keep product representations accurate. A photographic shadow already in an authentic product image is not permission to add CSS elevation.
