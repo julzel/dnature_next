@@ -12,9 +12,9 @@ path without being assigned a dog's formula.
 
 ## Source analysis
 
-The source is `dnature_website/src/features/quotations/builder/index.ts`, engine
-`internal-package-builder-v1.26.0`. It is the current production calculation
-capability, rather than the older simplified `nutritionPlan`/explorer flow.
+The storefront calls `@dnature/feeding-engine` for daily portions and the four
+packages. The source lives in `dnature_website/src/features/quotations/engine`
+and is maintained with the sales application.
 
 - Adult portions use weight, neutering, body condition, activity and a calculator
   size band (up to 4 kg, up to 25 kg, over 25 kg). Percentages are multiplied by
@@ -40,18 +40,13 @@ capability, rather than the older simplified `nutritionPlan`/explorer flow.
 
 ## Adaptation and improvements
 
-The framework-independent dependency closure is retained under `engine/` with a
-source commit and SHA-256 manifest in `engine/provenance.json`. This preserves the
-existing food, dose, stock, rotation and conservation rules together. It contains
-no authentication, database client, external transport or legacy UI. The only
-runtime dependency added is the engine's Zod validator. No sibling-repository
-imports are needed to build or deploy this site.
+The npm manifest pins the tarball under `vendor/`. Update the shared source,
+pack a new version, put it in `vendor/`, and run `npm install ./vendor/<tarball>`
+to refresh the manifest and lockfile. The package includes the nutrition catalog,
+corrections and purchasing rules. The container optimizer tests live with the
+shared engine.
 
-The purchasing optimizer previously pruned states by cost even when the selected
-objective was fewer containers. The port now uses that objective during pruning
-as well as final selection; a regression test contrasts both objectives.
-
-The new server adapter uses **published products and inspected parent SKU
+The server adapter uses **published products and inspected parent SKU
 bindings** from this site's catalog. Source rows and exact source names must
 match. Prices and inventory always come from this site's current commerce
 snapshot and shared `productOptions` policy, never the reference workbook.
@@ -108,6 +103,6 @@ specific gram percentages or package compositions.
 
 Server tests cover the source's golden portion cases, invalid input, special-case
 review, SKU binding, real-price adaptation, stock failure, four packages, preserved
-ration, IVA and the container optimizer correction. Browser checks cover guided
+ration, practical rounding and IVA. Browser checks cover guided
 handoff, multiple pets, successful live-catalog calculation, error/retry, back and
 refresh, cat-only flow, keyboard forms, narrow viewports and noindex behavior.

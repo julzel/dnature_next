@@ -1,8 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { calculatePortion, type PortionProfile } from "../../engine/quotations/portion";
-import { optimizePacks } from "../../engine/quotations/builder/purchasing";
-import { variantSchema } from "../../engine/catalog/avify/model";
+import { calculateDailyPortion, calculatePortion, type PortionProfile } from "@dnature/feeding-engine/portion";
 import { calculateQuote, createFeedingQuote } from "../../server/quote";
 import { quotationCatalog } from "../../server/catalog-adapter";
 import { quoteRequestSchema, reviewReason, type QuoteRequest } from "../../lib/intake";
@@ -26,12 +24,6 @@ function products(): CatalogProduct[] {
 test("all legacy portion golden cases remain compatible; invalid weights fail", () => {
   for (const fixture of golden.cases) assert.equal(calculatePortion(fixture.input as PortionProfile), fixture.expected);
   for (const weight of [NaN, Infinity, 0, -1, 101]) assert.equal(calculatePortion({ ...golden.cases[0].input, weight } as PortionProfile), null);
-});
-
-test("container objective retains the fewer-container state even when it costs more", () => {
-  const offers = [100, 200].map((amount, index) => ({ amount, offer: variantSchema.parse({ sku: String(amount), name: `${amount}g`, status: "active", qty: 100, price: index ? 100 : 1 }) }));
-  assert.deepEqual(optimizePacks(offers, 400, "containers").map((line) => [line.offer.sku, line.quantity]), [["200", 2]]);
-  assert.deepEqual(optimizePacks(offers, 400, "cost").map((line) => [line.offer.sku, line.quantity]), [["100", 4]]);
 });
 
 test("strict input validation rejects injected prices, invalid values and duplicate profiles", () => {
@@ -83,6 +75,19 @@ test("four packages preserve daily serving, calculate real containers and includ
   assert.equal(shorter.pets[0].dailyGrams, 600);
   assert.ok(shorter.pets[0].packages[0].total < dog.packages[0].total);
   assert.ok(!JSON.stringify(result).includes('"raw"'));
+});
+
+test("package estimates use the shared practical portion for the same profile", () => {
+  const answers = { ...pet, weight: 8.5, activity: "calm" } as const;
+  const portion = calculateDailyPortion({ ...answers, neutered: true }, request.days);
+  assert.deepEqual(portion, { rawDailyGrams: 212.5, dailyGrams: 220 });
+  const dog = calculateQuote({ ...request, pets: [answers] }, products()).pets[0];
+  assert.equal(dog.rawDailyGrams, portion!.rawDailyGrams);
+  assert.equal(dog.dailyGrams, portion!.dailyGrams);
+  assert.equal(dog.packages.length, 4);
+  for (const pack of dog.packages) {
+    assert.equal(pack.mixDailyGrams + pack.complementDailyGrams, portion!.dailyGrams);
+  }
 });
 
 test("missing or exhausted products leave four explicitly incomplete packages", () => {

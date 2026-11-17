@@ -3,7 +3,7 @@ import { getCatalogProducts } from "@/features/catalog/server/catalog";
 import { productPath } from "@/features/catalog/lib/product-path";
 import { orderTotals } from "@/features/checkout/lib/checkout";
 import type { CatalogProduct } from "@/features/catalog/types/catalog";
-import { buildQuote } from "../engine/quotations/builder";
+import { buildQuote } from "@dnature/feeding-engine";
 import { quoteRequestSchema, reviewReason, type QuoteRequest } from "../lib/intake";
 import type { QuoteResponse, FeedingResult } from "../lib/result";
 import { quotationCatalog } from "./catalog-adapter";

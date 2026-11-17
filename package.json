@@ -24,6 +24,7 @@
     "test:report": "playwright show-report"
   },
   "dependencies": {
+    "@dnature/feeding-engine": "file:vendor/dnature-feeding-engine-0.1.1.tgz",
     "@next/env": "^16.4.5",
     "lucide-react": "^1.69.0",
     "next": "16.4.5",

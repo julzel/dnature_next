@@ -1,17 +1,17 @@
 import "server-only";
 import type { CatalogProduct } from "@/features/catalog/types/catalog";
 import { productOptions } from "@/features/catalog/lib/product-offer";
-import source from "../engine/sandbox/data/product-catalog.json";
-import { prepareProducts } from "../engine/sandbox/catalog";
-import { productSchema } from "../engine/catalog/avify/model";
-import type { CuratedItem } from "../engine/quotations/nutrition";
+import type { CatalogSnapshot } from "@dnature/feeding-engine";
+import { productSchema } from "@dnature/feeding-engine/avify";
+import { prepareProducts } from "@dnature/feeding-engine/catalog";
+import source from "@dnature/feeding-engine/catalog-source";
 import bindings from "@/features/catalog/data/product-reference-bindings.json";
 
 const references = new Map(prepareProducts(source.records).map((product) => [product.row, product]));
 const bySku = new Map(bindings.map((binding) => [binding.sku, binding]));
 
 /** Only published, explicitly bound parent SKUs can enter the quotation engine. */
-export function quotationCatalog(products: CatalogProduct[]): CuratedItem[] {
+export function quotationCatalog(products: CatalogProduct[]): CatalogSnapshot["items"] {
   return products.flatMap((product) => {
     const binding = bySku.get(product.sku);
     const catalog = binding && references.get(binding.row);
