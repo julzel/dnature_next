@@ -1,11 +1,12 @@
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import faq from "../data/faq.json";
+import { FaqAnswerLink } from "./faq-answer-link";
 import styles from "./faq.module.css";
 
 type Question = (typeof faq.questions)[number];
 
-export function FaqQuestion({ question }: { question: Question }) {
+export function FaqQuestion({ question, ready }: { question: Question; ready: boolean }) {
   return (
     <details id={`pregunta-${question.id}`} className={styles.question}>
       <summary>
@@ -22,6 +23,7 @@ export function FaqQuestion({ question }: { question: Question }) {
             <p>Fuentes de orientación</p>
             <ul>{question.sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}<span className="sr-only"> (abre en otra pestaña)</span></a></li>)}</ul>
           </div>}
+          <FaqAnswerLink id={question.id} ready={ready} />
         </div>
       </div>
     </details>

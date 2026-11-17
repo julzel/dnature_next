@@ -1,12 +1,11 @@
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowCta } from "@/components/arrow-cta";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageHero } from "@/components/page-hero";
-import { SectionEyebrow } from "@/components/section-eyebrow";
 import { Footer } from "@/features/footer/components/footer";
 import { Header } from "@/features/header/components/header";
 import { FaqExplorer } from "@/features/faq/components/faq-explorer";
-import faq from "@/features/faq/data/faq.json";
+import { FaqHelp } from "@/features/faq/components/faq-help";
 import { pageMetadata } from "@/lib/seo/metadata";
 import styles from "@/features/faq/components/faq.module.css";
 
@@ -23,25 +22,17 @@ export default function FaqPage() {
       <Header solid />
       <main id="contenido">
         <PageHero
+          className={styles.hero}
           title="Preguntas"
           accent="frecuentes"
           titleId="faq-title"
-          description={`Encontrá orientación sobre nuestros productos, preparación y cuidados en ${faq.questions.length} preguntas organizadas por tema.`}
+          description="Entender su alimentación también es cuidar. Encontrá respuestas para acompañar a tu manada, desde su primer plato."
           navigation={<Breadcrumbs items={[{ name: "Inicio", path: "/" }, { name: "Preguntas frecuentes", path: "/preguntas-frecuentes" }]} />}
+          actions={<ArrowCta href="#respuestas" label="Encontrar mi respuesta" tone="light" />}
+          media={<div className={styles.heroArtwork}><Image src="/images/pets/dog-caring-for-cat-v2.svg" alt="" width={1536} height={1024} /></div>}
         />
         <FaqExplorer />
-        <section className={styles.help} aria-labelledby="faq-help-title">
-          <div className={`${styles.container} ${styles.helpGrid}`}>
-            <div>
-              <SectionEyebrow label="Sigamos conversando" color="var(--dn-text-primary)" lineColor="var(--dn-text-primary)" />
-              <h2 id="faq-help-title">¿Todavía tenés dudas?</h2>
-              <p>Contanos qué necesitás. Estamos para escucharte y ayudarte a encontrar un buen punto de partida.</p>
-            </div>
-            <Link className={styles.helpLink} href="/#contacto">
-              Contactar a DNAture <ArrowUpRight size={24} aria-hidden="true" />
-            </Link>
-          </div>
-        </section>
+        <FaqHelp />
       </main>
       <Footer />
     </>
