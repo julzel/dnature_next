@@ -1,7 +1,7 @@
 .contact {
   padding: var(--dn-space-12) var(--dn-page-gutter);
   scroll-margin-block-start: var(--dn-header-height);
-  background: var(--dn-surface-cool);
+  background: var(--dn-surface-base);
 }
 
 .container {

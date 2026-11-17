@@ -1,6 +1,6 @@
 .section {
   padding: var(--dn-space-12) var(--dn-page-gutter);
-  background: var(--dn-surface-base);
+  background: var(--dn-surface-cool);
   color: var(--dn-surface-dark);
   scroll-margin-block-start: var(--dn-header-height);
 }

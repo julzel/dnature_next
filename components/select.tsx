@@ -177,7 +177,7 @@ export function Select<Value extends string>({ label, value, options, onValueCha
 
   const accessible = { "aria-label": ariaLabel, "aria-labelledby": ariaLabel ? undefined : labelId, "aria-haspopup": "listbox" as const, "aria-activedescendant": expanded && highlightedIndex >= 0 ? `${id}-option-${highlightedIndex}` : undefined, "aria-describedby": description, "aria-invalid": validationError ? true : invalid, "aria-required": required || undefined };
   return <div ref={rootRef} className={`${styles.field}${className ? ` ${className}` : ""}`} data-disabled={unavailable || undefined} onBlur={handleBlur}>
-    <label id={labelId} htmlFor={enhanced ? id : `${id}-native`} className={styles.label}>{label}{optional && <span className={styles.optional}>Opcional</span>}</label>
+    <label id={labelId} htmlFor={enhanced ? id : `${id}-native`} className={styles.label}>{label}</label>
     <div ref={controlRef} className={styles.control}>
       <select id={`${id}-native`} name={name} form={form} value={value} onChange={handleNativeChange} onInvalid={handleInvalid} required={required} disabled={disabled} tabIndex={enhanced ? -1 : undefined} aria-hidden={enhanced || undefined} className={enhanced ? styles.nativeEnhanced : styles.native} aria-label={ariaLabel} aria-describedby={describedBy} aria-invalid={invalid}>
         {!options.some((option) => option.value === "") && <option value="" disabled hidden>{placeholder}</option>}
