@@ -4,5 +4,6 @@ export const publicPages = [
   { path: "/nosotros", title: "Quiénes somos" },
   { path: "/alianzas", title: "Profesionales aliados" },
   { path: "/preguntas-frecuentes", title: "Preguntas frecuentes" },
+  { path: "/preguntas-frecuentes/transicion-alimentaria", title: "Transición a una dieta natural" },
   { path: "/ciencia/nuestros-criterios", title: "Nuestros criterios de publicación" },
 ] as const;

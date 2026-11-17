@@ -31,6 +31,14 @@ therapeutic claims and product-specific restrictions must not be generalized.
 Existing safety qualifications and external source links remain in place. The
 reference stays in `docs/` and is not imported by the page or its search index.
 
+The transition answer links to `/preguntas-frecuentes/transicion-alimentaria`.
+Its server-rendered guide presents four gradual steps, species-specific native
+disclosures, and signs that call for veterinary help. It uses the shared page
+hero, metadata, breadcrumbs and support section. The guide is listed in the
+public sitemap registry and footer; `public_guides` in the welcome reference
+maps each section to document claims and retained FAQ qualifications. No fixed
+schedule or dosage is derived from the source's disputed protocols.
+
 The page is statically rendered with all questions in HTML. Search and topic
 filters operate on the public JSON in the browser; the topic index and native
 disclosures remain usable without JavaScript. Questions can be edited or added

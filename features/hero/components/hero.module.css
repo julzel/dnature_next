@@ -73,20 +73,6 @@
   background: #e6eff5;
 }
 
-.image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    to right,
-    rgb(9 47 57 / 82%) 0%,
-    rgb(9 47 57 / 65%) 35%,
-    rgb(9 47 57 / 20%) 70%,
-    rgb(9 47 57 / 0%) 100%
-  );
-}
-
 .photo {
   object-fit: cover;
   object-position: center;
@@ -117,12 +103,4 @@
     padding-block-end: 100vw;
   }
 
-  .image::after {
-    background: linear-gradient(
-      to bottom,
-      rgb(9 47 57 / 60%) 0%,
-      rgb(9 47 57 / 40%) 40%,
-      rgb(9 47 57 / 0%) 65%
-    );
-  }
 }

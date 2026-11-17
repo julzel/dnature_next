@@ -2,7 +2,7 @@
   "schema_version": "2.0.0",
   "locale": "es-CR",
   "source_record": "features/faq/data/development-faq.json",
-  "editorial_note": "Based on the remote development FAQ. Selected answers were revised using the DNAture welcome guide, with physical PDF page evidence and exclusions recorded in docs/nutrition/DNAture_Welcome_Reference.json. Other answers, questions, topics and links were retained. Product labels and current availability still require confirmation; the guide is not independent clinical validation.",
+  "editorial_note": "Based on the remote development FAQ. Selected answers were revised using the DNAture welcome guide, with physical PDF page evidence and exclusions recorded in docs/nutrition/DNAture_Welcome_Reference.json. Other answers, questions, topics and existing links were retained. The transition answer also links to its dedicated guide. Product labels and current availability still require confirmation; the guide is not independent clinical validation.",
   "topics": [
     {
       "id": "alimentacion-natural",
@@ -225,17 +225,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Consultá con tu veterinario cómo hacer el cambio para tu mascota. La transición puede variar según su edad, salud y alimentación actual; no existe un calendario único adecuado para todos.",
+          "text": "Empezá con una pequeña cantidad de una receta adecuada para tu mascota, junto a su comida habitual. Observá el apetito, las heces y su actividad. Si la acepta y la tolera bien, aumentá gradualmente la nueva comida y reducí la anterior según su plan.",
           "items": []
         },
         {
-          "type": "paragraph",
-          "text": "Introducí una receta a la vez y observá la aceptación, las heces y la aparición de vómitos o molestias antes de incorporar otra. El ritmo debe ajustarse a su respuesta, no a un calendario fijo.",
-          "items": []
-        },
-        {
-          "type": "paragraph",
-          "text": "Si observás una reacción que te preocupe, pausá el cambio y consultá con tu veterinario. No iniciés un ayuno sin indicación profesional.",
+          "type": "note",
+          "text": "Cada mascota tiene su ritmo. Si hay rechazo o molestias, no sigás aumentando y consultá con su veterinario. No la dejés sin comer para forzar el cambio.",
           "items": []
         }
       ],
@@ -243,7 +238,12 @@
         "como hacer transicion"
       ],
       "sources": [],
-      "links": [],
+      "links": [
+        {
+          "label": "Ver la guía de transición a una dieta natural",
+          "url": "/preguntas-frecuentes/transicion-alimentaria"
+        }
+      ],
       "source_question_id": "como-hacer-transicion",
       "editorial_status": "document_supported_revision"
     },

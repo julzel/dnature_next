@@ -658,6 +658,85 @@
           "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
         }
       ]
+    },
+    {
+      "id": "small-gradual-introduction",
+      "summary": "La guía permite ofrecer el alimento nuevo en pequeñas proporciones junto a la dieta habitual y aumentar progresivamente según tolerancia.",
+      "scope": "Adaptación de perros y gatos; sin reemplazo gramo por gramo, porcentajes o cronograma universal.",
+      "faq_use": "scoped_summary",
+      "evidence": [
+        {
+          "pdf_page": 10,
+          "excerpt": "mezclarlo en pequeñas",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 10,
+          "excerpt": "proporciones con la dieta actual para estimular su",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 13,
+          "excerpt": "Si no se presentan reacciones",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 13,
+          "excerpt": "adversas, incrementa gradualmente la cantidad del",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 25,
+          "excerpt": "No aumentar la proporción del nuevo alimento si se",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        }
+      ]
+    },
+    {
+      "id": "transition-monitoring",
+      "summary": "Observar las heces, energía, comportamiento, aceptación y molestias; llevar un registro para ajustar el plan.",
+      "scope": "Transición; no interpreta aceptación o heces como prueba de adecuación nutricional.",
+      "faq_use": "scoped_summary",
+      "evidence": [
+        {
+          "pdf_page": 13,
+          "excerpt": "Lleva un registro diario para documentar cualquier",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 13,
+          "excerpt": "vómitos, gases o diarrea.",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 25,
+          "excerpt": "Monitoreo digestivo y conductual:",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        }
+      ]
+    },
+    {
+      "id": "digestive-vet-signs",
+      "summary": "La guía pide acudir al veterinario ante sangre en heces, vómitos frecuentes, fiebre, letargo o deshidratación; destaca el cuidado de cachorros, geriátricos e inmunosuprimidos.",
+      "scope": "Señales de consulta; no se adopta el tratamiento casero, ayuno ni soluciones de hidratación de la misma página.",
+      "faq_use": "scoped_summary",
+      "evidence": [
+        {
+          "pdf_page": 84,
+          "excerpt": "Es importante acudir al veterinario sin demoras",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 84,
+          "excerpt": "cuando las heces contengan sangre o mucosidad en",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        },
+        {
+          "pdf_page": 84,
+          "excerpt": "exceso, si hay vómitos frecuentes, fiebre, letargo",
+          "normalization": "Ligaduras tipográficas y espacios normalizados; sin cambiar palabras."
+        }
+      ]
     }
   ],
   "documented_product_families": [
@@ -1171,13 +1250,20 @@
         "decision": "updated",
         "claim_ids": [
           "gradual-transition",
+          "small-gradual-introduction",
+          "transition-monitoring",
+          "cat-no-force",
           "one-recipe-at-a-time"
         ],
         "pdf_pages": [
           9,
+          10,
+          13,
+          25,
           38
         ],
-        "answer_sha256": "23bacf469f96f7d64aaa62a2caf14b2ada84b8655ee993d534a7107f089ef6d1"
+        "answer_sha256": "7520900d09e3e5b07dfec60e026ff0d0553169b56d5fb5935a4bfce2c5d3df53",
+        "related_guide_path": "/preguntas-frecuentes/transicion-alimentaria"
       },
       {
         "question_id": "tiempo-de-adaptacion",
@@ -2315,6 +2401,77 @@
       "printed_page_label": null,
       "reuse_status": "source_only_not_publication_ready",
       "layout_text": ""
+    }
+  ],
+  "public_guides": [
+    {
+      "path": "/preguntas-frecuentes/transicion-alimentaria",
+      "component": "features/faq/components/transition-guide.tsx",
+      "source_question_id": "como-hacer-transicion",
+      "editorial_scope": "Resumen práctico gradual. No publica protocolos de ayuno, porcentajes, tablas de microdosis, dietas de eliminación caseras ni cronogramas contradictorios. Conserva las salvedades de especie, etapa de vida, etiqueta y atención veterinaria de las FAQ existentes.",
+      "section_evidence": [
+        {
+          "anchor": "antes-de-empezar",
+          "claim_ids": [
+            "suitability",
+            "complete-role",
+            "complement-role",
+            "wild-no-heat",
+            "wild-user"
+          ]
+        },
+        {
+          "anchor": "paso-a-paso",
+          "claim_ids": [
+            "gradual-transition",
+            "small-gradual-introduction",
+            "one-recipe-at-a-time",
+            "transition-monitoring",
+            "daily-portion"
+          ]
+        },
+        {
+          "anchor": "segun-tu-mascota",
+          "claim_ids": [
+            "cat-environment",
+            "cat-observation",
+            "cat-no-force",
+            "suitability",
+            "vet-follow-up",
+            "one-recipe-at-a-time"
+          ],
+          "retained_faq_qualifications": [
+            "cachorros-y-gatitos",
+            "transicion-gato-concentrado"
+          ],
+          "review_flags": [
+            "puppy-adequacy",
+            "fasting-and-gram-substitution"
+          ]
+        },
+        {
+          "anchor": "cuando-consultar",
+          "claim_ids": [
+            "digestive-vet-signs"
+          ],
+          "retained_faq_qualifications": [
+            "tiempo-de-adaptacion",
+            "gato-no-quiere-comer"
+          ]
+        }
+      ],
+      "external_checks": [
+        {
+          "url": "https://www.aaha.org/wp-content/uploads/globalassets/02-guidelines/nutritional-assessment/nutritionalassessmentguidelines.pdf",
+          "checked_on": "2026-11-17",
+          "scope": "Evaluación individual y cambio gradual; no introduce un calendario nuevo."
+        },
+        {
+          "url": "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia",
+          "checked_on": "2026-11-17",
+          "scope": "Contrasta la advertencia ya presente en FAQ sobre falta de apetito felino; no agrega tratamiento."
+        }
+      ]
     }
   ]
 }
