@@ -1,7 +1,7 @@
 .page { --feeding-sticky-offset: calc(var(--dn-header-visible-height) + var(--dn-space-4)); max-inline-size: var(--dn-content-max); padding: calc(var(--dn-header-height) + var(--dn-space-8)) var(--dn-page-gutter) var(--dn-space-20); margin-inline: auto; }
-.page h1 { scroll-margin-block-start: calc(var(--dn-header-height) + 240px); overflow-wrap: anywhere; margin-block: var(--dn-space-8) var(--dn-space-6); color: var(--dn-surface-dark); font-size: clamp(32px, 5vw, 56px); line-height: 1.1; letter-spacing: -.04em; }
-.page h2 { color: var(--dn-surface-dark); font-size: 30px; }
-.page p { line-height: 1.6; margin-block: var(--dn-space-4); }
+.page :where(h1) { scroll-margin-block-start: calc(var(--dn-header-height) + 240px); overflow-wrap: anywhere; margin-block: var(--dn-space-8) var(--dn-space-6); color: var(--dn-surface-dark); font-size: clamp(32px, 5vw, 56px); line-height: 1.1; letter-spacing: -.04em; }
+.page :where(h2) { color: var(--dn-surface-dark); font-size: 30px; }
+.page :where(p) { line-height: 1.6; margin-block: var(--dn-space-4); }
 .steps { display: flex; flex-wrap: wrap; gap: var(--dn-space-6); padding: 0; list-style: none; border-block-end: 1px solid var(--dn-border-default); }
 .steps li { padding-block: var(--dn-space-4); border-block-end: 2px solid transparent; }
 .steps [aria-current] { border-color: var(--dn-brand-orange); color: var(--dn-surface-dark); font-weight: 650; }
@@ -19,23 +19,7 @@
 .formFields:disabled { opacity: .65; }
 .notice { padding: var(--dn-space-4); background: var(--dn-surface-cool); border-inline-start: 3px solid var(--dn-brand-teal); overflow-wrap: anywhere; }
 .notice ul { padding-inline-start: var(--dn-space-6); }
-.result { margin-block-start: var(--dn-space-12); }
-.portion { padding-block: var(--dn-space-4); border-block: 1px solid var(--dn-border-default); }
-.portion strong { font-size: 40px; color: var(--dn-surface-dark); }
-.packages { display: grid; gap: var(--dn-space-8); margin-block-start: var(--dn-space-8); }
-.package { min-inline-size: 0; padding-block: var(--dn-space-6); border-block-start: 3px solid var(--dn-brand-orange); overflow-wrap: anywhere; }
-.package h3 { color: var(--dn-surface-dark); font-size: 28px; }
-.price { font-size: 28px; font-weight: 650; color: var(--dn-surface-dark); }
-.lines { list-style: none; padding: 0; }
-.lines li { display: grid; gap: var(--dn-space-2); padding-block: var(--dn-space-4); border-block-end: 1px solid var(--dn-border-default); }
-.lines a { min-block-size: 44px; display: flex; align-items: center; color: var(--dn-surface-dark); }
-.totals { margin-block: var(--dn-space-6); }
-.totals div { display: flex; justify-content: space-between; gap: var(--dn-space-4); margin-block: var(--dn-space-2); }
-.totals dd { margin: 0; white-space: nowrap; }
-.package summary { min-block-size: 48px; padding-block: var(--dn-space-4); cursor: pointer; color: var(--dn-surface-dark); }
-.package details ul { padding-inline-start: var(--dn-space-6); }
-.package details li { margin-block: var(--dn-space-3); line-height: 1.6; }
-@media (min-width: 768px) { .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } .packages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 768px) { .fields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* Guided intake: a continuous editorial layout with one pet in focus. */
 .kicker { color: var(--dn-surface-dark); font-size: 12px; font-weight: 650; letter-spacing: .09em; text-transform: uppercase; }
@@ -117,7 +101,7 @@
   .page .tribeProgress { display: flex; align-items: center; gap: var(--dn-space-2); padding-block-start: var(--dn-space-4); border-block-start: 1px solid var(--dn-border-default); font-size: 12px; }
   .groupSteps button { flex-direction: row; align-items: center; gap: var(--dn-space-3); padding: var(--dn-space-4) var(--dn-space-2); font-size: 14px; }
   .reviewGroups { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .page h1 { scroll-margin-block-start: calc(var(--dn-header-height) + var(--dn-space-6)); }
+  .page :where(h1) { scroll-margin-block-start: calc(var(--dn-header-height) + var(--dn-space-6)); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .stepContent { animation: feeding-arrive 200ms ease-out; }

@@ -10,7 +10,7 @@ import { feedingPayload, missingGroup, readFeedingDraft } from "../lib/feeding-d
 import { DRAFT_KEY, quoteRequestSchema } from "../lib/intake";
 import type { QuoteResponse } from "../lib/result";
 import { PetFeedingFields } from "./pet-feeding-fields";
-import { PetFeedingResult } from "./pet-feeding-result";
+import { FeedingResults } from "./feeding-results";
 import { FeedingWelcome } from "./feeding-welcome";
 import { FeedingPetSidebar } from "./feeding-pet-sidebar";
 import { FeedingStepNav } from "./feeding-step-nav";
@@ -92,12 +92,7 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
   }
 
   return <>
-    {step === -1 && !result ? <FeedingWelcome headingRef={heading} pets={pets} onStart={handleStart} /> : result ? <>
-      <p className={styles.kicker}>Hecho para tu tribu</p><h1 tabIndex={-1} ref={heading}>Su porción y sus paquetes</h1>
-      <button className={styles.secondary} onClick={handleReturnToReview} type="button">Editar respuestas y recalcular</button>
-      <p>Paquetes para {result.days} días. Cada mascota se cotiza por separado; precios y disponibilidad se confirman al comprar.</p>
-      {result.pets.map((item) => <PetFeedingResult key={item.id} result={item} days={result.days} />)}
-    </> : reviewing ? <>
+    {step === -1 && !result ? <FeedingWelcome headingRef={heading} pets={pets} onStart={handleStart} /> : result ? <FeedingResults result={result} pets={pets} answers={answers} headingRef={heading} onEdit={handleReturnToReview} /> : reviewing ? <>
       <p className={styles.kicker}>Cada detalle cuenta</p><h1 tabIndex={-1} ref={heading}>Así es tu tribu.</h1>
       <p>Revisá sus datos. Estamos a un paso de conocer su porción y sus paquetes.</p>
       <form onSubmit={handleSubmit} onChange={handleAnswers} aria-label="Revisar datos y preparar paquetes" aria-busy={pending}>

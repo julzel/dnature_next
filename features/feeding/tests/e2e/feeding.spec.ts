@@ -58,7 +58,7 @@ test("guided steps validate inputs, keep the pet visible and display four live q
   expect(data.pets[0].packages).toHaveLength(4);
   expect(data.pets[0].packages[0].lines.length).toBeGreaterThan(0);
   expect(data.pets[0].packages[0].total).toBeGreaterThan(0);
-  await expect(page.getByRole("heading", { name: "Su porción y sus paquetes" })).toBeFocused();
+  await expect(page.getByRole("heading", { name: "Hecho para Luna." })).toBeFocused();
   for (const name of ["Base", "Funcional", "Masticación", "Premium"]) await expect(page.getByRole("article", { name: `Paquete ${name}`, exact: true })).toBeVisible();
   await expect(page.getByText("600 g", { exact: true })).toBeVisible();
   await expect(page.getByText(/g por comida/)).toHaveCount(0);

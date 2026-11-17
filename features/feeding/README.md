@@ -67,6 +67,17 @@ limits payload size, loads one fresh catalog snapshot, and returns `no-store`.
 The existing checkout `orderTotals` supplies whole-colón rounding and 13% IVA.
 Delivery remains excluded and labeled. Incomplete packages show a partial subtotal
 and their missing requirements, never a complete-package price or purchase CTA.
+The results view focuses on one pet at a time, with breed artwork, the daily
+portion and profile facts. Four open comparison columns summarize the actual
+quoted product roles, the period total and an approximate daily cost. Product
+quantities, tax breakdowns, usage notes and pending requirements remain available
+through native disclosures. On phones, a compact radio group compares the four
+prices and displays one package at a time; larger screens show aligned columns.
+Both layouts support keyboard use.
+Ready packages offer a WhatsApp enquiry containing that pet's package, quantities,
+estimate and tax. Incomplete packages offer a review enquiry explicitly identifying
+the partial total and pending requirements. These links only open a customer-controlled
+draft; they do not send messages, place an order, charge or add products to the cart.
 Catalog failures return a retryable error and preserve input.
 
 The public flow retains conservative individual review for growth, health
