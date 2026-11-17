@@ -36,7 +36,7 @@ export function CatalogCartControl({ parentSku, name, options }: { parentSku: st
   return <div ref={root} className={styles.control} role="group" aria-label={`Carrito: ${name}`}>
     {cart.error ? <p className={styles.feedback} role="alert">{cart.error} <Link href="/carrito">Revisar carrito</Link></p>
       : !purchasable && !inCart ? <p className={styles.feedback}>Esta presentación ya no está disponible.</p>
-      : multiple && !expanded ? <button className={styles.add} type="button" onClick={handleStart} disabled={!cart.ready}><ShoppingCart size={18} strokeWidth={1.5} aria-hidden="true" />Agregar al carrito</button>
+      : multiple && !expanded ? <button className={styles.add} type="button" onClick={handleStart} disabled={!cart.ready}><ShoppingCart size={18} strokeWidth={1.5} aria-hidden="true" /><span>Agregar<span className={styles.desktopLabel}> al carrito</span></span></button>
       : <>
         {multiple && <Select autocomplete={currentOptions.length > 8} id={id} label={`Presentación de ${name}`} value={selected?.sku ?? ""} onValueChange={handleSelection} placeholder="Elegí una presentación" options={currentOptions.map((option) => ({ value: option.sku, label: `${option.name} · ${option.price === null ? "Consultar" : formatCatalogPrice(option.price)}${option.inStock ? "" : " · Agotado"}`, disabled: !option.inStock || option.price === null }))} />}
         {selected ? <CatalogCartQuantity key={selected.sku} parentSku={parentSku} name={name} option={selected} onOptionsChange={setOptions} onAdded={handleAdded} onEmpty={handleEmpty} />

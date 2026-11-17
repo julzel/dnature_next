@@ -71,7 +71,7 @@ export function CatalogCartQuantity({ parentSku, name, option, onOptionsChange, 
   function handleSubmit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); if (!invalid) commit(Number(value)); }
 
   return <form className={styles.quantityForm} onSubmit={handleSubmit} aria-busy={pending}>
-    {quantity === 0 ? <button type="button" className={styles.add} onClick={handleAdd} disabled={!cart.ready || pending || !option.inStock || option.price === null}><ShoppingCart size={18} strokeWidth={1.5} aria-hidden="true" />{pending ? "Agregando…" : "Agregar al carrito"}</button>
+    {quantity === 0 ? <button type="button" className={styles.add} onClick={handleAdd} disabled={!cart.ready || pending || !option.inStock || option.price === null}><ShoppingCart size={18} strokeWidth={1.5} aria-hidden="true" />{pending ? "Agregando…" : <span>Agregar<span className={styles.desktopLabel}> al carrito</span></span>}</button>
       : <>
         <label htmlFor={id} className="sr-only">Cantidad de {name} ({option.name})</label>
         <div className={styles.stepper}>

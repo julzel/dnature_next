@@ -2,6 +2,8 @@
 .quantityForm { display: grid; justify-items: stretch; gap: var(--dn-space-2); min-inline-size: 0; }
 .add { inline-size: 100%; display: inline-flex; justify-content: center; align-items: center; gap: var(--dn-space-3); min-block-size: 48px; max-inline-size: 100%; padding: var(--dn-space-3) var(--dn-space-4); border: 1px solid #1f456d; border-radius: 0; background: var(--dn-surface-base); color: #1f456d; font: 400 14px/1.5 var(--font-body); text-align: start; cursor: pointer; }
 .add svg { flex-shrink: 0; }
+.desktopLabel { display: none; }
+@media (min-width: 640px) { .desktopLabel { display: inline; } }
 .add { transition: border-color 160ms ease, background-color 160ms ease; }
 .add:not(:disabled):is(:hover, :focus, :active) { border-color: var(--dn-brand-teal); }
 .add:not(:disabled):hover { background: color-mix(in srgb, var(--dn-brand-teal) 12%, var(--dn-surface-base)); }
