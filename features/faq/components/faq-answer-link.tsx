@@ -39,7 +39,7 @@ export function FaqAnswerLink({ id, ready }: { id: string; ready: boolean }) {
     <div className={styles.answerLink} data-faq-client-only>
       <button type="button" onClick={handleCopy} disabled={!ready || status === "pending"}>
         {status === "copied" ? <Check size={18} aria-hidden="true" /> : <Link2 size={18} aria-hidden="true" />}
-        {status === "copied" ? "Enlace copiado" : status === "pending" ? "Copiando…" : "Copiar enlace de esta respuesta"}
+        {status === "copied" ? "Enlace copiado" : status === "pending" ? "Copiando…" : "Copiar link"}
       </button>
       <span className="sr-only" role="status">{status === "copied" ? "Enlace copiado al portapapeles." : status === "manual" ? "No pudimos copiar automáticamente. Seleccioná y copiá el enlace." : ""}</span>
       {status === "manual" && <label>Copiá este enlace<input ref={input} readOnly value={url} /></label>}

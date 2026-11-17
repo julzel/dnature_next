@@ -78,7 +78,7 @@ test("answer links have a useful fallback if clipboard access is blocked", async
   await page.evaluate(() => Object.defineProperty(navigator, "clipboard", { configurable: true, value: { writeText: () => Promise.reject(new Error("Not allowed")) } }));
   const question = page.locator("#pregunta-que-es-alimentacion-natural");
   await question.locator("summary").click();
-  await question.getByRole("button", { name: "Copiar enlace de esta respuesta" }).click();
+  await question.getByRole("button", { name: "Copiar link" }).click();
   const link = question.getByRole("textbox", { name: "Copiá este enlace" });
   await expect(link).toBeFocused();
   await expect(link).toHaveValue(/\/preguntas-frecuentes#pregunta-que-es-alimentacion-natural$/);

@@ -2,7 +2,7 @@
   "schema_version": "2.0.0",
   "locale": "es-CR",
   "source_record": "features/faq/data/development-faq.json",
-  "editorial_note": "Based on the remote development FAQ. Product-specific, medical, storage-duration, availability and payment claims require current verification. Some answers have been adapted for the current site and safety.",
+  "editorial_note": "Based on the remote development FAQ. Selected answers were revised using the DNAture welcome guide, with physical PDF page evidence and exclusions recorded in docs/nutrition/DNAture_Welcome_Reference.json. Other answers, questions, topics and links were retained. Product labels and current availability still require confirmation; the guide is not independent clinical validation.",
   "topics": [
     {
       "id": "alimentacion-natural",
@@ -115,12 +115,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Consultá la etiqueta o ficha de cada receta para confirmar si se declara completa y balanceada, y para qué especie y etapa de vida está indicada.",
+          "text": "La guía de DNAture presenta Complete como una base alimentaria completa y distingue una versión formulada para gatos. Consultá la etiqueta o ficha de cada receta para confirmar su declaración nutricional, especie y etapa de vida.",
           "items": []
         },
         {
           "type": "paragraph",
-          "text": "Los complementos y suplementos tienen usos distintos; no asumás que sustituyen una alimentación completa.",
+          "text": "Los complementos y suplementos tienen funciones distintas y no sustituyen por sí solos una alimentación completa.",
           "items": []
         }
       ],
@@ -135,7 +135,7 @@
       ],
       "links": [],
       "source_question_id": "dietas-balanceadas-completas",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "natural-vs-concentrado",
@@ -230,6 +230,11 @@
         },
         {
           "type": "paragraph",
+          "text": "Introducí una receta a la vez y observá la aceptación, las heces y la aparición de vómitos o molestias antes de incorporar otra. El ritmo debe ajustarse a su respuesta, no a un calendario fijo.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
           "text": "Si observás una reacción que te preocupe, pausá el cambio y consultá con tu veterinario. No iniciés un ayuno sin indicación profesional.",
           "items": []
         }
@@ -240,7 +245,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "como-hacer-transicion",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "tiempo-de-adaptacion",
@@ -273,7 +278,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "La cantidad depende de la fórmula y de las necesidades de cada animal, entre ellas su especie, edad, peso, actividad y estado de salud.",
+          "text": "La ración diaria es el total de alimento del día, no la cantidad de cada comida. Depende de la fórmula y de la especie, edad, peso, actividad y estado de salud de tu mascota.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Por ejemplo, si a un perro le corresponden 200 g al día y come dos veces, recibiría 100 g en cada comida. Es solo un ejemplo de reparto, no una porción recomendada para todos.",
           "items": []
         },
         {
@@ -288,7 +298,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "cantidad-diaria",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "factores-de-la-racion",
@@ -299,6 +309,11 @@
           "type": "paragraph",
           "text": "Depende de todos esos factores y también de la condición corporal, esterilización, objetivo y densidad calórica del producto. Dos mascotas con el mismo peso pueden necesitar cantidades diferentes.",
           "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "También hay que contar la energía y los nutrientes de los complementos dentro del total diario; no son una cantidad extra que pueda sumarse sin ajustar la alimentación.",
+          "items": []
         }
       ],
       "search_terms": [
@@ -307,7 +322,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "factores-de-la-racion",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "cachorros-y-gatitos",
@@ -356,6 +371,11 @@
           "type": "paragraph",
           "text": "Los ingredientes varían según la receta. Revisá la información disponible del producto y su etiqueta; si tu mascota tiene restricciones, consultanos antes de elegir.",
           "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Como ejemplo, la guía describe WILD Ancestor con pollo, caballo, sardinas y órganos como corazón, hígado y riñón. WILD Spirit incluye pollo con huesos, pulmón, hígado, trucha y tripa verde, entre otros ingredientes. Estas listas no se aplican a todas las recetas: confirmá siempre la composición del producto que vas a elegir.",
+          "items": []
         }
       ],
       "search_terms": [
@@ -369,7 +389,7 @@
         }
       ],
       "source_question_id": "ingredientes-de-las-dietas",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "proteinas-disponibles",
@@ -425,6 +445,11 @@
           "items": []
         },
         {
+          "type": "paragraph",
+          "text": "Las recetas estándar Complete y WILD pueden contener múltiples ingredientes y no son adecuadas para todos los casos de alergia o intolerancia. No las elijás como si fueran automáticamente hipoalergénicas.",
+          "items": []
+        },
+        {
           "type": "note",
           "text": "DNAture no sustituye una dieta de eliminación ni un tratamiento veterinario. Confirmá también el riesgo de trazas cuando sea relevante.",
           "items": []
@@ -436,7 +461,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "alergias-intolerancias",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "necesidades-especificas",
@@ -445,7 +470,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Podemos orientarte sobre los productos disponibles. Una condición diagnosticada, una dieta terapéutica o una restricción clínica requiere evaluación y seguimiento del médico veterinario; no confirmamos una preparación especial sin esa revisión.",
+          "text": "Sí, contamos con asesoría nutricional personalizada para valorar una dieta adaptada a cada caso, usando materias primas de DNAture o ingredientes seleccionados por el tutor.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Si existe una condición diagnosticada, una dieta terapéutica o una restricción clínica, el plan requiere evaluación y seguimiento con su médico veterinario. Consultanos para revisar el caso antes de confirmar una preparación especial.",
           "items": []
         }
       ],
@@ -455,7 +485,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "necesidades-especificas",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "complete-vs-mezclas",
@@ -464,12 +494,17 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "La diferencia depende de la función declarada para cada producto. Revisá si la fórmula está identificada como completa o complementaria, y para qué especie y etapa de vida está indicada.",
+          "text": "Complete se presenta en nuestra guía como la base de la alimentación. Los complementos se incorporan a esa base y los suplementos aportan nutrientes concentrados para necesidades específicas; ninguno debe sustituirla por su cuenta.",
           "items": []
         },
         {
           "type": "paragraph",
-          "text": "Consultanos si necesitás ayuda para interpretar una etiqueta.",
+          "text": "WILD tiene una propuesta distinta, con piezas y texturas para perros ya adaptados a la alimentación cruda y con experiencia de masticación. Requiere supervisión y no es una opción adecuada para todos los animales.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Revisá en cada producto su composición, especie y etapa de vida, y consultanos si necesitás ayuda para elegir.",
           "items": []
         }
       ],
@@ -479,7 +514,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "complete-vs-mezclas",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "contienen-huesos",
@@ -488,7 +523,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Depende de la receta y de cómo fue formulada. Revisá los ingredientes del producto o consultanos por la presentación específica. No agregués huesos por tu cuenta para intentar “balancear” una dieta.",
+          "text": "Algunas sí. La guía enumera alas de pollo en WILD Ancestor y pollo con presencia de huesos en WILD Spirit. No asumás que todas las recetas tienen la misma composición: revisá la etiqueta de la presentación específica.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "No agregués huesos por tu cuenta para intentar “balancear” una dieta.",
           "items": []
         }
       ],
@@ -498,7 +538,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "contienen-huesos",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "contienen-visceras",
@@ -507,7 +547,7 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "La composición varía según la receta. Revisá la lista de ingredientes de la fórmula específica o consultanos para confirmar qué órganos incluye.",
+          "text": "Algunas recetas sí los incluyen. La guía describe hígado y riñón en WILD Ancestor, y pulmón, testículos de toro e hígado en WILD Spirit. La composición puede variar según la receta; revisá la lista del producto o consultanos para confirmar.",
           "items": []
         }
       ],
@@ -518,7 +558,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "contienen-visceras",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "agregar-suplementos",
@@ -528,6 +568,11 @@
         {
           "type": "paragraph",
           "text": "Antes de agregar un suplemento, revisá con tu veterinario la dieta completa de tu mascota y la indicación del producto. Un suplemento no siempre es necesario y su uso debe ajustarse a cada caso.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Cuando haya una indicación, incorporalo de forma gradual y observá la tolerancia. La guía advierte que el exceso puede causar desequilibrios o efectos adversos, especialmente si hay condiciones de salud preexistentes.",
           "items": []
         }
       ],
@@ -542,13 +587,18 @@
       ],
       "links": [],
       "source_question_id": "agregar-suplementos",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "cocinar-dieta",
       "topic_id": "dietas-dnature",
       "question": "¿Puedo cocinar la dieta?",
       "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Depende del producto. En WILD, la guía indica expresamente no cocinar ni calentar los platos. Esta indicación no debe extenderse automáticamente a todas las recetas.",
+          "items": []
+        },
         {
           "type": "paragraph",
           "text": "Seguí las indicaciones de preparación del producto y consultá con tu veterinario antes de cocinar o modificar una receta. Si necesitás una opción cocida, consultanos por la disponibilidad actual.",
@@ -561,7 +611,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "cocinar-dieta",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "balance-dieta-cocinada",
@@ -591,6 +641,11 @@
           "type": "paragraph",
           "text": "Antes de cambiar la proteína o receta, revisá que la nueva fórmula sea adecuada para tu mascota y consultá con tu veterinario cómo hacer la transición. Si se investiga una alergia o sensibilidad, no cambiés de proteína sin indicación profesional.",
           "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Con Complete, probá cada nueva variante por separado y comprobá que la tolera bien antes de alternar sabores regularmente.",
+          "items": []
         }
       ],
       "search_terms": [
@@ -599,7 +654,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "rotar-proteinas",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "sobrepeso",
@@ -818,6 +873,11 @@
       "answer_blocks": [
         {
           "type": "paragraph",
+          "text": "Los productos crudos congelados deben mantenerse congelados hasta su uso. Para descongelarlos, pasalos al refrigerador en su envase cerrado y mantenelos entre 2 y 4 °C. Una vez descongelados, la guía indica consumirlos en un máximo de 48 horas, siempre refrigerados.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
           "text": "Seguí las indicaciones del envase y respetá las condiciones de frío del producto. Para alimentos crudos, separalos de otros alimentos y lavá las manos, utensilios y superficies que entren en contacto con ellos.",
           "items": []
         }
@@ -833,7 +893,7 @@
       ],
       "links": [],
       "source_question_id": "almacenar-comida",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "tiempo-descongelada",
@@ -842,7 +902,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Revisá en el envase de tu producto las indicaciones y el plazo de conservación después de descongelarlo. Si no están claros, consultanos antes de usarlo.",
+          "text": "Para los productos crudos congelados descritos en nuestra guía, el plazo es de un máximo de 48 horas después de descongelarlos, manteniéndolos refrigerados entre 2 y 4 °C.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "Este plazo no significa que puedan permanecer fuera del refrigerador y no se aplica automáticamente a deshidratados u otros productos. Revisá la etiqueta de tu presentación; si indica algo diferente o se interrumpió la cadena de frío, consultanos antes de servirla.",
           "items": []
         }
       ],
@@ -852,7 +917,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "tiempo-descongelada",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "descongelar-correctamente",
@@ -861,7 +926,21 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Para productos crudos congelados, descongelá en refrigeración, en un recipiente cerrado y separado de otros alimentos. Seguí las indicaciones del envase para la preparación y conservación.",
+          "text": "Para productos crudos congelados, descongelá en refrigeración y planificá con anticipación: nuestra guía estima entre 12 y 24 horas.",
+          "items": []
+        },
+        {
+          "type": "ordered-list",
+          "text": "",
+          "items": [
+            "Pasá del congelador al refrigerador el envase con la cantidad que vas a necesitar.",
+            "Mantenelo cerrado, separado de otros alimentos, a una temperatura de 2 a 4 °C.",
+            "Una vez descongelado, conservá el alimento refrigerado y consumilo en un máximo de 48 horas, siguiendo también las indicaciones de su etiqueta."
+          ]
+        },
+        {
+          "type": "note",
+          "text": "No lo descongelés sobre la mesa ni con agua caliente. El tiempo de descongelación es estimado; confirmá que el alimento esté descongelado antes de servirlo.",
           "items": []
         }
       ],
@@ -876,7 +955,7 @@
       ],
       "links": [],
       "source_question_id": "descongelar-correctamente",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "volver-a-congelar",
@@ -885,7 +964,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Revisá las instrucciones del envase para saber cómo manejar el producto después de descongelarlo. Si tenés dudas sobre si una porción puede volver a congelarse, consultanos antes de usarla.",
+          "text": "Nuestra guía recomienda evitar volver a congelar los productos crudos una vez descongelados. Planificá las porciones y descongelá en refrigeración solo lo que vas a utilizar.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Revisá también las instrucciones del envase. Si tenés dudas sobre cómo se conservó una porción, consultanos antes de usarla.",
           "items": []
         }
       ],
@@ -895,7 +979,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "volver-a-congelar",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "calentar-comida",
@@ -904,7 +988,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Seguí las indicaciones de preparación de la etiqueta. Antes de calentar o modificar una receta, consultá con tu veterinario y con nuestro equipo sobre el producto específico.",
+          "text": "En WILD, no: la guía indica que los platos no deben calentarse ni cocinarse. Deben descongelarse en refrigeración.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Para otras recetas, seguí las indicaciones de su etiqueta y consultanos antes de calentar o modificar el producto.",
           "items": []
         }
       ],
@@ -914,13 +1003,18 @@
       "sources": [],
       "links": [],
       "source_question_id": "calentar-comida",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "cocinar-dietas-conservacion",
       "topic_id": "conservacion",
       "question": "¿Puedo cocinar las dietas?",
       "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Depende del producto. En WILD, la guía indica expresamente no cocinar ni calentar los platos. Esta indicación no debe extenderse automáticamente a todas las recetas.",
+          "items": []
+        },
         {
           "type": "paragraph",
           "text": "Seguí las indicaciones de preparación del producto y consultá con tu veterinario antes de cocinar o modificar una receta. Si necesitás una opción cocida, consultanos por la disponibilidad actual.",
@@ -933,7 +1027,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "cocinar-dietas-conservacion",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "duracion-refrigeracion",
@@ -942,7 +1036,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "El plazo depende del producto. Seguí las instrucciones de conservación del envase y, si no están claras, consultanos antes de servirlo.",
+          "text": "Para los productos crudos congelados descritos en nuestra guía, el plazo es de un máximo de 48 horas después de descongelarlos, manteniéndolos refrigerados entre 2 y 4 °C.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "Este plazo no significa que puedan permanecer fuera del refrigerador y no se aplica automáticamente a deshidratados u otros productos. Revisá la etiqueta de tu presentación; si indica algo diferente o se interrumpió la cadena de frío, consultanos antes de servirla.",
           "items": []
         }
       ],
@@ -952,7 +1051,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "duracion-refrigeracion",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "comida-danada",
@@ -1009,7 +1108,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "La ración depende de la especie, edad, peso, condición corporal, actividad y producto. Revisá la etiqueta y consultá con tu veterinario para definir una cantidad apropiada.",
+          "text": "Si tenés un perro, podés usar la estimación de porción de DNAture como punto de partida. La guía considera su peso, edad, actividad y necesidades nutricionales; el resultado corresponde al total del día, que después repartís entre sus comidas.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "En perros de alto rendimiento, hembras gestantes o lactantes, cachorros menores de dos meses o animales en recuperación, la calculadora puede no ser suficiente: hace falta una evaluación individual. Para cualquier mascota, revisá también la receta y la orientación de su veterinario.",
           "items": []
         }
       ],
@@ -1019,7 +1123,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "saber-cuanto-necesita",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "entregas-domicilio",
@@ -1223,7 +1327,7 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Las presentaciones dependen del producto y su disponibilidad. Consultanos si necesitás confirmar una cantidad o presentación específica.",
+          "text": "Sí. Nuestra guía describe presentaciones de Complete de 200 g, 500 g y 1 kg. Las opciones dependen de la receta y de la disponibilidad actual; revisá el catálogo o consultanos para confirmar la que necesitás.",
           "items": []
         }
       ],
@@ -1233,7 +1337,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "presentaciones-pequenas",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "descuentos-cantidad",
@@ -1261,7 +1365,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Consultanos qué tipo de orientación está disponible y qué información necesitás proporcionar. Una dieta terapéutica o una condición médica requiere valoración veterinaria individual.",
+          "text": "Sí. La asesoría personalizada permite valorar una dieta según las características de tu mascota, como tamaño, edad, actividad y estado de salud. Es distinta de la orientación general sobre cómo usar los productos.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Consultanos qué información necesitás aportar y qué incluye el servicio. Si existe una condición médica o una dieta terapéutica, el plan debe coordinarse con su médico veterinario.",
           "items": []
         }
       ],
@@ -1271,7 +1380,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "planes-personalizados",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "costo-asesoria",
@@ -1280,7 +1389,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "El alcance y costo dependen del tipo de orientación requerida. Consultá al equipo antes de agendar para confirmar qué incluye, quién la brinda y si tiene un costo asociado.",
+          "text": "Tenemos orientación gratuita, como nuestra guía introductoria sobre el uso de los productos. La asesoría para formular una dieta personalizada es un servicio distinto.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "La guía no fija una tarifa para la atención individual. Antes de agendar, consultá al equipo para confirmar qué incluye, quién la brinda y cuál es su costo.",
           "items": []
         }
       ],
@@ -1290,7 +1404,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "costo-asesoria",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "calculo-racion",
@@ -1299,7 +1413,12 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "La porción depende del animal y de la densidad energética de la receta. Consultá la etiqueta del producto y hablá con tu veterinario para obtener una recomendación individual.",
+          "text": "La guía toma en cuenta peso, edad, actividad y necesidades nutricionales del perro para estimar su ración diaria. Esa cantidad se expresa en gramos para todo el día, no por comida, y debe ajustarse a la receta y al animal.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "La calculadora es una orientación inicial. La guía señala que alto rendimiento, gestación o lactancia, cachorros menores de dos meses y recuperación de enfermedades o cirugías requieren una valoración nutricional individual.",
           "items": []
         }
       ],
@@ -1309,7 +1428,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "calculo-racion",
-      "editorial_status": "adapted"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "gatos-pueden-comer",
@@ -1318,7 +1437,7 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Únicamente los productos cuya ficha indique que son adecuados para gatos y para su etapa de vida. No usés automáticamente una receta formulada para perros.",
+          "text": "Sí. Nuestra guía menciona una versión de Complete formulada especialmente para gatos. Elegí únicamente productos cuya ficha indique que son adecuados para gatos y para su etapa de vida; no usés automáticamente una receta para perros.",
           "items": []
         }
       ],
@@ -1328,7 +1447,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "gatos-pueden-comer",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "diferencia-perros-gatos",
@@ -1385,8 +1504,17 @@
       "answer_blocks": [
         {
           "type": "paragraph",
-          "text": "Sí, pero muchos gatos necesitan un cambio más lento de sabor y textura. Ofrecé pequeñas cantidades junto a su alimentación habitual y avanzá solo si mantiene un consumo adecuado.",
+          "text": "Sí, pero muchos gatos necesitan un cambio gradual de olor, sabor y textura. El ritmo depende de su aceptación y de que siga comiendo adecuadamente.",
           "items": []
+        },
+        {
+          "type": "ordered-list",
+          "text": "",
+          "items": [
+            "Mantené un lugar fijo y tranquilo para comer y usá el comedero con el que ya está familiarizado.",
+            "Ofrecé pequeñas cantidades del nuevo alimento junto a su comida habitual.",
+            "Observá cuánto come, sus heces, actividad y comportamiento. No aumentés la cantidad si hay rechazo; avanzá más despacio."
+          ]
         },
         {
           "type": "note",
@@ -1400,7 +1528,7 @@
       "sources": [],
       "links": [],
       "source_question_id": "transicion-gato-concentrado",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     },
     {
       "id": "gato-no-quiere-comer",
@@ -1410,6 +1538,11 @@
         {
           "type": "paragraph",
           "text": "Probá una transición más gradual, porciones pequeñas, un plato limpio y un ambiente tranquilo. No lo forcés ni retirés toda alternativa de forma abrupta.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Si rechaza el alimento nuevo, reducí la cantidad y retomá la introducción poco a poco. Anotá qué ofreciste, cuándo lo introdujiste y cómo lo aceptó; ese registro ayuda a identificar sus preferencias de olor y textura.",
           "items": []
         },
         {
@@ -1424,7 +1557,8 @@
       "sources": [],
       "links": [],
       "source_question_id": "gato-no-quiere-comer",
-      "editorial_status": "source_wording"
+      "editorial_status": "document_supported_revision"
     }
-  ]
+  ],
+  "answer_reference": "docs/nutrition/DNAture_Welcome_Reference.json"
 }
