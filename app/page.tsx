@@ -7,6 +7,7 @@ import { ExperienceArrivalDialog } from "@/features/experience/components/experi
 import { ExperienceSection } from "@/features/experience/components/experience-section";
 import { PetExperience } from "@/features/experience/components/pet-experience";
 import { Contact } from "@/features/contact/components/contact";
+import { PartnershipsPreview } from "@/features/partnerships/components/partnerships-preview";
 import { Footer } from "@/features/footer/components/footer";
 import { BestSellingSnacks } from "@/features/catalog/components/best-selling-snacks";
 import { BestSellingSnacksLoading } from "@/features/catalog/components/best-selling-snacks-loading";
@@ -38,6 +39,7 @@ export default function Home() {
           </Suspense>
         </ExperienceSection>
         <Contact />
+        <PartnershipsPreview />
       </main>
       <Footer />
     </>

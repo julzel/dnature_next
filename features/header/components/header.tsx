@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { Suspense, useEffect, useRef, useState, type CSSProperties } from "react";
-import { Icon } from "@/components/icon";
+import { Search } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { SearchDialog } from "./search-dialog";
 import { MobileMenu } from "./mobile-menu";
 import { HeaderLinks } from "./header-links";
 import { ActiveHeaderLinks } from "./active-header-links";
 import { CartLink } from "@/features/cart/components/cart-link";
+import { ActiveCartLink } from "./active-cart-link";
 import styles from "./header.module.css";
 
 export function Header({ solid = false }: { solid?: boolean }) {
@@ -100,10 +101,12 @@ export function Header({ solid = false }: { solid?: boolean }) {
               </Suspense>
             </nav>
             <div className={styles.actions}>
-              <CartLink className={styles.searchToggle} />
+              <Suspense fallback={<CartLink className={styles.actionControl} />}>
+                <ActiveCartLink className={styles.actionControl} />
+              </Suspense>
               <button
                 ref={searchButton}
-                className={styles.searchToggle}
+                className={styles.actionControl}
                 type="button"
                 aria-label="Abrir búsqueda"
                 aria-haspopup="dialog"
@@ -111,9 +114,9 @@ export function Header({ solid = false }: { solid?: boolean }) {
                 aria-controls="site-search"
                 onClick={handleOpenSearch}
               >
-                <Icon name="search" />
+                <Search size={22} strokeWidth={1.5} aria-hidden="true" />
               </button>
-              <MobileMenu buttonClassName={styles.searchToggle} onOpen={handleOpenMenu} />
+              <MobileMenu buttonClassName={styles.actionControl} onOpen={handleOpenMenu} />
             </div>
           </div>
         </div>
