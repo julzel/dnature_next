@@ -1,0 +1,64 @@
+.card {
+  padding-block: var(--dn-space-6);
+  border-block: 1px solid var(--dn-border-default);
+  background: transparent;
+  color: var(--dn-text-primary);
+  text-align: start;
+}
+
+.body {
+  --portrait-size: 96px;
+  display: grid;
+  grid-template-columns: var(--portrait-size) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--dn-space-4);
+}
+
+.portrait {
+  display: grid;
+  place-items: center;
+  inline-size: var(--portrait-size);
+  block-size: var(--portrait-size);
+}
+
+.portrait img { inline-size: 100%; block-size: auto; }
+.details { min-inline-size: 0; }
+.details > div { position: relative; display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; gap: var(--dn-space-2); min-inline-size: 0; padding-block: var(--dn-space-3); }
+.details > div:first-child { padding-block-start: 0; }
+.details > div:last-child { padding-block-end: 0; }
+.details > div + div::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background: var(--dn-border-default);
+  transform: scaleX(0);
+  transform-origin: center;
+  pointer-events: none;
+}
+.card[data-revealed="true"] .details > div + div::before { animation: divider-expand 320ms ease-out both; }
+.details dt, .details dd { opacity: 0; }
+.card[data-revealed="true"] .details dt, .card[data-revealed="true"] .details dd {
+  animation: details-reveal 0s var(--row-reveal-delay, 320ms) forwards;
+}
+.details > div:nth-child(2) { --row-reveal-delay: 480ms; }
+.details > div:nth-child(3) { --row-reveal-delay: 640ms; }
+.details dt { color: var(--dn-text-secondary); font-size: 14px; font-weight: 600; }
+.details dd { margin: 0; font-size: 16px; font-weight: 750; line-height: 1.4; text-align: end; overflow-wrap: anywhere; }
+
+@media (min-width: 640px) {
+  .card { padding-block: var(--dn-space-8); }
+  .body { --portrait-size: 160px; gap: var(--dn-space-8); }
+  .details > div { gap: var(--dn-space-4); }
+}
+
+@keyframes divider-expand { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes details-reveal { to { opacity: 1; } }
+.card[data-animated="false"] .details > div + div::before { animation: none; transform: scaleX(1); }
+.card[data-animated="false"] .details dt, .card[data-animated="false"] .details dd { animation: none; opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card[data-revealed] .details > div + div::before { animation: none; transform: scaleX(1); }
+  .card[data-revealed] .details dt, .card[data-revealed] .details dd { animation: none; opacity: 1; }
+}

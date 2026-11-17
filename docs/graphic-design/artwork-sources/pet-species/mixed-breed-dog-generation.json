@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "mixed-breed-dog-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create one standalone GENERIC MIXED-BREED DOG, an ordinary lovable mestizo / village dog with no identifiable pedigree, in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a graphic-style reference for crisp tapered engraved strokes, palette and natural standing presentation. Do NOT copy its breed, collie face, long coat, distinct blaze or feathered tail. Subject: a realistic healthy adult medium-sized mixed-breed companion dog standing naturally on all FOUR legs facing RIGHT, body in side profile and head gently turned three-quarter toward viewer. Everyday street-dog / rescued-mutt character conveyed by an individual, unstandardized combination of features: balanced lean but well-nourished moderately athletic build, natural medium-length legs, four distinct modest paws, ordinary moderately long gently tapering muzzle, soft attentive eyes, mildly asymmetrical medium triangular ears with one softly semi-pricked and the other loosely folded sideways. Short-to-medium slightly scruffy coat with a few tufts at neck, cheeks and shoulders, no long pedigree furnishings, plain natural coat pattern without bold breed-specific markings. Full natural tapering tail with modest fur, carried relaxed behind in a gentle shallow curve, not tightly curled or docked. Friendly calm dignified expression, closed mouth, no human grin. This is a beloved everyday dog with mixed ancestry, not an exaggerated caricature: no emaciation, wounds, sad pleading pose, dirt, collar, clothing or props. Avoid resemblance to a recognizable pure breed such as collie, Labrador, German Shepherd, pit bull, hound or terrier show dog. Match reference's meticulous crisp tapered engraving strokes following fur and anatomy, airy crosshatching, open flat mint highlights, restrained dark shadow density, clear gentle eyes and facial details. EXACTLY TWO opaque interior colors: luminous mint #8FE4D9 and deep cool ink teal #092F39. Mint-dominant drawing with readable dark hatching and no large featureless ink patches. Square canvas with comfortable genuinely transparent margins around ears, nose, FULL tail and all paws. Entire dog visible and uncropped. Anatomically plausible standing adult dog, four distinct paws. Genuine alpha transparency immediately outside crisp fur silhouette, under belly and between legs; opaque mint within dog. No background, floor, printed checkerboard, ground shadow, halo, glow, haze, gradients, blur, photographic texture, cartoon, 3D, text, watermark, frame or extra animals. No white, black, brown, orange, cream, sepia or warm colors. Reusable clean transparent cutout engraving matching the DNAture animal series.",
+  "output": "../../../../public/images/pets/mixed-breed-dog.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "865b11e4e370b57e3230607ab7d9241f5ecb93bb387aa3ebd74ef3e66a1ba491",
+  "optical_width": 400.0,
+  "optical_height": 323.63
+}

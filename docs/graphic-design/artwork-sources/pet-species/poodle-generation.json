@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "poodle-source.png",
+  "style_reference": "border-collie-source.png",
+  "output": "../../../../public/images/pets/poodle.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "prompt": "Use the supplied Border Collie ONLY as the exact DNAture graphic-style reference. Create a NEW standalone POODLE (caniche), clearly a different breed, in matching two-ink engraved artwork. One realistic adult medium/standard poodle standing naturally on four legs facing RIGHT, with elegant balanced athletic proportions, a long fine straight muzzle, dark attentive eyes, long floppy curly ears, a natural rounded curly topknot, densely curled coat with a simple even pet/puppy trim rather than elaborate show pompons, slender legs, clearly visible individual paws, and a natural undocked tail carried gently upward with curly hair. Friendly calm expression, no collar or props. Use crisp tapered curved strokes and airy crosshatching that follow the poodle's tightly curled woolly coat, preserving the hand-engraved texture and clean, detailed silhouette of the reference. EXACTLY two opaque interior inks: deep teal #092F39 and luminous mint #8FE4D9; mint-dominant coat with dark ink lines, realistic volume and open mint spaces, no featureless dark blobs. Square canvas, entire dog including all four paws, ears and tail uncropped, generous clear margins. GENUINE ALPHA TRANSPARENCY immediately outside the silhouette, between legs and beneath belly. No background, ground shadow, halo, glow, blur, gradients, white fur, photorealism, cartoon, 3D, text, watermark, frame or additional animals. Match the reference graphic line closely while making the poodle anatomy and curly coat unmistakable.",
+  "source_sha256": "78b9bddb2cf0f41be67c131ab8d38b20354dad5a108e59ad9955835d3ffb59cc",
+  "optical_width": 365.08,
+  "optical_height": 380.0
+}

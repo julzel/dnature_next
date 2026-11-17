@@ -1,0 +1,9 @@
+.intro { min-inline-size: 0; }
+.intro h2 { max-inline-size: 13ch; color: var(--dn-text-primary); font-size: clamp(32px, 4vw, 56px); font-weight: 800; letter-spacing: -.045em; line-height: 1.08; text-wrap: balance; }
+.intro h2 span { color: var(--dn-surface-dark); }
+.intro h2::after { content: ""; display: block; inline-size: var(--dn-space-16); block-size: var(--dn-space-1); margin-block-start: var(--dn-space-6); background: var(--dn-brand-orange); }
+.intro p { max-inline-size: 34ch; margin-block-start: var(--dn-space-6); color: var(--dn-text-secondary); font-size: 16px; line-height: 1.7; }
+
+@media (min-width: 900px) {
+  .intro { padding-block-start: var(--dn-space-8); }
+}

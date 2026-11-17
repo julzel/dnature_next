@@ -1,0 +1,12 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen; traced to native duotone SVG paths with scripts/trace-walking-artwork.py and vtracer 0.6.15; normalized to the shared 480×480 canvas and dog baseline.",
+  "source_png": "standing-cat-source.png",
+  "original_svg": "cat-crouching-original.svg",
+  "references": [
+    "cat-crouching-original.svg",
+    "dog-brandbook-original.svg"
+  ],
+  "output": "../../../../public/images/pets/cat.svg",
+  "prompt": "Use case: precise-object-edit. Create ONE full-body standing cat for the DNAture species-selector SVG, based on the supplied CAT image (image 1) and matching the DOG image (image 2). Change the cat from crouching to standing naturally on ALL FOUR LEGS, four paws planted on a level invisible ground line. Side profile facing RIGHT, head held attentively upright, cat anatomy, pointed ears, long feline tail gently curving upward behind it. Separate all four legs clearly (near legs and slightly offset far legs); no raised or missing paws, no crouching, sitting, walking or jumping. Retain the cat's realistic domestic shorthair character. Match the actual simplified mint/ink engraved treatment of images 1 and 2: solid luminous mint #8FE4D9 animal fill, crisp deep cool ink #092F39 silhouette and fine tapered fur hatching, varied but moderately sparse line density like the dog, flat duotone illustration. The DOG is a reference ONLY and MUST NOT appear in output. Square canvas 1024x1024, centered cat full body from ears to paws and entire tail, generous transparent margins about 8% at left/right, ground baseline about 90% down canvas. Match the dog's optical width and baseline. GENUINE ALPHA TRANSPARENCY outside the cat, including between legs, under belly, around tail and whiskers. Preserve all details with clean edges suitable for tracing to two-color vector paths. No white/colored background, no ground, no shadow, no gradient, no glow, no text, logo or other objects."
+}

@@ -1,0 +1,12 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen; traced to native duotone SVG paths with scripts/trace-walking-artwork.py and vtracer 0.6.15; normalized to the shared 480×480 canvas, 400px optical width, and 428.5px baseline.",
+  "source_png": "golden-retriever-source.png",
+  "original_svg": "dog-brandbook-original.svg",
+  "references": [
+    "dog-brandbook-original.svg",
+    "../../../../public/images/pets/cat.svg"
+  ],
+  "output": "../../../../public/images/pets/dog.svg",
+  "prompt": "Use case: precise-object-edit. Replace the DOG in image 1 with a recognizable adult GOLDEN RETRIEVER, maintaining its full-body right-facing side profile and calm standing pose with all FOUR PAWS resting on an invisible horizontal baseline. Preserve the DNAture engraved illustration style and optical scale. Image 2 is the CAT companion used solely to match line density and mint/ink treatment; do not include the cat in the output. The golden retriever must have unmistakable breed anatomy: broad gentle head, medium-long wide muzzle, soft floppy ears with silky feathering, deep chest, sturdy balanced body and legs, long lightly wavy coat, feathering on chest/underside and backs of legs, and a long feathery tail carried naturally behind the body at roughly back height with a gentle curve, not curled over the back. Four distinct correctly attached legs and paws, with farther legs slightly offset so all four feet read clearly. Natural friendly attentive expression, head upright and looking RIGHT, mouth gently closed. Artwork uses ONLY deep cool ink #092F39 and luminous mint #8FE4D9, not golden/yellow/brown fur: the breed is communicated through shape and fur. Match the reference animal artwork's flat crisp solid mint fills and tapered dark fur hatching, moderate engraving detail, clean natural silhouette; not photorealistic, not 3D, not cartoon. Output ONE dog alone, full body including entire tail and ears, square 1024x1024 canvas, about 8% transparent margin at left and right, paws at 90% canvas height. GENUINE alpha transparency outside the silhouette, including all spaces between legs and under the body, with crisp edges for two-color SVG tracing. No ground, no cast shadow, no background, no gradients, no white patches, no text, no logo, no collar, no props, no other animals."
+}

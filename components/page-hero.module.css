@@ -1,0 +1,55 @@
+.hero {
+  --hero-header-offset: var(--dn-header-height);
+  --hero-height: calc(var(--dn-space-20) * 8);
+  --hero-rail-height: calc(var(--dn-space-3) / 2);
+  position: relative;
+  display: flex;
+  min-block-size: var(--hero-height);
+  padding: calc(var(--hero-header-offset) + var(--dn-space-8)) var(--dn-page-gutter) var(--dn-space-8);
+  background: #103d53;
+  color: var(--dn-text-inverse);
+}
+
+.hero[data-fixed-header="false"] { --hero-header-offset: 0px; }
+.hero[data-has-media="true"] { isolation: isolate; overflow: hidden; padding-block-end: calc(100vw * 993 / 1584 + var(--dn-space-8) + var(--hero-rail-height)); }
+.inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-start; inline-size: 100%; max-inline-size: var(--dn-content-max); margin-inline: auto; }
+.body { display: grid; gap: var(--dn-space-8); }
+.content { min-inline-size: 0; }
+.media { position: absolute; z-index: 0; inset-inline-end: 0; inset-block-end: var(--hero-rail-height); inline-size: 100%; pointer-events: none; user-select: none; }
+.media img { display: block; inline-size: 100%; block-size: auto; }
+.title {
+  display: grid;
+  max-inline-size: var(--dn-content-max);
+  margin-block: 0 var(--dn-space-6);
+  font-size: clamp(52px, 10vw, 142px);
+  font-weight: 900;
+  line-height: .91;
+  letter-spacing: -.075em;
+  overflow-wrap: anywhere;
+}
+.title span { color: #8fe4d9; }
+.description { max-inline-size: 510px; color: #d2e5eb; font-size: clamp(16px, 1.7vw, 22px); line-height: 1.5; }
+.navigation { flex-shrink: 0; min-block-size: var(--dn-space-12); margin-block-end: var(--dn-space-6); }
+.navigation :global(.breadcrumbs) { padding-block: 0; color: #d2e5eb; font-size: 14px; }
+.navigation :global(.breadcrumbs ol) { flex-wrap: nowrap; }
+.navigation :global(.breadcrumbs li) { display: flex; flex-shrink: 0; align-items: center; min-block-size: var(--dn-space-12); }
+.navigation :global(.breadcrumbs li:last-child) { flex-shrink: 1; min-inline-size: 0; overflow-wrap: anywhere; }
+.navigation a { display: inline-flex; align-items: center; gap: var(--dn-space-2); min-block-size: var(--dn-space-12); color: #d2e5eb; font-size: 14px; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dn-space-6); margin-block-start: var(--dn-space-6); }
+.actions a { display: inline-flex; align-items: center; gap: var(--dn-space-4); min-block-size: 48px; color: var(--dn-text-inverse); font-size: 14px; font-weight: 750; }
+.actions svg { flex-shrink: 0; }
+.hero a:focus-visible { outline-color: var(--dn-focus-ring-inverse); }
+.rail { position: absolute; z-index: 2; inset-inline: 0; inset-block-end: 0; block-size: var(--hero-rail-height); background: var(--page-hero-rail, var(--dn-brand-orange)); }
+.rail[data-catalog="true"] { display: grid; grid-template-columns: repeat(5, 1fr); }
+.rail span:nth-child(1) { background: var(--dn-category-complementos); }
+.rail span:nth-child(2) { background: var(--dn-category-deshidratados); }
+.rail span:nth-child(3) { background: var(--dn-category-organos); }
+.rail span:nth-child(4) { background: var(--dn-category-recetas-completas); }
+.rail span:nth-child(5) { background: var(--dn-category-suplementos); }
+
+@media (min-width: 1024px) {
+  .hero { --hero-height: calc(var(--dn-space-20) * 9); padding-block: calc(var(--hero-header-offset) + var(--dn-space-12)) var(--dn-space-12); }
+  .hero[data-has-media="true"] { padding-block-end: var(--dn-space-12); }
+  .body[data-has-media="true"] { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+  .media { inline-size: clamp(640px, 64vw, 1120px); }
+}

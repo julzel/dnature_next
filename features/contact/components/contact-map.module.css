@@ -1,0 +1,45 @@
+.location { min-inline-size: 0; }
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: var(--dn-space-3);
+  margin-block-end: var(--dn-space-6);
+}
+
+.heading svg { flex-shrink: 0; }
+.heading h3 { font-size: 20px; }
+
+.map,
+.mapFallback {
+  display: block;
+  inline-size: 100%;
+  block-size: clamp(280px, 32vw, 420px);
+  border: 0;
+  border-radius: var(--dn-radius);
+  background: var(--dn-surface-muted);
+}
+
+.mapFallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dn-space-6);
+  padding: var(--dn-space-6);
+  text-align: center;
+}
+
+.mapLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dn-space-4);
+  min-block-size: var(--dn-space-12);
+  padding-block: var(--dn-space-3);
+  margin-block-start: var(--dn-space-2);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mapLink svg { flex-shrink: 0; }

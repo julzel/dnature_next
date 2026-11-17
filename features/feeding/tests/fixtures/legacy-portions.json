@@ -1,0 +1,635 @@
+{
+  "source": "dnature_next/util/portion-size.js; captured 2026-10-07; all adult combinations and growth stages",
+  "cases": [
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "thin",
+        "activity": "calm"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "thin",
+        "activity": "normal"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "thin",
+        "activity": "active"
+      },
+      "expected": 450
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "calm"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "normal"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "active"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "calm"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "normal"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "active"
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "thin",
+        "activity": "calm"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "thin",
+        "activity": "normal"
+      },
+      "expected": 450
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "thin",
+        "activity": "active"
+      },
+      "expected": 500
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "calm"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "normal"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "active"
+      },
+      "expected": 450
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "calm"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "normal"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "small",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "active"
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "thin",
+        "activity": "calm"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "thin",
+        "activity": "normal"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "thin",
+        "activity": "active"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "calm"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "normal"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "active"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "calm"
+      },
+      "expected": 200
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "normal"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "active"
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "thin",
+        "activity": "calm"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "thin",
+        "activity": "normal"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "thin",
+        "activity": "active"
+      },
+      "expected": 450
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "calm"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "normal"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "active"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "calm"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "normal"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "medium",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "active"
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "thin",
+        "activity": "calm"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "thin",
+        "activity": "normal"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "thin",
+        "activity": "active"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "calm"
+      },
+      "expected": 200
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "normal"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "ideal",
+        "activity": "active"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "calm"
+      },
+      "expected": 150
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "normal"
+      },
+      "expected": 200
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": true,
+        "body": "overweight",
+        "activity": "active"
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "thin",
+        "activity": "calm"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "thin",
+        "activity": "normal"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "thin",
+        "activity": "active"
+      },
+      "expected": 400
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "calm"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "normal"
+      },
+      "expected": 300
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "active"
+      },
+      "expected": 350
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "calm"
+      },
+      "expected": 200
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "normal"
+      },
+      "expected": 250
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "adult",
+        "size": "large",
+        "neutered": false,
+        "body": "overweight",
+        "activity": "active"
+      },
+      "expected": null
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "growing",
+        "size": "small",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "normal",
+        "growthStage": "stage1"
+      },
+      "expected": 1000
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "growing",
+        "size": "small",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "normal",
+        "growthStage": "stage2"
+      },
+      "expected": 700
+    },
+    {
+      "input": {
+        "weight": 10,
+        "lifeStage": "growing",
+        "size": "small",
+        "neutered": false,
+        "body": "ideal",
+        "activity": "normal",
+        "growthStage": "stage3"
+      },
+      "expected": 400
+    }
+  ]
+}

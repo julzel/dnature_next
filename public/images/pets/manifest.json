@@ -1,0 +1,580 @@
+{
+  "schema_version": "1.0.0",
+  "name": "DNAture website species artwork",
+  "format": "svg",
+  "view_box": [
+    0,
+    0,
+    480,
+    480
+  ],
+  "background": "transparent",
+  "status": "Website species artwork: generated standing-cat and golden-retriever engravings, plus source-derived compact silhouettes. Source brandbook and original exports remain unchanged.",
+  "palette": {
+    "ink": "#092F39",
+    "mint": "#8FE4D9"
+  },
+  "sources": {
+    "engraving": {
+      "file": "DNA-BRANDBOOK.pdf",
+      "sha256": "c67d0c1dec925e26297bd5f26452656b0243d349c7d556dd183b104c21dd2d83",
+      "page": 46,
+      "method": "Extracted native vector animal paths with Poppler, isolated each animal, recolored black/white to ink/mint, removed a detached dog-artwork speck, normalized to a shared canvas and baseline, and optimized path coordinates. No raster tracing or embedded bitmap."
+    },
+    "silhouette": {
+      "file": "EDITABLES.ai",
+      "sha256": "f1ad78867bf0c32c942d7981a709e327fd6dcf262ba9fc4326b65672a02dd4f4",
+      "manifest": "public/images/icons/manifest.json",
+      "artboards": {
+        "cat": 18,
+        "dog": 19
+      },
+      "method": "Adapted the existing source SVG exports, removed the circular badge and outer ring, recolored the animal to ink, and normalized its optical size. Original exports are preserved."
+    },
+    "standing_cat": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/standing-cat-source.png",
+      "sha256": "2a5b412ad775094e5fe28c4effb9dc6ea262e746849da6636de5511676e3abc1",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/standing-cat-generation.json",
+      "original": "docs/graphic-design/artwork-sources/pet-species/cat-crouching-original.svg",
+      "method": "Standing pose created with built-in image_gen using the original cat and dog as references. Converted with vtracer 0.6.15 into native paths using exact ink/mint fills, then normalized to the shared canvas, optical width, and dog baseline. No embedded bitmap."
+    },
+    "golden_retriever": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-source.png",
+      "sha256": "b3daaac32039e206acdb8583b524050b46aef5314bc9086e84ed0df8b06478dd",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-generation.json",
+      "original": "docs/graphic-design/artwork-sources/pet-species/dog-brandbook-original.svg",
+      "method": "Golden retriever created with built-in image_gen using the original dog and current standing cat as style/pose references. Converted with vtracer 0.6.15 to native paths in exact ink/mint fills and normalized to the shared canvas, optical width, and baseline. No embedded bitmap."
+    },
+    "golden_retriever_lighter": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-lighter-source.png",
+      "sha256": "0e2d51c6932e1290ee0d2c26caed92ceee2d622d199f8f0ed2f8f502857b1b29",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/golden-retriever-lightening.json",
+      "original": "docs/graphic-design/artwork-sources/pet-species/dog-golden-original.svg",
+      "parent_source": "golden_retriever",
+      "method": "Lightened the dense fur shadows using built-in image_gen while retaining the golden retriever pose and composition; traced into native ink/mint SVG paths with vtracer 0.6.15 at ink threshold 0.6 to retain the lighter strokes, preserving shared canvas, optical width, and baseline. No embedded bitmap."
+    },
+    "border_collie": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/border-collie-source.png",
+      "sha256": "ecf152920247588b6eb84fffa48df5066e02ec18c5c8d38008f1bc517650cf75",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/border-collie-generation.json",
+      "method": "Built-in image_gen generation and style refinement, converted into native SVG paths with vtracer 0.6.15 using scripts/trace-walking-artwork.py. Normalized to the existing pet artwork canvas and baseline."
+    },
+    "poodle": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/poodle-source.png",
+      "sha256": "78b9bddb2cf0f41be67c131ab8d38b20354dad5a108e59ad9955835d3ffb59cc",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/poodle-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "chihuahua": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/chihuahua-source.png",
+      "sha256": "38453dcf8f3d6e836d94a76af0b8d57b8c73c0fee87d1ec462ddbe86e4b2da7c",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/chihuahua-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "english_bulldog": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/english-bulldog-source.png",
+      "sha256": "9130334fb0331313b8bb8a444e91812bdbb5659d6c07cfb42f0ee03260a93e57",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/english-bulldog-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "french_bulldog": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/french-bulldog-source.png",
+      "sha256": "fcbedd181cb8f5a3f3d7c19fb93c0949fa326f9e3cbeb5150e61740160598ec4",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/french-bulldog-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pug": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pug-source.png",
+      "sha256": "b16d6d99d9c0cae9bad5f314368af257424ecf4d26d23ec5080342e311398631",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pug-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "german_shepherd": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/german-shepherd-source.png",
+      "sha256": "c26459084a4e47bf0c041ba2e20e05e4352f3687b7665401996cfc7d6d626e48",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/german-shepherd-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "dachshund": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/dachshund-source.png",
+      "sha256": "227201846a507a8334b60181df455f5bd8d6a22cf3d5d0d2424d79f8dc783772",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/dachshund-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pitbull": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pitbull-source.png",
+      "sha256": "43dd30a2a1ce61f6a9f514f4b2b786a2c088e54718c79266223a48ad22055ce3",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pitbull-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "cattle_dog": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/cattle-dog-source.png",
+      "sha256": "50416ea90c8103779ea9e68ef6a5b70b1a442440959596bed1d685da99d9d602",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/cattle-dog-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "labrador_retriever": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/labrador-retriever-source.png",
+      "sha256": "e937676d091a043c0b4f58f6b48b02979a4019a8d1d955eb2436b57e80a97107",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/labrador-retriever-generation.json",
+      "method": "Built-in image_gen generation and transparent-edge refinement using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pomeranian": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pomeranian-source.png",
+      "sha256": "f2f159c8413d3938d4d532a162e2c4f5ba937e5e9bace280df8aaf621bdde2fd",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pomeranian-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "beagle": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/beagle-source.png",
+      "sha256": "ac86e9e1c1e49d392dc435ede909054c259509b209c664710019d6bea5d5ae45",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/beagle-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "weimaraner": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/weimaraner-source.png",
+      "sha256": "43f4f4269827c617b7de84320b54c15a3bf7e67be11f1eadf07537156ef37ec6",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/weimaraner-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "samoyed": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/samoyed-source.png",
+      "sha256": "27e272177f923ee86043c04f7fca223000efe17107230d85a48815afa91b09f1",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/samoyed-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "schnauzer": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/schnauzer-source.png",
+      "sha256": "b2ea078eefc266b191d7f2b1efb1718bc2f6a40f854ed200e61bc3abd8812e2a",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/schnauzer-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "bull_terrier": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/bull-terrier-source.png",
+      "sha256": "fac7bce21690d3ee3006e3b903a6c4fdfcfc089f33202200b1ea56ef77bac912",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/bull-terrier-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "dalmatian": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/dalmatian-source.png",
+      "sha256": "2500d6f618a1d3d30251fa2ca0deb0427a93d0790e5febb41c62636610efa3ef",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/dalmatian-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "doberman": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/doberman-source.png",
+      "sha256": "867cba3b7b37045ac6162c4a38f648490e9c97bddd767339141af48e75c39c1b",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/doberman-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "mixed_breed_dog": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-dog-source.png",
+      "sha256": "865b11e4e370b57e3230607ab7d9241f5ecb93bb387aa3ebd74ef3e66a1ba491",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-dog-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "mixed_breed_cat": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-cat-source.png",
+      "sha256": "89fbde78200b089e9aa6a6dc5b17fe75a6c17fbcee5479539889c664e7428220",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-cat-generation.json",
+      "method": "Built-in image_gen generation with Border Collie and DNAture dog/cat portrait style references, followed by framing refinement; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "boston_terrier": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/boston-terrier-source.png",
+      "sha256": "e12d8aecc60d35a605412b5324d1b29a5d8d61aaa40f413615b99f0607cdc2b1",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/boston-terrier-generation.json",
+      "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pet_diversity": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-source.png",
+      "sha256": "d7064de4aa36e3f7d0fd2c112f08bf251b8a921738cb59761669e355372541a7",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-generation.json",
+      "method": "Built-in image_gen group portrait using approved DNAture animal artwork as style references, followed by cutout/framing refinement; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "pet_diversity_v2": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-v2-source.png",
+      "sha256": "7745b0145b51e96a50f28fed445cecada0ef9be341a30f2ce750d8921465bab2",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/pet-diversity-v2-generation.json",
+      "method": "Built-in image_gen revision using the first group portrait and approved Boston Terrier as references; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py."
+    },
+    "yorkshire_terrier": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/yorkshire-terrier-source.png",
+      "sha256": "d59d21c915da0f31dbbe41187f65b856bc1578c220bc3f686c7c9fa83b2ebcf2",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/yorkshire-terrier-generation.json",
+      "method": "Built-in image_gen using pomeranian.svg as style reference; traced into native ink/mint SVG paths with vtracer 0.6.15, normalized to the shared 480px canvas and baseline."
+    },
+    "cocker_spaniel": {
+      "file": "docs/graphic-design/artwork-sources/pet-species/cocker-spaniel-source.png",
+      "sha256": "7dd37f63b13480fdc709b510a2c40f81d30310cfddf6057fb6de7b724cd023ad",
+      "generation": "docs/graphic-design/artwork-sources/pet-species/cocker-spaniel-generation.json",
+      "method": "Built-in image_gen using pomeranian.svg as style reference; traced into native ink/mint SVG paths with vtracer 0.6.15, normalized to the shared 480px canvas and baseline."
+    }
+  },
+  "assets": [
+    {
+      "species": "cat",
+      "label_es": "Gato",
+      "variant": "engraving",
+      "path": "/images/pets/cat.svg",
+      "source": "standing_cat",
+      "recommended_min_width_px": 96,
+      "use": [
+        "Species selection",
+        "Editorial species illustration"
+      ],
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Perro",
+      "variant": "engraving",
+      "path": "/images/pets/dog.svg",
+      "source": "golden_retriever_lighter",
+      "recommended_min_width_px": 96,
+      "use": [
+        "Species selection",
+        "Editorial species illustration"
+      ],
+      "breed": "Golden retriever",
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "cat",
+      "label_es": "Gato",
+      "variant": "silhouette",
+      "path": "/images/pets/cat-small.svg",
+      "source": "silhouette",
+      "recommended_min_width_px": 24,
+      "use": [
+        "Pet profile",
+        "Cat-only product label",
+        "Compact species metadata"
+      ]
+    },
+    {
+      "species": "dog",
+      "label_es": "Perro",
+      "variant": "silhouette",
+      "path": "/images/pets/dog-small.svg",
+      "source": "silhouette",
+      "recommended_min_width_px": 24,
+      "use": [
+        "Pet profile",
+        "Dog-only product label",
+        "Compact species metadata"
+      ]
+    },
+    {
+      "species": "dog",
+      "label_es": "Border collie",
+      "breed": "Border collie",
+      "variant": "engraving",
+      "path": "/images/pets/border-collie.svg",
+      "source": "border_collie",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Caniche",
+      "breed": "Poodle (caniche)",
+      "variant": "engraving",
+      "path": "/images/pets/poodle.svg",
+      "source": "poodle",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Chihuahua",
+      "breed": "Chihuahua",
+      "variant": "engraving",
+      "path": "/images/pets/chihuahua.svg",
+      "source": "chihuahua",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Bulldog inglés",
+      "breed": "English Bulldog",
+      "variant": "engraving",
+      "path": "/images/pets/english-bulldog.svg",
+      "source": "english_bulldog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Bulldog francés",
+      "breed": "French Bulldog",
+      "variant": "engraving",
+      "path": "/images/pets/french-bulldog.svg",
+      "source": "french_bulldog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Pug",
+      "breed": "Pug (carlino)",
+      "variant": "engraving",
+      "path": "/images/pets/pug.svg",
+      "source": "pug",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Pastor alemán",
+      "breed": "German Shepherd",
+      "variant": "engraving",
+      "path": "/images/pets/german-shepherd.svg",
+      "source": "german_shepherd",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Teckel",
+      "breed": "Dachshund (Teckel)",
+      "variant": "engraving",
+      "path": "/images/pets/dachshund.svg",
+      "source": "dachshund",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Pit bull",
+      "breed": "American Pit Bull Terrier type",
+      "variant": "engraving",
+      "path": "/images/pets/pitbull.svg",
+      "source": "pitbull",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Boyero australiano",
+      "breed": "Australian Cattle Dog (Blue Heeler)",
+      "variant": "engraving",
+      "path": "/images/pets/cattle-dog.svg",
+      "source": "cattle_dog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Labrador retriever",
+      "breed": "Labrador Retriever",
+      "variant": "engraving",
+      "path": "/images/pets/labrador-retriever.svg",
+      "source": "labrador_retriever",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Pomerania",
+      "breed": "Pomeranian",
+      "variant": "engraving",
+      "path": "/images/pets/pomeranian.svg",
+      "source": "pomeranian",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Beagle",
+      "breed": "Beagle",
+      "variant": "engraving",
+      "path": "/images/pets/beagle.svg",
+      "source": "beagle",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Weimaraner",
+      "breed": "Weimaraner",
+      "variant": "engraving",
+      "path": "/images/pets/weimaraner.svg",
+      "source": "weimaraner",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Samoyedo",
+      "breed": "Samoyed",
+      "variant": "engraving",
+      "path": "/images/pets/samoyed.svg",
+      "source": "samoyed",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Schnauzer",
+      "breed": "Standard Schnauzer",
+      "variant": "engraving",
+      "path": "/images/pets/schnauzer.svg",
+      "source": "schnauzer",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Bull terrier",
+      "breed": "Bull Terrier",
+      "variant": "engraving",
+      "path": "/images/pets/bull-terrier.svg",
+      "source": "bull_terrier",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Dálmata",
+      "breed": "Dalmatian",
+      "variant": "engraving",
+      "path": "/images/pets/dalmatian.svg",
+      "source": "dalmatian",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Dóberman",
+      "breed": "Doberman Pinscher",
+      "variant": "engraving",
+      "path": "/images/pets/doberman.svg",
+      "source": "doberman",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Perro mestizo",
+      "breed": "Mixed-breed dog (no specific breed)",
+      "variant": "engraving",
+      "path": "/images/pets/mixed-breed-dog.svg",
+      "source": "mixed_breed_dog",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "cat",
+      "label_es": "Gato mestizo",
+      "breed": "Mixed-breed domestic shorthair (no specific breed)",
+      "variant": "engraving",
+      "path": "/images/pets/mixed-breed-cat.svg",
+      "source": "mixed_breed_cat",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Boston terrier",
+      "breed": "Boston Terrier",
+      "variant": "engraving",
+      "path": "/images/pets/boston-terrier.svg",
+      "source": "boston_terrier",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Yorkshire terrier",
+      "breed": "Yorkshire Terrier",
+      "variant": "engraving",
+      "path": "/images/pets/yorkshire-terrier.svg",
+      "source": "yorkshire_terrier",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    },
+    {
+      "species": "dog",
+      "label_es": "Cocker spaniel",
+      "breed": "English Cocker Spaniel",
+      "variant": "engraving",
+      "path": "/images/pets/cocker-spaniel.svg",
+      "source": "cocker_spaniel",
+      "recommended_min_width_px": 96,
+      "pose": "Standing on four legs, facing right"
+    }
+  ],
+  "usage_rules": [
+    "Use the engraving at 96px or larger; prefer the silhouette at 24–80px.",
+    "The compact set uses distinct source-approved silhouettes, not crops of the engraving poses.",
+    "Place on light or turquoise surfaces; the ink silhouette is not a reverse asset for dark surfaces.",
+    "Preserve proportions, transparent margins, and natural contours. Do not add a card, circular crop, border, shadow, or category color.",
+    "Species artwork identifies an animal, not a product category or breed recommendation.",
+    "Pair product eligibility with explicit text such as Solo para gatos; do not infer compatibility from artwork alone.",
+    "For products suitable for both species, show both with text. Never imply cat-only or dog-only suitability without product data.",
+    "Use alt empty when adjacent text already names the species; otherwise provide contextual alt text.",
+    "Use lucide-react for functional interface actions; this artwork serves species identity."
+  ],
+  "react_component": "components/pet-species-image.tsx",
+  "usage_reference": "docs/graphic-design/pet-species-assets.md",
+  "preview": "docs/graphic-design/pet-species-preview.html",
+  "scenes": [
+    {
+      "label_es": "Diversidad de mascotas",
+      "path": "/images/pets/pet-diversity.svg",
+      "source": "pet_diversity",
+      "view_box": [
+        0,
+        0,
+        1600,
+        1000
+      ],
+      "background": "transparent",
+      "subject_counts": {
+        "dogs": 5,
+        "cats": 2
+      },
+      "subjects": [
+        "German Shepherd",
+        "Labrador Retriever",
+        "Mixed-breed dog",
+        "Poodle",
+        "Chihuahua",
+        "Mixed-breed domestic shorthair cat",
+        "Long-haired domestic cat"
+      ],
+      "pose": "All seven pets sitting and looking toward the viewer",
+      "recommended_min_width_px": 640
+    },
+    {
+      "label_es": "Diversidad de mascotas, composición mixta",
+      "path": "/images/pets/pet-diversity-v2.svg",
+      "source": "pet_diversity_v2",
+      "view_box": [
+        0,
+        0,
+        2000,
+        1000
+      ],
+      "background": "transparent",
+      "subject_counts": {
+        "dogs": 5,
+        "cats": 2
+      },
+      "subjects_left_to_right": [
+        "Long-haired domestic cat",
+        "German Shepherd",
+        "Chihuahua",
+        "Mixed-breed dog",
+        "Mixed-breed domestic shorthair cat",
+        "Poodle",
+        "Boston Terrier"
+      ],
+      "pose": "All seven pets sitting and looking toward the viewer",
+      "arrangement": "One seated row with interspersed sizes and species",
+      "supersedes": "/images/pets/pet-diversity.svg",
+      "recommended_min_width_px": 800
+    }
+  ]
+}

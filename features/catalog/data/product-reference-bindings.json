@@ -1,0 +1,437 @@
+[
+  {
+    "sku": "af652615-b155-417c-bed8-6cc1a8f8ad26",
+    "row": 2,
+    "sourceName": "Ajo y perejil"
+  },
+  {
+    "sku": "ae9f9d2c-7046-49f7-9587-cc3c91e6dc60",
+    "row": 3,
+    "sourceName": "Alas de Pollo"
+  },
+  {
+    "sku": "c3d436aa-effb-40bd-95d3-952217361df9",
+    "row": 4,
+    "sourceName": "Bazo de cordero"
+  },
+  {
+    "sku": "0b5eb046-1a52-46ed-aca1-9f1c4781939c",
+    "row": 5,
+    "sourceName": "Bazo de res"
+  },
+  {
+    "sku": "578e0565-f5e2-4c3d-91be-5609470a7ea4",
+    "row": 6,
+    "sourceName": "Bazo de ternero"
+  },
+  {
+    "sku": "a21895c4-e251-41fa-8f22-0a7f5d6fcf43",
+    "row": 7,
+    "sourceName": "Bazo deshidratado"
+  },
+  {
+    "sku": "559b6d9a-71ac-434b-a0bc-681b4ca1b420",
+    "row": 8,
+    "sourceName": "Bully sticks deshidratados"
+  },
+  {
+    "sku": "c9691b8e-0baa-4ff0-9c1a-9af858a158e1",
+    "row": 9,
+    "sourceName": "Caballo cocinado con verdura 500g"
+  },
+  {
+    "sku": "d9e90246-24ad-403a-b79d-243ea791126d",
+    "row": 10,
+    "sourceName": "Caballo cocinado sin verdura 500g"
+  },
+  {
+    "sku": "f20156ef-a3d9-4e31-9f93-0c8b3e57f1e7",
+    "row": 11,
+    "sourceName": "Caballo en trozos"
+  },
+  {
+    "sku": "dfa19886-6ae3-4571-b48e-e0eac987bcde",
+    "row": 13,
+    "sourceName": "Caja treats"
+  },
+  {
+    "sku": "924a14e0-7e7e-41db-afc0-97985a0d27cb",
+    "row": 15,
+    "sourceName": "Caldo hueso"
+  },
+  {
+    "sku": "112b1c8d-ab91-4c7c-9226-9fae8a0b2c1f",
+    "row": 16,
+    "sourceName": "Callostro"
+  },
+  {
+    "sku": "655fc73a-6abc-4d42-9d78-08a264680822",
+    "row": 18,
+    "sourceName": "Chucrut"
+  },
+  {
+    "sku": "8f3c172c-cec9-425d-99bd-956ede848473",
+    "row": 19,
+    "sourceName": "Codorniz cruda"
+  },
+  {
+    "sku": "02471b63-f804-428d-8a38-56e53fe90c61",
+    "row": 20,
+    "sourceName": "Codorniz Deshidratada"
+  },
+  {
+    "sku": "3e73ada1-0706-45e3-a95e-6127d26fa588",
+    "row": 21,
+    "sourceName": "Colageno"
+  },
+  {
+    "sku": "2d01f0f2-8c79-4747-8f7b-d681d4f933e5",
+    "row": 22,
+    "sourceName": "Corazon de cordero"
+  },
+  {
+    "sku": "8dc28b82-f1a3-4124-becb-bd5b2a907e9f",
+    "row": 24,
+    "sourceName": "Corazon de res"
+  },
+  {
+    "sku": "49ac0aa6-e895-4918-ba8a-2ccf3ada01d2",
+    "row": 27,
+    "sourceName": "Corazon deshidratado de cordero"
+  },
+  {
+    "sku": "e4eda22a-8beb-4aaa-828b-d78ab1ef43ab",
+    "row": 29,
+    "sourceName": "Corazon de ternero"
+  },
+  {
+    "sku": "f14f6b83-ff70-4a61-9482-a29545a11c20",
+    "row": 30,
+    "sourceName": "Costillas"
+  },
+  {
+    "sku": "4d650574-b071-4c76-8d4a-45982464d902",
+    "row": 32,
+    "sourceName": "Cuellos de Pollo deshidratados"
+  },
+  {
+    "sku": "366742bf-bc27-4403-88cd-ab239e08a947",
+    "row": 34,
+    "sourceName": "Cuerno de res"
+  },
+  {
+    "sku": "4c904817-eff8-4a04-b570-04b02c6b9c2c",
+    "row": 35,
+    "sourceName": "Deshidratados grandes"
+  },
+  {
+    "sku": "4a13599b-441f-486b-a687-ba70beccc24f",
+    "row": 37,
+    "sourceName": "DNAture Gato"
+  },
+  {
+    "sku": "7179b3d5-9413-497b-bf70-ccbd7813e889",
+    "row": 38,
+    "sourceName": "DNAture Pollo"
+  },
+  {
+    "sku": "f502620c-60fb-4cb4-b871-abdf0c1c66ea",
+    "row": 39,
+    "sourceName": "DNAture Pollo Bufalo"
+  },
+  {
+    "sku": "d9656e77-726f-4001-9b13-0baffb7b6f79",
+    "row": 40,
+    "sourceName": "DNAture Pollo Caballo"
+  },
+  {
+    "sku": "38584603-d5df-4eee-9acd-1e4df55b004e",
+    "row": 41,
+    "sourceName": "DNAture Pollo Cordero"
+  },
+  {
+    "sku": "6b2ee0f9-f533-496c-8f43-a7956c49fdfb",
+    "row": 42,
+    "sourceName": "DNAture Pollo Res"
+  },
+  {
+    "sku": "05243112-a02f-45a1-808f-f8eb6a56b389",
+    "row": 43,
+    "sourceName": "DNAture Pollo Ternero"
+  },
+  {
+    "sku": "c850bb2a-025a-429b-a53c-56f6feb728dd",
+    "row": 44,
+    "sourceName": "DNAture Trucha Bufalo"
+  },
+  {
+    "sku": "7816a6b3-2781-476c-9a94-4a4fafc5bac8",
+    "row": 45,
+    "sourceName": "DNAture Trucha Caballo"
+  },
+  {
+    "sku": "295f082d-7274-4162-92e2-1253fa375f48",
+    "row": 46,
+    "sourceName": "DNAture Trucha Pollo"
+  },
+  {
+    "sku": "5ff8ec31-9df9-4b53-aa02-dc5e5d488a1d",
+    "row": 47,
+    "sourceName": "DNAture Trucha Res"
+  },
+  {
+    "sku": "525edd4a-4593-43a4-8b33-e535fcb37079",
+    "row": 48,
+    "sourceName": "DNAture Wild Ancestor (Sardina)"
+  },
+  {
+    "sku": "5b3248df-51f1-496c-86f6-6038d210669a",
+    "row": 49,
+    "sourceName": "DNAture Wild Spirit (Trucha)"
+  },
+  {
+    "sku": "8a06209c-ba3f-42a1-9363-62e974116f84",
+    "row": 51,
+    "sourceName": "Espadines"
+  },
+  {
+    "sku": "8aafaaab-54c6-41c4-99f0-749df3d6c467",
+    "row": 53,
+    "sourceName": "Esqueleto de trucha deshidratado"
+  },
+  {
+    "sku": "239c6574-513d-4fd6-8939-deffc713bba5",
+    "row": 55,
+    "sourceName": "Galleta wild deshidratada"
+  },
+  {
+    "sku": "cbf0ac07-9554-45f1-995c-0c1cbea67ff0",
+    "row": 56,
+    "sourceName": "Hemp seeds"
+  },
+  {
+    "sku": "b6fa1a12-9bcb-4eea-ad72-9083bd52f1d2",
+    "row": 57,
+    "sourceName": "Higado de cordero"
+  },
+  {
+    "sku": "697dc123-8af4-4ec9-be68-bf3a029a8086",
+    "row": 59,
+    "sourceName": "Higado de res"
+  },
+  {
+    "sku": "23ef1b92-2709-40a8-93c8-332c03917b9a",
+    "row": 61,
+    "sourceName": "Higado de cordero deshidratado"
+  },
+  {
+    "sku": "6da19766-f64e-4388-bd2b-1da18c622281",
+    "row": 63,
+    "sourceName": "Higado de ternero"
+  },
+  {
+    "sku": "a2b3ee45-af7e-4df9-9422-e1b3b37da640",
+    "row": 65,
+    "sourceName": "Huesos"
+  },
+  {
+    "sku": "c26cc30c-ff11-49f7-9361-1e867ac44015",
+    "row": 66,
+    "sourceName": "Huevos de codorniz (10)"
+  },
+  {
+    "sku": "963809d1-13e7-4c84-901f-ebff4f573001",
+    "row": 67,
+    "sourceName": "Kefir de leche de cabra"
+  },
+  {
+    "sku": "a81812ad-3a37-4577-b6c4-014d30766db1",
+    "row": 70,
+    "sourceName": "Lengua de Cordero"
+  },
+  {
+    "sku": "40832f31-0470-4ede-95ea-73ff499e801b",
+    "row": 71,
+    "sourceName": "Levadura de cerveza"
+  },
+  {
+    "sku": "5e8be6b0-091e-47a9-a599-0d1216864351",
+    "row": 72,
+    "sourceName": "Levadura nutricional"
+  },
+  {
+    "sku": "4d0ba99e-f34b-48a9-9b25-07d92995122d",
+    "row": 74,
+    "sourceName": "Mejillón de Labio Verde"
+  },
+  {
+    "sku": "947c194f-8495-40aa-8650-e8bfc27a9c0b",
+    "row": 76,
+    "sourceName": "Mejillones deshidratados"
+  },
+  {
+    "sku": "ee8c6a1a-497e-4f1f-ab58-ca1488ec5887",
+    "row": 85,
+    "sourceName": "Oreja de res sin pelo deshidratada"
+  },
+  {
+    "sku": "a1edfbbb-0c58-4397-819b-bfc49f15840b",
+    "row": 86,
+    "sourceName": "Orejas de cordero deshidratadas"
+  },
+  {
+    "sku": "88df998f-fd6c-4944-8cd0-199910b2db8b",
+    "row": 87,
+    "sourceName": "Orejas de res deshidratada"
+  },
+  {
+    "sku": "b06c3a2d-3890-4990-8e29-e2b6b9dc7eec",
+    "row": 88,
+    "sourceName": "Pata de cordero deshidratada"
+  },
+  {
+    "sku": "489854b5-ca93-4536-918b-854f617c804e",
+    "row": 89,
+    "sourceName": "Patas de Conejo Crudas"
+  },
+  {
+    "sku": "9ac368fa-d805-4f5a-8f87-70373cec2151",
+    "row": 90,
+    "sourceName": "Patas de Conejo deshidratadas"
+  },
+  {
+    "sku": "9239f3d9-e7f0-4d74-9e78-396753137a7f",
+    "row": 91,
+    "sourceName": "Patas de pollo crudas"
+  },
+  {
+    "sku": "281e0609-ac5b-495a-a977-8b89d7cc04f4",
+    "row": 92,
+    "sourceName": "Patas de pollo deshidratadas"
+  },
+  {
+    "sku": "76ddf42b-e80b-4f40-a291-a24919736b27",
+    "row": 93,
+    "sourceName": "Pechuga"
+  },
+  {
+    "sku": "77f56183-9d79-49db-84fa-12dd71312603",
+    "row": 95,
+    "sourceName": "Polen"
+  },
+  {
+    "sku": "4b9fe628-0a8d-4fcb-984c-54f6c8979ab8",
+    "row": 98,
+    "sourceName": "Potasio"
+  },
+  {
+    "sku": "93754920-00cc-40ff-aa6f-866e9f9b1aa7",
+    "row": 99,
+    "sourceName": "Proteína de Res 500g"
+  },
+  {
+    "sku": "fee35c53-c49c-4826-80e2-1a2ba92d1252",
+    "row": 100,
+    "sourceName": "Proteina de res y caballo"
+  },
+  {
+    "sku": "c3c214a1-ba7a-4e03-8a5a-9e13e6e4e16e",
+    "row": 102,
+    "sourceName": "Pulmon deshidratado de res"
+  },
+  {
+    "sku": "31399b39-e2e1-485c-a4aa-bde9e87cc715",
+    "row": 111,
+    "sourceName": "Res cocinada"
+  },
+  {
+    "sku": "60495dd1-9d3e-4d15-a4f6-8a1f51f8464f",
+    "row": 112,
+    "sourceName": "Riñones de cordero"
+  },
+  {
+    "sku": "4e355b9e-7a05-4585-8f3a-d902f1bf38c6",
+    "row": 113,
+    "sourceName": "Riñones de res"
+  },
+  {
+    "sku": "51a48453-c7b9-4d9f-915f-5dc836bd3c16",
+    "row": 114,
+    "sourceName": "Riñones de ternero"
+  },
+  {
+    "sku": "062eea3b-5b2b-4585-93ac-4817f51cb35e",
+    "row": 116,
+    "sourceName": "Rosehip powder"
+  },
+  {
+    "sku": "97e7dfad-44a5-4450-b813-2d8269cd6de4",
+    "row": 117,
+    "sourceName": "Sardinas crudas"
+  },
+  {
+    "sku": "b979a9b3-e6c7-46e4-a16a-4d3928465970",
+    "row": 118,
+    "sourceName": "Sardinas deshidratadas"
+  },
+  {
+    "sku": "19be5682-2d11-43ed-a5d8-5fa310589d7b",
+    "row": 119,
+    "sourceName": "Suplemento senior"
+  },
+  {
+    "sku": "18831629-2300-42bb-bff1-3361b477305d",
+    "row": 120,
+    "sourceName": "Tendones de caballo deshidratados"
+  },
+  {
+    "sku": "cda575a6-ae0f-4a56-9155-91c9cb1c3db8",
+    "row": 122,
+    "sourceName": "Testiculos"
+  },
+  {
+    "sku": "80e5744c-d87f-47ba-9743-86a67f89343c",
+    "row": 123,
+    "sourceName": "Testiculos deshidratados"
+  },
+  {
+    "sku": "a29e0d5a-c1ab-4c86-b1a5-40e6c8f538c2",
+    "row": 128,
+    "sourceName": "Traqueas de Cordero deshidratadas"
+  },
+  {
+    "sku": "bb1a8788-e1a8-4a42-a1cf-594cf8ec5fd1",
+    "row": 129,
+    "sourceName": "Traqueas de Res deshidratadas"
+  },
+  {
+    "sku": "2acb43c6-06f8-4448-b320-5bcc84b2dc06",
+    "row": 130,
+    "sourceName": "Trenza Bully Sticks"
+  },
+  {
+    "sku": "eccc67df-e4eb-4812-be3f-502eb4fa7449",
+    "row": 131,
+    "sourceName": "Tripa"
+  },
+  {
+    "sku": "d4d9cfed-e992-463b-b5f1-afdd8777f395",
+    "row": 135,
+    "sourceName": "Truchas crudas (cabezas)"
+  },
+  {
+    "sku": "79ad6e09-7135-41d9-b8b2-fb57ab831e7d",
+    "row": 136,
+    "sourceName": "Truchas deshidratadas"
+  },
+  {
+    "sku": "67947aa1-862c-45f0-a440-5ae05021e346",
+    "row": 137,
+    "sourceName": "Vinagre de manzana"
+  },
+  {
+    "sku": "162b321d-00a6-4167-b2c8-4a7db6940cac",
+    "row": 138,
+    "sourceName": "Vitamina E"
+  }
+]

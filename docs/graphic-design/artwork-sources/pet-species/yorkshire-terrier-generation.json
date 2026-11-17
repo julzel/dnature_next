@@ -1,0 +1,17 @@
+{
+  "created": "2026-11-16",
+  "method": "Built-in image_gen with Pomeranian reference, followed by native SVG tracing.",
+  "prompt": "Transform the supplied Pomeranian illustration into a new YORKSHIRE TERRIER illustration, preserving its DNAture graphic style and presentation. Reference is for engraved linework, two-color palette, and standing pose only. One anatomically realistic adult Yorkshire Terrier on all FOUR legs, side profile facing RIGHT, head gently turned three-quarter toward viewer. Unmistakable Yorkie: small fine-boned compact terrier body, upright V-shaped ears, short fine muzzle, alert dark almond eyes, long straight silky parted fur flowing down the flanks, distinctive long face furnishings and moustache, slim legs and four small paws visibly emerging below coat, natural undocked moderately raised tail. No bow or topknot accessory, no collar. Keep coat silky straight and moderately long, not spitz-fluffy; keep eyes and paws clear. Match reference's mint-dominant copperplate/wood engraving with crisp tapered dark ink strokes following fur growth, airy crosshatching, no heavy shadow masses. Use luminous mint #8FE4D9 and deep cool ink teal #092F39 only. Flat opaque mint inside silhouette, genuine alpha transparency outside and between legs. Square canvas, full animal uncropped, generous clear margin around ears, tail and paws. No background, floor, ground shadow, glow, haze, checkerboard, gradients, photorealistic fur, cartoon, 3D, text, logos, warm colors or extra animals. This must belong to exactly the same pet illustration set as the supplied Pomeranian.",
+  "source_png": "yorkshire-terrier-source.png",
+  "style_reference": "public/images/pets/pomeranian.svg",
+  "output": "public/images/pets/yorkshire-terrier.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  }
+}

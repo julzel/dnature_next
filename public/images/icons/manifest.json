@@ -1,0 +1,158 @@
+{
+  "source": "EDITABLES.ai",
+  "sourceSha256": "f1ad78867bf0c32c942d7981a709e327fd6dcf262ba9fc4326b65672a02dd4f4",
+  "icons": [
+    {
+      "id": "res",
+      "label": "Res",
+      "artboard": 1,
+      "src": "/images/icons/res.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "ternero",
+      "label": "Ternero",
+      "artboard": 2,
+      "src": "/images/icons/ternero.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "bufalo",
+      "label": "Búfalo",
+      "artboard": 3,
+      "src": "/images/icons/bufalo.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "cordero",
+      "label": "Cordero",
+      "artboard": 4,
+      "src": "/images/icons/cordero.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "caballo",
+      "label": "Caballo",
+      "artboard": 5,
+      "src": "/images/icons/caballo.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "pollo",
+      "label": "Pollo",
+      "artboard": 6,
+      "src": "/images/icons/pollo.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "pescado",
+      "label": "Pescado",
+      "artboard": 7,
+      "src": "/images/icons/pescado.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "conejo",
+      "label": "Conejo",
+      "artboard": 8,
+      "src": "/images/icons/conejo.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "codorniz",
+      "label": "Codorniz",
+      "artboard": 9,
+      "src": "/images/icons/codorniz.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "mejillon",
+      "label": "Mejillón",
+      "artboard": 10,
+      "src": "/images/icons/mejillon.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "cabra",
+      "label": "Cabra",
+      "artboard": 11,
+      "src": "/images/icons/cabra.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "abeja",
+      "label": "Abeja",
+      "artboard": 12,
+      "src": "/images/icons/abeja.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "peces",
+      "label": "Dos peces",
+      "artboard": 13,
+      "src": "/images/icons/peces.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "pescado-horizontal",
+      "label": "Pescado horizontal",
+      "artboard": 14,
+      "src": "/images/icons/pescado-horizontal.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "pescado-curvo",
+      "label": "Pescado curvo",
+      "artboard": 15,
+      "src": "/images/icons/pescado-curvo.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "calabaza",
+      "label": "Calabaza",
+      "artboard": 16,
+      "src": "/images/icons/calabaza.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "capsulas",
+      "label": "Cápsulas",
+      "artboard": 17,
+      "src": "/images/icons/capsulas.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "gato",
+      "label": "Gato",
+      "artboard": 18,
+      "src": "/images/icons/gato.svg",
+      "width": 432,
+      "height": 432
+    },
+    {
+      "id": "perro",
+      "label": "Perro",
+      "artboard": 19,
+      "src": "/images/icons/perro.svg",
+      "width": 432,
+      "height": 432
+    }
+  ]
+}

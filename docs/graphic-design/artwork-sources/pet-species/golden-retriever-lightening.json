@@ -1,0 +1,13 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen targeted shadow-lightening edit; converted with scripts/trace-walking-artwork.py and vtracer 0.6.15 into native ink/mint SVG paths. Preserved the 480×480 canvas, 400px optical width, and 428.5px baseline.",
+  "source_png": "golden-retriever-lighter-source.png",
+  "reference_svg": "dog-golden-original.svg",
+  "previous_generation": "golden-retriever-generation.json",
+  "output": "../../../../public/images/pets/dog.svg",
+  "prompt": "Use case: precise-object-edit. Make a SMALL lightening adjustment to this exact DNAture golden retriever engraving. Reduce the dense dark fur shadow coverage by about 20–25%, especially the solid dark patches on the rear thigh/inner hind leg, underside/belly, lower chest, and inner front leg. Open those shadows with more luminous mint negative space and finer, more separated tapered engraved strokes, so the illustration feels a bit lighter and closer to the airy cat companion. Preserve the existing detailed fur engraving, just slightly reduce shadow density. Retain crisp dark contours, eye, nose and mouth definition. Keep the exact same golden retriever identity, head shape, gentle expression, long wavy coat, feathered tail and ears, four-legged standing pose facing RIGHT, all four paws, body proportions, framing, canvas and position. Do not redraw or simplify it into flat cartoon art. Use ONLY #092F39 deep ink and #8FE4D9 luminous mint; no gray, gold, yellow, white, brown, gradients, blur, transparency inside the animal, or new colors. Maintain genuine alpha transparency everywhere outside the animal, including between legs and below belly. No background, ground shadow, text, logo, collar, or props. Output the same composition and margins as the reference, with only the dark shading reduced a little.",
+  "tracing": {
+    "tool": "vtracer 0.6.15 via scripts/trace-walking-artwork.py",
+    "ink_threshold": 0.6
+  }
+}

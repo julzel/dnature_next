@@ -1,0 +1,39 @@
+.cue {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: var(--dn-space-6);
+  inset-inline-end: var(--dn-page-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  min-block-size: 44px;
+  inline-size: 44px;
+  max-inline-size: calc(100% - var(--dn-page-gutter) * 2);
+  border-radius: 16px;
+  background: rgb(9 47 57 / 75%);
+  color: #fff;
+  text-decoration: none;
+}
+
+.cue svg {
+  color: var(--hero-accent);
+  animation: nudge-down 1.8s ease-in-out infinite;
+}
+
+.cue:hover {
+  background: #092f39;
+}
+
+.cue:focus-visible {
+  outline-color: #fff;
+}
+
+@keyframes nudge-down {
+  0%, 100% { transform: translateY(-3px); }
+  50% { transform: translateY(3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue svg { animation: none; }
+}

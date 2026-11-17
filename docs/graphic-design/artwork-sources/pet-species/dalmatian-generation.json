@@ -1,0 +1,20 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "dalmatian-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use case: stylized-concept. Create a standalone DALMATIAN in the established DNAture mint-and-ink animal engraving graphic line. The supplied Border Collie is ONLY a style reference for crisp tapered engraving strokes, palette and natural standing presentation; do not copy its breed, coat length or body proportions. One realistic healthy adult Dalmatian standing naturally on all FOUR legs facing RIGHT, body in side profile and head gently turned three-quarter toward the viewer. Unmistakable breed features: elegant medium-large athletic balanced carriage-dog build, deep chest, level back, slight abdominal tuck, strong long straight legs and four distinct compact paws, moderately long neck, clean elongated head, moderately long square muzzle, natural attentive eyes, medium high-set floppy triangular ears with rounded tips hanging close to cheeks. Very short smooth dense coat. Full-length moderately long slim tapering tail carried backward in a gentle curve at or slightly below the topline, completely visible. Distinctive numerous separate rounded DALMATIAN SPOTS of varied natural size, well spaced across torso, head, ears, legs and tail. Render the light coat as luminous mint #8FE4D9 and dark spots as deep ink teal #092F39, retaining fine engraved strokes within larger spots and natural short fur texture; irregular round organic spots, no leopard rosettes, no giant saddle patches, not a merle pattern. Calm attentive gentle expression, closed mouth, natural adult anatomy. Match reference's meticulous fine tapered engraved lines and airy crosshatching, but SHORT sleek coat strokes following musculature, open flat mint highlights and restrained volume shading. EXACTLY TWO interior colors: luminous mint #8FE4D9 and deep cool ink teal #092F39. Mint-dominant overall with clearly separated spots and legible face. Square canvas, comfortable transparent margins around nose, floppy ears, FULL tail and all paws; entire animal uncropped. Genuine alpha transparency immediately outside the crisp silhouette, under belly and between legs, opaque mint inside the animal. No background, floor, printed checkerboard, ground shadow, halo, glow, haze, gradients, blur, photographic texture, cartoon, 3D, text, watermark, frame, collar, clothing, props or extra animals. No literal white, black, brown, orange, cream, sepia or warm colors. A reusable clean transparent cutout engraving matching the DNAture breed series.",
+  "output": "../../../../public/images/pets/dalmatian.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "2500d6f618a1d3d30251fa2ca0deb0427a93d0790e5febb41c62636610efa3ef",
+  "optical_width": 400.0,
+  "optical_height": 322.79
+}

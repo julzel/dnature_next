@@ -1,0 +1,42 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen revision using the first group portrait and approved Boston Terrier as references; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "pet-diversity-v2-source.png",
+  "style_references": [
+    "pet-diversity-source.png",
+    "boston-terrier-source.png"
+  ],
+  "prompt": "Recompose the pet group in image 1 into a NEW arrangement, and replace its Labrador Retriever with a Boston Terrier using image 2 ONLY as the Boston breed/style reference. Keep the same DNAture mint-and-ink engraving treatment. Exactly FIVE DOGS and TWO CATS, total SEVEN animals, all sitting naturally and looking directly toward the viewer. IMPORTANT COMPOSITION CHANGE: DO NOT repeat the old arrangement of large dogs in a back row and small pets in a front row. DO NOT sort by height or species. Use ONE relaxed, loosely spaced side-by-side group on essentially the SAME seating depth, with heights alternating naturally across the composition. No size-ranking, no small-pets-only front row, no big-dogs-only back row. Retain realistic size differences rather than making all pets the same size.\n\nEXACT LEFT-TO-RIGHT ORDER (each appears once):\n1. SMALL FLUFFY LONG-HAIRED DOMESTIC CAT, seated, with gentle round natural face and full tail curled alongside paws.\n2. LARGE TALL GERMAN SHEPHERD, seated, erect triangular ears, long muzzle, medium coat.\n3. TINY CHIHUAHUA, seated, big upright ears, short coat and adult natural proportions.\n4. MEDIUM MIXED-BREED / VILLAGE DOG (mestizo, no pedigree), seated, asymmetrical semi-folded ears, slightly scruffy coat, healthy dignified everyday companion.\n5. SMALL MIXED-BREED DOMESTIC SHORTHAIR TABBY CAT (gato mestizo), seated, upright ears, fine whiskers, tail curved around paws.\n6. MEDIUM-TALL POODLE, seated, curly coat and dropped ears, slender elegant body, no costume or exaggerated pompons.\n7. SMALL-TO-MEDIUM BOSTON TERRIER, seated, square head, short square muzzle, pointed upright ears, compact square body and natural tuxedo markings rendered only in the mint/ink palette. Clearly Boston Terrier rather than a French Bulldog, with lighter athletic build and pointed ears. Use image 2 for accurate face and short coat.\nThere is NO RETRIEVER: do not include a Labrador or Golden Retriever. Five dogs are German Shepherd, Chihuahua, mixed-breed dog, Poodle, Boston Terrier. Two cats are long-haired domestic cat and mixed-breed tabby. Seven distinct heads, seven separate anatomically plausible seated bodies, every chest and pair of front paws visible, hindquarters folded naturally, no merged limbs. All face the viewer, calm attentive gentle expressions, relaxed closed mouths. Do not add humans, props, collars or clothing. Give larger pets room without hiding smaller pets; slight natural spacing and tail overlap only. A cohesive inclusive family portrait, not separate frames, icons or pasted stickers.\n\nLandscape wide canvas about 2:1, with ample alpha-transparent breathing room on ALL FOUR sides beyond ears, tails, whiskers and paws. Whole seated animals fully visible and uncropped. Genuine alpha transparency directly outside animals and throughout gaps, no physical scenery, ground, floor line, backdrop, gradient, halo, glow, haze or shadow. Opaque mint inside animals. EXACTLY TWO interior inks: luminous mint #8FE4D9 and deep cool ink teal #092F39. Crisp meticulous tapered engraved fur strokes, airy crosshatching and varied restrained shading following anatomy; open mint highlights, clear eyes and whiskers, short fur distinct from curls, scruffy coat and long fur. Fine scientific hand-engraved style matching image 1, not cartoon or photography. No text, border, logos, watermark, checkerboard pattern, warm colors, literal white/black/brown, sepia, 3D or blur. Natural interspersed sizes in the exact order above, ALL SEVEN seated and gazing toward the viewer.",
+  "output": "../../../../public/images/pets/pet-diversity-v2.svg",
+  "canvas": [
+    2000,
+    1000
+  ],
+  "revision_of": "pet-diversity-generation.json",
+  "changes": [
+    "Replaced Labrador Retriever with Boston Terrier",
+    "Interspersed pet sizes and species in one seated row"
+  ],
+  "subject_counts": {
+    "dogs": 5,
+    "cats": 2
+  },
+  "subjects_left_to_right": [
+    "Long-haired domestic cat",
+    "German Shepherd",
+    "Chihuahua",
+    "Mixed-breed dog",
+    "Mixed-breed domestic shorthair cat",
+    "Poodle",
+    "Boston Terrier"
+  ],
+  "pose": "All seven pets sitting and looking toward the viewer",
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.5
+  },
+  "source_sha256": "7745b0145b51e96a50f28fed445cecada0ef9be341a30f2ce750d8921465bab2",
+  "optical_width": 1800.0,
+  "optical_height": 825.7,
+  "baseline": 920
+}

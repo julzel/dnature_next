@@ -1,0 +1,1430 @@
+{
+  "schema_version": "2.0.0",
+  "locale": "es-CR",
+  "source_record": "features/faq/data/development-faq.json",
+  "editorial_note": "Based on the remote development FAQ. Product-specific, medical, storage-duration, availability and payment claims require current verification. Some answers have been adapted for the current site and safety.",
+  "topics": [
+    {
+      "id": "alimentacion-natural",
+      "label": "Alimentación natural",
+      "description": "Conceptos básicos, transición, frecuencia y porciones."
+    },
+    {
+      "id": "dietas-dnature",
+      "label": "Dietas DNAture",
+      "description": "Ingredientes, proteínas, Complete, suplementos y preparación."
+    },
+    {
+      "id": "situaciones-especificas",
+      "label": "Situaciones específicas",
+      "description": "Peso, digestión, alergias y suplementos con criterio veterinario."
+    },
+    {
+      "id": "conservacion",
+      "label": "Conservación y preparación",
+      "description": "Congelación, descongelado, refrigeración y manipulación segura."
+    },
+    {
+      "id": "pedidos-entregas",
+      "label": "Pedidos y entregas",
+      "description": "Compra asistida, zonas, costo, cambios y recepción."
+    },
+    {
+      "id": "precios-planes",
+      "label": "Precios y planes",
+      "description": "Costo estimado, presentaciones, asesoría y cálculo de ración."
+    },
+    {
+      "id": "gatos",
+      "label": "Para gatos",
+      "description": "Productos apropiados, diferencias nutricionales y transición felina."
+    }
+  ],
+  "questions": [
+    {
+      "id": "que-es-alimentacion-natural",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Qué es la alimentación natural para perros y gatos?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Es una forma de alimentar con ingredientes reales y seleccionados, dentro de una receta que debe considerar la especie, etapa de vida, tamaño, actividad y condición corporal de cada mascota.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Que un alimento sea “natural” no garantiza por sí solo que sea completo. También importan la formulación, la inocuidad, la cantidad y que el producto sea adecuado para el animal que lo recibe.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "que es alimentacion natural"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "que-es-alimentacion-natural",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "natural-vs-barf",
+      "topic_id": "alimentacion-natural",
+      "question": "¿La alimentación natural es lo mismo que BARF?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "No necesariamente. BARF es un modelo de alimentación cruda basado en carne, huesos y órganos. “Alimentación natural” es un concepto más amplio y puede incluir recetas crudas o cocinadas.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "En cualquier modalidad, una mezcla de ingredientes no se vuelve completa automáticamente. Debe estar formulada para la especie y etapa de vida correspondientes.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Podés ampliar sobre los cuidados de las dietas crudas en la guía de WSAVA.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "Las dietas crudas pueden contener microorganismos perjudiciales para personas y animales. Consultá con tu veterinario antes de elegirlas y seguí las pautas de higiene.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "natural vs barf"
+      ],
+      "sources": [
+        {
+          "label": "WSAVA: dietas crudas para mascotas",
+          "url": "https://wsava.org/wp-content/uploads/2021/04/Raw-Meat-Based-Diets-for-Pets_WSAVA-Global-Nutrition-Toolkit.pdf"
+        },
+        {
+          "label": "CDC: seguridad de los alimentos para mascotas",
+          "url": "https://www.cdc.gov/healthy-pets/about/pet-food-safety.html"
+        }
+      ],
+      "links": [],
+      "source_question_id": "natural-vs-barf",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "dietas-balanceadas-completas",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Las dietas de DNAture están balanceadas y completas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Consultá la etiqueta o ficha de cada receta para confirmar si se declara completa y balanceada, y para qué especie y etapa de vida está indicada.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Los complementos y suplementos tienen usos distintos; no asumás que sustituyen una alimentación completa.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "dietas balanceadas completas"
+      ],
+      "sources": [
+        {
+          "label": "AAFCO: cómo leer las etiquetas",
+          "url": "https://www.aafco.org/consumers/understanding-pet-food/reading-labels/"
+        }
+      ],
+      "links": [],
+      "source_question_id": "dietas-balanceadas-completas",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "natural-vs-concentrado",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Qué diferencia hay entre una dieta natural y un concentrado?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Se diferencian principalmente en ingredientes, humedad, procesamiento, presentación y conservación. El concentrado suele ser seco y estable a temperatura ambiente; muchas dietas naturales tienen mayor humedad y requieren refrigeración o congelación.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Ninguna presentación es adecuada solo por su formato. Lo importante es que cubra las necesidades de la mascota, se manipule de forma segura y se sirva en la cantidad correcta.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "natural vs concentrado"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "natural-vs-concentrado",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "alimentacion-diaria",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Mi perro o gato puede comer alimentación natural todos los días?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Sí, cuando el producto está formulado como dieta completa para su especie y etapa de vida y la ración se ajusta a sus necesidades. Los productos complementarios, suplementos y mezclas complementarias no sustituyen por sí solos una dieta completa.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "alimentacion diaria"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "alimentacion-diaria",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "combinar-con-concentrado",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Puedo combinar alimentación natural con concentrado?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La combinación y las cantidades dependen de la dieta completa, la tolerancia y las necesidades de tu mascota. Consultá con su veterinario antes de modificar la alimentación, especialmente si existe una enfermedad, alergia o dieta terapéutica.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "combinar con concentrado"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "combinar-con-concentrado",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "cambio-de-un-dia-para-otro",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Puedo cambiar de concentrado a alimentación natural de un día para otro?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Preferimos una transición progresiva. Un cambio repentino puede causar rechazo o molestias digestivas, aunque cada mascota responde de manera distinta.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "cambio de un dia para otro"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "cambio-de-un-dia-para-otro",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "como-hacer-transicion",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Cómo hago la transición a una dieta natural?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Consultá con tu veterinario cómo hacer el cambio para tu mascota. La transición puede variar según su edad, salud y alimentación actual; no existe un calendario único adecuado para todos.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Si observás una reacción que te preocupe, pausá el cambio y consultá con tu veterinario. No iniciés un ayuno sin indicación profesional.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "como hacer transicion"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "como-hacer-transicion",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "tiempo-de-adaptacion",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Cuánto tiempo tarda mi mascota en acostumbrarse?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Varía según su dieta anterior, apetito, sensibilidad digestiva y estado de salud. Algunas se adaptan en pocos días y otras necesitan una transición más lenta.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Si deja de comer, vomita repetidamente, presenta diarrea intensa o se muestra decaída, detené la transición y consultá con su médico veterinario.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "tiempo de adaptacion"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "tiempo-de-adaptacion",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "cantidad-diaria",
+      "topic_id": "alimentacion-natural",
+      "question": "¿Qué cantidad de comida debe comer mi mascota al día?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La cantidad depende de la fórmula y de las necesidades de cada animal, entre ellas su especie, edad, peso, actividad y estado de salud.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Revisá las indicaciones del producto y consultá con tu veterinario para definir y ajustar una porción apropiada.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "cantidad diaria"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "cantidad-diaria",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "factores-de-la-racion",
+      "topic_id": "alimentacion-natural",
+      "question": "¿La cantidad depende del peso, edad o actividad?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Depende de todos esos factores y también de la condición corporal, esterilización, objetivo y densidad calórica del producto. Dos mascotas con el mismo peso pueden necesitar cantidades diferentes.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "factores de la racion"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "factores-de-la-racion",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "cachorros-y-gatitos",
+      "topic_id": "alimentacion-natural",
+      "question": "¿La alimentación natural sirve para cachorros y gatitos?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Sí, siempre que la receta indique que es adecuada para crecimiento y para la especie correspondiente. Cachorros y gatitos tienen necesidades distintas a las de un adulto; no se debe asumir que cualquier mezcla natural es apropiada.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "cachorros y gatitos"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "cachorros-y-gatitos",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "mascotas-senior",
+      "topic_id": "alimentacion-natural",
+      "question": "¿También pueden comerla perros y gatos senior?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Sí, pero la elección y la porción deben considerar su condición corporal, actividad, dentición y cualquier diagnóstico. Un animal senior con una condición médica necesita recomendación veterinaria individual.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "mascotas senior"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "mascotas-senior",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "ingredientes-de-las-dietas",
+      "topic_id": "dietas-dnature",
+      "question": "¿Qué ingredientes contienen las dietas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Los ingredientes varían según la receta. Revisá la información disponible del producto y su etiqueta; si tu mascota tiene restricciones, consultanos antes de elegir.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "ingredientes de las dietas"
+      ],
+      "sources": [],
+      "links": [
+        {
+          "label": "Explorá nuestros productos",
+          "url": "/productos"
+        }
+      ],
+      "source_question_id": "ingredientes-de-las-dietas",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "proteinas-disponibles",
+      "topic_id": "dietas-dnature",
+      "question": "¿Qué proteínas tienen disponibles?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Las proteínas y presentaciones disponibles pueden variar. Explorá el catálogo y consultanos para confirmar la disponibilidad actual.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "proteinas disponibles"
+      ],
+      "sources": [],
+      "links": [
+        {
+          "label": "Explorá nuestros productos",
+          "url": "/productos"
+        }
+      ],
+      "source_question_id": "proteinas-disponibles",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "elegir-proteina",
+      "topic_id": "dietas-dnature",
+      "question": "¿Puedo elegir la proteína que quiero darle a mi mascota?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Podés elegir entre las opciones disponibles y compatibles con el producto. Si la elección responde a una alergia o enfermedad, hacela con orientación veterinaria y no solo por preferencia.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "elegir proteina"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "elegir-proteina",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "alergias-intolerancias",
+      "topic_id": "dietas-dnature",
+      "question": "¿Qué hago si mi mascota tiene alergias o intolerancias?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Una alergia debe identificarse correctamente. Cambiar de proteína sin un plan puede dificultar el diagnóstico. Compartí con nosotros los ingredientes que indicó evitar su médico veterinario para revisar opciones disponibles.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "DNAture no sustituye una dieta de eliminación ni un tratamiento veterinario. Confirmá también el riesgo de trazas cuando sea relevante.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "alergias intolerancias"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "alergias-intolerancias",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "necesidades-especificas",
+      "topic_id": "dietas-dnature",
+      "question": "¿Pueden preparar una dieta para una mascota con necesidades específicas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Podemos orientarte sobre los productos disponibles. Una condición diagnosticada, una dieta terapéutica o una restricción clínica requiere evaluación y seguimiento del médico veterinario; no confirmamos una preparación especial sin esa revisión.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "necesidades especificas"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "necesidades-especificas",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "complete-vs-mezclas",
+      "topic_id": "dietas-dnature",
+      "question": "¿Qué diferencia hay entre DNAture Complete y las otras mezclas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La diferencia depende de la función declarada para cada producto. Revisá si la fórmula está identificada como completa o complementaria, y para qué especie y etapa de vida está indicada.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Consultanos si necesitás ayuda para interpretar una etiqueta.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "complete vs mezclas"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "complete-vs-mezclas",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "contienen-huesos",
+      "topic_id": "dietas-dnature",
+      "question": "¿Las dietas contienen huesos?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Depende de la receta y de cómo fue formulada. Revisá los ingredientes del producto o consultanos por la presentación específica. No agregués huesos por tu cuenta para intentar “balancear” una dieta.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "contienen huesos"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "contienen-huesos",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "contienen-visceras",
+      "topic_id": "dietas-dnature",
+      "question": "¿Las dietas contienen órganos?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La composición varía según la receta. Revisá la lista de ingredientes de la fórmula específica o consultanos para confirmar qué órganos incluye.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "vísceras",
+        "contienen visceras"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "contienen-visceras",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "agregar-suplementos",
+      "topic_id": "dietas-dnature",
+      "question": "¿Es necesario agregar suplementos a la dieta?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Antes de agregar un suplemento, revisá con tu veterinario la dieta completa de tu mascota y la indicación del producto. Un suplemento no siempre es necesario y su uso debe ajustarse a cada caso.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "agregar suplementos"
+      ],
+      "sources": [
+        {
+          "label": "AAFCO: suplementos para mascotas",
+          "url": "https://www.aafco.org/consumers/understanding-pet-food/supplements/"
+        }
+      ],
+      "links": [],
+      "source_question_id": "agregar-suplementos",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "cocinar-dieta",
+      "topic_id": "dietas-dnature",
+      "question": "¿Puedo cocinar la dieta?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Seguí las indicaciones de preparación del producto y consultá con tu veterinario antes de cocinar o modificar una receta. Si necesitás una opción cocida, consultanos por la disponibilidad actual.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "cocinar dieta"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "cocinar-dieta",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "balance-dieta-cocinada",
+      "topic_id": "dietas-dnature",
+      "question": "¿Las dietas cocinadas mantienen el mismo balance nutricional?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "No debe asumirse. El resultado depende de la formulación original, temperatura, tiempo y pérdida de humedad. Si necesitás una opción cocinada, consultá cuáles productos están diseñados para ese uso.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "balance dieta cocinada"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "balance-dieta-cocinada",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "rotar-proteinas",
+      "topic_id": "dietas-dnature",
+      "question": "¿Puedo cambiar de proteína regularmente?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Antes de cambiar la proteína o receta, revisá que la nueva fórmula sea adecuada para tu mascota y consultá con tu veterinario cómo hacer la transición. Si se investiga una alergia o sensibilidad, no cambiés de proteína sin indicación profesional.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "rotar proteinas"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "rotar-proteinas",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "sobrepeso",
+      "topic_id": "situaciones-especificas",
+      "question": "¿La alimentación natural puede ayudar a una mascota con sobrepeso?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "El control de peso depende principalmente de una ración calórica adecuada, seguimiento de la condición corporal, actividad y constancia. Una dieta natural no produce pérdida de peso por sí sola.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Pedí una evaluación veterinaria para establecer un objetivo seguro y ajustar la ración conforme avance.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "sobrepeso"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "sobrepeso",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "mascotas-esterilizadas",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Qué alimentación recomiendan para mascotas esterilizadas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Después de la esterilización pueden cambiar el apetito y el gasto energético. La opción adecuada depende de la especie, edad, actividad y condición corporal; suele ser necesario revisar la porción y monitorear el peso.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "mascotas esterilizadas"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "mascotas-esterilizadas",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "cristales-estruvita",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Pueden hacer una dieta para perros con cristales de estruvita?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Los cristales o cálculos urinarios requieren diagnóstico veterinario, análisis de orina y seguimiento. No recomendamos formular ni cambiar una dieta para estruvita únicamente desde una FAQ.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "Compartí la indicación de su médico veterinario con el equipo antes de comprar. Si hay dificultad para orinar, dolor o ausencia de orina, buscá atención urgente.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "cristales estruvita"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "cristales-estruvita",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "problemas-digestivos",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Qué alimentación puede recibir una mascota con problemas digestivos?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "No existe una única dieta para todos los problemas digestivos. La duración, gravedad y causa de los síntomas determinan el manejo. Consultá al veterinario si hay vómitos repetidos, sangre, dolor, deshidratación, decaimiento o síntomas persistentes.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "problemas digestivos"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "problemas-digestivos",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "adaptar-alergias",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Pueden adaptar la alimentación para perros con alergias?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Si tu mascota tiene alergias, consultá primero con su veterinario. Con la lista de ingredientes que debe evitar, podés consultarnos la composición de las recetas disponibles.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "adaptar alergias"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "adaptar-alergias",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "suplementos-articulaciones",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Qué suplementos pueden ayudar a perros con problemas articulares?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "El suplemento depende del diagnóstico, medicamentos, dieta y peso. Antes de elegir glucosamina, condroitina, omega-3, mejillón de labio verde u otro producto, consultá dosis, calidad y posibles interacciones con su veterinario.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "suplementos articulaciones"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "suplementos-articulaciones",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "mejillon-labio-verde",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Qué es el mejillón de labio verde y para qué sirve?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Es un molusco marino utilizado como ingrediente en algunos suplementos articulares por sus lípidos y otros compuestos. No sustituye el diagnóstico ni garantiza alivio; la formulación y dosis del producto importan.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "Consultá antes de usarlo si existen alergias a mariscos, tratamientos médicos o una condición crónica.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "mejillon labio verde"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "mejillon-labio-verde",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "espirulina",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Puedo darle espirulina a mi perro?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "No todas las mascotas la necesitan. La seguridad depende de la calidad del producto, dosis, dieta total y estado de salud. Evitá suplementos de origen incierto y consultá al veterinario antes de incorporarla de forma regular.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "espirulina"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "espirulina",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "come-tierra",
+      "topic_id": "situaciones-especificas",
+      "question": "¿Qué pasa si mi perro come tierra?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Puede ser una conducta ocasional, pero también relacionarse con aburrimiento, malestar gastrointestinal, parásitos, anemia, deficiencias o ingestión de sustancias peligrosas. Evitá el acceso y comentáselo a su veterinario si se repite.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "Buscá atención pronta si ingirió fertilizantes, químicos u objetos, o presenta vómitos, dolor, debilidad o dificultad para defecar.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "come tierra"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "come-tierra",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "piel-y-pelaje",
+      "topic_id": "situaciones-especificas",
+      "question": "¿La dieta natural puede ayudar con la calidad del pelo y la piel?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Una alimentación completa aporta nutrientes necesarios para piel y pelaje, pero el formato “natural” no garantiza por sí solo una mejoría. Picazón, caída excesiva, lesiones u olor pueden tener causas dermatológicas, parasitarias, hormonales o alérgicas que requieren evaluación.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "piel y pelaje"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "piel-y-pelaje",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "almacenar-comida",
+      "topic_id": "conservacion",
+      "question": "¿Cómo debo almacenar la comida?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Seguí las indicaciones del envase y respetá las condiciones de frío del producto. Para alimentos crudos, separalos de otros alimentos y lavá las manos, utensilios y superficies que entren en contacto con ellos.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "almacenar comida"
+      ],
+      "sources": [
+        {
+          "label": "CDC: seguridad de los alimentos para mascotas",
+          "url": "https://www.cdc.gov/healthy-pets/about/pet-food-safety.html"
+        }
+      ],
+      "links": [],
+      "source_question_id": "almacenar-comida",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "tiempo-descongelada",
+      "topic_id": "conservacion",
+      "question": "¿Cuánto tiempo puede permanecer descongelada?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Revisá en el envase de tu producto las indicaciones y el plazo de conservación después de descongelarlo. Si no están claros, consultanos antes de usarlo.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "tiempo descongelada"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "tiempo-descongelada",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "descongelar-correctamente",
+      "topic_id": "conservacion",
+      "question": "¿Cómo descongelo correctamente la comida?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Para productos crudos congelados, descongelá en refrigeración, en un recipiente cerrado y separado de otros alimentos. Seguí las indicaciones del envase para la preparación y conservación.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "descongelar correctamente"
+      ],
+      "sources": [
+        {
+          "label": "CDC: seguridad de los alimentos para mascotas",
+          "url": "https://www.cdc.gov/healthy-pets/about/pet-food-safety.html"
+        }
+      ],
+      "links": [],
+      "source_question_id": "descongelar-correctamente",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "volver-a-congelar",
+      "topic_id": "conservacion",
+      "question": "¿Puedo volver a congelar una dieta que ya descongelé?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Revisá las instrucciones del envase para saber cómo manejar el producto después de descongelarlo. Si tenés dudas sobre si una porción puede volver a congelarse, consultanos antes de usarla.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "volver a congelar"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "volver-a-congelar",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "calentar-comida",
+      "topic_id": "conservacion",
+      "question": "¿Puedo calentar la comida?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Seguí las indicaciones de preparación de la etiqueta. Antes de calentar o modificar una receta, consultá con tu veterinario y con nuestro equipo sobre el producto específico.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "calentar comida"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "calentar-comida",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "cocinar-dietas-conservacion",
+      "topic_id": "conservacion",
+      "question": "¿Puedo cocinar las dietas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Seguí las indicaciones de preparación del producto y consultá con tu veterinario antes de cocinar o modificar una receta. Si necesitás una opción cocida, consultanos por la disponibilidad actual.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "cocinar dietas conservacion"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "cocinar-dietas-conservacion",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "duracion-refrigeracion",
+      "topic_id": "conservacion",
+      "question": "¿Cuánto dura la comida en refrigeración?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "El plazo depende del producto. Seguí las instrucciones de conservación del envase y, si no están claras, consultanos antes de servirlo.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "duracion refrigeracion"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "duracion-refrigeracion",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "comida-danada",
+      "topic_id": "conservacion",
+      "question": "¿Cómo sé si la comida se dañó?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Si el envase está dañado o el alimento presenta un cambio que te preocupa, no lo ofrezcás. Consultanos con los datos del producto, lote y fecha de compra.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "La apariencia o el olor por sí solos no garantizan que un alimento sea seguro.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "comida danada"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "comida-danada",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "hacer-pedido",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Cómo hago mi pedido?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Explorá los productos disponibles y contactanos para confirmar cómo realizar tu pedido, la disponibilidad, el monto y las condiciones de entrega.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "hacer pedido"
+      ],
+      "sources": [],
+      "links": [
+        {
+          "label": "Explorá nuestros productos",
+          "url": "/productos"
+        }
+      ],
+      "source_question_id": "hacer-pedido",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "saber-cuanto-necesita",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Cómo sé cuánto alimento necesita mi mascota?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La ración depende de la especie, edad, peso, condición corporal, actividad y producto. Revisá la etiqueta y consultá con tu veterinario para definir una cantidad apropiada.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "saber cuanto necesita"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "saber-cuanto-necesita",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "entregas-domicilio",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Realizan entregas a domicilio?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Consultanos tu ubicación para confirmar si hay entrega a domicilio disponible y cuáles son las condiciones de conservación y recepción.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "entregas domicilio"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "entregas-domicilio",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "dias-entrega",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Qué días realizan las entregas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Los días dependen de la ruta y capacidad disponible. Compartí tu ubicación por WhatsApp para confirmar la próxima fecha; no asumás una fecha hasta recibir respuesta del equipo.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "dias entrega"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "dias-entrega",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "zonas-entrega",
+      "topic_id": "pedidos-entregas",
+      "question": "¿A qué zonas realizan entregas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La cobertura puede variar. Compartí tu distrito con nuestro equipo para confirmar si hay entrega disponible en tu zona.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "zonas entrega"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "zonas-entrega",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "costo-envio",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Cuál es el costo de envío?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "El costo y la disponibilidad de entrega dependen de la zona y las condiciones vigentes. Consultanos para confirmar el monto antes de realizar el pedido.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "costo envio"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "costo-envio",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "anticipacion-pedido",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Con cuánto tiempo debo hacer mi pedido?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Hacelo con la mayor anticipación posible, especialmente si necesitás una fecha concreta. El tiempo depende de existencias, preparación y ruta; nuestro equipo confirmará cuándo puede estar listo.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "anticipacion pedido"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "anticipacion-pedido",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "pedidos-recurrentes",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Puedo programar pedidos recurrentes?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Consultanos si es posible coordinar pedidos recurrentes y cómo se confirma cada entrega según la disponibilidad.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "pedidos recurrentes"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "pedidos-recurrentes",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "cambios-pedido",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Puedo hacer cambios en mi pedido?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Escribinos cuanto antes con la referencia de la solicitud. Confirmaremos si todavía puede modificarse según su estado de preparación o despacho.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "cambios pedido"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "cambios-pedido",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "no-estoy-en-casa",
+      "topic_id": "pedidos-entregas",
+      "question": "¿Qué pasa si no estoy en casa cuando llega mi pedido?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Contactá al equipo en cuanto sepás que no podrás recibir tu pedido. Te ayudaremos a confirmar las opciones disponibles para la entrega y el manejo del producto.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "no estoy en casa"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "no-estoy-en-casa",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "costo-alimentacion",
+      "topic_id": "precios-planes",
+      "question": "¿Cuánto cuesta alimentar a mi mascota con DNAture?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "El costo depende de la ración, la receta y la presentación. Revisá los precios disponibles en el catálogo y consultanos el monto final y las condiciones de entrega.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "costo alimentacion"
+      ],
+      "sources": [],
+      "links": [
+        {
+          "label": "Explorá nuestros productos",
+          "url": "/productos"
+        }
+      ],
+      "source_question_id": "costo-alimentacion",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "costo-vs-concentrado",
+      "topic_id": "precios-planes",
+      "question": "¿Por qué una dieta natural puede costar más que un concentrado?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Influyen los ingredientes, humedad, preparación, empaque, congelación y cadena de frío. Compará el costo por ración real y el propósito nutricional del producto, no solo el precio por kilogramo.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "costo vs concentrado"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "costo-vs-concentrado",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "presentaciones-pequenas",
+      "topic_id": "precios-planes",
+      "question": "¿Tienen presentaciones pequeñas?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Las presentaciones dependen del producto y su disponibilidad. Consultanos si necesitás confirmar una cantidad o presentación específica.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "presentaciones pequenas"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "presentaciones-pequenas",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "descuentos-cantidad",
+      "topic_id": "precios-planes",
+      "question": "¿Tienen descuentos por comprar mayor cantidad?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "No publicamos un descuento fijo sin confirmar la campaña y sus condiciones. Preguntá por las opciones vigentes al preparar tu solicitud; cualquier precio especial debe quedar confirmado por el equipo.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "descuentos cantidad"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "descuentos-cantidad",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "planes-personalizados",
+      "topic_id": "precios-planes",
+      "question": "¿Tienen planes personalizados?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Consultanos qué tipo de orientación está disponible y qué información necesitás proporcionar. Una dieta terapéutica o una condición médica requiere valoración veterinaria individual.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "planes personalizados"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "planes-personalizados",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "costo-asesoria",
+      "topic_id": "precios-planes",
+      "question": "¿La asesoría nutricional tiene costo?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "El alcance y costo dependen del tipo de orientación requerida. Consultá al equipo antes de agendar para confirmar qué incluye, quién la brinda y si tiene un costo asociado.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "costo asesoria"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "costo-asesoria",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "calculo-racion",
+      "topic_id": "precios-planes",
+      "question": "¿Cómo calculan la ración recomendada?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "La porción depende del animal y de la densidad energética de la receta. Consultá la etiqueta del producto y hablá con tu veterinario para obtener una recomendación individual.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "calculo racion"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "calculo-racion",
+      "editorial_status": "adapted"
+    },
+    {
+      "id": "gatos-pueden-comer",
+      "topic_id": "gatos",
+      "question": "¿Los gatos también pueden comer las dietas DNAture?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Únicamente los productos cuya ficha indique que son adecuados para gatos y para su etapa de vida. No usés automáticamente una receta formulada para perros.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "gatos pueden comer"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "gatos-pueden-comer",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "diferencia-perros-gatos",
+      "topic_id": "gatos",
+      "question": "¿Qué diferencia hay entre la alimentación natural de perros y gatos?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Perros y gatos tienen requerimientos distintos. Los gatos, por ejemplo, necesitan nutrientes como taurina y vitamina A preformada en cantidades y relaciones propias de su especie. Por eso una receta debe declarar para cuál especie y etapa fue formulada.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "AAFCO resume estas diferencias en su guía para seleccionar alimento.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "diferencia perros gatos"
+      ],
+      "sources": [
+        {
+          "label": "seleccionar alimento",
+          "url": "https://www.aafco.org/consumers/understanding-pet-food/selecting-the-right-pet-food/"
+        }
+      ],
+      "links": [],
+      "source_question_id": "diferencia-perros-gatos",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "suplementos-para-gatos",
+      "topic_id": "gatos",
+      "question": "¿Los gatos necesitan suplementos diferentes?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Sus necesidades nutricionales sí son diferentes, pero una dieta completa para gatos no debería requerir suplementos adicionales para “completarla”. Cualquier suplemento extra debe considerar la dieta total y la indicación veterinaria.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "suplementos para gatos"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "suplementos-para-gatos",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "transicion-gato-concentrado",
+      "topic_id": "gatos",
+      "question": "¿Un gato que solo ha comido concentrado puede hacer la transición?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Sí, pero muchos gatos necesitan un cambio más lento de sabor y textura. Ofrecé pequeñas cantidades junto a su alimentación habitual y avanzá solo si mantiene un consumo adecuado.",
+          "items": []
+        },
+        {
+          "type": "note",
+          "text": "No sometás a un gato a ayuno para forzar el cambio. Si deja de comer o reduce mucho su consumo, contactá pronto a su médico veterinario.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "transicion gato concentrado"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "transicion-gato-concentrado",
+      "editorial_status": "source_wording"
+    },
+    {
+      "id": "gato-no-quiere-comer",
+      "topic_id": "gatos",
+      "question": "¿Qué hago si mi gato no quiere comer la dieta natural?",
+      "answer_blocks": [
+        {
+          "type": "paragraph",
+          "text": "Probá una transición más gradual, porciones pequeñas, un plato limpio y un ambiente tranquilo. No lo forcés ni retirés toda alternativa de forma abrupta.",
+          "items": []
+        },
+        {
+          "type": "paragraph",
+          "text": "Si rechaza también otros alimentos, pierde peso, vomita o cambia su comportamiento, consultá al veterinario; la falta de apetito en gatos no debe prolongarse.",
+          "items": []
+        }
+      ],
+      "search_terms": [
+        "gato no quiere comer"
+      ],
+      "sources": [],
+      "links": [],
+      "source_question_id": "gato-no-quiere-comer",
+      "editorial_status": "source_wording"
+    }
+  ]
+}

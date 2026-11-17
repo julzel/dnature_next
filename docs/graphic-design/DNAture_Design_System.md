@@ -1,0 +1,646 @@
+# DNAture — Digital Design System
+
+**Version:** 0.5 — Revised brandbook palette and accessible five-category theme
+
+**Updated:** 2026-11-09
+
+**Scope:** Public website, catalog, product detail, customer account, educational content, cart and checkout
+
+**Customer-facing language:** Spanish, Costa Rica
+
+**Brand reference:** [DNAture_Brand_Reference.json](DNAture_Brand_Reference.json)
+
+**Current source:** `DNA-BRANDBOOK.pdf`, 79 pages, reviewed 2026-11-09. The file has no verified publication date or version label. The earlier `BRANDBOOK 2.pdf` is retained as historical evidence in the JSON.
+
+**Project requirements:** [AGENTS.md](../../AGENTS.md)
+
+This revision replaces version 0.1's visual system. The website uses an open editorial layout: **no card-based composition, no elevation, and no rounded UI borders or corners**. Hierarchy comes from typography, alignment, imagery, spacing, and dividing rules. These constraints apply across the whole website, including mobile layouts, forms, account views, and temporary interface states.
+
+## 1. Authority and scope
+
+| Label | Meaning |
+|---|---|
+| **[BRAND]** | Specified or supported by the brandbook; page references use 1-based PDF positions. |
+| **[REQUIRED]** | Current website direction requested by the user or required by AGENTS.md. Apply when designing or modifying the interface. |
+| **[PROPOSED]** | An implementation recommendation or optional feature; it must satisfy all required rules. |
+| **[VERIFY]** | An asset, product fact, claim, or operational detail that needs current evidence before use. |
+
+Apply current task instructions and AGENTS.md first, then this document's website requirements, then compatible brandbook guidance. The JSON reference preserves the original brandbook, its contradictions, and the current project adaptations. This document governs the website's updated visual treatment. Brand orange and assigned product-category colors have the explicit exceptions defined below. Rounded panels or elevated compositions in older mockups do not establish further exceptions.
+
+The brandbook is a source for identity and communication. Its product examples, nutritional statements, seals, and packaging mockups are not a live catalog or proof of current efficacy, certification, or availability. Feature names and page templates below describe a design direction; they do not imply those features already exist.
+
+## 2. Brand intention translated into the website
+
+**Official tagline [BRAND]:** “Nutrición con esencia en el ADN” (pp. 20–21). Preserve this wording. Campaign headlines support it without becoming alternative official taglines.
+
+DNAture combines the **Sabio** and **Cuidador** archetypes: reliable knowledge, clear explanation, empathy, and ongoing care (pp. 10–17). The website should feel like a thoughtful nutritional publication with a clear path to purchase. Scientific authority comes from understandable information and traceable evidence. Human connection comes from language, real animals, and their relationships with their guardians.
+
+| Brand intention [BRAND] | Website expression [PROPOSED] |
+|---|---|
+| Scientific rigor | Precise headings, aligned information, readable composition tables, explicit sources. |
+| Education | One useful question per section, short explanations, links to deeper material. |
+| Empathetic care | Reassuring copy, authentic animal photography, understandable next steps. |
+| Individual biology | Clear product roles and verified suitability; optional context gathering where useful. |
+| Transparency | Visible ingredients, limitations, availability, prices, and evidence scope. |
+| Community and accompaniment | Accessible support, meaningful stories, and continued learning. |
+
+**Composition principles [REQUIRED]**
+
+- Build continuous pages with open sections, shared alignment, and clear reading order.
+- Use typography and proximity to group content. Add a dividing rule when a relationship needs clarification.
+- Give photographs and engravings room to communicate the brand; balance them with readable text.
+- Keep buying, learning, and requesting support easy to discover through descriptive links.
+- Distinguish complete, complementary, and specialist-use products using verified data and explicit text.
+- Preserve the same visual grammar as content density increases in the catalog, account, and checkout.
+
+## 3. Non-negotiable visual rules [REQUIRED]
+
+### 3.1 No card-based layout
+
+A card is a self-contained content island created by an enclosing surface, border, padding, or elevation. **Square cards are also prohibited.** Removing a radius or shadow from an existing card does not satisfy this direction.
+
+Do not use product cards, category tiles, feature boxes, dashboard widgets, testimonial cards, profile cards, boxed statistics, or nested content panels. Do not create the same effect with separate tinted rectangles behind repeated items.
+
+Use these patterns instead:
+
+| Content | Required presentation |
+|---|---|
+| Products | Open, aligned product entries on one continuous section surface; image, name, role, price, and action remain visibly associated. |
+| Product families | An index of named rows with a short explanation and browse link. |
+| Brand benefits | A typographic list or editorial columns separated by spacing or rules. |
+| Articles and evidence | An editorial index with headings, summaries, metadata, and descriptive links. |
+| Pets, orders, saved items | Labeled records in divided lists; tables where the information is genuinely tabular. |
+| Testimonials | Attributed quotations in the page flow, paired with authentic imagery when available. |
+| Metrics | Aligned figures and labels, without individual boxes. |
+| Forms | Open field groups with legends/headings and consistent vertical rhythm. |
+
+Grids remain useful for alignment. A product grid may contain several columns, but entries share the page background and have no enclosing item border, shadow, decorative frame, or per-item surface. At narrow widths, entries reflow into one readable stream; they do not become a horizontal card carousel.
+
+### 3.2 Flat surfaces and zero elevation
+
+- Use no decorative `box-shadow`, `text-shadow`, drop-shadow filter, inset shadow, bevel, glow, glass effect, or simulated depth.
+- Hover, selected, active, loading, and focus states must remain flat. No lift, tilt, scale-up, or expanding shadow on hover.
+- Use full-width section bands or broad continuous page regions when a surface change supports the story. Avoid alternating backgrounds mechanically around every small content group.
+- Use horizontal or vertical rules to separate content. Full enclosing borders belong to functional controls and overlays where needed, not to content groups.
+- Dialogs, menus, drawers, and sticky controls may occupy a functional stacking layer. Their visual treatment stays square and shadow-free. A plain dimmed backdrop may distinguish a modal; do not add backdrop blur.
+- Focus uses a visible outline or other clear non-shadow indicator. Flattening the visual design must never remove focus feedback.
+
+### 3.3 Square geometry
+
+All authored interface containers, buttons, text fields, selects, menus, dialogs, drawers, media frames, thumbnails, and skeletons use **`border-radius: 0`**. There are no pill buttons, pill filters, rounded badges, circular avatar crops, or rounded hero panels. Status labels are text with an optional icon, not capsules.
+
+Preserve the intrinsic geometry of supplied logo artwork, illustrations, real product packaging, and photographs. Do not distort a logo or retouch a package to make its printed artwork square. Do not recreate the brandbook's curved hanging tab as a UI container or clip-path. The website's recurring section signature is the shared `SectionEyebrow`.
+
+Native selection indicators and functional icon shapes retain their recognizable meaning. A native radio indicator is not a decorative rounded container; keep its semantics and keyboard behavior. Do not place controls or icons inside circular background treatments. Authored control frames and hit-area backgrounds remain square.
+
+### 3.4 Cool foundations with active brand orange
+
+Use cool white, blue-gray, institutional turquoise, dark blue, and neutral text as the foundations. **DNAture brand orange `#FF6A00` is an explicit brand-color exception, excluded from the website's warm-color prohibition.** It is a recurring part of the site's identity and interaction hierarchy, not an accent reserved for `SectionEyebrow`.
+
+Give orange a visible role in primary calls to action, active navigation and selection accents, editorial highlights, meaningful counters, and occasional continuous section bands. Use it to draw attention to a next step or important idea. Maintain clear priority within each action group rather than making every action equally prominent.
+
+The brand-level exception applies to the exact brand orange. Warm whites, cream, beige, yellow, unrelated oranges, and other warm UI tones remain prohibited in general UI. The five current product categories also have assigned identification colors; their warm hues are allowed only in category and product contexts. Do not create peach or cream surfaces by tinting orange. Cool/neutral surfaces remain the main reading areas. Orange and category elements follow the same square geometry, open layout, and zero-elevation rules as the rest of the site.
+
+Product photography and approved artwork should accurately show the real product. Their intrinsic colors do not authorize additional warm interface colors beyond the brand-orange and category-identification exceptions.
+
+## 4. Visual foundations
+
+### 4.1 Color roles
+
+The current brandbook retains institutional turquoise `#00A9B5`, orange `#FF6A00`, gray `#B2B2B2`, and charcoal `#3C3C3B` (p. 31). Its revised p. 32 provides **18 secondary swatches without an explicit category mapping**. Exact values are in the JSON under `visual_identity.color.secondary_palette`; the previous nine family colors are archived under `historical_category_palette`.
+
+**[REQUIRED website decision]** The current website taxonomy has five categories and the assignments below. Accent values are exact current source swatches; the category assignments and readable pairings are project decisions authorized by the user. They are not a claim that the PDF defines this mapping. Use category color only to identify its category in navigation, catalog headings, dividers, product labels, or related product context. Keep the category name visible; color is never evidence of nutritional role or suitability.
+
+| Current category | Identification accent | Text on white/cool surfaces (`-ink`) | Text on solid accent (`-on-color`) | Base CSS token |
+|---|---|---|---|---|
+| Complementos | Amber `#D79412` | Brown `#5B2E20` | Black `#000000` | `--dn-category-complementos` |
+| Deshidratados | Orange `#ED6F1E` | Brown `#5B2E20` | Black `#000000` | `--dn-category-deshidratados` |
+| Órganos | Burgundy `#6A1B23` | Burgundy `#6A1B23` | White `#FFFFFF` | `--dn-category-organos` |
+| Recetas completas | Green `#2E7246` | Green `#2E7246` | White `#FFFFFF` | `--dn-category-recetas-completas` |
+| Suplementos | Mauve `#A05A77` | Mauve `#A05A77` | White `#FFFFFF` | `--dn-category-suplementos` |
+
+This mapping preserves distinct warm, red, green and purple category cues using the revised source palette. Every `-ink` pairing exceeds 4.5:1 on white and cool `#F6FAFF`; every `-on-color` pairing exceeds 4.5:1 on its solid accent. Amber and orange base accents are unsuitable for small text on light surfaces. Use `-ink` for text, functional icons, control boundaries, selected underlines and scrollbars; use `-on-color` for filled hover states. Category navigation uses text labels without bullet markers. Its active state matches hover and keyboard focus: the same soft category-tinted fill, underline, and font weight, with the shared center-out animation. These tokens live in `app/theme.css`; `categoryStyle` in the catalog supplies the three roles consistently.
+
+Category, ingredient/protein and species are different pieces of information. The revised icon examples on p. 46 do not assign the five website categories. Preserve supplied ingredient/species artwork and its original colors without using them to infer a category. Current commerce records determine product membership; do not automatically merge the nine historical families into the five current categories. In particular, an organ can also be dehydrated. The recognized display alias `Snacks deshidratados` → `Deshidratados` changes only its label, not its product membership.
+
+**Source correction:** The green swatch's hex `#2E7246` and upper RGB label agree on `46, 114, 70`; its lower RGB row incorrectly repeats `55, 66, 20` from the preceding swatch. Use the hex-consistent value for digital implementation and retain the discrepancy in the JSON.
+
+| Website role | Value [PROPOSED] | Use |
+|---|---|---|
+| Institutional turquoise | `#00A9B5` [BRAND] | Recognizable graphic accents and occasional continuous section surfaces. |
+| Brand orange | `#FF6A00` [BRAND; explicit UI exception] | Primary calls to action, editorial emphasis, navigation accents, counters, and occasional continuous section bands. |
+| Dark blue | `#124563` [existing digital adaptation] | Headings, supporting actions, dark editorial sections, and an alternative action on orange surfaces. Retained from the earlier palette as a website support color; it has no current category assignment. |
+| Base | `#FFFFFF` | Main reading and commerce surface. |
+| Cool surface | `#F6FAFF` | Broad editorial regions. |
+| Muted surface | `#F1F5F9` | Broad secondary regions or restrained interaction feedback. |
+| Primary text | `#203237` | Body copy and dark text on turquoise or orange. |
+| Secondary text | `#596F73` | Supporting copy on light surfaces. |
+| Dividing rule | `#D9E4ED` | Nonessential separators on light surfaces. |
+| Control boundary | `#667F8B` | Visible input/control boundaries on light surfaces. |
+| Inverse text | `#FFFFFF` | Text and focus outlines on dark blue. |
+
+Use dark blue or primary text for normal-size text on white. Use white text on dark blue, and primary dark text on turquoise or orange. `#203237` on `#FF6A00` has approximately **4.65:1** contrast. White on orange is only **2.87:1**, and dark blue `#124563` on orange is **3.56:1**; neither is the default for normal-size button text. White text on institutional turquoise is also insufficient for normal-size text. Check every actual pairing and interaction state.
+
+Orange text or an orange-only functional indicator on white is insufficient for its respective text/non-text contrast target. Keep navigation labels and functional icons dark; pair an orange accent with an independently clear active state such as a dark underline or meaningful label. Focus outlines remain dark on light/orange surfaces and light on dark surfaces. Preserve the exact orange during hover and pressed states; use a dark border, underline, or icon change instead of lowering opacity or adding unapproved warm shades.
+
+**Orange participation [REQUIRED direction; specific placements PROPOSED]**
+
+| Context | Orange role | Supporting treatment |
+|---|---|---|
+| Homepage hero | Primary discovery or catalog action | Orange square button with primary dark text; supporting links remain quieter. |
+| Product detail and checkout | Main purchase or progression action | Clear dark label, stable pending state, and visible focus. |
+| Navigation and filters | Accent beside an active item or selected state | Dark labels and an additional clear state cue; no pill track or enclosed filter tiles. |
+| Editorial content | Short highlight behind dark text, graphic rule, or section marker | Preserve heading semantics and reading contrast. |
+| Cart or result count | Compact square orange fill with a dark numeral when emphasis is useful | Accessible count in context; no circular badge or standalone orange text on white. |
+| Closing or campaign section | Occasional broad orange band | Dark readable copy and a dark-blue action with white text; no inset panel or repeated orange item boxes. |
+
+Orange should be evident beyond eyebrow markers in major journeys. Use it with turquoise as part of the recognizable brand palette, while keeping long-form reading surfaces calm. These roles do not change the primary monochromatic logo rule.
+
+Use text, icons, and semantics to communicate success, errors, warnings, and stock. A restrained dark status color may be shared when wording and icons clearly distinguish states. Brand orange communicates brand emphasis; do not reserve it for warnings or assign automatic success/error meaning to it. Other warm alert fills remain prohibited.
+
+### 4.2 Token contract
+
+**[REQUIRED]** Geometry and spacing below define the website direction. The live token source is `app/theme.css`; the excerpt below describes its core contract. Reuse existing tokens rather than creating competing aliases.
+
+```css
+:root {
+  --dn-space-1: 4px;
+  --dn-space-2: 8px;
+  --dn-space-3: 12px;
+  --dn-space-4: 16px;
+  --dn-space-6: 24px;
+  --dn-space-8: 32px;
+  --dn-space-12: 48px;
+  --dn-space-16: 64px;
+  --dn-space-20: 80px;
+
+  --dn-radius: 0;
+  --dn-shadow: none;
+  --dn-page-gutter: var(--dn-space-4);
+  --dn-content-max: 1280px;
+  --dn-reading-max: 760px;
+
+  --dn-brand-teal: #00A9B5;
+  --dn-brand-orange: #FF6A00;
+  --dn-brand-charcoal: #3C3C3B;
+  --dn-surface-base: #FFFFFF;
+  --dn-surface-cool: #F6FAFF;
+  --dn-surface-muted: #F1F5F9;
+  --dn-surface-dark: #124563;
+  --dn-surface-emphasis: var(--dn-brand-orange);
+  --dn-text-primary: #203237;
+  --dn-text-secondary: #596F73;
+  --dn-text-inverse: #FFFFFF;
+  --dn-border-default: #D9E4ED;
+  --dn-border-control: #667F8B;
+  --dn-action-primary-bg: var(--dn-brand-orange);
+  --dn-action-primary-text: var(--dn-text-primary);
+  --dn-action-alternative-bg: #124563;
+  --dn-action-alternative-text: #FFFFFF;
+  --dn-focus-ring: #124563;
+  --dn-focus-ring-inverse: #FFFFFF;
+  --dn-overlay: rgb(17 45 53 / 56%);
+
+  --dn-category-complementos: #D79412;
+  --dn-category-complementos-ink: #5B2E20;
+  --dn-category-complementos-on-color: #000000;
+  --dn-category-deshidratados: #ED6F1E;
+  --dn-category-deshidratados-ink: #5B2E20;
+  --dn-category-deshidratados-on-color: #000000;
+  --dn-category-organos: #6A1B23;
+  --dn-category-organos-ink: var(--dn-category-organos);
+  --dn-category-organos-on-color: var(--dn-text-inverse);
+  --dn-category-recetas-completas: #2E7246;
+  --dn-category-recetas-completas-ink: var(--dn-category-recetas-completas);
+  --dn-category-recetas-completas-on-color: var(--dn-text-inverse);
+  --dn-category-suplementos: #A05A77;
+  --dn-category-suplementos-ink: var(--dn-category-suplementos);
+  --dn-category-suplementos-on-color: var(--dn-text-inverse);
+
+}
+
+@media (min-width: 640px) {
+  :root { --dn-page-gutter: var(--dn-space-6); }
+}
+
+@media (min-width: 1024px) {
+  :root { --dn-page-gutter: var(--dn-space-8); }
+}
+```
+
+Use the shared brand-orange token for its action and surface roles; avoid parallel hardcoded orange values. Remove prohibited warm-surface aliases. Apply zero radius and no shadow to component styles and all their states; declaring tokens alone is insufficient. Do not use a universal reset to erase native affordances, focus indicators, or the geometry inside supplied artwork.
+
+### 4.3 Spacing and layout rhythm
+
+**[REQUIRED]** All spacing uses the shared `4, 8, 12, 16, 24, 32, 48, 64, 80px` scale. Zero is allowed for resets and flush alignment. Font sizes, stroke widths, media aspect ratios, and container widths have their own roles and are not spacing tokens.
+
+| Relationship | Default [PROPOSED] |
+|---|---|
+| Page gutter | 16px narrow, 24px intermediate, 32px wide; use shared tokens. |
+| Content width | Up to 1280px, centered within fluid gutters. |
+| Long-form reading width | Up to 760px; constrain paragraphs further when needed for a comfortable line length. |
+| Section padding | 48px narrow, 64px intermediate, 80px wide. |
+| Compact utility section | 32px narrow, 48px wide. |
+| Eyebrow to heading | 16px. |
+| Heading to introductory text | 16px. |
+| Introduction to section content | 24px narrow, 32px wide. |
+| Related item gap | 24px; 32px when imagery needs more room. |
+| Major editorial column gap | 32px narrow, 48px wide. |
+| Divided row padding | 16px or 24px vertically, consistent within the list. |
+
+Use shared alignment lines for headings, imagery, lists, and actions. Vary the proportion of an image and text column to fit the story. Avoid making every section a repeated three-column composition. Vertical dividers on wide layouts become horizontal separators when content stacks.
+
+Breakpoints at 640px and 1024px are reference points, not fixed device targets. Adjust layout when content no longer fits; preserve DOM reading order. At narrow widths, prefer one product column when two would compromise names, prices, roles, or controls. Keep utility actions reachable without horizontal page scrolling.
+
+### 4.4 Typography
+
+**[BRAND]** Primary: **Avenir Next LT Pro** (p. 39). Secondary: **Gotham Ultra** (p. 40). Alternate: **Arial Bold** (p. 41).
+
+**Website font decision [REQUIRED]:** Avenir Next LT Pro and Gotham Ultra are licensed commercial families, and the repository has no web-licensed copies. Use the open Google Fonts **Manrope** as the website's Avenir-like primary face and **Montserrat Black (900)** as the Gotham-like display face. Their WOFF2 files and OFL licenses are stored in `app/fonts/` and loaded through `next/font/local` in the root layout. Manrope's Latin Extended subset is loaded on demand for the Costa Rican colón symbol (`₡`). This makes builds independent of Google Fonts network access. The faces are exposed as `--font-body` and `--font-display` in CSS. Use Manrope for body text and most headings; reserve Montserrat Black for prominent, short display headings such as the page H1. Arial is the system fallback, not a separately loaded brand font.
+
+These are website substitutes, not replacements for the approved typography in printed brand assets or the supplied logo. If licensed Avenir/Gotham webfont files become available later, review the actual license and asset weights before changing the website. Manrope and Montserrat are published under the SIL Open Font License; see their [Google Fonts source records](https://github.com/google/fonts/blob/main/ofl/manrope/METADATA.pb) and [Montserrat record](https://github.com/google/fonts/blob/main/ofl/montserrat/METADATA.pb).
+
+| Role | Narrow / wide sizes [PROPOSED] | Treatment |
+|---|---|---|
+| Display / hero | 36–44px / 56–72px | Montserrat Black; short headline, line-height 1.1–1.15. |
+| Page H1 | 32–36px / 44–56px | Montserrat Black; one descriptive page heading, line-height 1.15. |
+| Section H2 | 26–30px / 32–40px | Manrope bold; clear section landmark, line-height 1.2. |
+| H3 / entry heading | 20–22px / 22–26px | Manrope semibold/bold; line-height 1.3. |
+| Body | 16px / 16–18px | Manrope regular; line-height 1.6. |
+| Supporting text | 14px | Brief helper copy and metadata; line-height 1.5. |
+| Section eyebrow | Shared component style | Short descriptive label; uppercase treatment belongs to the component. |
+| Price / key figure | 20–24px / 22–28px | Clear units and currency; tabular numerals where available. |
+
+Use Montserrat Black for occasional short emphasis; keep longer headings and all body text in Manrope. Sentence case supports longer reading. Avoid long all-caps paragraphs, justified body text, excessively tight tracking, and truncated product names. Fluid sizing must preserve legibility at enlarged text sizes. Never select a heading level merely to obtain its visual size.
+
+**Interior page heroes [PROJECT]:** Reuse `components/page-hero.tsx` and its CSS module, based on the Products hero: dark blue `#103D53`, white display heading with an optional mint `#8FE4D9` line, no eyebrow, constrained supporting copy, and responsive gutters and spacing. All interior heroes use the same minimum height at each breakpoint: 640px below 1024px and 720px from 1024px. Content may expand the hero when needed for enlarged text rather than being clipped. The display size follows the Products reference (`clamp(52px, 10vw, 142px)`). Optional breadcrumbs, a back link, and actions retain readable contrast. General pages use the brand-orange lower rule; the five-color rail belongs to the product catalog, and category pages use their assigned category color. Align the content stack to the top of the padded hero area, keeping the shared header offset and responsive top spacing. Reserve the same 48px minimum navigation row and 24px gap before every hero title, including when no navigation is supplied. Use the shared fixed website header on public interior pages so breadcrumbs and title start at the same viewport coordinates for a given breakpoint. Use shared breadcrumbs consistently in Products, category, Nosotros, FAQ, pets, and criteria heroes; keep their current label in the same row, allowing it to wrap within that row on narrow screens. Let the row grow when enlarged text requires more room rather than clipping content. The homepage hero remains its own design.
+
+### 4.5 Section signature
+
+**[REQUIRED]** Every new landing-page content section includes [`SectionEyebrow`](../../components/section-eyebrow.tsx). Use a descriptive label such as “Nuestra nutrición”, “Ingredientes”, or “Ciencia y aprendizaje”, with no sequence numbers. It introduces the section's real heading; it is not a substitute for semantic heading structure. Interior page heroes are an explicit exception and omit the eyebrow.
+
+Use the default dark tone on light surfaces and `tone="light"` on dark surfaces. Use `color` and `lineColor` when a colored background requires a different contrast pairing. On an orange surface, use primary dark text and a dark marker so the signature stays visible. The default orange marker participates in the broader orange system. Reuse the component; do not add duplicate eyebrow markup, circular orange dots, or custom numbered labels.
+
+### 4.6 Logo, photography, illustration, and icons
+
+**[BRAND]** Use supplied monochromatic logo artwork, with the horizontal mark as primary and the stacked mark where appropriate (pp. 19–30). Preserve proportions and clear space. The book specifies minimum widths of 250px with the horizontal tagline, 155px for the horizontal mark without it, and 35px for the compact stacked mark; inspect the appropriate asset and its actual legibility. Do not redraw the wordmark with text or guess the numeric clear-space ratio.
+
+**[BRAND]** Photography is authentic, natural, and emotionally connected: realistic dogs and cats in everyday settings, with genuine expressions and human relationships (pp. 36–37). Use clean color, balanced contrast, and useful space for text. Avoid dressed-up animals, forced poses, comic accessories, and oversaturation.
+
+**[BRAND]** Engravings use detailed line work and recognizable animals or ingredients, with a scientific and timeless character (pp. 43–54). They can anchor a section or explain a specific ingredient.
+
+**Revised source artwork:** Page 46 expands the animal/ingredient engravings and shows a separate collection of colored ingredient/species silhouettes. Corresponding source exports are cataloged in `public/images/icons/manifest.json` (19 SVG assets). Their original badge geometry is part of supplied artwork, as allowed in §3.3; it is not a template for authored UI controls. Keep `lucide-react` for interface actions. The revised box on pp. 47–48 uses predominantly white surfaces and turquoise engravings. Use confirmed final product assets before replacing live imagery; conflicting PDF mockups are not production files.
+
+**Website species assets [PROJECT]:** Reuse the transparent SVG adaptations in `public/images/pets/`: `cat.svg` and `dog.svg` for detailed engravings at 96px and above; `cat-small.svg` and `dog-small.svg` for compact silhouettes at 24–80px. The compact silhouettes adapt supplied source artwork; the detailed cat and golden retriever are generated standing-pose adaptations converted to native SVG paths. The originals are preserved. These use ink/mint for illustration rather than category colors. Use the shared `PetSpeciesImage` component, pair product eligibility with explicit text, and keep the artwork directly on a light or turquoise surface. See [usage and provenance](pet-species-assets.md), the [visual preview](pet-species-preview.html), and `public/images/pets/manifest.json`.
+
+**Pet profile artwork [PROJECT]:** Reviewed and saved pet profiles use the breed engravings in `public/images/pets/`, displayed at 96px on narrow screens and 160px on desktop, in place of compact silhouettes. The experience feature resolves breed names and aliases through `getBreedArtwork`; breeds without a specific illustration use `mixed-breed-dog.svg` or `mixed-breed-cat.svg` according to species. The questionnaire's species choices also use these mixed-breed engravings. Preserve transparent margins and pair portraits with the actual profile's species and breed text.
+
+**Experience choice artwork [PROJECT]:** Use the new walking companions in `public/images/experiences/`: `visita-guiada.svg` shows a new dog and cat walking right together and exchanging a glance, accompanied by a signpost and one route. In `explorar-por-mi-cuenta.svg`, the cat walks outward to the left and the dog outward to the right, choosing separate branches from a central fork, with a compass above. Both bodies and gazes follow their respective directions. These are newly generated drawings converted to native SVG paths, not rearrangements of the species-selection animals. The standalone pairs are `walking-guided.svg` and `walking-explore.svg`. Preserve their natural gait, calm body language, and intended directions; neither experience is tied to one species. Keep the visible choice label, use a continuous light surface, and preserve the 4:3 experience canvas. See [usage and provenance](experience-assets.md), the [visual preview](experience-assets-preview.html), and `public/images/experiences/manifest.json`.
+
+**Website treatment [REQUIRED]**
+
+- Place imagery directly in the composition with square edges or a natural transparent cutout. Use no rounded masks, circular crops, decorative mats, borders around each product image, or added drop shadows.
+- Place image captions in the document flow. If text overlays a photograph, provide a readable continuous treatment without a floating caption box.
+- Keep product representations accurate. A photographic shadow already in an authentic product image is not permission to add CSS elevation.
+- Reuse suitable approved assets. Do not mix engraving, cartoons, and unrelated illustration systems within one narrative.
+- Use individual `lucide-react` icons for interface actions; brand engravings serve content and identity roles. Hide decorative icons from assistive technology when the accompanying control already has an accessible name.
+
+## 5. Layout patterns [REQUIRED]
+
+### 5.1 Editorial section
+
+An editorial section has one clear purpose: shared eyebrow, heading, short explanation, supporting imagery or evidence, and a relevant link. Its content sits directly on the page surface. On wide screens, an introduction may occupy one column beside a larger photograph or divided list. On mobile, the same material follows a single meaningful reading order.
+
+A broad dark-blue, turquoise, or brand-orange band can mark a substantial narrative transition. It extends across a continuous region and has square edges. Use the corresponding readable text/action pairings. Do not turn the band into an inset rounded panel or repeat it behind every item.
+
+### 5.2 Product collection
+
+Use a semantic list of open entries aligned to a shared grid. Align image areas, names, prices, and actions consistently while allowing natural text height. Each entry groups its own information through proximity and spacing. It has no separate background, outline, or shell padding that makes it read as a tile.
+
+Product imagery sits directly on the common surface. Link the image/name clearly to product details and keep purchase controls distinct. Do not make a container-level click handler compete with nested links or buttons. A shared row separator may organize longer collections.
+
+### 5.3 Index and record lists
+
+Use divided rows for product families, articles, evidence, orders, profiles, and saved products. A row may have a thumbnail or engraving, a title and description, metadata, and an action. Columns stack naturally on mobile; the title and its action remain associated. The divider belongs to the list structure, not an enclosing box around each record.
+
+### 5.4 Technical information
+
+Use definition lists for labeled facts and real tables for comparisons or guaranteed analysis. Keep units, sources, and headings explicit. Optional detailed explanations may use native disclosure patterns. Essential product restrictions, price, and suitability information remain visible before purchase.
+
+### 5.5 Forms and transactional layouts
+
+Use open field groups with visible labels and legends. Separate form sections with spacing and, when useful, a heading or rule. A desktop order summary may sit beside the form as an aligned column with a dividing rule; it is not an enclosed summary card. On mobile, it enters the normal reading order.
+
+## 6. Components and interactions
+
+Component names below describe the target design vocabulary [PROPOSED]. Existing implementations must be reviewed by their rendered structure; renaming a component alone does not remove a card layout.
+
+### 6.1 Foundation components
+
+| Component | Required visual and behavioral contract |
+|---|---|
+| `SectionEyebrow` | Reuse the shared component and contrast rules in section 4.5. |
+| `Button` | Square brand-orange primary action with dark text; dark-blue alternative with white text, outlined secondary action, or text action. No radius, shadow, or hover movement. |
+| `IconButton` | Square target, clear accessible name, optional flat hover fill; no circular backplate. |
+| `TextField` / `Select` | Square visible boundary, persistent label, help/error association, clear focus. |
+| `RadioGroup` / `Checkbox` | Native control semantics with label-led rows; no selectable cards. |
+| `Tabs` | Text labels with a clear underline/indicator and appropriate keyboard behavior; no pill track. |
+| `StatusLabel` | Plain text with an optional meaningful icon; no pill or decorative badge enclosure. A compact square numeric counter may use orange with dark text. |
+| `Disclosure` | Divided rows with native `details`/`summary` where suitable, or an accessible disclosure button. |
+| `Dialog` / `Drawer` | Square, shadow-free functional overlay; accessible name, managed focus, dismiss action, and focus return. |
+| `InlineStatus` / `InlineAlert` | Message near the affected action, with an icon or rule where useful; preserve important errors until resolved. |
+| `LoadingPlaceholder` | Square image area and text-line placeholders within the existing layout; no card skeleton. |
+| `EmptyState` | Heading, brief explanation, and useful action directly in the content flow. |
+| `Pagination` / `LoadMore` | Plain links or square controls; preserve filters and page orientation. |
+| `Breadcrumbs` | Semantic descriptive links with a clear current location. |
+
+### 6.2 Commerce and content components
+
+| Component | Required content and composition |
+|---|---|
+| `SiteHeader` | Logo, visible catalog/science/help access, search and cart; flat navigation with a dividing rule where needed. |
+| `FamilyIndexRow` | Canonical family name, concise role description, optional engraving, descriptive browse link. |
+| `ProductEntry` | Real image, family, verified name, quantity, current price, role, stock state, and action in an open entry. |
+| `ProductCollection` | Responsive open grid or list, predictable ordering, loading, empty and failure states. |
+| `CatalogFilters` | Labeled native controls or plain text selection rows; active filters have explicit labels and removal actions. |
+| `ProductGallery` | Square image areas and thumbnails, useful alternatives, keyboard-accessible enlargement where provided. |
+| `VariantSelector` | Actual variants using labeled controls; unavailable choices explained. |
+| `QuantityStepper` | Square buttons and quantity field with limits, labels, and keyboard operation. |
+| `NutritionRole` | Explicit, evidence-backed role as text, not a color-coded certification badge. |
+| `CartLineItem` | Divided row with product, variant, quantity, unit/line price, and remove action. |
+| `CartSummary` | Open aligned totals with currency, delivery, tax, discounts, and final payable total. |
+| `EvidenceReference` | Source title, date, scope, and link in a citation/list format. |
+| `ArticleIndexRow` | Heading, summary, topic and date where useful, optional image, descriptive article link. |
+
+### 6.3 Relationship and optional guidance components
+
+| Component [PROPOSED] | Contract |
+|---|---|
+| `ExperienceNavigation` | Plain links between discovery, account, and science routes. Use tabs only for actual in-page tabbed content. |
+| `SpeciesPicker` | Labeled choices for supported species with a browse-all route; no image tiles. |
+| `PetProfileRow` | Name, species, optional saved context, and edit/remove actions in a divided record list. |
+| `GuidedDiscovery` | Optional short question flow with normal form groups; no diagnosis or implied genetic testing. |
+| `NutritionRoleSection` | Open explanation of verified product roles, with descriptive product-family links. |
+| `EvidenceExplanation` | Simple explanation, composition/details, and source material at increasing depth. |
+| `ReorderRow` | Previous product and variant, current price/availability, quantity, and add-to-cart action. |
+| `RoutineReminder` | User-controlled reminder with visible state and edit/remove controls, if implemented. |
+| `ProductFactsSummary` | Shareable verified product data, if implemented; no unsupported treatment recommendations. |
+
+**Product and reorder behavior [REQUIRED]**
+
+- Keep product names, quantities, prices, and nutritional roles visible without opening a detail page.
+- Distinguish unavailable, pending, and failed operations with text. Low-stock messages require actual inventory data.
+- Require a variant when needed and explain invalid selections inline.
+- Reorder adds the chosen current product to the cart for review. It does not place or charge for an order immediately.
+- Show current prices and availability; do not silently substitute an unavailable formula.
+- Publish ratings or testimonials only when authentic records exist.
+
+### 6.4 Form rhythm and feedback
+
+**[REQUIRED]** Apply the same patterns to contact, account, pet profiles, catalog controls, and checkout.
+
+| Relationship | Shared value |
+|---|---|
+| Label to control | 8px |
+| Control to helper/error text | 8px |
+| Field group to next field group | 24px |
+| Form section to next section | 32px |
+| Final field group to action row | 24px |
+| Actions within a row | 16px, wrapping when needed |
+| Text control internal padding | 12px vertical, 16px horizontal |
+| Standard action/control minimum height | 48px |
+
+Associate errors and help with their fields. During an asynchronous action, show a pending label, prevent duplicate submissions, and keep the layout stable. Announce completion with `role="status"` or a suitable live region; use `role="alert"` for urgent errors. Restore controls when the operation settles and preserve input after failure. Never announce success before the operation succeeds.
+
+### 6.5 Interaction states and motion
+
+**[REQUIRED]** Use text, underline, border, icon, or flat color changes for interaction feedback. Selection must remain recognizable without relying on color alone. Keep borders the same width across states or reserve their space to avoid layout shifts.
+
+For buttons inline alongside other elements, show the icon without visible text on mobile and icon plus text on desktop. Retain a clear accessible name and a usable target. This rule does not remove the label from standalone primary form or purchase actions.
+
+**[PROPOSED]** Use 120–200ms transitions for color, opacity, or a necessary disclosure change. Respect `prefers-reduced-motion`; remove nonessential animation. Avoid parallax, decorative scroll reveals, hover lifting, and image zoom effects. A menu's functional appearance must not obscure focus or delay access. Keep scroll position stable after filtering or changing a variant.
+
+## 7. Page composition
+
+### 7.1 Shared navigation and information architecture
+
+**[REQUIRED]** Important public pages are discoverable through main navigation, the footer, and contextual links. Links are crawlable and descriptive. Use real navigation links for page destinations; do not rely on client-only experience switching to expose content.
+
+**Main navigation active state [PROJECT]:** Use exact brand teal `#00A9B5` for desktop and mobile navigation underlines, with a soft teal background. Keep navigation labels at the same regular font weight in default, hover, focus, and active states. Reuse the shared center-out underline and background animation on hover and keyboard focus; retain both for the active item. Keep labels dark on the soft fill, including over the transparent homepage header. Respect reduced motion. Preserve dark text on light surfaces rather than using teal for small text. Mark the current page with `aria-current="page"`, retain Productos as current on nested product routes, and use `aria-current="location"` for Contacto while its homepage section is visible. Desktop and mobile navigation share the same selection rules.
+
+**Proposed primary navigation:** Productos · Ciencia y aprendizaje · Nosotros · Ayuda, with search, account, and cart utilities. Use the current route structure and verified catalog when implementing.
+
+Use the current five product categories: **Complementos**, **Deshidratados**, **Órganos**, **Recetas completas**, and **Suplementos**. The nine family names in the original brandbook remain historical source material, not the website's current navigation taxonomy. Species navigation reflects verified product eligibility.
+
+### 7.2 Discovery homepage [PROPOSED]
+
+**Narrative:** understand → explore → trust → purchase.
+
+1. **Hero:** open text and photographic composition, concise message, direct product link, optional discovery action. Give the primary action visible brand-orange emphasis. Square image edge or natural cutout; no enclosing hero panel.
+2. **Nutrition introduction:** eyebrow, explanatory heading, and short readable copy with one supporting engraving or image.
+3. **Product-family index:** divided named rows explaining nutritional roles; optional species control remains simple and skippable.
+4. **Featured products:** open collection with accurate names, roles, prices, and availability.
+5. **Why DNAture:** editorial text beside authentic imagery or a divided evidence list. Each claim links to relevant support where available.
+6. **Science and learning:** one substantial article introduction followed by related article rows.
+7. **Help and closing action:** open FAQ disclosures, clear support route, and a continuous closing section. An orange band with dark text and a dark-blue action is an available brand expression.
+
+Every landing-page content section includes `SectionEyebrow`. Vary image scale and text density deliberately while maintaining shared gutters and a clear heading hierarchy.
+
+### 7.3 Returning-customer account [PROPOSED]
+
+**Narrative:** welcome → resume → reorder → manage.
+
+Use a compact welcome, a divided reorder list, pet records if saved, and recent orders with clear status. Account navigation is a text list or simple route navigation. Avoid widget dashboards and statistic tiles. When order history is empty, provide a helpful explanation and a catalog link. Pet profiles are optional; removing a profile must not block account access or order history.
+
+Discovery, account, and science are audience contexts over one catalog and checkout. An explicit choice of route takes precedence over inferred preferences. Do not redirect a visitor away from public content merely because an account exists.
+
+### 7.4 Science and learning [PROPOSED]
+
+**Narrative:** question → explanation → evidence → relevant product details.
+
+Use an editorial introduction, a text-based topic index, readable articles, and source lists. Put author/reviewer identity and publication or review dates where real records exist. Explain technical terms. Related articles appear as divided rows, not cards. Keep public material readable without professional credentials; any future restricted service requires its own justified scope.
+
+### 7.5 Catalog [PROPOSED]
+
+Use a descriptive H1, concise introduction, labeled filters, sort, an accurate result count, and one open product collection. The live catalog audited on 2026-11-10 has 89 published products across five categories; show the complete matching collection rather than five-product category shelves. At this scale, local search and lazy images do not require pagination or an external search service. Use an aligned desktop filter column and an inline mobile filter disclosure. Keep only the compact search strip sticky below the website header. Products share the page surface: an open desktop grid becomes divided rows on narrow screens. Active filters are visible text with removal controls, not pills. Preserve the query, filter state, and clear recovery when there are no results.
+
+**Catalog filtering [PROJECT]:** Load a compact browse snapshot on the server, then search on every keystroke across published names, commerce names, ingredients, and parent/variant SKUs. Normalize accents and case, and match multiple search terms without requiring one exact phrase. Offer multiple categories with OR logic, an availability filter, and relevance, alphabetical, and price ordering. Reflect selected filters and counts explicitly. Category membership, prices, and availability come from commerce; do not infer species suitability or allergy exclusions from product names, ingredient text, or animal-source artwork. Keep native ingredient and presentation disclosures close to each product.
+
+**Catalog navigation and loading [PROJECT]:** Use readable category values in the shareable query string and the native History API integrated with Next.js. Typing replaces the current search-session entry rather than adding a history entry per keystroke; discrete filter changes create navigable history entries. Back/Forward, copied URLs, native GET submission, and crawlable category links must preserve usable navigation. Search and filter changes update locally without catalog refetches or jumps to the hero. Preserve input focus and announce result changes accessibly. Keep initial loading/error states, existing server cache/freshness rules, and lazy responsive images with reserved dimensions. Sales-history reporting is not a prerequisite for browsing; price and stock are checked separately at purchase. See [Catalog experience and live inventory audit](DNAture_Catalog_Experience.md) for evidence, data gaps, and the detailed interaction contract.
+
+### 7.6 Product detail [PROPOSED]
+
+On wide screens, place the gallery beside open purchase information on the page surface. On narrow screens, use a clear content order with essential details near the purchase action. Include:
+
+1. Verified name, imagery, price, quantity/variant, and availability.
+2. Explicit nutritional role, species eligibility, and material use restrictions before purchase.
+3. Ingredients, composition, guaranteed analysis, storage, and feeding directions from current records.
+4. Plain-language explanation and traceable evidence where available.
+5. Accessible add-to-cart feedback and relevant related-product entries.
+
+Use headings, definition lists, tables, and disclosures for deeper details. A sticky purchase bar, if justified, is square, flush to the viewport edge, and separated by a rule. It must not obscure content, keyboard focus, warnings, consent, or browser safe areas.
+
+### 7.7 Cart, checkout, and confirmation [PROPOSED]
+
+Use divided line items, an open totals area, and short labeled form sections. Keep guest checkout visible. Display currency, delivery cost, taxes, discounts, and the final payable total before payment authorization. The final charge action must be explicit. Prevent duplicate orders/payments, preserve recoverable input on failure, and show confirmation only after verification. Confirmation lists the actual order identifier, contents, status, and next steps.
+
+## 8. Voice, content, and scientific trust
+
+### 8.1 Voice [BRAND]
+
+DNAture is **científica y experta, cálida y empática, responsable y protectora, educativa y transparente, apasionada por los animales** (pp. 11–14). Speak with authority without rigidity; educate without imposing. Explain complex ideas simply and precisely. Emotional warmth comes from care and understanding. The interface combines cool foundations with recognizable turquoise and active brand-orange emphasis.
+
+Use “nutrición fisiológica” when it accurately describes the subject. Explain why an ingredient or product role matters using evidence. Avoid unexplained quality claims, exaggerated promises, and judgment toward guardians.
+
+The vocabulary on p. 14 restricts **BARF**, **huesos carnosos**, **presas completas**, and generic **snacks** for functional products. Use **órganos** with anatomical precision instead of **vísceras**. Use the current category names for navigation; a historical family term such as Treats may appear only where it accurately describes a product. Later comparative campaign examples do not turn BARF into an authorized DNAture category label.
+
+### 8.2 Content structure [REQUIRED]
+
+- Give each section a clear subject, a useful explanation, and an appropriate next step.
+- Use one descriptive page H1 and a logical heading hierarchy. Eyebrows do not carry the heading structure.
+- Keep substantive information as HTML text, including material shown graphically in an image.
+- Use meaningful titles, metadata, internal links, and image alternatives for public pages.
+- Keep educational material discoverable from relevant product pages and connect articles to appropriate verified product information.
+- Structured data must match the visible content and actual product/article records. Do not fabricate ratings, authors, prices, availability, or evidence for SEO/GEO.
+- Make factual explanations clear enough for both people and retrieval systems to identify the subject, scope, and source.
+
+### 8.3 Example interface copy [PROPOSED]
+
+| Context | Copy |
+|---|---|
+| Catalog link | “Explorar productos” |
+| Science link | “Conocer la nutrición fisiológica” |
+| Product detail | “Ver ingredientes y composición” |
+| Evidence link | “Consultar las fuentes” |
+| Reorder action | “Agregar de nuevo al carrito” |
+| Empty cart | “Tu carrito está vacío. Explora los productos cuando quieras.” |
+| Pending save | “Guardando cambios…” |
+| Save failure | “No pudimos guardar los cambios. Tu información sigue aquí; intenta de nuevo.” |
+| Verified order success | “Recibimos tu pedido. Estos son los próximos pasos.” |
+
+These are interface examples, not new slogans. Preserve the established form of address within each channel; the brandbook does not specify a complete tú/vos/usted policy.
+
+### 8.4 Product and claim integrity [VERIFY]
+
+The brandbook distinguishes product families but contains contradictions about completeness, complement use, and some product names (pp. 33–35). Use current product records to establish species, life stage, complete/complementary status, ingredients, analysis, quantities, directions, storage, prices, and stock.
+
+Verify health outcomes, feeding frequencies, therapeutic use, genetic personalization, FEDIAF alignment, sustainability, compostability, and safety statements before publishing them as facts. A pet questionnaire does not establish genetic analysis or clinical suitability. A branded paw seal is not independent certification. A general scientific article is not proof of a particular product claim.
+
+Evidence references should identify the source, date, relevant scope, and actual supporting material. If a document is unavailable, state that accurately. Keep educational content distinguishable from individual veterinary guidance. Do not invent endorsements, reviews, citations, registrations, or scientific authority.
+
+### 8.5 Optional data collection [PROPOSED]
+
+Ask for the minimum useful information and explain its purpose. Keep pet profiles and questionnaires optional. Separate marketing consent from core commerce, allow browsing without identification, and provide edit/delete controls for saved profiles. Do not infer medical needs from browsing history or silently replace the visitor's chosen experience.
+
+## 9. Responsive and accessible behavior [REQUIRED]
+
+Use WCAG 2.2 AA as the project's accessibility target. Evaluate the actual implementation, not just token values.
+
+- Normal-size text needs at least 4.5:1 contrast; qualifying large text needs 3:1. Essential control boundaries and meaningful graphical indicators need sufficient non-text contrast. Decorative dividing rules may remain subtle because semantics, spacing, and headings also establish structure.
+- Aim for at least 44×44px interactive targets; the standard control height in this system is 48px. Icon-only mobile controls retain accessible names.
+- Support keyboard operation, visible focus, and a logical reading/focus order. Sticky elements must not obscure focused controls.
+- At 320 CSS pixels and with text enlarged to 200%, preserve readable content and working controls without horizontal page overflow. Allow a genuinely two-dimensional technical table to scroll within its own labeled region when necessary.
+- Use landmarks, semantic lists, real buttons/links, persistent field labels, legends, and appropriate image alternatives. Mark purely decorative imagery accordingly.
+- Keep dialogs named and dismissible, manage modal focus, and restore focus on close. Do not turn simple navigation into unnecessary dialogs.
+- Preserve state, scroll orientation, and user input across recoverable failures. Announce relevant asynchronous changes without repeated or disruptive announcements.
+- Respect reduced motion. Do not require hover, animation, color recognition, or a precise pointer to understand or operate the site.
+
+## 10. State and failure patterns [REQUIRED]
+
+| Situation | Required response |
+|---|---|
+| Loading collection | Stable open-layout placeholders and an accessible loading status. |
+| Visitor skips guidance | Immediate access to the catalog. |
+| No order or profile history | Plain-language empty state with a relevant next action. |
+| No search results | Show the query, explain the empty state, and offer filter removal or browse links. |
+| Product unavailable | Explicit availability text, disabled purchase action where appropriate, and a catalog/support path. |
+| Missing variant | Inline guidance next to the selector before purchase can proceed. |
+| Added to cart | Updated count and accessible confirmation with a cart link. |
+| Price changed on reorder | Current price shown before adding the item. |
+| Save or submission failed | Preserve input, explain the failure, restore controls, and offer retry. |
+| Payment failed | Recoverable cart state, clear next steps, and duplicate-payment protection. |
+| Order confirmed | Verified order result and fulfillment information. |
+| Supporting evidence missing | Honest availability statement without fabricated sources. |
+
+All states inherit the same square geometry, continuous layout, cool foundations with the brand-orange exception, and absence of shadows. Error and loading designs do not introduce card containers as exceptions.
+
+## 11. Implementation and migration guidance
+
+**[REQUIRED]** Apply this document to new and modified UI. A documentation update does not authorize an unrelated repository-wide rewrite. When a page or component is scheduled for implementation, review its complete visual structure and interaction states.
+
+| Previous pattern | Target pattern |
+|---|---|
+| `ProductCard` | `ProductEntry` on a shared collection surface. |
+| `CategoryTile` | `FamilyIndexRow` with explanatory text and a browse link. |
+| `PetPassportCard` / profile card | `PetProfileRow` within a divided record list. |
+| `NutritionRoleCard` | `NutritionRoleSection` in the page flow. |
+| `ReorderCard` | `ReorderRow` with current product data and controls. |
+| Pill experience switcher | Plain route navigation or genuine underlined in-page tabs. |
+| Rounded hero/science panel | Open editorial composition or continuous square section band. |
+| Floating caption or statistic box | Figure caption or aligned text directly in the layout. |
+| Boxed checkout summary | Open totals column separated with a rule. |
+
+For each migration, remove the enclosing shell, per-item surface, excess shell padding, radius, shadow, and hover movement. Rebuild grouping with a semantic heading, proximity, alignment, and separators. Verify the result at narrow and wide widths and in loading, error, empty, focused, and selected states. A component rename or global `border-radius: 0` pass alone is incomplete.
+
+Reconcile the proposed tokens with existing styles instead of maintaining parallel systems. Preserve shared `SectionEyebrow` and existing reusable controls where compatible. Follow the repository's feature ownership, one-component-per-file, and named event-handler conventions. Consult the installed Next.js bundled documentation before framework changes. Prefer Server Components and keep interactive client boundaries focused on the required behavior.
+
+**Implementation sequence [PROPOSED]**
+
+1. Shared color, spacing, square geometry, focus, forms, buttons, and navigation.
+2. Homepage/editorial sections, family index, open product collections, and product detail.
+3. Cart, checkout, contact, and all asynchronous states.
+4. Account records, optional profiles, reorder, and deeper evidence features as needed.
+
+## 12. Design acceptance checklist
+
+- [ ] Content reads as a continuous page, open collection, divided list, or genuine table.
+- [ ] No repeated content islands remain, including square or shadow-free cards.
+- [ ] Authored UI frames and media crops have zero radius; no pills or circular backplates remain.
+- [ ] No shadows, simulated elevation, glass effects, hover lifting, or decorative scaling remain.
+- [ ] Product names, roles, prices, and actions remain clearly grouped without boxes.
+- [ ] Every new landing-page content section uses the shared descriptive, unnumbered `SectionEyebrow`.
+- [ ] Cool/neutral foundations include a meaningful recurring role for exact brand orange beyond eyebrow markers; any other warm hue is confined to its assigned product category.
+- [ ] Orange actions, highlights, counters, and section bands use readable dark text; active and focus states meet contrast requirements.
+- [ ] Category accents use their `-ink` and `-on-color` roles correctly; ingredient/species icon colors do not determine category membership.
+- [ ] Shared spacing, gutters, widths, headings, and form rhythm are consistent.
+- [ ] Typography, authentic imagery, and restrained engravings express science and empathetic care.
+- [ ] Public pages have logical headings, descriptive crawlable links, appropriate alternatives, and accurate metadata.
+- [ ] Product roles and claims use current evidence; the canonical tagline and vocabulary are correct.
+- [ ] Mobile, enlarged text, keyboard, focus, touch, contrast, and reduced-motion behavior have been checked.
+- [ ] Loading, empty, error, selected, pending, and success states satisfy the same visual and behavioral rules.
+- [ ] Input survives recoverable failures; controls recover and completion is announced only after success.
+- [ ] Any remaining asset, product-data, or source ambiguity is documented without inventing an approved rule.
+
+## 13. Sources and boundaries
+
+Page references below apply to the current `DNA-BRANDBOOK.pdf`. The older PDF and earlier website category assignments are archived in the JSON for traceability. The source PDF provides brand evidence; current task instructions and project rules govern implementation.
+
+| Topic | Brandbook pages |
+|---|---|
+| Mission, vision, purpose | 2–9 |
+| Archetypes, personality, voice, vocabulary | 10–14 |
+| Guardian concerns and differentiation | 15–18 |
+| Logo evolution and official tagline | 19–25 |
+| Logo protection, sizes, and misuse | 26–30 |
+| Primary palette and 18 revised secondary swatches | 31–32 |
+| Product-family overview | 33–35 |
+| Photography | 36–37 |
+| Typography | 39–41 |
+| Packaging and illustration | 42–54 |
+| Social and website direction | 55–64 |
+
+Consult [the structured brand reference](DNAture_Brand_Reference.json) for exact source colors, page references, restricted terms, and unresolved contradictions. Schema 2 separates `secondary_palette`, `historical_category_palette`, and the website assignments in `project_context.current_product_categories`. Start with `revision_review` when reconciling earlier work. The book's rounded compositions do not override this website's flat, open, square design requirements.
+
+### 13.1 Unresolved source conflicts affecting future work
+
+| Topic | Current evidence | Implementation boundary |
+|---|---|---|
+| Taxonomy, pp. 14, 32–35 | Nine legacy families persist; 18 swatches have no five-category assignment. | Use the five website categories above and verified commerce membership. |
+| Green RGB, p. 32 | Lower RGB row conflicts with hex and upper label. | Use `#2E7246` / RGB `46, 114, 70`; record the source error. |
+| Recipe mockups, p. 44 | Beef/horse examples repeat chicken-only ingredient copy; horse also has a beef identifier. | Obtain verified product records; never ingest these mockup values as product facts. |
+| Dried lung, p. 45 | Front uses Treats; back says Suplementos. | Verify the current category rather than classifying from the mockup. |
+| Wild typography, pp. 45, 51–53 | Revised flat artwork uses sans serif subnames; prose and some renders retain script. | Use confirmed artwork; do not add a script webfont or redraw labels from this conflict. |
+| Box, pp. 47–48 | Artwork and interior tagline changed; explanatory text still describes the earlier design. | Use canonical tagline and confirmed revised box assets. |
+| Label rules, pp. 43–54 | Older turquoise/purple and illustration-removal instructions conflict with revised examples. | Keep source prose and visual evidence distinct; confirm final product-specific templates. |
+
+The primary colors, official tagline, principal logo hierarchy and named brand fonts are stable. Manrope/Montserrat remain the documented website substitutes. Product ingredients, analysis, feeding guidance and claimed benefits continue to require current product evidence, regardless of their appearance in a mockup.

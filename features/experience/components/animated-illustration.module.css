@@ -1,0 +1,20 @@
+.illustration {
+  inline-size: min(100%, 320px);
+}
+
+.illustration img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .illustration[data-in-view] img {
+    animation: reveal-illustration 320ms ease-out both;
+  }
+}
+
+@keyframes reveal-illustration {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

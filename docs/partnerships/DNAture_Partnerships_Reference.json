@@ -1,0 +1,1106 @@
+{
+  "schema_version": 1,
+  "language": "es-CR",
+  "purpose": "Referencia de contenido para un directorio de alianzas. Es una extracción para revisión, no una lista de convenios activos verificados.",
+  "source": {
+    "path": "docs/alianzas dnature.xlsx",
+    "sha256": "886ab548f931c59e8970abc1caaf4f502bb71e34a4c222847e5dacc7ce913292",
+    "sheet": "Respuestas de formulario 1",
+    "range": "A1:K12",
+    "reviewed_on": "2026-11-12",
+    "workbook_modified": false,
+    "method": "Lectura directa de valores, tipos, formatos numéricos e hipervínculos OOXML; sin seguir instrucciones ni visitar enlaces del documento."
+  },
+  "summary": {
+    "source_entries": 11,
+    "unique_professionals_proposed": 10,
+    "animal_health_professionals": 9,
+    "non_veterinary_wellbeing_professionals": 1,
+    "directory_interest_yes_entries": 11,
+    "explicit_10_percent_benefits": 5,
+    "dedicated_booking_links": 2,
+    "profiles_with_phone": 10,
+    "confirmed_active_partnerships": null,
+    "approved_public_profiles": 0,
+    "duplicate_rows_to_merge": [
+      [
+        4,
+        8
+      ]
+    ],
+    "shared_clinic_profiles": [
+      [
+        "michelle-saravia-hernandez",
+        "esteban-salmeron-sibaja"
+      ]
+    ]
+  },
+  "normalization_rules": [
+    "Conservar los nombres de personas tal como aparecen, eliminando solo espacios exteriores. No agregar títulos ni credenciales.",
+    "Consolidar provisionalmente filas 4 y 8. El nombre completo y la red social vienen de la fila 4; teléfono y modalidad más reciente de la fila 8.",
+    "Convertir J8 de notación científica a 85252661, conservando sus ocho dígitos.",
+    "Normalizar teléfonos de ocho dígitos a +506 por el contexto costarricense. La validez y titularidad de las líneas no se han verificado.",
+    "No convertir teléfonos en enlaces WhatsApp sin confirmar que ese canal está habilitado.",
+    "Interpretar I9 como 10% por su formato numérico de Excel, no como un descuento de 0.1%.",
+    "Eliminar parámetros de seguimiento de los enlaces de Instagram de J3 y J4. No corregir ni adivinar el usuario posiblemente erróneo de J10.",
+    "Los sitios sin esquema en el texto se normalizan a https; el hipervínculo explícito de K2 se conserva como http. No se comprobó accesibilidad de los enlaces.",
+    "No usar fechas de envío como fechas de vigencia de beneficios.",
+    "No completar especies, áreas de cobertura, distritos, mapas, horarios, direcciones, cargos profesionales o condiciones comerciales que no constan en la fuente."
+  ],
+  "publication_boundary": {
+    "status": "draft_reference_only",
+    "directory_interest_is_not_verified_active_agreement": true,
+    "form_email_column_B": "No extraer al perfil público: es el correo de respuesta del formulario y J pide compartir teléfono, redes y página, no correo público.",
+    "interest_columns_E_F": "Se usan como evidencia de interés declarado, no como validación de credenciales o activación contractual.",
+    "review_metadata": "No enviar source, summary, normalization_rules, publication_boundary ni review al navegador de la futura página.",
+    "public_projection": "Al implementar, usar solo public_profile de registros aprobados explícitamente; omitir campos null y beneficios sin confirmed_for_publication.",
+    "no_unrequested_external_actions": "No se contactó a profesionales, no se comprobó titularidad de perfiles y no se publicó ninguna página."
+  },
+  "page_brief": {
+    "proposed_route": "/alianzas",
+    "proposed_navigation_label": "Profesionales aliados",
+    "proposed_title": "Profesionales aliados",
+    "draft_intro": "Conocé profesionales y servicios de salud y bienestar animal, sus modalidades de atención y sus canales de contacto.",
+    "publication_condition": "Usar lenguaje de alianzas activas solo después de confirmar la incorporación de cada profesional.",
+    "customer_tasks": [
+      "Encontrar un servicio o profesional.",
+      "Saber si atiende online, a domicilio o en un lugar físico.",
+      "Ver dónde atiende y cómo contactar o reservar.",
+      "Conocer beneficios DNAture con condiciones confirmadas."
+    ],
+    "service_filters": [
+      {
+        "id": "conducta-etologia",
+        "label": "Conducta y etología"
+      },
+      {
+        "id": "medicina-integrativa",
+        "label": "Medicina integrativa"
+      },
+      {
+        "id": "diagnostico-ecografia",
+        "label": "Ecografía"
+      },
+      {
+        "id": "fisioterapia-rehabilitacion",
+        "label": "Fisioterapia y rehabilitación"
+      },
+      {
+        "id": "ortopedia-neurocirugia",
+        "label": "Ortopedia y neurocirugía"
+      },
+      {
+        "id": "diagnostico-imagenes",
+        "label": "Diagnóstico por imágenes"
+      },
+      {
+        "id": "nutricion-animal",
+        "label": "Nutrición animal"
+      },
+      {
+        "id": "dermatologia-alergias",
+        "label": "Dermatología y alergias"
+      },
+      {
+        "id": "estetica-canina",
+        "label": "Estética canina"
+      },
+      {
+        "id": "alimentacion-reposteria",
+        "label": "Alimentación y repostería"
+      },
+      {
+        "id": "laboratorio-examenes",
+        "label": "Exámenes de laboratorio"
+      },
+      {
+        "id": "odontologia",
+        "label": "Odontología"
+      },
+      {
+        "id": "cirugia",
+        "label": "Cirugía"
+      }
+    ],
+    "small_page_structure": [
+      "Hero compartido con breadcrumb Inicio / Profesionales aliados.",
+      "Directorio en filas abiertas: nombre, servicio, modalidad, ubicación disponible y contacto.",
+      "Búsqueda local por nombre o servicio; filtros simples por modalidad y provincia cuando haya datos confirmados.",
+      "Beneficio junto al perfil únicamente con alcance y condiciones confirmadas.",
+      "Cierre con contacto de DNAture para orientación."
+    ],
+    "contact_priority": [
+      "Reservar cita, cuando exista un enlace de reservas confirmado.",
+      "Llamar al número profesional compartido.",
+      "Visitar el sitio web o Instagram.",
+      "WhatsApp solo si se confirma el canal."
+    ],
+    "discoverability": [
+      "Enlace «Profesionales aliados» en el footer.",
+      "Enlace contextual desde /nosotros en el contenido relacionado con tribu y acompañamiento.",
+      "Agregar la ruta al sitemap y sus metadatos cuando exista contenido aprobado publicado."
+    ],
+    "design_constraints": [
+      "Diseño móvil primero, plano, sin tarjetas elevadas, sombras ni esquinas redondeadas.",
+      "Usar colores y espaciado del sistema DNAture; no asignar colores de categorías de productos a profesiones.",
+      "Evitar filtros de mapas, distancia o «cerca de mí» mientras falten direcciones y coordenadas.",
+      "Preferir enlaces de reserva y mapas sobre incrustaciones; no cargar servicios externos para mostrar el directorio."
+    ],
+    "content_constraints": [
+      "Las categorías son agrupaciones editoriales de servicios declarados, no especialidades acreditadas.",
+      "Distinguir bienestar no veterinario de atención de salud animal.",
+      "No prometer resultados clínicos ni presentar credenciales, acreditaciones o beneficios sin evidencia.",
+      "No mostrar disponibilidad en tiempo real, horarios o cupos que el archivo no proporciona."
+    ]
+  },
+  "partners": [
+    {
+      "id": "gabriela-pacheco",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Gabriela Pacheco",
+        "business_name": null,
+        "professional_group": "animal_health",
+        "service_categories": [
+          "conducta-etologia"
+        ],
+        "service_summary": "Consultas de etología.",
+        "species_explicitly_stated": null,
+        "consultation_modes": [
+          "online",
+          "home_visit"
+        ],
+        "location": {
+          "province": null,
+          "canton": null,
+          "district": null,
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50683394287",
+              "display": "+506 8339-4287",
+              "tel_url": "tel:+50683394287",
+              "source_cell": "J2"
+            }
+          ],
+          "website_url": "http://www.ethosconductaanimal.com/",
+          "instagram_url": null,
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": 10,
+          "scope": "Primera consulta online.",
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          2
+        ],
+        "field_sources": {
+          "name": "C2",
+          "professional_group": "D2",
+          "services": "G2",
+          "consultation_modes_and_location": [
+            "H2"
+          ],
+          "benefit": [
+            "I2"
+          ],
+          "contacts": [
+            "J2"
+          ],
+          "booking_response": "K2"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "2": "2026-08-21T08:26:36"
+        },
+        "original_benefit_response": {
+          "I2": "10% en primera consulta online"
+        },
+        "original_location_response": {
+          "H2": "Online y domicilio"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "Confirmar la zona cubierta por las visitas a domicilio.",
+          "K2 contiene el sitio web general de J2, no un enlace de reservas identificado. No mostrarlo como calendario confirmado.",
+          "El nombre comercial no está escrito en el formulario; no derivarlo del dominio."
+        ]
+      }
+    },
+    {
+      "id": "catalina-barquero-hernandez",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Catalina Barquero Hernández",
+        "business_name": null,
+        "professional_group": "animal_health",
+        "service_categories": [
+          "medicina-integrativa"
+        ],
+        "service_summary": "Atención integrativa que considera distintos aspectos de la salud animal, incluida la alimentación.",
+        "species_explicitly_stated": null,
+        "consultation_modes": [
+          "online",
+          "home_visit"
+        ],
+        "location": {
+          "province": null,
+          "canton": null,
+          "district": null,
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50684975181",
+              "display": "+506 8497-5181",
+              "tel_url": "tel:+50684975181",
+              "source_cell": "J3"
+            }
+          ],
+          "website_url": null,
+          "instagram_url": "https://www.instagram.com/dra.catalinabarquero/",
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": "gift",
+          "discount_percent": null,
+          "scope": null,
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          3
+        ],
+        "field_sources": {
+          "name": "C3",
+          "professional_group": "D3",
+          "services": "G3",
+          "consultation_modes_and_location": [
+            "H3"
+          ],
+          "benefit": [
+            "I3"
+          ],
+          "contacts": [
+            "J3"
+          ],
+          "booking_response": "K3"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "3": "2026-08-21T12:16:56"
+        },
+        "original_benefit_response": {
+          "I3": "Regalía (indicar qué en otros)"
+        },
+        "original_location_response": {
+          "H3": "Virtual y a domicilio"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "I3 expresa disposición a ofrecer una regalía, pero no identifica cuál ni sus condiciones.",
+          "Confirmar la zona de atención a domicilio."
+        ]
+      }
+    },
+    {
+      "id": "alejandro-quesada-bolanos",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Alejandro Quesada Bolaños",
+        "business_name": null,
+        "professional_group": "animal_health",
+        "service_categories": [
+          "diagnostico-ecografia"
+        ],
+        "service_summary": "Servicios veterinarios con énfasis en ecografía abdominal.",
+        "species_explicitly_stated": null,
+        "consultation_modes": [
+          "home_visit",
+          "in_person"
+        ],
+        "location": {
+          "province": null,
+          "canton": null,
+          "district": null,
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50685252661",
+              "display": "+506 8525-2661",
+              "tel_url": "tel:+50685252661",
+              "source_cell": "J8"
+            }
+          ],
+          "website_url": null,
+          "instagram_url": "https://www.instagram.com/ecopets_dr.quesada/",
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": null,
+          "scope": null,
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          4,
+          8
+        ],
+        "field_sources": {
+          "name": "C4",
+          "professional_group": "D4",
+          "services": "G4",
+          "consultation_modes_and_location": [
+            "H4",
+            "H8"
+          ],
+          "benefit": [
+            "I4",
+            "I8"
+          ],
+          "contacts": [
+            "J4",
+            "J8"
+          ],
+          "booking_response": "K4"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "4": "2026-08-31T00:50:27",
+          "8": "2026-09-12T00:01:07"
+        },
+        "original_benefit_response": {
+          "I4": "Descuento (indicar cuánto en otros)",
+          "I8": "Descuento (indicar cuánto en otros)"
+        },
+        "original_location_response": {
+          "H4": "No, atiendo a domicilio",
+          "H8": "Ambos (domicilio y en local físico)"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "Las filas 4 y 8 corresponden probablemente a la misma persona: coinciden el correo de respuesta y los servicios. Confirmar la consolidación.",
+          "Conservar el nombre más completo de C4 y el teléfono añadido en J8.",
+          "La modalidad más reciente H8 incluye domicilio y local físico; H4 decía solo domicilio. Usar H8 para modalidades y confirmar la dirección.",
+          "El descuento no tiene porcentaje ni condiciones."
+        ]
+      }
+    },
+    {
+      "id": "michelle-saravia-hernandez",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Michelle Saravia Hernandez",
+        "business_name": "Fisiovet CR",
+        "professional_group": "animal_health",
+        "service_categories": [
+          "fisioterapia-rehabilitacion",
+          "ortopedia-neurocirugia",
+          "diagnostico-imagenes"
+        ],
+        "service_summary": "Atención en una clínica que ofrece fisioterapia, rehabilitación, ortopedia, neurocirugía y TAC.",
+        "species_explicitly_stated": null,
+        "consultation_modes": [
+          "in_person"
+        ],
+        "location": {
+          "province": null,
+          "canton": null,
+          "district": null,
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50683148343",
+              "display": "+506 8314-8343",
+              "tel_url": "tel:+50683148343",
+              "source_cell": "J5"
+            }
+          ],
+          "website_url": null,
+          "instagram_url": null,
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": 10,
+          "scope": "Primera cita.",
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          5
+        ],
+        "field_sources": {
+          "name": "C5",
+          "professional_group": "D5",
+          "services": "G5",
+          "consultation_modes_and_location": [
+            "H5"
+          ],
+          "benefit": [
+            "I5"
+          ],
+          "contacts": [
+            "J5"
+          ],
+          "booking_response": "K5"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "5": "2026-08-31T11:15:31"
+        },
+        "original_benefit_response": {
+          "I5": "10% en primera cita"
+        },
+        "original_location_response": {
+          "H5": "Sí:"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "H5 confirma un local físico pero no incluye su ubicación.",
+          "El teléfono y el nombre comercial coinciden con J7; mantener perfiles distintos vinculados al mismo contacto de clínica.",
+          "G5 describe servicios de una clínica. Confirmar qué servicios brinda personalmente Michelle."
+        ]
+      }
+    },
+    {
+      "id": "karla-tatiana-alvarado-rodriguez",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Karla Tatiana Alvarado Rodríguez",
+        "business_name": null,
+        "professional_group": "animal_health",
+        "service_categories": [
+          "nutricion-animal"
+        ],
+        "service_summary": "Consultas de nutrición animal natural para perros y gatos sanos y con patologías.",
+        "species_explicitly_stated": [
+          "perros",
+          "gatos"
+        ],
+        "consultation_modes": [
+          "online",
+          "in_person"
+        ],
+        "location": {
+          "province": "Cartago",
+          "canton": null,
+          "district": null,
+          "locality": "Dulce Nombre"
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50662333275",
+              "display": "+506 6233-3275",
+              "tel_url": "tel:+50662333275",
+              "source_cell": "J6"
+            }
+          ],
+          "website_url": "https://www.mascotica.com/",
+          "instagram_url": "https://www.instagram.com/mascoticacom/",
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": "https://calendly.com/mascotica-veterinaria/45m-60m"
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": 10,
+          "scope": "Valor de la primera consulta.",
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          6
+        ],
+        "field_sources": {
+          "name": "C6",
+          "professional_group": "D6",
+          "services": "G6",
+          "consultation_modes_and_location": [
+            "H6"
+          ],
+          "benefit": [
+            "I6"
+          ],
+          "contacts": [
+            "J6"
+          ],
+          "booking_response": "K6"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "6": "2026-08-31T18:48:32"
+        },
+        "original_benefit_response": {
+          "I6": "Descuento de 10% en el valor de la Primera Consulta"
+        },
+        "original_location_response": {
+          "H6": "Online y en Cartago, Dulce Nombre"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "Confirmar cantón, distrito y dirección exacta de la atención en Dulce Nombre, Cartago.",
+          "El enlace de Instagram se construyó a partir del usuario @mascoticacom indicado en J6; no se verificó en línea.",
+          "El nombre comercial no se toma automáticamente del dominio."
+        ]
+      }
+    },
+    {
+      "id": "esteban-salmeron-sibaja",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Esteban Salmerón Sibaja",
+        "business_name": "Fisiovet CR",
+        "professional_group": "animal_health",
+        "service_categories": [
+          "ortopedia-neurocirugia"
+        ],
+        "service_summary": "Servicios de ortopedia y neurocirugía.",
+        "species_explicitly_stated": null,
+        "consultation_modes": [
+          "in_person"
+        ],
+        "location": {
+          "province": null,
+          "canton": null,
+          "district": null,
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50683148343",
+              "display": "+506 8314-8343",
+              "tel_url": "tel:+50683148343",
+              "source_cell": "J7"
+            }
+          ],
+          "website_url": null,
+          "instagram_url": null,
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": 10,
+          "scope": "Primeras citas; alcance por confirmar.",
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          7
+        ],
+        "field_sources": {
+          "name": "C7",
+          "professional_group": "D7",
+          "services": "G7",
+          "consultation_modes_and_location": [
+            "H7"
+          ],
+          "benefit": [
+            "I7"
+          ],
+          "contacts": [
+            "J7"
+          ],
+          "booking_response": "K7"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "7": "2026-09-02T07:06:12"
+        },
+        "original_benefit_response": {
+          "I7": "10% primeras citas"
+        },
+        "original_location_response": {
+          "H7": "Sí:"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "H7 confirma un local físico pero no incluye su ubicación.",
+          "Comparte teléfono y clínica con Michelle Saravia; no son una persona duplicada.",
+          "Precisar a cuántas citas aplica la expresión «primeras citas»."
+        ]
+      }
+    },
+    {
+      "id": "maria-jose-pacheco-rojas",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Maria José Pacheco Rojas",
+        "business_name": null,
+        "professional_group": "animal_health",
+        "service_categories": [
+          "medicina-integrativa"
+        ],
+        "service_summary": "Medicina veterinaria integrativa para perros, con enfoque en terapias naturales y regenerativas.",
+        "species_explicitly_stated": [
+          "perros"
+        ],
+        "consultation_modes": [
+          "in_person"
+        ],
+        "location": {
+          "province": "Alajuela",
+          "canton": "Alajuela",
+          "district": "Alajuela",
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50684255353",
+              "display": "+506 8425-5353",
+              "tel_url": "tel:+50684255353",
+              "source_cell": "J9"
+            }
+          ],
+          "website_url": "https://perrolistico.com/",
+          "instagram_url": null,
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": "https://confirmafy.com/perrolisticocr"
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": 10,
+          "scope": null,
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          9
+        ],
+        "field_sources": {
+          "name": "C9",
+          "professional_group": "D9",
+          "services": "G9",
+          "consultation_modes_and_location": [
+            "H9"
+          ],
+          "benefit": [
+            "I9"
+          ],
+          "contacts": [
+            "J9"
+          ],
+          "booking_response": "K9"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "9": "2026-09-17T11:33:44"
+        },
+        "original_benefit_response": {
+          "I9": "0.1"
+        },
+        "original_location_response": {
+          "H9": "Alajuela, Alajuela, Alajuela"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "I9 almacena 0.1 con formato Excel 0%: representa 10%, pero no especifica el servicio o la cita a la que aplica.",
+          "Falta dirección exacta o enlace al mapa.",
+          "La modalidad presencial se infiere de la ubicación física indicada en H9; confirmar otras modalidades."
+        ]
+      }
+    },
+    {
+      "id": "ana-laura-gonzalez-arias",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Ana Laura González Arias",
+        "business_name": null,
+        "professional_group": "animal_health",
+        "service_categories": [
+          "dermatologia-alergias"
+        ],
+        "service_summary": "Servicios de dermatología veterinaria y alergias.",
+        "species_explicitly_stated": null,
+        "consultation_modes": [
+          "in_person"
+        ],
+        "location": {
+          "province": "San José",
+          "canton": "Escazú",
+          "district": null,
+          "locality": "Centro"
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50688369092",
+              "display": "+506 8836-9092",
+              "tel_url": "tel:+50688369092",
+              "source_cell": "J10"
+            }
+          ],
+          "website_url": null,
+          "instagram_url": null,
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": null,
+          "scope": null,
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          10
+        ],
+        "field_sources": {
+          "name": "C10",
+          "professional_group": "D10",
+          "services": "G10",
+          "consultation_modes_and_location": [
+            "H10"
+          ],
+          "benefit": [
+            "I10"
+          ],
+          "contacts": [
+            "J10"
+          ],
+          "booking_response": "K10"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "10": "2026-09-23T17:57:16"
+        },
+        "original_benefit_response": {
+          "I10": "Descuento (indicar cuánto en otros)"
+        },
+        "original_location_response": {
+          "H10": "San José, Escazu cebtro"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "Las citas se coordinan con Sara, según J10 y K10; confirmar el canal adecuado para reservar.",
+          "J10 indica @dermatolohoaveterinariacr. Posible error de escritura: no generar un enlace de Instagram hasta confirmar el usuario.",
+          "H10 dice «San José, Escazu cebtro». Se corrige la lectura a Escazú centro sin inferir distrito ni dirección.",
+          "El descuento no tiene porcentaje ni condiciones."
+        ]
+      }
+    },
+    {
+      "id": "nancy-chacon-vega",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Nancy Chacon Vega",
+        "business_name": "Rusti Pets / pawstres&treats",
+        "professional_group": "non_veterinary_wellbeing",
+        "service_categories": [
+          "estetica-canina",
+          "alimentacion-reposteria"
+        ],
+        "service_summary": "Estética canina y servicios de nutrición, pastelería y repostería canina y felina.",
+        "species_explicitly_stated": [
+          "perros",
+          "gatos"
+        ],
+        "consultation_modes": [
+          "in_person"
+        ],
+        "location": {
+          "province": null,
+          "canton": null,
+          "district": null,
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50689926425",
+              "display": "+506 8992-6425",
+              "tel_url": "tel:+50689926425",
+              "source_cell": "J11"
+            },
+            {
+              "number": "+50671185851",
+              "display": "+506 7118-5851",
+              "tel_url": "tel:+50671185851",
+              "source_cell": "J11"
+            }
+          ],
+          "website_url": null,
+          "instagram_url": null,
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": "discount",
+          "discount_percent": null,
+          "scope": null,
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          11
+        ],
+        "field_sources": {
+          "name": "C11",
+          "professional_group": "D11",
+          "services": "G11",
+          "consultation_modes_and_location": [
+            "H11"
+          ],
+          "benefit": [
+            "I11"
+          ],
+          "contacts": [
+            "J11"
+          ],
+          "booking_response": "K11"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "11": "2026-11-09T19:15:10"
+        },
+        "original_benefit_response": {
+          "I11": "Descuento (indicar cuánto en otros)"
+        },
+        "original_location_response": {
+          "H11": "Sí:"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "D11 identifica explícitamente a una profesional no veterinaria. Mostrar esa distinción.",
+          "Confirmar los nombres comerciales y qué teléfono corresponde a cada servicio.",
+          "H11 confirma un local físico pero no aporta ubicación.",
+          "El descuento no tiene porcentaje ni condiciones."
+        ]
+      }
+    },
+    {
+      "id": "sebastian-pena",
+      "publication_status": "pending_confirmation",
+      "public_profile": {
+        "name": "Sebastian Peña",
+        "business_name": null,
+        "professional_group": "animal_health",
+        "service_categories": [
+          "laboratorio-examenes",
+          "odontologia",
+          "cirugia"
+        ],
+        "service_summary": "Exámenes de sangre, odontología y cirugía.",
+        "species_explicitly_stated": null,
+        "consultation_modes": [
+          "in_person"
+        ],
+        "location": {
+          "province": null,
+          "canton": null,
+          "district": null,
+          "locality": null
+        },
+        "street_address": null,
+        "map_url": null,
+        "home_visit_coverage": null,
+        "contacts": {
+          "phones": [
+            {
+              "number": "+50662532424",
+              "display": "+506 6253-2424",
+              "tel_url": "tel:+50662532424",
+              "source_cell": "J12"
+            }
+          ],
+          "website_url": null,
+          "instagram_url": "https://www.instagram.com/veterinariadrpena/",
+          "email": null,
+          "whatsapp_url": null,
+          "booking_url": null
+        },
+        "benefit": {
+          "kind": null,
+          "discount_percent": null,
+          "scope": null,
+          "eligibility": null,
+          "redemption_instructions": null,
+          "valid_from": null,
+          "valid_until": null,
+          "confirmed_for_publication": false
+        },
+        "portrait_url": null,
+        "logo_url": null
+      },
+      "review": {
+        "source_rows": [
+          12
+        ],
+        "field_sources": {
+          "name": "C12",
+          "professional_group": "D12",
+          "services": "G12",
+          "consultation_modes_and_location": [
+            "H12"
+          ],
+          "benefit": [],
+          "contacts": [
+            "J12"
+          ],
+          "booking_response": "K12"
+        },
+        "directory_interest_recorded": true,
+        "supports_brand_philosophy_recorded": true,
+        "submission_timestamps_without_timezone": {
+          "12": null
+        },
+        "original_benefit_response": {},
+        "original_location_response": {
+          "H12": "Si"
+        },
+        "contact_links_live_verified": false,
+        "professional_credentials_verified": false,
+        "partnership_activation_confirmed": false,
+        "missing_or_ambiguous": [
+          "No hay marca temporal ni correo de respuesta en A12:B12; no asumir que procede de una respuesta completa del formulario.",
+          "H12 confirma un lugar físico pero no incluye la ubicación.",
+          "I12 y K12 están vacías: no interpretar ausencia de respuesta como ausencia de beneficio o de reservas online."
+        ]
+      }
+    }
+  ]
+}

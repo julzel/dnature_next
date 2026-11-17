@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "whatsapp": {
+    "phone_e164": "+50671848868",
+    "display_number": "+506 7184-8868",
+    "url": "https://wa.me/50671848868"
+  },
+  "instagram": {
+    "username": "dnaturecr",
+    "url": "https://www.instagram.com/dnaturecr"
+  },
+  "email": {
+    "address": "info@dnaturefood.com",
+    "url": "mailto:info@dnaturefood.com"
+  },
+  "map": {
+    "latitude": 9.955621,
+    "longitude": -84.085547,
+    "url": "https://www.google.com/maps/search/?api=1&query=9.955621%2C-84.085547",
+    "street_address": null
+  },
+  "source": {
+    "branch": "canary",
+    "commit": "e63cc537532b9a2e47160efa9f2259f36616efaa",
+    "extracted_on": "2026-11-10",
+    "files": {
+      "whatsapp": [
+        "features/Home/Contact/index.js",
+        "components/Header/Header.js",
+        "features/Cart/CartNotification/index.js"
+      ],
+      "instagram": ["features/Home/Contact/index.js"],
+      "email": ["features/Home/Contact/index.js"],
+      "map": ["features/Home/Contact/Map/index.js"]
+    },
+    "notes": [
+      "Extracted from the local canary branch, which matches the locally stored origin/canary reference at this commit.",
+      "The contact section uses the local number 71848868. The header and cart supply the full WhatsApp number with country code 506.",
+      "The Google Maps URL is constructed from the exact STORE_LOCATION coordinates in the map component.",
+      "No street address was provided in the source contact or map components."
+    ]
+  }
+}

@@ -1,0 +1,4122 @@
+{
+  "source": "docs/SEO-GEO/catalog-products.md",
+  "sourceSha256": "116d4bddff4b0cf8643f2172ea370e6148fd3a15b0b9c6a0a33a2c5456252329",
+  "workbookSha256": "5d9ee1f786a1d7c77be8a6fb749073022b4abbcbc69aea6c0066e1de79d6b336",
+  "rows": [
+    {
+      "row": 2,
+      "name": "Ajo y perejil",
+      "status": "Excluir",
+      "reference": {
+        "sourceRow": 2,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 3,
+      "name": "Alas de Pollo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 3,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 4,
+      "name": "Bazo de cordero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 4,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 5,
+      "name": "Bazo de res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 5,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 6,
+      "name": "Bazo de ternero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 6,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 7,
+      "name": "Bazo deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 7,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 8,
+      "name": "Bully sticks deshidratados",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 8,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 9,
+      "name": "Caballo cocinado con verdura 500g",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 9,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Baja probabilidad",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 10,
+      "name": "Caballo cocinado sin verdura 500g",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 10,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Baja probabilidad",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 11,
+      "name": "Caballo en trozos",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 11,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Baja probabilidad",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 12,
+      "name": "Caja principiante",
+      "status": "Excluir",
+      "reference": {
+        "sourceRow": 12,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 13,
+      "name": "Caja treats",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 13,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 14,
+      "name": "Calcio",
+      "status": "Continuidad pendiente",
+      "reference": {
+        "sourceRow": 14,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 15,
+      "name": "Caldo hueso",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 15,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 16,
+      "name": "Callostro",
+      "status": "Continuidad pendiente",
+      "reference": {
+        "sourceRow": 16,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 17,
+      "name": "Capsulas bacalao",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 17,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 18,
+      "name": "Chucrut",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 18,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 19,
+      "name": "Codorniz cruda",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 19,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Aves",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 20,
+      "name": "Codorniz Deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 20,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Aves",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 21,
+      "name": "Colageno",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 21,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 22,
+      "name": "Corazon de cordero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 22,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 23,
+      "name": "Corazón de caballo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 23,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Baja probabilidad",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 24,
+      "name": "Corazon de res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 24,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 25,
+      "name": "Corazon deshidratado de res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 25,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 26,
+      "name": "Corazon deshidratado de caballo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 26,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "equinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 27,
+      "name": "Corazon deshidratado de cordero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 27,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 28,
+      "name": "Corazon deshidratado de ternero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 28,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 29,
+      "name": "Corazon de ternero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 29,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 30,
+      "name": "Costillas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 30,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 31,
+      "name": "Cuellos de Pollo crudos",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 31,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 32,
+      "name": "Cuellos de Pollo deshidratados",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 32,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 33,
+      "name": "Cuerno de bufalo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 33,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas/perros braquicéfalos /Problemas de dentadura",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 34,
+      "name": "Cuerno de res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 34,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas/perros braquicéfalos /Problemas de dentadura",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 35,
+      "name": "Deshidratados grandes",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 35,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 36,
+      "name": "Deshidratados medianos",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 36,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 37,
+      "name": "DNAture Gato",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 37,
+        "kind": "Base alimenticia",
+        "species": [
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pollo, Bovina, cordero, pescado",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 38,
+      "name": "DNAture Pollo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 38,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 39,
+      "name": "DNAture Pollo Bufalo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 39,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 40,
+      "name": "DNAture Pollo Caballo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 40,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 41,
+      "name": "DNAture Pollo Cordero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 41,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 42,
+      "name": "DNAture Pollo Res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 42,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 43,
+      "name": "DNAture Pollo Ternero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 43,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 44,
+      "name": "DNAture Trucha Bufalo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 44,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 45,
+      "name": "DNAture Trucha Caballo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 45,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 46,
+      "name": "DNAture Trucha Pollo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 46,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 47,
+      "name": "DNAture Trucha Res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 47,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 48,
+      "name": "DNAture Wild Ancestor (Sardina)",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 48,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 49,
+      "name": "DNAture Wild Spirit (Trucha)",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 49,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 50,
+      "name": "Esofago Deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 50,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 51,
+      "name": "Espadines",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 51,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 52,
+      "name": "Espirulina",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 52,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 53,
+      "name": "Esqueleto de trucha deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 53,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas/perros braquicéfalos",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 54,
+      "name": "Femur",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 54,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 55,
+      "name": "Galleta wild deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 55,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 56,
+      "name": "Hemp seeds",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 56,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 57,
+      "name": "Higado de cordero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 57,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 58,
+      "name": "Higado de Caballo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 58,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "equinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 59,
+      "name": "Higado de res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 59,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 60,
+      "name": "Higado de res deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 60,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 61,
+      "name": "Higado de cordero deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 61,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 62,
+      "name": "Higado de ternero deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 62,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 63,
+      "name": "Higado de ternero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 63,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 64,
+      "name": "hocico deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 64,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 65,
+      "name": "Huesos",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 65,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 66,
+      "name": "Huevos de codorniz (10)",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 66,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "huevo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 67,
+      "name": "Kefir de leche de cabra",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 67,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "cabra",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 68,
+      "name": "Kelp",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 68,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas - Doberman Pincher/ Boxer/Malamute y Cocker Spaniel",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 69,
+      "name": "Kelp seaweed",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 69,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas - Doberman Pincher/ Boxer/Malamute y Cocker Spaniel",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 70,
+      "name": "Lengua de Cordero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 70,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 71,
+      "name": "Levadura de cerveza",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 71,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 72,
+      "name": "Levadura nutricional",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 72,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 73,
+      "name": "Mejilla deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 73,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 74,
+      "name": "Mejillón de Labio Verde",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 74,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 75,
+      "name": "Mejillon de Labio Verde en polvo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 75,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 76,
+      "name": "Mejillones deshidratados",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 76,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 77,
+      "name": "Monoproteica de Caballo cocinada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 77,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "baja probabilidad",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 78,
+      "name": "Monoproteica de Caballo cruda",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 78,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "baja probabilidad",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 79,
+      "name": "Monoproteica de Pollo cocinada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 79,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 80,
+      "name": "Monoproteica de Pollo cruda",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 80,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 81,
+      "name": "Monoproteica de Res cocinada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 81,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 82,
+      "name": "Monoproteica de Res cruda",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 82,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 83,
+      "name": "Multivitaminico",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 83,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 84,
+      "name": "Multivitaminico tarro",
+      "status": "Excluir",
+      "reference": {
+        "sourceRow": 84,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 85,
+      "name": "Oreja de res sin pelo deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 85,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 86,
+      "name": "Orejas de cordero deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 86,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 87,
+      "name": "Orejas de res deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 87,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 88,
+      "name": "Pata de cordero deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 88,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 89,
+      "name": "Patas de Conejo Crudas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 89,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "conejo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 90,
+      "name": "Patas de Conejo deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 90,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "conejo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 91,
+      "name": "Patas de pollo crudas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 91,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 92,
+      "name": "Patas de pollo deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 92,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 93,
+      "name": "Pechuga",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 93,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 94,
+      "name": "Pechuga de pollo en trozos",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 94,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 95,
+      "name": "Polen",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 95,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "polen",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 96,
+      "name": "Pollo Cocinado",
+      "status": "Excluir",
+      "reference": {
+        "sourceRow": 96,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 97,
+      "name": "Pollo Res Cocinado",
+      "status": "Excluir",
+      "reference": {
+        "sourceRow": 97,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Pollo/bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 98,
+      "name": "Potasio",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 98,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 99,
+      "name": "Proteína de Res 500g",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 99,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 100,
+      "name": "Proteina de res y caballo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 100,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina o equina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 101,
+      "name": "Psyllium",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 101,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 102,
+      "name": "Pulmon deshidratado de res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 102,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 103,
+      "name": "Pure ayote",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 103,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 104,
+      "name": "Pure brocoli",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 104,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 105,
+      "name": "Pure camote",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 105,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 106,
+      "name": "Pure zanahoria",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 106,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 107,
+      "name": "Q10",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 107,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 108,
+      "name": "Relax powder",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 108,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 109,
+      "name": "Relax Snacks",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 109,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "pollo",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 110,
+      "name": "Remolacha deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 110,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 111,
+      "name": "Res cocinada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 111,
+        "kind": "Complemento alimenticio",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": true
+      }
+    },
+    {
+      "row": 112,
+      "name": "Riñones de cordero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 112,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 113,
+      "name": "Riñones de res",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 113,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 114,
+      "name": "Riñones de ternero",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 114,
+        "kind": "Órgano",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 115,
+      "name": "Riñón deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 115,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 116,
+      "name": "Rosehip powder",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 116,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 117,
+      "name": "Sardinas crudas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 117,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 118,
+      "name": "Sardinas deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 118,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas/perros braquicéfalos",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 119,
+      "name": "Suplemento senior",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 119,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 120,
+      "name": "Tendones de caballo deshidratados",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 120,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Baja probabilidad",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 121,
+      "name": "Testiculo trozos crudos",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 121,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 122,
+      "name": "Testiculos",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 122,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 123,
+      "name": "Testiculos deshidratados",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 123,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 124,
+      "name": "Topping Bazo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 124,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 125,
+      "name": "Topping Higado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 125,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "cordero/Bovinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 126,
+      "name": "Topping Pulmón",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 126,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 127,
+      "name": "Topping Sardina",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 127,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": null,
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 128,
+      "name": "Traqueas de Cordero deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 128,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Cordero",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 129,
+      "name": "Traqueas de Res deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 129,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 130,
+      "name": "Trenza Bully Sticks",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 130,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    },
+    {
+      "row": 131,
+      "name": "Tripa",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 131,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 132,
+      "name": "Tripa Verde Deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 132,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Bovina",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 133,
+      "name": "Trucha Caballo cocinado 1k",
+      "status": "Excluir",
+      "reference": {
+        "sourceRow": 133,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 134,
+      "name": "Trucha Res cocinado 1k",
+      "status": "Excluir",
+      "reference": {
+        "sourceRow": 134,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": "Revisar componentes",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 135,
+      "name": "Truchas crudas (cabezas)",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 135,
+        "kind": "Base alimenticia",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 136,
+      "name": "Truchas deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 136,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Media",
+        "supervision": "Supervisá su consumo",
+        "allergens": "Pescado/Mariscos",
+        "restrictions": "Alergias específicas/perros braquicéfalos",
+        "chokingRisk": "Medio",
+        "complementary": false
+      }
+    },
+    {
+      "row": 137,
+      "name": "Vinagre de manzana",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 137,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 138,
+      "name": "Vitamina E",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 138,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 139,
+      "name": "Zanahoria Deshidratada",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 139,
+        "kind": "Suplemento funcional",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": null,
+        "supervision": null,
+        "allergens": null,
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 140,
+      "name": "Pulmon deshidratado de caballo",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 140,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "equinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 141,
+      "name": "Higado de caballo deshidratado",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 141,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog",
+          "cat"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mini",
+          "pequeño",
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Principiante",
+        "supervision": "Supervisá especialmente el primer uso",
+        "allergens": "equinos",
+        "restrictions": "Alergias específicas / enfermedad renal",
+        "chokingRisk": null,
+        "complementary": false
+      }
+    },
+    {
+      "row": 142,
+      "name": "Traqueas de caballo deshidratadas",
+      "status": "Descripción comercial",
+      "reference": {
+        "sourceRow": 142,
+        "kind": "Complemento masticable",
+        "species": [
+          "dog"
+        ],
+        "lifeStages": [
+          "Cachorro",
+          "Adulto",
+          "Senior"
+        ],
+        "sizes": [
+          "mediano",
+          "grande"
+        ],
+        "chewing": "Avanzada",
+        "supervision": "Supervisá su consumo",
+        "allergens": "equinos",
+        "restrictions": "Alergias específicas",
+        "chokingRisk": "Alto",
+        "complementary": false
+      }
+    }
+  ]
+}

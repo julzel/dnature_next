@@ -1,0 +1,19 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "pitbull-source.png",
+  "style_reference": "border-collie-source.png",
+  "output": "../../../../public/images/pets/pitbull.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "43dd30a2a1ce61f6a9f514f4b2b786a2c088e54718c79266223a48ad22055ce3",
+  "optical_width": 400.0,
+  "optical_height": 328.56
+}

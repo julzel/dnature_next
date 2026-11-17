@@ -1,0 +1,21 @@
+{
+  "created": "2026-11-11",
+  "method": "Built-in image_gen generation and transparent-edge refinement using the approved Border Collie as a graphic-style reference; converted into native SVG paths with vtracer 0.6.15 via scripts/trace-walking-artwork.py.",
+  "source_png": "labrador-retriever-source.png",
+  "style_reference": "border-collie-source.png",
+  "prompt": "Use the supplied Border Collie ONLY as the exact DNAture graphic-style reference, not its breed, proportions or fur length. Create a NEW standalone LABRADOR RETRIEVER, unmistakably a Labrador rather than a Golden Retriever, pit bull or generic hound. One realistic adult Labrador Retriever standing naturally on all FOUR legs facing RIGHT, body in side profile and head in gentle three-quarter view. Breed characteristics: balanced sturdy medium-large athletic build, broad deep chest, strong shoulders, level back, muscular hindquarters, straight substantial legs and four distinct rounded paws, broad clean head, wide moderately long square muzzle, soft attentive natural eyes, medium dropped ears hanging close to the head, SHORT dense smooth double coat, and the Labrador's distinctive thick straight OTTER TAIL tapering from a broad base, carried naturally level or slightly below the back with a gentle curve. No feathering, no long wavy fur, no Golden Retriever coat. Calm friendly gentle expression, relaxed closed mouth, anatomically plausible healthy proportions, not overweight or exaggerated. No collar, clothing, props or additional animals. Match the reference's crisp tapered engraved SHORT fur strokes and airy crosshatching, following natural smooth coat and muscle contours; restrained shadow density, clean detailed silhouette and open mint negative spaces. EXACTLY two opaque interior inks: deep ink teal #092F39 and luminous mint #8FE4D9. Mint-dominant illustration with readable dark contours, fine hatching and clear facial detail; no large featureless dark patches. Square canvas, entire dog including both dropped ears, FULL otter tail and all four paws fully visible and uncropped, generous transparent margins. GENUINE ALPHA TRANSPARENCY immediately outside the silhouette, including under belly and between legs. No background, ground, floor shadow, halo, glow, gradients, blur, photorealistic texture, cartoon, 3D, text, watermark, frame, badges, black, white, yellow, brown or other warm tones. Preserve the same scientific hand-engraved graphic line as the DNAture animal series.",
+  "refinement_prompt": "Image 1 is the Labrador Retriever to refine; preserve its breed identity, broad head, gentle expression, dropped ears, short smooth coat, full thick otter tail, balanced body and natural four-legged standing pose facing right. Image 2 is ONLY the approved clean-cut DNAture engraving style reference. Deliver ONLY the Labrador from image 1 on a square canvas with comfortable margins around ears, nose, tail and paws. Remove ALL surrounding turquoise glow, halo, backdrop, colored haze, shadow and background pixels: require genuine alpha transparency immediately outside the animal silhouette, including between legs and under belly. No glowing fringe. Keep opaque mint inside the animal. Match image 2's crisp discrete tapered dark-ink engraving strokes over flat luminous mint fill, with airy open highlights and restrained shadow density; no gradients or photorealistic texture. Exactly two interior colors: deep ink teal #092F39 and luminous mint #8FE4D9. Keep the entire Labrador anatomically intact and uncropped, all four paws and FULL tail visible. Do not add long fur, feathering, a collar, text, logo, props, floor, background, shadow, blur or extra animals. This is a transparent reusable vector-reference asset, not a poster or scene; clean silhouette cutout is essential.",
+  "output": "../../../../public/images/pets/labrador-retriever.svg",
+  "canvas": [
+    480,
+    480
+  ],
+  "baseline": 428.5,
+  "tracing": {
+    "tool": "vtracer 0.6.15",
+    "ink_threshold": 0.6
+  },
+  "source_sha256": "e937676d091a043c0b4f58f6b48b02979a4019a8d1d955eb2436b57e80a97107",
+  "optical_width": 400.0,
+  "optical_height": 330.34
+}

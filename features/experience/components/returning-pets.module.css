@@ -1,0 +1,22 @@
+.welcome { display: grid; gap: var(--dn-space-12); align-items: center; margin-block-start: var(--dn-space-8); }
+.intro { min-inline-size: 0; }
+.intro h2 { max-inline-size: 16ch; color: var(--dn-text-primary); font-size: clamp(32px, 4vw, 56px); font-weight: 800; letter-spacing: -.045em; line-height: 1.08; overflow-wrap: anywhere; }
+.intro h2 span { color: var(--dn-surface-dark); }
+.intro h2::after { content: ""; display: block; inline-size: var(--dn-space-16); block-size: var(--dn-space-1); margin-block-start: var(--dn-space-6); background: var(--dn-brand-orange); }
+.intro > p { max-inline-size: 44ch; margin-block-start: var(--dn-space-6); color: var(--dn-text-secondary); font-size: 16px; line-height: 1.7; }
+.actions { margin-block-start: var(--dn-space-8); display: flex; flex-wrap: wrap; align-items: start; gap: var(--dn-space-4) var(--dn-space-6); }
+.continue { background: var(--dn-brand-orange); padding-inline: var(--dn-space-4); }
+.continue svg { color: var(--dn-text-primary); }
+.actions .manage { align-self: flex-end; }
+.manage { display: block; min-block-size: 48px; padding: var(--dn-space-3) 0; border: 0; background: transparent; color: var(--dn-surface-dark); font: inherit; font-size: 14px; text-decoration: underline; text-underline-offset: var(--dn-space-1); cursor: pointer; }
+.manage:hover { text-decoration-thickness: 2px; }
+.intro .storageNote { font-size: 12px; margin-block-start: var(--dn-space-4); }
+.intro .error { padding-inline-start: var(--dn-space-4); border-inline-start: 3px solid var(--dn-brand-teal); font-size: 14px; }
+.pets { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap: var(--dn-space-8); list-style: none; padding: 0; margin: 0; }
+.pets li { min-inline-size: 0; text-align: center; }
+.pets img { inline-size: min(100%, 240px); block-size: auto; margin-inline: auto; }
+.pets h3 { font-size: 24px; color: var(--dn-surface-dark); overflow-wrap: anywhere; }
+.pets p { color: var(--dn-text-secondary); font-size: 14px; line-height: 1.6; margin-block-start: var(--dn-space-2); overflow-wrap: anywhere; }
+.management { margin-block-start: var(--dn-space-4); }
+.management > button { margin-block-end: var(--dn-space-4); }
+@media (min-width: 900px) { .welcome { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: var(--dn-space-16); } }
