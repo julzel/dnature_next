@@ -11,6 +11,7 @@ import { PartnershipsPreview } from "@/features/partnerships/components/partners
 import { Footer } from "@/features/footer/components/footer";
 import { BestSellingSnacks } from "@/features/catalog/components/best-selling-snacks";
 import { BestSellingSnacksLoading } from "@/features/catalog/components/best-selling-snacks-loading";
+import { CategoryGallery } from "@/features/catalog/components/category-gallery";
 
 export const metadata = pageMetadata({
   path: "/",
@@ -38,6 +39,7 @@ export default function Home() {
             <BestSellingSnacks />
           </Suspense>
         </ExperienceSection>
+        <CategoryGallery />
         <Contact />
         <PartnershipsPreview />
       </main>
