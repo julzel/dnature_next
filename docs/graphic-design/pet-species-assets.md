@@ -225,3 +225,14 @@ ink backgrounds. Keep category colors on category identifiers.
 The compact assets use different poses from the engraving set because the
 source silhouettes read more clearly at small sizes. Always pair eligibility
 with a label, and show both species where the product data supports both.
+
+## Pet care scene
+
+`public/images/pets/dog-caring-for-cat-v2.svg` shows the standard mixed-breed
+dog resting its chin on the tabby cat’s head, mouth closed and gaze toward
+the horizon. Its far-side front leg is hidden; the cat rests with closed eyes.
+The transparent 1536 × 1024 illustration uses the two brand inks.
+The [generation prompt and source](artwork-sources/pet-species/dog-caring-for-cat-v2-generation.json)
+are preserved. It appears in the homepage Alianzas DNAture section through
+`features/partnerships/components/partnerships-preview.tsx`, with proportional
+responsive sizing and descriptive alternative text.

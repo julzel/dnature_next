@@ -11,7 +11,7 @@ export function PartnershipsPreview() {
         <div className={styles.introduction}>
           <div className={styles.copy}>
             <h2 id="partnerships-preview-title">
-              Cuidar es mejor <span>en tribu.</span>
+              Cuidar es mejor <span>en manada.</span>
             </h2>
             <p>
               Su bienestar va más allá de la alimentación. Conocé profesionales
@@ -20,8 +20,8 @@ export function PartnershipsPreview() {
           </div>
           <figure className={styles.artwork}>
             <Image
-              src="/images/experiences/walking-guided.svg"
-              alt=""
+              src="/images/pets/dog-caring-for-cat-v2.svg"
+              alt="Un perro mestizo apoya suavemente la cabeza sobre un gato atigrado acurrucado junto a él, mientras mira hacia el horizonte."
               width={1536}
               height={1024}
               unoptimized

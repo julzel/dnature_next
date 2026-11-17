@@ -1,8 +1,8 @@
 # DNAture — Digital Design System
 
-**Version:** 0.5 — Revised brandbook palette and accessible five-category theme
+**Version:** 0.6 — Manada community concept and current website direction
 
-**Updated:** 2026-11-09
+**Updated:** 2026-11-16
 
 **Scope:** Public website, catalog, product detail, customer account, educational content, cart and checkout
 
@@ -497,6 +497,8 @@ Use “nutrición fisiológica” when it accurately describes the subject. Expl
 The vocabulary on p. 14 restricts **BARF**, **huesos carnosos**, **presas completas**, and generic **snacks** for functional products. Use **órganos** with anatomical precision instead of **vísceras**. Use the current category names for navigation; a historical family term such as Treats may appear only where it accurately describes a product. Later comparative campaign examples do not turn BARF into an authorized DNAture category label.
 
 ### 8.2 Content structure [REQUIRED]
+
+**Community concept [REQUIRED, user direction 2026-11-16]:** Use **manada** in current website copy in place of **tribu**. The manada brings together dogs, cats, their guardians, and the professionals who support their care. It expresses belonging, mutual support, and respect for each animal's individuality. Use “Tu manada DNAture”, “Cuidar es mejor en manada” and “Ciencia. Conciencia. Manada.” where appropriate. This is an inclusive community metaphor, not a claim about animal social behavior or hierarchy. The JSON retains the original brandbook term as source evidence and records the current wording under `project_context.community_concept`.
 
 - Give each section a clear subject, a useful explanation, and an appropriate next step.
 - Use one descriptive page H1 and a logical heading hierarchy. Eyebrows do not carry the heading structure.

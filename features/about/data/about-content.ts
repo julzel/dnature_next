@@ -54,12 +54,12 @@ export const essence = [
     link: "Conocé el propósito que nos mueve",
   },
   {
-    id: "tribu",
-    name: "Tribu",
+    id: "manada",
+    name: "Manada",
     dimension: "La comunidad que acompaña",
     associations: ["Comunidad", "Acompañamiento", "Coherencia"],
     description:
-      "Cuidar también es compartir lo que aprendemos. Creemos en el diálogo entre tutores y profesionales de salud animal, y en una comunidad que crece con conocimiento.",
+      "Nuestra manada reúne a perros, gatos, sus tutores y profesionales de salud animal. Cuidar también es compartir lo que aprendemos y acompañarnos, respetando la esencia de cada uno.",
     practice:
       "Queremos que cada conversación transforme una duda en una oportunidad para aprender y elegir con más confianza.",
     href: "/#contacto",

@@ -26,7 +26,7 @@ export function PetExperience() {
 
   return (
     <div ref={content}>
-      <SectionEyebrow label={stored.pets.length > 0 && !managing ? "Tu tribu DNAture" : "Cuéntanos sobre tu mascota"} />
+      <SectionEyebrow label={stored.pets.length > 0 && !managing ? "Tu manada DNAture" : "Cuéntanos sobre tu mascota"} />
       {stored.error && <p role="alert">{stored.error}</p>}
       {stored.pets.length > 0 && !managing ? <ReturningPets pets={stored.pets} onManage={handleManage} /> : <div className={managing ? styles.management : undefined}>
         {managing && <button type="button" className={styles.manage} onClick={handleWelcome}>Volver a la bienvenida</button>}

@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "reference_id": "dnature_brand_reference",
-  "updated_at": "2026-11-09",
+  "updated_at": "2026-11-16",
   "purpose": "A task-oriented reference for AI agents creating DNAture graphic design and customer-facing content. This is a curated analysis, not a verbatim transcription, live product catalog, or clinical evidence source.",
   "languages": {
     "keys_and_explanations": "en",
@@ -14,6 +14,7 @@
       "/quick_reference",
       "/application_policy",
       "/revision_review",
+      "/project_context/community_concept",
       "/project_context/current_product_categories",
       "/review_findings/conflicts"
     ],
@@ -30,6 +31,7 @@
     "approval_meaning": "No new design, product claim, asset, or legal assertion is approved by creating this JSON.",
     "task_routes": {
       "write_copy": [
+        "/project_context/community_concept",
         "/brand_strategy",
         "/verbal_identity",
         "/content_strategy",
@@ -102,7 +104,7 @@
       "id": "digital_design_proposal",
       "type": "website_design_specification",
       "relative_path": "docs/graphic-design/DNAture_Design_System.md",
-      "version": "0.5",
+      "version": "0.6",
       "status": "Contains BRAND, REQUIRED, PROPOSED and VERIFY labels. Required website adaptations include flat open layouts, square geometry, active brand-orange use, and five current product categories with scoped identification colors; these are project rules, not revisions to the original PDF."
     },
     {
@@ -114,6 +116,7 @@
   ],
   "quick_reference": {
     "brand_name": "DNAture",
+    "current_website_community_concept": "Manada — see /project_context/community_concept. Use Ciencia. Conciencia. Manada. in current website copy.",
     "official_tagline": "Nutrición con esencia en el ADN",
     "positioning_summary": "Costa Rican physiological nutrition for dogs and cats, centered on individual biology, scientific understanding, education, and supportive care.",
     "archetypes": [
@@ -2159,6 +2162,17 @@
     "evidence_status": "project_override",
     "source_id": "repository_rules",
     "re_read_current_instructions": "AGENTS.md can change; consult its current contents before implementing code.",
+    "community_concept": {
+      "evidence_status": "project_override",
+      "source": "Explicit user direction, 2026-11-16: replace the tribu concept with manada (pack).",
+      "preferred_term": "Manada",
+      "replaces": "Tribu",
+      "scope": "Current dnature_next customer-facing copy, including homepage, about, partnerships, footer and pet profiles.",
+      "meaning": "An inclusive community of dogs, cats, guardians and supporting professionals, united by care, belonging and accompaniment while respecting each animal's individuality.",
+      "examples": ["Tu manada DNAture", "Cuidar es mejor en manada.", "Ciencia. Conciencia. Manada."],
+      "usage": "Use manada for the community concept. The metaphor does not imply social hierarchy or clinical claims. Ordinary descriptive words such as comunidad and acompañamiento remain appropriate.",
+      "source_distinction": "brand_strategy.emotional_territory preserves Tribu as the original PDF wording. This project override takes precedence for current website copy."
+    },
     "ui_color_policy": {
       "allowed_direction": [
         "Cool white",

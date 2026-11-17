@@ -10,7 +10,7 @@ export function AboutEssence() {
       <div className={`${styles.container} ${styles.essenceGrid}`}>
         <div>
           <SectionEyebrow label="Lo que nos define" />
-          <h2 id="essence-title" className={styles.sectionTitle}>Ciencia.<br />Conciencia.<br />Tribu.</h2>
+          <h2 id="essence-title" className={styles.sectionTitle}>Ciencia.<br />Conciencia.<br />Manada.</h2>
           <p className={styles.essenceIntro}>
             El conocimiento, la empatía y la comunidad se encuentran en nuestra
             forma de entender la nutrición. Explorá qué significa cada uno.

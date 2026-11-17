@@ -14,7 +14,7 @@ export function ReturningPets({ pets, onManage }: { pets: PetProfile[]; onManage
   return <div className={styles.welcome}>
     <div className={styles.intro}>
       <h2>{single ? <>¡Hola de nuevo, <span>{pets[0].name}!</span></> : <>¡Qué bueno <span>verlos de nuevo!</span></>}</h2>
-      <p>{single ? `El perfil de ${pets[0].name} ya está aquí. Sigamos conociendo su esencia para acompañar su alimentación.` : "Tu tribu ya es parte de DNAture. Sus perfiles están aquí para seguir acompañando a cada uno, a su manera."}</p>
+      <p>{single ? `El perfil de ${pets[0].name} ya está aquí. Sigamos conociendo su esencia para acompañar su alimentación.` : "Tu manada ya es parte de DNAture. Sus perfiles están aquí para seguir acompañando a cada uno, a su manera."}</p>
       <div className={styles.actions}>
         <ArrowCta className={styles.continue} href={selected === "guided" ? "/mi-dnature/mis-mascotas" : "/productos"} label={selected === "guided" ? "Ver mis mascotas" : "Explorar productos"} onClick={handleContinue} />
         <button type="button" className={styles.manage} onClick={onManage}>Editar o agregar mascotas</button>

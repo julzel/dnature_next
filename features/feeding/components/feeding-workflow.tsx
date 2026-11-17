@@ -93,7 +93,7 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
 
   return <>
     {step === -1 && !result ? <FeedingWelcome headingRef={heading} pets={pets} onStart={handleStart} /> : result ? <FeedingResults result={result} pets={pets} answers={answers} headingRef={heading} onEdit={handleReturnToReview} /> : reviewing ? <>
-      <p className={styles.kicker}>Cada detalle cuenta</p><h1 tabIndex={-1} ref={heading}>Así es tu tribu.</h1>
+      <p className={styles.kicker}>Cada detalle cuenta</p><h1 tabIndex={-1} ref={heading}>Así es tu manada.</h1>
       <p>Revisá sus datos. Estamos a un paso de conocer su porción y sus paquetes.</p>
       <form onSubmit={handleSubmit} onChange={handleAnswers} aria-label="Revisar datos y preparar paquetes" aria-busy={pending}>
         <fieldset disabled={pending} className={styles.formFields}><legend className="sr-only">Revisión de tus mascotas</legend>
