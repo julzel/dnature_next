@@ -1,0 +1,67 @@
+{
+  "created": "2026-11-17",
+  "method": "Built-in image_gen, two separate reference-guided generations; transparent PNG masters; palette-constrained native SVG tracing with scripts/trace-walking-artwork.py and vtracer 0.6.15.",
+  "references": [
+    {
+      "path": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-dog-source.png",
+      "role": "Dog identity"
+    },
+    {
+      "path": "docs/graphic-design/artwork-sources/pet-species/mixed-breed-cat-source.png",
+      "role": "Cat identity"
+    },
+    {
+      "path": "/Users/juliozeledon/.codex/skills/dnature-engraving/assets/dog-cat-reference.png",
+      "role": "Engraving style only"
+    }
+  ],
+  "constraints": [
+    "Mixed-breed dog and domestic shorthair tabby cat",
+    "No dotted paths, star, compass or orange accents",
+    "Transparent background",
+    "Ink #092F39 and mint #8FE4D9"
+  ],
+  "vectorization": {
+    "script": "scripts/trace-walking-artwork.py",
+    "ink_threshold": 0.6,
+    "palette": [
+      "#092F39",
+      "#8FE4D9"
+    ]
+  },
+  "composition": {
+    "script": "scripts/build-experience-artwork.mjs",
+    "canvas": [
+      640,
+      480
+    ],
+    "guided": "Walking pair with mint-and-ink signpost",
+    "explore": "Walking pair only"
+  },
+  "assets": [
+    {
+      "scene": "guided",
+      "prompt": "Use case: illustration-story.\nAsset type: transparent animal illustration for a DNAture website experience selector.\nInput images: Image 1 is the approved mixed-breed dog identity; image 2 is the approved mixed-breed domestic shorthair tabby cat identity; image 3 is a linework/style reference only, not the dog identity. Use the ordinary mixed-breed dog from image 1, NOT the retriever from image 3. Preserve the dog's slim medium-size build, modest scruffy short-to-medium coat, asymmetric semi-folded ears, tapered medium muzzle and natural lightly feathered tail. Preserve the cat's ordinary domestic shorthair build, upright ears, tabby markings and curved tail. Healthy, calm, dignified pets.\nStyle: realistic fine wood/copperplate engraving, tapered fur strokes and crosshatching, crisp detailed anatomy. Duotone deep cool ink teal #092F39 and luminous mint #8FE4D9 only. Match these two characters faithfully while drawing new natural walking poses.\nCanvas: landscape 1536 by 1024. Both animals full body, paws on a common baseline, centered as a balanced compact composition with clear breathing room. Dog naturally about twice the cat's shoulder height. All ears, tails, whiskers and paws intact.\nBackground: genuine alpha transparency everywhere outside the animals, including between legs and fine whiskers. No background color, haze, glow, ground, ground shadow or vignette.\nNo text, logo, accessories, people, clothing, signpost, props, dotted line, path, arrow, star, compass, sparkle, orange or any warm color. Only the two animals, no extra animals. No photographic texture, cartoon outlines or 3D.\nScene: guided companionship. The mixed-breed dog at the left/rear walks gently toward the RIGHT, beside the smaller cat at the right/front which also walks toward the RIGHT. The dog turns its head slightly down toward the cat; the cat glances up/back at the dog, sharing a gentle attentive glance. Their body orientation and natural walking gait clearly move right together. Clear silhouettes with minimal overlap; individually legible feet and tails, no fused anatomy. Mouths closed. Warmth conveyed through calm posture, not human expressions.",
+      "source": "docs/graphic-design/artwork-sources/walking-companions/mixed-breed-guided-source.png",
+      "vector_output": "public/images/experiences/walking-guided.svg",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_sha256": "112f3f731de833e76375a927c67e1a1daadc3dceb50e89394ff1f3e4adc78484",
+      "vector_sha256": "1af62764bce70a7f9006d10b79885e5cec4f533e284dd9a80281c1f671a70abc"
+    },
+    {
+      "scene": "explore",
+      "prompt": "Use case: illustration-story.\nAsset type: transparent animal illustration for a DNAture website experience selector.\nInput images: Image 1 is the approved mixed-breed dog identity; image 2 is the approved mixed-breed domestic shorthair tabby cat identity; image 3 is a linework/style reference only, not the dog identity. Use the ordinary mixed-breed dog from image 1, NOT the retriever from image 3. Preserve the dog's slim medium-size build, modest scruffy short-to-medium coat, asymmetric semi-folded ears, tapered medium muzzle and natural lightly feathered tail. Preserve the cat's ordinary domestic shorthair build, upright ears, tabby markings and curved tail. Healthy, calm, dignified pets.\nStyle: realistic fine wood/copperplate engraving, tapered fur strokes and crosshatching, crisp detailed anatomy. Duotone deep cool ink teal #092F39 and luminous mint #8FE4D9 only. Match these two characters faithfully while drawing new natural walking poses.\nCanvas: landscape 1536 by 1024. Both animals full body, paws on a common baseline, centered as a balanced compact composition with clear breathing room. Dog naturally about twice the cat's shoulder height. All ears, tails, whiskers and paws intact.\nBackground: genuine alpha transparency everywhere outside the animals, including between legs and fine whiskers. No background color, haze, glow, ground, ground shadow or vignette.\nNo text, logo, accessories, people, clothing, signpost, props, dotted line, path, arrow, star, compass, sparkle, orange or any warm color. Only the two animals, no extra animals. No photographic texture, cartoon outlines or 3D.\nScene: independent exploration. The cat occupies the LEFT half and walks toward the LEFT, its head and body pointing left and looking ahead left. The dog occupies the RIGHT half and walks toward the RIGHT, its head and body pointing right and looking ahead right. They are calmly parting, facing away from one another, not confronting or chasing one another. Leave a small clear transparent gap between their tails near the center. Full natural walking gait, separate legible legs, closed mouths. Make a generous balanced horizontal silhouette, with the cat smaller and the dog taller.",
+      "source": "docs/graphic-design/artwork-sources/walking-companions/mixed-breed-explore-source.png",
+      "vector_output": "public/images/experiences/walking-explore.svg",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "source_sha256": "4c945c3f1474c09b22a7f92547f275d7bc55cf59261dd7269d9d2b868ecc695e",
+      "vector_sha256": "82bd03b66ae86c4bfa9e54288ac44cbd867b76ac16098d9ee109141ccabac1eb"
+    }
+  ]
+}
