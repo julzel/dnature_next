@@ -8,8 +8,11 @@
 .header { padding-block: var(--dn-space-4) var(--dn-space-8); }
 .header h1 { max-inline-size: 20ch; margin-block: var(--dn-space-6); font-size: clamp(36px, 5vw, 64px); line-height: 1.1; }
 .header h1 span { color: var(--result-teal-ink); }
-.headerBottom { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--dn-space-6); }
+.headerBottom { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--dn-space-6); }
 .headerBottom > p { max-inline-size: 60ch; color: var(--dn-text-secondary); }
+.headerActions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dn-space-3); }
+.savedPetsLink { min-block-size: 48px; padding: var(--dn-space-3) var(--dn-space-4); border: 1px solid var(--dn-brand-orange); background: var(--dn-brand-orange); color: var(--dn-text-primary); font-size: 14px; }
+.savedPetsLink:hover { border-color: var(--dn-text-primary); }
 .edit { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; gap: var(--dn-space-3); min-inline-size: 48px; min-block-size: 48px; padding: var(--dn-space-3); border: 0; border-block-end: 1px solid var(--dn-brand-teal); background: transparent; color: var(--dn-surface-dark); font: inherit; font-size: 14px; }
 .edit span { display: none; }
 .edit:hover { background: var(--dn-surface-cool); }
@@ -36,6 +39,7 @@
 .portrait span { display: none; margin-block-start: var(--dn-space-2); font-size: 12px; letter-spacing: .04em; }
 .consultCta { margin-block: var(--dn-space-6) var(--dn-space-3); }
 .allies { display: block; inline-size: fit-content; min-block-size: 44px; padding-block: var(--dn-space-3); font-size: 14px; }
+.editAnswer { border: 0; padding-inline: 0; background: transparent; color: inherit; text-align: start; text-decoration: underline; text-underline-offset: var(--dn-space-1); }
 .results summary { display: flex; align-items: center; justify-content: space-between; gap: var(--dn-space-4); min-block-size: 48px; padding-block: var(--dn-space-4); list-style: none; color: var(--dn-surface-dark); font-size: 14px; }
 .results summary::-webkit-details-marker { display: none; }
 .results summary > span { display: flex; align-items: center; gap: var(--dn-space-3); }

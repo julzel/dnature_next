@@ -19,9 +19,9 @@ export function packageContents(pack: FeedingPackage): string[] {
 }
 
 /** A customer-initiated enquiry, never an order confirmation or an automatic send. */
-export function packageWhatsAppUrl(pack: FeedingPackage, pet: FeedingResult, days: number): string {
+export function packageWhatsAppUrl(pack: FeedingPackage, pet: FeedingResult, days: number, savedDate?: string): string {
   const message = [
-    pack.ready ? `Hola, me interesa el paquete ${pack.name} de DNAture para ${pet.name}.` : `Hola, quisiera revisar el paquete ${pack.name} para ${pet.name} antes de elegirlo.`,
+    savedDate ? `Hola, quisiera confirmar el paquete ${pack.name} para ${pet.name}, de la propuesta guardada el ${savedDate}.` : pack.ready ? `Hola, me interesa el paquete ${pack.name} de DNAture para ${pet.name}.` : `Hola, quisiera revisar el paquete ${pack.name} para ${pet.name} antes de elegirlo.`,
     `Período: ${days} días. Porción estimada: ${pet.dailyGrams} g al día.`,
     ...pack.lines.map((line) => `${line.quantity} × ${line.name} · ${line.presentation} (${line.sku}): ${formatCatalogPrice(line.price * line.quantity)}`),
     `Productos${pack.ready ? "" : " cotizados (parcial)"}: ${formatCatalogPrice(pack.subtotal)}`,

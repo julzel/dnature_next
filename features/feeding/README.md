@@ -83,11 +83,17 @@ anatomy is unknown. Age, weight, body condition, activity, neutering, health,
 allergy status, goal, behavior and anatomy are explicit answers. Meals only split
 the displayed estimate; they do not multiply the daily quantity.
 
-Answers stay in session storage, tied to the full initial pet identity. Changes to
-that identity invalidate old answers; changing answers clears the displayed quote.
-Refresh restores answers and requires fresh calculation. Nothing is added to a
-cart, reserved, paid, emailed or messaged by calculating. The personalized route
-inherits the existing `/mi-dnature` noindex policy and is absent from the sitemap.
+In-progress answers stay in session storage. After a successful estimate, each
+pet's validated feeding answers, portion or review status, package period, and
+dated quote are saved through `lib/saved-feeding-plans.ts`. These records live
+in local storage and are linked to the existing pet IDs. Returning visits open
+Mis mascotas and read the records without calling the quote API. Package details
+show the date of the saved quote and direct the customer to confirm its terms.
+
+The dashboard lets users complete or edit one pet independently. A name or meal
+count change can reuse the saved proposal. Changes to feeding inputs request a
+new estimate for that pet. A change of species or breed invalidates the saved
+proposal. The personalized route inherits the `/mi-dnature` noindex policy.
 
 ## Nutrition scope
 

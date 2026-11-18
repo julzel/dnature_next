@@ -7,8 +7,8 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { PetProfile } from "@/features/experience/data/pet-profiles";
 import { feedingGroups, type FeedingAnswers } from "../data/questions";
 import { feedingPayload, missingGroup, readFeedingDraft } from "../lib/feeding-draft";
-import { DRAFT_KEY, quoteRequestSchema } from "../lib/intake";
-import type { QuoteResponse } from "../lib/result";
+import { DRAFT_KEY, feedingPetSchema, quoteRequestSchema } from "../lib/intake";
+import { answersFromPlans, plansFromQuote, reusablePlan, type SavedFeedingPlan } from "../lib/saved-feeding-plans";
 import { PetFeedingFields } from "./pet-feeding-fields";
 import { FeedingResults } from "./feeding-results";
 import { FeedingWelcome } from "./feeding-welcome";
@@ -17,22 +17,46 @@ import { FeedingStepNav } from "./feeding-step-nav";
 import { FeedingPetReview } from "./feeding-pet-review";
 import styles from "./feeding.module.css";
 
-export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
+type Props = {
+  pets: PetProfile[];
+  savedPlans: SavedFeedingPlan[];
+  onSave: (plans: SavedFeedingPlan[]) => void;
+  onShowPets: () => void;
+  fromDashboard: boolean;
+};
+
+export function FeedingWorkflow({ pets, savedPlans, onSave, onShowPets, fromDashboard }: Props) {
   const flow = pets.flatMap((pet, petIndex) => (pet.species === "dog" ? feedingGroups : [feedingGroups[0]]).map((_, group) => ({ petIndex, group })));
-  const [saved] = useState(() => readFeedingDraft(pets));
-  const [answers, setAnswers] = useState(saved.values);
-  const [step, setStep] = useState(Math.min(saved.step, flow.length));
+  const draftKey = fromDashboard ? `${DRAFT_KEY}.${pets[0].id}` : DRAFT_KEY;
+  const [initialPlan] = useState(() => fromDashboard ? savedPlans.find((plan) => plan.pet.id === pets[0].id) : undefined);
+  const [saved] = useState(() => {
+    const scoped = readFeedingDraft(pets, draftKey);
+    if (!fromDashboard || initialPlan || scoped.step >= 0 || scoped.error) return scoped;
+    // A pet added to an existing group can still have answers in the original group draft.
+    return { ...readFeedingDraft(pets), step: 0 };
+  });
+  const [answers, setAnswers] = useState(() => ({
+    days: String(initialPlan?.days ?? 28),
+    ...answersFromPlans(initialPlan ? [initialPlan] : []),
+    ...saved.values,
+  }));
+  const [step, setStep] = useState(() => saved.step >= 0 ? Math.min(saved.step, flow.length) : initialPlan ? flow.length : fromDashboard ? 0 : -1);
   const [editingReview, setEditingReview] = useState(false);
   const [error, setError] = useState("");
   const [storageError, setStorageError] = useState(saved.error);
   const [pending, setPending] = useState(false);
-  const [result, setResult] = useState<QuoteResponse | null>(null);
+  const [result, setResult] = useState<{ plans: SavedFeedingPlan[]; freshIds: string[] } | null>(null);
+  const [editedPetId, setEditedPetId] = useState<string>();
   const heading = useRef<HTMLHeadingElement>(null);
   const controller = useRef<AbortController | null>(null);
   const focusRequested = useRef(false);
   const current = flow[step];
   const pet = current ? pets[current.petIndex] : undefined;
   const reviewing = step === flow.length;
+  const needsQuote = reviewing && pets.some((pet) => {
+    const parsed = feedingPetSchema.safeParse(feedingPayload(pet, answers));
+    return !parsed.success || !reusablePlan(parsed.data, savedPlans);
+  });
 
   useEffect(function cancelOnLeave() { return () => controller.current?.abort(); }, []);
   useEffect(function focusStep() {
@@ -46,7 +70,7 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
   function persist(values: FeedingAnswers, nextStep: number) {
     const draft: FeedingAnswers = { ...values, _step: String(nextStep) };
     for (const profile of pets) draft[`${profile.id}._identity`] = JSON.stringify(profile);
-    try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft)); setStorageError(""); }
+    try { sessionStorage.setItem(draftKey, JSON.stringify(draft)); setStorageError(""); }
     catch { setStorageError("Podés continuar, pero este navegador no permite guardar las respuestas al recargar."); }
   }
   function goTo(next: number) {
@@ -67,6 +91,12 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
   function handlePetSelect(petIndex: number) { handleEdit(petIndex, Math.max(0, missingGroup(pets[petIndex], answers) ?? 0)); }
   function handleGroupSelect(group: number) { if (current) handleEdit(current.petIndex, group); }
   function handleReturnToReview() { setResult(null); goTo(flow.length); }
+  function handleEditAllergies(petId: string) {
+    const allergyGroup = feedingGroups.findIndex(({ keys }) => keys.some((key) => key === "allergyStatus"));
+    setEditedPetId(petId);
+    setResult(null);
+    handleEdit(pets.findIndex(({ id }) => id === petId), allergyGroup);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -77,30 +107,51 @@ export function FeedingWorkflow({ pets }: { pets: PetProfile[] }) {
     }
     const parsed = quoteRequestSchema.safeParse({ days: Number(answers.days ?? "28"), pets: pets.map((item) => feedingPayload(item, answers)) });
     if (!parsed.success) { setError("Revisá las respuestas y la duración de los paquetes para continuar."); return; }
-    persist(answers, step); setPending(true); setError("");
+    const plans = new Map<string, SavedFeedingPlan>();
+    const unquoted = parsed.data.pets.filter((pet) => {
+      const saved = reusablePlan(pet, savedPlans);
+      if (!saved) return true;
+      plans.set(pet.id, saved);
+      return false;
+    });
+
+    function finishQuote(freshPlans: SavedFeedingPlan[]) {
+      for (const plan of freshPlans) plans.set(plan.pet.id, plan);
+      const ordered = pets.map((pet) => plans.get(pet.id)!);
+      onSave(ordered);
+      focusRequested.current = true;
+      setResult({ plans: ordered, freshIds: freshPlans.map((plan) => plan.pet.id) });
+    }
+
+    persist(answers, step);
+    setError("");
+    if (!unquoted.length) { finishQuote([]); return; }
+    setPending(true);
     controller.current?.abort();
     const request = new AbortController(); controller.current = request;
     try {
-      const response = await fetch("/api/feeding/quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(parsed.data), signal: request.signal });
+      const response = await fetch("/api/feeding/quote", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ days: parsed.data.days, pets: unquoted }), signal: request.signal });
       const value = await response.json();
       if (!response.ok) throw new Error(value.message || "No pudimos calcular los paquetes. Intentá de nuevo.");
       if (request.signal.aborted) return;
-      focusRequested.current = true; setResult(value);
+      finishQuote(plansFromQuote(value, unquoted));
     } catch (failure) {
       if (!request.signal.aborted) setError(failure instanceof Error ? failure.message : "No pudimos calcular los paquetes. Intentá de nuevo.");
     } finally { if (!request.signal.aborted) setPending(false); }
   }
 
   return <>
-    {step === -1 && !result ? <FeedingWelcome headingRef={heading} pets={pets} onStart={handleStart} /> : result ? <FeedingResults result={result} pets={pets} answers={answers} headingRef={heading} onEdit={handleReturnToReview} /> : reviewing ? <>
+    {fromDashboard && !result && <button type="button" className={styles.backButton} onClick={onShowPets}><ArrowLeft size={18} aria-hidden="true" />Volver a Mis mascotas</button>}
+    {step === -1 && !result ? <FeedingWelcome headingRef={heading} pets={pets} onStart={handleStart} /> : result ? <FeedingResults plans={result.plans} freshIds={result.freshIds} pets={pets} answers={answers} headingRef={heading} onEdit={handleReturnToReview} onEditAllergies={handleEditAllergies} initialPetId={editedPetId} onShowPets={onShowPets} /> : reviewing ? <>
       <p className={styles.kicker}>Cada detalle cuenta</p><h1 tabIndex={-1} ref={heading}>Así es tu manada.</h1>
       <p>Revisá sus datos. Estamos a un paso de conocer su porción y sus paquetes.</p>
       <form onSubmit={handleSubmit} onChange={handleAnswers} aria-label="Revisar datos y preparar paquetes" aria-busy={pending}>
         <fieldset disabled={pending} className={styles.formFields}><legend className="sr-only">Revisión de tus mascotas</legend>
           {pets.map((item, index) => <FeedingPetReview key={item.id} pet={item} index={index} answers={answers} onEdit={handleEdit} />)}
-          <div className={styles.reviewFinish}><Select className={styles.period} label="Duración del paquete" name="days" value={answers.days ?? "28"} onValueChange={handleDays} options={[{ value: "14", label: "14 días" }, { value: "28", label: "28 días" }]} />
-            <p>Las porciones son estimaciones. Si hay crecimiento, una condición de salud o alergias, te orientaremos hacia una revisión individual.</p>
-            <button type="submit" className={styles.primary}>{pending ? "Preparando sus paquetes…" : "Estimar porción y ver paquetes"}<ArrowRight size={20} aria-hidden="true" /></button>
+          <div className={styles.reviewFinish}>
+            {needsQuote && <Select className={styles.period} label="Duración del paquete" name="days" value={answers.days ?? "28"} onValueChange={handleDays} options={[{ value: "14", label: "14 días" }, { value: "28", label: "28 días" }]} />}
+            <p>{needsQuote ? "Las porciones son estimaciones. Si hay crecimiento, una condición de salud o alergias, te orientaremos hacia una revisión individual." : "Tu propuesta guardada se conserva si los datos que influyen en su alimentación siguen iguales."}</p>
+            <button type="submit" className={styles.primary}>{pending ? "Preparando sus paquetes…" : needsQuote ? "Estimar porción y ver paquetes" : "Guardar y ver propuesta"}<ArrowRight size={20} aria-hidden="true" /></button>
           </div>
         </fieldset>
       </form>
