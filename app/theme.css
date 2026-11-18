@@ -15,6 +15,7 @@
   --dn-radius: 0;
   --dn-shadow: none;
   --dn-page-gutter: var(--dn-space-4);
+  --dn-home-section-padding: var(--dn-space-16);
   --dn-content-max: 1280px;
   --dn-reading-max: 760px;
   --dn-header-bottom-height: 74px;
@@ -73,9 +74,15 @@
 }
 
 @media (min-width: 640px) {
-  :root { --dn-page-gutter: var(--dn-space-6); }
+  :root {
+    --dn-page-gutter: var(--dn-space-6);
+    --dn-home-section-padding: var(--dn-space-20);
+  }
 }
 
 @media (min-width: 1024px) {
-  :root { --dn-page-gutter: var(--dn-space-8); }
+  :root {
+    --dn-page-gutter: var(--dn-space-8);
+    --dn-home-section-padding: calc(var(--dn-space-12) * 2);
+  }
 }

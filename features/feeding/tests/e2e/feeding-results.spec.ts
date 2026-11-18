@@ -155,7 +155,59 @@ test("returning visitors can reopen saved portions and packages in a new tab wit
     await expect.poll(() => returning.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   await returning.getByRole("button", { name: "Actualizar datos de Toby" }).click();
-  await returning.getByRole("button", { name: "Guardar y ver propuesta" }).click();
-  await expect(returning.getByRole("heading", { name: "Hecho para Toby." })).toBeVisible();
+  const editor = returning.getByRole("dialog", { name: "Alimentación de Toby" });
+  await editor.getByRole("button", { name: "Guardar datos de alimentación" }).click();
+  await expect(editor).toBeHidden();
+  await expect(toby.getByText("150 g", { exact: true })).toBeVisible();
   expect(quoteRequests).toEqual([]);
+});
+
+test("returning visitors can add and edit pets in the drawer without losing saved portions", async ({ page, context }) => {
+  await results(page, true);
+  await page.getByRole("button", { name: "Ver mis mascotas" }).click();
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+
+  const edit = page.getByRole("button", { name: "Editar perfil de Toby" });
+  await edit.click();
+  const editDrawer = page.getByRole("dialog", { name: "Editar perfil de Toby" });
+  await expect(editDrawer.getByRole("heading", { name: "Editar perfil de Toby" })).toBeFocused();
+  await expect(editDrawer.getByRole("combobox", { name: "Raza" })).toHaveValue("Yorkshire Terrier");
+  await page.keyboard.press("Escape");
+  await expect(editDrawer).toBeHidden();
+  await expect(edit).toBeFocused();
+
+  await edit.click();
+  await editDrawer.getByLabel("Nombre de tu mascota").fill("Tobías");
+  await editDrawer.getByRole("button", { name: "Guardar perfil" }).click();
+  await expect(editDrawer).toBeHidden();
+  await expect(page.getByRole("article", { name: "Perfil de Tobías", exact: true })).toContainText("150 g");
+
+  await page.getByRole("button", { name: "Agregar mascota", exact: true }).click();
+  const addDrawer = page.getByRole("dialog", { name: "Agregar mascota" });
+  await expect(addDrawer).toBeVisible();
+  await expect.poll(() => addDrawer.evaluate((panel) => Math.round(panel.getBoundingClientRect().bottom))).toBe(800);
+  await addDrawer.getByRole("radio", { name: "Perro", exact: true }).check();
+  await addDrawer.getByLabel("Nombre de tu mascota").fill("Nina");
+  await addDrawer.getByRole("combobox", { name: "Raza" }).fill("border");
+  await addDrawer.getByRole("option", { name: /^Border Collie/ }).click();
+  await addDrawer.getByRole("button", { name: "Guardar perfil" }).click();
+  await expect(addDrawer).toBeHidden();
+  const nina = page.getByRole("article", { name: "Perfil de Nina", exact: true });
+  await expect(nina).toContainText("Perfil de alimentación pendiente");
+  await expect(nina).toBeFocused();
+
+  await nina.getByRole("button", { name: "Completar perfil de Nina" }).click();
+  const feeding = page.getByRole("dialog", { name: "Alimentación de Nina" });
+  await expect(feeding.getByRole("heading", { name: "Datos esenciales" })).toBeVisible();
+  await feeding.getByRole("combobox", { name: "Etapa de vida" }).click();
+  await feeding.getByRole("option", { name: "Adulto", exact: true }).click();
+  await expect(feeding.getByRole("combobox", { name: "Etapa de vida" })).toHaveText("Adulto");
+  await feeding.getByRole("button", { name: "Cerrar panel" }).click();
+  await expect(feeding).toBeHidden();
+
+  const revisit = await context.newPage();
+  await revisit.goto("/mi-dnature/mis-mascotas");
+  await expect(revisit.getByRole("article", { name: "Perfil de Nina", exact: true })).toContainText("Border Collie");
+  await expect(revisit.getByRole("article", { name: "Perfil de Tobías", exact: true })).toContainText("150 g");
 });

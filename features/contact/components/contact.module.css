@@ -1,5 +1,5 @@
 .contact {
-  padding: var(--dn-space-12) var(--dn-page-gutter);
+  padding: var(--dn-home-section-padding) var(--dn-page-gutter);
   scroll-margin-block-start: var(--dn-header-height);
   background: var(--dn-surface-base);
 }
@@ -82,7 +82,6 @@
 .channel:is(:hover, :focus-visible) .channelArrow { border-color: currentColor; }
 
 @media (min-width: 1024px) {
-  .contact { padding-block: var(--dn-space-20); }
   .layout {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
     gap: var(--dn-space-20);

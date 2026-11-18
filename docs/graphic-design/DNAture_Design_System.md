@@ -240,6 +240,7 @@ Use the shared brand-orange token for its action and surface roles; avoid parall
 | Content width | Up to 1280px, centered within fluid gutters. |
 | Long-form reading width | Up to 760px; constrain paragraphs further when needed for a comfortable line length. |
 | Section padding | 48px narrow, 64px intermediate, 80px wide. |
+| Homepage content sections below the hero [PROJECT] | Shared `--dn-home-section-padding`: 64px narrow, 80px from 640px, 96px from 1024px (two 48px units), above and below each section except the category gallery, which displays a flush image grid with a visually hidden heading. |
 | Compact utility section | 32px narrow, 48px wide. |
 | Eyebrow to heading | 16px. |
 | Heading to introductory text | 16px. |

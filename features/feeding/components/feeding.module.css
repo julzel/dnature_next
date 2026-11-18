@@ -111,3 +111,12 @@
 .startCta svg { color: var(--dn-text-primary); }
 .field input, .field select { scroll-margin-block-start: calc(var(--dn-header-height) + 240px); }
 @media (min-width: 960px) { .field input, .field select { scroll-margin-block-start: calc(var(--dn-header-height) + var(--dn-space-6)); } }
+
+.drawerFlow .journey, .drawerFlow .reviewGroups { grid-template-columns: minmax(0, 1fr); }
+.drawerFlow > h3, .drawerFlow .stepContent > h3 { margin-block-end: var(--dn-space-4); color: var(--dn-surface-dark); }
+.drawerFlow .reviewPet { padding-block: var(--dn-space-4) var(--dn-space-6); }
+.drawerFlow .reviewIdentity > img { inline-size: 72px; block-size: 72px; }
+.drawerFlow .reviewIdentity h2 { font-size: 24px; }
+.drawerFlow .groupSteps { margin-block-end: var(--dn-space-6); }
+.drawerFlow .groupSteps button { flex-direction: column; padding: var(--dn-space-3) var(--dn-space-2); font-size: 12px; }
+.drawerFlow .field input, .drawerFlow .field select { scroll-margin-block-start: var(--dn-space-4); }

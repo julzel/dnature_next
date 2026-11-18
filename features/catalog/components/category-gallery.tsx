@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SectionEyebrow } from "@/components/section-eyebrow";
 import deshidratados from "@/public/images/categories/deshidratados.webp";
 import recetas from "@/public/images/categories/recetas-completas.webp";
 import complementos from "@/public/images/categories/complementos.webp";
@@ -19,10 +18,7 @@ const categories = [
 export function CategoryGallery() {
   return (
     <section id="categorias" className={styles.section} aria-labelledby="category-gallery-title">
-      <div className={styles.heading}>
-        <SectionEyebrow label="Explorá por categoría" tone="light" color="var(--dn-text-inverse)" />
-        <h2 id="category-gallery-title" className="sr-only">Categorías de productos</h2>
-      </div>
+      <h2 id="category-gallery-title" className="sr-only">Categorías de productos</h2>
       <nav aria-label="Categorías de productos">
         <ul className={styles.gallery}>
           {categories.map(({ slug, name, image }, index) => (

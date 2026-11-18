@@ -7,6 +7,7 @@
 .pets { list-style: none; margin: 0; padding: 0; }
 .pet { border-block-start: 1px solid var(--dn-border-default); padding-block: var(--dn-space-6); }
 .pet:last-child { border-block-end: 1px solid var(--dn-border-default); }
+.pet article { scroll-margin-block-start: calc(var(--dn-header-visible-height) + var(--dn-space-4)); }
 .summary { display: grid; gap: var(--dn-space-4); align-items: center; }
 .summary p { margin: 0; }
 .identity { display: grid; grid-template-columns: minmax(0, 104px) minmax(0, 1fr); align-items: center; gap: var(--dn-space-4); }
@@ -17,9 +18,14 @@
 .label { color: var(--dn-text-secondary); font-size: 14px; }
 .status { color: var(--dn-surface-dark); font-weight: 700; }
 .actions { display: flex; flex-wrap: wrap; gap: var(--dn-space-3); align-items: center; }
-.edit { display: inline-flex; justify-content: center; align-items: center; gap: var(--dn-space-2); min-inline-size: 44px; min-block-size: 44px; padding: var(--dn-space-2); border: 0; border-block-end: 1px solid var(--dn-brand-teal); background: transparent; color: var(--dn-surface-dark); font-size: 14px; }
+.edit, .editProfile, .add { display: inline-flex; justify-content: center; align-items: center; gap: var(--dn-space-2); min-inline-size: 44px; min-block-size: 44px; padding: var(--dn-space-2); border: 0; background: transparent; color: var(--dn-surface-dark); font-size: 14px; }
+.edit { border-block-end: 1px solid var(--dn-brand-teal); }
+.editProfile { padding-inline: 0; text-decoration: underline; text-underline-offset: var(--dn-space-1); }
+.editProfile svg, .add svg { flex-shrink: 0; }
+.add { min-block-size: 48px; border: 1px solid var(--dn-brand-orange); padding-inline: var(--dn-space-4); background: var(--dn-brand-orange); color: var(--dn-text-primary); font-weight: 650; }
+.add:hover { border-color: var(--dn-text-primary); }
 .edit:hover { background: var(--dn-surface-cool); }
-.edit span { display: none; }
+.edit span, .editProfile span { display: none; }
 .details { margin-block-start: var(--dn-space-4); border-block-start: 1px solid var(--dn-border-default); }
 .details > summary { display: flex; align-items: center; justify-content: space-between; gap: var(--dn-space-3); min-block-size: 48px; list-style: none; color: var(--dn-surface-dark); font-weight: 650; }
 .details > summary::-webkit-details-marker { display: none; }
@@ -30,5 +36,5 @@
 
 @media (min-width: 720px) {
   .summary { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: var(--dn-space-6); }
-  .edit span { display: inline; }
+  .edit span, .editProfile span { display: inline; }
 }

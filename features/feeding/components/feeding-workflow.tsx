@@ -26,6 +26,7 @@ type Props = {
 };
 
 export function FeedingWorkflow({ pets, savedPlans, onSave, onShowPets, fromDashboard }: Props) {
+  const Heading = fromDashboard ? "h3" : "h1";
   const flow = pets.flatMap((pet, petIndex) => (pet.species === "dog" ? feedingGroups : [feedingGroups[0]]).map((_, group) => ({ petIndex, group })));
   const draftKey = fromDashboard ? `${DRAFT_KEY}.${pets[0].id}` : DRAFT_KEY;
   const [initialPlan] = useState(() => fromDashboard ? savedPlans.find((plan) => plan.pet.id === pets[0].id) : undefined);
@@ -85,7 +86,11 @@ export function FeedingWorkflow({ pets, savedPlans, onSave, onShowPets, fromDash
   function handleAnswerChange(name: string, value: string) { const updated = { ...answers, [name]: value }; setAnswers(updated); persist(updated, step); }
   function handleDays(value: string) { handleAnswerChange("days", value); }
   function handleStart() { goTo(0); }
-  function handlePrevious() { goTo(Math.max(-1, step - 1)); }
+  function handlePrevious() {
+    if (fromDashboard && editingReview) { setEditingReview(false); goTo(flow.length); return; }
+    if (fromDashboard && step === 0) { onShowPets(); return; }
+    goTo(Math.max(-1, step - 1));
+  }
   function handleNext(event: FormEvent<HTMLFormElement>) { event.preventDefault(); goTo(editingReview ? flow.length : step + 1); setEditingReview(false); }
   function handleEdit(petIndex: number, group: number) { if (reviewing) setEditingReview(true); goTo(flow.findIndex((item) => item.petIndex === petIndex && item.group === group)); }
   function handlePetSelect(petIndex: number) { handleEdit(petIndex, Math.max(0, missingGroup(pets[petIndex], answers) ?? 0)); }
@@ -119,6 +124,7 @@ export function FeedingWorkflow({ pets, savedPlans, onSave, onShowPets, fromDash
       for (const plan of freshPlans) plans.set(plan.pet.id, plan);
       const ordered = pets.map((pet) => plans.get(pet.id)!);
       onSave(ordered);
+      if (fromDashboard) return;
       focusRequested.current = true;
       setResult({ plans: ordered, freshIds: freshPlans.map((plan) => plan.pet.id) });
     }
@@ -140,28 +146,28 @@ export function FeedingWorkflow({ pets, savedPlans, onSave, onShowPets, fromDash
     } finally { if (!request.signal.aborted) setPending(false); }
   }
 
-  return <>
-    {fromDashboard && !result && <button type="button" className={styles.backButton} onClick={onShowPets}><ArrowLeft size={18} aria-hidden="true" />Volver a Mis mascotas</button>}
+  return <div className={fromDashboard ? styles.drawerFlow : undefined}>
     {step === -1 && !result ? <FeedingWelcome headingRef={heading} pets={pets} onStart={handleStart} /> : result ? <FeedingResults plans={result.plans} freshIds={result.freshIds} pets={pets} answers={answers} headingRef={heading} onEdit={handleReturnToReview} onEditAllergies={handleEditAllergies} initialPetId={editedPetId} onShowPets={onShowPets} /> : reviewing ? <>
-      <p className={styles.kicker}>Cada detalle cuenta</p><h1 tabIndex={-1} ref={heading}>Así es tu manada.</h1>
-      <p>Revisá sus datos. Estamos a un paso de conocer su porción y sus paquetes.</p>
+      {!fromDashboard && <p className={styles.kicker}>Cada detalle cuenta</p>}
+      <Heading tabIndex={-1} ref={heading}>{fromDashboard ? "Revisá sus datos" : "Así es tu manada."}</Heading>
+      {!fromDashboard && <p>Revisá sus datos. Estamos a un paso de conocer su porción y sus paquetes.</p>}
       <form onSubmit={handleSubmit} onChange={handleAnswers} aria-label="Revisar datos y preparar paquetes" aria-busy={pending}>
         <fieldset disabled={pending} className={styles.formFields}><legend className="sr-only">Revisión de tus mascotas</legend>
           {pets.map((item, index) => <FeedingPetReview key={item.id} pet={item} index={index} answers={answers} onEdit={handleEdit} />)}
           <div className={styles.reviewFinish}>
             {needsQuote && <Select className={styles.period} label="Duración del paquete" name="days" value={answers.days ?? "28"} onValueChange={handleDays} options={[{ value: "14", label: "14 días" }, { value: "28", label: "28 días" }]} />}
             <p>{needsQuote ? "Las porciones son estimaciones. Si hay crecimiento, una condición de salud o alergias, te orientaremos hacia una revisión individual." : "Tu propuesta guardada se conserva si los datos que influyen en su alimentación siguen iguales."}</p>
-            <button type="submit" className={styles.primary}>{pending ? "Preparando sus paquetes…" : needsQuote ? "Estimar porción y ver paquetes" : "Guardar y ver propuesta"}<ArrowRight size={20} aria-hidden="true" /></button>
+            <button type="submit" className={styles.primary}>{pending ? "Preparando sus paquetes…" : fromDashboard ? (needsQuote ? "Guardar y estimar porción" : "Guardar datos de alimentación") : needsQuote ? "Estimar porción y ver paquetes" : "Guardar y ver propuesta"}<ArrowRight size={20} aria-hidden="true" /></button>
           </div>
         </fieldset>
       </form>
     </> : pet && current ? <div className={styles.journey}>
-      <FeedingPetSidebar pets={pets} petIndex={current.petIndex} answers={answers} onSelect={handlePetSelect} />
+      {!fromDashboard && <FeedingPetSidebar pets={pets} petIndex={current.petIndex} answers={answers} onSelect={handlePetSelect} />}
       <div className={styles.questionPane}>
         {pet.species === "dog" && <FeedingStepNav group={current.group} onSelect={handleGroupSelect} />}
         <div className={styles.stepContent} key={`${pet.id}-${current.group}`}>
-          <p className={styles.kicker}>{pet.name} · {pet.species === "dog" ? `Paso ${current.group + 1} de 3` : "Atención personalizada"}</p>
-          <h1 tabIndex={-1} ref={heading}>{pet.species === "dog" ? feedingGroups[current.group].title : `Un camino para ${pet.name}`}</h1>
+          {!fromDashboard && <p className={styles.kicker}>{pet.name} · {pet.species === "dog" ? `Paso ${current.group + 1} de 3` : "Atención personalizada"}</p>}
+          <Heading tabIndex={-1} ref={heading}>{pet.species === "dog" ? feedingGroups[current.group].title : `Un camino para ${pet.name}`}</Heading>
           <p className={styles.stepIntro}>{pet.species === "dog" ? feedingGroups[current.group].description : "Cada especie tiene necesidades distintas. Nuestro equipo te acompañará para definir la alimentación de tu gato; la estimación automática de esta visita es para perros."}</p>
           <form onSubmit={handleNext} onChange={handleAnswers} aria-label={`Datos de ${pet.name}`}>
             {pet.species === "dog" && <PetFeedingFields onAnswerChange={handleAnswerChange} pet={pet} group={current.group} answers={answers} />}
@@ -171,10 +177,10 @@ export function FeedingWorkflow({ pets, savedPlans, onSave, onShowPets, fromDash
             </div>
           </form>
         </div>
-        <Link href="/#experiencia-personalizada" className={styles.quietLink}>Editar o agregar mascotas</Link>
+        {!fromDashboard && <Link href="/#experiencia-personalizada" className={styles.quietLink}>Editar o agregar mascotas</Link>}
       </div>
     </div> : null}
     <p role="status" aria-live="polite" className={styles.status}>{pending ? "Estamos calculando con los precios y las existencias actuales." : storageError}</p>
     {error && <p role="alert" className={styles.notice}>{error}</p>}
-  </>;
+  </div>;
 }

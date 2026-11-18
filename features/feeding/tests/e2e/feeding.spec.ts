@@ -71,7 +71,7 @@ test("guided steps validate inputs, keep the pet visible and display four live q
   await page.reload();
   await page.getByRole("button", { name: "Actualizar datos de Luna" }).click();
   await expect(page.getByLabel("Peso actual en kg")).toHaveValue("20");
-  await expect(page.getByRole("article")).toHaveCount(0);
+  await expect(page.getByRole("dialog", { name: "Alimentación de Luna" }).getByRole("article")).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 

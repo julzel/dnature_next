@@ -41,6 +41,7 @@ export function Select<Value extends string>({ label, value, options, onValueCha
   const [activeIndex, setActiveIndex] = useState(-1);
   const [validationError, setValidationError] = useState(false);
   const [position, setPosition] = useState<ReturnType<typeof selectPopupPosition>>({ left: 0, width: 0, top: 0, bottom: undefined, maxHeight: 320 });
+  const [popupHost, setPopupHost] = useState<HTMLElement | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const controlRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -68,7 +69,9 @@ export function Select<Value extends string>({ label, value, options, onValueCha
   function focusControl() { (autocomplete ? inputRef.current : triggerRef.current)?.focus({ preventScroll: true }); }
   function positionMenu() {
     const control = controlRef.current;
-    if (control) setPosition(selectPopupPosition(control));
+    if (!control) return;
+    setPosition(selectPopupPosition(control));
+    setPopupHost(control.closest<HTMLDialogElement>("dialog:modal") ?? document.body);
   }
   useEffect(function dismissOutsideSelect() {
     if (!expanded) return;
@@ -195,13 +198,13 @@ export function Select<Value extends string>({ label, value, options, onValueCha
     </div>
     {validationError && <p id={errorId} className={styles.error}>Seleccioná una opción para continuar.</p>}
     {autocomplete && <span className="sr-only" role="status">{expanded ? `${matches.length} ${matches.length === 1 ? "opción" : "opciones"}. Usá las flechas y Enter para elegir.` : ""}</span>}
-    {expanded && createPortal(<ul ref={listRef} id={listId} role="listbox" aria-label={ariaLabel ?? label} className={styles.listbox} style={{ left: position.left, width: position.width, top: position.top, bottom: position.bottom, maxHeight: position.maxHeight }} onClick={handleOptionClick} onPointerMove={handleOptionPointerMove} onMouseDown={handleOptionMouseDown}>
+    {expanded && popupHost && createPortal(<ul ref={listRef} id={listId} role="listbox" aria-label={ariaLabel ?? label} className={styles.listbox} style={{ left: position.left, width: position.width, top: position.top, bottom: position.bottom, maxHeight: position.maxHeight }} onClick={handleOptionClick} onPointerMove={handleOptionPointerMove} onMouseDown={handleOptionMouseDown}>
       {matches.map((option, index) => <li key={option.value} id={`${id}-option-${index}`} role="option" aria-selected={option.value === value} aria-disabled={option.disabled || undefined} data-option-index={index} data-active={index === highlightedIndex || undefined} className={styles.option}>
         <span>{option.label}{search && option.aliases?.filter((alias) => searchableLabel(alias).includes(search) && searchableLabel(alias) !== searchableLabel(option.label)).map((alias) => <span key={alias} className={styles.alias}> · {alias}</span>)}</span>
         {option.value === value && <Check size={18} aria-hidden="true" />}
       </li>)}
       {!matches.length && <li role="presentation" className={styles.empty}>No encontramos coincidencias. Probá con otro nombre.</li>}
-    </ul>, document.body)}
+    </ul>, popupHost)}
   </div>;
 }
 type FormEventSelect = import("react").InvalidEvent<HTMLSelectElement>;

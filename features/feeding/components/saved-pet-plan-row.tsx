@@ -1,4 +1,5 @@
-import { ArrowUpRight, ChevronDown, Pencil } from "lucide-react";
+import type { MouseEvent } from "react";
+import { ArrowUpRight, ChevronDown, Pencil, Utensils } from "lucide-react";
 import { ArrowCta } from "@/components/arrow-cta";
 import { PetSpeciesImage } from "@/components/pet-species-image";
 import contact from "@/features/contact/data/contact.json";
@@ -9,7 +10,12 @@ import { feedingPlanDate, type SavedFeedingPlan } from "../lib/saved-feeding-pla
 import { FeedingPackageSection } from "./feeding-package-section";
 import styles from "./saved-pet-plans.module.css";
 
-export function SavedPetPlanRow({ pet, plan, onEdit }: { pet: PetProfile; plan?: SavedFeedingPlan; onEdit: (pet: PetProfile) => void }) {
+export function SavedPetPlanRow({ pet, plan, onEditProfile, onEditFeeding }: {
+  pet: PetProfile;
+  plan?: SavedFeedingPlan;
+  onEditProfile: (pet: PetProfile) => void;
+  onEditFeeding: (pet: PetProfile) => void;
+}) {
   const result = plan?.result;
   const savedDog = plan?.pet.species === "dog" ? plan.pet : undefined;
   const grams = result?.dailyGrams;
@@ -17,14 +23,25 @@ export function SavedPetPlanRow({ pet, plan, onEdit }: { pet: PetProfile; plan?:
   const perMeal = grams && meals ? Math.round(grams / meals * 10) / 10 : null;
   const editLabel = plan ? "Actualizar datos" : "Completar perfil";
 
-  function handleEdit() { onEdit(pet); }
+  function handleEditProfile(event: MouseEvent<HTMLButtonElement>) {
+    event.currentTarget.focus({ preventScroll: true });
+    onEditProfile(pet);
+  }
+  function handleEditFeeding(event: MouseEvent<HTMLButtonElement>) {
+    event.currentTarget.focus({ preventScroll: true });
+    onEditFeeding(pet);
+  }
 
   return <li className={styles.pet}>
-    <article aria-label={`Perfil de ${pet.name}`}>
+    <article id={`saved-pet-${pet.id}`} tabIndex={-1} aria-label={`Perfil de ${pet.name}`}>
       <div className={styles.summary}>
         <div className={styles.identity}>
           <PetSpeciesImage species={pet.species} src={getBreedArtwork(pet.species, pet.breed)} alt="" size={104} />
-          <div><h2>{pet.name}</h2><p>{pet.breed}</p></div>
+          <div><h2>{pet.name}</h2><p>{pet.breed}</p>
+            <button type="button" className={styles.editProfile} aria-label={`Editar perfil de ${pet.name}`} onClick={handleEditProfile}>
+              <Pencil size={16} aria-hidden="true" /><span>Editar perfil</span>
+            </button>
+          </div>
         </div>
         <div className={styles.portion}>
           {grams ? <>
@@ -37,8 +54,8 @@ export function SavedPetPlanRow({ pet, plan, onEdit }: { pet: PetProfile; plan?:
           </>}
         </div>
         <div className={styles.actions}>
-          {pet.species !== "cat" || !plan ? <button type="button" className={styles.edit} aria-label={`${editLabel} de ${pet.name}`} onClick={handleEdit}>
-            <Pencil size={18} aria-hidden="true" /><span>{editLabel}</span>
+          {pet.species !== "cat" || !plan ? <button type="button" className={styles.edit} aria-label={`${editLabel} de ${pet.name}`} onClick={handleEditFeeding}>
+            <Utensils size={18} aria-hidden="true" /><span>{editLabel}</span>
           </button> : null}
           {result?.review && <ArrowCta href={contact.whatsapp.url} label="Consultar con DNAture" target="_blank" rel="noopener noreferrer" />}
         </div>

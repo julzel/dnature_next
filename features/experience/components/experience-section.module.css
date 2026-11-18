@@ -1,6 +1,6 @@
 .section {
   min-block-size: calc(var(--dn-space-6) * 16);
-  padding: calc(var(--dn-space-6) * 2) var(--dn-page-gutter);
+  padding: var(--dn-home-section-padding) var(--dn-page-gutter);
   scroll-margin-block-start: var(--dn-header-height);
   border-block-start: 1px solid var(--dn-border-default);
   background: var(--dn-surface-cool);
@@ -13,15 +13,10 @@
 }
 
 .section[id="experiencia-personalizada"] {
-  padding-block: var(--dn-space-12);
   scroll-margin-block-start: var(--dn-header-visible-height);
 }
 
 .section[id="explorar"] {
   border-block-start: 0;
   background: var(--dn-surface-base);
-}
-
-@media (min-width: 900px) {
-  .section[id="experiencia-personalizada"] { padding-block: var(--dn-space-20); }
 }

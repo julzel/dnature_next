@@ -39,16 +39,18 @@ export function readFeedingPlans(pets: PetProfile[]) {
     const records: unknown = raw ? JSON.parse(raw) : [];
     if (!Array.isArray(records)) throw new Error("Invalid feeding plans");
     let valid = true;
+    let hasCompleted = false;
     const plans = records.flatMap((record) => {
       const parsed = planSchema.safeParse(record);
       if (!parsed.success) { valid = false; return []; }
       const pet = pets.find((profile) => profile.id === parsed.data.pet.id);
+      if (pet) hasCompleted = true;
       if (!pet || pet.species !== parsed.data.pet.species || pet.breed !== parsed.data.pet.breed) return [];
       return [{ ...parsed.data, pet: { ...parsed.data.pet, name: pet.name }, result: { ...parsed.data.result, name: pet.name } }];
     });
-    return { plans, error: valid ? "" : "Algunas propuestas guardadas no se pudieron recuperar. Podés completar el perfil para volver a estimarlas." };
+    return { plans, hasCompleted, error: valid ? "" : "Algunas propuestas guardadas no se pudieron recuperar. Podés completar el perfil para volver a estimarlas." };
   } catch {
-    return { plans: [], error: "No pudimos leer tus propuestas guardadas en este navegador." };
+    return { plans: [], hasCompleted: false, error: "No pudimos leer tus propuestas guardadas en este navegador." };
   }
 }
 

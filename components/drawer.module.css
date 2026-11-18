@@ -1,0 +1,44 @@
+.drawer {
+  --drawer-offset: 0 100%;
+  position: fixed;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 0;
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: 90dvh;
+  max-block-size: none;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: var(--dn-text-primary);
+}
+
+.drawer::backdrop { background: var(--dn-overlay); }
+.frame { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; block-size: 100%; min-inline-size: 0; background: var(--dn-surface-base); }
+.header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--dn-space-4); align-items: start; padding: var(--dn-space-4); border-block-start: 4px solid var(--dn-brand-orange); border-block-end: 1px solid var(--dn-border-default); background: var(--dn-surface-cool); }
+.header h2 { margin-block-start: var(--dn-space-2); color: var(--dn-surface-dark); font-size: clamp(26px, 4vw, 36px); overflow-wrap: anywhere; }
+.header h2:focus { outline: none; }
+.close { display: grid; place-items: center; inline-size: 44px; block-size: 44px; padding: 0; border: 0; background: transparent; color: var(--dn-surface-dark); }
+.close:hover { background: var(--dn-surface-muted); }
+.body { min-inline-size: 0; overflow: auto; overscroll-behavior: contain; padding: var(--dn-space-6) var(--dn-space-4) max(var(--dn-space-6), env(safe-area-inset-bottom)); }
+.footer { padding: var(--dn-space-4) var(--dn-space-4) max(var(--dn-space-4), env(safe-area-inset-bottom)); border-block-start: 1px solid var(--dn-border-default); }
+.drawer[data-closing] .frame { pointer-events: none; }
+
+@media (min-width: 700px) {
+  .drawer { --drawer-offset: 100% 0; inset: 0 0 0 auto; inline-size: min(100%, 640px); block-size: 100dvh; }
+  .frame { border-inline-start: 1px solid var(--dn-border-default); }
+  .header, .body, .footer { padding-inline: var(--dn-space-8); }
+  .header { padding-block: var(--dn-space-6); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .frame { transition: translate 200ms ease-out; }
+  .drawer::backdrop { transition: background-color 200ms ease-out; }
+  .drawer[open][data-closing] .frame { translate: var(--drawer-offset); }
+  .drawer[open][data-closing]::backdrop { background-color: transparent; }
+  @starting-style {
+    .drawer[open] .frame { translate: var(--drawer-offset); }
+    .drawer[open]::backdrop { background-color: transparent; }
+  }
+}

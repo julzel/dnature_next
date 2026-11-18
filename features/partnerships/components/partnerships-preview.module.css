@@ -1,5 +1,5 @@
 .section {
-  padding: var(--dn-space-12) var(--dn-page-gutter);
+  padding: var(--dn-home-section-padding) var(--dn-page-gutter);
   background: var(--dn-surface-cool);
   color: var(--dn-surface-dark);
   scroll-margin-block-start: var(--dn-header-height);
@@ -92,13 +92,11 @@
 }
 
 @media (min-width: 640px) {
-  .section { padding-block: var(--dn-space-16); }
   .introduction { gap: var(--dn-space-12); }
   .closing { margin-block-start: var(--dn-space-12); }
 }
 
 @media (min-width: 900px) {
-  .section { padding-block: var(--dn-space-20); }
   .introduction { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .artwork { justify-self: end; }
 }
