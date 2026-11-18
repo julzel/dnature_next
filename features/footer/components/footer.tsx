@@ -16,6 +16,7 @@ const exploreLinks = [
 ];
 
 const learnLinks = [
+  { href: "/preguntas-frecuentes/transicion-alimentaria", label: "Guía de transición alimentaria" },
   { href: "/nosotros#proposito", label: "Nuestro propósito" },
   { href: "/nosotros#esencia", label: "Ciencia, conciencia y manada" },
   { href: "/ciencia/nuestros-criterios", label: "Criterios de publicación" },

@@ -8,10 +8,11 @@ import styles from "./feeding-results.module.css";
 
 const icons = { base: Utensils, functional: Leaf, chewing: Bone, premium: Layers };
 
-export function FeedingPackage({ pack, days, pet, active }: { pack: Package; days: number; pet: FeedingResult; active: boolean }) {
+export function FeedingPackage({ pack, days, pet, active, savedDate }: { pack: Package; days: number; pet: FeedingResult; active: boolean; savedDate?: string }) {
   const introduction = packageIntroduction(pack);
   const PackageIcon = icons[pack.id as keyof typeof icons] ?? Utensils;
   const contents = packageContents(pack);
+  const action = savedDate ? "Consultar" : pack.ready ? "Pedir" : "Revisar";
 
   return <article className={styles.package} aria-label={`Paquete ${pack.name}`} data-ready={pack.ready} data-active={active}>
     <header className={styles.packageHeader}>
@@ -27,7 +28,7 @@ export function FeedingPackage({ pack, days, pet, active }: { pack: Package; day
       <p className={styles.overline}>{pack.ready ? "En su paquete" : "Ya cotizado"}</p>
       {contents.length ? <ul>{contents.map((role) => <li key={role}><Check size={16} aria-hidden="true" /><span>{role}</span></li>)}</ul> : <p>Revisaremos los productos y su disponibilidad con vos.</p>}
     </div>
-    <ArrowCta className={styles.packageCta} label={pack.ready ? "Quiero este paquete" : "Revisar este paquete"} aria-label={`${pack.ready ? "Pedir" : "Revisar"} paquete ${pack.name} para ${pet.name} por WhatsApp`} href={packageWhatsAppUrl(pack, pet, days)} target="_blank" rel="noopener noreferrer" />
+    <ArrowCta className={styles.packageCta} label={savedDate ? "Consultar este paquete" : pack.ready ? "Quiero este paquete" : "Revisar este paquete"} aria-label={`${action} paquete ${pack.name} para ${pet.name} por WhatsApp`} href={packageWhatsAppUrl(pack, pet, days, savedDate)} target="_blank" rel="noopener noreferrer" />
     <div className={styles.packageDetails}>
       {!pack.ready && <details className={styles.pendingDetails}>
         <summary><span>Qué falta confirmar{pack.issues.length > 0 && ` (${pack.issues.length})`}</span><ChevronDown size={18} aria-hidden="true" /></summary>

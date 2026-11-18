@@ -236,3 +236,33 @@ The [generation prompt and source](artwork-sources/pet-species/dog-caring-for-ca
 are preserved. It appears in the homepage Alianzas DNAture section through
 `features/partnerships/components/partnerships-preview.tsx`, with proportional
 responsive sizing and descriptive alternative text.
+
+## Relative size in group portraits
+
+`features/experience/data/pet-breeds.ts` stores an internal `BreedSize`:
+`mini`, `small`, `medium`, `large`, or `extra-large`. These are approximate adult
+silhouette categories chosen for the website, not standardized weight ranges,
+individual measurements, feeding classifications, or a prediction of puppy size.
+The art direction uses these five broad classes across both species.
+
+`getBreedSize` matches complete names and aliases, including specified toy,
+miniature and standard Poodles and miniature/standard/giant Schnauzers.
+Unspecified Poodles, mixed breeds, unknown and custom names return `null`;
+custom crosses do not inherit a guessed size from part of their name. Existing
+pet profiles need no migration because this metadata is derived at render time.
+
+The shared `PetGroupPortrait` applies optical scale factors of 0.45, 0.60, 0.78,
+0.90 and 1.00 in a common responsive 240px stage. It compensates for the shared
+SVG baseline (428.5 on a 480px canvas), so paws align while names and breed labels
+keep their layout. Homepage returning-pet groups and the feeding welcome use it;
+single-pet views keep their full-size artwork. Unknown dogs use a neutral medium
+visual fallback; unknown cats use a small fallback, without changing null metadata.
+Individual profile records and species buttons keep their existing dimensions.
+
+The broad Yorkshire-versus-Collie distinction was checked against the
+[AKC Yorkshire Terrier standard](https://images.akc.org/pdf/breeds/standards/YorkshireTerrier.pdf)
+and [Border Collie standard](https://images.akc.org/pdf/breeds/standards/Border_Collie.pdf).
+Variety handling is informed by the [Poodle Club standard](https://poodleclubofamerica.org/akc-breed-standard/)
+and [AKC Schnauzer overview](https://www.akc.org/dog-breeds/standard-schnauzer/).
+The exact five categories and rendering factors are project design choices.
+Keep this metadata separate from the feeding engine's measured-weight rules.

@@ -1,6 +1,5 @@
 import { ArrowCta } from "@/components/arrow-cta";
-import { PetSpeciesImage } from "@/components/pet-species-image";
-import { getBreedArtwork } from "../data/pet-breeds";
+import { PetGroupPortrait } from "./pet-group-portrait";
 import type { PetProfile } from "../data/pet-profiles";
 import type { VisitType } from "../data/visit-preference";
 import { useVisitPreference } from "../hooks/use-visit-preference";
@@ -22,7 +21,7 @@ export function ReturningPets({ pets, onManage }: { pets: PetProfile[]; onManage
       {visit.error && <p role="status" className={styles.error}>{visit.error}</p>}
     </div>
     <ul className={styles.pets} aria-label="Tus mascotas">{pets.map((pet) => <li key={pet.id}>
-      <PetSpeciesImage species={pet.species} src={getBreedArtwork(pet.species, pet.breed)} alt="" size={240} />
+      <PetGroupPortrait pet={pet} proportional={!single} />
       <h3>{pet.name}</h3><p>{pet.breed}</p>
     </li>)}</ul>
   </div>;

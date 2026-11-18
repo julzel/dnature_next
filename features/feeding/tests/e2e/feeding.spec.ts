@@ -62,10 +62,14 @@ test("guided steps validate inputs, keep the pet visible and display four live q
   for (const name of ["Base", "Funcional", "Masticación", "Premium"]) await expect(page.getByRole("article", { name: `Paquete ${name}`, exact: true })).toBeVisible();
   await expect(page.getByText("600 g", { exact: true })).toBeVisible();
   await expect(page.getByText(/g por comida/)).toHaveCount(0);
-  await page.getByRole("button", { name: "Editar respuestas y recalcular" }).click();
+  await page.reload();
+  await expect(page.getByRole("heading", { name: "Mis mascotas", level: 1 })).toBeVisible();
+  await expect(page.getByRole("article", { name: "Perfil de Luna" }).getByText("600 g", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Actualizar datos de Luna" }).click();
   await page.getByRole("button", { name: "Editar datos esenciales de Luna" }).click();
   await expect(page.getByLabel("Peso actual en kg")).toHaveValue("20");
   await page.reload();
+  await page.getByRole("button", { name: "Actualizar datos de Luna" }).click();
   await expect(page.getByLabel("Peso actual en kg")).toHaveValue("20");
   await expect(page.getByRole("article")).toHaveCount(0);
   expect(errors).toEqual([]);

@@ -25,6 +25,7 @@ export function reviewReason(pet: FeedingPet): string | null {
   if (pet.species !== "dog") return "La estimación automática de esta visita es para perros. Nuestro equipo puede ayudarte con un plan para tu gato.";
   if (pet.lifeStage === "growing" || pet.age < 1) return "Durante el crecimiento, la porción y los productos necesitan una revisión individual.";
   if (pet.health !== "healthy") return "Antes de estimar su alimentación, revisemos su estado de salud, gestación o lactancia con un profesional.";
-  if (pet.allergyStatus !== "no") return "Revisemos sus alergias e ingredientes con el equipo antes de recomendar productos.";
+  if (pet.allergyStatus === "yes") return "Indicás que tiene alergias o restricciones alimentarias. El equipo necesita revisar los ingredientes antes de estimar su porción y recomendar paquetes.";
+  if (pet.allergyStatus === "unknown") return "Marcaste «No lo sé» en alergias o restricciones alimentarias. Antes de estimar su porción y recomendar paquetes, revisemos qué ingredientes puede comer.";
   return null;
 }

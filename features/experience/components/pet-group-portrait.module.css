@@ -1,0 +1,16 @@
+.portrait {
+  position: relative;
+  inline-size: min(100%, 240px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.portrait > img {
+  position: absolute;
+  inset-inline-start: 50%;
+  /* Breed SVGs share a ground line at y=428.5 on their 480px canvas. */
+  inset-block-end: calc((1 - var(--portrait-scale)) * 10.729167%);
+  inline-size: calc(100% * var(--portrait-scale));
+  block-size: auto;
+  transform: translateX(-50%);
+}

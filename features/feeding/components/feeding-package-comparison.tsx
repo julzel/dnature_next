@@ -4,7 +4,7 @@ import type { FeedingResult } from "../lib/result";
 import { FeedingPackage } from "./feeding-package";
 import styles from "./feeding-results.module.css";
 
-export function FeedingPackageComparison({ result, days }: { result: FeedingResult; days: number }) {
+export function FeedingPackageComparison({ result, days, savedDate }: { result: FeedingResult; days: number; savedDate?: string }) {
   const [selected, setSelected] = useState(result.packages.find((pack) => pack.ready)?.id ?? result.packages[0]?.id);
   const group = useId();
 
@@ -19,6 +19,6 @@ export function FeedingPackageComparison({ result, days }: { result: FeedingResu
       </label>)}</div>
       <p className="sr-only" role="status">Mostrando el paquete {result.packages.find((pack) => pack.id === selected)?.name} para {result.name}.</p>
     </fieldset>
-    <div className={styles.packages}>{result.packages.map((pack) => <FeedingPackage key={pack.id} pack={pack} days={days} pet={result} active={selected === pack.id} />)}</div>
+    <div className={styles.packages}>{result.packages.map((pack) => <FeedingPackage key={pack.id} pack={pack} days={days} pet={result} active={selected === pack.id} savedDate={savedDate} />)}</div>
   </>;
 }

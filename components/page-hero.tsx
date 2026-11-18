@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import styles from "./page-hero.module.css";
 
 type PageHeroProps = {
+  className?: string;
   title: string;
   accent?: string;
   titleId: string;
@@ -14,11 +15,11 @@ type PageHeroProps = {
   railColor?: CSSProperties["color"];
 };
 
-export function PageHero({ title, accent, titleId, description, navigation, actions, media, fixedHeader = true, catalogRail = false, railColor }: PageHeroProps) {
+export function PageHero({ className, title, accent, titleId, description, navigation, actions, media, fixedHeader = true, catalogRail = false, railColor }: PageHeroProps) {
   const style = railColor ? { "--page-hero-rail": railColor } as CSSProperties : undefined;
 
   return (
-    <section className={styles.hero} aria-labelledby={titleId} data-page-hero data-fixed-header={fixedHeader} data-has-media={Boolean(media)} style={style}>
+    <section className={[styles.hero, className].filter(Boolean).join(" ")} aria-labelledby={titleId} data-page-hero data-fixed-header={fixedHeader} data-has-media={Boolean(media)} style={style}>
       <div className={styles.inner}>
         <div className={styles.navigation}>{navigation}</div>
         <div className={styles.body} data-has-media={Boolean(media)}>

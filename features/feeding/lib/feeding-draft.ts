@@ -2,9 +2,9 @@ import type { PetProfile } from "@/features/experience/data/pet-profiles";
 import { feedingGroups, type FeedingAnswers } from "../data/questions";
 import { DRAFT_KEY, feedingPetSchema } from "./intake";
 
-export function readFeedingDraft(pets: PetProfile[]) {
+export function readFeedingDraft(pets: PetProfile[], key = DRAFT_KEY) {
   try {
-    const raw = sessionStorage.getItem(DRAFT_KEY);
+    const raw = sessionStorage.getItem(key);
     if (!raw) return { values: {} as FeedingAnswers, step: -1, error: "" };
     if (raw.length > 32_000) throw new Error("Invalid draft");
     const parsed: unknown = JSON.parse(raw);
